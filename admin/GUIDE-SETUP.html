@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide de configuration — Les Roches Backend</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f2; color: #1a1a1a; line-height: 1.6; }
+    .page { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: .3rem; }
+    .subtitle { color: #666; font-size: 1rem; margin-bottom: 2.5rem; }
+
+    .phase { background: #fff; border-radius: 10px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,.07); }
+    .phase-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
+    .phase-num { width: 36px; height: 36px; background: #b8734a; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .95rem; flex-shrink: 0; }
+    .phase-title { font-size: 1.15rem; font-weight: 600; }
+    .phase-sub { font-size: .85rem; color: #888; }
+
+    .step { display: flex; gap: 1rem; margin-bottom: 1.2rem; }
+    .step-dot { width: 22px; height: 22px; background: #e8e4e0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; color: #666; flex-shrink: 0; margin-top: 2px; }
+    .step-body { flex: 1; }
+    .step-body strong { display: block; margin-bottom: .2rem; font-size: .95rem; }
+    .step-body p { font-size: .88rem; color: #555; }
+
+    code { background: #f0ede9; border: 1px solid #ddd; border-radius: 4px; padding: .15rem .4rem; font-family: 'Courier New', monospace; font-size: .82rem; color: #b8734a; }
+    .code-block { background: #1e1e1e; color: #d4d4d4; border-radius: 8px; padding: 1.2rem 1.4rem; font-family: 'Courier New', monospace; font-size: .82rem; margin: .8rem 0; line-height: 1.7; overflow-x: auto; }
+    .code-block .key { color: #9cdcfe; }
+    .code-block .val { color: #ce9178; }
+    .code-block .comment { color: #6a9955; }
+
+    .tip { background: #fff8f5; border: 1px solid rgba(184,115,74,.25); border-radius: 6px; padding: .9rem 1.1rem; margin: .8rem 0; font-size: .85rem; color: #555; }
+    .tip strong { color: #b8734a; }
+
+    .badge { display: inline-block; background: #e8f5e9; color: #2e7d32; font-size: .72rem; font-weight: 600; padding: .15rem .5rem; border-radius: 20px; margin-left: .4rem; }
+    .badge.free { background: #e8f5e9; color: #2e7d32; }
+    .badge.required { background: #fff3e0; color: #e65100; }
+
+    .link { color: #b8734a; text-decoration: none; border-bottom: 1px solid rgba(184,115,74,.3); }
+    .link:hover { border-color: #b8734a; }
+
+    .final-note { background: #1a1a1a; color: #fff; border-radius: 10px; padding: 1.8rem 2rem; }
+    .final-note h3 { margin-bottom: 1rem; font-size: 1.1rem; }
+    .final-note p { font-size: .88rem; color: rgba(255,255,255,.7); margin-bottom: .6rem; }
+    .final-note a { color: #b8734a; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <h1>🛠 Guide de configuration</h1>
+  <p class="subtitle">Les Roches Retreat — Backend Supabase + EmailJS · Temps estimé : 30–45 minutes</p>
+
+  <!-- ════════════════ PHASE 1 : SUPABASE ════════════════ -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">1</div>
+      <div>
+        <div class="phase-title">Créer le compte Supabase <span class="badge free">Gratuit</span></div>
+        <div class="phase-sub">Base de données · Prix dynamiques · Disponibilités · Réservations</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-dot">1</div>
+      <div class="step-body">
+        <strong>Aller sur <a href="https://supabase.com" target="_blank" class="link">supabase.com</a> → Start your project</strong>
+        <p>Créer un compte (GitHub recommandé). Gratuit jusqu'à 500 Mo et 50 000 lignes.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-dot">2</div>
+      <div class="step-body">
+        <strong>Créer un nouveau projet</strong>
+        <p>Nom : <code>les-roches</code> — Choisir la région la plus proche (US East ou EU West) — Créer un mot de passe fort et le noter.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-dot">3</div>
+      <div class="step-body">
+        <strong>Exécuter le script SQL de setup</strong>
+        <p>Dans Supabase → menu gauche → <strong>SQL Editor</strong> → <strong>New query</strong> → copier-coller le contenu du fichier <code>admin/supabase-setup.sql</code> → cliquer <strong>Run</strong>.</p>
+        <div class="tip">✅ Ce script crée automatiquement les 4 tables : villas, blocked_dates, reservations, airbnb_ical — avec toutes les règles de sécurité.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-dot">4</div>
+      <div class="step-body">
+        <strong>Récupérer les clés API</strong>
+        <p>Supabase → <strong>Project Settings</strong> (roue dentée en bas à gauche) → <strong>API</strong> — Copier :</p>
+        <ul style="margin:.5rem 0 .5rem 1rem;font-size:.85rem;color:#555">
+          <li><strong>Project URL</strong> → ressemble à <code>https://abcdef.supabase.co</code></li>
+          <li><strong>anon public</strong> (sous "Project API keys") → longue clé JWT</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-dot">5</div>
+      <div class="step-body">
+        <strong>Coller les clés dans le fichier <code>js/config.js</code></strong>
+        <p>Ouvrir ce fichier dans un éditeur texte (TextEdit sur Mac, Notepad sur PC) et remplacer :</p>
+        <div class="code-block">
+<span class="key">const</span> SUPABASE_URL  = <span class="val">'https://TON-ID.supabase.co'</span>;  <span class="comment">// ← coller ton Project URL</span><br>
+<span class="key">const</span> SUPABASE_ANON = <span class="val">'eyJhbGciOiJIUzI1...'</span>;            <span class="comment">// ← coller ton anon public key</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-dot">6</div>
+      <div class="step-body">
+        <strong>Créer ton compte admin (pour accéder au panneau admin)</strong>
+        <p>Supabase → <strong>Authentication</strong> → <strong>Users</strong> → <strong>Invite user</strong> → entrer ton email <code>ian.gay@perrimond.eu</code> → tu recevras un email pour définir ton mot de passe.</p>
+        <div class="tip">⚠️ Ce compte est uniquement pour toi — les clients n'ont pas besoin de compte. Le site public fonctionne sans authentification.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════ PHASE 2 : EMAILJS ════════════════ -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">2</div>
+      <div>
+        <div class="phase-title">Configurer EmailJS <span class="badge free">Gratuit · 200 emails/mois</span></div>
+        <div class="phase-sub">Emails de confirmation automatiques aux clients et à toi</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-dot">1</div>
+      <div class="step-body">
+        <strong>Créer un compte sur <a href="https://www.emailjs.com" target="_blank" class="link">emailjs.com</a></strong>
+        <p>Plan gratuit = 200 emails/mois, largement suffisant pour commencer.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-dot">2</div>
+      <div class="step-body">
+        <strong>Ajouter un service email</strong>
+        <p>EmailJS → <strong>Email Services</strong> → <strong>Add New Service</strong> → choisir <strong>Gmail</strong> (ou autre) → connecter ton compte email → noter le <code>Service ID</code> généré.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-dot">3</div>
+      <div class="step-body">
+        <strong>Créer le template pour le client</strong>
+        <p>EmailJS → <strong>Email Templates</strong> → <strong>Create New Template</strong> — Exemple de template :</p>
+        <div class="code-block">
+<span class="comment">Objet :</span> Votre demande de réservation — Les Roches Retreat<br><br>
+Bonjour {{guest_name}},<br><br>
+Nous avons bien reçu votre demande de réservation pour la villa <strong>{{villa_name}}</strong>.<br><br>
+📅 Arrivée : {{checkin}}<br>
+📅 Départ : {{checkout}}<br>
+🌙 Durée : {{nights}}<br>
+👥 Voyageurs : {{guests}}<br>
+💰 Total : {{total}}<br>
+💳 Acompte (50%) : {{deposit}}<br><br>
+Nous vous contacterons sur WhatsApp pour confirmer la disponibilité et vous envoyer les coordonnées bancaires.<br><br>
+Virement à effectuer sous 48h :<br>
+Bénéficiaire : NIGHT CONCIERGERIE SRL<br>
+IBAN : CR19 0114 0000 7812 3915 72<br>
+SWIFT : BCCECRSJ<br>
+Banque : BANCO LAFISE<br><br>
+À très bientôt,<br>
+L'équipe Les Roches Retreat
+        </div>
+        <p>Dans EmailJS, <strong>To Email</strong> : <code>{{guest_email}}</code> — <strong>From Name</strong> : Les Roches Retreat</p>
+        <p>Noter le <code>Template ID</code> de ce template (ex: <code>template_abc123</code>).</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-dot">4</div>
+      <div class="step-body">
+        <strong>Créer le template pour toi (alerte propriétaire)</strong>
+        <p>Créer un 2ème template "Nouvelle réservation" avec les mêmes variables mais envoyé à <code>ian.gay@perrimond.eu</code>. Noter son <code>Template ID</code>.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-dot">5</div>
+      <div class="step-body">
+        <strong>Récupérer ta Public Key</strong>
+        <p>EmailJS → <strong>Account</strong> → <strong>API Keys</strong> → copier la <strong>Public Key</strong>.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-dot">6</div>
+      <div class="step-body">
+        <strong>Coller les IDs dans <code>villas.html</code></strong>
+        <p>Ouvrir <code>villas.html</code> et trouver ce bloc (vers la ligne 686) :</p>
+        <div class="code-block">
+<span class="key">const</span> EMAILJS_PUBLIC_KEY      = <span class="val">'ta_public_key'</span>;<br>
+<span class="key">const</span> EMAILJS_SERVICE_ID      = <span class="val">'service_xxx'</span>;<br>
+<span class="key">const</span> EMAILJS_TEMPLATE_GUEST  = <span class="val">'template_guest_xxx'</span>;<br>
+<span class="key">const</span> EMAILJS_TEMPLATE_OWNER  = <span class="val">'template_owner_xxx'</span>;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════ PHASE 3 : AIRBNB SYNC ════════════════ -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">3</div>
+      <div>
+        <div class="phase-title">Configurer la synchronisation Airbnb</div>
+        <div class="phase-sub">Bloquer automatiquement les dates Airbnb sur ton site</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-dot">1</div>
+      <div class="step-body">
+        <strong>Récupérer l'URL iCal de chaque villa sur Airbnb</strong>
+        <p>Sur Airbnb → Tableau de bord hôte → Sélectionner une annonce → <strong>Calendrier</strong> → <strong>Disponibilité</strong> → <strong>Synchroniser les calendriers</strong> → <strong>Exporter le calendrier</strong> → copier l'URL iCal.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-dot">2</div>
+      <div class="step-body">
+        <strong>Coller les URLs dans le panneau admin</strong>
+        <p>Ouvrir <code>admin/index.html</code> → se connecter → onglet <strong>Sync Airbnb</strong> → coller l'URL iCal pour chaque villa → cliquer <strong>Sync</strong>.</p>
+        <div class="tip">💡 À faire une fois par semaine pour garder les disponibilités à jour. Tu peux aussi cliquer Sync avant de confirmer une réservation cliente.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════ PHASE 4 : TEST ════════════════ -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">4</div>
+      <div>
+        <div class="phase-title">Tester le système complet</div>
+        <div class="phase-sub">Vérifier que tout fonctionne avant de lancer</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-dot">1</div>
+      <div class="step-body">
+        <strong>Tester le panneau admin</strong>
+        <p>Ouvrir <code>admin/index.html</code> → se connecter avec ton email/mot de passe → vérifier que les 6 villas apparaissent dans l'onglet Tarifs.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-dot">2</div>
+      <div class="step-body">
+        <strong>Tester la réservation client</strong>
+        <p>Ouvrir <code>villas.html</code> → cliquer "Book Now" → entrer des dates → vérifier que les prix s'affichent → cliquer "Reserve" sur une villa → remplir le formulaire → soumettre.</p>
+        <p>Vérifier ensuite dans le panneau admin (onglet Réservations) que la réservation est bien enregistrée.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-dot">3</div>
+      <div class="step-body">
+        <strong>Tester le changement de prix</strong>
+        <p>Admin → Tarifs → modifier le prix d'une villa → sauvegarder → rafraîchir <code>villas.html</code> → le nouveau prix doit s'afficher immédiatement.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTE FINALE -->
+  <div class="final-note">
+    <h3>📋 Récapitulatif des fichiers modifiés</h3>
+    <p>• <strong>js/config.js</strong> — Clés Supabase (à renseigner)</p>
+    <p>• <strong>villas.html</strong> — IDs EmailJS à renseigner + Supabase déjà intégré</p>
+    <p>• <strong>admin/index.html</strong> — Panneau admin complet (déjà lié à config.js)</p>
+    <p>• <strong>admin/supabase-setup.sql</strong> — Script à exécuter une seule fois dans Supabase</p>
+    <p style="margin-top:1rem;color:rgba(255,255,255,.5);font-size:.8rem">Questions ? ian.gay@perrimond.eu · WhatsApp +33 6 67 74 90 24</p>
+  </div>
+
+</div>
+</body>
+</html>

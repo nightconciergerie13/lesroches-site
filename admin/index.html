@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les Roches — Administration</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Gilda+Display&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1e1b18;--ink2:#2e2a26;--w:#faf7f2;--c:#f3ede3;--c2:#e9e0d2;
+  --sand:#d6c9b0;--ter:#b8734a;--ter2:#a05f38;--mid:#9a8f82;
+  --green:#22c55e;--red:#ef4444;--orange:#f97316;--blue:#3b82f6;
+  --sidebar:240px;
+}
+html,body{height:100%;background:#f5f4f1;font-family:'Outfit',sans-serif;font-weight:300;color:var(--ink)}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:'Outfit',sans-serif}
+
+/* ── LOGIN ── */
+#login-screen{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  background:var(--ink);
+}
+.login-box{background:var(--w);border-radius:4px;padding:3rem;width:100%;max-width:380px}
+.login-logo{font-family:'Gilda Display',serif;font-size:1.4rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:.3rem}
+.login-sub{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ter);margin-bottom:2.5rem}
+.login-field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem}
+.login-field label{font-size:.48rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mid)}
+.login-field input{font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:300;padding:.8rem 1rem;border:1px solid var(--c2);border-radius:2px;outline:none;transition:border-color .2s;background:var(--c)}
+.login-field input:focus{border-color:var(--sand)}
+.login-btn{width:100%;padding:.9rem;background:var(--ink);color:var(--w);border:none;border-radius:2px;font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;transition:background .2s;margin-top:.5rem}
+.login-btn:hover{background:var(--ter)}
+.login-err{font-size:.64rem;color:var(--red);margin-top:.8rem;text-align:center;min-height:1rem}
+
+/* ── APP LAYOUT ── */
+#app{display:none;min-height:100vh;flex-direction:column}
+.app-header{background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.6rem;position:sticky;top:0;z-index:100}
+.app-logo{font-family:'Gilda Display',serif;font-size:1rem;letter-spacing:.16em;text-transform:uppercase;color:var(--w)}
+.app-logo span{font-family:'Outfit',sans-serif;font-size:.5rem;letter-spacing:.2em;color:rgba(255,255,255,.3);display:block;margin-top:.1rem}
+.app-user{display:flex;align-items:center;gap:1rem}
+.app-user-email{font-size:.58rem;color:rgba(255,255,255,.4);letter-spacing:.06em}
+.logout-btn{font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);background:none;border:1px solid rgba(255,255,255,.15);padding:.35rem .8rem;border-radius:1px;transition:all .2s}
+.logout-btn:hover{color:var(--w);border-color:rgba(255,255,255,.4)}
+.app-body{display:flex;flex:1}
+
+/* ── SIDEBAR ── */
+.sidebar{width:var(--sidebar);background:var(--ink2);flex-shrink:0;padding:1.5rem 0}
+.sidebar-section{margin-bottom:2rem}
+.sidebar-label{font-size:.4rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,255,255,.2);padding:0 1.4rem;margin-bottom:.6rem}
+.nav-item{display:flex;align-items:center;gap:.8rem;padding:.7rem 1.4rem;font-size:.62rem;letter-spacing:.1em;color:rgba(255,255,255,.45);transition:all .2s;border-left:2px solid transparent;cursor:pointer}
+.nav-item:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.75)}
+.nav-item.active{background:rgba(184,115,74,.1);color:var(--ter);border-left-color:var(--ter)}
+.nav-item svg{width:16px;height:16px;flex-shrink:0;opacity:.6}
+.nav-item.active svg{opacity:1}
+
+/* ── MAIN ── */
+.main{flex:1;padding:2rem;overflow-y:auto;min-width:0}
+.page{display:none}
+.page.active{display:block}
+.page-title{font-family:'Gilda Display',serif;font-size:1.8rem;color:var(--ink);margin-bottom:.4rem}
+.page-sub{font-size:.68rem;color:var(--mid);margin-bottom:2rem}
+
+/* ── CARDS / STATS ── */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:2rem}
+.stat-card{background:var(--w);border-radius:3px;padding:1.4rem;border:1px solid var(--c2)}
+.stat-label{font-size:.46rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);margin-bottom:.5rem}
+.stat-value{font-family:'Gilda Display',serif;font-size:2rem;color:var(--ink);line-height:1}
+.stat-sub{font-size:.58rem;color:var(--mid);margin-top:.3rem}
+
+/* ── RESERVATIONS TABLE ── */
+.table-wrap{background:var(--w);border-radius:3px;border:1px solid var(--c2);overflow:hidden}
+.table-header{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.6rem;border-bottom:1px solid var(--c2)}
+.table-title{font-size:.54rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ink)}
+.filter-tabs{display:flex;gap:.2rem}
+.filter-tab{font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;padding:.4rem .9rem;border-radius:1px;border:1px solid var(--c2);background:transparent;color:var(--mid);transition:all .2s}
+.filter-tab.active{background:var(--ink);color:var(--w);border-color:var(--ink)}
+table{width:100%;border-collapse:collapse}
+th{font-size:.44rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);padding:.9rem 1.2rem;text-align:left;border-bottom:1px solid var(--c2);font-weight:400}
+td{font-size:.68rem;padding:.9rem 1.2rem;border-bottom:1px solid var(--c2);color:var(--ink);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#faf9f7}
+.badge{display:inline-block;font-size:.42rem;letter-spacing:.2em;text-transform:uppercase;padding:.25rem .6rem;border-radius:1px}
+.badge-pending{background:rgba(249,115,22,.1);color:var(--orange)}
+.badge-confirmed{background:rgba(34,197,94,.1);color:var(--green)}
+.badge-cancelled{background:rgba(239,68,68,.1);color:var(--red)}
+.action-btns{display:flex;gap:.4rem}
+.btn-sm{font-size:.44rem;letter-spacing:.16em;text-transform:uppercase;padding:.35rem .7rem;border-radius:1px;border:1px solid;transition:all .2s}
+.btn-confirm{color:var(--green);border-color:rgba(34,197,94,.3)}
+.btn-confirm:hover{background:rgba(34,197,94,.1)}
+.btn-cancel{color:var(--red);border-color:rgba(239,68,68,.3)}
+.btn-cancel:hover{background:rgba(239,68,68,.1)}
+.empty-state{padding:3rem;text-align:center;color:var(--mid);font-size:.7rem}
+
+/* ── UNIFIED CALENDAR ── */
+.ucal-nav-btn{font-size:1.2rem;background:var(--w);border:1px solid var(--c2);color:var(--ink);width:32px;height:32px;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.ucal-nav-btn:hover{background:var(--c2)}
+.ucal-nav{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
+.ucal-month-label{font-family:'Gilda Display',serif;font-size:1.2rem;color:var(--ink);flex:1;text-align:center}
+.ucal-scroll{overflow-x:auto;border:1px solid var(--c2);border-radius:3px;background:var(--w)}
+.ucal-table{border-collapse:collapse;min-width:100%;font-size:.62rem}
+.ucal-table th,.ucal-table td{border:1px solid var(--c2);padding:0}
+.ucal-villa-col{width:110px;min-width:110px;background:var(--c);position:sticky;left:0;z-index:2}
+.ucal-villa-name{padding:.5rem .7rem;font-size:.58rem;font-weight:400;color:var(--ink);line-height:1.3}
+.ucal-head-date{min-width:52px;text-align:center;padding:.3rem .2rem;background:var(--c);position:sticky;top:0;z-index:1}
+.ucal-head-date.weekend{background:#f5f0ea}
+.ucal-head-day{font-size:.38rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid)}
+.ucal-head-num{font-size:.72rem;color:var(--ink);font-weight:400}
+.ucal-cell{height:48px;vertical-align:middle;text-align:center;cursor:pointer;position:relative;transition:all .12s;padding:.2rem}
+.ucal-cell:hover{background:rgba(184,115,74,.08)}
+.ucal-cell.past{opacity:.35;cursor:default;pointer-events:none}
+.ucal-cell.has-rate{background:#f0fdf4}
+.ucal-cell.default-rate{background:var(--w)}
+.ucal-cell.blocked-admin{background:repeating-linear-gradient(45deg,rgba(239,68,68,.07),rgba(239,68,68,.07) 4px,transparent 4px,transparent 10px);cursor:pointer}
+.ucal-cell.blocked-admin:hover{background:repeating-linear-gradient(45deg,rgba(239,68,68,.15),rgba(239,68,68,.15) 4px,transparent 4px,transparent 10px)}
+.ucal-cell.blocked-airbnb{background:repeating-linear-gradient(45deg,rgba(249,115,22,.07),rgba(249,115,22,.07) 4px,transparent 4px,transparent 10px);cursor:not-allowed}
+.ucal-cell.in-sel{background:rgba(184,115,74,.12);outline:1px solid rgba(184,115,74,.3)}
+.ucal-cell.sel-end{background:rgba(184,115,74,.2);outline:2px solid var(--ter)}
+.ucal-cell-price{display:block;font-family:'Gilda Display',serif;font-size:.75rem;color:var(--mid);line-height:1}
+.ucal-cell-price.custom{color:var(--ink)}
+.ucal-cell-min{display:block;font-size:.36rem;color:var(--mid);margin-top:.1rem}
+.ucal-cell-blocked{font-size:.65rem;color:var(--mid)}
+.ucal-cell.blocked-admin .ucal-cell-blocked{color:var(--red)}
+.ucal-cell.blocked-airbnb .ucal-cell-blocked{color:var(--orange)}
+/* Panel */
+.ucal-panel{position:fixed;right:0;top:0;height:100%;width:300px;background:var(--w);border-left:1px solid var(--c2);box-shadow:-4px 0 20px rgba(0,0,0,.1);z-index:500;transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column;overflow-y:auto}
+.ucal-panel.open{transform:translateX(0)}
+.ucal-panel-header{background:var(--ink);padding:1.4rem 1.4rem 1.2rem;flex-shrink:0}
+.ucal-panel-close{position:absolute;top:.8rem;right:1rem;background:none;border:none;color:rgba(255,255,255,.4);font-size:1.1rem;cursor:pointer}
+.ucal-panel-close:hover{color:#fff}
+.ucal-panel-villa{font-size:.44rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ter);margin-bottom:.3rem}
+.ucal-panel-range{font-family:'Gilda Display',serif;font-size:1rem;color:#fff;line-height:1.3}
+.ucal-panel-body{padding:1.4rem;flex:1}
+.ucal-panel-section{font-size:.44rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ter);margin:1.2rem 0 .8rem;padding-top:.8rem;border-top:1px solid var(--c2)}
+.ucal-panel-section:first-child{margin-top:0;padding-top:0;border-top:none}
+.ucal-inp-group{margin-bottom:.9rem}
+.ucal-inp-group label{display:block;font-size:.42rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);margin-bottom:.35rem}
+.ucal-inp-group input,.ucal-inp-group select{width:100%;font-family:'Gilda Display',serif;font-size:1.1rem;color:var(--ink);border:1px solid var(--c2);border-radius:2px;padding:.6rem .8rem;outline:none;background:var(--c);transition:border-color .2s}
+.ucal-inp-group select{font-family:'Outfit',sans-serif;font-size:.75rem}
+.ucal-inp-group input:focus,.ucal-inp-group select:focus{border-color:var(--sand)}
+.ucal-villa-checks{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem}
+.ucal-villa-check{display:flex;align-items:center;gap:.6rem;font-size:.62rem;color:var(--mid);cursor:pointer}
+.ucal-villa-check input{width:14px;height:14px;accent-color:var(--ter)}
+.ucal-block-wrap{display:flex;align-items:center;gap:.7rem;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:3px;padding:.8rem 1rem;cursor:pointer;margin-bottom:1rem}
+.ucal-block-wrap label{font-size:.62rem;color:var(--red);cursor:pointer}
+.ucal-apply-btn{width:100%;padding:.85rem;background:var(--ink);color:var(--w);border:none;border-radius:2px;font-size:.48rem;letter-spacing:.26em;text-transform:uppercase;cursor:pointer;transition:background .2s;margin-bottom:.5rem}
+.ucal-apply-btn:hover{background:var(--ter)}
+.ucal-clear-btn{width:100%;padding:.65rem;background:none;color:var(--mid);border:1px solid var(--c2);border-radius:2px;font-size:.44rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.ucal-clear-btn:hover{border-color:var(--red);color:var(--red)}
+.ucal-legend{display:flex;gap:1rem;margin-top:.8rem;flex-wrap:wrap;font-size:.5rem;color:var(--mid)}
+.ucal-leg{display:flex;align-items:center;gap:.4rem}
+.ucal-leg-dot{width:14px;height:14px;border-radius:2px;flex-shrink:0}
+
+/* ── AIRBNB SYNC ── */
+.sync-grid{display:flex;flex-direction:column;gap:1rem}
+.sync-card{background:var(--w);border-radius:3px;border:1px solid var(--c2);padding:1.4rem 1.6rem}
+.sync-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.sync-villa-name{font-family:'Gilda Display',serif;font-size:1rem;color:var(--ink)}
+.sync-status{font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mid)}
+.sync-status.ok{color:var(--green)}
+.sync-field{display:flex;gap:.6rem;align-items:center}
+.sync-input{flex:1;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:300;padding:.7rem 1rem;border:1px solid var(--c2);border-radius:2px;outline:none;background:var(--c);transition:border-color .2s;color:var(--ink)}
+.sync-input:focus{border-color:var(--sand)}
+.sync-input::placeholder{color:rgba(155,143,130,.5)}
+.sync-btn{font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;padding:.7rem 1.2rem;background:var(--ink);color:var(--w);border:none;border-radius:2px;white-space:nowrap;transition:background .2s;flex-shrink:0}
+.sync-btn:hover{background:var(--ter)}
+.sync-btn:disabled{background:var(--mid)}
+.sync-result{margin-top:.7rem;font-size:.6rem;color:var(--mid);min-height:1rem}
+.sync-result.success{color:var(--green)}
+.sync-result.error{color:var(--red)}
+.sync-all-btn{width:100%;padding:1rem;background:var(--ter);color:var(--w);border:none;border-radius:2px;font-size:.54rem;letter-spacing:.24em;text-transform:uppercase;transition:background .2s;margin-bottom:1.5rem}
+.sync-all-btn:hover{background:var(--ter2)}
+
+/* ── ANALYTICS PAGE ── */
+.an-kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem}
+@media(max-width:1100px){.an-kpi-grid{grid-template-columns:repeat(2,1fr)}}
+.an-kpi{background:var(--w);border:1px solid var(--c2);border-radius:3px;padding:1.2rem 1.4rem}
+.an-kpi-label{font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);margin-bottom:.5rem}
+.an-kpi-value{font-family:'Gilda Display',serif;font-size:2rem;color:var(--ink);line-height:1}
+.an-kpi-sub{font-size:.6rem;color:var(--mid);margin-top:.35rem}
+.an-kpi-trend{font-size:.6rem;margin-top:.3rem}
+.an-kpi-trend.up{color:var(--green)}
+.an-kpi-trend.neutral{color:var(--mid)}
+
+.an-charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
+@media(max-width:1100px){.an-charts-grid{grid-template-columns:1fr}}
+.an-chart-card{background:var(--w);border:1px solid var(--c2);border-radius:3px;padding:1.4rem}
+.an-chart-title{font-size:.48rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ter);margin-bottom:1.2rem}
+.an-chart-wrap{position:relative;height:200px}
+
+.an-full-card{background:var(--w);border:1px solid var(--c2);border-radius:3px;padding:1.4rem;margin-bottom:1.5rem}
+.an-full-wrap{position:relative;height:180px}
+
+.an-table-card{background:var(--w);border:1px solid var(--c2);border-radius:3px;overflow:hidden}
+.an-table-title{font-size:.48rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ter);padding:1.1rem 1.4rem;border-bottom:1px solid var(--c2)}
+.an-table{width:100%;border-collapse:collapse}
+.an-table th{font-size:.42rem;letter-spacing:.26em;text-transform:uppercase;color:var(--mid);padding:.7rem 1.4rem;text-align:left;background:var(--c);border-bottom:1px solid var(--c2)}
+.an-table td{padding:.75rem 1.4rem;font-size:.7rem;color:var(--ink);border-bottom:1px solid rgba(214,201,176,.3)}
+.an-table tr:last-child td{border-bottom:none}
+.an-flag{margin-right:.5rem}
+
+.an-period{display:flex;gap:.5rem;margin-bottom:1.5rem}
+.an-period-btn{font-size:.44rem;letter-spacing:.22em;text-transform:uppercase;padding:.45rem 1rem;border:1px solid var(--c2);background:var(--w);color:var(--mid);border-radius:2px;cursor:pointer;transition:all .18s}
+.an-period-btn.active{background:var(--ter);border-color:var(--ter);color:#fff}
+
+.an-empty{text-align:center;padding:3rem 1rem;color:var(--mid);font-size:.7rem;font-style:italic}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--ink);color:var(--w);padding:.9rem 1.6rem;border-radius:3px;font-size:.64rem;letter-spacing:.08em;z-index:999;transform:translateY(100px);opacity:0;transition:all .3s}
+.toast.show{transform:none;opacity:1}
+.toast.green{background:#166534}
+.toast.red{background:#991b1b}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .sidebar{display:none}
+  .avail-layout{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ LOGIN SCREEN ══ -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">Les Roches</div>
+    <div class="login-sub">Administration</div>
+    <div class="login-field">
+      <label>Email</label>
+      <input type="email" id="l-email" placeholder="ian.gay@perrimond.eu" autocomplete="email">
+    </div>
+    <div class="login-field">
+      <label>Mot de passe</label>
+      <input type="password" id="l-pass" placeholder="••••••••">
+    </div>
+    <button class="login-btn" id="login-btn">Connexion</button>
+    <div class="login-err" id="login-err"></div>
+  </div>
+</div>
+
+<!-- ══ APP ══ -->
+<div id="app">
+  <!-- Header -->
+  <div class="app-header">
+    <div class="app-logo">Les Roches <span>Panneau d'administration</span></div>
+    <div class="app-user">
+      <div class="app-user-email" id="user-email"></div>
+      <button class="logout-btn" id="logout-btn">Déconnexion</button>
+    </div>
+  </div>
+
+  <div class="app-body">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Menu</div>
+        <div class="nav-item active" data-page="dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Réservations
+        </div>
+        <div class="nav-item" data-page="pricing">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Calendrier
+        </div>
+        <div class="nav-item" data-page="sync">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          Sync Airbnb
+        </div>
+        <div class="nav-item" data-page="analytics">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          Pilotage
+        </div>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="main">
+
+      <!-- ── PAGE: RESERVATIONS ── -->
+      <div class="page active" id="page-dashboard">
+        <div class="page-title">Réservations</div>
+        <div class="page-sub">Gérez les demandes de réservation reçues via le site</div>
+        <div class="stats-grid" id="stats-grid">
+          <div class="stat-card"><div class="stat-label">En attente</div><div class="stat-value" id="stat-pending">—</div><div class="stat-sub">à confirmer</div></div>
+          <div class="stat-card"><div class="stat-label">Confirmées</div><div class="stat-value" id="stat-confirmed">—</div><div class="stat-sub">ce mois-ci</div></div>
+          <div class="stat-card"><div class="stat-label">Prochaine arrivée</div><div class="stat-value" id="stat-next" style="font-size:1.1rem">—</div><div class="stat-sub" id="stat-next-villa"></div></div>
+        </div>
+        <div class="table-wrap">
+          <div class="table-header">
+            <div class="table-title">Toutes les demandes</div>
+            <div class="filter-tabs">
+              <button class="filter-tab active" data-filter="all">Toutes</button>
+              <button class="filter-tab" data-filter="pending">En attente</button>
+              <button class="filter-tab" data-filter="confirmed">Confirmées</button>
+            </div>
+          </div>
+          <div id="reservations-table-wrap">
+            <div class="empty-state">Chargement…</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PAGE: CALENDRIER UNIFIÉ ── -->
+      <div class="page" id="page-pricing">
+        <div class="page-title">Calendrier</div>
+        <div class="page-sub">Toutes les villas en une seule vue. Cliquez sur une date de début puis une date de fin pour définir le tarif, les nuits minimum et la disponibilité.</div>
+        <div class="ucal-nav">
+          <button class="ucal-nav-btn" id="ucal-prev">‹</button>
+          <div class="ucal-month-label" id="ucal-month-label">—</div>
+          <button class="ucal-nav-btn" id="ucal-next">›</button>
+          <div class="ucal-legend">
+            <div class="ucal-leg"><div class="ucal-leg-dot" style="background:#f0fdf4;border:1px solid #d1fae5"></div>Tarif personnalisé</div>
+            <div class="ucal-leg"><div class="ucal-leg-dot" style="background:repeating-linear-gradient(45deg,rgba(239,68,68,.15),rgba(239,68,68,.15) 4px,#fff 4px,#fff 10px);border:1px solid rgba(239,68,68,.2)"></div>Bloqué</div>
+            <div class="ucal-leg"><div class="ucal-leg-dot" style="background:repeating-linear-gradient(45deg,rgba(249,115,22,.15),rgba(249,115,22,.15) 4px,#fff 4px,#fff 10px);border:1px solid rgba(249,115,22,.2)"></div>Airbnb ✈</div>
+          </div>
+        </div>
+        <div class="ucal-scroll">
+          <table class="ucal-table" id="ucal-table"></table>
+        </div>
+      </div>
+
+
+      <!-- ── PAGE: SYNC AIRBNB ── -->
+      <div class="page" id="page-sync">
+        <div class="page-title">Synchronisation Airbnb</div>
+        <div class="page-sub">Colle l'URL iCal de chaque annonce Airbnb. Les dates réservées sur Airbnb seront automatiquement bloquées.</div>
+        <button class="sync-all-btn" id="sync-all-btn">↻ Synchroniser toutes les villas</button>
+        <div class="sync-grid" id="sync-grid">
+          <div class="empty-state">Chargement…</div>
+        </div>
+        <div style="background:var(--c);border:1px solid var(--c2);border-radius:3px;padding:1.4rem;margin-top:1.5rem">
+          <div style="font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ter);margin-bottom:.8rem">Où trouver l'URL iCal Airbnb ?</div>
+          <div style="font-size:.68rem;color:var(--mid);line-height:1.8">
+            1. Va sur Airbnb → <strong style="color:var(--ink);font-weight:400">Calendrier</strong> de ton annonce<br>
+            2. Clique sur <strong style="color:var(--ink);font-weight:400">Disponibilité</strong> → <strong style="color:var(--ink);font-weight:400">Exporter le calendrier</strong><br>
+            3. Copie l'URL qui commence par <code style="background:var(--w);padding:.1rem .4rem;border-radius:2px">https://www.airbnb.com/calendar/ical/...</code><br>
+            4. Colle-la ici et clique Synchroniser
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PAGE: ANALYTICS ── -->
+      <div class="page" id="page-analytics">
+        <div class="page-title">Tableau de pilotage</div>
+        <div class="page-sub">Provenance des visiteurs, nationalités, pages vues — données en temps réel</div>
+
+        <!-- Période -->
+        <div class="an-period">
+          <button class="an-period-btn active" data-days="7">7 jours</button>
+          <button class="an-period-btn" data-days="30">30 jours</button>
+          <button class="an-period-btn" data-days="90">3 mois</button>
+          <button class="an-period-btn" data-days="365">12 mois</button>
+        </div>
+
+        <!-- KPIs -->
+        <div class="an-kpi-grid">
+          <div class="an-kpi">
+            <div class="an-kpi-label">Pages vues</div>
+            <div class="an-kpi-value" id="an-total">—</div>
+            <div class="an-kpi-sub">sur la période</div>
+          </div>
+          <div class="an-kpi">
+            <div class="an-kpi-label">Pays distincts</div>
+            <div class="an-kpi-value" id="an-countries">—</div>
+            <div class="an-kpi-sub">nationalités de visiteurs</div>
+          </div>
+          <div class="an-kpi">
+            <div class="an-kpi-label">Source principale</div>
+            <div class="an-kpi-value" id="an-top-source" style="font-size:1.2rem;padding-top:.4rem">—</div>
+            <div class="an-kpi-sub" id="an-top-source-pct"></div>
+          </div>
+          <div class="an-kpi">
+            <div class="an-kpi-label">Top pays</div>
+            <div class="an-kpi-value" id="an-top-country" style="font-size:1.2rem;padding-top:.4rem">—</div>
+            <div class="an-kpi-sub" id="an-top-country-pct"></div>
+          </div>
+        </div>
+
+        <!-- Évolution des vues -->
+        <div class="an-full-card">
+          <div class="an-chart-title">Évolution des visites</div>
+          <div class="an-full-wrap"><canvas id="chart-timeline"></canvas></div>
+        </div>
+
+        <!-- Sources + Pays -->
+        <div class="an-charts-grid">
+          <div class="an-chart-card">
+            <div class="an-chart-title">Sources de trafic</div>
+            <div class="an-chart-wrap"><canvas id="chart-sources"></canvas></div>
+          </div>
+          <div class="an-chart-card">
+            <div class="an-chart-title">Top nationalités</div>
+            <div class="an-chart-wrap"><canvas id="chart-countries"></canvas></div>
+          </div>
+        </div>
+
+        <!-- Devices + Pages les plus vues -->
+        <div class="an-charts-grid">
+          <div class="an-chart-card">
+            <div class="an-chart-title">Appareils</div>
+            <div class="an-chart-wrap"><canvas id="chart-devices"></canvas></div>
+          </div>
+          <div class="an-table-card">
+            <div class="an-table-title">Pages les plus visitées</div>
+            <table class="an-table">
+              <thead><tr><th>Page</th><th>Vues</th><th>%</th></tr></thead>
+              <tbody id="an-pages-table"><tr><td colspan="3" class="an-empty">Chargement…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div><!-- /page-analytics -->
+
+    </div><!-- /main -->
+  </div><!-- /app-body -->
+</div><!-- /app -->
+
+<!-- ══ UCAL PANEL (slide-in) ══ -->
+<div class="ucal-panel" id="ucal-panel">
+  <div class="ucal-panel-header" style="position:relative">
+    <button class="ucal-panel-close" id="ucal-panel-close">✕</button>
+    <div class="ucal-panel-villa" id="ucal-panel-villa"></div>
+    <div class="ucal-panel-range" id="ucal-panel-range"></div>
+  </div>
+  <div class="ucal-panel-body">
+    <div class="ucal-panel-section">Tarif &amp; durée minimum</div>
+    <div class="ucal-inp-group">
+      <label>Prix par nuit ($)</label>
+      <input type="number" id="ucal-price-inp" min="50" max="9999" placeholder="450">
+    </div>
+    <div class="ucal-inp-group">
+      <label>Nuits minimum</label>
+      <select id="ucal-min-inp">
+        <option value="1">1 nuit</option>
+        <option value="2">2 nuits</option>
+        <option value="3" selected>3 nuits</option>
+        <option value="4">4 nuits</option>
+        <option value="5">5 nuits</option>
+        <option value="6">6 nuits</option>
+        <option value="7">7 nuits</option>
+      </select>
+    </div>
+    <div class="ucal-panel-section">Disponibilité</div>
+    <div class="ucal-block-wrap">
+      <input type="checkbox" id="ucal-block-chk">
+      <label for="ucal-block-chk">Bloquer cette période (indisponible)</label>
+    </div>
+    <button class="ucal-apply-btn" onclick="applyUcalPanel()">Appliquer</button>
+    <button class="ucal-clear-btn" onclick="clearUcalPanel()">Effacer les données de cette période</button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════════════════════
+// CONFIG — Remplace avec tes vraies clés Supabase
+// ══════════════════════════════════════════════════════════
+const SUPABASE_URL  = 'https://vrufclzcaswkdgrffdwm.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZydWZjbHpjYXN3a2RncmZmZHdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyOTE2MjgsImV4cCI6MjA4OTg2NzYyOH0.cHllj6HZms7qf5PVc3LPy057r3rvCv6JyjfAfVlH34E';
+
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+const VILLA_IMAGES = {
+  jade:   '../images/jade-hero.jpg',
+  topaze: '../images/topaze-hero.jpg',
+  onyx:   '../images/onyx-hero.jpg',
+  agate:  '../images/agate-hero.jpg',
+  ambre:  '../images/ambre-hero.jpg',
+  opale:  '../images/opale-hero.jpg',
+};
+
+// ── UTILS ──────────────────────────────────────────────────
+function toast(msg, type='') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + type;
+  setTimeout(() => t.className = 'toast', 3000);
+}
+function fmt(dateStr) {
+  if(!dateStr) return '—';
+  return new Date(dateStr + 'T00:00:00').toLocaleDateString('fr-FR',{day:'2-digit',month:'short',year:'numeric'});
+}
+function today() { return new Date().toISOString().split('T')[0]; }
+
+// ── AUTH ───────────────────────────────────────────────────
+document.getElementById('l-pass').addEventListener('keydown', e => {
+  if(e.key === 'Enter') doLogin();
+});
+document.getElementById('login-btn').addEventListener('click', doLogin);
+
+async function doLogin() {
+  const email = document.getElementById('l-email').value.trim();
+  const pass  = document.getElementById('l-pass').value;
+  const err   = document.getElementById('login-err');
+  err.textContent = '';
+  document.getElementById('login-btn').textContent = 'Connexion…';
+
+  const { data, error } = await sb.auth.signInWithPassword({ email, password: pass });
+  document.getElementById('login-btn').textContent = 'Connexion';
+
+  if(error) { err.textContent = 'Email ou mot de passe incorrect'; return; }
+  showApp(data.user);
+}
+
+document.getElementById('logout-btn').addEventListener('click', async () => {
+  await sb.auth.signOut();
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+});
+
+sb.auth.onAuthStateChange((event, session) => {
+  if(session) showApp(session.user);
+});
+
+function showApp(user) {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+  document.getElementById('user-email').textContent = user.email;
+  loadAll();
+}
+
+// ── NAVIGATION ─────────────────────────────────────────────
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    item.classList.add('active');
+    document.getElementById('page-' + item.dataset.page).classList.add('active');
+  });
+});
+
+// ── LOAD ALL DATA ──────────────────────────────────────────
+function loadAll() {
+  loadReservations();
+  loadUcal();
+  loadSync();
+  // Sync automatique en arrière-plan au chargement
+  setTimeout(autoSyncAll, 2000);
+}
+
+async function autoSyncAll() {
+  const { data } = await sb.from('airbnb_ical').select('villa_id,ical_url').not('ical_url', 'is', null);
+  if(!data || !data.length) return;
+  for(const row of data) {
+    if(!row.ical_url) continue;
+    try {
+      const proxies = [
+        'https://api.allorigins.win/raw?url=' + encodeURIComponent(row.ical_url),
+        'https://corsproxy.io/?' + encodeURIComponent(row.ical_url),
+        'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(row.ical_url),
+      ];
+      let ical = null;
+      for(const proxyUrl of proxies) {
+        try {
+          const resp = await fetch(proxyUrl, { signal: AbortSignal.timeout(8000) });
+          if(resp.ok) { const txt = await resp.text(); if(txt.includes('VCALENDAR')) { ical = txt; break; } }
+        } catch(e) { /* essaie suivant */ }
+      }
+      if(!ical) continue;
+      const dates = parseIcal(ical);
+      if(!dates.length) continue;
+      await sb.from('blocked_dates').delete().eq('villa_id', row.villa_id).eq('source', 'airbnb');
+      const rows = dates.map(d => ({ villa_id: row.villa_id, date: d, source: 'airbnb' }));
+      for(let i = 0; i < rows.length; i += 100) {
+        await sb.from('blocked_dates').upsert(rows.slice(i, i+100), { onConflict: 'villa_id,date' });
+      }
+      await sb.from('airbnb_ical').update({ last_sync: new Date().toISOString() }).eq('villa_id', row.villa_id);
+    } catch(e) { /* sync silencieuse, on ignore les erreurs */ }
+  }
+  // Rafraîchit le calendrier après sync
+  await fetchUcalData();
+  renderUcal();
+}
+
+// ══ RESERVATIONS ══════════════════════════════════════════
+let allReservations = [];
+let currentFilter = 'all';
+
+async function loadReservations() {
+  const { data } = await sb.from('reservations').select('*').order('created_at', { ascending: false });
+  allReservations = data || [];
+  renderStats();
+  renderReservations();
+}
+
+function renderStats() {
+  const pending   = allReservations.filter(r => r.status === 'pending').length;
+  const confirmed = allReservations.filter(r => r.status === 'confirmed').length;
+  document.getElementById('stat-pending').textContent   = pending;
+  document.getElementById('stat-confirmed').textContent = confirmed;
+
+  const upcoming = allReservations
+    .filter(r => r.status === 'confirmed' && r.checkin >= today())
+    .sort((a,b) => a.checkin.localeCompare(b.checkin))[0];
+  if(upcoming) {
+    document.getElementById('stat-next').textContent       = fmt(upcoming.checkin);
+    document.getElementById('stat-next-villa').textContent = upcoming.villa_name;
+  } else {
+    document.getElementById('stat-next').textContent = '—';
+  }
+}
+
+function renderReservations() {
+  const filtered = currentFilter === 'all'
+    ? allReservations
+    : allReservations.filter(r => r.status === currentFilter);
+
+  const wrap = document.getElementById('reservations-table-wrap');
+  if(!filtered.length) {
+    wrap.innerHTML = '<div class="empty-state">Aucune réservation</div>';
+    return;
+  }
+
+  wrap.innerHTML = `<table>
+    <thead><tr>
+      <th>Villa</th><th>Client</th><th>Dates</th><th>Nuits</th>
+      <th>Total</th><th>Dépôt</th><th>Statut</th><th>Actions</th>
+    </tr></thead>
+    <tbody>${filtered.map(r => `
+      <tr>
+        <td><strong>${r.villa_name || r.villa_id}</strong></td>
+        <td>${r.firstname} ${r.lastname}<br><span style="font-size:.58rem;color:var(--mid)">${r.email}</span><br><span style="font-size:.58rem;color:#25D366">${r.whatsapp}</span></td>
+        <td>${fmt(r.checkin)}<br><span style="color:var(--mid)">→ ${fmt(r.checkout)}</span></td>
+        <td>${r.nights || '—'}</td>
+        <td>${r.total_usd ? '$' + r.total_usd.toLocaleString() : '—'}</td>
+        <td>${r.deposit_usd ? '$' + r.deposit_usd.toLocaleString() : '—'}</td>
+        <td><span class="badge badge-${r.status}">${r.status === 'pending' ? 'En attente' : r.status === 'confirmed' ? 'Confirmée' : 'Annulée'}</span></td>
+        <td>
+          <div class="action-btns">
+            ${r.status !== 'confirmed' ? `<button class="btn-sm btn-confirm" onclick="updateStatus(${r.id},'confirmed')">✓ Confirmer</button>` : ''}
+            ${r.status !== 'cancelled' ? `<button class="btn-sm btn-cancel" onclick="updateStatus(${r.id},'cancelled')">✕ Annuler</button>` : ''}
+          </div>
+        </td>
+      </tr>`).join('')}
+    </tbody>
+  </table>`;
+}
+
+async function updateStatus(id, status) {
+  await sb.from('reservations').update({ status }).eq('id', id);
+  toast(status === 'confirmed' ? 'Réservation confirmée ✓' : 'Réservation annulée', status === 'confirmed' ? 'green' : 'red');
+  loadReservations();
+}
+
+document.querySelectorAll('.filter-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    currentFilter = tab.dataset.filter;
+    renderReservations();
+  });
+});
+
+// ══ UNIFIED CALENDAR ═══════════════════════════════════════
+const VILLAS_LIST = [
+  {id:'jade',   name:'Casa Jade'},
+  {id:'topaze', name:'Topaze'},
+  {id:'onyx',   name:'Onyx'},
+  {id:'agate',  name:'Agate'},
+  {id:'ambre',  name:'Ambre'},
+  {id:'opale',  name:'Opale'},
+];
+
+let ucalYear, ucalMonth;
+let ucalData    = {};  // key: 'villa_id:YYYY-MM-DD' => {type:'rate'|'blocked-admin'|'blocked-airbnb', price, minNights}
+let ucalDefault = {};  // villa_id => {price, minNights}
+let allVillas   = [];
+let ucalSelVilla = null, ucalSelStart = null, ucalSelEnd = null;
+
+// Helper : retourne 'YYYY-MM-DD' en heure locale (évite le décalage UTC)
+function dsLocal(date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
+async function loadUcal() {
+  const now = new Date();
+  ucalYear  = now.getFullYear();
+  ucalMonth = now.getMonth();
+
+  const { data: villas } = await sb.from('villas').select('*').order('name');
+  allVillas = villas || [];
+  (villas || []).forEach(v => {
+    ucalDefault[v.id] = { price: v.price_per_night, minNights: v.min_nights };
+  });
+
+  await fetchUcalData();
+  renderUcal();
+
+  document.getElementById('ucal-prev').onclick = () => {
+    ucalMonth--; if(ucalMonth < 0) { ucalMonth = 11; ucalYear--; }
+    fetchUcalData().then(renderUcal);
+  };
+  document.getElementById('ucal-next').onclick = () => {
+    ucalMonth++; if(ucalMonth > 11) { ucalMonth = 0; ucalYear++; }
+    fetchUcalData().then(renderUcal);
+  };
+  document.getElementById('ucal-panel-close').onclick = closeUcalPanel;
+}
+
+async function fetchUcalData() {
+  const start = dsLocal(new Date(ucalYear, ucalMonth, 1));
+  const end   = dsLocal(new Date(ucalYear, ucalMonth + 1, 0));
+
+  const [ratesRes, blockedRes] = await Promise.all([
+    sb.from('daily_rates').select('villa_id,date,price_per_night,min_nights').gte('date', start).lte('date', end),
+    sb.from('blocked_dates').select('villa_id,date,source').gte('date', start).lte('date', end),
+  ]);
+
+  ucalData = {};
+  (ratesRes.data || []).forEach(r => {
+    ucalData[r.villa_id + ':' + r.date] = { type: 'rate', price: r.price_per_night, minNights: r.min_nights };
+  });
+  (blockedRes.data || []).forEach(r => {
+    const key = r.villa_id + ':' + r.date;
+    // Airbnb overwrites admin for display priority
+    if(!ucalData[key] || r.source === 'airbnb') {
+      ucalData[key] = { type: 'blocked-' + r.source };
+    }
+  });
+}
+
+function renderUcal() {
+  const MONTHS_FR = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+  document.getElementById('ucal-month-label').textContent = MONTHS_FR[ucalMonth] + ' ' + ucalYear;
+
+  const daysInMonth = new Date(ucalYear, ucalMonth + 1, 0).getDate();
+  const todayStr    = dsLocal(new Date());
+
+  // Build date list
+  const dates = [];
+  for(let d = 1; d <= daysInMonth; d++) {
+    const ds  = `${ucalYear}-${String(ucalMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const dow = new Date(ds + 'T00:00:00').getDay();
+    dates.push({ d, ds, isWeekend: dow === 0 || dow === 6, isPast: ds < todayStr });
+  }
+
+  // Header
+  const DAY_NAMES = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+  let thead = '<thead><tr>';
+  thead += '<th style="min-width:100px;background:var(--c);position:sticky;left:0;z-index:3;border:1px solid var(--c2);padding:.4rem .6rem"><span style="font-size:.4rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mid)">Villa</span></th>';
+  dates.forEach(({ d, ds, isWeekend }) => {
+    const dow = new Date(ds + 'T00:00:00').getDay();
+    thead += `<th class="ucal-head-date${isWeekend?' weekend':''}">
+      <div class="ucal-head-day">${DAY_NAMES[dow]}</div>
+      <div class="ucal-head-num">${d}</div>
+    </th>`;
+  });
+  thead += '</tr></thead>';
+
+  // Body rows
+  let tbody = '<tbody>';
+  VILLAS_LIST.forEach(villa => {
+    tbody += '<tr>';
+    tbody += `<td class="ucal-villa-col"><div class="ucal-villa-name">${villa.name}</div></td>`;
+    dates.forEach(({ ds, isPast }) => {
+      const key   = villa.id + ':' + ds;
+      const entry = ucalData[key];
+      let cls     = 'ucal-cell';
+      let content = '';
+
+      if(isPast) {
+        cls += ' past';
+        const def = ucalDefault[villa.id];
+        if(def) content = `<span class="ucal-cell-price">$${def.price}</span>`;
+      } else if(entry) {
+        if(entry.type === 'rate') {
+          cls    += ' has-rate';
+          content = `<span class="ucal-cell-price custom">$${entry.price}</span>`;
+          if(entry.minNights > 1) content += `<span class="ucal-cell-min">${entry.minNights}n min</span>`;
+        } else if(entry.type === 'blocked-admin') {
+          cls    += ' blocked-admin';
+          content = `<span class="ucal-cell-blocked">✕</span>`;
+        } else if(entry.type === 'blocked-airbnb') {
+          cls    += ' blocked-airbnb';
+          content = `<span class="ucal-cell-blocked">✈</span>`;
+        }
+      } else {
+        cls += ' default-rate';
+        const def = ucalDefault[villa.id];
+        if(def) content = `<span class="ucal-cell-price">$${def.price}</span>`;
+      }
+
+      // Selection highlight
+      if(!isPast && ucalSelVilla === villa.id && ucalSelStart) {
+        const selEnd = ucalSelEnd || ucalSelStart;
+        const [a, b] = ucalSelStart <= selEnd ? [ucalSelStart, selEnd] : [selEnd, ucalSelStart];
+        if(ds >= a && ds <= b) cls += (ds === a || ds === b) ? ' sel-end' : ' in-sel';
+      }
+
+      const clickable = !isPast && !(entry && entry.type === 'blocked-airbnb');
+      tbody += `<td class="${cls}"${clickable ? ` onclick="ucalClick('${villa.id}','${ds}')"` : ''}>${content}</td>`;
+    });
+    tbody += '</tr>';
+  });
+  tbody += '</tbody>';
+
+  document.getElementById('ucal-table').innerHTML = thead + tbody;
+}
+
+function ucalClick(villaId, ds) {
+  if(!ucalSelStart || ucalSelVilla !== villaId || ucalSelEnd) {
+    // Start new selection
+    ucalSelVilla = villaId;
+    ucalSelStart = ds;
+    ucalSelEnd   = null;
+    closeUcalPanel();
+  } else {
+    // Complete selection
+    ucalSelEnd = ds;
+    if(ucalSelEnd < ucalSelStart) [ucalSelStart, ucalSelEnd] = [ucalSelEnd, ucalSelStart];
+    showUcalPanel();
+  }
+  renderUcal();
+}
+
+function showUcalPanel() {
+  const villa = VILLAS_LIST.find(v => v.id === ucalSelVilla);
+  document.getElementById('ucal-panel-villa').textContent = villa?.name || '';
+  const fmtD = ds => new Date(ds + 'T00:00:00').toLocaleDateString('fr-FR', {day:'numeric', month:'short'});
+  const days = Math.round((new Date(ucalSelEnd) - new Date(ucalSelStart)) / 86400000) + 1;
+  document.getElementById('ucal-panel-range').textContent =
+    fmtD(ucalSelStart) + ' → ' + fmtD(ucalSelEnd) + ' · ' + days + ' jour' + (days > 1 ? 's' : '');
+
+  // Pre-fill fields
+  const startEntry = ucalData[ucalSelVilla + ':' + ucalSelStart];
+  const def = ucalDefault[ucalSelVilla] || {};
+  const isBlocked = startEntry && startEntry.type === 'blocked-admin';
+  document.getElementById('ucal-price-inp').value = (startEntry?.type === 'rate' ? startEntry.price : def.price) || '';
+  document.getElementById('ucal-min-inp').value   = (startEntry?.type === 'rate' ? startEntry.minNights : def.minNights) || 3;
+  document.getElementById('ucal-block-chk').checked = isBlocked;
+
+  document.getElementById('ucal-panel').classList.add('open');
+}
+
+function closeUcalPanel() {
+  document.getElementById('ucal-panel').classList.remove('open');
+}
+
+async function applyUcalPanel() {
+  if(!ucalSelStart || !ucalSelEnd || !ucalSelVilla) return;
+  const isBlock = document.getElementById('ucal-block-chk').checked;
+
+  // Build date list
+  const dates = [];
+  let cur = new Date(ucalSelStart + 'T12:00:00');
+  const endD = new Date(ucalSelEnd + 'T12:00:00');
+  while(cur <= endD) { dates.push(dsLocal(cur)); cur.setDate(cur.getDate() + 1); }
+
+  if(isBlock) {
+    await sb.from('daily_rates').delete().eq('villa_id', ucalSelVilla).gte('date', ucalSelStart).lte('date', ucalSelEnd);
+    const { error } = await sb.from('blocked_dates').upsert(
+      dates.map(d => ({ villa_id: ucalSelVilla, date: d, source: 'admin' })),
+      { onConflict: 'villa_id,date' }
+    );
+    if(error) { toast('Erreur: ' + error.message, 'red'); return; }
+    dates.forEach(d => { ucalData[ucalSelVilla + ':' + d] = { type: 'blocked-admin' }; });
+    toast(dates.length + ' date' + (dates.length > 1 ? 's' : '') + ' bloquée' + (dates.length > 1 ? 's' : '') + ' ✓', 'red');
+  } else {
+    const price = parseInt(document.getElementById('ucal-price-inp').value);
+    const minN  = parseInt(document.getElementById('ucal-min-inp').value) || 3;
+    if(!price || price < 50) { toast('Entrez un prix valide (min $50)', 'red'); return; }
+    await sb.from('blocked_dates').delete().eq('villa_id', ucalSelVilla).eq('source', 'admin').gte('date', ucalSelStart).lte('date', ucalSelEnd);
+    const { error } = await sb.from('daily_rates').upsert(
+      dates.map(d => ({ villa_id: ucalSelVilla, date: d, price_per_night: price, min_nights: minN })),
+      { onConflict: 'villa_id,date' }
+    );
+    if(error) { toast('Erreur: ' + error.message, 'red'); return; }
+    dates.forEach(d => { ucalData[ucalSelVilla + ':' + d] = { type: 'rate', price, minNights: minN }; });
+    toast(dates.length + ' jour' + (dates.length > 1 ? 's' : '') + ' mis à jour ✓', 'green');
+  }
+
+  ucalSelVilla = ucalSelStart = ucalSelEnd = null;
+  closeUcalPanel();
+  renderUcal();
+}
+
+async function clearUcalPanel() {
+  if(!ucalSelStart || !ucalSelEnd || !ucalSelVilla) return;
+  await Promise.all([
+    sb.from('daily_rates').delete().eq('villa_id', ucalSelVilla).gte('date', ucalSelStart).lte('date', ucalSelEnd),
+    sb.from('blocked_dates').delete().eq('villa_id', ucalSelVilla).eq('source', 'admin').gte('date', ucalSelStart).lte('date', ucalSelEnd),
+  ]);
+  let cur = new Date(ucalSelStart + 'T12:00:00');
+  const endD = new Date(ucalSelEnd + 'T12:00:00');
+  while(cur <= endD) { delete ucalData[ucalSelVilla + ':' + dsLocal(cur)]; cur.setDate(cur.getDate() + 1); }
+  toast('Données effacées ✓');
+  ucalSelVilla = ucalSelStart = ucalSelEnd = null;
+  closeUcalPanel();
+  renderUcal();
+}
+
+// ══ AIRBNB SYNC ════════════════════════════════════════════
+const VILLA_NAMES = {jade:'Casa Jade',topaze:'Topaze',onyx:'Onyx',agate:'Agate',ambre:'Ambre',opale:'Opale'};
+
+async function loadSync() {
+  const { data } = await sb.from('airbnb_ical').select('*');
+  const rows = {};
+  (data || []).forEach(r => rows[r.villa_id] = r);
+
+  document.getElementById('sync-grid').innerHTML = Object.keys(VILLA_NAMES).map(id => {
+    const row = rows[id] || {};
+    const lastSync = row.last_sync ? `Dernier sync : ${new Date(row.last_sync).toLocaleString('fr-FR')}` : 'Jamais synchronisé';
+    return `
+    <div class="sync-card">
+      <div class="sync-card-header">
+        <div class="sync-villa-name">${VILLA_NAMES[id]}</div>
+        <div class="sync-status ${row.last_sync?'ok':''}" id="sync-status-${id}">${lastSync}</div>
+      </div>
+      <div class="sync-field">
+        <input class="sync-input" id="ical-${id}" type="url"
+          placeholder="https://www.airbnb.com/calendar/ical/XXXXXX.ics?s=YYYYYY"
+          value="${row.ical_url || ''}">
+        <button class="sync-btn" id="sync-btn-${id}" onclick="syncVilla('${id}')">↻ Sync</button>
+      </div>
+      <div class="sync-result" id="sync-result-${id}"></div>
+    </div>`;
+  }).join('');
+}
+
+async function syncVilla(id) {
+  const url = document.getElementById('ical-' + id).value.trim();
+  const btn = document.getElementById('sync-btn-' + id);
+  const res = document.getElementById('sync-result-' + id);
+  if(!url) { res.textContent = 'Colle d\'abord l\'URL iCal Airbnb'; res.className='sync-result error'; return; }
+
+  btn.disabled = true; btn.textContent = '↻ Sync…';
+  res.textContent = 'Récupération du calendrier Airbnb…';
+  res.className = 'sync-result';
+
+  try {
+    // Save URL
+    await sb.from('airbnb_ical').upsert({ villa_id: id, ical_url: url });
+
+    // Fetch via CORS proxy — essaie plusieurs proxies en cascade
+    const proxies = [
+      'https://api.allorigins.win/raw?url=' + encodeURIComponent(url),
+      'https://corsproxy.io/?' + encodeURIComponent(url),
+      'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(url),
+    ];
+    let ical = null;
+    for(const proxyUrl of proxies) {
+      try {
+        res.textContent = 'Tentative via proxy…';
+        const resp = await fetch(proxyUrl, { signal: AbortSignal.timeout(8000) });
+        if(resp.ok) { const txt = await resp.text(); if(txt.includes('VCALENDAR')) { ical = txt; break; } }
+      } catch(e) { /* essaie le suivant */ }
+    }
+    if(!ical) throw new Error('Impossible de récupérer le calendrier Airbnb (tous les proxies ont échoué)');
+
+    // Parse iCal
+    const dates = parseIcal(ical);
+    if(!dates.length) { res.textContent = 'Aucune date bloquée trouvée'; res.className='sync-result'; btn.disabled=false; btn.textContent='↻ Sync'; return; }
+
+    // Upsert blocked dates (delete old airbnb, insert new)
+    await sb.from('blocked_dates').delete().eq('villa_id', id).eq('source', 'airbnb');
+    const rows = dates.map(d => ({ villa_id: id, date: d, source: 'airbnb' }));
+
+    // Insert in batches of 100
+    for(let i = 0; i < rows.length; i += 100) {
+      await sb.from('blocked_dates').upsert(rows.slice(i, i+100));
+    }
+
+    // Update last_sync
+    await sb.from('airbnb_ical').update({ last_sync: new Date().toISOString(), ical_url: url }).eq('villa_id', id);
+
+    res.textContent = `✓ ${dates.length} dates synchronisées depuis Airbnb`;
+    res.className = 'sync-result success';
+    document.getElementById('sync-status-' + id).textContent = 'Dernier sync : ' + new Date().toLocaleString('fr-FR');
+    document.getElementById('sync-status-' + id).className = 'sync-status ok';
+    if(calVilla === id) fetchAndRenderCal();
+
+  } catch(e) {
+    res.textContent = 'Erreur : ' + e.message;
+    res.className = 'sync-result error';
+  }
+  btn.disabled = false; btn.textContent = '↻ Sync';
+}
+
+function parseIcal(ical) {
+  const dates = new Set();
+  const events = ical.split('BEGIN:VEVENT');
+  events.forEach(event => {
+    const dtstart = event.match(/DTSTART(?:;VALUE=DATE)?[^:]*:(\d{8})/);
+    const dtend   = event.match(/DTEND(?:;VALUE=DATE)?[^:]*:(\d{8})/);
+    if(!dtstart || !dtend) return;
+    const start = parseIcalDate(dtstart[1]);
+    const end   = parseIcalDate(dtend[1]);
+    let cur = new Date(start);
+    const endDate = new Date(end);
+    while(cur < endDate) {
+      dates.add(cur.toISOString().split('T')[0]);
+      cur.setDate(cur.getDate() + 1);
+    }
+  });
+  return [...dates];
+}
+
+function parseIcalDate(s) {
+  return new Date(s.slice(0,4) + '-' + s.slice(4,6) + '-' + s.slice(6,8));
+}
+
+document.getElementById('sync-all-btn').addEventListener('click', async () => {
+  const villas = Object.keys(VILLA_NAMES);
+  for(const id of villas) {
+    await syncVilla(id);
+    await new Promise(r => setTimeout(r, 500)); // small delay between requests
+  }
+  toast('Toutes les villas synchronisées ✓', 'green');
+});
+</script>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   ANALYTICS DASHBOARD
+   ══════════════════════════════════════════════════════════════ */
+
+let anDays = 7;
+let chartTimeline, chartSources, chartCountries, chartDevices;
+
+// Palette
+const PALETTE = ['#b8734a','#d6a483','#8a5538','#e8c4a8','#5c3520','#f0ddd0','#3b82f6','#22c55e'];
+const SOURCE_LABELS = {
+  direct:'Direct', google:'Google', instagram:'Instagram',
+  facebook:'Facebook', tripadvisor:'TripAdvisor', airbnb:'Airbnb',
+  booking:'Booking.com', pinterest:'Pinterest', twitter:'Twitter',
+  whatsapp:'WhatsApp', other:'Autre'
+};
+const PAGE_LABELS = {
+  'index.html':'Accueil', 'villas.html':'Villas', 'experiences.html':'Expériences',
+  'about.html':'À propos', 'contact.html':'Contact', 'faq.html':'FAQ',
+  'villa-jade.html':'Casa Jade', 'villa-topaze.html':'Topaze',
+  'villa-onyx.html':'Onyx', 'villa-agate.html':'Agate',
+  'villa-ambre.html':'Ambre', 'villa-opale.html':'Opale',
+  'santa-teresa.html':'Santa Teresa', 'booking-conditions.html':'Conditions'
+};
+
+// ── Charger les données analytics ──────────────────────────────
+async function loadAnalytics() {
+  if (!sb) return;
+
+  const since = new Date();
+  since.setDate(since.getDate() - anDays);
+  const sinceISO = since.toISOString();
+
+  const { data, error } = await sb
+    .from('page_views')
+    .select('page, source, country, country_code, device, created_at')
+    .gte('created_at', sinceISO)
+    .order('created_at', { ascending: true });
+
+  if (error) {
+    console.warn('Analytics error:', error.message);
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    document.getElementById('an-total').textContent = '0';
+    document.getElementById('an-countries').textContent = '0';
+    document.getElementById('an-top-source').textContent = '—';
+    document.getElementById('an-pages-table').innerHTML =
+      '<tr><td colspan="3" class="an-empty">Aucune donnée sur cette période. Le tracking commence à collecter dès que des visiteurs arrivent sur le site.</td></tr>';
+    return;
+  }
+
+  renderKPIs(data);
+  renderTimeline(data);
+  renderSources(data);
+  renderCountries(data);
+  renderDevices(data);
+  renderPages(data);
+}
+
+// ── KPIs ───────────────────────────────────────────────────────
+function renderKPIs(data) {
+  const total = data.length;
+  const countries = new Set(data.map(d => d.country_code).filter(Boolean)).size;
+
+  // Source principale
+  const srcCount = {};
+  data.forEach(d => { const s = d.source || 'direct'; srcCount[s] = (srcCount[s]||0)+1; });
+  const topSrc = Object.entries(srcCount).sort((a,b)=>b[1]-a[1])[0];
+
+  // Top pays
+  const ctyCount = {};
+  data.forEach(d => { if(d.country){ ctyCount[d.country] = (ctyCount[d.country]||0)+1; } });
+  const topCty = Object.entries(ctyCount).sort((a,b)=>b[1]-a[1])[0];
+
+  document.getElementById('an-total').textContent = total.toLocaleString('fr-FR');
+  document.getElementById('an-countries').textContent = countries;
+  if(topSrc){
+    document.getElementById('an-top-source').textContent = SOURCE_LABELS[topSrc[0]] || topSrc[0];
+    document.getElementById('an-top-source-pct').textContent = Math.round(topSrc[1]/total*100)+'% du trafic';
+  }
+  if(topCty){
+    document.getElementById('an-top-country').textContent = topCty[0];
+    document.getElementById('an-top-country-pct').textContent = Math.round(topCty[1]/total*100)+'% des visites';
+  }
+}
+
+// ── Timeline ───────────────────────────────────────────────────
+function renderTimeline(data) {
+  // Group by day
+  const byDay = {};
+  data.forEach(d => {
+    const day = d.created_at.slice(0,10);
+    byDay[day] = (byDay[day]||0)+1;
+  });
+
+  // Fill all days in range
+  const labels = [], values = [];
+  for(let i = anDays-1; i >= 0; i--){
+    const d = new Date(); d.setDate(d.getDate()-i);
+    const key = d.toISOString().slice(0,10);
+    labels.push(d.toLocaleDateString('fr-FR',{day:'2-digit',month:'short'}));
+    values.push(byDay[key]||0);
+  }
+
+  const ctx = document.getElementById('chart-timeline').getContext('2d');
+  if(chartTimeline) chartTimeline.destroy();
+  chartTimeline = new Chart(ctx, {
+    type:'line',
+    data:{
+      labels,
+      datasets:[{
+        data: values,
+        borderColor:'#b8734a',
+        backgroundColor:'rgba(184,115,74,.08)',
+        borderWidth:2,
+        pointRadius:3,
+        pointBackgroundColor:'#b8734a',
+        fill:true,
+        tension:.35
+      }]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{
+        x:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:10},color:'#9a8f82',maxTicksLimit:10}},
+        y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:10},color:'#9a8f82',stepSize:1},beginAtZero:true}
+      }
+    }
+  });
+}
+
+// ── Sources ────────────────────────────────────────────────────
+function renderSources(data) {
+  const count = {};
+  data.forEach(d => { const s = SOURCE_LABELS[d.source]||d.source||'Direct'; count[s]=(count[s]||0)+1; });
+  const sorted = Object.entries(count).sort((a,b)=>b[1]-a[1]).slice(0,7);
+
+  const ctx = document.getElementById('chart-sources').getContext('2d');
+  if(chartSources) chartSources.destroy();
+  chartSources = new Chart(ctx, {
+    type:'doughnut',
+    data:{
+      labels: sorted.map(e=>e[0]),
+      datasets:[{data: sorted.map(e=>e[1]), backgroundColor: PALETTE, borderWidth:2, borderColor:'#faf7f2'}]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{position:'right',labels:{font:{size:10},color:'#1e1b18',padding:10}}}
+    }
+  });
+}
+
+// ── Pays ───────────────────────────────────────────────────────
+function renderCountries(data) {
+  const count = {};
+  data.forEach(d => { if(d.country){ count[d.country]=(count[d.country]||0)+1; } });
+  const sorted = Object.entries(count).sort((a,b)=>b[1]-a[1]).slice(0,8);
+
+  const ctx = document.getElementById('chart-countries').getContext('2d');
+  if(chartCountries) chartCountries.destroy();
+  chartCountries = new Chart(ctx, {
+    type:'bar',
+    data:{
+      labels: sorted.map(e=>e[0]),
+      datasets:[{data: sorted.map(e=>e[1]), backgroundColor:'#b8734a', borderRadius:3}]
+    },
+    options:{
+      indexAxis:'y',
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{
+        x:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:10},color:'#9a8f82'}},
+        y:{grid:{display:false},ticks:{font:{size:10},color:'#1e1b18'}}
+      }
+    }
+  });
+}
+
+// ── Devices ────────────────────────────────────────────────────
+function renderDevices(data) {
+  const DEVICE_LABELS = {mobile:'Mobile 📱', desktop:'Desktop 💻', tablet:'Tablette 📲'};
+  const count = {};
+  data.forEach(d => { const dev = DEVICE_LABELS[d.device]||d.device||'Inconnu'; count[dev]=(count[dev]||0)+1; });
+  const entries = Object.entries(count);
+
+  const ctx = document.getElementById('chart-devices').getContext('2d');
+  if(chartDevices) chartDevices.destroy();
+  chartDevices = new Chart(ctx, {
+    type:'doughnut',
+    data:{
+      labels: entries.map(e=>e[0]),
+      datasets:[{data: entries.map(e=>e[1]), backgroundColor:['#b8734a','#3b82f6','#22c55e'], borderWidth:2, borderColor:'#faf7f2'}]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{font:{size:11},color:'#1e1b18',padding:12}}}
+    }
+  });
+}
+
+// ── Pages ──────────────────────────────────────────────────────
+function renderPages(data) {
+  const count = {};
+  data.forEach(d => { const p = PAGE_LABELS[d.page]||d.page||'?'; count[p]=(count[p]||0)+1; });
+  const sorted = Object.entries(count).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  const total = data.length;
+
+  const tbody = document.getElementById('an-pages-table');
+  tbody.innerHTML = sorted.map(([page, n]) =>
+    `<tr>
+      <td>${page}</td>
+      <td><strong>${n}</strong></td>
+      <td style="color:var(--mid)">${Math.round(n/total*100)}%</td>
+    </tr>`
+  ).join('');
+}
+
+// ── Gestion période ────────────────────────────────────────────
+document.querySelectorAll('.an-period-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.an-period-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    anDays = parseInt(btn.dataset.days);
+    loadAnalytics();
+  });
+});
+
+// Charger au clic sur l'onglet
+document.addEventListener('click', e => {
+  const item = e.target.closest('.nav-item');
+  if(item && item.dataset.page === 'analytics') {
+    loadAnalytics();
+  }
+});
+</script>
+</body>
+</html>

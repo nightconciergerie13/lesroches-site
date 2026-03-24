@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Santa Teresa, Costa Rica — capitale mondiale du surf, jungle tropicale et villages bohèmes. Guide complet pour votre séjour de luxe.">
+  <meta name="keywords" content="Santa Teresa Costa Rica, surf Costa Rica, que faire Santa Teresa, guide Santa Teresa, Nicoya Peninsula">
+  <title>Santa Teresa — Les Roches Retreat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .hero {
+      height: 75vh;
+      background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('images/drone-sunset-1.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--w);
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 400;
+    }
+
+    .section-dest {
+      padding: 4rem 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .section-dest {
+        padding: 6rem 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+    }
+
+    .dest-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      color: var(--ink);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    @media (min-width: 768px) {
+      .dest-text {
+        margin-bottom: 0;
+      }
+    }
+
+    .dest-image {
+      width: 100%;
+      height: 300px;
+      background: url('images/drone-jungle-aerial.jpg') center/cover no-repeat;
+      border-radius: 0.5rem;
+    }
+    @media (min-width: 768px) {
+      .dest-image {
+        height: 400px;
+        order: 2;
+      }
+    }
+
+    .section-title {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 4rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (min-width: 640px) {
+      .highlights-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+        padding: 5rem 2rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .highlights-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        padding: 6rem 3rem;
+      }
+    }
+
+    .highlight-card {
+      background: var(--c);
+      padding: 2rem;
+      border-radius: 0.5rem;
+      text-align: center;
+    }
+
+    .highlight-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .highlight-title {
+      font-family: 'Gilda Display', serif;
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+
+    .highlight-desc {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      color: var(--mid);
+      line-height: 1.5;
+    }
+
+    .getting-there {
+      padding: 4rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .getting-there {
+        padding: 6rem 2rem;
+      }
+    }
+
+    .transport-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    @media (min-width: 768px) {
+      .transport-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+      }
+    }
+
+    .transport-card {
+      background: var(--c);
+      padding: 2rem;
+      border-radius: 0.5rem;
+      text-align: center;
+    }
+
+    .transport-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .transport-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+
+    .transport-desc {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      color: var(--mid);
+      line-height: 1.5;
+    }
+
+    .weather-section {
+      padding: 4rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .weather-section {
+        padding: 6rem 2rem;
+      }
+    }
+
+    .weather-content {
+      background: var(--c);
+      padding: 2.5rem 2rem;
+      border-radius: 0.5rem;
+    }
+
+    .season-title {
+      font-family: 'Gilda Display', serif;
+      font-size: 1.3rem;
+      color: var(--ter);
+      margin-bottom: 0.5rem;
+    }
+
+    .season-desc {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      color: var(--mid);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .season-desc:last-child {
+      margin-bottom: 0;
+    }
+
+    .map-cta {
+      background: var(--ink);
+      color: var(--w);
+      padding: 4rem 1.5rem;
+      text-align: center;
+    }
+    @media (min-width: 768px) {
+      .map-cta {
+        padding: 6rem 2rem;
+      }
+    }
+
+    .map-title {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: 1rem;
+    }
+
+    .map-address {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .map-link {
+      display: inline-block;
+      color: var(--w);
+      background: var(--ter);
+      padding: 0.75rem 2rem;
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      border-radius: 0.25rem;
+      transition: all 0.3s;
+      border: 2px solid var(--ter);
+    }
+    .map-link:hover {
+      background: transparent;
+    }
+  </style>
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://lesrochesretreat.com/santa-teresa.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Santa Teresa, Costa Rica — Guide Complet 2026">
+<meta property="og:description" content="Découvrez Santa Teresa : surf world-class, jungle tropicale, culture bohème et plages paradisiaques sur la péninsule de Nicoya.">
+<meta property="og:image" content="https://lesrochesretreat.com/images/drone-beach-panorama.jpg">
+<meta property="og:url" content="https://lesrochesretreat.com/santa-teresa.html">
+<meta property="og:site_name" content="Les Roches Retreat">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Santa Teresa, Costa Rica — Guide 2026">
+<meta name="twitter:description" content="Surf world-class, jungle tropicale, plages paradisiaques — guide complet de Santa Teresa.">
+<meta name="twitter:image" content="https://lesrochesretreat.com/images/drone-beach-panorama.jpg">
+<script src="js/track.js"></script>
+</head>
+<body>
+  <div id="cur"></div>
+
+  <nav id="nav">
+    <a href="index.html" class="nl-logo" id="logo">Les Roches</a>
+    <div class="nav-mid">
+      <a href="villas.html" class="nl">Villas</a>
+      <a href="experiences.html" class="nl">Experiences</a>
+      <a href="about.html" class="nl">About</a>
+      <a href="santa-teresa.html" class="nl">Santa Teresa</a>
+  <a href="faq.html" class="nl">FAQ</a>
+    <a href="faq.html" class="nl">FAQ</a>
+    </div>
+    <a href="villas.html#search" class="nav-book" id="nb">Book Now</a>
+    <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="nav-overlay" id="nav-overlay">
+    <button class="nav-close" id="nav-close">✕</button>
+    <a href="villas.html" class="nl">Villas</a>
+    <a href="experiences.html" class="nl">Experiences</a>
+    <a href="about.html" class="nl">About</a>
+    <a href="santa-teresa.html" class="nl">Santa Teresa</a>
+  <a href="faq.html" class="nl">FAQ</a>
+    <a href="contact.html" class="nl">Book Now</a>
+  </div>
+
+  <section class="hero">
+    <h1>Santa Teresa</h1>
+    <p>The most beautiful village in Costa Rica</p>
+  </section>
+
+  <section class="section-dest r">
+    <div>
+      <h2 class="section-title">About the destination</h2>
+      <p class="dest-text">Santa Teresa is the surf capital of Costa Rica, nestled on the Nicoya Peninsula where the Pacific crashes against pristine beaches. Known worldwide for legendary beach breaks and stunning sunsets, it's a place where bohemian spirit meets natural splendor. Here, howler monkeys welcome your mornings, local surfers share tips in beach cafés, and the pura vida lifestyle isn't a slogan—it's a way of being. Whether you're seeking solitude or connection, adventure or rest, Santa Teresa delivers pura vida at its finest.</p>
+    </div>
+    <div class="dest-image"></div>
+  </section>
+
+  <section class="highlights-grid r">
+    <div class="highlight-card">
+      <div class="highlight-icon">🏄</div>
+      <h3 class="highlight-title">Surf Beaches</h3>
+      <p class="highlight-desc">World-class breaks for all levels. Santa Teresa's waves are legendary among surfers worldwide.</p>
+    </div>
+
+    <div class="highlight-card">
+      <div class="highlight-icon">🍽️</div>
+      <h3 class="highlight-title">Restaurants & Cafés</h3>
+      <p class="highlight-desc">Farm-to-table dining, fresh seafood, and international cuisine. Pura vida flavors in every bite.</p>
+    </div>
+
+    <div class="highlight-card">
+      <div class="highlight-icon">🌴</div>
+      <h3 class="highlight-title">Nature & Wildlife</h3>
+      <p class="highlight-desc">Howler monkeys, tropical birds, rainforest hikes. Costa Rica's biodiversity at your doorstep.</p>
+    </div>
+
+    <div class="highlight-card">
+      <div class="highlight-icon">🌙</div>
+      <h3 class="highlight-title">Nightlife & Yoga</h3>
+      <p class="highlight-desc">Sunset bars, wellness retreats, and late-night beach hangouts. Balance adventure and wellness.</p>
+    </div>
+  </section>
+
+  <section class="getting-there r">
+    <h2 class="section-title">Getting There</h2>
+    <div class="transport-grid">
+      <div class="transport-card">
+        <div class="transport-icon">✈️</div>
+        <h3 class="transport-title">Fly to San José (SJO)</h3>
+        <p class="transport-desc">Then take a domestic flight to Tambor or drive 3 hours 30 minutes. Scenic route through Costa Rica's heartland.</p>
+      </div>
+
+      <div class="transport-card">
+        <div class="transport-icon">✈️</div>
+        <h3 class="transport-title">Fly to Liberia (LIR)</h3>
+        <p class="transport-desc">Direct flights from US and Europe. Then drive 2 hours 30 minutes to Santa Teresa. The closer option.</p>
+      </div>
+
+      <div class="transport-card">
+        <div class="transport-icon">🚗</div>
+        <h3 class="transport-title">Private Transfers</h3>
+        <p class="transport-desc">Les Roches arranges direct transfers from the airport. Let us handle the logistics.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="weather-section r">
+    <h2 class="section-title">Best Time to Visit</h2>
+    <div class="weather-content">
+      <h3 class="season-title">November – April (Dry Season)</h3>
+      <p class="season-desc">The best season. Sunny, warm, and perfect for surf. Days are crystal clear, nights cool and comfortable. This is peak season—book ahead.</p>
+
+      <h3 class="season-title">May – October (Rainy Season)</h3>
+      <p class="season-desc">Warm, lush, and atmospheric. The jungle is at its greenest. Fewer crowds, lower rates. Afternoon showers cool things down. Average temperature stays around 28°C year-round—it's always warm in Costa Rica.</p>
+    </div>
+  </section>
+
+  <!-- GOOGLE MAPS EMBED -->
+  <div style="width:100%;height:420px;position:relative;overflow:hidden;background:var(--ink)">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.4!2d-85.168!3d9.642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f9e65a0d0000001%3A0x0!2sSanta+Teresa%2C+Puntarenas%2C+Costa+Rica!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
+      width="100%"
+      height="100%"
+      style="border:0;filter:grayscale(20%) contrast(1.05)"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Les Roches Retreat — Santa Teresa, Costa Rica">
+    </iframe>
+  </div>
+
+  <section class="map-cta r">
+    <h2 class="map-title">Les Roches is located in the heart of Santa Teresa</h2>
+    <p class="map-address">Calle Vista De Olas<br>Santa Teresa · Costa Rica</p>
+    <a href="https://www.google.com/maps/search/Calle+Vista+De+Olas+Santa+Teresa+Costa+Rica" target="_blank" rel="noopener noreferrer" class="map-link">Get Directions</a>
+  </section>
+
+  <footer>
+    <div><div class="f-logo">Les Roches</div><div class="f-tagline">Six private villas in the heart of<br>Santa Teresa, Costa Rica.</div></div>
+    <div><div class="f-col-title">Navigate</div><a href="villas.html" class="f-link">Villas</a><a href="experiences.html" class="f-link">Experiences</a><a href="about.html" class="f-link">Our Story</a><a href="booking-conditions.html" class="f-link">Book Now</a></div>
+    <div><div class="f-col-title">Contact</div><span class="f-link">hello@lesrochesretreat.com</span><span class="f-link" style="margin-top:.4rem;display:block">Calle Vista De Olas<br>Santa Teresa · Costa Rica</span></div>
+    <div class="f-copy">© 2025 Les Roches · Santa Teresa, Costa Rica · All rights reserved</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    if(window.matchMedia('(hover:hover)').matches){
+      const cur=document.getElementById('cur');
+      document.querySelectorAll('a,button').forEach(el=>{
+        el.addEventListener('mouseenter',()=>cur.classList.add('hov'));
+        el.addEventListener('mouseleave',()=>cur.classList.remove('hov'));
+      });
+    }
+  </script>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/33667749024?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20une%20villa%20%C3%A0%20Les%20Roches%20Retreat." 
+   class="wa-btn" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+<style>
+.wa-btn{
+  position:fixed;
+  bottom:2rem;
+  right:2rem;
+  z-index:1000;
+  width:56px;
+  height:56px;
+  background:#25D366;
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.45);
+  transition:transform .25s ease, box-shadow .25s ease;
+  cursor:pointer;
+}
+.wa-btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 6px 28px rgba(37,211,102,.6);
+}
+</style>
+<!-- END WHATSAPP -->
+
+<style>
+/* ── Bulle contact — discrète et naturelle ── */
+#wa-bubble{position:fixed;bottom:1.6rem;right:1.6rem;z-index:2000;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+#wa-toggle{width:52px;height:52px;border-radius:50%;border:none;padding:0;cursor:pointer;background:none;position:relative;box-shadow:0 2px 12px rgba(0,0,0,.22);transition:transform .2s,box-shadow .2s;overflow:visible}
+#wa-toggle:hover{transform:scale(1.04);box-shadow:0 4px 18px rgba(0,0,0,.3)}
+#wa-toggle-photo{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:center 18%;display:block;border:2px solid rgba(250,247,242,.7)}
+#wa-dot{position:absolute;bottom:0;right:0;width:16px;height:16px;background:#25D366;border-radius:50%;border:2px solid var(--w,#faf7f2);display:flex;align-items:center;justify-content:center}
+#wa-dot svg{display:block}
+#wa-card{width:272px;background:var(--w,#faf7f2);border-radius:10px;box-shadow:0 4px 22px rgba(0,0,0,.13);overflow:hidden;transform:translateY(8px) scale(.97);opacity:0;pointer-events:none;transition:transform .28s cubic-bezier(.25,.8,.25,1),opacity .2s ease;transform-origin:bottom right;border:1px solid rgba(30,27,24,.07)}
+#wa-card.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+.wa-head{background:var(--ink2,#2e2a26);padding:.85rem 1rem;display:flex;align-items:center;gap:.75rem;position:relative}
+.wa-head-close{position:absolute;top:.55rem;right:.7rem;background:none;border:none;color:rgba(255,255,255,.25);font-size:.85rem;cursor:pointer;line-height:1;transition:color .18s}
+.wa-head-close:hover{color:rgba(255,255,255,.6)}
+.wa-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 18%;border:1px solid rgba(255,255,255,.12);flex-shrink:0}
+.wa-head-name{font-family:'Gilda Display',serif;font-size:.84rem;color:rgba(250,247,242,.88);letter-spacing:.02em}
+.wa-head-status{font-size:.48rem;color:rgba(255,255,255,.3);margin-top:.15rem;font-family:'Outfit',sans-serif;display:flex;align-items:center;gap:.3rem}
+.wa-head-status::before{content:'';width:5px;height:5px;background:#4ade80;border-radius:50%;flex-shrink:0}
+.wa-body{background:var(--c,#f3ede3);padding:.9rem .9rem .85rem}
+.wa-msg{background:var(--w,#faf7f2);border-radius:2px 9px 9px 9px;padding:.65rem .8rem;font-family:'Outfit',sans-serif;font-size:.66rem;line-height:1.7;color:var(--ink,#1e1b18);position:relative;max-width:94%;border:1px solid rgba(30,27,24,.04)}
+.wa-msg::before{content:'';position:absolute;top:0;left:-5px;width:0;height:0;border-top:5px solid var(--w,#faf7f2);border-left:5px solid transparent}
+.wa-time{font-size:.45rem;color:var(--mid,#9a8f82);text-align:right;margin-top:.3rem}
+.wa-cta-wrap{padding:.7rem .9rem .85rem;background:var(--c,#f3ede3);border-top:1px solid rgba(30,27,24,.05)}
+.wa-cta{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;background:var(--ter,#b8734a);border:none;border-radius:2px;padding:.65rem 1rem;font-family:'Outfit',sans-serif;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;cursor:pointer;text-decoration:none;transition:background .2s;opacity:.92}
+.wa-cta:hover{background:var(--ter2,#a05f38);opacity:1}
+</style>
+
+<div id="wa-bubble">
+  <div id="wa-card">
+    <div class="wa-head">
+      <img src="images/ian-whatsapp.jpg" alt="Ian" class="wa-avatar"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="wa-avatar" style="display:none;background:var(--ter);align-items:center;justify-content:center;font-family:'Gilda Display',serif;font-size:1.1rem;color:#fff;flex-shrink:0">I</div>
+      <div class="wa-head-info">
+        <div class="wa-head-name">Ian &nbsp;—&nbsp; Les Roches</div>
+        <div class="wa-head-status">En ligne · répond rapidement</div>
+      </div>
+      <button class="wa-head-close" id="wa-close" aria-label="Fermer">✕</button>
+    </div>
+    <div class="wa-body">
+      <div class="wa-msg">
+        Bonjour ! 👋<br>Pour toutes questions sur les villas, les disponibilités ou une réservation, n'hésitez pas à m'envoyer un message — je vous réponds rapidement.
+        <div class="wa-time">maintenant</div>
+      </div>
+    </div>
+    <div class="wa-cta-wrap">
+      <a href="https://wa.me/33667749024?text=Bonjour%20Ian%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20Les%20Roches%20Retreat%20%F0%9F%8C%8A"
+         target="_blank" rel="noopener" class="wa-cta">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Envoyer un message
+      </a>
+    </div>
+  </div>
+  <button id="wa-toggle" aria-label="Message Ian">
+    <img id="wa-toggle-photo" src="images/ian-whatsapp.jpg" alt="Ian"
+         onerror="this.style.background='var(--ink2)';this.style.objectFit='none'">
+    <div id="wa-dot">
+      <svg viewBox="0 0 24 24" fill="white" width="8" height="8"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </div>
+  </button>
+</div>
+
+<script>
+(function(){
+  const toggle=document.getElementById('wa-toggle'),
+        card=document.getElementById('wa-card'),
+        close=document.getElementById('wa-close');
+  let open=false;
+  function setOpen(v){ open=v; card.classList.toggle('open',v); }
+  if(!sessionStorage.getItem('wa_shown')){
+    setTimeout(()=>{setOpen(true);sessionStorage.setItem('wa_shown','1')},6000);
+  }
+  toggle.addEventListener('click',()=>setOpen(!open));
+  close.addEventListener('click',()=>setOpen(false));
+})();
+</script>
+<!-- END WHATSAPP -->
+
+
+<script>
+document.addEventListener('keydown',function(e){
+  if((e.ctrlKey||e.metaKey)&&e.shiftKey&&e.key.toLowerCase()==='a'){
+    e.preventDefault();
+    window.location.href='/admin/index.html';
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Villa Ambre — Les Roches Retreat · Santa Teresa, Costa Rica">
+<meta property="og:description" content="Villa Ambre — warm tones and private pool in the heart of Santa Teresa at Les Roches Retreat, Costa Rica.">
+<meta property="og:image" content="https://lesrochesretreat.com/images/ambre-hero.jpg">
+<meta property="og:url" content="https://lesrochesretreat.com/villa-ambre.html">
+<meta property="og:site_name" content="Les Roches Retreat">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Villa Ambre — Les Roches Retreat">
+<meta name="twitter:description" content="Villa Ambre — warm tones and private pool in the heart of Santa Teresa at Les Roches Retreat, Costa Rica.">
+<meta name="twitter:image" content="https://lesrochesretreat.com/images/ambre-hero.jpg">
+<meta name="description" content="Villa Ambre — warm tones and private pool in the heart of Santa Teresa at Les Roches Retreat, Costa Rica.">
+<link rel="canonical" href="https://lesrochesretreat.com/villa-ambre.html">
+<meta name="robots" content="index,follow">
+<title>Villa Ambre — Les Roches · Santa Teresa, Costa Rica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+.hero-bg{background-image:url('images/ambre-hero.jpg')!important}
+.gi1{background-image:url('images/ambre-pool.jpg')!important}
+.gi2{background-image:url('images/ambre-salon.jpg')!important}
+.gi3{background-image:url('images/ambre-cuisine.jpg')!important}
+.psi1{background-image:url('images/ambre-ext1.jpg')!important}
+.psi2{background-image:url('images/ambre-ext2.jpg')!important}
+.pti1{background-image:url('images/ambre-sdb.jpg')!important}
+.pti2{background-image:url('images/ambre-salon.jpg')!important}
+.pti3{background-image:url('images/ambre-cuisine.jpg')!important}
+.bri1{background-image:url('images/ambre-chambre.jpg')!important}
+.bri2{background-image:url('images/ambre-detail.jpg')!important}
+.bk-img-inner{background-image:url('images/ambre-pool.jpg')!important}
+
+/* Hero section */
+.hero{height:76vh;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;animation:zoom 10s ease forwards}
+@keyframes zoom{from{transform:scale(1.06)}to{transform:scale(1)}}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(18,14,10,.82) 0%,rgba(18,14,10,.15) 55%,transparent 100%)}
+.hero-inner{position:relative;z-index:2;padding:0 2rem 2rem;display:grid;grid-template-columns:1fr auto;align-items:flex-end;gap:2rem}
+@media(max-width:768px){.hero-inner{display:flex;flex-direction:column;gap:1.5rem}}
+.hero-left{}
+.h-back{display:inline-flex;align-items:center;gap:.6rem;font-size:.48rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1rem;transition:color .2s}
+.h-back:hover{color:rgba(255,255,255,.65)}
+.h-back::before{content:'←'}
+.h-tag{font-size:.48rem;letter-spacing:.45em;text-transform:uppercase;color:var(--ter);margin-bottom:.7rem}
+.h-title{font-family:'Gilda Display',serif;font-size:clamp(2rem,3.5vw,3.8rem);line-height:1;color:var(--w);letter-spacing:.01em;animation:fu .9s .3s both}
+.h-title em{font-family:'Libre Baskerville',serif;font-style:italic;color:rgba(250,247,242,.45);display:block;font-size:.75em;letter-spacing:.03em;margin-top:.2em}
+.hero-stats{display:flex;gap:2rem;margin-top:1.5rem;animation:fu .9s .5s both;flex-wrap:wrap}
+.hstat{display:flex;flex-direction:column;gap:.25rem}
+.hstat-num{font-family:'Gilda Display',serif;font-size:1.2rem;color:var(--w);line-height:1}
+.hstat-lbl{font-size:.44rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+.hstat-sep{width:1px;background:rgba(255,255,255,.1);align-self:stretch}
+.hero-right{text-align:right;animation:fu .9s .55s both}
+@media(max-width:768px){.hero-right{display:none}}
+.h-price-lbl{font-size:.44rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:.3rem}
+.h-price{font-family:'Gilda Display',serif;font-size:1.8rem;color:var(--w);line-height:1}
+.h-price span{font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:300;color:rgba(255,255,255,.38)}
+.h-cta{display:inline-block;margin-top:1rem;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;padding:.65rem 1.6rem;background:var(--ter);color:var(--w);border-radius:1px;transition:all .22s}
+.h-cta:hover{background:var(--ter2);transform:translateY(-2px)}
+.h-scroll{display:flex;align-items:center;gap:.7rem;margin-top:1.5rem;justify-content:flex-end}
+.h-sline{width:1px;height:30px;background:rgba(255,255,255,.12);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+.h-stxt{font-size:.42rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.18);writing-mode:vertical-rl}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* Gallery */
+.gallery{background:var(--ink2);padding:.5rem}
+.gallery-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:280px 280px;gap:.5rem}
+@media(max-width:768px){.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:180px 180px}}
+.gitem{overflow:hidden;border-radius:2px;position:relative}
+.gitem:hover .gimg{transform:scale(1.05)}
+.gitem:hover .gov{opacity:1}
+.gimg{width:100%;height:100%;object-fit:cover;transition:transform .7s ease;display:flex;align-items:flex-end;padding:1rem}
+.gov{position:absolute;inset:0;background:rgba(18,14,10,.25);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.gov-icon{font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+.g1{grid-row:1/3}
+@media(max-width:768px){.g1{grid-row:auto}}
+.gi1{background-size:cover;background-position:center;width:100%;height:100%}
+.gi2{background-size:cover;background-position:center;width:100%;height:100%}
+.gi3{background-size:cover;background-position:center;width:100%;height:100%}
+.gi4{background-size:cover;background-position:center;width:100%;height:100%}
+.gi5{background-size:cover;background-position:center;width:100%;height:100%}
+.gallery-more{display:flex;align-items:center;justify-content:flex-end;gap:.7rem;padding:.8rem 0 .3rem;font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.gallery-more::after{content:'→'}
+
+/* Main layout */
+.main{display:grid;grid-template-columns:1fr 340px;gap:3.5rem;padding:3.5rem 4rem;align-items:start}
+@media(max-width:1024px){.main{grid-template-columns:1fr;gap:3rem}}
+@media(max-width:768px){.main{padding:2rem 1.5rem}}
+.content{}
+.sidebar{position:sticky;top:6rem}
+@media(max-width:1024px){.sidebar{position:static}}
+
+/* Content */
+.eye{font-size:.5rem;letter-spacing:.48em;text-transform:uppercase;color:var(--ter);margin-bottom:1.2rem;display:flex;align-items:center;gap:.9rem}
+.eye::before{content:'';width:16px;height:1px;background:var(--ter)}
+.sh{font-family:'Gilda Display',serif;font-size:clamp(1.8rem,3vw,3rem);line-height:1.02;color:var(--ink);letter-spacing:-.01em;margin-bottom:1rem}
+.sh em{font-family:'Libre Baskerville',serif;font-style:italic;color:var(--ter)}
+.body-txt{font-size:.75rem;color:var(--mid);line-height:1.9;max-width:560px}
+.body-txt p{margin-bottom:.9rem}
+.divider{height:1px;background:var(--c2);margin:2rem 0}
+
+/* Photo strip */
+.photo-strip{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin:1.8rem 0}
+@media(max-width:768px){.photo-strip{grid-template-columns:1fr}}
+.ps-item{overflow:hidden;border-radius:3px;aspect-ratio:4/3;position:relative}
+.ps-item:hover .ps-img{transform:scale(1.05)}
+.ps-img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.psi1{background-size:cover;background-position:center;width:100%;height:100%}
+.psi2{background-size:cover;background-position:center;width:100%;height:100%}
+
+/* Amenities */
+.amenities{margin:1.8rem 0}
+.am-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem 2rem;margin-top:1.5rem}
+@media(max-width:768px){.am-grid{grid-template-columns:1fr}}
+.am-item{display:flex;align-items:center;gap:.8rem;padding:.7rem 0;border-bottom:1px solid var(--c2)}
+.am-icon{font-size:.9rem;width:1.5rem;text-align:center;flex-shrink:0}
+.am-lbl{font-size:.68rem;color:var(--mid);letter-spacing:.04em}
+
+/* Full photo */
+.full-photo{margin:3rem -4rem;height:55vh;position:relative;overflow:hidden}
+@media(max-width:768px){.full-photo{margin:2rem -1.5rem;height:45vh}}
+.fp-img{width:100%;height:100%;object-fit:cover;object-position:center 50%;transition:transform 12s ease;transform:scale(1.04)}
+.full-photo.in-view .fp-img{transform:scale(1)}
+.fp-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(18,14,10,.5) 0%,transparent 60%)}
+.fp-txt{position:absolute;bottom:2.5rem;left:4rem;max-width:360px}
+@media(max-width:768px){.fp-txt{bottom:1.5rem;left:1.5rem;max-width:280px}}
+.fp-eye{font-size:.48rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.7rem}
+.fp-h{font-family:'Gilda Display',serif;font-size:clamp(1.6rem,3vw,3rem);color:var(--w);line-height:1.05}
+.fp-h em{font-family:'Libre Baskerville',serif;font-style:italic;color:rgba(250,247,242,.5)}
+
+/* Photo trio */
+.photo-trio{display:grid;grid-template-columns:1.2fr 1fr;gap:.5rem;margin:1.8rem 0}
+@media(max-width:768px){.photo-trio{grid-template-columns:1fr}}
+.pt-left{display:flex;flex-direction:column;gap:.5rem}
+.pt-item{overflow:hidden;border-radius:3px;position:relative}
+.pt-item:hover .pt-img{transform:scale(1.05)}
+.pt-big{aspect-ratio:4/3}
+.pt-sm{aspect-ratio:16/9}
+.pt-right{overflow:hidden;border-radius:3px}
+.pt-right-img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease;aspect-ratio:4/3}
+.pt-right:hover .pt-right-img{transform:scale(1.05)}
+.pt-img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.pti1{background-size:cover;background-position:center;width:100%;height:100%}
+.pti2{background-size:cover;background-position:center;width:100%;height:100%}
+.pti3{background-size:cover;background-position:center;width:100%;height:100%}
+
+/* Bedrooms */
+.bedrooms{margin:1.8rem 0}
+.br-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem}
+@media(max-width:768px){.br-grid{grid-template-columns:1fr}}
+.br-card{background:var(--c);border-radius:3px;overflow:hidden}
+.br-img{aspect-ratio:16/10;overflow:hidden}
+.br-img-inner{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.br-card:hover .br-img-inner{transform:scale(1.05)}
+.bri1{background-size:cover;background-position:center;width:100%;height:100%}
+.bri2{background-size:cover;background-position:center;width:100%;height:100%}
+.br-body{padding:1.2rem}
+.br-num{font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ter);margin-bottom:.4rem}
+.br-name{font-family:'Gilda Display',serif;font-size:1rem;color:var(--ink);margin-bottom:.3rem}
+.br-desc{font-size:.65rem;color:var(--mid);line-height:1.7}
+
+/* Sidebar */
+.bk-card{background:var(--c);border-radius:4px;overflow:hidden;border:1px solid var(--c2)}
+.bk-img{height:180px;overflow:hidden;position:relative}
+.bk-img-inner{width:100%;height:100%;object-fit:cover;background-size:cover;background-position:center}
+.bk-img-ov{position:absolute;inset:0;background:rgba(18,14,10,.25)}
+.bk-body{padding:1.8rem}
+.bk-name{font-family:'Gilda Display',serif;font-size:1.3rem;color:var(--ink);margin-bottom:.3rem}
+.bk-sub{font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ter);margin-bottom:1.5rem}
+.bk-sep{height:1px;background:var(--c2);margin:1.2rem 0}
+.bk-price-row{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.5rem}
+.bk-price-lbl{font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid)}
+.bk-price{font-family:'Gilda Display',serif;font-size:1.8rem;color:var(--ink)}
+.bk-price sup{font-family:'Outfit',sans-serif;font-size:.6rem;font-weight:300;color:var(--mid)}
+.bk-field{background:var(--w);border:1px solid var(--c2);border-radius:2px;padding:.85rem 1rem;margin-bottom:.6rem;display:flex;flex-direction:column;gap:.3rem;transition:border-color .2s}
+.bk-field:focus-within{border-color:var(--sand)}
+.bk-field label{font-size:.44rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ter)}
+.bk-field input,.bk-field select{font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:300;color:var(--ink);background:transparent;border:none;outline:none;width:100%;color-scheme:light}
+.bk-field select option{background:var(--w)}
+.bk-btn{display:block;width:100%;padding:1rem;background:var(--ink);color:var(--w);border:none;border-radius:2px;font-family:'Outfit',sans-serif;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;transition:background .22s;margin-top:.4rem;text-align:center}
+.bk-btn:hover{background:var(--ter)!important}
+.lodgify-wrap{margin-top:.4rem}
+.lodgify-placeholder{border:1px dashed var(--c2);border-radius:2px;padding:1.4rem;text-align:center;background:var(--w);margin-bottom:.6rem}
+.lodgify-placeholder-icon{font-size:1.4rem;margin-bottom:.5rem;opacity:.4;display:block}
+.lodgify-placeholder-txt{font-size:.56rem;letter-spacing:.08em;color:var(--mid);line-height:1.8}
+.lodgify-placeholder-badge{display:inline-block;margin-top:.6rem;font-size:.42rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ter);border:1px solid var(--ter);padding:.25rem .8rem;border-radius:1px}
+.bk-btn:hover{background:var(--ink2)}
+.bk-note{font-size:.58rem;color:var(--mid);text-align:center;margin-top:.9rem;line-height:1.6}
+.bk-includes{margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--c2)}
+.bk-inc-title{font-size:.48rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);margin-bottom:.8rem}
+.bk-inc-item{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem;font-size:.65rem;color:var(--mid)}
+.bk-inc-item::before{content:'✓';color:var(--ter);font-size:.6rem}
+
+/* Other villas */
+.other-villas{padding:3rem 4rem;background:var(--c)}
+@media(max-width:768px){.other-villas{padding:2rem 1.5rem}}
+.ov-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:2.5rem}
+@media(max-width:768px){.ov-grid{grid-template-columns:repeat(2,1fr)}}
+.ov-card{border-radius:3px;overflow:hidden;background:var(--c2)}
+.ov-card:hover .ov-img{transform:scale(1.06)}
+.ov-img-wrap{overflow:hidden;aspect-ratio:3/4}
+.ov-img{width:100%;height:100%;display:block;transition:transform .7s ease}
+.ov1{background:linear-gradient(170deg,#d8d3cb,#9a9388)}
+.ov2{background:linear-gradient(170deg,#dad5cd,#9c9590)}
+.ov3{background:linear-gradient(170deg,#dbd6ce,#9e9790)}
+.ov4{background:linear-gradient(170deg,#d9d4cc,#9c958e)}
+.ov5{background:linear-gradient(170deg,#d6d3cc,#928c86)}
+.ov-body{padding:.8rem}
+.ov-name{font-family:'Gilda Display',serif;font-size:.85rem;color:var(--ink)}
+.ov-detail{font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-top:.2rem}
+
+/* Reveal */
+.r{opacity:0;transform:translateY(22px);transition:opacity .85s ease,transform .85s ease}
+.r.on{opacity:1;transform:none}
+.r.d1{transition-delay:.1s}.r.d2{transition-delay:.2s}.r.d3{transition-delay:.3s}
+
+/* Nav padding */
+@media(min-width:769px){
+  nav{padding:1.4rem 4rem}
+}
+@media(max-width:768px){
+  nav{padding:1.2rem 1.5rem}
+}
+
+footer{padding:3rem 4rem}
+@media(max-width:768px){
+  footer{padding:2rem 1.5rem}
+}
+
+/* LIGHTBOX */
+#lbx{position:fixed;inset:0;z-index:3000;background:rgba(10,8,6,.95);display:none;align-items:center;justify-content:center;flex-direction:column}
+#lbx.open{display:flex}
+#lbx-img{width:100%;height:calc(100vh - 120px);background-size:contain;background-repeat:no-repeat;background-position:center;transition:opacity .3s}
+#lbx-caption{font-family:'Outfit',sans-serif;font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.8rem}
+#lbx-counter{font-family:'Outfit',sans-serif;font-size:.52rem;letter-spacing:.22em;color:rgba(255,255,255,.3);margin-top:.3rem}
+#lbx-close{position:absolute;top:1.5rem;right:2rem;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,.5);font-size:1.5rem;transition:color .2s;z-index:10}
+#lbx-close:hover{color:#fff}
+#lbx-prev,#lbx-next{position:absolute;top:50%;transform:translateY(-50%);width:56px;height:56px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,.4);font-size:1.8rem;transition:color .2s;user-select:none}
+#lbx-prev{left:1.5rem}#lbx-next{right:1.5rem}
+#lbx-prev:hover,#lbx-next:hover{color:#fff}
+#lbx-thumbs{display:flex;gap:.35rem;padding:.8rem 2rem;overflow-x:auto;max-width:100%}
+#lbx-thumbs::-webkit-scrollbar{height:3px}#lbx-thumbs::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2)}
+.lbx-thumb{width:52px;height:36px;background-size:cover;background-position:center;opacity:.35;cursor:pointer;transition:opacity .2s;flex-shrink:0;border-radius:1px}
+.lbx-thumb.active{opacity:1;outline:1px solid rgba(255,255,255,.6)}
+
+</style>
+<script src="js/track.js"></script>
+</head>
+<body>
+<div id="cur"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nl-logo" id="logo">Les Roches</a>
+  <div class="nav-mid">
+    <a href="villas.html" class="nl">Villas</a>
+    <a href="experiences.html" class="nl">Experiences</a>
+    <a href="about.html" class="nl">About</a>
+    <a href="santa-teresa.html" class="nl">Santa Teresa</a>
+  <a href="faq.html" class="nl">FAQ</a>
+    <a href="faq.html" class="nl">FAQ</a>
+  </div>
+  <a href="villas.html#search" class="nav-book" id="nb">Book Now</a>
+  <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-overlay" id="nav-overlay">
+  <button class="nav-close" id="nav-close">✕</button>
+  <a href="villas.html" class="nl">Villas</a>
+  <a href="experiences.html" class="nl">Experiences</a>
+  <a href="about.html" class="nl">About</a>
+  <a href="santa-teresa.html" class="nl">Santa Teresa</a>
+  <a href="faq.html" class="nl">FAQ</a>
+  <a href="contact.html" class="nl">Book Now</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <a href="villas.html" class="h-back">Back to all villas</a>
+      <div class="h-tag">Villa 05 · Les Roches</div>
+      <h1 class="h-title">Villa Ambre<em>Santa Teresa, Costa Rica</em></h1>
+      <div class="hero-stats">
+        <div class="hstat">
+          <span class="hstat-num">2</span>
+          <span class="hstat-lbl">Bedrooms</span>
+        </div>
+        <div class="hstat-sep"></div>
+        <div class="hstat">
+          <span class="hstat-num">2</span>
+          <span class="hstat-lbl">Bathrooms</span>
+        </div>
+        <div class="hstat-sep"></div>
+        <div class="hstat">
+          <span class="hstat-num">4</span>
+          <span class="hstat-lbl">Guests</span>
+        </div>
+        <div class="hstat-sep"></div>
+        <div class="hstat">
+          <span class="hstat-num">∞</span>
+          <span class="hstat-lbl">Pool</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="h-price-lbl">From</div>
+      <div class="h-price">420<span> USD / night</span></div>
+      <a href="booking-conditions.html" class="h-cta" target="_blank" rel="noopener">Reserve This Villa</a>
+      <div class="h-scroll"><div class="h-sline"></div><span class="h-stxt">Scroll</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery r">
+  <div class="gallery-grid">
+    <div class="gitem g1"><div class="gimg gi1"></div><div class="gov"><span class="gov-icon">View all photos</span></div></div>
+    <div class="gitem"><div class="gimg gi2"></div><div class="gov"><span class="gov-icon">+</span></div></div>
+    <div class="gitem"><div class="gimg gi3"></div><div class="gov"><span class="gov-icon">+</span></div></div>
+    <div class="gitem"><div class="gimg gi4"></div><div class="gov"><span class="gov-icon">+</span></div></div>
+    <div class="gitem"><div class="gimg gi5"></div><div class="gov"><span class="gov-icon">+</span></div></div>
+  </div>
+  <div class="gallery-more">View all photos</div>
+</div>
+
+<!-- MAIN CONTENT + SIDEBAR -->
+<div class="main">
+  <div class="content">
+
+    <!-- INTRO -->
+    <div class="r">
+      <div class="eye">The Villa</div>
+      <h2 class="sh">Face west. Every evening<br><em>is a masterpiece.</em></h2>
+      <div class="body-txt">
+        <p>Villa Ambre is positioned to capture the Pacific's most coveted sunsets. A two-bedroom retreat with a westward orientation that turns your evening hours into a nightly gallery of colors. The terrace becomes the stage where nature puts on its most dramatic performance.</p>
+        <p>Thoughtfully designed with the sunset ritual in mind, featuring open-air spaces that frame the horizon, a generous pool positioned for optimal sunset views, and comfortable lounging areas for your evening cocktails. Perfect for couples seeking romance or families who want to end each day watching the sun paint the sky in amber hues.</p>
+      </div>
+    </div>
+
+    <!-- PHOTO STRIP -->
+    <div class="photo-strip r">
+      <div class="ps-item"><div class="psi1" style="height:100%"></div></div>
+      <div class="ps-item"><div class="psi2" style="height:100%"></div></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- AMENITIES -->
+    <div class="amenities r">
+      <div class="eye">Amenities</div>
+      <h2 class="sh">Everything you <em>need</em></h2>
+      <div class="am-grid">
+        <div class="am-item"><span class="am-icon">♾</span><span class="am-lbl">Private pool with sunset view</span></div>
+        <div class="am-item"><span class="am-icon">🛏</span><span class="am-lbl">2 bedrooms en suite</span></div>
+        <div class="am-item"><span class="am-icon">🌅</span><span class="am-lbl">Premium sunset exposure</span></div>
+        <div class="am-item"><span class="am-icon">🍳</span><span class="am-lbl">Fully equipped open kitchen</span></div>
+        <div class="am-item"><span class="am-icon">🌿</span><span class="am-lbl">Extensive terraces</span></div>
+        <div class="am-item"><span class="am-icon">❄️</span><span class="am-lbl">Air conditioning</span></div>
+        <div class="am-item"><span class="am-icon">📶</span><span class="am-lbl">High-speed WiFi</span></div>
+        <div class="am-item"><span class="am-icon">🚗</span><span class="am-lbl">Private parking</span></div>
+        <div class="am-item"><span class="am-icon">🧴</span><span class="am-lbl">Premium toiletries</span></div>
+        <div class="am-item"><span class="am-icon">🧹</span><span class="am-lbl">Daily housekeeping</span></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- FULL PHOTO -->
+    <div class="full-photo r" id="fp1">
+      <div class="fp-img" style="background-image:url(\'images/ambre-sunset.jpg\');background-size:cover;background-position:center"></div>
+      <div class="fp-ov"></div>
+      <div class="fp-txt">
+        <div class="fp-eye">Sunset Ritual</div>
+        <div class="fp-h">Every evening,<br><em>a new masterpiece</em></div>
+      </div>
+    </div>
+
+    <!-- PHOTO TRIO -->
+    <div class="photo-trio r">
+      <div class="pt-left">
+        <div class="pt-item pt-big"><div class="pti1" style="height:100%"></div></div>
+        <div class="pt-item pt-sm"><div class="pti2" style="height:100%"></div></div>
+      </div>
+      <div class="pt-right"><div class="pti3" style="height:100%"></div></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- BEDROOMS -->
+    <div class="bedrooms r">
+      <div class="eye">The Bedrooms</div>
+      <h2 class="sh">Two rooms,<br><em>both with sunset views</em></h2>
+      <div class="br-grid">
+        <div class="br-card">
+          <div class="br-img"><div class="bri1" style="height:100%"></div></div>
+          <div class="br-body">
+            <div class="br-num">Bedroom 01</div>
+            <div class="br-name">Master Suite</div>
+            <div class="br-desc">King bed, sunset-facing terrace, en suite bathroom with walk-in shower, private pool access.</div>
+          </div>
+        </div>
+        <div class="br-card">
+          <div class="br-img"><div class="bri2" style="height:100%"></div></div>
+          <div class="br-body">
+            <div class="br-num">Bedroom 02</div>
+            <div class="br-name">Guest Suite</div>
+            <div class="br-desc">King bed, partial sunset view, en suite bathroom with walk-in shower, private entrance.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- BOOKING SIDEBAR -->
+  <div class="sidebar r">
+    <div class="bk-card">
+      <div class="bk-img">
+        <div class="bk-img-inner"></div>
+        <div class="bk-img-ov"></div>
+      </div>
+      <div class="bk-body">
+        <div class="bk-name">Villa Ambre</div>
+        <div class="bk-sub">Villa 05 · 2 bed · Sunset view</div>
+        <div class="bk-sep"></div>
+        <div class="bk-price-row">
+          <span class="bk-price-lbl">From</span>
+          <div class="bk-price">420<sup> USD / night</sup></div>
+        </div>
+                <div class="lodgify-wrap">
+          <div class="bk-how">
+            <div class="bk-how-title">How to reserve</div>
+            <div class="bk-how-step"><span class="bk-how-n">01</span>Contact us on WhatsApp to confirm availability</div>
+            <div class="bk-how-step"><span class="bk-how-n">02</span>We send you the booking summary within a few hours</div>
+            <div class="bk-how-step"><span class="bk-how-n">03</span>50% deposit by wire transfer — villa held 48h</div>
+            <div class="bk-how-step"><span class="bk-how-n">04</span>50% balance settled upon arrival</div>
+          </div>
+          <a href="https://wa.me/33667749024?text=Bonjour%2C%20je%20souhaite%20réserver%20Villa%20Ambre%20aux%20Roches%20Retreat." class="bk-btn bk-wa" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Reserve via WhatsApp
+          </a>
+          <a href="booking-conditions.html" class="bk-cond-link">View booking conditions &amp; bank details →</a>
+        </div>
+        <div class="bk-note">Free cancellation up to 7 days before arrival</div>
+        <div class="bk-includes">
+          <div class="bk-inc-title">Included</div>
+          <div class="bk-inc-item">Private pool</div>
+          <div class="bk-inc-item">Daily housekeeping</div>
+          <div class="bk-inc-item">High-speed WiFi</div>
+          <div class="bk-inc-item">Concierge service</div>
+          <div class="bk-inc-item">Private parking</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- OTHER VILLAS -->
+<div class="other-villas r">
+  <div class="eye">Other Villas</div>
+  <h2 class="sh">Discover the <em>collection</em></h2>
+  <div class="ov-grid">
+    <div class="ov-card"><div class="ov-img-wrap"><div class="ov-img ov1" style="height:100%"></div></div><div class="ov-body"><div class="ov-name">Casa Jade</div><div class="ov-detail">Ocean · Pool · View</div></div></div>
+    <div class="ov-card"><div class="ov-img-wrap"><div class="ov-img ov2" style="height:100%"></div></div><div class="ov-body"><div class="ov-name">Topaze</div><div class="ov-detail">Jungle · Pool · Ocean</div></div></div>
+    <div class="ov-card"><div class="ov-img-wrap"><div class="ov-img ov3" style="height:100%"></div></div><div class="ov-body"><div class="ov-name">Onyx</div><div class="ov-detail">Garden · Pool · View</div></div></div>
+    <div class="ov-card"><div class="ov-img-wrap"><div class="ov-img ov4" style="height:100%"></div></div><div class="ov-body"><div class="ov-name">Agate</div><div class="ov-detail">Panoramic · Pool</div></div></div>
+    <div class="ov-card"><div class="ov-img-wrap"><div class="ov-img ov5" style="height:100%"></div></div><div class="ov-body"><div class="ov-name">Opale</div><div class="ov-detail">Ocean Front · Pool</div></div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="f-logo">Les Roches</div>
+    <div class="f-tagline">Six private villas in the heart of<br>Santa Teresa, Costa Rica.</div>
+  </div>
+  <div>
+    <div class="f-col-title">Navigate</div>
+    <a href="villas.html" class="f-link">Villas</a>
+    <a href="experiences.html" class="f-link">Experiences</a>
+    <a href="about.html" class="f-link">Our Story</a>
+    <a href="booking-conditions.html" class="f-link">Book Now</a>
+  </div>
+  <div>
+    <div class="f-col-title">Contact</div>
+    <span class="f-link">hello@lesrochesretreat.com</span>
+    <span class="f-link" style="margin-top:.4rem;display:block">Calle Vista De Olas<br>Santa Teresa · Costa Rica</span>
+  </div>
+  <div class="f-copy">© 2025 Les Roches · Santa Teresa, Costa Rica · All rights reserved</div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+const cur=document.getElementById('cur');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+document.querySelectorAll('a,.gitem,.ps-item,.pt-item,.pt-right,.br-card,.ov-card,.nl,.nav-book,.h-cta,.bk-btn,.h-back').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cur.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>cur.classList.remove('hov'));
+});
+const nav=document.getElementById('nav'),logo=document.getElementById('logo'),nb=document.getElementById('nb'),burger=document.getElementById('burger'),overlay=document.getElementById('nav-overlay'),navClose=document.getElementById('nav-close');
+const nls=document.querySelectorAll('.nl');
+burger.addEventListener('click',()=>{overlay.classList.add('open')});
+navClose.addEventListener('click',()=>{overlay.classList.remove('open')});
+overlay.querySelectorAll('a').forEach(link=>{link.addEventListener('click',()=>{overlay.classList.remove('open')})});
+window.addEventListener('scroll',()=>{
+  const s=scrollY>70;
+  nav.classList.toggle('scrolled',s);
+  logo.classList.toggle('dark',s);
+  nb.classList.toggle('dark',s);
+  burger.classList.toggle('dark',s);
+  nls.forEach(n=>{if(n)n.classList.toggle('dark',s)});
+});
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')}),{threshold:.06});
+document.querySelectorAll('.r').forEach(el=>obs.observe(el));
+const fpObs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in-view')}),{threshold:.15});
+document.querySelectorAll('.full-photo').forEach(el=>fpObs.observe(el));
+
+// LIGHTBOX
+const LBX_PHOTOS = [
+  {src:'images/ambre-pool.jpg',caption:'Private pool'},
+  {src:'images/ambre-salon.jpg',caption:'Living room'},
+  {src:'images/ambre-cuisine.jpg',caption:'Kitchen'},
+  {src:'images/ambre-ext1.jpg',caption:'Exterior'},
+  {src:'images/ambre-ext2.jpg',caption:'Outdoor spaces'},
+  {src:'images/ambre-sdb.jpg',caption:'Bathroom'},
+  {src:'images/ambre-chambre.jpg',caption:'Bedroom'},
+  {src:'images/ambre-detail.jpg',caption:'Design details'},
+  {src:'images/ambre-sunset.jpg',caption:'Sunset view'}
+];
+let lbxIdx = 0;
+
+function openLightbox(idx) {
+  lbxIdx = idx || 0;
+  document.getElementById('lbx').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  lbxRender();
+  buildThumbs();
+}
+
+function closeLightbox() {
+  document.getElementById('lbx').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function lbxRender() {
+  const p = LBX_PHOTOS[lbxIdx];
+  const img = document.getElementById('lbx-img');
+  img.style.opacity = '0';
+  setTimeout(() => {
+    img.style.backgroundImage = "url('" + p.src + "')";
+    img.style.opacity = '1';
+    document.getElementById('lbx-caption').textContent = p.caption;
+    document.getElementById('lbx-counter').textContent = (lbxIdx+1) + ' / ' + LBX_PHOTOS.length;
+    document.querySelectorAll('.lbx-thumb').forEach((t,i) => t.classList.toggle('active', i===lbxIdx));
+  }, 200);
+}
+
+function buildThumbs() {
+  const c = document.getElementById('lbx-thumbs');
+  c.innerHTML = '';
+  LBX_PHOTOS.forEach((p,i) => {
+    const t = document.createElement('div');
+    t.className = 'lbx-thumb' + (i===lbxIdx?' active':'');
+    t.style.backgroundImage = "url('" + p.src + "')";
+    t.onclick = () => { lbxIdx=i; lbxRender(); };
+    c.appendChild(t);
+  });
+}
+
+document.getElementById('lbx-close').onclick = closeLightbox;
+document.getElementById('lbx-next').onclick = () => { lbxIdx = (lbxIdx+1) % LBX_PHOTOS.length; lbxRender(); };
+document.getElementById('lbx-prev').onclick = () => { lbxIdx = (lbxIdx-1+LBX_PHOTOS.length) % LBX_PHOTOS.length; lbxRender(); };
+document.getElementById('lbx').addEventListener('click', e => { if(e.target.id==='lbx') closeLightbox(); });
+document.addEventListener('keydown', e => {
+  if(!document.getElementById('lbx').classList.contains('open')) return;
+  if(e.key==='Escape') closeLightbox();
+  if(e.key==='ArrowRight') { lbxIdx=(lbxIdx+1)%LBX_PHOTOS.length; lbxRender(); }
+  if(e.key==='ArrowLeft') { lbxIdx=(lbxIdx-1+LBX_PHOTOS.length)%LBX_PHOTOS.length; lbxRender(); }
+});
+
+// Make gallery items open lightbox
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.gitem').forEach((el, i) => {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', () => openLightbox(i));
+  });
+  const gm = document.querySelector('.gallery-more');
+  if(gm) { gm.style.cursor='pointer'; gm.addEventListener('click', ()=>openLightbox(0)); }
+  document.querySelectorAll('.ps-item,.pt-item,.pt-right,.br-card').forEach((el, i) => {
+    el.style.cursor='pointer';
+    el.addEventListener('click', ()=>openLightbox(Math.min(5+i, LBX_PHOTOS.length-1)));
+  });
+});
+
+</script>
+
+
+<!-- LIGHTBOX -->
+<div id="lbx" role="dialog" aria-label="Photo gallery">
+  <button id="lbx-close" aria-label="Close">&#215;</button>
+  <button id="lbx-prev" aria-label="Previous photo">&#8592;</button>
+  <div id="lbx-img" role="img" aria-label="Villa photo"></div>
+  <button id="lbx-next" aria-label="Next photo">&#8594;</button>
+  <div id="lbx-thumbs"></div>
+  <div id="lbx-caption"></div>
+  <div id="lbx-counter"></div>
+</div>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/33667749024?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20une%20villa%20%C3%A0%20Les%20Roches%20Retreat." 
+   class="wa-btn" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+<style>
+.wa-btn{
+  position:fixed;
+  bottom:2rem;
+  right:2rem;
+  z-index:1000;
+  width:56px;
+  height:56px;
+  background:#25D366;
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.45);
+  transition:transform .25s ease, box-shadow .25s ease;
+  cursor:pointer;
+}
+.wa-btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 6px 28px rgba(37,211,102,.6);
+}
+</style>
+<!-- END WHATSAPP -->
+
+<style>
+/* ── Bulle contact — discrète et naturelle ── */
+#wa-bubble{position:fixed;bottom:1.6rem;right:1.6rem;z-index:2000;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+#wa-toggle{width:52px;height:52px;border-radius:50%;border:none;padding:0;cursor:pointer;background:none;position:relative;box-shadow:0 2px 12px rgba(0,0,0,.22);transition:transform .2s,box-shadow .2s;overflow:visible}
+#wa-toggle:hover{transform:scale(1.04);box-shadow:0 4px 18px rgba(0,0,0,.3)}
+#wa-toggle-photo{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:center 18%;display:block;border:2px solid rgba(250,247,242,.7)}
+#wa-dot{position:absolute;bottom:0;right:0;width:16px;height:16px;background:#25D366;border-radius:50%;border:2px solid var(--w,#faf7f2);display:flex;align-items:center;justify-content:center}
+#wa-dot svg{display:block}
+#wa-card{width:272px;background:var(--w,#faf7f2);border-radius:10px;box-shadow:0 4px 22px rgba(0,0,0,.13);overflow:hidden;transform:translateY(8px) scale(.97);opacity:0;pointer-events:none;transition:transform .28s cubic-bezier(.25,.8,.25,1),opacity .2s ease;transform-origin:bottom right;border:1px solid rgba(30,27,24,.07)}
+#wa-card.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+.wa-head{background:var(--ink2,#2e2a26);padding:.85rem 1rem;display:flex;align-items:center;gap:.75rem;position:relative}
+.wa-head-close{position:absolute;top:.55rem;right:.7rem;background:none;border:none;color:rgba(255,255,255,.25);font-size:.85rem;cursor:pointer;line-height:1;transition:color .18s}
+.wa-head-close:hover{color:rgba(255,255,255,.6)}
+.wa-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 18%;border:1px solid rgba(255,255,255,.12);flex-shrink:0}
+.wa-head-name{font-family:'Gilda Display',serif;font-size:.84rem;color:rgba(250,247,242,.88);letter-spacing:.02em}
+.wa-head-status{font-size:.48rem;color:rgba(255,255,255,.3);margin-top:.15rem;font-family:'Outfit',sans-serif;display:flex;align-items:center;gap:.3rem}
+.wa-head-status::before{content:'';width:5px;height:5px;background:#4ade80;border-radius:50%;flex-shrink:0}
+.wa-body{background:var(--c,#f3ede3);padding:.9rem .9rem .85rem}
+.wa-msg{background:var(--w,#faf7f2);border-radius:2px 9px 9px 9px;padding:.65rem .8rem;font-family:'Outfit',sans-serif;font-size:.66rem;line-height:1.7;color:var(--ink,#1e1b18);position:relative;max-width:94%;border:1px solid rgba(30,27,24,.04)}
+.wa-msg::before{content:'';position:absolute;top:0;left:-5px;width:0;height:0;border-top:5px solid var(--w,#faf7f2);border-left:5px solid transparent}
+.wa-time{font-size:.45rem;color:var(--mid,#9a8f82);text-align:right;margin-top:.3rem}
+.wa-cta-wrap{padding:.7rem .9rem .85rem;background:var(--c,#f3ede3);border-top:1px solid rgba(30,27,24,.05)}
+.wa-cta{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;background:var(--ter,#b8734a);border:none;border-radius:2px;padding:.65rem 1rem;font-family:'Outfit',sans-serif;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;cursor:pointer;text-decoration:none;transition:background .2s;opacity:.92}
+.wa-cta:hover{background:var(--ter2,#a05f38);opacity:1}
+</style>
+
+<div id="wa-bubble">
+  <div id="wa-card">
+    <div class="wa-head">
+      <img src="images/ian-whatsapp.jpg" alt="Ian" class="wa-avatar"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="wa-avatar" style="display:none;background:var(--ter);align-items:center;justify-content:center;font-family:'Gilda Display',serif;font-size:1.1rem;color:#fff;flex-shrink:0">I</div>
+      <div class="wa-head-info">
+        <div class="wa-head-name">Ian &nbsp;—&nbsp; Les Roches</div>
+        <div class="wa-head-status">En ligne · répond rapidement</div>
+      </div>
+      <button class="wa-head-close" id="wa-close" aria-label="Fermer">✕</button>
+    </div>
+    <div class="wa-body">
+      <div class="wa-msg">
+        Bonjour ! 👋<br>Pour toutes questions sur les villas, les disponibilités ou une réservation, n'hésitez pas à m'envoyer un message — je vous réponds rapidement.
+        <div class="wa-time">maintenant</div>
+      </div>
+    </div>
+    <div class="wa-cta-wrap">
+      <a href="https://wa.me/33667749024?text=Bonjour%20Ian%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20Les%20Roches%20Retreat%20%F0%9F%8C%8A"
+         target="_blank" rel="noopener" class="wa-cta">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Envoyer un message
+      </a>
+    </div>
+  </div>
+  <button id="wa-toggle" aria-label="Message Ian">
+    <img id="wa-toggle-photo" src="images/ian-whatsapp.jpg" alt="Ian"
+         onerror="this.style.background='var(--ink2)';this.style.objectFit='none'">
+    <div id="wa-dot">
+      <svg viewBox="0 0 24 24" fill="white" width="8" height="8"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </div>
+  </button>
+</div>
+
+<script>
+(function(){
+  const toggle=document.getElementById('wa-toggle'),
+        card=document.getElementById('wa-card'),
+        close=document.getElementById('wa-close');
+  let open=false;
+  function setOpen(v){ open=v; card.classList.toggle('open',v); }
+  if(!sessionStorage.getItem('wa_shown')){
+    setTimeout(()=>{setOpen(true);sessionStorage.setItem('wa_shown','1')},6000);
+  }
+  toggle.addEventListener('click',()=>setOpen(!open));
+  close.addEventListener('click',()=>setOpen(false));
+})();
+</script>
+<!-- END WHATSAPP -->
+
+
+<script>
+document.addEventListener('keydown',function(e){
+  if((e.ctrlKey||e.metaKey)&&e.shiftKey&&e.key.toLowerCase()==='a'){
+    e.preventDefault();
+    window.location.href='/admin/index.html';
+  }
+});
+</script>
+</body>
+</html>
