@@ -1,0 +1,106 @@
+# ══════════════════════════════════════════════════════════════
+# Les Roches Retreat — Netlify Configuration
+# ══════════════════════════════════════════════════════════════
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# ── iCal sync — every 2 hours ──────────────────────────────────────────────
+[functions."sync-ical"]
+  schedule = "0 */2 * * *"
+
+# ── J-7 arrival reminder — every day at 09:00 UTC ─────────────────────────
+[functions."reminder-j7"]
+  schedule = "0 9 * * *"
+
+# ── Global security & performance headers ──────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# ── Images : cache 1 an (immutable car on versionnera) ─────────
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ── CSS / JS : cache 1 an ──────────────────────────────────────
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ── HTML : pas de cache (toujours frais) ──────────────────────
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# ── Redirections ───────────────────────────────────────────────
+# www → apex
+[[redirects]]
+  from = "https://www.lesrochesretreat.com/*"
+  to   = "https://lesrochesretreat.com/:splat"
+  status = 301
+  force  = true
+
+# Trailing slash cleanup
+[[redirects]]
+  from = "/index.html"
+  to   = "/"
+  status = 301
+
+# ── Pretty URLs (optionnel) ────────────────────────────────────
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = false
+  minify = true
+
+[build.processing.js]
+  bundle = false
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+# ── Content Security Policy ────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdn.emailjs.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://vrufclzcaswkdgrffdwm.supabase.co https://ipapi.co; frame-ancestors 'none';"
+
+# ── Admin panel — sécurité renforcée ────────────────────────────────────
+# Protection par mot de passe Supabase Auth (déjà en place dans index.html)
+# En complément, activer "Site password" dans Netlify > Site settings > Access & Security
+# pour une double protection réseau avant même de charger la page.
+#
+# ✅ ACTION REQUISE dans Netlify Dashboard :
+#   Site settings → Access & Security → Visitor access → Password protection
+#   → Set password → Save
+#   (Choisir un mot de passe court pour les accès internes type admin)
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store, no-cache, must-revalidate"
+    Pragma = "no-cache"
+
+# Redirection sécurisée : /admin → /admin/ (canonique)
+[[redirects]]
+  from   = "/admin"
+  to     = "/admin/"
+  status = 301
+  force  = true

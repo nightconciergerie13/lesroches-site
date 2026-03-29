@@ -3,9 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Referrer-Policy" content="no-referrer">
 <title>Les Roches — Administration</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Gilda+Display&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -153,6 +157,10 @@ tr:hover td{background:#faf9f7}
 .ucal-leg{display:flex;align-items:center;gap:.4rem}
 .ucal-leg-dot{width:14px;height:14px;border-radius:2px;flex-shrink:0}
 
+/* ── BOOKING SYNC ── */
+.ucal-cell.blocked-booking{background:repeating-linear-gradient(45deg,rgba(59,130,246,.07),rgba(59,130,246,.07) 4px,transparent 4px,transparent 10px);cursor:not-allowed}
+.ucal-cell.blocked-booking .ucal-cell-blocked{color:var(--blue)}
+
 /* ── AIRBNB SYNC ── */
 .sync-grid{display:flex;flex-direction:column;gap:1rem}
 .sync-card{background:var(--w);border-radius:3px;border:1px solid var(--c2);padding:1.4rem 1.6rem}
@@ -207,6 +215,38 @@ tr:hover td{background:#faf9f7}
 
 .an-empty{text-align:center;padding:3rem 1rem;color:var(--mid);font-size:.7rem;font-style:italic}
 
+/* ── STATS JOURNALIÈRES ── */
+.ds-controls{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.ds-controls label{font-size:.44rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mid)}
+.ds-controls input[type=date]{font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:300;padding:.5rem .8rem;border:1px solid var(--c2);border-radius:2px;outline:none;background:var(--c);color:var(--ink);transition:border-color .2s}
+.ds-controls input[type=date]:focus{border-color:var(--sand)}
+.ds-load-btn{font-size:.46rem;letter-spacing:.22em;text-transform:uppercase;padding:.5rem 1.2rem;background:var(--ink);color:var(--w);border:none;border-radius:2px;cursor:pointer;transition:background .2s}
+.ds-load-btn:hover{background:var(--ter)}
+.ds-kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
+@media(max-width:1100px){.ds-kpi-grid{grid-template-columns:repeat(2,1fr)}}
+.ds-kpi{background:var(--w);border:1px solid var(--c2);border-radius:3px;padding:1.1rem 1.3rem}
+.ds-kpi-label{font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);margin-bottom:.4rem}
+.ds-kpi-value{font-family:'Gilda Display',serif;font-size:1.8rem;color:var(--ink);line-height:1}
+.ds-kpi-sub{font-size:.58rem;color:var(--mid);margin-top:.3rem}
+.ds-chart-wrap{background:var(--w);border:1px solid var(--c2);border-radius:3px;padding:1.4rem;margin-bottom:1.5rem}
+.ds-chart-title{font-size:.48rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ter);margin-bottom:1rem}
+.ds-chart-inner{position:relative;height:200px}
+.ds-table-wrap{background:var(--w);border:1px solid var(--c2);border-radius:3px;overflow:hidden}
+.ds-table-header{padding:1rem 1.4rem;border-bottom:1px solid var(--c2);display:flex;align-items:center;justify-content:space-between}
+.ds-table-title{font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ter)}
+.ds-table{width:100%;border-collapse:collapse}
+.ds-table th{font-size:.42rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);padding:.7rem 1.2rem;text-align:left;background:var(--c);border-bottom:1px solid var(--c2);font-weight:400}
+.ds-table td{font-size:.68rem;padding:.75rem 1.2rem;border-bottom:1px solid rgba(214,201,176,.3);color:var(--ink);vertical-align:middle}
+.ds-table tr:last-child td{border-bottom:none}
+.ds-table tr:hover td{background:#faf9f7}
+.ds-table tr.has-checkin td{border-left:3px solid var(--green)}
+.ds-occ-bars{display:flex;gap:3px;align-items:center;flex-wrap:wrap}
+.ds-occ-bar{height:16px;background:var(--ter);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:.36rem;color:#fff;padding:0 4px;white-space:nowrap;max-width:80px;overflow:hidden;text-overflow:ellipsis}
+.ds-rev{font-family:'Gilda Display',serif;font-size:.85rem;color:var(--ink)}
+.ds-rev.zero{color:var(--mid)}
+.ds-arrow-in{color:var(--green);font-size:.72rem}
+.ds-arrow-out{color:var(--red);font-size:.72rem}
+
 /* ── TOAST ── */
 .toast{position:fixed;bottom:2rem;right:2rem;background:var(--ink);color:var(--w);padding:.9rem 1.6rem;border-radius:3px;font-size:.64rem;letter-spacing:.08em;z-index:999;transform:translateY(100px);opacity:0;transition:all .3s}
 .toast.show{transform:none;opacity:1}
@@ -218,9 +258,16 @@ tr:hover td{background:#faf9f7}
   .sidebar{display:none}
   .avail-layout{grid-template-columns:1fr}
 }
+
+/* ── prefers-reduced-motion ─────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  body.has-cursor *{cursor:auto!important}
+}
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--ter,#b8734a);color:#fff;padding:.5rem 1rem;font-family:sans-serif;font-size:.875rem" onfocus="this.style.left='1rem';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-999px'">Skip to content</a>
 
 <!-- ══ LOGIN SCREEN ══ -->
 <div id="login-screen">
@@ -259,6 +306,7 @@ tr:hover td{background:#faf9f7}
         <div class="nav-item active" data-page="dashboard">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
           Réservations
+          <span id="nav-pending-badge" style="display:none;margin-left:auto;background:#e74c3c;color:#fff;font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:20px;line-height:1.4">0</span>
         </div>
         <div class="nav-item" data-page="pricing">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
@@ -267,6 +315,18 @@ tr:hover td{background:#faf9f7}
         <div class="nav-item" data-page="sync">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
           Sync Airbnb
+        </div>
+        <div class="nav-item" data-page="booking">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          Sync Booking.com
+        </div>
+        <div class="nav-item" data-page="seasons">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v1m0 16v1M3 12h1m16 0h1m-3.3-6.7-.7.7m-11.4 11.4-.7.7m0-12.8.7.7m11.4 11.4.7.7M12 7a5 5 0 100 10A5 5 0 0012 7z"/></svg>
+          Saisons & Tarifs
+        </div>
+        <div class="nav-item" data-page="daily">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
+          Stats / Jour
         </div>
         <div class="nav-item" data-page="analytics">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
@@ -314,6 +374,7 @@ tr:hover td{background:#faf9f7}
             <div class="ucal-leg"><div class="ucal-leg-dot" style="background:#f0fdf4;border:1px solid #d1fae5"></div>Tarif personnalisé</div>
             <div class="ucal-leg"><div class="ucal-leg-dot" style="background:repeating-linear-gradient(45deg,rgba(239,68,68,.15),rgba(239,68,68,.15) 4px,#fff 4px,#fff 10px);border:1px solid rgba(239,68,68,.2)"></div>Bloqué</div>
             <div class="ucal-leg"><div class="ucal-leg-dot" style="background:repeating-linear-gradient(45deg,rgba(249,115,22,.15),rgba(249,115,22,.15) 4px,#fff 4px,#fff 10px);border:1px solid rgba(249,115,22,.2)"></div>Airbnb ✈</div>
+            <div class="ucal-leg"><div class="ucal-leg-dot" style="background:repeating-linear-gradient(45deg,rgba(59,130,246,.15),rgba(59,130,246,.15) 4px,#fff 4px,#fff 10px);border:1px solid rgba(59,130,246,.2)"></div>Booking 🏨</div>
           </div>
         </div>
         <div class="ucal-scroll">
@@ -340,6 +401,147 @@ tr:hover td{background:#faf9f7}
           </div>
         </div>
       </div>
+
+      <!-- ── PAGE: SYNC BOOKING.COM ── -->
+      <div class="page" id="page-booking">
+        <div class="page-title">Synchronisation Booking.com</div>
+        <div class="page-sub">Colle l'URL iCal de chaque villa Booking.com. Les dates réservées seront automatiquement bloquées.</div>
+        <button class="sync-all-btn" id="booking-sync-all-btn">↻ Synchroniser toutes les villas</button>
+        <div class="sync-grid" id="booking-sync-grid">
+          <div class="empty-state">Chargement…</div>
+        </div>
+        <div style="background:var(--c);border:1px solid var(--c2);border-radius:3px;padding:1.4rem;margin-top:1.5rem">
+          <div style="font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ter);margin-bottom:.8rem">Où trouver l'URL iCal Booking.com ?</div>
+          <div style="font-size:.68rem;color:var(--mid);line-height:1.8">
+            1. Va sur <strong style="color:var(--ink);font-weight:400">admin.booking.com</strong> → sélectionne la propriété<br>
+            2. Va dans <strong style="color:var(--ink);font-weight:400">Tarifs et disponibilités</strong> → <strong style="color:var(--ink);font-weight:400">Calendrier</strong><br>
+            3. Clique sur <strong style="color:var(--ink);font-weight:400">Exporter le calendrier</strong> (icône engrenage ou lien en bas de page)<br>
+            4. Copie l'URL qui commence par <code style="background:var(--w);padding:.1rem .4rem;border-radius:2px">https://ical.booking.com/v1/export?...</code><br>
+            5. Colle-la ici et clique Synchroniser
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PAGE: SAISONS & TARIFS ── -->
+      <div class="page" id="page-seasons">
+        <div class="page-title">Saisons &amp; Tarifs</div>
+        <div class="page-sub">Définissez des périodes tarifaires saisonnières. Les règles s'appliquent à toutes les villas (ou à une villa spécifique). Priorité : overrides journaliers > règles saisonnières > prix de base.</div>
+
+        <button class="sync-all-btn" id="season-add-btn" style="margin-bottom:1.5rem">+ Nouvelle règle</button>
+
+        <!-- Form card (hidden by default) -->
+        <div id="season-form-wrap" style="display:none;background:var(--w);border:1px solid var(--c2);border-radius:3px;padding:1.6rem;margin-bottom:1.5rem">
+          <div style="font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ter);margin-bottom:1.2rem" id="season-form-title">Nouvelle règle</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:1rem">
+            <div class="login-field">
+              <label>Nom de la règle</label>
+              <input type="text" id="sf-name" placeholder="ex: Noël 2025" style="background:var(--c)">
+            </div>
+            <div class="login-field">
+              <label>Villa (laisser vide = toutes)</label>
+              <select id="sf-villa" style="font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:300;padding:.8rem 1rem;border:1px solid var(--c2);border-radius:2px;background:var(--c);color:var(--ink)">
+                <option value="">Toutes les villas</option>
+                <option value="jade">Casa Jade</option>
+                <option value="topaze">Topaze</option>
+                <option value="onyx">Onyx</option>
+                <option value="agate">Agate</option>
+                <option value="ambre">Ambre</option>
+                <option value="opale">Opale</option>
+              </select>
+            </div>
+            <div class="login-field">
+              <label>Date début</label>
+              <input type="date" id="sf-start" style="background:var(--c)">
+            </div>
+            <div class="login-field">
+              <label>Date fin</label>
+              <input type="date" id="sf-end" style="background:var(--c)">
+            </div>
+            <div class="login-field">
+              <label>Prix / nuit (USD)</label>
+              <input type="number" id="sf-price" min="0" step="10" placeholder="ex: 650" style="background:var(--c)">
+            </div>
+            <div class="login-field">
+              <label>Nuits minimum</label>
+              <input type="number" id="sf-minnights" min="1" max="30" value="3" style="background:var(--c)">
+            </div>
+            <div class="login-field">
+              <label>Priorité (10=normale, 99=max)</label>
+              <input type="number" id="sf-priority" min="1" max="99" value="10" style="background:var(--c)">
+            </div>
+          </div>
+          <div style="display:flex;gap:.8rem;align-items:center">
+            <button class="login-btn" id="season-save-btn" style="width:auto;padding:.7rem 1.8rem">Enregistrer</button>
+            <button id="season-cancel-btn" style="background:none;border:1px solid var(--c2);padding:.7rem 1.2rem;border-radius:2px;font-size:.58rem;letter-spacing:.1em;color:var(--mid)">Annuler</button>
+            <span id="season-form-err" style="font-size:.64rem;color:var(--red)"></span>
+          </div>
+        </div>
+
+        <!-- Rules list -->
+        <div class="table-wrap">
+          <div class="table-header">
+            <div class="table-title">Règles actives</div>
+            <div id="seasons-count" style="font-size:.6rem;color:var(--mid)">—</div>
+          </div>
+          <div id="seasons-list"><div class="empty-state">Chargement…</div></div>
+        </div>
+      </div>
+
+      <!-- ── PAGE: STATS JOURNALIÈRES ── -->
+      <div class="page" id="page-daily">
+        <div class="page-title">Statistiques par jour</div>
+        <div class="page-sub">Visualisez l'occupation, les arrivées/départs et le revenu estimé jour par jour sur la période choisie.</div>
+
+        <!-- Contrôles de période -->
+        <div class="ds-controls">
+          <label>Du</label>
+          <input type="date" id="ds-from">
+          <label>Au</label>
+          <input type="date" id="ds-to">
+          <button class="ds-load-btn" id="ds-load-btn">Afficher</button>
+        </div>
+
+        <!-- KPIs -->
+        <div class="ds-kpi-grid">
+          <div class="ds-kpi">
+            <div class="ds-kpi-label">Arrivées</div>
+            <div class="ds-kpi-value" id="ds-kpi-checkins">—</div>
+            <div class="ds-kpi-sub">sur la période</div>
+          </div>
+          <div class="ds-kpi">
+            <div class="ds-kpi-label">Départs</div>
+            <div class="ds-kpi-value" id="ds-kpi-checkouts">—</div>
+            <div class="ds-kpi-sub">sur la période</div>
+          </div>
+          <div class="ds-kpi">
+            <div class="ds-kpi-label">Nuits vendues</div>
+            <div class="ds-kpi-value" id="ds-kpi-nights">—</div>
+            <div class="ds-kpi-sub">total villa·nuits occupées</div>
+          </div>
+          <div class="ds-kpi">
+            <div class="ds-kpi-label">Revenu estimé</div>
+            <div class="ds-kpi-value" id="ds-kpi-revenue">—</div>
+            <div class="ds-kpi-sub">réservations confirmées</div>
+          </div>
+        </div>
+
+        <!-- Graphique -->
+        <div class="ds-chart-wrap">
+          <div class="ds-chart-title">Revenu par nuit ($) + taux d'occupation</div>
+          <div class="ds-chart-inner"><canvas id="chart-daily"></canvas></div>
+        </div>
+
+        <!-- Tableau -->
+        <div class="ds-table-wrap">
+          <div class="ds-table-header">
+            <div class="ds-table-title">Détail jour par jour</div>
+            <div style="font-size:.54rem;color:var(--mid)">vert = arrivée ce jour-là</div>
+          </div>
+          <div id="ds-table-body">
+            <div class="empty-state">Sélectionnez une période et cliquez sur Afficher.</div>
+          </div>
+        </div>
+      </div><!-- /page-daily -->
 
       <!-- ── PAGE: ANALYTICS ── -->
       <div class="page" id="page-analytics">
@@ -465,12 +667,12 @@ const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFz
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
 const VILLA_IMAGES = {
-  jade:   '../images/jade-hero.jpg',
-  topaze: '../images/topaze-hero.jpg',
-  onyx:   '../images/onyx-hero.jpg',
-  agate:  '../images/agate-hero.jpg',
-  ambre:  '../images/ambre-hero.jpg',
-  opale:  '../images/opale-hero.jpg',
+  jade:   '../images/jade-hero.webp',
+  topaze: '../images/topaze-hero.webp',
+  onyx:   '../images/onyx-hero.webp',
+  agate:  '../images/agate-hero.webp',
+  ambre:  '../images/ambre-hero.webp',
+  opale:  '../images/opale-hero.webp',
 };
 
 // ── UTILS ──────────────────────────────────────────────────
@@ -486,7 +688,40 @@ function fmt(dateStr) {
 }
 function today() { return new Date().toISOString().split('T')[0]; }
 
-// ── AUTH ───────────────────────────────────────────────────
+// ── AUTH — Rate limiting + inactivity timeout ───────────────
+const RATE_LIMIT = { max: 5, windowMs: 15 * 60 * 1000 }; // 5 tentatives / 15 min
+const INACTIVITY_MS = 20 * 60 * 1000; // déconnexion auto après 20 min sans activité
+let inactivityTimer = null;
+
+function getRateData() {
+  try { return JSON.parse(sessionStorage.getItem('_lr_rl') || '{"count":0,"since":0}'); }
+  catch { return { count: 0, since: 0 }; }
+}
+function setRateData(d) { sessionStorage.setItem('_lr_rl', JSON.stringify(d)); }
+function isRateLimited() {
+  const d = getRateData();
+  if (Date.now() - d.since > RATE_LIMIT.windowMs) { setRateData({ count: 0, since: Date.now() }); return false; }
+  return d.count >= RATE_LIMIT.max;
+}
+function incrementRate() {
+  const d = getRateData();
+  if (Date.now() - d.since > RATE_LIMIT.windowMs) setRateData({ count: 1, since: Date.now() });
+  else setRateData({ count: d.count + 1, since: d.since });
+}
+
+function resetInactivityTimer() {
+  clearTimeout(inactivityTimer);
+  inactivityTimer = setTimeout(async () => {
+    await sb.auth.signOut();
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('login-err').textContent = 'Session expirée — reconnectez-vous.';
+  }, INACTIVITY_MS);
+}
+['mousemove','keydown','click','scroll'].forEach(ev =>
+  document.addEventListener(ev, resetInactivityTimer, { passive: true })
+);
+
 document.getElementById('l-pass').addEventListener('keydown', e => {
   if(e.key === 'Enter') doLogin();
 });
@@ -496,17 +731,39 @@ async function doLogin() {
   const email = document.getElementById('l-email').value.trim();
   const pass  = document.getElementById('l-pass').value;
   const err   = document.getElementById('login-err');
+  const btn   = document.getElementById('login-btn');
   err.textContent = '';
-  document.getElementById('login-btn').textContent = 'Connexion…';
 
+  // Rate limiting
+  if (isRateLimited()) {
+    const d = getRateData();
+    const remaining = Math.ceil((RATE_LIMIT.windowMs - (Date.now() - d.since)) / 60000);
+    err.textContent = `Trop de tentatives. Réessayez dans ${remaining} min.`;
+    return;
+  }
+
+  if (!email || !pass) { err.textContent = 'Identifiants requis.'; return; }
+
+  btn.textContent = 'Connexion…'; btn.disabled = true;
   const { data, error } = await sb.auth.signInWithPassword({ email, password: pass });
-  document.getElementById('login-btn').textContent = 'Connexion';
+  btn.textContent = 'Connexion'; btn.disabled = false;
 
-  if(error) { err.textContent = 'Email ou mot de passe incorrect'; return; }
+  if (error) {
+    incrementRate();
+    const d = getRateData();
+    const left = RATE_LIMIT.max - d.count;
+    err.textContent = left > 0
+      ? `Identifiants incorrects (${left} tentative${left>1?'s':''} restante${left>1?'s':''}).`
+      : 'Compte temporairement bloqué. Réessayez dans 15 min.';
+    return;
+  }
+  // Reset rate on success
+  setRateData({ count: 0, since: 0 });
   showApp(data.user);
 }
 
 document.getElementById('logout-btn').addEventListener('click', async () => {
+  clearTimeout(inactivityTimer);
   await sb.auth.signOut();
   document.getElementById('app').style.display = 'none';
   document.getElementById('login-screen').style.display = 'flex';
@@ -520,6 +777,7 @@ function showApp(user) {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
   document.getElementById('user-email').textContent = user.email;
+  resetInactivityTimer();
   loadAll();
 }
 
@@ -538,8 +796,10 @@ function loadAll() {
   loadReservations();
   loadUcal();
   loadSync();
+  loadBookingSync();
   // Sync automatique en arrière-plan au chargement
   setTimeout(autoSyncAll, 2000);
+  setTimeout(autoSyncBookingAll, 3000);
 }
 
 async function autoSyncAll() {
@@ -592,13 +852,19 @@ function renderStats() {
   const confirmed = allReservations.filter(r => r.status === 'confirmed').length;
   document.getElementById('stat-pending').textContent   = pending;
   document.getElementById('stat-confirmed').textContent = confirmed;
+  // Notification badge on nav
+  const badge = document.getElementById('nav-pending-badge');
+  if (badge) {
+    if (pending > 0) { badge.textContent = pending; badge.style.display = 'inline-block'; }
+    else { badge.style.display = 'none'; }
+  }
 
   const upcoming = allReservations
     .filter(r => r.status === 'confirmed' && r.checkin >= today())
     .sort((a,b) => a.checkin.localeCompare(b.checkin))[0];
   if(upcoming) {
     document.getElementById('stat-next').textContent       = fmt(upcoming.checkin);
-    document.getElementById('stat-next-villa').textContent = upcoming.villa_name;
+    document.getElementById('stat-next-villa').textContent = upcoming.villa;
   } else {
     document.getElementById('stat-next').textContent = '—';
   }
@@ -617,17 +883,17 @@ function renderReservations() {
 
   wrap.innerHTML = `<table>
     <thead><tr>
-      <th>Villa</th><th>Client</th><th>Dates</th><th>Nuits</th>
-      <th>Total</th><th>Dépôt</th><th>Statut</th><th>Actions</th>
+      <th>Villa</th><th>Client</th><th>Dates</th><th>Voyageurs</th>
+      <th>Reçue le</th><th>Message</th><th>Statut</th><th>Actions</th>
     </tr></thead>
     <tbody>${filtered.map(r => `
       <tr>
-        <td><strong>${r.villa_name || r.villa_id}</strong></td>
-        <td>${r.firstname} ${r.lastname}<br><span style="font-size:.58rem;color:var(--mid)">${r.email}</span><br><span style="font-size:.58rem;color:#25D366">${r.whatsapp}</span></td>
+        <td><strong>${r.villa || '—'}</strong></td>
+        <td>${r.from_name || '—'}<br><span style="font-size:.58rem;color:var(--mid)">${r.from_email || ''}</span><br><span style="font-size:.58rem;color:#25D366">${r.phone || ''}</span></td>
         <td>${fmt(r.checkin)}<br><span style="color:var(--mid)">→ ${fmt(r.checkout)}</span></td>
-        <td>${r.nights || '—'}</td>
-        <td>${r.total_usd ? '$' + r.total_usd.toLocaleString() : '—'}</td>
-        <td>${r.deposit_usd ? '$' + r.deposit_usd.toLocaleString() : '—'}</td>
+        <td>${r.guests || '—'}</td>
+        <td style="font-size:.65rem">${r.created_at ? new Date(r.created_at).toLocaleDateString('fr-FR') : '—'}</td>
+        <td style="font-size:.65rem;max-width:160px;white-space:pre-wrap">${r.message || '—'}</td>
         <td><span class="badge badge-${r.status}">${r.status === 'pending' ? 'En attente' : r.status === 'confirmed' ? 'Confirmée' : 'Annulée'}</span></td>
         <td>
           <div class="action-btns">
@@ -719,8 +985,8 @@ async function fetchUcalData() {
   });
   (blockedRes.data || []).forEach(r => {
     const key = r.villa_id + ':' + r.date;
-    // Airbnb overwrites admin for display priority
-    if(!ucalData[key] || r.source === 'airbnb') {
+    // Airbnb and Booking overwrite admin for display priority
+    if(!ucalData[key] || r.source === 'airbnb' || r.source === 'booking') {
       ucalData[key] = { type: 'blocked-' + r.source };
     }
   });
@@ -780,6 +1046,9 @@ function renderUcal() {
         } else if(entry.type === 'blocked-airbnb') {
           cls    += ' blocked-airbnb';
           content = `<span class="ucal-cell-blocked">✈</span>`;
+        } else if(entry.type === 'blocked-booking') {
+          cls    += ' blocked-booking';
+          content = `<span class="ucal-cell-blocked">🏨</span>`;
         }
       } else {
         cls += ' default-rate';
@@ -794,7 +1063,7 @@ function renderUcal() {
         if(ds >= a && ds <= b) cls += (ds === a || ds === b) ? ' sel-end' : ' in-sel';
       }
 
-      const clickable = !isPast && !(entry && entry.type === 'blocked-airbnb');
+      const clickable = !isPast && !(entry && (entry.type === 'blocked-airbnb' || entry.type === 'blocked-booking'));
       tbody += `<td class="${cls}"${clickable ? ` onclick="ucalClick('${villa.id}','${ds}')"` : ''}>${content}</td>`;
     });
     tbody += '</tr>';
@@ -924,11 +1193,26 @@ async function loadSync() {
   }).join('');
 }
 
+function validateIcalUrl(rawUrl) {
+  let parsed;
+  try { parsed = new URL(rawUrl); } catch { return 'URL invalide.'; }
+  if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:')
+    return 'URL invalide (doit commencer par http/https).';
+  const allowed = ['airbnb.com','airbnb.fr','airbnb.es','booking.com','vrbo.com','homeaway.com'];
+  const host = parsed.hostname.toLowerCase().replace(/^www\./, '');
+  if (!allowed.some(d => host === d || host.endsWith('.' + d)))
+    return 'Seules les URLs Airbnb ou Booking.com sont autorisées.';
+  if (rawUrl.length > 800) return 'URL trop longue.';
+  return null; // OK
+}
+
 async function syncVilla(id) {
   const url = document.getElementById('ical-' + id).value.trim();
   const btn = document.getElementById('sync-btn-' + id);
   const res = document.getElementById('sync-result-' + id);
-  if(!url) { res.textContent = 'Colle d\'abord l\'URL iCal Airbnb'; res.className='sync-result error'; return; }
+  if(!url) { res.textContent = 'Colle d\'abord l\'URL iCal Airbnb ou Booking.com'; res.className='sync-result error'; return; }
+  const urlErr = validateIcalUrl(url);
+  if (urlErr) { res.textContent = urlErr; res.className='sync-result error'; return; }
 
   btn.disabled = true; btn.textContent = '↻ Sync…';
   res.textContent = 'Récupération du calendrier Airbnb…';
@@ -1010,9 +1294,160 @@ document.getElementById('sync-all-btn').addEventListener('click', async () => {
   const villas = Object.keys(VILLA_NAMES);
   for(const id of villas) {
     await syncVilla(id);
-    await new Promise(r => setTimeout(r, 500)); // small delay between requests
+    await new Promise(r => setTimeout(r, 500));
   }
   toast('Toutes les villas synchronisées ✓', 'green');
+});
+
+// ══ BOOKING.COM SYNC ═══════════════════════════════════════
+
+async function loadBookingSync() {
+  const { data } = await sb.from('booking_ical').select('*').catch(() => ({ data: null }));
+  const rows = {};
+  (data || []).forEach(r => rows[r.villa_id] = r);
+
+  document.getElementById('booking-sync-grid').innerHTML = Object.keys(VILLA_NAMES).map(id => {
+    const row = rows[id] || {};
+    const lastSync = row.last_sync
+      ? `Dernier sync : ${new Date(row.last_sync).toLocaleString('fr-FR')}`
+      : 'Jamais synchronisé';
+    return `
+    <div class="sync-card">
+      <div class="sync-card-header">
+        <div class="sync-villa-name">${VILLA_NAMES[id]}</div>
+        <div class="sync-status ${row.last_sync ? 'ok' : ''}" id="bsync-status-${id}">${lastSync}</div>
+      </div>
+      <div class="sync-field">
+        <input class="sync-input" id="bical-${id}" type="url"
+          placeholder="https://ical.booking.com/v1/export?hotel_id=XXXXX&t=TOKEN&room_id=YYYYY"
+          value="${row.ical_url || ''}">
+        <button class="sync-btn" id="bsync-btn-${id}" onclick="syncBookingVilla('${id}')">↻ Sync</button>
+      </div>
+      <div class="sync-result" id="bsync-result-${id}"></div>
+    </div>`;
+  }).join('');
+}
+
+function validateBookingIcalUrl(rawUrl) {
+  let parsed;
+  try { parsed = new URL(rawUrl); } catch { return 'URL invalide.'; }
+  if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:')
+    return 'URL invalide (doit commencer par https).';
+  const host = parsed.hostname.toLowerCase();
+  if (!host.includes('booking.com'))
+    return 'Seules les URLs booking.com sont autorisées ici.';
+  if (rawUrl.length > 800) return 'URL trop longue.';
+  return null;
+}
+
+async function syncBookingVilla(id) {
+  const url = document.getElementById('bical-' + id).value.trim();
+  const btn = document.getElementById('bsync-btn-' + id);
+  const res = document.getElementById('bsync-result-' + id);
+
+  if (!url) { res.textContent = 'Colle d\'abord l\'URL iCal Booking.com'; res.className = 'sync-result error'; return; }
+  const urlErr = validateBookingIcalUrl(url);
+  if (urlErr) { res.textContent = urlErr; res.className = 'sync-result error'; return; }
+
+  btn.disabled = true; btn.textContent = '↻ Sync…';
+  res.textContent = 'Récupération du calendrier Booking.com…';
+  res.className = 'sync-result';
+
+  try {
+    // Sauvegarde l'URL
+    await sb.from('booking_ical').upsert({ villa_id: id, ical_url: url });
+
+    // Essaie plusieurs proxies CORS en cascade
+    const proxies = [
+      'https://api.allorigins.win/raw?url=' + encodeURIComponent(url),
+      'https://corsproxy.io/?' + encodeURIComponent(url),
+      'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(url),
+    ];
+    let ical = null;
+    for (const proxyUrl of proxies) {
+      try {
+        res.textContent = 'Tentative via proxy…';
+        const resp = await fetch(proxyUrl, { signal: AbortSignal.timeout(10000) });
+        if (resp.ok) {
+          const txt = await resp.text();
+          if (txt.includes('VCALENDAR')) { ical = txt; break; }
+        }
+      } catch (e) { /* essaie le suivant */ }
+    }
+    if (!ical) throw new Error('Impossible de récupérer le calendrier (tous les proxies ont échoué)');
+
+    const dates = parseIcal(ical);
+    if (!dates.length) {
+      res.textContent = '✓ Aucune réservation Booking.com pour cette période';
+      res.className = 'sync-result';
+      btn.disabled = false; btn.textContent = '↻ Sync';
+      return;
+    }
+
+    // Supprime les anciens blocages Booking puis insère les nouveaux
+    await sb.from('blocked_dates').delete().eq('villa_id', id).eq('source', 'booking');
+    const rows = dates.map(d => ({ villa_id: id, date: d, source: 'booking' }));
+    for (let i = 0; i < rows.length; i += 100) {
+      await sb.from('blocked_dates').upsert(rows.slice(i, i + 100), { onConflict: 'villa_id,date' });
+    }
+
+    // Met à jour le timestamp
+    await sb.from('booking_ical').update({ last_sync: new Date().toISOString(), ical_url: url }).eq('villa_id', id);
+
+    res.textContent = `✓ ${dates.length} dates synchronisées depuis Booking.com`;
+    res.className = 'sync-result success';
+    document.getElementById('bsync-status-' + id).textContent = 'Dernier sync : ' + new Date().toLocaleString('fr-FR');
+    document.getElementById('bsync-status-' + id).className = 'sync-status ok';
+
+    // Rafraîchit le calendrier
+    await fetchUcalData();
+    renderUcal();
+
+  } catch (e) {
+    res.textContent = 'Erreur : ' + e.message;
+    res.className = 'sync-result error';
+  }
+  btn.disabled = false; btn.textContent = '↻ Sync';
+}
+
+async function autoSyncBookingAll() {
+  const { data } = await sb.from('booking_ical').select('villa_id,ical_url').not('ical_url', 'is', null).catch(() => ({ data: null }));
+  if (!data || !data.length) return;
+  for (const row of data) {
+    if (!row.ical_url) continue;
+    try {
+      const proxies = [
+        'https://api.allorigins.win/raw?url=' + encodeURIComponent(row.ical_url),
+        'https://corsproxy.io/?' + encodeURIComponent(row.ical_url),
+        'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(row.ical_url),
+      ];
+      let ical = null;
+      for (const proxyUrl of proxies) {
+        try {
+          const resp = await fetch(proxyUrl, { signal: AbortSignal.timeout(8000) });
+          if (resp.ok) { const txt = await resp.text(); if (txt.includes('VCALENDAR')) { ical = txt; break; } }
+        } catch (e) { /* silencieux */ }
+      }
+      if (!ical) continue;
+      const dates = parseIcal(ical);
+      if (!dates.length) continue;
+      await sb.from('blocked_dates').delete().eq('villa_id', row.villa_id).eq('source', 'booking');
+      const rows = dates.map(d => ({ villa_id: row.villa_id, date: d, source: 'booking' }));
+      for (let i = 0; i < rows.length; i += 100) {
+        await sb.from('blocked_dates').upsert(rows.slice(i, i + 100), { onConflict: 'villa_id,date' });
+      }
+      await sb.from('booking_ical').update({ last_sync: new Date().toISOString() }).eq('villa_id', row.villa_id);
+    } catch (e) { /* sync silencieuse */ }
+  }
+}
+
+document.getElementById('booking-sync-all-btn').addEventListener('click', async () => {
+  const villas = Object.keys(VILLA_NAMES);
+  for (const id of villas) {
+    await syncBookingVilla(id);
+    await new Promise(r => setTimeout(r, 500));
+  }
+  toast('Toutes les villas Booking.com synchronisées ✓', 'green');
 });
 </script>
 
@@ -1252,7 +1687,365 @@ document.addEventListener('click', e => {
   if(item && item.dataset.page === 'analytics') {
     loadAnalytics();
   }
+  if(item && item.dataset.page === 'seasons') {
+    loadSeasons();
+  }
+  if(item && item.dataset.page === 'daily') {
+    initDailyControls();
+  }
 });
+
+// ══════════════════════════════════════════════════════════════════
+// ── SAISONS & TARIFS ─────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════════
+let editingSeasonId = null;
+
+async function loadSeasons() {
+  if (!sb) return;
+  const listEl = document.getElementById('seasons-list');
+  const countEl= document.getElementById('seasons-count');
+  listEl.innerHTML = '<div class="empty-state">Chargement…</div>';
+
+  const { data, error } = await sb
+    .from('pricing_rules')
+    .select('*')
+    .order('priority', { ascending: false })
+    .order('start_date', { ascending: true });
+
+  if (error) { listEl.innerHTML = '<div class="empty-state" style="color:var(--red)">Erreur: ' + error.message + '</div>'; return; }
+  if (!data || data.length === 0) {
+    listEl.innerHTML = '<div class="empty-state">Aucune règle saisonnière. Cliquez sur "+ Nouvelle règle" pour commencer.</div>';
+    countEl.textContent = '0 règle';
+    return;
+  }
+
+  countEl.textContent = data.length + ' règle' + (data.length > 1 ? 's' : '');
+
+  const fmt = d => d ? new Date(d+'T00:00:00').toLocaleDateString('fr-FR',{day:'2-digit',month:'short',year:'numeric'}) : '—';
+  const villaNames = {jade:'Casa Jade',topaze:'Topaze',onyx:'Onyx',agate:'Agate',ambre:'Ambre',opale:'Opale'};
+
+  listEl.innerHTML = `
+    <table style="width:100%;border-collapse:collapse">
+      <thead>
+        <tr style="border-bottom:2px solid var(--c2)">
+          <th style="padding:.8rem 1.2rem;text-align:left;font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);font-weight:400">Nom</th>
+          <th style="padding:.8rem;text-align:left;font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);font-weight:400">Villa</th>
+          <th style="padding:.8rem;text-align:left;font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);font-weight:400">Période</th>
+          <th style="padding:.8rem;text-align:right;font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);font-weight:400">Prix/nuit</th>
+          <th style="padding:.8rem;text-align:center;font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);font-weight:400">Min</th>
+          <th style="padding:.8rem;text-align:center;font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);font-weight:400">Priorité</th>
+          <th style="padding:.8rem;text-align:center;font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);font-weight:400">Actif</th>
+          <th style="padding:.8rem 1.2rem;text-align:right;font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);font-weight:400">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${data.map(r => `
+          <tr style="border-bottom:1px solid var(--c2);transition:background .15s" onmouseenter="this.style.background='var(--c)'" onmouseleave="this.style.background=''">
+            <td style="padding:.9rem 1.2rem;font-size:.72rem;color:var(--ink)">${r.name}</td>
+            <td style="padding:.9rem .8rem;font-size:.68rem;color:var(--mid)">${r.villa_id ? villaNames[r.villa_id]||r.villa_id : '<em>Toutes</em>'}</td>
+            <td style="padding:.9rem .8rem;font-size:.68rem;color:var(--mid)">${fmt(r.start_date)} → ${fmt(r.end_date)}</td>
+            <td style="padding:.9rem .8rem;text-align:right;font-size:.8rem;font-weight:400;color:var(--ter)">$${r.price_per_night}</td>
+            <td style="padding:.9rem .8rem;text-align:center;font-size:.68rem;color:var(--mid)">${r.min_nights}n</td>
+            <td style="padding:.9rem .8rem;text-align:center">
+              <span style="font-size:.6rem;background:${r.priority>=50?'rgba(184,115,74,.12)':'rgba(154,143,130,.1)'};color:${r.priority>=50?'var(--ter)':'var(--mid)'};padding:.2rem .55rem;border-radius:10px">${r.priority}</span>
+            </td>
+            <td style="padding:.9rem .8rem;text-align:center">
+              <button onclick="toggleSeasonActive(${r.id}, ${r.active})"
+                style="font-size:.58rem;padding:.25rem .7rem;border-radius:10px;border:1px solid;cursor:pointer;font-family:'Outfit',sans-serif;
+                background:${r.active?'rgba(34,197,94,.1)':'rgba(239,68,68,.1)'};
+                color:${r.active?'var(--green)':'var(--red)'};
+                border-color:${r.active?'rgba(34,197,94,.3)':'rgba(239,68,68,.3)'}">${r.active?'✓ Actif':'✗ Off'}</button>
+            </td>
+            <td style="padding:.9rem 1.2rem;text-align:right">
+              <button onclick="editSeason(${r.id})" style="font-size:.54rem;letter-spacing:.1em;background:none;border:1px solid var(--c2);padding:.3rem .8rem;border-radius:2px;color:var(--mid);margin-right:.4rem">Modifier</button>
+              <button onclick="deleteSeason(${r.id})" style="font-size:.54rem;letter-spacing:.1em;background:none;border:1px solid rgba(239,68,68,.3);padding:.3rem .8rem;border-radius:2px;color:var(--red)">Suppr.</button>
+            </td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>`;
+}
+
+document.getElementById('season-add-btn').addEventListener('click', () => {
+  editingSeasonId = null;
+  clearSeasonForm();
+  document.getElementById('season-form-title').textContent = 'Nouvelle règle';
+  document.getElementById('season-form-wrap').style.display = 'block';
+  document.getElementById('sf-name').focus();
+});
+
+document.getElementById('season-cancel-btn').addEventListener('click', () => {
+  document.getElementById('season-form-wrap').style.display = 'none';
+  editingSeasonId = null;
+});
+
+document.getElementById('season-save-btn').addEventListener('click', async () => {
+  const name = document.getElementById('sf-name').value.trim();
+  const villa_id = document.getElementById('sf-villa').value || null;
+  const start = document.getElementById('sf-start').value;
+  const end   = document.getElementById('sf-end').value;
+  const price = parseInt(document.getElementById('sf-price').value);
+  const minn  = parseInt(document.getElementById('sf-minnights').value) || 3;
+  const prio  = parseInt(document.getElementById('sf-priority').value) || 10;
+  const errEl = document.getElementById('season-form-err');
+
+  if (!name) { errEl.textContent = 'Veuillez saisir un nom.'; return; }
+  if (!start || !end) { errEl.textContent = 'Veuillez choisir les dates.'; return; }
+  if (end < start) { errEl.textContent = 'La date de fin doit être après la date de début.'; return; }
+  if (!price || price < 1) { errEl.textContent = 'Veuillez saisir un prix valide.'; return; }
+  errEl.textContent = '';
+
+  const btn = document.getElementById('season-save-btn');
+  btn.disabled = true; btn.textContent = 'Enregistrement…';
+
+  const payload = { name, villa_id, start_date: start, end_date: end, price_per_night: price, min_nights: minn, priority: prio, active: true };
+  let error;
+
+  if (editingSeasonId) {
+    const res = await sb.from('pricing_rules').update(payload).eq('id', editingSeasonId);
+    error = res.error;
+  } else {
+    const res = await sb.from('pricing_rules').insert(payload);
+    error = res.error;
+  }
+
+  btn.disabled = false; btn.textContent = 'Enregistrer';
+  if (error) { errEl.textContent = 'Erreur : ' + error.message; return; }
+
+  document.getElementById('season-form-wrap').style.display = 'none';
+  editingSeasonId = null;
+  clearSeasonForm();
+  loadSeasons();
+});
+
+function clearSeasonForm() {
+  ['sf-name','sf-start','sf-end','sf-price'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('sf-villa').value = '';
+  document.getElementById('sf-minnights').value = '3';
+  document.getElementById('sf-priority').value = '10';
+  document.getElementById('season-form-err').textContent = '';
+}
+
+async function editSeason(id) {
+  const { data, error } = await sb.from('pricing_rules').select('*').eq('id', id).single();
+  if (error || !data) return;
+  editingSeasonId = id;
+  document.getElementById('sf-name').value = data.name;
+  document.getElementById('sf-villa').value = data.villa_id || '';
+  document.getElementById('sf-start').value = data.start_date;
+  document.getElementById('sf-end').value = data.end_date;
+  document.getElementById('sf-price').value = data.price_per_night;
+  document.getElementById('sf-minnights').value = data.min_nights;
+  document.getElementById('sf-priority').value = data.priority;
+  document.getElementById('season-form-title').textContent = 'Modifier : ' + data.name;
+  document.getElementById('season-form-wrap').style.display = 'block';
+  document.getElementById('season-form-wrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+async function toggleSeasonActive(id, current) {
+  await sb.from('pricing_rules').update({ active: !current }).eq('id', id);
+  loadSeasons();
+}
+
+async function deleteSeason(id) {
+  if (!confirm('Supprimer cette règle saisonnière ?')) return;
+  await sb.from('pricing_rules').delete().eq('id', id);
+  loadSeasons();
+}
+
+// ══ STATS JOURNALIÈRES ════════════════════════════════════
+let chartDaily = null;
+
+function initDailyControls() {
+  // Default: current month
+  const now = new Date();
+  const y = now.getFullYear(), m = String(now.getMonth()+1).padStart(2,'0');
+  const lastDay = new Date(y, now.getMonth()+1, 0).getDate();
+  document.getElementById('ds-from').value = `${y}-${m}-01`;
+  document.getElementById('ds-to').value   = `${y}-${m}-${String(lastDay).padStart(2,'0')}`;
+}
+
+function daysBetween(a, b) {
+  return Math.round((new Date(b) - new Date(a)) / 86400000);
+}
+
+async function loadDailyStats() {
+  if(!sb) return;
+  const fromDate = document.getElementById('ds-from').value;
+  const toDate   = document.getElementById('ds-to').value;
+  if(!fromDate || !toDate || fromDate > toDate) {
+    toast('Sélectionnez une période valide', 'red');
+    return;
+  }
+
+  document.getElementById('ds-table-body').innerHTML = '<div class="empty-state">Chargement…</div>';
+
+  const { data, error } = await sb
+    .from('reservations')
+    .select('villa_name, villa_id, checkin, checkout, nights, total_usd')
+    .eq('status', 'confirmed')
+    .lte('checkin', toDate)
+    .gt('checkout', fromDate);
+
+  if(error) { toast('Erreur chargement', 'red'); return; }
+
+  const reservations = data || [];
+
+  // Build list of days
+  const days = [];
+  let cur = new Date(fromDate + 'T00:00:00');
+  const endD = new Date(toDate + 'T00:00:00');
+  while(cur <= endD) {
+    const ds = cur.toISOString().slice(0,10);
+    const day = { date: ds, checkins: [], checkouts: [], occupied: [], revenue: 0 };
+
+    reservations.forEach(r => {
+      if(!r.checkin || !r.checkout) return;
+      const n = r.nights || daysBetween(r.checkin, r.checkout) || 1;
+      // Occupied: checkin <= day < checkout
+      if(ds >= r.checkin && ds < r.checkout) {
+        const label = r.villa_name || r.villa_id || '?';
+        day.occupied.push(label);
+        if(r.total_usd) day.revenue += r.total_usd / n;
+      }
+      if(ds === r.checkin)  day.checkins.push(r.villa_name || r.villa_id || '?');
+      if(ds === r.checkout) day.checkouts.push(r.villa_name || r.villa_id || '?');
+    });
+
+    days.push(day);
+    cur.setDate(cur.getDate() + 1);
+  }
+
+  // KPIs
+  const totalCheckins  = days.reduce((s, d) => s + d.checkins.length, 0);
+  const totalCheckouts = days.reduce((s, d) => s + d.checkouts.length, 0);
+  const totalNights    = days.reduce((s, d) => s + d.occupied.length, 0);
+  const totalRevenue   = days.reduce((s, d) => s + d.revenue, 0);
+
+  document.getElementById('ds-kpi-checkins').textContent  = totalCheckins;
+  document.getElementById('ds-kpi-checkouts').textContent = totalCheckouts;
+  document.getElementById('ds-kpi-nights').textContent    = totalNights;
+  document.getElementById('ds-kpi-revenue').textContent   = totalRevenue > 0 ? '$' + Math.round(totalRevenue).toLocaleString('fr-FR') : '—';
+
+  renderDailyChart(days);
+  renderDailyTable(days);
+}
+
+function renderDailyChart(days) {
+  const labels  = days.map(d => new Date(d.date + 'T12:00:00').toLocaleDateString('fr-FR', { day:'2-digit', month:'short' }));
+  const revenues = days.map(d => Math.round(d.revenue));
+  const occ      = days.map(d => d.occupied.length);
+
+  const ctx = document.getElementById('chart-daily').getContext('2d');
+  if(chartDaily) chartDaily.destroy();
+  chartDaily = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Revenu ($)',
+          data: revenues,
+          backgroundColor: 'rgba(184,115,74,.75)',
+          borderColor: '#b8734a',
+          borderWidth: 1,
+          yAxisID: 'yRev',
+          order: 2,
+        },
+        {
+          label: 'Villas occupées',
+          data: occ,
+          type: 'line',
+          borderColor: '#3b82f6',
+          backgroundColor: 'rgba(59,130,246,.08)',
+          borderWidth: 2,
+          pointRadius: 2,
+          fill: false,
+          tension: .3,
+          yAxisID: 'yOcc',
+          order: 1,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { labels: { font: { family: 'Outfit', size: 11 }, color: '#9a8f82' } },
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.datasetIndex === 0 ? ` $${ctx.parsed.y.toLocaleString('fr-FR')}` : ` ${ctx.parsed.y} villa(s)`,
+          }
+        }
+      },
+      scales: {
+        x: { ticks: { font: { family: 'Outfit', size: 10 }, color: '#9a8f82' }, grid: { color: 'rgba(0,0,0,.04)' } },
+        yRev: {
+          position: 'left',
+          ticks: { font: { family: 'Outfit', size: 10 }, color: '#b8734a', callback: v => '$'+v.toLocaleString('fr-FR') },
+          grid: { color: 'rgba(0,0,0,.04)' },
+        },
+        yOcc: {
+          position: 'right',
+          min: 0,
+          max: 6,
+          ticks: { stepSize: 1, font: { family: 'Outfit', size: 10 }, color: '#3b82f6', callback: v => v+'v' },
+          grid: { drawOnChartArea: false },
+        }
+      }
+    }
+  });
+}
+
+function renderDailyTable(days) {
+  const wrap = document.getElementById('ds-table-body');
+  const activeDays = days.filter(d => d.occupied.length > 0 || d.checkins.length > 0 || d.checkouts.length > 0);
+  if(!activeDays.length) {
+    wrap.innerHTML = '<div class="empty-state">Aucune réservation confirmée sur cette période.</div>';
+    return;
+  }
+
+  const rows = days.map(d => {
+    const hasActivity = d.occupied.length > 0 || d.checkins.length > 0 || d.checkouts.length > 0;
+    const dateLabel = new Date(d.date + 'T12:00:00').toLocaleDateString('fr-FR', { weekday:'short', day:'2-digit', month:'short' });
+    const occBars = d.occupied.map(v => `<span class="ds-occ-bar" title="${v}">${v}</span>`).join('');
+    const arrBadge  = d.checkins.length  ? `<span class="ds-arrow-in" title="${d.checkins.join(', ')}">▲ ${d.checkins.length}</span>`  : '';
+    const depBadge  = d.checkouts.length ? `<span class="ds-arrow-out" title="${d.checkouts.join(', ')}">▼ ${d.checkouts.length}</span>` : '';
+    const revCell   = d.revenue > 0
+      ? `<span class="ds-rev">$${Math.round(d.revenue).toLocaleString('fr-FR')}</span>`
+      : `<span class="ds-rev zero">—</span>`;
+
+    if(!hasActivity) return `
+      <tr>
+        <td style="color:var(--mid)">${dateLabel}</td>
+        <td>—</td><td>—</td><td>—</td><td>—</td>
+      </tr>`;
+
+    return `
+      <tr class="${d.checkins.length ? 'has-checkin' : ''}">
+        <td><strong>${dateLabel}</strong></td>
+        <td>${arrBadge || '—'}</td>
+        <td>${depBadge || '—'}</td>
+        <td><div class="ds-occ-bars">${occBars || '<span style="color:var(--mid)">—</span>'}</div></td>
+        <td>${revCell}</td>
+      </tr>`;
+  }).join('');
+
+  wrap.innerHTML = `<table class="ds-table">
+    <thead><tr>
+      <th>Date</th>
+      <th>Arrivées ▲</th>
+      <th>Départs ▼</th>
+      <th>Villas occupées</th>
+      <th>Revenu / nuit</th>
+    </tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+document.getElementById('ds-load-btn').addEventListener('click', loadDailyStats);
+
 </script>
 </body>
 </html>

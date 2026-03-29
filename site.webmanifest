@@ -1,0 +1,23 @@
+{
+  "name": "Les Roches Retreat",
+  "short_name": "Les Roches",
+  "description": "Six private luxury villas with infinity pools · Santa Teresa, Costa Rica",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf7f2",
+  "theme_color": "#b8734a",
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

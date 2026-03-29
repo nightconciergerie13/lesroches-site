@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Surf en Santa Teresa, Costa Rica: Todo lo que Necesitas Saber — Les Roches · Santa Teresa</title>
+<meta name="description" content="Los mejores spots de surf, la mejor época y consejos para surfistas de todos los niveles en Santa Teresa, Costa Rica.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+a{text-decoration:none}
+:root{--w:#faf7f2;--c:#f3ede3;--c2:#e9e0d2;--sand:#d6c9b0;--ter:#b8734a;--ter2:#a05f38;--mid:#9a8f82;--ink:#1e1b18;--ink2:#2e2a26}
+html{background:var(--w);color:var(--ink);scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden}
+*{cursor:none}
+#cur{position:fixed;width:8px;height:8px;background:var(--ink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .35s,height .35s;mix-blend-mode:multiply}
+#cur.hov{width:46px;height:46px;background:rgba(30,27,24,.1)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 4rem;background:rgba(250,247,242,.96);border-bottom:1px solid var(--c2);backdrop-filter:blur(12px)}
+.nl-logo{font-family:'Gilda Display',serif;font-size:1.35rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.nav-mid{display:flex;gap:2.2rem}
+.nl{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);opacity:.65;transition:opacity .2s}
+.nl:hover{opacity:1}
+.nav-right{display:flex;align-items:center;gap:2rem}
+.lang-sw{display:flex;gap:.4rem;font-size:.5rem;letter-spacing:.18em;color:rgba(30,27,24,.3)}
+.lang-sw span{transition:color .2s;text-transform:uppercase}
+.lang-sw span.on{color:var(--ter)}
+.lsep{opacity:.3}
+.nav-book{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;padding:.6rem 1.6rem;border:1px solid rgba(30,27,24,.3);color:var(--ink);border-radius:1px;transition:all .25s}
+.nav-book:hover{background:var(--ter);border-color:var(--ter);color:var(--w)}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:.4rem;cursor:pointer}
+.nav-burger span{display:block;width:24px;height:1px;background:var(--ink)}
+.nav-overlay{position:fixed;inset:0;background:var(--ink);z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.77,0,.175,1)}
+.nav-overlay.open{transform:translateX(0)}
+.nav-overlay .nl{color:var(--w);font-size:.85rem;opacity:.6}
+.nav-overlay .nl:hover{opacity:1}
+.nav-close{position:absolute;top:1.5rem;right:2rem;background:none;border:none;color:var(--w);font-size:1.2rem;cursor:pointer;opacity:.4}
+
+/* ARTICLE HERO */
+.art-hero{height:65vh;min-height:400px;position:relative;overflow:hidden;display:flex;align-items:flex-end}
+.art-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.art-hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,8,6,.85) 0%,rgba(10,8,6,.2) 60%,transparent 100%)}
+.art-hero-c{position:relative;z-index:2;padding:3rem 5vw;max-width:860px}
+.art-breadcrumb{font-size:.46rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.art-breadcrumb a{color:rgba(255,255,255,.38);transition:color .2s}
+.art-breadcrumb a:hover{color:rgba(255,255,255,.7)}
+.art-cat{font-size:.46rem;letter-spacing:.38em;text-transform:uppercase;color:var(--ter);display:block;margin-bottom:.8rem}
+.art-title{font-family:'Gilda Display',serif;font-size:clamp(1.8rem,4vw,3.2rem);color:var(--w);line-height:1.12;margin-bottom:1.2rem}
+.art-meta{display:flex;align-items:center;gap:1.5rem;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.art-meta span{display:flex;align-items:center;gap:.4rem}
+
+/* ARTICLE BODY */
+.art-body{max-width:760px;margin:0 auto;padding:4rem 2rem 6rem}
+.art-lead{font-family:'Libre Baskerville',serif;font-style:italic;font-size:1.05rem;color:var(--ink);line-height:1.8;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid var(--c2)}
+.art-body h2{font-family:'Gilda Display',serif;font-size:1.5rem;color:var(--ink);margin:3rem 0 1.2rem;line-height:1.2}
+.art-body h3{font-family:'Gilda Display',serif;font-size:1.1rem;color:var(--ink);margin:2rem 0 .8rem}
+.art-body p{font-size:.8rem;color:var(--mid);line-height:2;margin-bottom:1.4rem}
+.art-body strong{color:var(--ink);font-weight:400}
+.art-body ul{margin:1rem 0 1.4rem 1.2rem}
+.art-body ul li{font-size:.8rem;color:var(--mid);line-height:1.9;margin-bottom:.4rem}
+.art-pull{background:var(--c);border-left:3px solid var(--ter);padding:1.5rem 2rem;margin:2.5rem 0;font-family:'Libre Baskerville',serif;font-style:italic;font-size:.95rem;color:var(--ink);line-height:1.7}
+.art-tip{background:var(--ink);padding:1.5rem 2rem;margin:2.5rem 0;border-radius:2px}
+.art-tip-label{font-size:.44rem;letter-spacing:.35em;text-transform:uppercase;color:var(--ter);display:block;margin-bottom:.5rem}
+.art-tip p{color:rgba(250,247,242,.65);margin-bottom:0}
+
+/* CTA BOX */
+.art-cta{background:var(--ink2);padding:3rem;margin:3rem 0;text-align:center;border-radius:2px}
+.art-cta-eye{font-size:.44rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.3);display:block;margin-bottom:.8rem}
+.art-cta-title{font-family:'Gilda Display',serif;font-size:1.4rem;color:var(--w);margin-bottom:.8rem;line-height:1.2}
+.art-cta p{font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:1.5rem;line-height:1.8}
+.art-cta-btn{display:inline-flex;align-items:center;gap:.7rem;padding:.85rem 2.5rem;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;border-radius:1px;transition:all .25s}
+.art-cta-btn:hover{border-color:var(--ter);color:var(--w);background:rgba(184,115,74,.1)}
+
+/* RELATED */
+.art-related{background:var(--c);padding:4rem 5vw}
+.art-related-title{font-family:'Gilda Display',serif;font-size:1.4rem;color:var(--ink);margin-bottom:2rem}
+.art-rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--c2)}
+.art-rel-card{background:var(--w);padding:1.5rem;display:block;transition:background .2s}
+.art-rel-card:hover{background:var(--c)}
+.art-rel-lang{font-size:.4rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:.4rem}
+.art-rel-t{font-family:'Gilda Display',serif;font-size:.95rem;color:var(--ink);line-height:1.3;margin-bottom:.5rem}
+.art-rel-arr{font-size:.7rem;color:var(--ter)}
+
+/* FOOTER */
+footer{background:var(--ink);padding:4rem 5vw 2rem}
+.ftop{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:4rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.flogo{font-family:'Gilda Display',serif;font-size:1.35rem;letter-spacing:.18em;text-transform:uppercase;color:var(--w);margin-bottom:.9rem}
+.ftag{font-size:.62rem;color:rgba(255,255,255,.25);line-height:1.8}
+.fct{font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1.2rem}
+.flinks{display:flex;flex-direction:column;gap:.6rem}
+.flink{font-size:.64rem;color:rgba(255,255,255,.38);transition:color .2s}
+.flink:hover{color:var(--w)}
+.fbot{display:flex;align-items:center;justify-content:space-between;padding-top:2rem}
+.fcopy{font-size:.5rem;color:rgba(255,255,255,.18);letter-spacing:.1em}
+.fsoc{display:flex;gap:1.5rem}
+.fsocl{font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2)}
+
+@media(max-width:900px){
+  nav{padding:1.2rem 1.5rem}
+  .nav-mid,.nav-right .lang-sw{display:none}
+  .nav-burger{display:flex}
+  .art-hero{height:50vh}
+  .art-body{padding:2.5rem 1.5rem 4rem}
+  .art-rel-grid{grid-template-columns:1fr}
+  footer{padding:3rem 1.5rem 2rem}
+  .ftop{grid-template-columns:1fr;gap:2rem}
+}
+</style>
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Guía de Surf en Santa Teresa, Costa Rica">
+  <meta property="og:description" content="Los mejores spots, la mejor época y consejos para surfistas de todos los niveles en Santa Teresa.">
+  <meta property="og:image" content="https://lesrochesretreat.com/images/exp-surf.jpg">
+  <meta property="og:url" content="https://lesrochesretreat.com/journal/es/guia-surf-santa-teresa.html">
+  <meta property="og:site_name" content="Les Roches Retreat">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Guía de Surf en Santa Teresa, Costa Rica">
+  <meta name="twitter:description" content="Los mejores spots, la mejor época y consejos para surfistas de todos los niveles en Santa Teresa.">
+  <meta name="twitter:image" content="https://lesrochesretreat.com/images/exp-surf.jpg">
+  <link rel="canonical" href="https://lesrochesretreat.com/journal/es/guia-surf-santa-teresa.html">
+<!-- Google Analytics GA4 — Measurement ID: G-WFWBDDTMF0 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFWBDDTMF0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WFWBDDTMF0', { anonymize_ip: true });
+</script>
+</head>
+<body>
+<div id="cur"></div>
+<nav>
+  <a href="../../index.html" class="nl-logo">Les Roches</a>
+  <div class="nav-mid">
+    <a href="../../villas.html" class="nl">Villas</a>
+    <a href="../../experiences.html" class="nl">Experiencias</a>
+    <a href="../../about.html" class="nl">Acerca</a>
+    <a href="../../santa-teresa.html" class="nl">Santa Teresa</a>
+    <a href="../../journal.html" class="nl">Journal</a>
+  </div>
+  <div class="nav-right">
+    <div class="lang-sw"><span>EN</span><span class="lsep">/</span><span>FR</span><span class="lsep">/</span><span class="on">ES</span></div>
+    <a href="../../contact.html" class="nav-book">Reservar</a>
+  </div>
+  <button class="nav-burger" id="burger"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-overlay" id="nav-overlay">
+  <button class="nav-close" id="nav-close">✕</button>
+  <a href="../../villas.html" class="nl">Villas</a>
+  <a href="../../experiences.html" class="nl">Experiencias</a>
+  <a href="../../about.html" class="nl">Acerca</a>
+  <a href="../../santa-teresa.html" class="nl">Santa Teresa</a>
+  <a href="../../journal.html" class="nl">Journal</a>
+  <a href="../../contact.html" class="nl">Reservar</a>
+</div>
+
+<div class="art-hero" style="background-image:url('../../images/exp-surf.jpg')">
+  <div class="art-hero-bg"></div>
+  <div class="art-hero-ov"></div>
+  <div class="art-hero-c">
+    <div class="art-breadcrumb">
+      <a href="../../journal.html">Journal</a> / <span>Surf</span>
+    </div>
+    <span class="art-cat">Surf</span>
+    <h1 class="art-title">Guía de Surf en Santa Teresa, Costa Rica: Todo lo que Necesitas Saber</h1>
+    <div class="art-meta">
+      <span>Marzo 2025</span>
+      <span>8 minutos de lectura</span>
+    </div>
+  </div>
+</div>
+
+<article class="art-body">
+  <p class="art-lead">Santa Teresa se ha posicionado como uno de los destinos de surf más codiciados del mundo—y por una buena razón. Ubicado en la punta sur de la península de Nicoya en Costa Rica, este pequeño pueblo ofrece olas consistentes y de clase mundial que atraen a surfistas desde principiantes hasta profesionales en búsqueda de barriles potentes.</p>
+
+  <h2>Por qué Santa Teresa es un paraíso del surf</h2>
+  <p>La magia de Santa Teresa radica en su geografía única. La región recibe oleaje consistente desde el suroeste y el noroeste más del 70% del año, lo que la convierte en uno de los destinos más confiables de América Central. La península tiene múltiples olas de diferentes niveles de dificultad—ya sea aprendiendo a ponerte de pie en tu tabla o persiguiendo barriles en reef breaks exclusivos.</p>
+
+  <figure class="art-photo">
+    <img src="../../images/exp-surf.jpg" alt="" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block">
+    <figcaption></figcaption>
+  </figure>
+
+
+
+  <p>El agua mantiene una temperatura de 25 a 28°C todo el año, lo que significa que nunca necesitarás traje de neopreno. El paisaje combina densa selva tropical, rocas espectaculares y playas vírgenes, con la mayoría de los spots a solo minutos en ATV o caminata del centro del pueblo. Esta combinación—oleaje consistente, agua cálida y energía bruta tropical—hace que Santa Teresa sea incomparable.</p>
+
+  <h2>Los mejores breaks para todos los niveles</h2>
+
+  <h3>Para principiantes: Playa Carmen y Banana Beach</h3>
+  <p>Si estás comenzando, <strong>Playa Carmen</strong> es tu destino. Este beach break arenoso ofrece olas largas e indulgentes, perfectas para aprender a posicionarte y practicar tu pop-up. La playa es ancha y segura, rodeada de restaurantes y una atmósfera relajada. Las olas generalmente se mantienen a la altura del hombro durante la mayor parte del año, y el fondo es completamente arenoso.</p>
+
+  <p><strong>Banana Beach</strong>, justo al norte de Playa Carmen, ofrece condiciones aún más tranquilas. El nombre viene de la forma curvada de la orilla, y las olas aquí son notablemente más suaves que las de Carmen. Si Carmen te parece demasiado fuerte en un día de mucho oleaje, Banana Beach es tu alternativa.</p>
+
+  <h3>Progresando: Santa Teresa Main y Playa Hermosa</h3>
+  <p><strong>Santa Teresa Main Beach</strong> tiene más potencia que Playa Carmen. El break aquí es más cóncavo y rápido—necesitarás afinar tus giros y maniobras. La gestión del oleaje es crítica; en días pequeños es manejable para surfistas intermedios sólidos, pero durante la estación verde (mayo-agosto) cuando el oleaje se acumula, este break se vuelve considerablemente más intenso. Los grupos de escuelas de surf frecuentemente se reúnen aquí.</p>
+
+  <p><strong>Playa Hermosa</strong> se encuentra en el extremo norte, a unos 20 minutos de Playa Carmen. La playa es ancha, arenosa y notablemente poco concurrida. Encontrarás picos que rompen tanto a izquierda como a derecha, con palmeras sombreando la arena. Es un spot ideal para escapar de las multitudes de Playa Carmen mientras sigues progresando. La ubicación norte significa patrones de oleaje ligeramente diferentes—frecuentemente más limpios.</p>
+
+  <h3>Experto: La Lora y Suck Rock</h3>
+  <p><strong>La Lora</strong> es un point break de la izquierda que se destaca: funciona prácticamente 365 días al año gracias a su geografía expuesta. No es una ola para principiantes. El break es consistente pero potente, con paredes bien definidas y barriles regulares. La Lora exige respeto y una comprensión sólida de la mecánica del point break. Las mejores condiciones llegan con oleaje del suroeste y marea media a alta. Generalmente remarás desde el sur y progresarás a lo largo del punto—espera compartir la línea con locales serios.</p>
+
+  <p><strong>Suck Rock</strong> es la prueba definitiva de la región. Este right-hand point break experto solo se accede con oleaje mínimo overhead, idealmente desde el sur o suroeste, y el timing debe alinearse con mareas altas. La ola se retrae profundamente en el punto, creando secciones de barril perfectas para quienes saben lo que hacen. Es una ola para surfistas con años de experiencia en barriles; la roca no deja margen de error.</p>
+
+  <h3>Más allá: Mal Pais Reef</h3>
+  <p>Al sur de Santa Teresa, los <strong>reef breaks de Mal Pais</strong> ofrecen olas potentes y técnicas para surfistas avanzados. Son eventos de oleaje grande en lugar de olas cotidianas, y la roca afilada exige respeto y experiencia.</p>
+
+  <h2>Estacionalidad y mejor época para ir</h2>
+
+  <p>Entender la estacionalidad transforma tu viaje. Santa Teresa tiene dos estaciones distintas para el surf:</p>
+
+  <figure class="art-photo">
+    <img src="../../images/drone-ocean-blue.jpg" alt="" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block">
+    <figcaption></figcaption>
+  </figure>
+
+
+
+  <ul>
+    <li><strong>Estación seca (noviembre–abril) :</strong> Los alisios constantes crean condiciones más limpias. El oleaje es generalmente más pequeño y manejable. Esta es la época ideal para principiantes e intermedios. Obtendrás picos más netos, vientos offshore más ligeros, pero la línea será más concurrida. Temporada alta turística significa que los alojamientos se reservan rápidamente.</li>
+    <li><strong>Estación verde (mayo–agosto) :</strong> Más lluvia, pero los oleajes atlánticos más grandes canalizan hacia la península. Las olas pueden duplicar su tamaño, creando excelentes oportunidades para surfistas intermedios y avanzados. Los vientos son generalmente más ligeros y variables, y la línea es significativamente menos concurrida. Los precios de alojamiento bajan considerablemente.</li>
+  </ul>
+
+  <p>Finales de septiembre y octubre representan temporada intermedia—oleajes impredecibles y lluvia frecuente, pero ocasionalmente días mágicos con muy poca gente.</p>
+
+  <div class="art-pull">
+    « El mejor consejo: no persigas el oleaje—persigue la estación que se adapte a tu nivel. Principiantes en noviembre, intermedios en mayo, surfistas expertos en julio. »
+  </div>
+
+  <h2>Información práctica para surfear en Santa Teresa</h2>
+
+  <h3>Alquiler de tablas y escuelas</h3>
+  <p>No necesitas volar con tu tabla. Varios shops alrededor de Playa Carmen alquilan soft-tops de calidad ($15–25 USD por día) y tablas de fibra de vidrio ($20–35 USD por día). Muchos también ofrecen lecciones para principiantes (típicamente $45–65 USD por persona, incluyendo tabla). Los instructores locales conocen las mejores condiciones diarias y pueden guiarte hacia el break correcto según tu nivel.</p>
+
+  <h3>Movilidad</h3>
+  <p>La mayoría de los breaks requieren un ATV o vehículo 4WD para acceder. Alquila un ATV ($50–70 USD por día) en uno de varios shops en la carretera principal—proporcionarán mapas de ubicaciones de breaks y condiciones actuales. No se recomienda conducir de noche debido a caminos accidentados. Muchos alojamientos incluyen estacionamiento y fácil acceso en ATV.</p>
+
+  <h3>Multitudes y comunidad</h3>
+  <p>Playa Carmen y Santa Teresa Main se congestionan en temporada alta, particularmente a media mañana cuando los turistas llegan. La Lora y Suck Rock permanecen relativamente poco concurridos debido a sus requerimientos de experiencia. La comunidad local de surf es acogedora; respeta el orden de prelación en los point breaks y participa en limpiezas de playas.</p>
+
+  <div class="art-tip">
+    <span class="art-tip-label">Consejo Pro</span>
+    <p>Lleva un rash guard—no por calor, sino por protección solar. El sol tropical se refleja en el agua y es engañosamente intenso. Los surfistas locales pasan más tiempo tratando quemaduras de sol que problemas de agua fría.</p>
+  </div>
+
+  <h2>Más allá de las olas</h2>
+
+  <p>El surf no es la única razón para visitar Santa Teresa. El pueblo ofrece estudios de yoga, excelentes restaurantes (sushi Koji's, Katana, The Bakery), y fácil acceso a caminatas como las Cataratas de Montezuma. Entre sesiones, explora la selva, practica paddleboard, o simplemente descansa en una villa privada con vista a la selva y el océano.</p>
+
+  <figure class="art-photo">
+    <img src="../../images/drone-beach-panorama.jpg" alt="" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block">
+    <figcaption></figcaption>
+  </figure>
+
+
+
+  <p>Muchos surfistas serios establecen su base en Les Roches—un conjunto de villas de lujo diseñadas específicamente para esto: piscinas privadas, 5 minutos de caminata a la playa, y completa soledad entre sesiones. Es el arreglo ideal: aislamiento tranquilo durante el día, olas de clase mundial a minutos de distancia.</p>
+
+  <div class="art-cta">
+    <span class="art-cta-eye">Perfecciona tu Técnica</span>
+    <h3 class="art-cta-title">Haz de Santa Teresa tu Base de Surf</h3>
+    <p>Despiértate a pasos del agua. Alójate en una villa privada con tu propia piscina infinita. Maximiza cada sesión sin el estrés de alojamientos compartidos o multitudes turísticas.</p>
+    <a href="../../contact.html" class="art-cta-btn">DESCUBRE LES ROCHES →</a>
+  </div>
+
+  <h2>Reflexiones finales</h2>
+
+  <p>Santa Teresa premia tanto al principiante curioso como al surfista obsesionado. Los breaks son suficientemente variados para que progreses dramáticamente en una sola semana, y lo suficientemente consistentes para que regreses año tras año. Elige tu estación, respeta las olas y los locales, y prepárate para surfear como nunca antes.</p>
+</article>
+
+<section class="art-related">
+  <h2 class="art-related-title">Lecturas Relacionadas</h2>
+  <div class="art-rel-grid">
+    <a href="./guia-viaje-santa-teresa.html" class="art-rel-card">
+      <span class="art-rel-lang">Español</span>
+      <h3 class="art-rel-t">Santa Teresa Costa Rica: Guía de Viaje Completa</h3>
+      <span class="art-rel-arr">Leer →</span>
+    </a>
+    <a href="../en/santa-teresa-surf-guide.html" class="art-rel-card">
+      <span class="art-rel-lang">English</span>
+      <h3 class="art-rel-t">The Ultimate Surf Guide to Santa Teresa</h3>
+      <span class="art-rel-arr">Read →</span>
+    </a>
+    <a href="../fr/guide-surf-santa-teresa.html" class="art-rel-card">
+      <span class="art-rel-lang">Français</span>
+      <h3 class="art-rel-t">Guide Surf Santa Teresa, Costa Rica</h3>
+      <span class="art-rel-arr">Lire →</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="ftop">
+    <div>
+      <div class="flogo">Les Roches</div>
+      <p class="ftag">Seis villas privadas de lujo en Santa Teresa, Costa Rica. Cada una con piscina infinita privada, vista a la selva y al Pacífico, a 5 minutos de la playa.</p>
+    </div>
+    <div>
+      <div class="fct">Explorar</div>
+      <div class="flinks">
+        <a href="../../villas.html" class="flink">Villas</a>
+        <a href="../../experiences.html" class="flink">Experiencias</a>
+        <a href="../../about.html" class="flink">Acerca</a>
+        <a href="../../journal.html" class="flink">Journal</a>
+      </div>
+    </div>
+    <div>
+      <div class="fct">Planificar</div>
+      <div class="flinks">
+        <a href="../../santa-teresa.html" class="flink">Santa Teresa</a>
+        <a href="../../contact.html" class="flink">Contacto</a>
+        <a href="../../contact.html" class="flink">Reservaciones</a>
+      </div>
+    </div>
+  </div>
+  <div class="fbot">
+    <p class="fcopy">&copy; 2025 Les Roches. Todos los derechos reservados.</p>
+    <div class="fsoc">
+      <a href="#" class="fsocl">Instagram</a>
+      <a href="#" class="fsocl">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const cur=document.getElementById('cur');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+document.querySelectorAll('a').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cur.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>cur.classList.remove('hov'));
+});
+const burger=document.getElementById('burger'),overlay=document.getElementById('nav-overlay'),navClose=document.getElementById('nav-close');
+if(burger)burger.addEventListener('click',()=>overlay.classList.add('open'));
+if(navClose)navClose.addEventListener('click',()=>overlay.classList.remove('open'));
+</script>
+<script src="../../cookie-consent.js" defer></script>
+<script src="../../lang.js" defer></script>
+</body>
+</html>

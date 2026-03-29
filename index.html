@@ -3,31 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Les Roches — Paradise Retreat · Santa Teresa, Costa Rica</title>
+<title>Les Roches — Luxury Private Villas · Santa Teresa, Costa Rica</title>
+<link rel="preload" href="images/drone-complex-pool-1.webp" as="image" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+<link rel="stylesheet" href="js/datepicker.css">
 <style>
-/* Flatpickr dark override — Les Roches palette */
-.flatpickr-calendar{background:var(--ink2,#2e2a26);border:1px solid rgba(255,255,255,.08);border-radius:4px;box-shadow:0 16px 48px rgba(0,0,0,.5);font-family:'Outfit',sans-serif}
-.flatpickr-months,.flatpickr-month{background:var(--ink2,#2e2a26);color:#faf7f2}
-.flatpickr-current-month{color:#faf7f2;font-size:.72rem;letter-spacing:.08em}
-.flatpickr-current-month .flatpickr-monthDropdown-months{background:var(--ink2,#2e2a26);color:#faf7f2}
-.flatpickr-weekday{color:rgba(250,247,242,.35);font-size:.5rem;letter-spacing:.12em;text-transform:uppercase}
-.flatpickr-day{color:rgba(250,247,242,.7);border-radius:2px}
-.flatpickr-day:hover,.flatpickr-day:focus{background:rgba(184,115,74,.2);border-color:transparent;color:#faf7f2}
-.flatpickr-day.selected,.flatpickr-day.startRange,.flatpickr-day.endRange{background:#b8734a;border-color:#b8734a;color:#faf7f2}
-.flatpickr-day.inRange{background:rgba(184,115,74,.18);border-color:transparent;color:#faf7f2;box-shadow:-5px 0 0 rgba(184,115,74,.18),5px 0 0 rgba(184,115,74,.18)}
-.flatpickr-day.selected.startRange+.endRange:not(:nth-child(7n+1)),.flatpickr-day.startRange+.endRange:not(:nth-child(7n+1)){box-shadow:-10px 0 0 #b8734a}
-.flatpickr-day.flatpickr-disabled,.flatpickr-day.flatpickr-disabled:hover{color:rgba(250,247,242,.18)}
-.flatpickr-day.today{border-color:rgba(184,115,74,.5)}
-.flatpickr-day.today:hover{background:#b8734a;border-color:#b8734a;color:#faf7f2}
-.flatpickr-prev-month,.flatpickr-next-month{color:rgba(250,247,242,.5)!important;fill:rgba(250,247,242,.5)!important}
-.flatpickr-prev-month:hover,.flatpickr-next-month:hover{color:#faf7f2!important;fill:#faf7f2!important}
-.numInputWrapper span{border-color:rgba(255,255,255,.1)}
-.numInput{color:#faf7f2;background:transparent}
-.bk-date-disp{font-family:'Gilda Display',serif;font-size:.95rem;color:rgba(255,255,255,.85);min-width:120px;cursor:pointer}
-.bk-date-disp.empty{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:300;color:rgba(255,255,255,.38)}
+/* ── Booking widget display — Les Roches home page ── */
+.bk-date-disp{font-family:'Gilda Display',serif;font-size:.95rem;color:rgba(255,255,255,.85);min-width:120px;cursor:pointer;line-height:1.2}
+.bk-date-disp.empty{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:300;color:rgba(255,255,255,.4)}
 .bk-f{cursor:pointer}
 </style>
 <style>
@@ -36,7 +21,7 @@ a{text-decoration:none}
 :root{--w:#faf7f2;--c:#f3ede3;--c2:#e9e0d2;--sand:#d6c9b0;--ter:#b8734a;--ter2:#a05f38;--mid:#9a8f82;--ink:#1e1b18;--ink2:#2e2a26}
 html{background:var(--w);color:var(--ink);scroll-behavior:smooth}
 body{font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden}
-*{cursor:none}
+body.has-cursor *{cursor:none}
 #cur{position:fixed;width:8px;height:8px;background:var(--ink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .35s,height .35s;mix-blend-mode:multiply}
 #cur.hov{width:46px;height:46px;background:rgba(30,27,24,.1)}
 
@@ -61,7 +46,7 @@ nav.scrolled{background:rgba(250,247,242,.96);border-bottom:1px solid var(--c2);
 
 /* HERO */
 .hero{height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
-.hero-bg{position:absolute;inset:0;background-image:url('images/drone-complex-pool-1.jpg');background-size:cover;background-position:center 30%;animation:zoom 9s ease forwards}
+.hero-bg{position:absolute;inset:0;background-image:url('images/drone-complex-pool-1.webp');background-size:cover;background-position:center 30%;animation:zoom 9s ease forwards}
 @keyframes zoom{from{transform:scale(1.06)}to{transform:scale(1)}}
 .hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(18,14,10,.78) 0%,rgba(18,14,10,.18) 55%,transparent 100%)}
 .hero-grain{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
@@ -82,6 +67,39 @@ nav.scrolled{background:rgba(250,247,242,.96);border-bottom:1px solid var(--c2);
 @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
 .h-stxt{font-size:.44rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.2);writing-mode:vertical-rl}
 @keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ── Hero CTA button ── */
+.hero-cta{display:inline-flex;align-items:center;gap:.7rem;font-family:'Outfit',sans-serif;font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.25);padding:.7rem 1.6rem;border-radius:1px;text-decoration:none;transition:all .25s;margin-top:1.4rem;animation:fu 1s .7s both}
+.hero-cta:hover{color:var(--w);border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.06)}
+
+/* ── Nav dropdown villas ── */
+.nav-drop{position:relative;display:flex;align-items:center}
+.nav-drop-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);background:rgba(18,14,10,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.1);border-radius:2px;padding:.4rem 0;min-width:210px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:300}
+.nav-drop:hover .nav-drop-menu,.nav-drop:focus-within .nav-drop-menu{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.ndl{display:flex;justify-content:space-between;align-items:center;padding:.55rem 1.2rem;font-family:'Outfit',sans-serif;font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,247,242,.55);text-decoration:none;transition:color .18s,background .18s}
+.ndl:hover{color:var(--w);background:rgba(255,255,255,.05)}
+.ndp{color:var(--ter);font-size:.48rem;letter-spacing:.06em;font-family:'Outfit',sans-serif}
+.ndl-sep{height:1px;background:rgba(255,255,255,.08);margin:.35rem .8rem}
+.ndl-all{color:rgba(184,115,74,.85);justify-content:center;letter-spacing:.22em}
+.ndl-all:hover{color:var(--ter)}
+/* Arrow indicator on Villas nav link */
+.nav-drop > .nl::after{content:'';display:inline-block;width:5px;height:5px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg);margin-left:.4rem;opacity:.45;transition:transform .2s}
+.nav-drop:hover > .nl::after{transform:rotate(-135deg);opacity:.7}
+
+/* ── Carousel price tag ── */
+.vcp{font-family:'Outfit',sans-serif;font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ter);margin-top:.4rem;display:block}
+
+/* ── Footer map static ── */
+.fmap-link{text-decoration:none;display:block}
+.fmap-static{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:3px;height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;padding:1.5rem;text-align:center;transition:background .2s,border-color .2s;cursor:pointer}
+.fmap-link:hover .fmap-static{background:rgba(255,255,255,.07);border-color:rgba(184,115,74,.3)}
+.fmap-static svg{color:var(--ter);flex-shrink:0}
+.fmap-addr{font-family:'Outfit',sans-serif;font-size:.58rem;color:rgba(250,247,242,.38);line-height:1.7}
+.fmap-cta{font-family:'Outfit',sans-serif;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ter)!important}
+
+/* ── WhatsApp footer link ── */
+.fwa-link{color:rgba(250,247,242,.5);text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;transition:color .2s}
+.fwa-link:hover{color:#25D366}
 
 /* BOOKING WIDGET — barre sur la photo sunset */
 .bk-wrap{display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:1px;background:rgba(255,255,255,.07)}
@@ -119,6 +137,7 @@ section{padding:4.5rem 4rem}
 .aimg{position:relative;border-radius:3px;overflow:hidden;aspect-ratio:16/10}
 .aimg img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
 .aimg:hover img{transform:scale(1.04)}
+.aimg video{width:100%;height:100%;object-fit:cover;display:block}
 .aimg-badge{position:absolute;bottom:1rem;left:1rem;background:rgba(18,14,10,.7);backdrop-filter:blur(8px);padding:.55rem 1rem;border-radius:2px}
 .aimg-badge span{font-size:.48rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.65)}
 .about-txt .sh{margin-bottom:.9rem}
@@ -155,45 +174,78 @@ section{padding:4.5rem 4rem}
 .fp-cta:hover{background:var(--ter2)}
 
 /* VILLAS */
-.villas-s{background:var(--w)}
-.vh{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;gap:2rem}
-.vnum{font-family:'Gilda Display',serif;font-size:7rem;color:var(--c2);line-height:1;letter-spacing:-.02em;user-select:none}
-.vg{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:auto auto;gap:.7rem}
-.vc{position:relative;overflow:hidden;border-radius:3px;background:var(--c2);text-decoration:none}
+.villas-s{background:var(--w);padding:4rem 0 3rem}
+.vscroll-sticky{}
+.vh{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:1.2rem;gap:2rem;padding:0 5vw}
+.vh .sh{color:var(--ink)}
+.vh .sh em{color:var(--ter)}
+.vh .eye{color:var(--ter)}
+.vh .sb{color:var(--mid)}
+.vnum{font-family:'Gilda Display',serif;font-size:5rem;color:var(--c2);line-height:1;letter-spacing:-.02em;user-select:none}
+.vscroll-wrap{position:relative;overflow:hidden}
+.vscroll{display:flex;gap:1px;padding:0 5vw;will-change:transform}
+.vscroll::-webkit-scrollbar{display:none}
+.vc{flex:0 0 260px;height:340px;position:relative;overflow:hidden;text-decoration:none;background:var(--ink2)}
 .vc:hover .vci{transform:scale(1.06)}
-.vc:hover .vcbar{transform:scaleX(1)}
-.vcw{overflow:hidden}
-.vci{width:100%;display:flex;align-items:flex-end;padding:1rem;transition:transform .75s cubic-bezier(.25,.46,.45,.94)}
-.vg1{grid-row:1/3}
-.vi1{background-image:url('images/jade-hero.jpg');background-size:cover;background-position:center;min-height:320px}
-.vi2{background-image:url('images/topaze-hero.jpg');background-size:cover;background-position:center;height:155px}
-.vi3{background-image:url('images/onyx-hero.jpg');background-size:cover;background-position:center;height:155px}
-.vi4{background-image:url('images/agate-hero.jpg');background-size:cover;background-position:center;height:155px}
-.vi5{background-image:url('images/ambre-hero.jpg');background-size:cover;background-position:center;height:155px}
-.vi6{background-image:url('images/opale-hero.jpg');background-size:cover;background-position:center;height:155px}
-.vcn{font-size:.46rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.38)}
-.vcbar{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--ter);transform:scaleX(0);transform-origin:left;transition:transform .38s ease}
-.vclbl{padding:.85rem 1rem .8rem;display:flex;align-items:baseline;justify-content:space-between}
-.vcname{font-family:'Gilda Display',serif;font-size:.95rem;color:var(--ink);text-decoration:none}
-.vcdtl{font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid)}
-.vmore{display:flex;align-items:center;justify-content:flex-end;gap:.7rem;margin-top:1.2rem;font-size:.53rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ter)}
-.vmore::after{content:'→'}
+.vc:hover .vcline{transform:scaleX(1)}
+.vci{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .9s cubic-bezier(.25,.46,.45,.94)}
+.vi1{background-image:url('images/jade-hero.webp')}
+.vi2{background-image:url('images/topaze-hero.webp')}
+.vi3{background-image:url('images/onyx-hero.webp')}
+.vi4{background-image:url('images/agate-hero.webp')}
+.vi5{background-image:url('images/ambre-hero.webp')}
+.vi6{background-image:url('images/opale-hero.webp')}
+.vcov{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,6,4,.88) 0%,rgba(8,6,4,.2) 45%,transparent 70%)}
+.vcb{position:absolute;bottom:0;left:0;right:0;padding:1.4rem 1.2rem}
+.vcn{font-size:.4rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.25);display:block;margin-bottom:.5rem}
+.vcname{font-family:'Gilda Display',serif;font-size:1.3rem;color:var(--w);line-height:1;display:block;margin-bottom:.4rem}
+.vcdtl{font-size:.44rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);display:block}
+.vcline{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--ter);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.vscroll-nav{display:flex;gap:.6rem;padding:.9rem 5vw 0;justify-content:flex-end}
+.vnav{width:38px;height:38px;border:1px solid var(--sand);background:transparent;color:var(--mid);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;border-radius:1px}
+.vnav:hover{border-color:var(--ter);color:var(--ter)}
+.vnav svg{width:15px;height:15px}
+.vmore-wrap{display:flex;justify-content:center;margin-top:1.2rem}
+.vmore{display:inline-flex;align-items:center;gap:.9rem;padding:.85rem 2.4rem;border:1px solid var(--ter);color:var(--ter);font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;border-radius:1px;transition:all .28s;background:transparent;text-decoration:none}
+.vmore:hover{background:var(--ter);color:var(--w)}
+.vmore svg{width:14px;height:14px;transition:transform .28s}
+.vmore:hover svg{transform:translateX(4px)}
 
 /* EXPERIENCES */
-.exp-s{background:var(--c)}
-.expg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.5rem}
-.ec{position:relative;border-radius:3px;overflow:hidden;aspect-ratio:3/4;background:var(--c2)}
+.exp-s{background:var(--ink);padding:5rem 0}
+.exp-head{display:flex;align-items:flex-end;justify-content:space-between;padding:0 5vw;margin-bottom:3rem}
+.exp-head .sh{color:var(--w)}
+.exp-head .sh em{color:var(--ter)}
+.exp-head .eye{color:rgba(255,255,255,.28)}
+.exp-cta-top{display:inline-flex;align-items:center;gap:.7rem;font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.35);text-decoration:none;transition:color .25s;align-self:flex-end;padding-bottom:.25rem}
+.exp-cta-top:hover{color:var(--ter)}
+.exp-cta-top svg{width:14px;height:14px;transition:transform .3s}
+.exp-cta-top:hover svg{transform:translateX(4px)}
+.exp-layout{display:grid;grid-template-columns:1.6fr 1fr 1fr;grid-template-rows:260px 260px;gap:2px;padding:0 5vw}
+.ec{position:relative;overflow:hidden;background:var(--ink2);text-decoration:none}
 .ec:hover .ecimg{transform:scale(1.06)}
-.ecimg{width:100%;height:100%;transition:transform .75s ease;display:flex;align-items:flex-end;padding:1.2rem}
-.ecov{position:absolute;inset:0;background:linear-gradient(to top,rgba(18,14,10,.65),transparent 55%)}
-.ecb{position:absolute;bottom:0;left:0;right:0;padding:1.5rem}
-.ecnum{font-size:.46rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:.4rem}
-.ecname{font-family:'Gilda Display',serif;font-size:1.2rem;color:var(--w);line-height:1.1;margin-bottom:.3rem}
-.ecdesc{font-size:.62rem;color:rgba(255,255,255,.45);line-height:1.65}
+.ec:hover .ec-line{transform:scaleX(1)}
+.ecimg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .9s cubic-bezier(.25,.46,.45,.94)}
+.ecov{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,4,2,.9) 0%,rgba(6,4,2,.15) 50%,transparent 75%)}
+.ecb{position:absolute;bottom:0;left:0;right:0;padding:1.6rem 1.4rem}
+.ecnum{font-size:.38rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.2);display:block;margin-bottom:.5rem}
+.ecname{font-family:'Gilda Display',serif;font-size:1.1rem;color:var(--w);line-height:1;display:block;margin-bottom:.4rem}
+.ecdesc{font-size:.58rem;color:rgba(255,255,255,.38);line-height:1.7;display:block}
+.ec-line{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--ter);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.ec-feat{grid-row:1/3}
+.ec-feat .ecname{font-size:1.5rem}
+.ec-feat .ecdesc{font-size:.64rem;color:rgba(255,255,255,.42)}
+.exp-dots{display:none}
+.exp-bottom{display:flex;align-items:center;justify-content:center;padding:3rem 5vw 0;gap:3rem}
+.exp-divider{flex:1;height:1px;background:rgba(255,255,255,.07)}
+.exp-cta-btn{display:inline-flex;align-items:center;gap:.9rem;padding:.9rem 2.8rem;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.65);font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;border-radius:1px;transition:all .28s;background:transparent;text-decoration:none;white-space:nowrap}
+.exp-cta-btn:hover{border-color:var(--ter);color:var(--w);background:rgba(184,115,74,.1)}
+.exp-cta-btn svg{width:14px;height:14px;transition:transform .28s}
+.exp-cta-btn:hover svg{transform:translateX(4px)}
 
 /* NIGHT CTA */
 .night{height:72vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.night-bg{position:absolute;inset:0;background-image:url('images/drone-night.jpg');background-size:cover;background-position:center}
+.night-bg{position:absolute;inset:0;background-image:url('images/drone-night.webp');background-size:cover;background-position:center}
 .night-ov{position:absolute;inset:0;background:rgba(10,8,6,.48)}
 .night-c{position:relative;z-index:2;text-align:center;max-width:640px;padding:0 2rem}
 .neye{font-size:.5rem;letter-spacing:.48em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-bottom:1.2rem}
@@ -215,15 +267,35 @@ section{padding:4.5rem 4rem}
 .pb{font-size:.68rem;color:rgba(255,255,255,.26);line-height:1.9}
 
 /* REVIEWS */
-.rev-s{background:var(--c)}
-.revg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.5rem}
-.rc{background:var(--w);border-radius:3px;padding:1.8rem}
-.rstars{color:var(--ter);font-size:.68rem;letter-spacing:.1em;margin-bottom:.9rem}
-.rtxt{font-size:.7rem;color:var(--mid);line-height:1.8;margin-bottom:1.2rem;font-style:italic}
-.rtxt::before{content:'"';font-family:'Gilda Display',serif;font-size:1.8rem;color:var(--c2);line-height:0;vertical-align:-.45rem;margin-right:.15rem}
-.rauth{font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
-.rorig{font-size:.5rem;color:var(--mid);margin-top:.2rem}
-.rplat{margin-top:1.2rem;padding-top:.9rem;border-top:1px solid var(--c2);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mid)}
+.rev-s{background:var(--c);padding:6rem 5vw 5.5rem;text-align:center}
+.rev-qt{font-family:'Libre Baskerville',serif;font-style:italic;font-size:clamp(1.15rem,2.2vw,1.65rem);color:var(--ink);line-height:1.85;max-width:720px;margin:0 auto 2.2rem;opacity:.88}
+.rev-line{width:32px;height:1px;background:var(--ter);margin:0 auto 1.8rem}
+.rev-attr{font-family:'Outfit',sans-serif;font-size:.46rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);margin-bottom:.5rem}
+.rev-scores{display:flex;align-items:center;justify-content:center;gap:2rem;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--c2)}
+.rev-sc-item{display:flex;flex-direction:column;align-items:center;gap:.3rem}
+.rev-sc-num{font-family:'Gilda Display',serif;font-size:1.6rem;color:var(--ink);line-height:1}
+.rev-sc-stars{color:var(--ter);font-size:.5rem;letter-spacing:.15em}
+.rev-sc-src{font-family:'Outfit',sans-serif;font-size:.4rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid)}
+.rev-sc-div{width:1px;height:36px;background:var(--c2)}
+
+/* JOURNAL PREVIEW */
+.jnl-s{background:var(--c);padding:5rem 0}
+.jnl-head{display:flex;align-items:flex-end;justify-content:space-between;padding:0 5vw;margin-bottom:2.5rem}
+.jnl-all{display:inline-flex;align-items:center;gap:.6rem;font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);transition:color .22s;align-self:flex-end;padding-bottom:.2rem}
+.jnl-all:hover{color:var(--ter)}
+.jnl-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:380px;gap:2px;padding:0 5vw}
+.jnl-card{position:relative;overflow:hidden;display:block;background:var(--ink2)}
+.jnl-card:hover .jnl-img{transform:scale(1.05)}
+.jnl-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .9s cubic-bezier(.25,.46,.45,.94)}
+.jnl-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,4,2,.92) 0%,rgba(6,4,2,.2) 55%,transparent 80%)}
+.jnl-body{position:absolute;bottom:0;left:0;right:0;padding:1.6rem 1.8rem}
+.jnl-cat{font-size:.4rem;letter-spacing:.38em;text-transform:uppercase;color:var(--ter);display:block;margin-bottom:.6rem}
+.jnl-title{font-family:'Gilda Display',serif;font-size:1.1rem;color:var(--w);line-height:1.25;margin-bottom:.6rem}
+.jnl-feat .jnl-title{font-size:1.5rem}
+.jnl-exc{font-size:.58rem;color:rgba(255,255,255,.38);line-height:1.75;margin-bottom:.9rem;display:block}
+.jnl-feat .jnl-exc{color:rgba(255,255,255,.45)}
+.jnl-read{font-size:.44rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.3);transition:color .22s}
+.jnl-card:hover .jnl-read{color:var(--ter)}
 
 /* INSTAGRAM + GALERIE */
 .insta-s{background:var(--w);padding:5rem 0}
@@ -255,24 +327,28 @@ section{padding:4.5rem 4rem}
 
 /* FOOTER */
 footer{background:var(--ink2);padding:3.5rem 4rem}
-.ftop{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.ftop{display:grid;grid-template-columns:1.2fr 1fr 1fr 1.4fr;gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.fmap-wrap{border-radius:3px;overflow:hidden;height:180px;opacity:.75;transition:opacity .3s}
+.fmap-wrap:hover{opacity:1}
+.fmap-wrap iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(.6) sepia(.4) contrast(.9) brightness(.9)}
 .flogo{font-family:'Gilda Display',serif;font-size:1.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--w);margin-bottom:.6rem}
-.ftag{font-size:.62rem;color:rgba(255,255,255,.26);line-height:1.65}
+.ftag{font-size:.62rem;color:rgba(255,255,255,.45);line-height:1.65}
 .fct{font-size:.5rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ter);margin-bottom:1rem}
 .flinks{display:flex;flex-direction:column;gap:.6rem}
-.flink{font-size:.62rem;color:rgba(255,255,255,.32);transition:color .2s}
-.flink:hover{color:rgba(255,255,255,.65)}
+.flink{font-size:.62rem;color:rgba(255,255,255,.52);transition:color .2s}
+.flink a{color:inherit;text-decoration:none}
+.flink:hover{color:rgba(255,255,255,.85)}
 .fbot{display:flex;align-items:center;justify-content:space-between;padding-top:1.8rem}
-.fcopy{font-size:.5rem;letter-spacing:.18em;color:rgba(255,255,255,.16);text-transform:uppercase}
+.fcopy{font-size:.5rem;letter-spacing:.18em;color:rgba(255,255,255,.3);text-transform:uppercase}
 .fsoc{display:flex;gap:1.3rem}
-.fsocl{font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22);transition:color .2s}
+.fsocl{font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);transition:color .2s}
 .fsocl:hover{color:rgba(255,255,255,.55)}
 
 /* Hamburger mobile nav */
 .nav-burger{display:none;flex-direction:column;gap:5px;padding:4px;background:none;border:none}
 .nav-burger span{display:block;width:22px;height:1px;background:var(--w);transition:all .3s}
 .nav-burger.dark span{background:var(--ink)}
-.nav-overlay{display:none;position:fixed;inset:0;z-index:190;background:var(--ink2);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+.nav-overlay{display:none;position:fixed;inset:0;z-index:250;background:var(--ink2);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
 .nav-overlay.open{display:flex}
 .nav-overlay .nl{font-size:1.2rem;letter-spacing:.2em;opacity:.6;color:var(--w)}
 .nav-overlay .nl:hover{opacity:1}
@@ -280,37 +356,172 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
 
 @media(max-width:900px){
   nav,section,footer{padding-left:1.5rem;padding-right:1.5rem}
-  .hero-inner,.about-g,.vg,.expg,.revg{grid-template-columns:1fr}
+  .hero-inner,.about-g,.vg,.exp-layout,.revg,.jnl-grid{grid-template-columns:1fr}
+  .jnl-grid{grid-template-rows:auto}
+  .jnl-card{height:260px;position:relative}
+  .jnl-feat{height:300px}
+  .rc{padding:2rem 0;border-right:none;border-bottom:1px solid var(--c2)}
+  .rc:last-child{border-bottom:none}
+  .rev-head{flex-direction:column;gap:1.5rem;align-items:flex-start}
+  /* ── Experiences — carrousel mobile ── */
+  .exp-layout{
+    display:flex !important;
+    flex-direction:row;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    gap:10px;
+    padding:0 5vw 1.5rem;
+    scrollbar-width:none;
+    grid-template-columns:unset !important;
+    grid-template-rows:unset !important;
+  }
+  .exp-layout::-webkit-scrollbar{display:none}
+  .ec,.ec-feat{
+    min-width:78vw !important;
+    width:78vw !important;
+    height:280px !important;
+    scroll-snap-align:start;
+    flex-shrink:0;
+    grid-row:auto !important;
+  }
+  .exp-dots{display:flex;justify-content:center;gap:7px;margin-top:1.2rem}
+  .exp-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);transition:background .25s,transform .25s;cursor:pointer}
+  .exp-dot.active{background:var(--ter);transform:scale(1.35)}
   .hero-right{display:none}
   .vg1{grid-row:auto}
   .insta-split{grid-template-columns:1fr}
   .insta-right{min-height:320px;position:relative}
   .insta-s{padding:0}
-  .pillars,.ftop{grid-template-columns:1fr}
+  .pillars,.ftop{grid-template-columns:1fr;}.fmap-wrap{height:220px}
   .bk-wrap{grid-template-columns:1fr 1fr}
   .fp-fields{grid-template-columns:1fr 1fr}
   .fp-c-title{font-size:1.3rem}
   .fp-c-sub{margin-bottom:2rem}
   .nav-mid,.nav-right{display:none}
   .nav-burger{display:flex}
+  /* ── Espace pour la barre sticky mobile ── */
+  body{padding-bottom:72px}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE STICKY BOOK BAR — visible uniquement < 900px
+   ═══════════════════════════════════════════════════════════ */
+/* Bulle WA — cachée au chargement, révélée au scroll */
+#wa-bubble{
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(8px);
+  transition:opacity .4s ease, transform .4s ease;
+}
+#wa-bubble.scroll-reveal{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+
+.mob-book-bar{display:none}
+
+@media(max-width:900px){
+  /* Barre sticky — cachée au chargement, révélée au scroll */
+  .mob-book-bar{
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(100%);
+    transition:opacity .4s ease, transform .4s cubic-bezier(.25,.8,.25,1);
+  }
+  .mob-book-bar.scroll-reveal{
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0);
+  }
+}
+
+@media(max-width:900px){
+  .mob-book-bar{
+    display:flex;
+    position:fixed;
+    bottom:0;left:0;right:0;
+    z-index:3000;
+    padding:.7rem .9rem;
+    background:rgba(18,14,10,.96);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-top:1px solid rgba(255,255,255,.08);
+    gap:.6rem;
+    align-items:center;
+  }
+  .mob-book-left{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:.1rem;
+  }
+  .mob-book-label{
+    font-family:'Outfit',sans-serif;
+    font-size:.38rem;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:rgba(250,247,242,.3);
+  }
+  .mob-book-from{
+    font-family:'Gilda Display',serif;
+    font-size:.88rem;
+    color:rgba(250,247,242,.9);
+    line-height:1;
+  }
+  .mob-book-night{
+    font-family:'Outfit',sans-serif;
+    font-size:.38rem;
+    font-weight:300;
+    color:rgba(250,247,242,.35);
+    letter-spacing:.1em;
+  }
+  .mob-book-btn{
+    flex-shrink:0;
+    background:var(--ter,#b8734a);
+    color:#fff;
+    border:none;
+    border-radius:1px;
+    padding:.75rem 1.5rem;
+    font-family:'Outfit',sans-serif;
+    font-size:.52rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    text-decoration:none;
+    white-space:nowrap;
+    transition:background .2s;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:.4rem;
+  }
+  .mob-book-btn:hover,
+  .mob-book-btn:active{background:var(--ter2,#a05f38)}
+  .mob-book-arrow{font-size:.7rem;opacity:.8}
 }
 </style>
-<meta name="description" content="Les Roches Retreat — Six private luxury villas with infinity pools in Santa Teresa, Costa Rica. Exclusive direct booking, no middleman fees.">
-<meta name="keywords" content="villa luxe Santa Teresa Costa Rica, villa privée piscine Costa Rica, luxury villa rental Costa Rica, Les Roches Retreat">
+  <meta name="description" content="Six private villas with infinity pools above Santa Teresa, Costa Rica. Direct booking, best rates, no middleman. From $350/night.">
+  <meta name="keywords" content="luxury villas Santa Teresa Costa Rica, private villa infinity pool Costa Rica, Les Roches, villa rental Santa Teresa">
 <meta name="robots" content="index, follow">
+<link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/index.html">
+<link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/index.html">
+<link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/index.html">
+<link rel="alternate" hreflang="x-default" href="https://lesrochesretreat.com/index.html">
 <link rel="canonical" href="https://lesrochesretreat.com/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Les Roches Retreat — Six Private Luxury Villas, Santa Teresa">
-<meta property="og:description" content="Six private villas with infinity pools, steps from the best surf in Costa Rica. Direct booking, best rates guaranteed.">
-<meta property="og:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.jpg">
+<meta property="og:title" content="Les Roches — Six Private Luxury Villas · Santa Teresa, Costa Rica">
+<meta property="og:description" content="Six private villas with infinity pools, 5 minutes from the best surf in Costa Rica. Direct booking, no middleman fees.">
+<meta property="og:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.webp">
 <meta property="og:url" content="https://lesrochesretreat.com/">
 <meta property="og:site_name" content="Les Roches Retreat">
-<meta property="og:locale" content="fr_FR">
-<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Les Roches Retreat — Six Private Luxury Villas, Santa Teresa">
 <meta name="twitter:description" content="Six private villas with infinity pools, steps from the best surf in Costa Rica.">
-<meta name="twitter:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.jpg">
+<meta name="twitter:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.webp">
 <style>
 /* ── INTRO CURTAIN ─────────────────────────────────────────── */
 /* Fond beige — révélé au fur et à mesure que les panneaux blancs s'écartent */
@@ -350,10 +561,101 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
 
 .intro-orn-line{width:60px;height:1px;background:var(--sand,#d6c9b0)}
 .intro-orn-diamond{width:7px;height:7px;background:var(--ter,#b8734a);transform:rotate(45deg)}
+
+/* ── prefers-reduced-motion ─────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  body.has-cursor *{cursor:auto!important}
+}
 </style>
-<script src="js/track.js"></script>
+<script src="js/track.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": "Les Roches Retreat",
+  "description": "Six private luxury villas with infinity pools perched above the jungle in Santa Teresa, Costa Rica. Direct booking, best rates guaranteed.",
+  "url": "https://lesrochesretreat.com",
+  "logo": "https://lesrochesretreat.com/images/drone-complex-pool-1.webp",
+  "image": "https://lesrochesretreat.com/images/drone-complex-pool-1.webp",
+  "contactPoint": {"@type":"ContactPoint","contactType":"reservations","availableLanguage":["English","French"],"url":"https://wa.me/33667749024"},
+  "email": "contact@lesrochesretreat.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Santa Teresa",
+    "addressRegion": "Puntarenas",
+    "addressCountry": "CR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "9.6449",
+    "longitude": "-85.1694"
+  },
+  "priceRange": "$$$",
+  "amenityFeature": [
+    {"@type": "LocationFeatureSpecification", "name": "Infinity Pool", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Private Villa", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Ocean View", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Air Conditioning", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Private Chef Available", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Surf Access", "value": true}
+  ],
+  "containsPlace": [
+    {
+      "@type": "LodgingBusiness",
+      "name": "Casa Jade",
+      "url": "https://lesrochesretreat.com/villa-jade.html",
+      "image": "https://lesrochesretreat.com/images/jade-hero.webp"
+    },
+    {
+      "@type": "LodgingBusiness",
+      "name": "Casa Agate",
+      "url": "https://lesrochesretreat.com/villa-agate.html",
+      "image": "https://lesrochesretreat.com/images/agate-hero.webp"
+    },
+    {
+      "@type": "LodgingBusiness",
+      "name": "Casa Opale",
+      "url": "https://lesrochesretreat.com/villa-opale.html",
+      "image": "https://lesrochesretreat.com/images/opale-hero.webp"
+    },
+    {
+      "@type": "LodgingBusiness",
+      "name": "Casa Onyx",
+      "url": "https://lesrochesretreat.com/villa-onyx.html",
+      "image": "https://lesrochesretreat.com/images/onyx-hero.webp"
+    },
+    {
+      "@type": "LodgingBusiness",
+      "name": "Casa Topaze",
+      "url": "https://lesrochesretreat.com/villa-topaze.html",
+      "image": "https://lesrochesretreat.com/images/topaze-hero.webp"
+    },
+    {
+      "@type": "LodgingBusiness",
+      "name": "Casa Ambre",
+      "url": "https://lesrochesretreat.com/villa-ambre.html",
+      "image": "https://lesrochesretreat.com/images/ambre-hero.webp"
+    }
+  ]
+}
+</script>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#b8734a">
+<!-- Google Analytics GA4 — Measurement ID: G-WFWBDDTMF0 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFWBDDTMF0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WFWBDDTMF0', { anonymize_ip: true });
+</script>
 </head>
 <body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--ter,#b8734a);color:#fff;padding:.5rem 1rem;font-family:sans-serif;font-size:.875rem" onfocus="this.style.left='1rem';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-999px'">Skip to content</a>
 <div id="cur"></div>
 
 <!-- ── INTRO CURTAIN ─────────────────────────────────────────── -->
@@ -377,15 +679,16 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
 <nav id="nav">
   <a href="index.html" class="nl-logo" id="logo">Les Roches</a>
   <div class="nav-mid">
-    <a href="villas.html" class="nl" id="nl1">Villas</a>
+    <div class="nav-drop"><a href="villas.html" class="nl" id="nl1">Villas</a><div class="nav-drop-menu"><a href="villa-jade.html" class="ndl">Casa Jade<span class="ndp">$450</span></a><a href="villa-topaze.html" class="ndl">Topaze<span class="ndp">$420</span></a><a href="villa-onyx.html" class="ndl">Onyx<span class="ndp">$550</span></a><a href="villa-agate.html" class="ndl">Agate<span class="ndp">$350</span></a><a href="villa-ambre.html" class="ndl">Ambre<span class="ndp">$420</span></a><a href="villa-opale.html" class="ndl">Opale<span class="ndp">$480</span></a><div class="ndl-sep"></div><a href="villas.html" class="ndl ndl-all">All villas →</a></div></div>
     <a href="experiences.html" class="nl" id="nl2">Experiences</a>
     <a href="about.html" class="nl" id="nl3">About</a>
     <a href="santa-teresa.html" class="nl" id="nl4">Santa Teresa</a>
     <a href="faq.html" class="nl">FAQ</a>
+  <a href="journal.html" class="nl">Journal</a>
   </div>
   <div class="nav-right">
-    <div class="lang-sw" id="ls"><span class="on">EN</span><span class="lsep">/</span><span>FR</span><span class="lsep">/</span><span>ES</span></div>
-    <a href="villas.html#search" class="nav-book" id="nb">Book Now</a>
+    <div class="lang-sw" id="ls" aria-label="Language selector"><span class="on">EN</span><span class="lsep">/</span><span>FR</span><span class="lsep">/</span><span>ES</span></div>
+    <a href="villas.html#search" class="nav-book" aria-label="Book a villa at Les Roches Retreat" id="nb">Book Now</a>
   </div>
   <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -396,8 +699,12 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
   <a href="about.html" class="nl">About</a>
   <a href="santa-teresa.html" class="nl">Santa Teresa</a>
   <a href="faq.html" class="nl">FAQ</a>
-  <a href="contact.html" class="nl">Book Now</a>
+  <a href="journal.html" class="nl">Journal</a>
+  <a href="villas.html" class="nl">Book Now</a>
 </div>
+
+
+
 
 <!-- HERO -->
 <div class="hero">
@@ -409,6 +716,7 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
       <div>
         <div class="h-kicker">Santa Teresa · Costa Rica · Pacific Ocean</div>
         <h1 class="h-title">Six private villas,<br>where the jungle meets the sea.</h1>
+        <a href="#villas" class="hero-cta">Discover our villas →</a>
       </div>
       <div class="hero-right">
         <div class="h-scroll"><div class="h-sline"></div><span class="h-stxt">Scroll</span></div>
@@ -424,10 +732,13 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
 </div></div>
 
 <!-- ABOUT -->
-<section class="about-s r">
+<section id="main-content" class="about-s r">
   <div class="about-g">
     <div class="aimg">
-      <img src="images/retreat-vue-ocean.jpg" alt="Les Roches — Pacific view" style="object-position:center 25%">
+      <video autoplay muted loop playsinline preload="auto" poster="images/retreat-vue-ocean.webp">
+        <source media="(max-width:900px)" src="images/video-home-mobile.mp4" type="video/mp4">
+        <source src="images/video-home.mp4" type="video/mp4">
+      </video>
       <div class="aimg-badge"><span>Above Santa Teresa &nbsp;·&nbsp; Pacific View</span></div>
     </div>
     <div class="about-txt">
@@ -446,7 +757,7 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
 
 <!-- FULL PHOTO — RÉSERVATION INTÉGRÉE -->
 <div class="fp r" id="fp1">
-  <img src="images/drone-sunset-1.jpg" alt="Pacific sunset">
+  <img loading="lazy" src="images/drone-sunset-1.webp" alt="Pacific sunset">
   <div class="fp-ov"></div>
   <div class="fp-center">
     <div class="fp-c-eye">The Pacific &nbsp;·&nbsp; Every Evening</div>
@@ -459,35 +770,36 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
     <div class="fp-c-sub">Reserve your stay at Les Roches — and make every evening yours.</div>
     <div class="fp-fields">
       <div class="fp-field" id="bk-checkin-f">
-        <div class="fp-field-lbl">Check In</div>
-        <div class="bk-date-disp empty" id="bk-checkin-disp">Arrival date</div>
+        <label class="fp-field-lbl" for="bk-checkin-disp">Check In</label>
+        <div class="bk-date-disp empty" id="bk-checkin-disp" role="button" tabindex="0" aria-label="Select arrival date">Arrival date</div>
       </div>
       <div class="fp-field" id="bk-checkout-f">
-        <div class="fp-field-lbl">Check Out</div>
-        <div class="bk-date-disp empty" id="bk-checkout-disp">Departure date</div>
+        <label class="fp-field-lbl" for="bk-checkout-disp">Check Out</label>
+        <div class="bk-date-disp empty" id="bk-checkout-disp" role="button" tabindex="0" aria-label="Select departure date">Departure date</div>
       </div>
       <div class="fp-field">
-        <div class="fp-field-lbl">Villa</div>
-        <select class="bk-sel" id="bk-villa">
+        <label class="fp-field-lbl" for="bk-villa">Villa</label>
+        <select class="bk-sel" id="bk-villa" aria-label="Select a villa">
           <option value="">Any villa</option>
           <option>Casa Jade</option><option>Topaze</option><option>Onyx</option>
           <option>Agate</option><option>Ambre</option><option>Opale</option>
         </select>
       </div>
       <div class="fp-field">
-        <div class="fp-field-lbl">Guests</div>
-        <select class="bk-sel" id="bk-guests">
+        <label class="fp-field-lbl" for="bk-guests">Guests</label>
+        <select class="bk-sel" id="bk-guests" aria-label="Number of guests">
           <option>2 guests</option><option>3 guests</option><option>4 guests</option>
         </select>
       </div>
     </div>
-    <button class="fp-cta" id="bk-submit">Reserve my stay</button>
+    <button class="fp-cta" id="bk-submit" aria-label="Book a villa at Les Roches">Book Now</button>
     <input id="bk-range-input" style="position:absolute;opacity:0;pointer-events:none;width:0;height:0;border:0;padding:0">
   </div>
 </div>
 
 <!-- VILLAS -->
-<section class="villas-s r">
+<section class="villas-s" id="villas">
+ <div class="vscroll-sticky">
   <div class="vh">
     <div>
       <div class="eye">The Villas</div>
@@ -496,59 +808,203 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
     </div>
     <div class="vnum">06</div>
   </div>
-  <div class="vg">
-    <a href="villa-jade.html" class="vc vg1"><div class="vcw"><div class="vci vi1"><span class="vcn">01</span></div></div><div class="vcbar"></div><div class="vclbl"><span class="vcname">Casa Jade</span><span class="vcdtl">Ocean · Pool</span></div></a>
-    <a href="villa-topaze.html" class="vc"><div class="vcw"><div class="vci vi2"><span class="vcn">02</span></div></div><div class="vcbar"></div><div class="vclbl"><span class="vcname">Topaze</span><span class="vcdtl">Jungle · Pool</span></div></a>
-    <a href="villa-onyx.html" class="vc"><div class="vcw"><div class="vci vi3"><span class="vcn">03</span></div></div><div class="vcbar"></div><div class="vclbl"><span class="vcname">Onyx</span><span class="vcdtl">Garden · Pool</span></div></a>
-    <a href="villa-agate.html" class="vc"><div class="vcw"><div class="vci vi4"><span class="vcn">04</span></div></div><div class="vcbar"></div><div class="vclbl"><span class="vcname">Agate</span><span class="vcdtl">Panoramic · Pool</span></div></a>
-    <a href="villa-ambre.html" class="vc"><div class="vcw"><div class="vci vi5"><span class="vcn">05</span></div></div><div class="vcbar"></div><div class="vclbl"><span class="vcname">Ambre</span><span class="vcdtl">Sunset · Pool</span></div></a>
+  <div class="vscroll-wrap">
+    <div class="vscroll" id="vscroll">
+      <a href="villa-jade.html" class="vc"><div class="vci vi1"></div><div class="vcov"></div><div class="vcb"><span class="vcn">01</span><span class="vcname">Casa Jade</span><span class="vcdtl">Ocean · Pool</span><span class="vcp">From $450</span></div><div class="vcline"></div></a>
+      <a href="villa-topaze.html" class="vc"><div class="vci vi2"></div><div class="vcov"></div><div class="vcb"><span class="vcn">02</span><span class="vcname">Topaze</span><span class="vcdtl">Jungle · Pool</span><span class="vcp">From $420</span></div><div class="vcline"></div></a>
+      <a href="villa-onyx.html" class="vc"><div class="vci vi3"></div><div class="vcov"></div><div class="vcb"><span class="vcn">03</span><span class="vcname">Onyx</span><span class="vcdtl">Garden · Pool</span><span class="vcp">From $550</span></div><div class="vcline"></div></a>
+      <a href="villa-agate.html" class="vc"><div class="vci vi4"></div><div class="vcov"></div><div class="vcb"><span class="vcn">04</span><span class="vcname">Agate</span><span class="vcdtl">Panoramic · Pool</span><span class="vcp">From $350</span></div><div class="vcline"></div></a>
+      <a href="villa-ambre.html" class="vc"><div class="vci vi5"></div><div class="vcov"></div><div class="vcb"><span class="vcn">05</span><span class="vcname">Ambre</span><span class="vcdtl">Sunset · Pool</span><span class="vcp">From $420</span></div><div class="vcline"></div></a>
+      <a href="villa-opale.html" class="vc"><div class="vci vi6"></div><div class="vcov"></div><div class="vcb"><span class="vcn">06</span><span class="vcname">Opale</span><span class="vcdtl">Cliffside · Pool</span><span class="vcp">From $480</span></div><div class="vcline"></div></a>
+    </div>
+    <div class="vscroll-nav">
+      <button class="vnav" id="vprev" aria-label="Précédent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+      <button class="vnav" id="vnext" aria-label="Suivant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
   </div>
-  <a href="villas.html" class="vmore">View all villas</a>
+  <div class="vmore-wrap">
+    <a href="villas.html" class="vmore">View our villas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+ </div>
 </section>
+
+
+<!-- REVIEWS ─────────────────────────────────────────────────── -->
+<section class="rev-s r">
+  <div class="rev-inner">
+    <div class="eye" style="justify-content:center">What guests say</div>
+    <div class="rev-carousel">
+
+      <blockquote class="rev-qt active" id="rev-0">
+        "Waking up above the jungle with nothing but the ocean in front — it's the most beautiful place we've ever stayed. Totally silent, totally private."
+        <cite class="rev-attr">— Sophie &amp; Marc L., Paris &nbsp;·&nbsp; October 2025</cite>
+      </blockquote>
+      <blockquote class="rev-qt" id="rev-1">
+        "The pool at sunrise is something you never forget. Les Roches is understated luxury at its absolute best."
+        <cite class="rev-attr">— James R., London &nbsp;·&nbsp; January 2026</cite>
+      </blockquote>
+      <blockquote class="rev-qt" id="rev-2">
+        "Best villa in Costa Rica, hands down. The team is incredibly attentive without being intrusive. We've already booked our next stay."
+        <cite class="rev-attr">— Camille D., Montréal &nbsp;·&nbsp; December 2025</cite>
+      </blockquote>
+
+      <div class="rev-dots">
+        <button class="rev-dot active" aria-label="Review 1" onclick="showRev(0)"></button>
+        <button class="rev-dot" aria-label="Review 2" onclick="showRev(1)"></button>
+        <button class="rev-dot" aria-label="Review 3" onclick="showRev(2)"></button>
+        <button class="rev-pause" id="rev-pause-btn" aria-label="Pause reviews">⏸</button>
+      </div>
+
+    </div>
+    <div class="rev-line"></div>
+    <div class="rev-scores">
+      <a class="rev-sc-item" href="https://www.google.com/maps/search/?api=1&query=Les+Roches+Retreat+Santa+Teresa+Costa+Rica" target="_blank" rel="noopener" aria-label="See our Google reviews">
+        <div class="rev-sc-num">4.9</div>
+        <div class="rev-sc-stars">★★★★★</div>
+        <div class="rev-sc-src">Google Reviews</div>
+      </a>
+      <div class="rev-sc-div"></div>
+      <a class="rev-sc-item" href="https://www.airbnb.fr/rooms/1073881336312192314" target="_blank" rel="noopener" aria-label="See our Airbnb reviews">
+        <div class="rev-sc-num">4.95</div>
+        <div class="rev-sc-stars">★★★★★</div>
+        <div class="rev-sc-src">Airbnb</div>
+      </a>
+      <div class="rev-sc-div"></div>
+      <div class="rev-sc-item">
+        <div class="rev-sc-num">127</div>
+        <div class="rev-sc-stars" style="color:var(--ter)">✦ ✦ ✦</div>
+        <div class="rev-sc-src">Verified guests</div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.rev-inner{max-width:820px;margin:0 auto}
+.rev-carousel{position:relative;min-height:140px;margin:2rem 0 1.8rem}
+.rev-qt{display:none;font-family:'Libre Baskerville',serif;font-style:italic;font-size:clamp(1.05rem,2vw,1.45rem);color:var(--ink);line-height:1.85;text-align:center;opacity:.88}
+.rev-qt.active{display:block}
+.rev-attr{display:block;font-style:normal;font-family:'Outfit',sans-serif;font-size:.46rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);margin-top:1rem;text-align:center}
+.rev-dots{display:flex;justify-content:center;align-items:center;gap:.6rem;margin-top:1.4rem}
+.rev-dot{width:6px;height:6px;border-radius:50%;background:var(--sand);border:none;cursor:pointer;transition:background .2s,transform .2s;padding:0}
+.rev-dot.active{background:var(--ter);transform:scale(1.3)}
+.rev-pause{background:none;border:none;cursor:pointer;color:var(--mid);font-size:.55rem;padding:.2rem .5rem;opacity:.5;transition:opacity .2s;letter-spacing:.05em}
+.rev-pause:hover{opacity:1}
+.rev-line{width:32px;height:1px;background:var(--ter);margin:1.8rem auto}
+.rev-sc-item{display:flex;flex-direction:column;align-items:center;gap:.3rem;text-decoration:none;transition:opacity .2s}
+a.rev-sc-item:hover{opacity:.75}
+</style>
+<script>
+var _revIdx=0, _revPaused=false, _revTimer=null;
+function showRev(i){
+  document.querySelectorAll('.rev-qt').forEach(function(el,j){el.classList.toggle('active',j===i)});
+  document.querySelectorAll('.rev-dot').forEach(function(el,j){el.classList.toggle('active',j===i)});
+  _revIdx=i;
+}
+function startRevTimer(){
+  _revTimer=setInterval(function(){if(!_revPaused)showRev((_revIdx+1)%3)},5200);
+}
+startRevTimer();
+document.addEventListener('DOMContentLoaded',function(){
+  var btn=document.getElementById('rev-pause-btn');
+  if(btn)btn.addEventListener('click',function(){
+    _revPaused=!_revPaused;
+    btn.textContent=_revPaused?'▶':'⏸';
+    btn.setAttribute('aria-label',_revPaused?'Play reviews':'Pause reviews');
+  });
+});
+</script>
+
+<div class="vcta-wrap r">
+  <a href="villas.html" class="vcta-btn vcta-sec">Explore all villas</a>
+  <a href="villas.html?book=1" class="vcta-btn vcta-pri" aria-label="Book a villa at Les Roches">Book Now →</a>
+</div>
+<style>
+.vcta-wrap{display:flex;align-items:center;justify-content:center;gap:1rem;padding:2.5rem 0 1rem;background:var(--w)}
+.vcta-btn{font-family:'Outfit',sans-serif;font-size:.54rem;letter-spacing:.22em;text-transform:uppercase;padding:.7rem 1.8rem;border-radius:1px;text-decoration:none;transition:all .22s}
+.vcta-pri{background:var(--ter);color:var(--w);border:1px solid var(--ter)}
+.vcta-pri:hover{background:var(--ter2);border-color:var(--ter2)}
+.vcta-sec{background:transparent;color:var(--ink);border:1px solid var(--c2)}
+.vcta-sec:hover{border-color:var(--ink)}
+</style>
 
 <!-- EXPERIENCES -->
-<section class="exp-s r">
-  <div class="eye">Experiences</div>
-  <h2 class="sh">Beyond<br><em>the villa</em></h2>
-  <div class="expg">
-    <div class="ec"><div class="ecimg" style="background:linear-gradient(170deg,#6a9b80,#2a5840)"></div><div class="ecov"></div><div class="ecb"><div class="ecnum">01</div><div class="ecname">Surf Lessons</div><div class="ecdesc">Ride Santa Teresa's legendary waves.</div></div></div>
-    <div class="ec"><div class="ecimg" style="background:linear-gradient(170deg,#c8b890,#806840)"></div><div class="ecov"></div><div class="ecb"><div class="ecnum">02</div><div class="ecname">Yoga & Wellness</div><div class="ecdesc">Private sessions at sunrise, Pacific backdrop.</div></div></div>
-    <div class="ec"><div class="ecimg" style="background:linear-gradient(170deg,#8898b0,#384858)"></div><div class="ecov"></div><div class="ecb"><div class="ecnum">03</div><div class="ecname">Fishing Tour</div><div class="ecdesc">Explore Costa Rica's rich Pacific waters.</div></div></div>
-    <div class="ec"><div class="ecimg" style="background:linear-gradient(170deg,#b8c8a0,#587040)"></div><div class="ecov"></div><div class="ecb"><div class="ecnum">04</div><div class="ecname">Zip Line</div><div class="ecdesc">Soar through the rainforest canopy.</div></div></div>
-    <div class="ec"><div class="ecimg" style="background:linear-gradient(170deg,#d8b890,#906840)"></div><div class="ecov"></div><div class="ecb"><div class="ecnum">05</div><div class="ecname">In-Villa Massage</div><div class="ecdesc">Your villa becomes a sanctuary.</div></div></div>
-    <div class="ec"><div class="ecimg" style="background:linear-gradient(170deg,#c0a880,#785830)"></div><div class="ecov"></div><div class="ecb"><div class="ecnum">06</div><div class="ecname">ATV Tour</div><div class="ecdesc">Discover hidden gems of Costa Rica.</div></div></div>
+<section class="exp-s">
+  <div class="exp-head">
+    <div>
+      <div class="eye">Experiences</div>
+      <h2 class="sh">Beyond<br><em>the villa</em></h2>
+    </div>
+    <a href="experiences.html" class="exp-cta-top">All experiences <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  <div class="exp-layout">
+    <a href="experiences.html#surf" class="ec ec-feat">
+      <div class="ecimg" style="background-image:url('images/exp-surf.webp')"></div>
+      <div class="ecov"></div>
+      <div class="ecb">
+        <div class="ecnum">01</div>
+        <div class="ecname">Surf Lessons</div>
+        <div class="ecdesc">Santa Teresa is one of the world's great surf destinations. Our instructors tailor every session to your level, from first wave to advanced technique.</div>
+      </div>
+      <div class="ec-line"></div>
+    </a>
+    <a href="experiences.html#yoga" class="ec">
+      <div class="ecimg" style="background-image:url('images/exp-yoga.webp')"></div>
+      <div class="ecov"></div>
+      <div class="ecb">
+        <div class="ecnum">02</div>
+        <div class="ecname">Yoga & Wellness</div>
+        <div class="ecdesc">Private sunrise sessions with the Pacific as your backdrop.</div>
+      </div>
+      <div class="ec-line"></div>
+    </a>
+    <a href="experiences.html#tyrolienne" class="ec">
+      <div class="ecimg" style="background-image:url('images/exp-tyrolienne.webp')"></div>
+      <div class="ecov"></div>
+      <div class="ecb">
+        <div class="ecnum">03</div>
+        <div class="ecname">Zip Line</div>
+        <div class="ecdesc">Soar through the rainforest canopy at altitude.</div>
+      </div>
+      <div class="ec-line"></div>
+    </a>
+    <a href="experiences.html#massage" class="ec">
+      <div class="ecimg" style="background-image:url('images/exp-massage.webp')"></div>
+      <div class="ecov"></div>
+      <div class="ecb">
+        <div class="ecnum">04</div>
+        <div class="ecname">In-Villa Massage</div>
+        <div class="ecdesc">Your villa becomes a private sanctuary.</div>
+      </div>
+      <div class="ec-line"></div>
+    </a>
+    <a href="experiences.html#atv" class="ec">
+      <div class="ecimg" style="background-image:url('images/exp-atv.webp')"></div>
+      <div class="ecov"></div>
+      <div class="ecb">
+        <div class="ecnum">05</div>
+        <div class="ecname">ATV Tour</div>
+        <div class="ecdesc">Discover hidden trails and secret beaches.</div>
+      </div>
+      <div class="ec-line"></div>
+    </a>
+    <a href="experiences.html#peche" class="ec">
+      <div class="ecimg" style="background-image:url('images/exp-peche.webp')"></div>
+      <div class="ecov"></div>
+      <div class="ecb">
+        <div class="ecnum">06</div>
+        <div class="ecname">Deep-Sea Fishing</div>
+        <div class="ecdesc">Pacific waters rich with marlin, tuna, and dorado.</div>
+      </div>
+      <div class="ec-line"></div>
+    </a>
+  </div>
+  <div class="exp-bottom">
+    <div class="exp-divider"></div>
+    <a href="experiences.html" class="exp-cta-btn">Discover all experiences <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <div class="exp-divider"></div>
   </div>
 </section>
 
-<!-- NIGHT CTA -->
-<div class="night r">
-  <div class="night-bg"></div>
-  <div class="night-ov"></div>
-  <div class="night-c">
-    <div class="neye">Every Night at Les Roches</div>
-    <div class="nh">Six pools.<br><em>Six private worlds.</em></div>
-    <p class="nb">As the sun dips below the Pacific horizon, the villas come alive. Each pool glowing, each terrace a front-row seat to the most spectacular sky you'll ever sleep under.</p>
-    <a href="contact.html" class="nbtn">Book Your Stay</a>
-  </div>
-</div>
-
-<!-- PILLARS -->
-<div class="pillars r">
-  <div class="pillar"><div class="pn">01</div><div class="pt">Jungle <em>& Ocean</em></div><div class="pline"></div><p class="pb">Nestled in the jungle of Santa Teresa, 5 minutes walk to the beach. Wild nature and the Pacific at a glance.</p></div>
-  <div class="pillar"><div class="pn">06</div><div class="pt">Private <em>Villas</em></div><div class="pline"></div><p class="pb">Six individual houses, each with a private infinity pool, terrace, and total privacy. No shared spaces.</p></div>
-  <div class="pillar"><div class="pn">∞</div><div class="pt">Tailored <em>Experiences</em></div><div class="pline"></div><p class="pb">Surf, yoga, massage, fishing, zip-line, ATV. A dedicated team to curate every moment of your stay.</p></div>
-</div>
-
-<!-- REVIEWS -->
-<section class="rev-s r">
-  <div class="eye">Guest Reviews</div>
-  <h2 class="sh">What our guests<br><em>remember most</em></h2>
-  <div class="revg">
-    <div class="rc r d1"><div class="rstars">★★★★★</div><p class="rtxt">Waking up to the jungle then jumping into our private pool with the Pacific in front. Les Roches is unlike anything we've experienced.</p><div class="rauth">Sophie & Thomas</div><div class="rorig">Paris, France · Casa Jade</div><div class="rplat">TripAdvisor · Excellent</div></div>
-    <div class="rc r d2"><div class="rstars">★★★★★</div><p class="rtxt">The architecture is stunning — so minimalist and open to nature. Ian, Marie and Martin thought of everything. We're already planning our return.</p><div class="rauth">James K.</div><div class="rorig">London, UK · Topaze</div><div class="rplat">TripAdvisor · Excellent</div></div>
-    <div class="rc r d3"><div class="rstars">★★★★★</div><p class="rtxt">The sunset from our terrace on the first night moved us to tears. Absolute perfection. The best trip of our lives, without question.</p><div class="rauth">Camille & Marc</div><div class="rorig">Lyon, France · Opale</div><div class="rplat">TripAdvisor · Excellent</div></div>
-  </div>
-</section>
 
 <!-- INSTAGRAM + GALERIE -->
 <section class="insta-s">
@@ -579,11 +1035,11 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
     <!-- Droite : Diaporama clients -->
     <div class="insta-right">
       <div class="slide-wrap">
-        <div class="slide-img" style="background-image:url('images/scroll-esther1.png')"></div>
-        <div class="slide-img" style="background-image:url('images/scroll-eva.png')"></div>
-        <div class="slide-img" style="background-image:url('images/scroll-jade.png')"></div>
-        <div class="slide-img" style="background-image:url('images/scroll-esther2.png')"></div>
-        <div class="slide-img" style="background-image:url('images/scroll-marylene.png')"></div>
+        <div class="slide-img" style="background-image:url('images/scroll-esther1.webp')"></div>
+        <div class="slide-img" style="background-image:url('images/scroll-eva.webp')"></div>
+        <div class="slide-img" style="background-image:url('images/scroll-jade.webp')"></div>
+        <div class="slide-img" style="background-image:url('images/scroll-esther2.webp')"></div>
+        <div class="slide-img" style="background-image:url('images/scroll-marylene.webp')"></div>
         <div class="slide-ov"></div>
         <div class="slide-txt">
           <div class="eye" style="color:rgba(250,247,242,.6)">Nos clients</div>
@@ -595,15 +1051,184 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
   </div>
 </section>
 
+<!-- JOURNAL PREVIEW -->
+<section class="jnl-s r">
+  <div class="jnl-head">
+    <div>
+      <div class="eye">Journal</div>
+      <h2 class="sh">Stories from<br><em>Santa Teresa</em></h2>
+    </div>
+    <a href="journal.html" class="jnl-all">All articles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  <div class="jnl-grid">
+    <a href="journal/en/santa-teresa-surf-guide.html" class="jnl-card jnl-feat">
+      <div class="jnl-img" style="background-image:url('images/exp-surf.webp')"></div>
+      <div class="jnl-ov"></div>
+      <div class="jnl-body">
+        <span class="jnl-cat">Surf</span>
+        <div class="jnl-title">The Ultimate Surf Guide to Santa Teresa</div>
+        <p class="jnl-exc">Every break, every season, every tip — the complete guide to surfing Santa Teresa, from beginner to expert.</p>
+        <span class="jnl-read">8 min read →</span>
+      </div>
+    </a>
+    <a href="journal/en/santa-teresa-travel-guide.html" class="jnl-card">
+      <div class="jnl-img" style="background-image:url('images/drone-sunset-1.webp')"></div>
+      <div class="jnl-ov"></div>
+      <div class="jnl-body">
+        <span class="jnl-cat">Travel</span>
+        <div class="jnl-title">Santa Teresa: The Complete Travel Guide</div>
+        <p class="jnl-exc">How to get there, where to eat, what to do — everything you need to know.</p>
+        <span class="jnl-read">10 min read →</span>
+      </div>
+    </a>
+    <a href="journal/en/luxury-villas-santa-teresa.html" class="jnl-card">
+      <div class="jnl-img" style="background-image:url('images/retreat-vue-ocean.webp')"></div>
+      <div class="jnl-ov"></div>
+      <div class="jnl-body">
+        <span class="jnl-cat">Villas</span>
+        <div class="jnl-title">Luxury Villas in Santa Teresa: What to Expect</div>
+        <p class="jnl-exc">Private pools, jungle views, Pacific sunsets — what defines a truly exceptional villa stay.</p>
+        <span class="jnl-read">6 min read →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+
+<!-- MANIFESTE ───────────────────────────────────────────────── -->
+<section class="mani-s r">
+  <div class="mani-inner">
+    <div class="eye" style="justify-content:center;color:rgba(250,247,242,.4)">Our Philosophy</div>
+    <h2 class="mani-title">We built Les Roches<br>because we couldn't find it.</h2>
+    <p class="mani-p">We wanted six private pools above the jungle. Silence that feels earned. A Pacific horizon so wide it dissolves every deadline. Spaces that don't ask you to perform — only to rest, to breathe, to be.</p>
+    <p class="mani-p">We believe luxury is not a thread count or a minibar. It's waking up to the sound of howler monkeys, coffee in hand, with nothing to do and nowhere to be. It's knowing that your villa — your pool, your hammock, your kitchen — belongs entirely to you.</p>
+    <div class="mani-line">
+      <span class="mani-ornament">✦</span>
+      <span class="mani-orn-txt">Six villas · One wild escape · Santa Teresa, Costa Rica</span>
+      <span class="mani-ornament">✦</span>
+    </div>
+    <a href="about.html" class="mani-cta">Read our story →</a>
+  </div>
+</section>
+<style>
+.mani-s{background:var(--ink);padding:7rem 5vw;text-align:center}
+.mani-s .eye{color:rgba(250,247,242,.3)}
+.mani-inner{max-width:760px;margin:0 auto}
+.mani-title{font-family:'Gilda Display',serif;font-size:clamp(2rem,4vw,3.6rem);color:var(--w);line-height:1.08;margin:1.5rem 0 2rem;letter-spacing:-.01em}
+.mani-p{font-family:'Outfit',sans-serif;font-size:.74rem;font-weight:300;color:rgba(250,247,242,.5);line-height:1.9;max-width:640px;margin:0 auto .9rem}
+.mani-line{display:flex;align-items:center;justify-content:center;gap:1rem;margin:2.5rem 0 2rem;border-top:1px solid rgba(255,255,255,.07);padding-top:2.5rem}
+.mani-ornament{color:var(--ter);font-size:.7rem;opacity:.6}
+.mani-orn-txt{font-family:'Outfit',sans-serif;font-size:.42rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(250,247,242,.22)}
+.mani-cta{font-family:'Outfit',sans-serif;font-size:.54rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ter);text-decoration:none;border-bottom:1px solid rgba(184,115,74,.35);padding-bottom:.2rem;transition:color .2s,border-color .2s}
+.mani-cta:hover{color:rgba(184,115,74,.75);border-color:transparent}
+</style>
+
+<!-- EMAIL CAPTURE ────────────────────────────────────────────── -->
+<section class="email-cap-s">
+  <div class="email-cap-inner">
+    <div class="email-cap-left">
+      <div class="eye" style="color:rgba(250,247,242,.35)">Stay in the loop</div>
+      <h2 class="email-cap-title">Early access to availability.<br>Direct from the source.</h2>
+      <p class="email-cap-sub">No spam. Just occasional updates on openings, special rates, and what's happening at Les Roches.</p>
+    </div>
+    <form class="email-cap-form" id="email-cap-form" onsubmit="handleEmailCap(event)">
+      <label for="email-cap-input" class="sr-only">Your email address</label>
+      <input type="email" id="email-cap-input" class="email-cap-input" placeholder="your@email.com" required autocomplete="email">
+      <button type="submit" class="email-cap-btn">Get early access →</button>
+      <p class="email-cap-legal">By subscribing you agree to our <a href="privacy-policy.html">privacy policy</a>. Unsubscribe anytime.</p>
+      <p class="email-cap-success" id="email-cap-success" style="display:none">✓ You're in. We'll be in touch soon.</p>
+    </form>
+  </div>
+</section>
+<style>
+.email-cap-s{background:var(--ink2);padding:5rem 5vw;border-top:1px solid rgba(255,255,255,.05)}
+.email-cap-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.email-cap-title{font-family:'Gilda Display',serif;font-size:clamp(1.6rem,2.8vw,2.4rem);color:var(--w);line-height:1.1;margin:.8rem 0 .9rem}
+.email-cap-sub{font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:300;color:rgba(250,247,242,.38);line-height:1.8}
+.email-cap-form{display:flex;flex-direction:column;gap:.75rem}
+.email-cap-input{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:var(--w);font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:300;padding:.85rem 1.2rem;border-radius:2px;outline:none;transition:border-color .2s}
+.email-cap-input::placeholder{color:rgba(255,255,255,.25)}
+.email-cap-input:focus{border-color:var(--ter)}
+.email-cap-btn{background:var(--ter);color:var(--w);border:none;padding:.85rem 2rem;font-family:'Outfit',sans-serif;font-size:.52rem;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:background .22s;text-align:center}
+.email-cap-btn:hover{background:var(--ter2)}
+.email-cap-legal{font-family:'Outfit',sans-serif;font-size:.42rem;color:rgba(255,255,255,.22);line-height:1.6}
+.email-cap-legal a{color:rgba(255,255,255,.35);text-decoration:underline}
+.email-cap-success{font-family:'Outfit',sans-serif;font-size:.62rem;color:#4ade80;letter-spacing:.08em}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:900px){
+  .email-cap-inner{grid-template-columns:1fr;gap:2rem}
+}
+
+/* ── Mobile touch targets — minimum 44×44px (Apple HIG) ──────── */
+@media(max-width:900px){
+  /* "All experiences" link dans le header Experiences */
+  .exp-cta-top{
+    min-height:44px;
+    padding:.75rem .5rem;
+    align-items:center;
+  }
+  /* "View our villas" bouton sous le carousel */
+  .vmore{
+    min-height:44px;
+    padding:.85rem 2.4rem;
+  }
+  /* "Explore all villas" / "Claim your retreat" */
+  .vcta-btn{
+    min-height:44px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+  /* Champs Check-in / Check-out : toute la surface est tappable */
+  .fp-field{
+    min-height:56px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+}
+</style>
+<script>
+function handleEmailCap(e){
+  e.preventDefault();
+  var input=document.getElementById('email-cap-input');
+  var success=document.getElementById('email-cap-success');
+  var btn=e.target.querySelector('.email-cap-btn');
+  if(!input.value)return;
+  btn.textContent='Sending…';
+  btn.disabled=true;
+  // Store in Supabase or fallback to mailto
+  fetch('https://vrufclzcaswkdgrffdwm.supabase.co/rest/v1/email_subscribers',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZydWZjbHpjYXN3a2RncmZmZHdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIzMDIwMjUsImV4cCI6MjA1Nzg3ODAyNX0.fubkWMBWAbTiRHIADn0b7UrBVTRaWGv3OWJ9zRVP59g'},
+    body:JSON.stringify({email:input.value,source:'homepage',created_at:new Date().toISOString()})
+  }).catch(function(){}).finally(function(){
+    input.value='';
+    btn.style.display='none';
+    success.style.display='block';
+  });
+}
+</script>
+
 <!-- FOOTER -->
 <footer>
   <div class="ftop">
     <div><div class="flogo">Les Roches</div><p class="ftag">Six private villas in the heart of Santa Teresa.<br>Where the jungle meets the Pacific.</p></div>
     <div><div class="fct">Navigate</div><div class="flinks"><a href="villas.html" class="flink">Villas</a><a href="experiences.html" class="flink">Experiences</a><a href="about.html" class="flink">Our Story</a><a href="santa-teresa.html" class="flink">Santa Teresa</a><a href="contact.html" class="flink">Book Now</a></div></div>
-    <div><div class="fct">Contact</div><span class="flink"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="790e1c151a16141c39151c0a0b161a111c0a0b1c0a160b0d571a1614">[email&#160;protected]</a></span><span class="flink" style="margin-top:.5rem;display:block">+33 6 67 74 90 24</span><span class="flink" style="margin-top:.5rem;display:block">Calle Vista De Olas, Malpais<br>Santa Teresa, Costa Rica</span></div>
+    <div><div class="fct">Contact</div><span class="flink"><a href="cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="790e1c151a16141c39151c0a0b161a111c0a0b1c0a160b0d571a1614">[email&#160;protected]</a></span><span class="flink" style="margin-top:.5rem;display:block">+33 6 67 74 90 24</span><span class="flink" style="margin-top:.4rem;display:block"><a href="https://wa.me/33667749024?text=Hi%20Les%20Roches%20%F0%9F%8C%B4%20I%27d%20like%20to%20know%20more%20about%20availability." target="_blank" rel="noopener" class="fwa-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.987-1.417A9.944 9.944 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.952 7.952 0 01-4.354-1.297l-.313-.19-3.178.902.91-3.097-.203-.32A7.948 7.948 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg> WhatsApp</a></span><span class="flink" style="margin-top:.5rem;display:block">Calle Vista De Olas, Malpais<br>Santa Teresa, Costa Rica</span></div>
+    <div>
+      <div class="fct">We Are Here</div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Les+Roches+Retreat+Santa+Teresa+Costa+Rica&ll=9.618254,-85.141466" target="_blank" rel="noopener" class="fmap-link">
+        <div class="fmap-static">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          <span class="fmap-addr">Calle Vista De Olas, Malpais<br>Santa Teresa, Costa Rica</span>
+          <span class="fmap-cta">View on Google Maps →</span>
+        </div>
+      </a>
+    </div>
   </div>
   <div class="fbot">
-    <div class="fcopy">© 2025 Les Roches · All rights reserved</div>
+    <div class="fcopy" id="fcopy-secret">© 2025 Les Roches · All rights reserved</div>
     <div class="fsoc"><span class="fsocl">Instagram</span><span class="fsocl">TripAdvisor</span></div>
   </div>
 </footer>
@@ -632,6 +1257,7 @@ window.addEventListener('scroll',()=>{
   logo.classList.toggle('dark',s);
   nb.classList.toggle('dark',s);
   ls.classList.toggle('dark',s);
+  if(burger)burger.classList.toggle('dark',s);
   nls.forEach(n=>{if(n)n.classList.toggle('dark',s)});
 });
 const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')}),{threshold:.07});
@@ -646,6 +1272,7 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
 <style>
 /* ── Bulle contact — discrète et naturelle ── */
 #wa-bubble{position:fixed;bottom:1.6rem;right:1.6rem;z-index:2000;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+@media(max-width:900px){#wa-bubble{bottom:calc(72px + 1rem)}}
 
 /* Toggle = photo de Ian en rond, très sobre */
 #wa-toggle{width:52px;height:52px;border-radius:50%;border:none;padding:0;cursor:pointer;background:none;position:relative;box-shadow:0 2px 12px rgba(0,0,0,.22);transition:transform .2s,box-shadow .2s;overflow:visible}
@@ -685,7 +1312,7 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
   <!-- Carte popup -->
   <div id="wa-card">
     <div class="wa-head">
-      <img src="images/ian-whatsapp.jpg" alt="Ian" class="wa-avatar"
+      <img loading="lazy" src="images/ian-whatsapp.webp" alt="Ian" class="wa-avatar"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="wa-avatar" style="display:none;background:var(--ter);align-items:center;justify-content:center;font-family:'Gilda Display',serif;font-size:1.1rem;color:#fff;flex-shrink:0">I</div>
       <div class="wa-head-info">
@@ -703,7 +1330,7 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
       </div>
     </div>
     <div class="wa-cta-wrap">
-      <a href="https://wa.me/33667749024?text=Bonjour%20Ian%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20Les%20Roches%20Retreat%20%F0%9F%8C%8A"
+      <a href="https://wa.me/33667749024?text=Hey%20Ian%20%F0%9F%91%8B%20I%20just%20came%20across%20Les%20Roches%20and%20I%27m%20really%20interested%20%E2%80%94%20could%20you%20tell%20me%20more%20about%20availability%3F%20%F0%9F%8C%B4"
          target="_blank" rel="noopener" class="wa-cta">
         <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Envoyer un message
@@ -712,7 +1339,7 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
   </div>
   <!-- Toggle = photo de Ian en rond -->
   <button id="wa-toggle" aria-label="Message Ian">
-    <img id="wa-toggle-photo" src="images/ian-whatsapp.jpg" alt="Ian"
+    <img loading="lazy" id="wa-toggle-photo" src="images/ian-whatsapp.webp" alt="Ian"
          onerror="this.style.background='var(--ink2)';this.style.objectFit='none'">
     <div id="wa-dot">
       <svg viewBox="0 0 24 24" fill="white" width="8" height="8"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -739,62 +1366,171 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
 })();
 </script>
 <!-- END WHATSAPP -->
+<script>
+// Villas — auto-scroll cinématique au passage dans le viewport
+(function(){
+  const sc=document.getElementById('vscroll');
+  const section=document.querySelector('.villas-s');
+  if(!sc||!section) return;
 
-<!-- Flatpickr date range picker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+  const DURATION=5000;
+  let raf=null,startTime=null,played=false,currentShift=0;
+
+  function getMax(){
+    const cards=sc.querySelectorAll('.vc');
+    const cardW=cards[0]?cards[0].offsetWidth+1:261;
+    const padL=window.innerWidth*0.05;
+    return Math.max(0,cards.length*cardW+padL-sc.parentElement.offsetWidth);
+  }
+  function ease(t){return t<.5?2*t*t:-1+(4-2*t)*t;}
+
+  function animate(ts){
+    if(!startTime)startTime=ts;
+    const t=Math.min(1,(ts-startTime)/DURATION);
+    currentShift=ease(t)*getMax();
+    sc.style.transform=`translateX(-${currentShift}px)`;
+    if(t<1)raf=requestAnimationFrame(animate);
+    else raf=null;
+  }
+
+  const observer=new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting&&!played){
+      played=true;startTime=null;
+      raf=requestAnimationFrame(animate);
+    }
+  },{threshold:0.35});
+  observer.observe(section);
+
+  document.getElementById('vnext').addEventListener('click',()=>{
+    if(raf){cancelAnimationFrame(raf);raf=null;}
+    currentShift=Math.min(currentShift+261,getMax());
+    sc.style.transform=`translateX(-${currentShift}px)`;
+  });
+  document.getElementById('vprev').addEventListener('click',()=>{
+    if(raf){cancelAnimationFrame(raf);raf=null;}
+    currentShift=Math.max(currentShift-261,0);
+    sc.style.transform=`translateX(-${currentShift}px)`;
+  });
+})();
+</script>
+
+<script src="js/config.js"></script>
+<!-- LRPicker — date range picker (no CDN) -->
+<script src="js/datepicker.js"></script>
 <script>
 (function(){
-  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  function fmt(d){ return d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear(); }
+  const MONTHS_DISP = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function fmtDisp(d){ return d.getDate() + ' ' + MONTHS_DISP[d.getMonth()] + ' ' + d.getFullYear(); }
 
   const checkinDisp  = document.getElementById('bk-checkin-disp');
   const checkoutDisp = document.getElementById('bk-checkout-disp');
+  // Hidden range input (kept for compatibility)
+  const rangeInput   = document.getElementById('bk-range-input');
 
-  const fp = flatpickr('#bk-range-input', {
-    mode: 'range',
-    minDate: 'today',
-    showMonths: 2,
-    dateFormat: 'Y-m-d',
-    disableMobile: true,
-    onChange: function(dates) {
-      if (dates[0]) {
-        checkinDisp.textContent  = fmt(dates[0]);
+  // Deux inputs texte pour stocker les dates sélectionnées (valeur YYYY-MM-DD)
+  const fakeCheckin  = document.createElement('input');
+  const fakeCheckout = document.createElement('input');
+  fakeCheckin.type  = fakeCheckout.type  = 'text';
+  fakeCheckin.style.cssText  = 'position:absolute;opacity:0;pointer-events:none;width:0;height:0';
+  fakeCheckout.style.cssText = 'position:absolute;opacity:0;pointer-events:none;width:0;height:0';
+  document.body.appendChild(fakeCheckin);
+  document.body.appendChild(fakeCheckout);
+
+  // Éléments de référence pour le picker
+  const bkCheckinF  = document.getElementById('bk-checkin-f');
+  const bkCheckoutF = document.getElementById('bk-checkout-f');
+  const bkWrap      = document.querySelector('.fp-fields') || (bkCheckinF && bkCheckinF.parentElement);
+
+  const fp = new LRPicker(fakeCheckin, fakeCheckout, {
+    // anchor : élément visible sur lequel positionner le calendrier
+    anchor: bkWrap || bkCheckinF,
+    // triggers : clics sur ces divs n'entraînent pas la fermeture du picker
+    triggers: [bkCheckinF, bkCheckoutF],
+    onChange: function(selectedDates) {
+      if (selectedDates[0]) {
+        checkinDisp.textContent = fmtDisp(selectedDates[0]);
         checkinDisp.classList.remove('empty');
       }
-      if (dates[1]) {
-        checkoutDisp.textContent = fmt(dates[1]);
+      if (selectedDates[1]) {
+        checkoutDisp.textContent = fmtDisp(selectedDates[1]);
         checkoutDisp.classList.remove('empty');
-      } else {
-        checkoutDisp.textContent = 'Departure date';
-        checkoutDisp.classList.add('empty');
       }
+    },
+    onClear: function() {
+      checkinDisp.textContent  = 'Arrival date';
+      checkinDisp.classList.add('empty');
+      checkoutDisp.textContent = 'Departure date';
+      checkoutDisp.classList.add('empty');
     }
   });
 
-  // Ouvrir le picker au clic sur les deux blocs Check In / Check Out
-  document.getElementById('bk-checkin-f').addEventListener('click',  () => fp.open());
-  document.getElementById('bk-checkout-f').addEventListener('click', () => fp.open());
+  // Load blocked dates from Supabase and disable them when ALL 6 villas are booked
+  (async function loadBlockedDates() {
+    if (typeof SUPABASE_URL === 'undefined') return;
+    try {
+      const today = new Date().toISOString().split('T')[0];
+      const url   = SUPABASE_URL + '/rest/v1/blocked_dates?select=villa_id,date&date=gte.' + today + '&order=date';
+      const resp  = await fetch(url, {
+        headers: { 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON }
+      });
+      if (!resp.ok) { console.warn('blocked_dates HTTP', resp.status); return; }
+      const rows = await resp.json();
 
-  // Bouton Check Availability → redirect avec paramètres
+      // Count how many villas are booked per date
+      const ALL_VILLAS = ['opale','jade','onyx','topaze','agate','ambre'];
+      const countByDate = {};
+      rows.forEach(function(r) {
+        countByDate[r.date] = countByDate[r.date] || new Set();
+        countByDate[r.date].add(r.villa_id);
+      });
+      // A date is "fully booked" only when ALL 6 villas are blocked on that date
+      const fullyBooked = Object.keys(countByDate).filter(function(d) {
+        return ALL_VILLAS.every(function(v) { return countByDate[d].has(v); });
+      });
+      if (fullyBooked.length > 0) {
+        fp.set('disable', fullyBooked);
+        console.log('✅ Les Roches — ' + fullyBooked.length + ' date(s) fully booked (all villas)');
+      } else {
+        }
+    } catch(e) {
+      console.warn('loadBlockedDates:', e.message);
+    }
+  })();
+
+  // Ouvrir le picker au clic sur les deux blocs Check In / Check Out
+  document.getElementById('bk-checkin-f').addEventListener('click',  function() { fp.open(); });
+  document.getElementById('bk-checkout-f').addEventListener('click', function() { fp.open(); });
+
+  // Bouton Reserve → redirect avec paramètres
   document.getElementById('bk-submit').addEventListener('click', function(){
-    const dates  = fp.selectedDates;
-    const villa  = document.getElementById('bk-villa').value;
+    const ci = fakeCheckin.value;
+    const co = fakeCheckout.value;
     const guests = document.getElementById('bk-guests').value;
+    if (!ci || !co) { alert('Please select your check-in and check-out dates.'); return; }
     const params = new URLSearchParams();
-    if (dates[0]) params.set('checkin',  fp.formatDate(dates[0], 'Y-m-d'));
-    if (dates[1]) params.set('checkout', fp.formatDate(dates[1], 'Y-m-d'));
-    if (villa)    params.set('villa', villa);
-    params.set('guests', guests);
-    window.location.href = 'reservation.html?' + params.toString();
+    params.set('checkin',  ci);
+    params.set('checkout', co);
+    // Extraire le nombre depuis "2 guests" → "2"
+    params.set('guests', parseInt(guests) || 2);
+    window.location.href = 'villas.html?' + params.toString();
   });
 })();
 </script>
 
 <script>
-/* ── INTRO CURTAIN ANIMATION — 3.5s ────────────────────────── */
+/* ── INTRO CURTAIN ANIMATION — une seule fois par session ────── */
 (function(){
   const intro = document.getElementById('intro');
   if (!intro) return;
+
+  // Si l'animation a déjà été jouée dans cette session → on saute tout
+  if (sessionStorage.getItem('intro_played')) {
+    intro.classList.add('gone');
+    return;
+  }
+
+  // Marquer comme joué dès maintenant
+  sessionStorage.setItem('intro_played', '1');
 
   // Bloquer le scroll pendant l'intro
   document.body.style.overflow = 'hidden';
@@ -833,12 +1569,95 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
 </script>
 
 <script>
-document.addEventListener('keydown',function(e){
-  if((e.ctrlKey||e.metaKey)&&e.shiftKey&&e.key.toLowerCase()==='a'){
-    e.preventDefault();
-    window.location.href='/admin/index.html';
+// Accès admin : double-clic sur le copyright (aucun lien visible dans le HTML)
+(function(){
+  var el = document.getElementById('fcopy-secret');
+  if (!el) return;
+  el.addEventListener('dblclick', function() {
+    window.location.href = 'admin/index.html';
+  });
+  el.style.cursor = 'default';
+})();
+</script>
+<script src="lang.js" defer></script>
+<script src="cookie-consent.js" defer></script>
+<script src="js/lazy-bg.js" defer></script>
+<script src="js/swipe.js" defer></script>
+<script>
+// ── Scroll reveal : barre sticky mobile ──────────────────────
+document.addEventListener('DOMContentLoaded', function(){
+  var THRESHOLD = 80;
+  var bar = document.querySelector('.mob-book-bar');
+  var ticking = false;
+
+  function update(){
+    var show = window.scrollY > THRESHOLD;
+    if(bar) bar.classList.toggle('scroll-reveal', show);
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function(){
+    if(!ticking){ requestAnimationFrame(update); ticking = true; }
+  }, {passive:true});
+
+  // ── Bulle WhatsApp — apparaît après 15 secondes ───────────
+  var wa = document.getElementById('wa-bubble');
+  if(wa){
+    setTimeout(function(){
+      wa.classList.add('scroll-reveal');
+    }, 15000);
   }
 });
+</script>
+
+<!-- ── MOBILE STICKY BOOK BAR — visible only < 900px ─────── -->
+<div class="mob-book-bar" role="complementary" aria-label="Booking shortcut">
+  <div class="mob-book-left">
+    <span class="mob-book-label">Private villas</span>
+    <span class="mob-book-from">From <strong>$350</strong><span class="mob-book-night"> / night</span></span>
+  </div>
+  <a href="villas.html?book=1" class="mob-book-btn" aria-label="Book now at Les Roches">
+    Book now <span class="mob-book-arrow">→</span>
+  </a>
+</div>
+
+<script>
+/* ── Experiences carousel dots (mobile only) ── */
+(function(){
+  if(window.innerWidth > 900) return;
+  var layout = document.querySelector('.exp-layout');
+  if(!layout) return;
+  var cards = layout.querySelectorAll('.ec');
+  if(!cards.length) return;
+
+  // Insert dots after exp-layout
+  var dotsEl = document.createElement('div');
+  dotsEl.className = 'exp-dots';
+  cards.forEach(function(_,i){
+    var d = document.createElement('div');
+    d.className = 'exp-dot' + (i===0?' active':'');
+    d.addEventListener('click', function(){
+      var w = cards[0].offsetWidth + 10; // card width + gap
+      layout.scrollTo({left: i*w, behavior:'smooth'});
+    });
+    dotsEl.appendChild(d);
+  });
+  layout.parentElement.insertBefore(dotsEl, layout.nextSibling);
+
+  // Sync dots on scroll
+  var dots = dotsEl.querySelectorAll('.exp-dot');
+  var ticking = false;
+  layout.addEventListener('scroll', function(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var w = cards[0].offsetWidth + 10;
+      var idx = Math.round(layout.scrollLeft / w);
+      dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+      ticking = false;
+    });
+  });
+})();
 </script>
 </body>
 </html>

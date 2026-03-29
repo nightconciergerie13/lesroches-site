@@ -3,244 +3,530 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Discover Les Roches Collection — six private villas in Santa Teresa, Costa Rica. Minimalist design, maximum comfort, pure luxury.">
-  <title>Villas — Les Roches Retreat</title>
+  <meta name="description" content="Six private luxury villas with pool in Santa Teresa, Costa Rica. Ocean views, jungle setting, direct booking from $350/night.">
+  <title>Luxury Villas Santa Teresa Costa Rica — Les Roches Retreat</title>
   <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="js/datepicker.css">
+  <meta name="robots" content="index, follow">
+  <link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villas.html">
+<link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villas.html">
+<link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villas.html">
+<link rel="alternate" hreflang="x-default" href="https://lesrochesretreat.com/villas.html">
+<link rel="canonical" href="https://lesrochesretreat.com/villas.html">
+  <meta property="og:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.webp">
+  <script src="js/track.js" defer></script>
+
   <style>
-    .hero {
-      height: 65vh;
-      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/drone-complex-pool-1.jpg') center/cover no-repeat;
+    /* ════════════════════════════════════════════
+       PAGE INTRO
+    ════════════════════════════════════════════ */
+    .pg-intro {
+      padding: 4rem 5vw 3rem;
+      background: var(--ink);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      gap: 3rem;
+    }
+    .pg-intro-left {}
+    .pg-eyebrow {
+      font-family: 'Outfit', sans-serif;
+      font-size: .38rem;
+      letter-spacing: .5em;
+      text-transform: uppercase;
+      color: var(--ter);
+      margin-bottom: 1.4rem;
+      opacity: .85;
+    }
+    .pg-title {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(3.5rem, 6vw, 6.5rem);
+      font-weight: 400;
+      color: var(--w);
+      line-height: .88;
+    }
+    .pg-intro-right {
+      padding-bottom: .4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1.8rem;
+    }
+    .pg-desc {
+      font-family: 'Outfit', sans-serif;
+      font-size: .72rem;
+      font-weight: 300;
+      color: rgba(250,247,242,.45);
+      line-height: 1.85;
+      max-width: 32ch;
+      text-align: right;
+    }
+    .pg-intro-stats {
+      display: flex;
+      gap: 2.5rem;
+    }
+    .pg-stat {
+      text-align: right;
+    }
+    .pg-stat-num {
+      font-family: 'Gilda Display', serif;
+      font-size: 1.4rem;
+      color: var(--w);
+      line-height: 1;
+      display: block;
+    }
+    .pg-stat-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: .33rem;
+      letter-spacing: .38em;
+      text-transform: uppercase;
+      color: rgba(250,247,242,.35);
+      display: block;
+      margin-top: .3rem;
+    }
+
+    /* ════════════════════════════════════════════
+       DATE SEARCH — intégré dans le floor-header
+    ════════════════════════════════════════════ */
+    .fh-search {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr auto;
+      background: var(--w);
+      border: 1px solid var(--sand);
+      border-radius: 4px;
+      max-width: 720px;
+      margin: 0 5vw;
+      overflow: hidden;
+    }
+    .ds-field {
+      padding: .7rem 1.2rem;
+      border-right: 1px solid var(--c2);
+      display: flex;
+      flex-direction: column;
+      gap: .1rem;
+      transition: background .18s;
+      cursor: pointer;
+    }
+    .ds-field:hover { background: var(--c); }
+    .ds-field label {
+      font-family: 'Outfit', sans-serif;
+      font-size: .44rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--mid);
+      cursor: pointer;
+    }
+    .ds-field input,
+    .ds-field select {
+      font-family: 'Gilda Display', serif;
+      font-size: .75rem;
+      color: var(--ink);
+      background: transparent;
+      border: none;
+      outline: none;
+      width: 100%;
+    }
+    .ds-field input::placeholder {
+      font-family: 'Outfit', sans-serif;
+      font-size: .6rem;
+      font-weight: 300;
+      color: var(--mid);
+    }
+    .ds-field select option { background: var(--w); color: var(--ink); }
+    .ds-btn {
+      background: var(--ink);
+      border: none;
+      padding: 0 1.6rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: .5rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--w);
+      cursor: pointer;
+      transition: background .2s;
+      white-space: nowrap;
+    }
+    .ds-btn:hover { background: var(--ter); }
+    .ds-feedback {
+      font-family: 'Gilda Display', serif;
+      font-size: 1.1rem;
+      color: var(--ter);
+      text-align: right;
+      line-height: 1.3;
+      display: none;
+    }
+    .ds-feedback.show { display: block; }
+
+    /* ════════════════════════════════════════════
+       FLOOR SECTION
+    ════════════════════════════════════════════ */
+    .floor {
+      background: var(--w);
+    }
+
+    .floor-header {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid rgba(0,0,0,.07);
+      padding-bottom: 1.6rem;
+    }
+    .fh-body {
+      padding: 0.55rem 5vw 1.2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 2rem;
+    }
+
+    .floor-tag-row {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: .55rem;
+    }
+    .floor-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: .46rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--w);
+      background: var(--ter);
+      padding: .28rem .9rem .22rem;
+      display: inline-block;
+    }
+    .floor-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: .5rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .floor-name {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(2rem, 3.8vw, 4rem);
+      font-weight: 400;
+      color: var(--ink);
+      line-height: .90;
+    }
+
+    .floor-meta {
+      text-align: right;
+      padding-bottom: .2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: .8rem;
+    }
+    .floor-villas-list {
+      font-family: 'Outfit', sans-serif;
+      font-size: .52rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--mid);
+      line-height: 2.1;
+      text-align: right;
+    }
+    .floor-count {
+      display: none;
+    }
+
+
+    /* ════════════════════════════════════════════
+       VILLA GRID — 3 columns
+    ════════════════════════════════════════════ */
+    .vg {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(0,0,0,.07);
+    }
+
+    .vc {
+      border-right: 1px solid rgba(0,0,0,.07);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      transition: background .3s;
+      position: relative;
+    }
+    .vc:last-child { border-right: none; }
+    .vc:hover { background: rgba(0,0,0,.025); }
+
+    /* Photo */
+    .vc-photo {
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      position: relative;
+    }
+    .vc-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .8s cubic-bezier(.25,.46,.45,.94);
+    }
+    .vc:hover .vc-photo img { transform: scale(1.05); }
+
+    /* Hover overlay on photo */
+    .vc-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(18,14,10,.35);
+      opacity: 0;
+      transition: opacity .35s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .vc:hover .vc-overlay { opacity: 1; }
+    .vc-overlay-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: .46rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--w);
+      border: 1px solid rgba(255,255,255,.5);
+      padding: .65rem 1.6rem;
+      transition: border-color .2s, background .2s;
+    }
+    .vc:hover .vc-overlay-text { border-color: var(--w); background: rgba(255,255,255,.08); }
+
+    /* Info below photo */
+    .vc-info {
+      padding: 1.6rem 1.8rem 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-top: 1px solid rgba(0,0,0,.07);
+    }
+
+    .vc-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: .5rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: .7rem;
+    }
+
+    .vc-name {
+      font-family: 'Gilda Display', serif;
+      font-size: 1.6rem;
+      color: var(--ink);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: .5rem;
+      transition: color .22s;
+    }
+    .vc:hover .vc-name { color: var(--ter); }
+
+    .vc-tagline {
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+      font-size: .78rem;
+      color: var(--mid);
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    .vc-specs {
+      font-family: 'Outfit', sans-serif;
+      font-size: .48rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--mid);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      color: var(--w);
-      text-align: center;
+      gap: .45rem;
+      margin-bottom: 1.4rem;
     }
-    .hero h1 {
-      font-family: 'Gilda Display', serif;
-      font-size: clamp(2rem, 5vw, 4rem);
-      font-weight: 400;
-      margin-bottom: 0.5rem;
-    }
-    .hero p {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1rem;
-      font-weight: 300;
-    }
-
-    .villas-container {
-      padding: 0;
-      max-width: 100%;
-    }
-
-    .villa-card {
-      padding: 3rem 1.5rem;
-      border-bottom: 1px solid var(--c2);
-    }
-    @media (min-width: 768px) {
-      .villa-card {
-        padding: 4rem 2rem;
-        display: grid;
-        gap: 3rem;
-        align-items: center;
-      }
-      .villa-card.left {
-        grid-template-columns: 1fr 1fr;
-      }
-      .villa-card.right {
-        grid-template-columns: 1fr 1fr;
-      }
-      .villa-card.right {
-        direction: rtl;
-      }
-      .villa-card.right > * {
-        direction: ltr;
-      }
-    }
-
-    .villa-image {
-      width: 100%;
-      height: 250px;
-      background-size: cover;
-      background-position: center;
-      border-radius: 0.5rem;
-      margin-bottom: 2rem;
-    }
-    @media (min-width: 768px) {
-      .villa-image {
-        height: 350px;
-        margin-bottom: 0;
-      }
-    }
-
-    .villa-content {
+    .vc-spec-row {
       display: flex;
-      flex-direction: column;
+      gap: 1.2rem;
+      justify-content: center;
+    }
+    .vc-spec-item {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      color: var(--ink2);
+    }
+    .vc-spec-item svg {
+      width: 13px;
+      height: 13px;
+      opacity: .5;
+      flex-shrink: 0;
     }
 
-    .villa-number {
+    .vc-price-block {
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(0,0,0,.07);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: .5rem;
+    }
+    .vc-price-left {}
+    .vc-from {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.75rem;
+      font-size: .5rem;
+      letter-spacing: .18em;
       text-transform: uppercase;
-      color: var(--ter);
-      letter-spacing: 1px;
-      margin-bottom: 0.5rem;
-      font-weight: 400;
-    }
-
-    .villa-name {
-      font-family: 'Gilda Display', serif;
-      font-size: 2.2rem;
-      color: var(--ink);
-      font-weight: 400;
-      margin-bottom: 0.5rem;
-      line-height: 1.1;
-    }
-
-    .villa-tagline {
-      font-family: 'Libre Baskerville', serif;
-      font-style: italic;
-      font-size: 1.1rem;
-      color: var(--ter);
-      margin-bottom: 1rem;
-      font-weight: 400;
-    }
-
-    .villa-description {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
       color: var(--mid);
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-    }
-
-    .villa-stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      font-family: 'Outfit', sans-serif;
-    }
-
-    .villa-stat {
-      background: var(--c);
-      padding: 0.75rem;
-      border-radius: 0.25rem;
-      text-align: center;
-    }
-
-    .stat-value {
-      font-size: 1.2rem;
-      color: var(--ink);
-      font-weight: 400;
       display: block;
+      margin-bottom: .15rem;
     }
-
-    .stat-label {
-      font-size: 0.75rem;
+    .vc-price {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+      color: var(--ink);
+      line-height: 1;
+    }
+    .vc-night {
+      font-family: 'Outfit', sans-serif;
+      font-size: .54rem;
+      font-weight: 300;
       color: var(--mid);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-top: 0.25rem;
+      margin-left: .2rem;
     }
-
-    .villa-price {
+    .vc-total {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.05rem;
-      color: var(--ter);
-      margin-bottom: 1.5rem;
+      font-size: .82rem;
       font-weight: 400;
-    }
-
-    .villa-link {
-      display: inline-block;
       color: var(--ter);
-      text-decoration: none;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
-      border-bottom: 2px solid var(--ter);
-      width: fit-content;
-      transition: all 0.3s;
-    }
-    .villa-link:hover {
-      padding-bottom: 2px;
+      min-height: 1rem;
+      text-align: right;
+      line-height: 1.4;
+      letter-spacing: .04em;
     }
 
-    .cta-banner {
+    /* Unavailable */
+    .vc.unavail { opacity: .4; }
+    .vc.unavail .vc-photo img { filter: grayscale(80%); }
+
+    /* ════════════════════════════════════════════
+       DIVIDER between floors
+    ════════════════════════════════════════════ */
+    .floor-divider {
+      height: 1px;
+      background: var(--c2);
+      margin: 0 5vw;
+    }
+
+    /* ════════════════════════════════════════════
+       BOTTOM
+    ════════════════════════════════════════════ */
+    .pg-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid rgba(0,0,0,.08);
+      background: var(--w);
+    }
+    .pg-bottom-left {
+      padding: 3.5rem 5vw;
+      border-right: 1px solid rgba(0,0,0,.08);
+    }
+    .pg-bottom-title {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(1.2rem, 2vw, 1.7rem);
+      color: var(--ink);
+      margin-bottom: .5rem;
+      line-height: 1.2;
+    }
+    .pg-bottom-sub {
+      font-family: 'Outfit', sans-serif;
+      font-size: .62rem;
+      font-weight: 300;
+      color: var(--mid);
+      margin-bottom: 1.6rem;
+      line-height: 1.7;
+    }
+    .pg-bottom-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: .44rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      padding: .8rem 1.8rem;
       background: var(--ink);
       color: var(--w);
-      padding: 3rem 1.5rem;
-      text-align: center;
+      text-decoration: none;
+      border-radius: 1px;
+      transition: background .2s;
     }
-    @media (min-width: 768px) {
-      .cta-banner {
-        padding: 4rem 2rem;
-      }
+    .pg-bottom-btn:hover { background: var(--ter); }
+    .pg-bottom-right {
+      padding: 3.5rem 5vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-
-    .cta-title {
+    .pg-email-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: .38rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--ter);
+      margin-bottom: .6rem;
+    }
+    .pg-email-title {
       font-family: 'Gilda Display', serif;
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      margin-bottom: 1.5rem;
+      font-size: clamp(1rem, 1.6vw, 1.4rem);
+      color: var(--ink);
+      margin-bottom: 1.4rem;
       line-height: 1.3;
     }
-
-    .cta-banner-btn {
-      display: inline-block;
+    .pg-email-form {
+      display: flex;
+      gap: .5rem;
+    }
+    .pg-email-input {
+      flex: 1;
+      padding: .75rem 1rem;
+      background: var(--c);
+      border: 1px solid var(--c2);
+      border-radius: 2px;
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-size: .72rem;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .pg-email-input:focus { border-color: var(--sand); }
+    .pg-email-input::placeholder { color: var(--mid); }
+    .pg-email-btn {
+      padding: .75rem 1.4rem;
       background: var(--ter);
       color: var(--w);
-      padding: 0.75rem 2rem;
-      text-decoration: none;
+      border: none;
+      border-radius: 2px;
       font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
-      border: 2px solid var(--ter);
-      border-radius: 0.25rem;
-      transition: all 0.3s;
+      font-size: .4rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
       cursor: pointer;
+      transition: background .2s;
+      white-space: nowrap;
     }
-    .cta-banner-btn:hover {
-      background: transparent;
+    .pg-email-btn:hover { background: var(--ter2); }
+    #email-msg {
+      margin-top: .5rem;
+      font-size: .55rem;
+      color: var(--ter);
+      min-height: .8rem;
     }
 
-    /* ── DATE SEARCH BANNER ── */
-    .date-search{background:var(--ink);padding:0;overflow:hidden;position:sticky;top:68px;z-index:100;border-bottom:1px solid rgba(255,255,255,.06)}
-    .ds-toggle{display:flex;align-items:center;justify-content:space-between;padding:.9rem 2rem;cursor:pointer;transition:background .2s}
-    .ds-toggle:hover{background:rgba(255,255,255,.04)}
-    .ds-toggle-left{display:flex;align-items:center;gap:.8rem}
-    .ds-toggle-icon{width:32px;height:32px;background:var(--ter);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .ds-toggle-icon svg{width:16px;height:16px;fill:#fff}
-    .ds-toggle-title{font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.7)}
-    .ds-toggle-sub{font-size:.52rem;color:rgba(255,255,255,.3);letter-spacing:.06em}
-    .ds-arrow{font-size:.8rem;color:rgba(255,255,255,.3);transition:transform .3s}
-    .ds-arrow.open{transform:rotate(180deg)}
-    .ds-panel{max-height:0;overflow:hidden;transition:max-height .4s ease}
-    .ds-panel.open{max-height:200px}
-    .ds-fields{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:1px;background:rgba(255,255,255,.06);border-top:1px solid rgba(255,255,255,.06)}
-    .ds-field{background:var(--ink2);padding:.9rem 1.4rem;display:flex;flex-direction:column;gap:.3rem;transition:background .2s}
-    .ds-field:hover{background:#332d28}
-    .ds-field label{font-size:.44rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ter)}
-    .ds-field input,.ds-field select{font-family:'Gilda Display',serif;font-size:.9rem;color:var(--w);background:transparent;border:none;outline:none;width:100%;color-scheme:dark}
-    .ds-field input::placeholder{font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:300;color:rgba(255,255,255,.2)}
-    .ds-field select option{background:var(--ink2)}
-    .ds-search-btn{background:var(--ter);border:none;padding:.9rem 2rem;font-family:'Outfit',sans-serif;font-size:.52rem;letter-spacing:.24em;text-transform:uppercase;color:var(--w);transition:background .22s;cursor:pointer;white-space:nowrap}
-    .ds-search-btn:hover{background:var(--ter2)}
-    .ds-results-bar{background:rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.06);padding:.55rem 2rem;font-size:.52rem;color:rgba(255,255,255,.35);letter-spacing:.1em;display:none}
-    .ds-results-bar.show{display:block}
-
-    /* ── VILLA CARD PRICE UPDATE ── */
-    .villa-price{font-family:'Gilda Display',serif;font-size:1.4rem;color:var(--ter);margin:1rem 0 .4rem}
-    .price-unit{font-family:'Outfit',sans-serif;font-size:.6rem;font-weight:300;color:var(--mid)}
-    .villa-total{font-size:.62rem;color:var(--mid);margin-bottom:1.2rem;min-height:1.2em}
-    .villa-actions{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap}
-    .villa-link{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);border-bottom:1px solid var(--c2);padding-bottom:.15rem;transition:color .2s,border-color .2s}
-    .villa-link:hover{color:var(--ink);border-color:var(--ink)}
-    .villa-reserve-btn{display:inline-flex;align-items:center;gap:.5rem;font-family:'Outfit',sans-serif;font-size:.54rem;letter-spacing:.22em;text-transform:uppercase;padding:.7rem 1.6rem;background:var(--ink);color:var(--w);border:none;border-radius:1px;cursor:pointer;transition:background .22s}
-    .villa-reserve-btn:hover{background:var(--ter)}
-
-    /* ── BOOKING MODAL ── */
-    .modal-overlay{position:fixed;inset:0;background:rgba(18,14,10,.85);z-index:900;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(6px)}
+    /* ════════════════════════════════════════════
+       MODAL
+    ════════════════════════════════════════════ */
+    .modal-overlay{position:fixed;inset:0;background:rgba(18,14,10,.82);z-index:900;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(6px)}
     .modal-overlay.open{opacity:1;pointer-events:all}
     .modal{background:var(--w);border-radius:4px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;position:relative}
     .modal-header{background:var(--ink);padding:2rem 2.2rem 1.5rem;position:relative}
@@ -262,7 +548,7 @@
     .summary-row{display:flex;justify-content:space-between;align-items:baseline;padding:.4rem 0;font-size:.68rem;color:var(--mid);border-bottom:1px solid var(--c2)}
     .summary-row:last-child{border-bottom:none;margin-top:.4rem;padding-top:.8rem}
     .summary-row.total{font-family:'Gilda Display',serif;font-size:1rem;color:var(--ink)}
-    .summary-row.deposit{color:var(--ter);font-weight:400}
+    .summary-row.deposit{color:var(--ter)}
     .payment-only-note{display:flex;align-items:flex-start;gap:.8rem;background:#fff8f5;border:1px solid rgba(184,115,74,.2);border-radius:3px;padding:1rem 1.2rem;margin-bottom:1.5rem}
     .payment-only-note svg{flex-shrink:0;margin-top:.1rem}
     .payment-only-note-text{font-size:.64rem;color:var(--mid);line-height:1.75}
@@ -272,8 +558,6 @@
     .modal-submit:disabled{background:var(--mid);cursor:not-allowed}
     .modal-legal{font-size:.54rem;color:var(--mid);line-height:1.7;margin-top:1rem;text-align:center}
     .modal-legal a{color:var(--ter)}
-
-    /* ── CONFIRMATION SCREEN ── */
     .modal-confirm{display:none;padding:2.5rem 2.2rem;text-align:center}
     .modal-confirm.show{display:block}
     .confirm-icon{width:60px;height:60px;background:rgba(184,115,74,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.6rem}
@@ -283,34 +567,99 @@
     .confirm-step{display:flex;gap:.9rem;align-items:flex-start;padding:.5rem 0;border-bottom:1px solid var(--c2);font-size:.66rem;color:var(--mid);line-height:1.65}
     .confirm-step:last-child{border-bottom:none}
     .confirm-step-n{font-family:'Gilda Display',serif;font-size:1rem;color:var(--ter);flex-shrink:0;line-height:1.3}
-    .confirm-wa{display:inline-flex;align-items:center;gap:.6rem;background:#25D366;color:#fff;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;padding:.8rem 1.8rem;border-radius:1px;margin-top:.5rem;transition:background .2s}
+    .confirm-wa{display:inline-flex;align-items:center;gap:.6rem;background:#25D366;color:#fff;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;padding:.8rem 1.8rem;border-radius:1px;margin-top:.5rem;transition:background .2s;text-decoration:none}
     .confirm-wa:hover{background:#1da851}
 
-    @media(max-width:640px){
-      .ds-fields{grid-template-columns:1fr 1fr}
-      .ds-search-btn{grid-column:1/-1}
-      .form-row{grid-template-columns:1fr}
-      .modal{max-height:95vh}
+    /* ════════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .ds-inner { grid-template-columns: 1fr 1fr 1fr auto; }
     }
-  </style>
-  <meta name="description" content="Découvrez Les Roches Collection — six villas privées de luxe avec piscines à débordement à Santa Teresa, Costa Rica. Réservation directe, meilleur tarif garanti.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://lesrochesretreat.com/villas.html">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="The Collection — Six Private Villas · Les Roches Retreat">
-  <meta property="og:description" content="Six villas privées avec piscines à débordement à Santa Teresa, Costa Rica. Tarifs en temps réel, réservation directe.">
-  <meta property="og:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.jpg">
-  <meta property="og:url" content="https://lesrochesretreat.com/villas.html">
-  <meta property="og:site_name" content="Les Roches Retreat">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="The Collection — Six Private Villas · Les Roches Retreat">
-  <meta name="twitter:description" content="Six villas privées avec piscines à débordement à Santa Teresa, Costa Rica.">
-  <meta name="twitter:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.jpg">
-<script src="js/track.js"></script>
+    @media (max-width: 800px) {
+      .vg { grid-template-columns: 1fr; }
+      .vc { border-right: none; border-bottom: 1px solid rgba(0,0,0,.07); }
+      .vc-photo { aspect-ratio: 16 / 9; }
+      .vc-overlay { display: none; }
+      .fh-body { grid-template-columns: 1fr; gap: 1rem; }
+      .floor-meta { text-align: left; align-items: flex-start; }
+      .floor-villas-list { text-align: left; }
+      .pg-bottom { grid-template-columns: 1fr; }
+      .pg-bottom-left { border-right: none; border-bottom: 1px solid rgba(0,0,0,.08); }
+      .pg-intro { grid-template-columns: 1fr; gap: 1.5rem; }
+      .pg-desc { text-align: left; }
+      .pg-intro-stats { justify-content: flex-start; }
+      .pg-intro-right { align-items: flex-start; }
+      .fh-search { margin: 0 4vw; max-width: 100%; }
+    }
+    @media (max-width: 600px) {
+      .fh-search { grid-template-columns: 1fr 1fr; }
+      .ds-field:first-child { padding-left: 4vw; }
+      .ds-btn { grid-column: 1 / -1; padding: .9rem; text-align: center; }
+      .form-row { grid-template-columns: 1fr; }
+      .modal { max-height: 95vh; }
+    }
+
+    /* ════════════════════════════════════════════
+       FLATPICKR — dark custom theme
+    ════════════════════════════════════════════ */
+    .flatpickr-calendar {
+      background: #1e1b18 !important;
+      border: 1px solid rgba(255,255,255,.12) !important;
+      box-shadow: 0 12px 48px rgba(0,0,0,.55) !important;
+      border-radius: 2px !important;
+      font-family: 'Outfit', sans-serif !important;
+      width: auto !important;
+    }
+    .flatpickr-calendar.hasRange.open,
+    .flatpickr-calendar.open { display: flex; flex-wrap: wrap; }
+    .flatpickr-months { background: #1e1b18; padding: .6rem 0 .3rem; }
+    .flatpickr-month { color: rgba(250,247,242,.9) !important; fill: rgba(250,247,242,.9) !important; }
+    .flatpickr-current-month { font-family: 'Gilda Display', serif; font-size: 1rem !important; color: rgba(250,247,242,.9) !important; }
+    .flatpickr-current-month select { color: rgba(250,247,242,.9) !important; background: transparent !important; }
+    .flatpickr-prev-month svg, .flatpickr-next-month svg { fill: rgba(250,247,242,.5) !important; }
+    .flatpickr-prev-month:hover svg, .flatpickr-next-month:hover svg { fill: #b8734a !important; }
+    .flatpickr-weekdays { background: #1e1b18 !important; }
+    span.flatpickr-weekday { background: #1e1b18 !important; color: rgba(250,247,242,.3) !important; font-family: 'Outfit', sans-serif; font-size: .38rem; letter-spacing: .2em; }
+    .flatpickr-day { color: rgba(250,247,242,.75) !important; font-family: 'Outfit', sans-serif; font-size: .62rem; border-radius: 0 !important; height: 36px; line-height: 36px; }
+    .flatpickr-day:hover { background: rgba(184,115,74,.18) !important; color: rgba(250,247,242,1) !important; border-color: transparent !important; }
+    .flatpickr-day.today { border-color: rgba(184,115,74,.4) !important; }
+    .flatpickr-day.today:hover { background: rgba(184,115,74,.2) !important; }
+    .flatpickr-day.selected,
+    .flatpickr-day.startRange,
+    .flatpickr-day.endRange { background: #b8734a !important; border-color: #b8734a !important; color: #faf7f2 !important; }
+    .flatpickr-day.inRange { background: rgba(184,115,74,.15) !important; border-color: transparent !important; box-shadow: -5px 0 0 rgba(184,115,74,.15), 5px 0 0 rgba(184,115,74,.15) !important; color: rgba(250,247,242,.9) !important; }
+    .flatpickr-day.disabled { color: rgba(250,247,242,.15) !important; }
+    .flatpickr-day.flatpickr-disabled { color: rgba(250,247,242,.1) !important; }
+    .numInputWrapper:hover, .numInputWrapper { background: transparent !important; }
+    .flatpickr-innerContainer { border-bottom: none !important; }
+    .flatpickr-rContainer { padding: 0 .5rem .5rem; }
+  
+/* ── prefers-reduced-motion ─────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  body.has-cursor *{cursor:auto!important}
+}
+</style>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#b8734a">
+<!-- Google Analytics GA4 — Measurement ID: G-WFWBDDTMF0 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFWBDDTMF0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WFWBDDTMF0', { anonymize_ip: true });
+</script>
 </head>
 <body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--ter,#b8734a);color:#fff;padding:.5rem 1rem;font-family:sans-serif;font-size:.875rem" onfocus="this.style.left='1rem';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-999px'">Skip to content</a>
   <div id="cur"></div>
 
+  <!-- NAV -->
   <nav id="nav">
     <a href="index.html" class="nl-logo" id="logo">Les Roches</a>
     <div class="nav-mid">
@@ -318,10 +667,10 @@
       <a href="experiences.html" class="nl">Experiences</a>
       <a href="about.html" class="nl">About</a>
       <a href="santa-teresa.html" class="nl">Santa Teresa</a>
-  <a href="faq.html" class="nl">FAQ</a>
-    <a href="faq.html" class="nl">FAQ</a>
+      <a href="faq.html" class="nl">FAQ</a>
+      <a href="journal.html" class="nl">Journal</a>
     </div>
-    <a href="#search" class="nav-book" id="nb" onclick="document.getElementById('ds-panel').classList.add('open');document.getElementById('ds-arrow').classList.add('open');document.getElementById('date-search').scrollIntoView({behavior:'smooth'});return false;">Book Now</a>
+    <a href="#" class="nav-book" aria-label="Book a villa at Les Roches Retreat" id="nb" onclick="document.getElementById('ds-checkin').focus();return false;">Book Now</a>
     <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
   <div class="nav-overlay" id="nav-overlay">
@@ -330,42 +679,35 @@
     <a href="experiences.html" class="nl">Experiences</a>
     <a href="about.html" class="nl">About</a>
     <a href="santa-teresa.html" class="nl">Santa Teresa</a>
-  <a href="faq.html" class="nl">FAQ</a>
+    <a href="faq.html" class="nl">FAQ</a>
+    <a href="journal.html" class="nl">Journal</a>
     <a href="contact.html" class="nl">Book Now</a>
   </div>
 
-  <section class="hero">
-    <h1>The Collection</h1>
-    <p>Six private villas — one for every soul</p>
-  </section>
-
-
-  <!-- DATE SEARCH BANNER -->
-  <div class="date-search" id="date-search">
-    <div class="ds-toggle" id="ds-toggle">
-      <div class="ds-toggle-left">
-        <div class="ds-toggle-icon">
-          <svg viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
-        </div>
+  <!-- ══════════════════════════════════════════
+       UPPER ESTATE — Opale · Onyx · Casa Jade
+  ══════════════════════════════════════════ -->
+  <section class="floor" id="upper-estate">
+    <div class="floor-header">
+      <div class="fh-body">
         <div>
-          <div class="ds-toggle-title">Check availability &amp; rates</div>
-          <div class="ds-toggle-sub" id="ds-summary">Select your dates to see prices for each villa</div>
+          <div class="floor-name">Panoramic<br>Ocean Views</div>
+        </div>
+        <div class="floor-meta">
+          <div class="ds-feedback" id="ds-feedback"></div>
         </div>
       </div>
-      <div class="ds-arrow" id="ds-arrow">▾</div>
-    </div>
-    <div class="ds-panel" id="ds-panel">
-      <div class="ds-fields">
+      <div class="fh-search" id="ds-wrap">
         <div class="ds-field">
-          <label>Check-in</label>
-          <input type="date" id="ds-checkin" min="">
+          <label for="ds-checkin">Check-in</label>
+          <input type="text" id="ds-checkin" placeholder="Add date" readonly>
         </div>
         <div class="ds-field">
-          <label>Check-out</label>
-          <input type="date" id="ds-checkout" min="">
+          <label for="ds-checkout">Check-out</label>
+          <input type="text" id="ds-checkout" placeholder="Add date" readonly>
         </div>
         <div class="ds-field">
-          <label>Guests</label>
+          <label for="ds-guests">Guests</label>
           <select id="ds-guests">
             <option value="1">1 guest</option>
             <option value="2" selected>2 guests</option>
@@ -375,854 +717,706 @@
             <option value="6">6 guests</option>
           </select>
         </div>
-        <button class="ds-search-btn" id="ds-search-btn">See rates →</button>
+        <button class="ds-btn" id="ds-btn">Check rates →</button>
       </div>
     </div>
-    <div class="ds-results-bar" id="ds-results-bar"></div>
+
+    <div class="vg">
+
+      <!-- Opale -->
+      <a class="vc" href="villa-opale.html" id="vc-opale">
+        <div class="vc-photo">
+          <img src="images/opale-hero.webp" alt="Opale" loading="eager">
+          <div class="vc-overlay"><div class="vc-overlay-text">Explore villa</div></div>
+        </div>
+        <div class="vc-info">
+          <div>
+            <div class="vc-num">Villa 01 · Opale</div>
+            <div class="vc-name">Opale</div>
+            <div class="vc-tagline">Closest to the Pacific — fall asleep to the sound of waves.</div>
+            <div class="vc-specs">
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                  2 Bedrooms
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                  2 Bathrooms
+                </span>
+              </div>
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  Private Pool
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Top Left
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="vc-price-block">
+            <div class="vc-price-left">
+              <span class="vc-from" id="label-opale">From</span>
+              <span class="vc-price" id="price-opale">$480</span><span class="vc-night" id="unit-opale">/ night</span>
+            </div>
+            <div class="vc-total" id="total-opale"></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Onyx -->
+      <a class="vc" href="villa-onyx.html" id="vc-onyx">
+        <div class="vc-photo">
+          <img src="images/onyx-hero.webp" alt="Onyx" loading="eager">
+          <div class="vc-overlay"><div class="vc-overlay-text">Explore villa</div></div>
+        </div>
+        <div class="vc-info">
+          <div>
+            <div class="vc-num">Villa 02 · Onyx</div>
+            <div class="vc-name">Onyx</div>
+            <div class="vc-tagline">The largest — three bedrooms, sprawling terraces, room for everyone.</div>
+            <div class="vc-specs">
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                  2 Bedrooms
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                  2 Bathrooms
+                </span>
+              </div>
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  Private Pool
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Top Center
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="vc-price-block">
+            <div class="vc-price-left">
+              <span class="vc-from" id="label-onyx">From</span>
+              <span class="vc-price" id="price-onyx">$550</span><span class="vc-night" id="unit-onyx">/ night</span>
+            </div>
+            <div class="vc-total" id="total-onyx"></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Casa Jade -->
+      <a class="vc" href="villa-jade.html" id="vc-jade">
+        <div class="vc-photo">
+          <img src="images/jade-hero.webp" alt="Casa Jade" loading="eager">
+          <div class="vc-overlay"><div class="vc-overlay-text">Explore villa</div></div>
+        </div>
+        <div class="vc-info">
+          <div>
+            <div class="vc-num">Villa 03 · Casa Jade</div>
+            <div class="vc-name">Casa Jade</div>
+            <div class="vc-tagline">Where the jungle meets the Pacific — the original villa, the one that started it all.</div>
+            <div class="vc-specs">
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                  2 Bedrooms
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                  2 Bathrooms
+                </span>
+              </div>
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  Private Pool
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Top Right
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="vc-price-block">
+            <div class="vc-price-left">
+              <span class="vc-from" id="label-jade">From</span>
+              <span class="vc-price" id="price-jade">$450</span><span class="vc-night" id="unit-jade">/ night</span>
+            </div>
+            <div class="vc-total" id="total-jade"></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- ─── Garden Level ─── -->
+
+      <!-- Topaze -->
+      <a class="vc" href="villa-topaze.html" id="vc-topaze" data-level="garden">
+        <div class="vc-photo">
+          <img src="images/topaze-hero.webp" alt="Topaze" loading="lazy">
+          <div class="vc-overlay"><div class="vc-overlay-text">Explore villa</div></div>
+        </div>
+        <div class="vc-info">
+          <div>
+            <div class="vc-num">Villa 04 · Topaze</div>
+            <div class="vc-name">Topaze</div>
+            <div class="vc-tagline">Immersed in the jungle canopy — absolute privacy, private pool, and Pacific sunsets on the horizon.</div>
+            <div class="vc-specs">
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                  2 Bedrooms
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                  2 Bathrooms
+                </span>
+              </div>
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  Private Pool
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Bottom Left
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="vc-price-block">
+            <div class="vc-price-left">
+              <span class="vc-from" id="label-topaze">From</span>
+              <span class="vc-price" id="price-topaze">$420</span><span class="vc-night" id="unit-topaze">/ night</span>
+            </div>
+            <div class="vc-total" id="total-topaze"></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Agate -->
+      <a class="vc" href="villa-agate.html" id="vc-agate">
+        <div class="vc-photo">
+          <img src="images/agate-hero.webp" alt="Agate" loading="lazy">
+          <div class="vc-overlay"><div class="vc-overlay-text">Explore villa</div></div>
+        </div>
+        <div class="vc-info">
+          <div>
+            <div class="vc-num">Villa 05 · Agate</div>
+            <div class="vc-name">Agate</div>
+            <div class="vc-tagline">The most intimate — one bedroom, 360° views, and the Pacific horizon all to yourself.</div>
+            <div class="vc-specs">
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                  2 Bedrooms
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                  2 Bathrooms
+                </span>
+              </div>
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  Private Pool
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Bottom Center
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="vc-price-block">
+            <div class="vc-price-left">
+              <span class="vc-from" id="label-agate">From</span>
+              <span class="vc-price" id="price-agate">$350</span><span class="vc-night" id="unit-agate">/ night</span>
+            </div>
+            <div class="vc-total" id="total-agate"></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Ambre -->
+      <a class="vc" href="villa-ambre.html" id="vc-ambre">
+        <div class="vc-photo">
+          <img src="images/ambre-hero.webp" alt="Ambre" loading="lazy">
+          <div class="vc-overlay"><div class="vc-overlay-text">Explore villa</div></div>
+        </div>
+        <div class="vc-info">
+          <div>
+            <div class="vc-num">Villa 06 · Ambre</div>
+            <div class="vc-name">Ambre</div>
+            <div class="vc-tagline">Face west — perfectly positioned for the sunsets that made Santa Teresa legendary.</div>
+            <div class="vc-specs">
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                  2 Bedrooms
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                  2 Bathrooms
+                </span>
+              </div>
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  Private Pool
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Bottom Right
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="vc-price-block">
+            <div class="vc-price-left">
+              <span class="vc-from" id="label-ambre">From</span>
+              <span class="vc-price" id="price-ambre">$420</span><span class="vc-night" id="unit-ambre">/ night</span>
+            </div>
+            <div class="vc-total" id="total-ambre"></div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- BOTTOM -->
+  <div class="pg-bottom">
+    <div class="pg-bottom-left">
+      <div class="pg-bottom-title">Not sure which villa?<br>We'll help you choose.</div>
+      <div class="pg-bottom-sub">Write to us — we know every corner of each villa and will match you with the right one based on your dates, group, and way of travelling.</div>
+      <a href="https://wa.me/33667749024" class="pg-bottom-btn" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+    <div class="pg-bottom-right">
+      <div>
+        <div class="pg-email-label">Stay in the loop</div>
+        <div class="pg-email-title">Last-minute rates.<br>First access to availability.</div>
+      </div>
+      <div>
+        <form id="email-capture-form" class="pg-email-form" onsubmit="handleEmailCapture(event)">
+          <input type="email" id="capture-email" class="pg-email-input" placeholder="your@email.com" required>
+          <button type="submit" class="pg-email-btn">Subscribe</button>
+        </form>
+        <div id="email-msg"></div>
+      </div>
+    </div>
   </div>
-
-  <section class="villas-container r">
-    <!-- Villa 1: Casa Jade -->
-    <div class="villa-card left">
-      <div class="villa-image" style="background-image:url('images/jade-hero.jpg');background-size:cover;background-position:center"></div>
-      <div class="villa-content">
-        <div class="villa-number">Villa 01</div>
-        <h2 class="villa-name">Casa Jade</h2>
-        <p class="villa-tagline">Where the jungle meets the Pacific</p>
-        <p class="villa-description">This intimate sanctuary blends seamlessly with the surrounding landscape. Floor-to-ceiling windows frame verdant jungle views and ocean glimpses. Wake up to howler monkeys, sleep under stars. A place where nature is not decoration—it is the entire experience.</p>
-        <div class="villa-stats">
-          <div class="villa-stat">
-            <span class="stat-value">2</span>
-            <span class="stat-label">Bedrooms</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">2</span>
-            <span class="stat-label">Bathrooms</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">✓</span>
-            <span class="stat-label">Pool</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">Ocean</span>
-            <span class="stat-label">View</span>
-          </div>
-        </div>
-        <div class="villa-price" id="price-jade">From $450<span style="font-family:'Outfit',sans-serif;font-size:.6rem;font-weight:300;color:var(--mid)">/night</span></div>
-        <div class="villa-total" id="total-jade"></div>
-        <div class="villa-actions">
-          <a href="villa-jade.html" class="villa-link">Explore Villa →</a>
-          <button class="villa-reserve-btn" data-villa="jade" data-name="Casa Jade" data-price="450" data-maxguests="4">
-            Reserve →
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Villa 2: Topaze -->
-    <div class="villa-card right">
-      <div class="villa-image" style="background-image:url('images/topaze-hero.jpg');background-size:cover;background-position:center"></div>
-      <div class="villa-content">
-        <div class="villa-number">Villa 02</div>
-        <h2 class="villa-name">Topaze</h2>
-        <p class="villa-tagline">Deep in the jungle, where howler monkeys wake you at dawn</p>
-        <p class="villa-description">Topaze disappears into the rainforest canopy. Surrounded by dense jungle, it offers unparalleled privacy and a direct line to Costa Rica's wild soul. The soundscape here—birds, insects, the occasional roar of howlers—is your daily reminder of where you are.</p>
-        <div class="villa-stats">
-          <div class="villa-stat">
-            <span class="stat-value">2</span>
-            <span class="stat-label">Bedrooms</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">2</span>
-            <span class="stat-label">Bathrooms</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">✓</span>
-            <span class="stat-label">Pool</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">Jungle</span>
-            <span class="stat-label">View</span>
-          </div>
-        </div>
-        <div class="villa-price" id="price-topaze">From $420<span style="font-family:'Outfit',sans-serif;font-size:.6rem;font-weight:300;color:var(--mid)">/night</span></div>
-        <div class="villa-total" id="total-topaze"></div>
-        <div class="villa-actions">
-          <a href="villa-topaze.html" class="villa-link">Explore Villa →</a>
-          <button class="villa-reserve-btn" data-villa="topaze" data-name="Topaze" data-price="420" data-maxguests="4">
-            Reserve →
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Villa 3: Onyx -->
-    <div class="villa-card left">
-      <div class="villa-image" style="background-image:url('images/onyx-hero.jpg');background-size:cover;background-position:center"></div>
-      <div class="villa-content">
-        <div class="villa-number">Villa 03</div>
-        <h2 class="villa-name">Onyx</h2>
-        <p class="villa-tagline">The largest villa — for families or friends who travel together</p>
-        <p class="villa-description">Onyx is where memories happen. Three spacious bedrooms, three baths, and sprawling terraces make it perfect for multi-generational trips or friend gatherings. Everything is oversized here—the master suite, the pool deck, the views. Room to spread out. Room to breathe.</p>
-        <div class="villa-stats">
-          <div class="villa-stat">
-            <span class="stat-value">3</span>
-            <span class="stat-label">Bedrooms</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">3</span>
-            <span class="stat-label">Bathrooms</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">✓</span>
-            <span class="stat-label">Pool</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">Garden</span>
-            <span class="stat-label">View</span>
-          </div>
-        </div>
-        <div class="villa-price" id="price-onyx">From $550<span style="font-family:'Outfit',sans-serif;font-size:.6rem;font-weight:300;color:var(--mid)">/night</span></div>
-        <div class="villa-total" id="total-onyx"></div>
-        <div class="villa-actions">
-          <a href="villa-onyx.html" class="villa-link">Explore Villa →</a>
-          <button class="villa-reserve-btn" data-villa="onyx" data-name="Onyx" data-price="550" data-maxguests="6">
-            Reserve →
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Villa 4: Agate -->
-    <div class="villa-card right">
-      <div class="villa-image" style="background-image:url('images/agate-hero.jpg');background-size:cover;background-position:center"></div>
-      <div class="villa-content">
-        <div class="villa-number">Villa 04</div>
-        <h2 class="villa-name">Agate</h2>
-        <p class="villa-tagline">The most intimate villa. Your own panoramic world.</p>
-        <p class="villa-description">Agate is for the solo traveler or couple seeking profound solitude. A single bedroom, a single bath, but the views are infinite. The infinity pool frames the Pacific horizon. No distractions. No noise. Just you, the jungle, and the sea.</p>
-        <div class="villa-stats">
-          <div class="villa-stat">
-            <span class="stat-value">1</span>
-            <span class="stat-label">Bedroom</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">1</span>
-            <span class="stat-label">Bathroom</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">✓</span>
-            <span class="stat-label">Pool</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">360°</span>
-            <span class="stat-label">View</span>
-          </div>
-        </div>
-        <div class="villa-price" id="price-agate">From $350<span style="font-family:'Outfit',sans-serif;font-size:.6rem;font-weight:300;color:var(--mid)">/night</span></div>
-        <div class="villa-total" id="total-agate"></div>
-        <div class="villa-actions">
-          <a href="villa-agate.html" class="villa-link">Explore Villa →</a>
-          <button class="villa-reserve-btn" data-villa="agate" data-name="Agate" data-price="350" data-maxguests="2">
-            Reserve →
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Villa 5: Ambre -->
-    <div class="villa-card left">
-      <div class="villa-image" style="background-image:url('images/ambre-hero.jpg');background-size:cover;background-position:center"></div>
-      <div class="villa-content">
-        <div class="villa-number">Villa 05</div>
-        <h2 class="villa-name">Ambre</h2>
-        <p class="villa-tagline">Face west. Every evening is a masterpiece.</p>
-        <p class="villa-description">Ambre is perfectly positioned for the sunsets that made Santa Teresa legendary. The main terrace opens directly west—you'll watch the sky transform into watercolor each evening. Two bedrooms, infinite views, and a front-row seat to the Pacific's nightly light show.</p>
-        <div class="villa-stats">
-          <div class="villa-stat">
-            <span class="stat-value">2</span>
-            <span class="stat-label">Bedrooms</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">2</span>
-            <span class="stat-label">Bathrooms</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">✓</span>
-            <span class="stat-label">Pool</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">Sunset</span>
-            <span class="stat-label">View</span>
-          </div>
-        </div>
-        <div class="villa-price" id="price-ambre">From $420<span style="font-family:'Outfit',sans-serif;font-size:.6rem;font-weight:300;color:var(--mid)">/night</span></div>
-        <div class="villa-total" id="total-ambre"></div>
-        <div class="villa-actions">
-          <a href="villa-ambre.html" class="villa-link">Explore Villa →</a>
-          <button class="villa-reserve-btn" data-villa="ambre" data-name="Ambre" data-price="420" data-maxguests="4">
-            Reserve →
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Villa 6: Opale -->
-    <div class="villa-card right">
-      <div class="villa-image" style="background-image:url('images/opale-hero.jpg');background-size:cover;background-position:center"></div>
-      <div class="villa-content">
-        <div class="villa-number">Villa 06</div>
-        <h2 class="villa-name">Opale</h2>
-        <p class="villa-tagline">The closest to the Pacific. The furthest from ordinary.</p>
-        <p class="villa-description">Opale is pure oceanfront luxury. Perched directly above the water, you fall asleep to the sound of waves. The boundary between villa and sea dissolves. Cooling ocean breezes, salt air, the constant rhythm of the Pacific—it's immersive, immediate, unforgettable.</p>
-        <div class="villa-stats">
-          <div class="villa-stat">
-            <span class="stat-value">2</span>
-            <span class="stat-label">Bedrooms</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">2</span>
-            <span class="stat-label">Bathrooms</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">✓</span>
-            <span class="stat-label">Pool</span>
-          </div>
-          <div class="villa-stat">
-            <span class="stat-value">Ocean</span>
-            <span class="stat-label">Front</span>
-          </div>
-        </div>
-        <div class="villa-price" id="price-opale">From $480<span style="font-family:'Outfit',sans-serif;font-size:.6rem;font-weight:300;color:var(--mid)">/night</span></div>
-        <div class="villa-total" id="total-opale"></div>
-        <div class="villa-actions">
-          <a href="villa-opale.html" class="villa-link">Explore Villa →</a>
-          <button class="villa-reserve-btn" data-villa="opale" data-name="Opale" data-price="480" data-maxguests="4">
-            Reserve →
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-banner r">
-    <h2 class="cta-title">Ready to choose your villa? Book direct for the best rates.</h2>
-    <a href="contact.html" class="cta-banner-btn">Reserve Now</a>
-  </section>
-
-  <!-- ── EMAIL CAPTURE ── -->
-  <section style="background:var(--ink);padding:4rem 2rem;text-align:center">
-    <div style="max-width:520px;margin:0 auto">
-      <div style="font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:var(--ter);margin-bottom:1rem">Offres exclusives</div>
-      <div style="font-family:'Gilda Display',serif;font-size:clamp(1.4rem,3vw,2rem);color:var(--w);margin-bottom:.8rem;line-height:1.3">Soyez les premiers informés<br>de nos disponibilités</div>
-      <p style="font-size:.75rem;color:rgba(255,255,255,.45);font-weight:300;margin-bottom:2rem;line-height:1.7">Tarifs last-minute, nouvelles offres, disponibilités exclusives — directement dans votre boîte mail.</p>
-      <form id="email-capture-form" style="display:flex;gap:.6rem;max-width:400px;margin:0 auto" onsubmit="handleEmailCapture(event)">
-        <input type="email" id="capture-email" placeholder="votre@email.com" required
-          style="flex:1;padding:.9rem 1.2rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:2px;color:var(--w);font-family:'Outfit',sans-serif;font-size:.75rem;outline:none">
-        <button type="submit"
-          style="padding:.9rem 1.6rem;background:var(--ter);color:var(--w);border:none;border-radius:2px;font-size:.48rem;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;white-space:nowrap">
-          S'inscrire
-        </button>
-      </form>
-      <div id="capture-msg" style="margin-top:1rem;font-size:.65rem;color:var(--ter);min-height:1.2rem"></div>
-      <p style="font-size:.5rem;color:rgba(255,255,255,.2);margin-top:1rem;letter-spacing:.06em">Pas de spam. Désinscription en un clic.</p>
-    </div>
-  </section>
 
   <footer>
     <div><div class="f-logo">Les Roches</div><div class="f-tagline">Six private villas in the heart of<br>Santa Teresa, Costa Rica.</div></div>
-    <div><div class="f-col-title">Navigate</div><a href="villas.html" class="f-link">Villas</a><a href="experiences.html" class="f-link">Experiences</a><a href="about.html" class="f-link">Our Story</a><a href="booking-conditions.html" class="f-link">Book Now</a></div>
+    <div><div class="f-col-title">Navigate</div><a href="villas.html" class="f-link">Villas</a><a href="experiences.html" class="f-link">Experiences</a><a href="about.html" class="f-link">Our Story</a><a href="booking-conditions.html" class="f-link">Booking conditions</a></div>
     <div><div class="f-col-title">Contact</div><span class="f-link">hello@lesrochesretreat.com</span><span class="f-link" style="margin-top:.4rem;display:block">Calle Vista De Olas<br>Santa Teresa · Costa Rica</span></div>
-    <div class="f-copy">© 2025 Les Roches · Santa Teresa, Costa Rica · All rights reserved</div>
+    <div class="f-copy">© 2026 Les Roches · Santa Teresa, Costa Rica · <a href="privacy-policy.html" style="color:inherit;opacity:.6">Privacy Policy</a></div>
   </footer>
-
 
   <!-- BOOKING MODAL -->
   <div class="modal-overlay" id="modal-overlay">
-    <div class="modal" id="modal">
+    <div class="modal">
       <div class="modal-header">
-        <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+        <button class="modal-close" id="modal-close">✕</button>
         <div class="modal-villa-tag" id="modal-villa-tag">Reservation request</div>
-        <div class="modal-title" id="modal-title">Casa Jade</div>
-        <div class="modal-dates" id="modal-dates">Select dates above to confirm</div>
+        <div class="modal-title" id="modal-title">—</div>
+        <div class="modal-dates" id="modal-dates">—</div>
       </div>
-
-      <!-- FORM SCREEN -->
       <div class="modal-body" id="modal-form-screen">
         <div class="modal-section-title">Your details</div>
         <div class="form-row">
-          <div class="form-group">
-            <label>First name *</label>
-            <input type="text" id="f-firstname" placeholder="John" required>
-          </div>
-          <div class="form-group">
-            <label>Last name *</label>
-            <input type="text" id="f-lastname" placeholder="Smith" required>
-          </div>
+          <div class="form-group"><label>First name *</label><input type="text" id="f-firstname" placeholder="John" required></div>
+          <div class="form-group"><label>Last name *</label><input type="text" id="f-lastname" placeholder="Smith" required></div>
         </div>
-        <div class="form-group">
-          <label>Email address *</label>
-          <input type="email" id="f-email" placeholder="john@example.com" required>
-        </div>
-        <div class="form-group">
-          <label>WhatsApp number *</label>
-          <input type="tel" id="f-whatsapp" placeholder="+1 555 000 0000" required>
-        </div>
-
-        <div class="modal-summary" id="modal-summary">
+        <div class="form-group"><label>Email address *</label><input type="email" id="f-email" placeholder="john@example.com" required></div>
+        <div class="form-group"><label>WhatsApp number *</label><input type="tel" id="f-whatsapp" placeholder="+1 555 000 0000" required></div>
+        <div class="modal-summary">
           <div class="summary-row"><span>Villa</span><span id="s-villa">—</span></div>
           <div class="summary-row"><span>Check-in</span><span id="s-checkin">—</span></div>
           <div class="summary-row"><span>Check-out</span><span id="s-checkout">—</span></div>
           <div class="summary-row"><span>Guests</span><span id="s-guests">—</span></div>
           <div class="summary-row"><span>Duration</span><span id="s-nights">—</span></div>
           <div class="summary-row total"><span>Total stay</span><span id="s-total">—</span></div>
-          <div class="summary-row deposit"><span>Deposit due (50%) — wire transfer</span><span id="s-deposit">—</span></div>
+          <div class="summary-row deposit"><span>Deposit (50%) — wire transfer</span><span id="s-deposit">—</span></div>
         </div>
-
         <div class="payment-only-note">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b8734a" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01" stroke-linecap="round"/></svg>
-          <div class="payment-only-note-text">
-            <strong>Payment by wire transfer only.</strong><br>
-            A 50% deposit is required within 48h of booking confirmation to secure your villa. The remaining 50% is settled upon arrival. No card payments accepted for the deposit.
-          </div>
+          <div class="payment-only-note-text"><strong>Payment by wire transfer only.</strong><br>50% deposit within 48h. Balance on arrival.</div>
         </div>
-
         <button class="modal-submit" id="modal-submit">Send reservation request</button>
-        <div class="modal-legal">By submitting, you agree to our <a href="booking-conditions.html">booking conditions</a> including our cancellation &amp; force majeure policy.</div>
+        <div class="modal-legal">By submitting you agree to our <a href="booking-conditions.html">booking conditions</a>.</div>
       </div>
-
-      <!-- CONFIRMATION SCREEN -->
       <div class="modal-confirm" id="modal-confirm">
         <div class="confirm-icon">✓</div>
         <div class="confirm-title">Request received!</div>
-        <div class="confirm-sub">We will contact you on WhatsApp within a few hours to confirm availability and send you the wire transfer details.<br><br>Your villa is held for <strong>48 hours</strong> pending receipt of the deposit.</div>
+        <div class="confirm-sub">We'll reach out on WhatsApp within a few hours to confirm and send payment details.<br><br>Villa held <strong>48 hours</strong> pending deposit.</div>
         <div class="confirm-steps">
-          <div class="confirm-step"><div class="confirm-step-n">01</div><div>Check your email — a confirmation with all details has been sent to you</div></div>
-          <div class="confirm-step"><div class="confirm-step-n">02</div><div>We contact you on WhatsApp to confirm availability and send the booking summary</div></div>
-          <div class="confirm-step"><div class="confirm-step-n">03</div><div>Wire transfer the 50% deposit to <strong>NIGHT CONCIERGERIE SRL</strong> — IBAN: CR19 0114 0000 7812 3915 72 — within 48h</div></div>
-          <div class="confirm-step"><div class="confirm-step-n">04</div><div>Once received, your reservation is confirmed. The remaining 50% is paid upon arrival.</div></div>
+          <div class="confirm-step"><div class="confirm-step-n">01</div><div>Confirmation email sent to you</div></div>
+          <div class="confirm-step"><div class="confirm-step-n">02</div><div>We contact you on WhatsApp with availability confirmation and booking summary</div></div>
+          <div class="confirm-step"><div class="confirm-step-n">03</div><div>Wire 50% to <strong>NIGHT CONCIERGERIE SRL</strong> — IBAN: CR19 0114 0000 7812 3915 72 — within 48h</div></div>
+          <div class="confirm-step"><div class="confirm-step-n">04</div><div>Reservation confirmed. Balance paid on arrival.</div></div>
         </div>
         <a href="https://wa.me/33667749024" class="confirm-wa" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Chat with us on WhatsApp
+          Chat on WhatsApp
         </a>
       </div>
     </div>
   </div>
 
   <script src="js/main.js"></script>
-
-  <!-- Supabase JS (real-time prices & availability) -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/config.js"></script>
-
-  <!-- EmailJS — https://www.emailjs.com (free 200 emails/month)
-       SETUP: Create account → Add Email Service → Create Template → paste IDs below -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="js/datepicker.js"></script>
   <script>
-  // ══ EMAILJS CONFIG — replace with your real IDs ══
-  const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // Account → API Keys
-  const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // Email Services
-  const EMAILJS_TEMPLATE_GUEST = 'YOUR_TEMPLATE_GUEST_ID'; // template for guest
-  const EMAILJS_TEMPLATE_OWNER = 'YOUR_TEMPLATE_OWNER_ID'; // template for owner
-  const OWNER_EMAIL = 'ian.gay@perrimond.eu';
-  emailjs.init(EMAILJS_PUBLIC_KEY);
-
-  // ══ SUPABASE CLIENT ══
-  let sb = null;
-  try {
-    if(typeof SUPABASE_URL !== 'undefined' && !SUPABASE_URL.includes('XXXX')) {
-      sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
-    }
-  } catch(e) { console.warn('Supabase not configured yet'); }
-
-  // ══ CURRENCY DETECTION & CONVERSION ══
-  let CURRENCY = 'USD';
-  let EUR_RATE  = null;
-  const EUROZONE_LANGS = ['fr','de','it','pt','nl','fi','el','sk','sl','et','lv','lt','mt','ga','hr'];
-
-  async function initCurrency() {
-    const lang = ((navigator.languages && navigator.languages[0]) || navigator.language || 'en')
-                  .toLowerCase().split('-')[0];
-    if(!EUROZONE_LANGS.includes(lang)) return;
-    try {
-      const resp = await fetch('https://api.frankfurter.app/latest?from=USD&to=EUR');
-      const data = await resp.json();
-      if(data.rates && data.rates.EUR) {
-        EUR_RATE = data.rates.EUR;
-        CURRENCY = 'EUR';
-      }
-    } catch(e) { /* réseau indisponible, on garde USD */ }
-  }
-
-  function fmtPrice(usd) {
-    if(CURRENCY === 'EUR' && EUR_RATE) {
-      return '€' + Math.round(usd * EUR_RATE).toLocaleString('fr-FR');
-    }
-    return '$' + Math.round(usd).toLocaleString('en-US');
-  }
-
-  function nightLabel() { return CURRENCY === 'EUR' ? '/nuit' : '/night'; }
-
-  // ══ VILLA DATA (fallback prices if Supabase not connected) ══
-  const VILLAS = {
-    jade:   {name:'Casa Jade',  price:450, page:'villa-jade.html',   maxGuests:4, minNights:3},
-    topaze: {name:'Topaze',     price:420, page:'villa-topaze.html',  maxGuests:4, minNights:3},
-    onyx:   {name:'Onyx',       price:550, page:'villa-onyx.html',    maxGuests:6, minNights:3},
-    agate:  {name:'Agate',      price:350, page:'villa-agate.html',   maxGuests:2, minNights:3},
-    ambre:  {name:'Ambre',      price:420, page:'villa-ambre.html',   maxGuests:4, minNights:3},
-    opale:  {name:'Opale',      price:480, page:'villa-opale.html',   maxGuests:4, minNights:3},
-  };
-
-  let searchState = {checkin: null, checkout: null, guests: 2, nights: 0};
-
-  // ══ SUPABASE: Load real-time prices ══
-  async function loadVillaPrices() {
-    // Met à jour les prix HTML par défaut avec la bonne devise
-    Object.entries(VILLAS).forEach(([slug, v]) => {
-      const el = document.getElementById('price-' + slug);
-      if(el) el.innerHTML = 'From ' + fmtPrice(v.price) + '<span class="price-unit">' + nightLabel() + '</span>';
+  // Direct Supabase REST helper (no CDN dependency)
+  async function sbFetch(table, qs) {
+    const url = SUPABASE_URL + '/rest/v1/' + table + (qs ? '?' + qs : '');
+    const resp = await fetch(url, {
+      headers: { 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON }
     });
-    if(!sb) return;
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    return resp.json();
+  }
+  async function sbInsert(table, payload) {
+    const resp = await fetch(SUPABASE_URL + '/rest/v1/' + table, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON,
+        'Authorization': 'Bearer ' + SUPABASE_ANON,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+  }
+  async function sbUpsert(table, payload) {
+    const resp = await fetch(SUPABASE_URL + '/rest/v1/' + table, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON,
+        'Authorization': 'Bearer ' + SUPABASE_ANON,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal,resolution=merge-duplicates'
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+  }
+
+  let CURRENCY = 'USD', EUR_RATE = null;
+  const EUROZONE = ['fr','de','it','pt','nl','fi','el','sk','sl','et','lv','lt','mt','ga','hr'];
+  async function initCurrency() {
+    const lang = ((navigator.languages&&navigator.languages[0])||navigator.language||'en').toLowerCase().split('-')[0];
+    if(!EUROZONE.includes(lang)) return;
     try {
-      const { data, error } = await sb.from('villas').select('id, price_per_night, min_nights');
-      if(error) throw error;
-      data.forEach(v => {
+      const r = await fetch('https://api.frankfurter.app/latest?from=USD&to=EUR');
+      const d = await r.json();
+      if(d.rates&&d.rates.EUR) { EUR_RATE=d.rates.EUR; CURRENCY='EUR'; }
+    } catch(e) {}
+  }
+  function fmt(usd) {
+    return CURRENCY==='EUR'&&EUR_RATE ? '€'+Math.round(usd*EUR_RATE).toLocaleString('fr-FR') : '$'+Math.round(usd).toLocaleString('en-US');
+  }
+  function nl() { return CURRENCY==='EUR' ? '/ nuit' : '/ night'; }
+
+  // Prices come exclusively from Supabase — no hardcoded fallback
+  const VILLAS = {
+    opale:  { name:'Opale',     price:null, maxGuests:4, minNights:3 },
+    onyx:   { name:'Onyx',      price:null, maxGuests:4, minNights:3 },
+    jade:   { name:'Casa Jade', price:null, maxGuests:4, minNights:3 },
+    topaze: { name:'Topaze',    price:null, maxGuests:4, minNights:3 },
+    agate:  { name:'Agate',     price:null, maxGuests:4, minNights:3 },
+    ambre:  { name:'Ambre',     price:null, maxGuests:4, minNights:3 },
+  };
+  // Seasonal pricing rules loaded from Supabase (priority: daily_rates > pricing_rules > villas.base)
+  let pricingRules = [];
+  // Computed totals after search — keyed by villa slug
+  let villaSearchTotals = {};
+  let searchState = { checkin:null, checkout:null, guests:2, nights:0 };
+
+  // Returns effective price for a given villa+date using the cascade:
+  // daily_rates (exact date) → pricing_rules (seasonal range) → villas.base_price
+  function getEffectivePrice(slug, dateStr, dailyRates) {
+    // 1. Daily rate override (highest priority)
+    const dr = dailyRates[slug+':'+dateStr];
+    if(dr) return { price: dr.price, minNights: dr.minNights };
+    // 2. Seasonal pricing rule
+    for(const r of pricingRules) {
+      if(r.villa_id && r.villa_id !== slug) continue; // null villa_id = applies to all
+      if(dateStr >= r.start_date && dateStr <= r.end_date) {
+        return { price: r.price_per_night, minNights: r.min_nights || VILLAS[slug].minNights };
+      }
+    }
+    // 3. Base villa price
+    return { price: VILLAS[slug].price, minNights: VILLAS[slug].minNights };
+  }
+
+  function setPrice(slug, price, unit, fromLabel) {
+    const p=document.getElementById('price-'+slug);
+    const u=document.getElementById('unit-'+slug);
+    const l=document.getElementById('label-'+slug);
+    if(p) p.textContent=price;
+    if(u) u.textContent=unit;
+    if(l&&fromLabel!==undefined) l.textContent=fromLabel;
+  }
+
+  var _pp = window.location.pathname;
+  var _fromLabel = _pp.includes('/fr/') ? 'À partir de' : _pp.includes('/es/') ? 'Desde' : 'From';
+
+  async function loadVillaPrices() {
+    // Show loading skeleton while fetching
+    Object.keys(VILLAS).forEach(s=>setPrice(s,'—',nl(),_fromLabel));
+    try {
+      const data = await sbFetch('villas', 'select=id,price_per_night,min_nights');
+      (data||[]).forEach(v=>{
         if(!VILLAS[v.id]) return;
         VILLAS[v.id].price = v.price_per_night;
         VILLAS[v.id].minNights = v.min_nights || 3;
-        // Update price display
-        const priceEl = document.getElementById('price-' + v.id);
-        if(priceEl) priceEl.innerHTML = 'From ' + fmtPrice(v.price_per_night) + '<span class="price-unit">' + nightLabel() + '</span>';
-        // Sync data-price on reserve button
-        const btn = document.querySelector(`.villa-reserve-btn[data-villa="${v.id}"]`);
-        if(btn) btn.dataset.price = v.price_per_night;
+        setPrice(v.id, fmt(v.price_per_night), nl(), _fromLabel);
       });
-    } catch(e) { console.warn('Could not load villa prices:', e.message); }
+    } catch(e) { console.warn('loadVillaPrices:', e.message); }
   }
 
-  // ══ SUPABASE: Check availability + fetch daily rates for a date range ══
-  // Returns { unavailable: Set<villaSlug>, dailyRates: { 'jade:2025-04-01': 520, ... } }
-  async function checkAvailability(checkin, checkout) {
-    if(!sb) return { unavailable: new Set(), dailyRates: {} };
+  async function checkAvailability(ci,co) {
     try {
-      const [blockedRes, ratesRes] = await Promise.all([
-        sb.from('blocked_dates').select('villa_id').gte('date', checkin).lt('date', checkout),
-        sb.from('daily_rates').select('villa_id,date,price_per_night,min_nights').gte('date', checkin).lt('date', checkout)
+      const [blocked, rates, rules] = await Promise.all([
+        sbFetch('blocked_dates',  'select=villa_id,date&date=gte.' + ci + '&date=lt.' + co),
+        sbFetch('daily_rates',    'select=villa_id,date,price_per_night,min_nights&date=gte.' + ci + '&date=lt.' + co),
+        sbFetch('pricing_rules',  'select=villa_id,start_date,end_date,price_per_night,min_nights,name&start_date=lte.' + co + '&end_date=gte.' + ci + '&order=priority.desc')
       ]);
-
-      const unavailable = new Set((blockedRes.data || []).map(d => d.villa_id));
-
-      // Build lookup: 'villaId:YYYY-MM-DD' -> price
+      // A villa is unavailable if ANY of its dates in the range are blocked
+      const unavailable = new Set((blocked||[]).map(d=>d.villa_id));
       const dailyRates = {};
-      (ratesRes.data || []).forEach(r => {
-        dailyRates[r.villa_id + ':' + r.date] = { price: r.price_per_night, minNights: r.min_nights };
+      (rates||[]).forEach(r=>{
+        dailyRates[r.villa_id+':'+r.date] = {price:r.price_per_night, minNights:r.min_nights};
       });
-
-      return { unavailable, dailyRates };
+      // Store pricing rules globally for getEffectivePrice()
+      pricingRules = rules || [];
+      return {unavailable, dailyRates};
     } catch(e) {
-      console.warn('Could not check availability:', e.message);
-      return { unavailable: new Set(), dailyRates: {} };
+      console.warn('checkAvailability:', e.message);
+      pricingRules = [];
+      return {unavailable:new Set(), dailyRates:{}};
     }
   }
 
-  // Calculate real total for a villa over a date range using daily rates
-  function calcVillaTotal(slug, checkin, checkout, dailyRates) {
-    const nights = calcNights(checkin, checkout);
-    if(nights < 1) return { total: 0, minNightsRequired: 0 };
-    let total = 0;
-    let maxMin = 0;
-    let cur = new Date(checkin + 'T00:00:00');
-    for(let i = 0; i < nights; i++) {
-      const ds  = cur.toISOString().split('T')[0];
-      const key = slug + ':' + ds;
-      const rate = dailyRates[key];
-      total += rate ? rate.price : VILLAS[slug].price;
-      if(rate && rate.minNights > maxMin) maxMin = rate.minNights;
-      cur.setDate(cur.getDate() + 1);
+  function calcTotal(slug,ci,co,dr) {
+    const n=calcNights(ci,co); if(n<1) return {total:0,minN:0};
+    let total=0,maxMin=0;
+    let cur=new Date(ci+'T00:00:00');
+    for(let i=0;i<n;i++){
+      const ds=cur.toISOString().split('T')[0];
+      const {price,minNights}=getEffectivePrice(slug,ds,dr);
+      total+=price||0;
+      if(minNights>maxMin) maxMin=minNights;
+      cur.setDate(cur.getDate()+1);
     }
-    return { total, minNightsRequired: maxMin || VILLAS[slug].minNights || 3 };
+    // Duration discount: -10% at 7+ nights, -15% at 14+ nights
+    let discountRate=0;
+    if(n>=14) discountRate=0.15;
+    else if(n>=7) discountRate=0.10;
+    const discounted=discountRate>0?Math.round(total*(1-discountRate)):total;
+    return {total:discounted,totalBeforeDiscount:total,discountRate,minN:maxMin||VILLAS[slug].minNights||3};
   }
 
-  // ══ SUPABASE: Save reservation ══
-  async function saveReservation(payload) {
-    if(!sb) return;
-    try {
-      const { error } = await sb.from('reservations').insert([payload]);
-      if(error) console.warn('Reservation save error:', error.message);
-    } catch(e) { console.warn('Could not save reservation:', e.message); }
-  }
+  initCurrency().then(()=>loadVillaPrices());
 
-  // Load prices on page load (after currency detection)
-  initCurrency().then(() => loadVillaPrices());
-  let activeVilla = null;
+  function fmtDate(d) { return d?new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}):'—'; }
+  function calcNights(a,b) { return(!a||!b)?0:Math.round((new Date(b)-new Date(a))/86400000); }
 
-  function formatDate(d) {
-    if(!d) return '—';
-    return new Date(d + 'T00:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
-  }
-  function calcNights(a, b) {
-    if(!a||!b) return 0;
-    return Math.round((new Date(b) - new Date(a)) / 86400000);
-  }
-
-  // ── Date Search Banner ──
-  const dsToggle  = document.getElementById('ds-toggle');
-  const dsPanel   = document.getElementById('ds-panel');
-  const dsArrow   = document.getElementById('ds-arrow');
-  const dsSummary = document.getElementById('ds-summary');
-  const dsBar     = document.getElementById('ds-results-bar');
-  const dsCheckin = document.getElementById('ds-checkin');
-  const dsCheckout= document.getElementById('ds-checkout');
-  const dsGuests  = document.getElementById('ds-guests');
-
-  // Set min date = today
+  const dsCheckin  = document.getElementById('ds-checkin');
+  const dsCheckout = document.getElementById('ds-checkout');
+  const dsGuests   = document.getElementById('ds-guests');
+  const dsFeedback = document.getElementById('ds-feedback');
+  const dsBtn      = document.getElementById('ds-btn');
   const today = new Date().toISOString().split('T')[0];
-  dsCheckin.min = today; dsCheckout.min = today;
 
-  dsToggle.addEventListener('click', () => {
-    dsPanel.classList.toggle('open');
-    dsArrow.classList.toggle('open');
-  });
-
-  // Auto-open on load if coming from Book Now
-  if(window.location.hash === '#search') {
-    dsPanel.classList.add('open');
-    dsArrow.classList.add('open');
-    setTimeout(()=>document.getElementById('date-search').scrollIntoView({behavior:'smooth'}),300);
-  }
-
-  dsCheckin.addEventListener('change', () => {
-    if(dsCheckin.value) { dsCheckout.min = dsCheckin.value; }
-    if(dsCheckout.value && dsCheckout.value <= dsCheckin.value) dsCheckout.value = '';
-  });
-
-  document.getElementById('ds-search-btn').addEventListener('click', applySearch);
-
-  async function applySearch() {
-    const ci = dsCheckin.value, co = dsCheckout.value;
-    const nights = calcNights(ci, co);
-    const guests = parseInt(dsGuests.value);
-    if(!ci || !co || nights < 1) {
-      alert('Please select valid check-in and check-out dates.');
-      return;
+  // LRPicker — custom date range picker (no CDN)
+  const fpRange = new LRPicker(dsCheckin, dsCheckout, {
+    onChange: function(selectedDates) {
+      // selectedDates[0] = check-in Date, selectedDates[1] = check-out Date
     }
-    searchState = {checkin: ci, checkout: co, guests, nights};
+  });
+  dsCheckin.addEventListener('click', function() { fpRange.open(); });
+  dsCheckout.addEventListener('click', function() { fpRange.open(); });
 
-    // Show loading state
-    const searchBtn = document.getElementById('ds-search-btn');
-    searchBtn.textContent = 'Checking…';
-    searchBtn.disabled = true;
+  // ── Lecture des paramètres URL (redirection depuis la home page) ──
+  (function initFromURL() {
+    const p = new URLSearchParams(window.location.search);
+    const ci = p.get('checkin'), co = p.get('checkout'), g = parseInt(p.get('guests'));
+    if (!ci || !co) return;
+    // Pré-remplir les dates dans le picker
+    fpRange.setDates(ci, co);
+    // Pré-remplir le sélecteur de guests
+    if (g && dsGuests) {
+      const opt = [...dsGuests.options].find(o => parseInt(o.value) === g);
+      if (opt) dsGuests.value = opt.value;
+    }
+    // Déclencher la recherche automatiquement après un court délai
+    // (laisser le temps à loadVillaPrices de s'exécuter d'abord)
+    setTimeout(function() { dsBtn.click(); }, 400);
+  })();
 
+  dsBtn.addEventListener('click', async ()=>{
+    const ci=dsCheckin.value, co=dsCheckout.value;
+    const nights=calcNights(ci,co), guests=parseInt(dsGuests.value);
+    if(!ci||!co||nights<1) { alert('Please select valid dates.'); return; }
+    searchState={checkin:ci,checkout:co,guests,nights};
+    dsBtn.textContent='Checking…'; dsBtn.disabled=true;
 
-    // Check availability + fetch daily rates from Supabase
-    const { unavailable, dailyRates } = await checkAvailability(ci, co);
+    const {unavailable,dailyRates}=await checkAvailability(ci,co);
+    let avail=0;
+    villaSearchTotals = {};
 
-    // Update each villa card
-    let availCount = 0;
-    Object.entries(VILLAS).forEach(([slug, v]) => {
-      const { total, minNightsRequired } = calcVillaTotal(slug, ci, co, dailyRates);
-      const avgPerNight = nights > 0 ? Math.round(total / nights) : v.price;
-      const priceEl    = document.getElementById('price-' + slug);
-      const totalEl    = document.getElementById('total-' + slug);
-      const reserveBtn = document.querySelector(`.villa-reserve-btn[data-villa="${slug}"]`);
-      const card = reserveBtn ? reserveBtn.closest('.villa-card') : null;
+    Object.entries(VILLAS).forEach(([slug,v])=>{
+      const {total,totalBeforeDiscount,discountRate,minN}=calcTotal(slug,ci,co,dailyRates);
+      const avg=nights>0?Math.round(total/nights):(v.price||0);
+      const card=document.getElementById('vc-'+slug);
+      const totEl=document.getElementById('total-'+slug);
+      // Store totals for use in modal
+      villaSearchTotals[slug]={total,totalBeforeDiscount,discountRate,avg,minN,nights};
 
-      if(priceEl) priceEl.innerHTML = fmtPrice(avgPerNight) + '<span class="price-unit">' + nightLabel() + ' avg</span>';
-
-      if(unavailable.has(slug)) {
-        if(totalEl) { totalEl.textContent = '✕ Not available for these dates'; totalEl.style.color = '#c0392b'; }
-        if(reserveBtn) { reserveBtn.disabled = true; reserveBtn.textContent = 'Not available'; reserveBtn.style.background = 'var(--mid)'; }
-        if(card) { card.style.opacity = '.45'; card.style.filter = 'grayscale(50%)'; }
-      } else if(nights < minNightsRequired) {
-        if(totalEl) { totalEl.textContent = '⚠ Minimum ' + minNightsRequired + ' nights for this period'; totalEl.style.color = '#b8734a'; }
-        if(reserveBtn) { reserveBtn.disabled = true; reserveBtn.textContent = 'Min ' + minNightsRequired + 'n'; reserveBtn.style.background = 'var(--mid)'; }
-        if(card) { card.style.opacity = '.7'; card.style.filter = 'none'; }
+      if(unavailable.has(slug)){
+        setPrice(slug,fmt(avg),nl()+' avg','');
+        card&&card.classList.add('unavail');
+        if(totEl){totEl.textContent='Not available';totEl.style.color='#c0392b';}
+      } else if(nights<minN){
+        setPrice(slug,fmt(avg),nl()+' avg','');
+        card&&card.classList.remove('unavail');
+        if(totEl){totEl.textContent='Min '+minN+' nights';totEl.style.color='var(--ter)';}
       } else {
-        availCount++;
-        if(totalEl) { totalEl.textContent = nights + ' nights · Total $' + total.toLocaleString(); totalEl.style.color = ''; }
-        if(reserveBtn) { reserveBtn.disabled = false; reserveBtn.textContent = 'Reserve →'; reserveBtn.style.background = ''; reserveBtn.dataset.total = total; reserveBtn.dataset.price = avgPerNight; }
-        if(card) { card.style.opacity = '1'; card.style.filter = 'none'; }
+        avail++;
+        setPrice(slug,fmt(avg),nl()+' avg','');
+        card&&card.classList.remove('unavail');
+        let label=nights+'n · Total '+fmt(total);
+        if(discountRate>0) label+=' (−'+(discountRate*100|0)+'%)';
+        if(totEl){totEl.textContent=label;totEl.style.color='var(--ter)';}
       }
     });
 
-    // Restore button
-    searchBtn.textContent = 'See rates →';
-    searchBtn.disabled = false;
+    dsBtn.textContent='Check rates →'; dsBtn.disabled=false;
+    const msg=sb?avail+' villa'+(avail!==1?'s':'')+' available · '+fmtDate(ci)+' → '+fmtDate(co):'Rates updated · Contact us to confirm availability';
+    dsFeedback.textContent=msg; dsFeedback.classList.add('show');
 
-    // Update banner summary
-    dsSummary.textContent = formatDate(ci) + ' → ' + formatDate(co) + ' · ' + nights + ' nights · ' + guests + ' guest' + (guests>1?'s':'');
-    const statusMsg = sb
-      ? availCount + ' villa' + (availCount!==1?'s':'') + ' available for these dates'
-      : 'Rates shown — contact us to confirm availability';
-    dsBar.textContent = statusMsg;
-    dsBar.classList.add('show');
-    dsPanel.classList.remove('open');
-    dsArrow.classList.remove('open');
-  }
+    // Scroll to villa results — if all upper-estate villas are unavailable, jump to garden level
+    setTimeout(()=>{
+      const upperSlugs = ['opale','onyx','jade'];
+      const allUpperUnavail = upperSlugs.every(s => document.getElementById('vc-'+s)?.classList.contains('unavail'));
+      const navHeight = 68;
 
-  // ── Reserve Buttons ──
-  document.querySelectorAll('.villa-reserve-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const slug = btn.dataset.villa;
-      openModal(slug);
+      if(allUpperUnavail){
+        const gardenEl = document.querySelector('[data-level="garden"]');
+        if(gardenEl){
+          const top = gardenEl.getBoundingClientRect().top + window.pageYOffset - navHeight - 24;
+          window.scrollTo({ top, behavior: 'smooth' });
+          return;
+        }
+      }
+
+      const target = document.getElementById('upper-estate');
+      const dsHeight = document.getElementById('ds-wrap').offsetHeight;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - navHeight - dsHeight - 8;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }, 120);
+  });
+
+  // Prevent click on unavailable
+  document.querySelectorAll('.vc').forEach(card=>{
+    card.addEventListener('click',e=>{
+      if(card.classList.contains('unavail')){
+        e.preventDefault();
+        alert(card.querySelector('.vc-name').textContent+' is not available for these dates.');
+      }
     });
   });
 
-  function openModal(slug) {
-    activeVilla = slug;
-    const v = VILLAS[slug];
-    const nights = searchState.nights;
-    // Use real total from data-total attribute (set after daily rate calc), fallback to base price
-    const btn = document.querySelector(`.villa-reserve-btn[data-villa="${slug}"]`);
-    const realTotal = btn && btn.dataset.total ? parseInt(btn.dataset.total) : null;
-    const total = realTotal || (nights > 0 ? v.price * nights : null);
-    const deposit = total ? Math.round(total * 0.5) : null;
-
-    document.getElementById('modal-villa-tag').textContent = 'Villa · Les Roches Retreat';
-    document.getElementById('modal-title').textContent = v.name;
-    document.getElementById('modal-dates').textContent = nights > 0
-      ? formatDate(searchState.checkin) + ' → ' + formatDate(searchState.checkout) + ' · ' + nights + ' nights'
-      : 'No dates selected — we will confirm dates via WhatsApp';
-
-    document.getElementById('s-villa').textContent = v.name;
-    document.getElementById('s-checkin').textContent = formatDate(searchState.checkin);
-    document.getElementById('s-checkout').textContent = formatDate(searchState.checkout);
-    document.getElementById('s-guests').textContent = searchState.guests + ' guest' + (searchState.guests>1?'s':'');
-    document.getElementById('s-nights').textContent = nights > 0 ? nights + ' night' + (nights>1?'s':'') : '—';
-    document.getElementById('s-total').textContent = total ? fmtPrice(total) : 'To be confirmed';
-    document.getElementById('s-deposit').textContent = deposit ? fmtPrice(deposit) + ' (wire transfer within 48h)' : 'To be confirmed';
-
-    // Reset form/confirm screens
-    document.getElementById('modal-form-screen').style.display = 'block';
+  // Modal helpers
+  let activeVilla=null;
+  function openModal(slug){
+    activeVilla=slug;
+    const v=VILLAS[slug], nights=searchState.nights;
+    const st=villaSearchTotals[slug];
+    const total=st&&nights>0?st.total:null;
+    const deposit=total?Math.round(total*.5):null;
+    document.getElementById('modal-villa-tag').textContent='Villa · Les Roches Retreat';
+    document.getElementById('modal-title').textContent=v.name;
+    document.getElementById('modal-dates').textContent=nights>0?fmtDate(searchState.checkin)+' → '+fmtDate(searchState.checkout)+' · '+nights+' nights':'No dates selected — we will confirm via WhatsApp';
+    document.getElementById('s-villa').textContent=v.name;
+    document.getElementById('s-checkin').textContent=fmtDate(searchState.checkin);
+    document.getElementById('s-checkout').textContent=fmtDate(searchState.checkout);
+    document.getElementById('s-guests').textContent=searchState.guests+' guest'+(searchState.guests>1?'s':'');
+    document.getElementById('s-nights').textContent=nights>0?nights+' night'+(nights>1?'s':''):'—';
+    let totalLabel=total?fmt(total):'To be confirmed';
+    if(st&&st.discountRate>0) totalLabel+=' (−'+(st.discountRate*100|0)+'% stay discount)';
+    document.getElementById('s-total').textContent=totalLabel;
+    document.getElementById('s-deposit').textContent=deposit?fmt(deposit)+' (wire within 48h)':'To be confirmed';
+    document.getElementById('modal-form-screen').style.display='block';
     document.getElementById('modal-confirm').classList.remove('show');
     document.getElementById('modal-overlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow='hidden';
   }
+  document.getElementById('modal-close').addEventListener('click',closeModal);
+  document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target.id==='modal-overlay')closeModal();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+  function closeModal(){document.getElementById('modal-overlay').classList.remove('open');document.body.style.overflow='';}
 
-  document.getElementById('modal-close').addEventListener('click', closeModal);
-  document.getElementById('modal-overlay').addEventListener('click', e => {
-    if(e.target === document.getElementById('modal-overlay')) closeModal();
-  });
-  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
-
-  function closeModal() {
-    document.getElementById('modal-overlay').classList.remove('open');
-    document.body.style.overflow = '';
-    activeVilla = null;
-  }
-
-  // ── Form Submit ──
-  document.getElementById('modal-submit').addEventListener('click', async () => {
-    const firstname = document.getElementById('f-firstname').value.trim();
-    const lastname  = document.getElementById('f-lastname').value.trim();
-    const email     = document.getElementById('f-email').value.trim();
-    const whatsapp  = document.getElementById('f-whatsapp').value.trim();
-
-    if(!firstname || !lastname || !email || !whatsapp) {
-      alert('Please fill in all fields.');
-      return;
-    }
-    if(!/^[^@]+@[^@]+\.[^@]+$/.test(email)) {
-      alert('Please enter a valid email address.');
-      return;
-    }
-
-    const btn = document.getElementById('modal-submit');
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-
-    const v = VILLAS[activeVilla];
-    const nights = searchState.nights;
-    const total = nights > 0 ? v.price * nights : 'To be confirmed';
-    const deposit = nights > 0 ? Math.round(v.price * nights * 0.5) : 'To be confirmed';
-
-    const templateParams = {
-      guest_name:    firstname + ' ' + lastname,
-      guest_email:   email,
-      guest_whatsapp: whatsapp,
-      villa_name:    v.name,
-      checkin:       formatDate(searchState.checkin),
-      checkout:      formatDate(searchState.checkout),
-      nights:        nights > 0 ? nights + ' nights' : 'To be confirmed',
-      guests:        searchState.guests,
-      total:         typeof total === 'number' ? '$' + total.toLocaleString() : total,
-      deposit:       typeof deposit === 'number' ? '$' + deposit.toLocaleString() : deposit,
-      owner_email:   OWNER_EMAIL,
-      iban:          'CR19 0114 0000 7812 3915 72',
-      swift:         'BCCECRSJ',
-      bank:          'BANCO LAFISE',
-      account_holder: 'NIGHT CONCIERGERIE SRL',
-    };
-
-    // ── Save to Supabase first (so we never lose the reservation) ──
-    await saveReservation({
-      villa_id:    activeVilla,
-      villa_name:  v.name,
-      checkin:     searchState.checkin  || null,
-      checkout:    searchState.checkout || null,
-      nights:      nights > 0 ? nights : null,
-      guests:      searchState.guests,
-      firstname, lastname, email, whatsapp,
-      total_usd:   typeof total   === 'number' ? total   : null,
-      deposit_usd: typeof deposit === 'number' ? deposit : null,
-      status: 'pending'
-    });
-
-    try {
-      // Send confirmation email to guest
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_GUEST, templateParams);
-      // Send alert to owner
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_OWNER, templateParams);
-    } catch(err) {
-      // Email failure is non-blocking — reservation already saved in Supabase
-      console.warn('EmailJS send error (non-blocking):', err);
-    }
-
-    // Show confirmation screen regardless
-    document.getElementById('modal-form-screen').style.display = 'none';
+  document.getElementById('modal-submit').addEventListener('click',async()=>{
+    const fn=document.getElementById('f-firstname').value.trim();
+    const ln=document.getElementById('f-lastname').value.trim();
+    const em=document.getElementById('f-email').value.trim();
+    const wa=document.getElementById('f-whatsapp').value.trim();
+    if(!fn||!ln||!em||!wa){alert('Please fill in all fields.');return;}
+    if(!/^[^@]+@[^@]+\.[^@]+$/.test(em)){alert('Please enter a valid email.');return;}
+    const btn=document.getElementById('modal-submit');
+    btn.disabled=true;btn.textContent='Sending...';
+    const v=VILLAS[activeVilla],nights=searchState.nights;
+    const st=villaSearchTotals[activeVilla];
+    const total=st&&nights>0?st.total:'To be confirmed';
+    const deposit=st&&nights>0?Math.round(st.total*.5):'To be confirmed';
+    const tp={guest_name:fn+' '+ln,guest_email:em,guest_whatsapp:wa,villa_name:v.name,checkin:fmtDate(searchState.checkin),checkout:fmtDate(searchState.checkout),nights:nights>0?nights+' nights':'To be confirmed',guests:searchState.guests,total:typeof total==='number'?'$'+total.toLocaleString():total,deposit:typeof deposit==='number'?'$'+deposit.toLocaleString():deposit,owner_email:OWNER_EMAIL,iban:'CR19 0114 0000 7812 3915 72',swift:'BCCECRSJ',bank:'BANCO LAFISE',account_holder:'NIGHT CONCIERGERIE SRL'};
+    try{await sbInsert('reservations',{villa_id:activeVilla,villa_name:v.name,checkin:searchState.checkin||null,checkout:searchState.checkout||null,nights:nights>0?nights:null,guests:searchState.guests,firstname:fn,lastname:ln,email:em,whatsapp:wa,total_usd:typeof total==='number'?total:null,deposit_usd:typeof deposit==='number'?deposit:null,status:'pending'});}catch(e){}
+    document.getElementById('modal-form-screen').style.display='none';
     document.getElementById('modal-confirm').classList.add('show');
   });
 
-  function handleEmailCapture(e) {
+  function handleEmailCapture(e){
     e.preventDefault();
-    const email = document.getElementById('capture-email').value.trim();
+    const email=document.getElementById('capture-email').value.trim();
     if(!email) return;
-    if(sb) {
-      sb.from('email_captures').upsert({ email, captured_at: new Date().toISOString(), source: 'villas_page' }).then(()=>{}).catch(()=>{});
-    }
-    document.getElementById('capture-msg').textContent = 'Merci ! Vous recevrez nos prochaines offres en exclusivité.';
-    document.getElementById('capture-email').value = '';
+    sbUpsert('email_captures',{email,captured_at:new Date().toISOString(),source:'villas_page'}).catch(()=>{});
+    document.getElementById('email-msg').textContent="You're in. We'll be in touch.";
+    document.getElementById('capture-email').value='';
   }
   </script>
-
-  <script>
-    if(window.matchMedia('(hover:hover)').matches){
-      const cur=document.getElementById('cur');
-      document.querySelectorAll('a,button').forEach(el=>{
-        el.addEventListener('mouseenter',()=>cur.classList.add('hov'));
-        el.addEventListener('mouseleave',()=>cur.classList.remove('hov'));
-      });
-    }
-  </script>
-
-<!-- WHATSAPP FLOATING BUTTON -->
-<a href="https://wa.me/33667749024?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20une%20villa%20%C3%A0%20Les%20Roches%20Retreat." 
-   class="wa-btn" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
-</a>
-<style>
-.wa-btn{
-  position:fixed;
-  bottom:2rem;
-  right:2rem;
-  z-index:1000;
-  width:56px;
-  height:56px;
-  background:#25D366;
-  color:#fff;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 4px 20px rgba(37,211,102,.45);
-  transition:transform .25s ease, box-shadow .25s ease;
-  cursor:pointer;
-}
-.wa-btn:hover{
-  transform:scale(1.1);
-  box-shadow:0 6px 28px rgba(37,211,102,.6);
-}
-</style>
-<!-- END WHATSAPP -->
-
-<style>
-/* ── Bulle contact — discrète et naturelle ── */
-#wa-bubble{position:fixed;bottom:1.6rem;right:1.6rem;z-index:2000;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
-#wa-toggle{width:52px;height:52px;border-radius:50%;border:none;padding:0;cursor:pointer;background:none;position:relative;box-shadow:0 2px 12px rgba(0,0,0,.22);transition:transform .2s,box-shadow .2s;overflow:visible}
-#wa-toggle:hover{transform:scale(1.04);box-shadow:0 4px 18px rgba(0,0,0,.3)}
-#wa-toggle-photo{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:center 18%;display:block;border:2px solid rgba(250,247,242,.7)}
-#wa-dot{position:absolute;bottom:0;right:0;width:16px;height:16px;background:#25D366;border-radius:50%;border:2px solid var(--w,#faf7f2);display:flex;align-items:center;justify-content:center}
-#wa-dot svg{display:block}
-#wa-card{width:272px;background:var(--w,#faf7f2);border-radius:10px;box-shadow:0 4px 22px rgba(0,0,0,.13);overflow:hidden;transform:translateY(8px) scale(.97);opacity:0;pointer-events:none;transition:transform .28s cubic-bezier(.25,.8,.25,1),opacity .2s ease;transform-origin:bottom right;border:1px solid rgba(30,27,24,.07)}
-#wa-card.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
-.wa-head{background:var(--ink2,#2e2a26);padding:.85rem 1rem;display:flex;align-items:center;gap:.75rem;position:relative}
-.wa-head-close{position:absolute;top:.55rem;right:.7rem;background:none;border:none;color:rgba(255,255,255,.25);font-size:.85rem;cursor:pointer;line-height:1;transition:color .18s}
-.wa-head-close:hover{color:rgba(255,255,255,.6)}
-.wa-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 18%;border:1px solid rgba(255,255,255,.12);flex-shrink:0}
-.wa-head-name{font-family:'Gilda Display',serif;font-size:.84rem;color:rgba(250,247,242,.88);letter-spacing:.02em}
-.wa-head-status{font-size:.48rem;color:rgba(255,255,255,.3);margin-top:.15rem;font-family:'Outfit',sans-serif;display:flex;align-items:center;gap:.3rem}
-.wa-head-status::before{content:'';width:5px;height:5px;background:#4ade80;border-radius:50%;flex-shrink:0}
-.wa-body{background:var(--c,#f3ede3);padding:.9rem .9rem .85rem}
-.wa-msg{background:var(--w,#faf7f2);border-radius:2px 9px 9px 9px;padding:.65rem .8rem;font-family:'Outfit',sans-serif;font-size:.66rem;line-height:1.7;color:var(--ink,#1e1b18);position:relative;max-width:94%;border:1px solid rgba(30,27,24,.04)}
-.wa-msg::before{content:'';position:absolute;top:0;left:-5px;width:0;height:0;border-top:5px solid var(--w,#faf7f2);border-left:5px solid transparent}
-.wa-time{font-size:.45rem;color:var(--mid,#9a8f82);text-align:right;margin-top:.3rem}
-.wa-cta-wrap{padding:.7rem .9rem .85rem;background:var(--c,#f3ede3);border-top:1px solid rgba(30,27,24,.05)}
-.wa-cta{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;background:var(--ter,#b8734a);border:none;border-radius:2px;padding:.65rem 1rem;font-family:'Outfit',sans-serif;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;cursor:pointer;text-decoration:none;transition:background .2s;opacity:.92}
-.wa-cta:hover{background:var(--ter2,#a05f38);opacity:1}
-</style>
-
-<div id="wa-bubble">
-  <div id="wa-card">
-    <div class="wa-head">
-      <img src="images/ian-whatsapp.jpg" alt="Ian" class="wa-avatar"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="wa-avatar" style="display:none;background:var(--ter);align-items:center;justify-content:center;font-family:'Gilda Display',serif;font-size:1.1rem;color:#fff;flex-shrink:0">I</div>
-      <div class="wa-head-info">
-        <div class="wa-head-name">Ian &nbsp;—&nbsp; Les Roches</div>
-        <div class="wa-head-status">En ligne · répond rapidement</div>
-      </div>
-      <button class="wa-head-close" id="wa-close" aria-label="Fermer">✕</button>
-    </div>
-    <div class="wa-body">
-      <div class="wa-msg">
-        Bonjour ! 👋<br>Pour toutes questions sur les villas, les disponibilités ou une réservation, n'hésitez pas à m'envoyer un message — je vous réponds rapidement.
-        <div class="wa-time">maintenant</div>
-      </div>
-    </div>
-    <div class="wa-cta-wrap">
-      <a href="https://wa.me/33667749024?text=Bonjour%20Ian%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20Les%20Roches%20Retreat%20%F0%9F%8C%8A"
-         target="_blank" rel="noopener" class="wa-cta">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Envoyer un message
-      </a>
-    </div>
-  </div>
-  <button id="wa-toggle" aria-label="Message Ian">
-    <img id="wa-toggle-photo" src="images/ian-whatsapp.jpg" alt="Ian"
-         onerror="this.style.background='var(--ink2)';this.style.objectFit='none'">
-    <div id="wa-dot">
-      <svg viewBox="0 0 24 24" fill="white" width="8" height="8"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    </div>
-  </button>
-</div>
-
+<script src="cookie-consent.js" defer></script>
+<script src="js/lazy-bg.js" defer></script>
+<script src="js/swipe.js" defer></script>
 <script>
-(function(){
-  const toggle=document.getElementById('wa-toggle'),
-        card=document.getElementById('wa-card'),
-        close=document.getElementById('wa-close');
-  let open=false;
-  function setOpen(v){ open=v; card.classList.toggle('open',v); }
-  if(!sessionStorage.getItem('wa_shown')){
-    setTimeout(()=>{setOpen(true);sessionStorage.setItem('wa_shown','1')},6000);
-  }
-  toggle.addEventListener('click',()=>setOpen(!open));
-  close.addEventListener('click',()=>setOpen(false));
-})();
-</script>
-<!-- END WHATSAPP -->
-
-
-<script>
-document.addEventListener('keydown',function(e){
-  if((e.ctrlKey||e.metaKey)&&e.shiftKey&&e.key.toLowerCase()==='a'){
-    e.preventDefault();
-    window.location.href='/admin/index.html';
-  }
-});
+// ── Ouvre le calendrier si ?book=1 dans l'URL (depuis la barre sticky mobile) ──
+if(new URLSearchParams(window.location.search).get('book') === '1'){
+  // Attendre que flatpickr soit initialisé (scripts en defer)
+  window.addEventListener('load', function(){
+    var el = document.getElementById('ds-checkin');
+    var wrap = document.getElementById('ds-wrap');
+    if(!el) return;
+    // Scroll jusqu'au widget de recherche
+    if(wrap) wrap.scrollIntoView({behavior:'smooth', block:'center'});
+    // Ouvrir le calendrier après un court délai (scroll + init)
+    setTimeout(function(){ el.click(); }, 400);
+  });
+}
 </script>
 </body>
 </html>

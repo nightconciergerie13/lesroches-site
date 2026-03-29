@@ -1,0 +1,8 @@
+{
+  "name": "lesroches-functions",
+  "version": "1.0.0",
+  "description": "Netlify serverless functions for Les Roches Retreat",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  }
+}

@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expériences — Surf, Yoga & Jungle · Les Roches, Santa Teresa</title>
+<meta name="description" content="Curated experiences in Santa Teresa: surf lessons, jungle yoga, deep-sea fishing, ATV tours, private chef. Les Roches Retreat.">
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+
+/* ─────────────────────────────────────────
+   INTRO
+───────────────────────────────────────── */
+.exp-intro {
+  padding: 4.5rem 2.5rem 2rem;
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 3rem;
+}
+.exp-intro-eyebrow {
+  font-family: 'Outfit', sans-serif;
+  font-size: .46rem;
+  letter-spacing: .38em;
+  text-transform: uppercase;
+  color: var(--ter);
+  margin-bottom: 1.1rem;
+}
+.exp-intro-title {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  color: var(--ink);
+  line-height: 1.15;
+  font-weight: 400;
+}
+.exp-intro-right { flex-shrink: 0; max-width: 320px; }
+.exp-intro-desc {
+  font-family: 'Outfit', sans-serif;
+  font-size: .85rem;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.8;
+  border-left: 1px solid var(--c2);
+  padding-left: 1.5rem;
+}
+.exp-lang {
+  display: flex;
+  gap: .5rem;
+  margin-top: 1.5rem;
+  padding-left: 1.5rem;
+}
+.exp-lang-btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: .44rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--mid);
+  background: none;
+  border: 1px solid transparent;
+  padding: .28rem .7rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all .18s;
+}
+.exp-lang-btn:hover { color: var(--ink); border-color: var(--c2); }
+.exp-lang-btn.active { color: var(--ter); border-color: var(--ter); }
+.exp-intro-rule {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  border: none;
+  border-top: 1px solid var(--c2);
+}
+
+/* ─────────────────────────────────────────
+   CAT NAV — sticky
+───────────────────────────────────────── */
+.exp-cat-nav {
+  position: sticky;
+  top: 0;
+  z-index: 150;
+  background: rgba(250,247,242,.97);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--c2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  padding: .8rem 1.5rem;
+  transition: box-shadow .3s;
+}
+.exp-cat-nav.shadow { box-shadow: 0 3px 20px rgba(10,8,6,.07); }
+.cat-pill {
+  font-family: 'Outfit', sans-serif;
+  font-size: .72rem;
+  font-weight: 400;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--mid);
+  padding: .5rem 1.1rem;
+  border: 1px solid transparent;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all .2s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.cat-pill:hover { color: var(--ink); border-color: var(--c2); }
+.cat-pill.active { color: var(--ter); border-color: var(--ter); }
+.cat-sep { width: 1px; height: 12px; background: var(--c2); flex-shrink: 0; }
+
+/* ─────────────────────────────────────────
+   SECTION HEADER
+───────────────────────────────────────── */
+.exp-section { padding: 4rem 0 0; }
+.exp-section-head {
+  max-width: 1360px;
+  margin: 0 auto 1.8rem;
+  padding: 0 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+}
+.exp-section-num {
+  font-family: 'Gilda Display', serif;
+  font-size: 4.5rem;
+  color: var(--c2);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.exp-section-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: .65rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--ter);
+  margin-bottom: .4rem;
+}
+.exp-section-name {
+  font-family: 'Gilda Display', serif;
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
+  color: var(--ink);
+  line-height: 1.15;
+  margin-top: .3rem;
+}
+
+/* ─────────────────────────────────────────
+   GRILLE DE BASE
+───────────────────────────────────────── */
+.exp-grid {
+  max-width: 100%;
+  margin: 0;
+  padding: 0 0 4rem;
+  display: grid;
+  gap: 0;
+}
+
+/* ══ SUR L'EAU — 8 cartes ══
+   R1 (480px): [Surf 2col] [Pêche] [Tortuga]
+   R2 (350px): [Surf suite] [Biolum] [Plongée]
+   R3 (380px): [SUP] [Catamaran] [Kayak 2col]
+*/
+.exp-grid--eau {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 460px 320px 360px;
+}
+.exp-grid--eau .exp-card:nth-child(1) { grid-column:1/3; grid-row:1/3; }
+.exp-grid--eau .exp-card:nth-child(2) { grid-column:3;   grid-row:1;   }
+.exp-grid--eau .exp-card:nth-child(3) { grid-column:4;   grid-row:1;   }
+.exp-grid--eau .exp-card:nth-child(4) { grid-column:3;   grid-row:2;   }
+.exp-grid--eau .exp-card:nth-child(5) { grid-column:4;   grid-row:2;   }
+.exp-grid--eau .exp-card:nth-child(6) { grid-column:1;   grid-row:3;   }
+.exp-grid--eau .exp-card:nth-child(7) { grid-column:2;   grid-row:3;   }
+.exp-grid--eau .exp-card:nth-child(8) { grid-column:3/5; grid-row:3;   }
+.exp-grid--eau .exp-card { height:100%; }
+
+/* ══ AVENTURE — 7 cartes ══
+   R1 (430px): [Tyrolienne 2col] [Quad] [Cascades]
+   R2 (360px): [Cheval] [Cabo Blanco] [Bird] [VTT]
+*/
+.exp-grid--aventure {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 430px 360px;
+}
+.exp-grid--aventure .exp-card:nth-child(1) { grid-column:1/3; grid-row:1; }
+.exp-grid--aventure .exp-card:nth-child(2) { grid-column:3;   grid-row:1; }
+.exp-grid--aventure .exp-card:nth-child(3) { grid-column:4;   grid-row:1; }
+.exp-grid--aventure .exp-card:nth-child(4) { grid-column:1;   grid-row:2; }
+.exp-grid--aventure .exp-card:nth-child(5) { grid-column:2;   grid-row:2; }
+.exp-grid--aventure .exp-card:nth-child(6) { grid-column:3;   grid-row:2; }
+.exp-grid--aventure .exp-card:nth-child(7) { grid-column:4;   grid-row:2; }
+.exp-grid--aventure .exp-card { height:100%; }
+
+/* ══ BIEN-ÊTRE — 5 cartes ══
+   R1 (290px): [Massage 2col×2row] [Pilates] [Chef]
+   R2 (290px): [Massage suite]     [Yoga]    [Cuisine]
+*/
+.exp-grid--wellness {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 340px 340px;
+}
+.exp-grid--wellness .exp-card:nth-child(1) { grid-column:1/3; grid-row:1/3; }
+.exp-grid--wellness .exp-card:nth-child(2) { grid-column:3;   grid-row:1;   }
+.exp-grid--wellness .exp-card:nth-child(3) { grid-column:4;   grid-row:1;   }
+.exp-grid--wellness .exp-card:nth-child(4) { grid-column:3;   grid-row:2;   }
+.exp-grid--wellness .exp-card:nth-child(5) { grid-column:4;   grid-row:2;   }
+.exp-grid--wellness .exp-card { height:100%; }
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media(max-width:1024px){
+  .exp-grid--eau,
+  .exp-grid--aventure,
+  .exp-grid--wellness { grid-template-columns:repeat(2,1fr); grid-template-rows:unset; }
+  .exp-grid--eau .exp-card,
+  .exp-grid--aventure .exp-card,
+  .exp-grid--wellness .exp-card { grid-column:unset!important; grid-row:unset!important; height:auto; aspect-ratio:4/3; }
+  .exp-grid--eau .exp-card:nth-child(1),
+  .exp-grid--aventure .exp-card:nth-child(1),
+  .exp-grid--aventure .exp-card:nth-child(8),
+  .exp-grid--wellness .exp-card:nth-child(1) { grid-column:span 2!important; aspect-ratio:16/9; }
+}
+@media(max-width:600px){
+  .exp-grid--eau,
+  .exp-grid--aventure,
+  .exp-grid--wellness { grid-template-columns:1fr; }
+  .exp-grid--eau .exp-card,
+  .exp-grid--aventure .exp-card,
+  .exp-grid--wellness .exp-card { grid-column:unset!important; aspect-ratio:4/3; }
+  .exp-grid--eau .exp-card:nth-child(1),
+  .exp-grid--aventure .exp-card:nth-child(1),
+  .exp-grid--aventure .exp-card:nth-child(8),
+  .exp-grid--wellness .exp-card:nth-child(1) { aspect-ratio:3/2!important; }
+  .exp-grid { padding:0 1.2rem 4rem; }
+  .exp-section-head { padding:0 1.2rem; }
+  .exp-intro { padding:3.5rem 1.2rem 2rem; flex-direction:column; gap:2rem; }
+  .exp-intro-right { max-width:100%; }
+  .exp-intro-rule { padding:0 1.2rem; }
+}
+
+/* ─────────────────────────────────────────
+   CARD
+───────────────────────────────────────── */
+.exp-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  display: block;
+  text-decoration: none;
+  background: var(--ink2);
+  cursor: pointer;
+  aspect-ratio: unset !important;
+  width: 100%;
+}
+.exp-card-photo {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform .8s cubic-bezier(.25,.46,.45,.94);
+  will-change: transform;
+}
+.exp-card:hover .exp-card-photo { transform: scale(1.06); }
+.exp-card-shadow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,rgba(10,8,6,.82) 0%,rgba(10,8,6,.18) 45%,transparent 70%);
+}
+.exp-card-hover {
+  position: absolute;
+  inset: 0;
+  background: rgba(10,8,6,.22);
+  opacity: 0;
+  transition: opacity .4s;
+}
+.exp-card:hover .exp-card-hover { opacity:1; }
+.exp-card-body {
+  position: absolute;
+  bottom:0; left:0; right:0;
+  padding: 1.6rem 1.5rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.exp-card-cat {
+  font-family: 'Outfit', sans-serif;
+  font-size: .4rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(250,247,242,.45);
+  margin-bottom: .4rem;
+}
+.exp-card-name {
+  font-family: 'Gilda Display', serif;
+  font-size: 1.15rem;
+  color: #faf7f2;
+  line-height: 1.15;
+}
+.exp-grid--eau .exp-card:nth-child(1) .exp-card-name,
+.exp-grid--wellness .exp-card:nth-child(1) .exp-card-name { font-size:clamp(1.3rem,2vw,1.8rem); }
+.exp-grid--aventure .exp-card:nth-child(1) .exp-card-name { font-size:clamp(1.3rem,2vw,1.8rem); }
+.exp-grid--aventure .exp-card:nth-child(8) .exp-card-name { font-size:clamp(1.5rem,2.5vw,2.2rem); }
+.exp-card-cta {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: .46rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(250,247,242,0);
+  white-space: nowrap;
+  transition: color .35s;
+}
+.exp-card-cta svg {
+  width:28px; height:28px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.25);
+  padding:6px;
+  flex-shrink:0;
+  transition:all .3s;
+}
+.exp-card:hover .exp-card-cta { color:rgba(250,247,242,.75); }
+.exp-card:hover .exp-card-cta svg { background:var(--ter); border-color:var(--ter); stroke:#fff; }
+.exp-card-tag {
+  position: absolute;
+  top:1.2rem; left:1.2rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: .38rem;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: rgba(250,247,242,.75);
+  background: rgba(10,8,6,.38);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(6px);
+  padding: .2rem .65rem;
+  border-radius: 50px;
+}
+
+/* ─────────────────────────────────────────
+   DIVIDER
+───────────────────────────────────────── */
+.exp-rule {
+  max-width:1360px;
+  margin:0 auto;
+  padding:0 2.5rem;
+  border:none;
+  border-top:1px solid var(--c2);
+}
+
+/* ─────────────────────────────────────────
+   CTA FINALE
+───────────────────────────────────────── */
+.exp-cta {
+  background:var(--ink);
+  padding:6rem 2rem;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.exp-cta::before {
+  content:'';
+  position:absolute; inset:0;
+  background:url('../images/drone-sunset-1.webp') center 40%/cover no-repeat;
+  opacity:.06;
+}
+.exp-cta-label {
+  position:relative;
+  font-family:'Outfit',sans-serif;
+  font-size:.44rem;
+  letter-spacing:.36em;
+  text-transform:uppercase;
+  color:var(--ter);
+  margin-bottom:1.1rem;
+}
+.exp-cta-title {
+  position:relative;
+  font-family:'Gilda Display',serif;
+  font-size:clamp(1.9rem,4vw,3rem);
+  color:var(--w);
+  margin-bottom:1rem;
+  line-height:1.2;
+}
+.exp-cta-text {
+  position:relative;
+  font-family:'Outfit',sans-serif;
+  font-size:.85rem;
+  font-weight:300;
+  color:rgba(250,247,242,.38);
+  max-width:440px;
+  margin:0 auto 2.2rem;
+  line-height:1.8;
+}
+.exp-cta-btn {
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  gap:.65rem;
+  background:transparent;
+  color:var(--w);
+  text-decoration:none;
+  font-family:'Outfit',sans-serif;
+  font-size:.5rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  padding:.9rem 2.2rem;
+  border:1px solid rgba(255,255,255,.3);
+  border-radius:1px;
+  transition:all .25s;
+}
+.exp-cta-btn:hover { background:var(--ter); border-color:var(--ter); }
+
+
+/* ── prefers-reduced-motion ─────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  body.has-cursor *{cursor:auto!important}
+}
+</style>
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon-192.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#b8734a">
+<link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/experiences.html">
+<link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/experiences.html">
+<link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/experiences.html">
+<link rel="alternate" hreflang="x-default" href="https://lesrochesretreat.com/experiences.html">
+<!-- Google Analytics GA4 — Measurement ID: G-WFWBDDTMF0 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFWBDDTMF0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WFWBDDTMF0', { anonymize_ip: true });
+</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--ter,#b8734a);color:#fff;padding:.5rem 1rem;font-family:sans-serif;font-size:.875rem" onfocus="this.style.left='1rem';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-999px'">Skip to content</a>
+<div id="cur"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="../index.html" class="nl-logo" id="logo">Les Roches</a>
+  <div class="nav-mid">
+    <a href="../villas.html" class="nl">Villas</a>
+    <a href="../experiences.html" class="nl">Expériences</a>
+    <a href="../about.html" class="nl">À propos</a>
+    <a href="../santa-teresa.html" class="nl">Santa Teresa</a>
+    <a href="../faq.html" class="nl">FAQ</a>
+    <a href="../journal.html" class="nl">Journal</a>
+  </div>
+  <a href="../villas.html#search" class="nav-book" aria-label="Book a villa at Les Roches Retreat" id="nb">Réserver</a>
+  <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ── INTRO ── -->
+<div class="exp-intro r">
+  <div class="exp-intro-left">
+    <p class="exp-intro-eyebrow"
+       data-fr="Santa Teresa · Costa Rica"
+       data-en="Santa Teresa · Costa Rica"
+       data-es="Santa Teresa · Costa Rica">Santa Teresa · Costa Rica</p>
+    <h1 class="exp-intro-title"
+        data-fr="Chaque journée,<br>une aventure"
+        data-en="Every day,<br>an adventure"
+        data-es="Cada día,<br>una aventura">Every day,<br>an adventure</h1>
+  </div>
+  <div class="exp-intro-right">
+    <p class="exp-intro-desc"
+       data-fr="Notre équipe de conciergerie sélectionne et organise les meilleures expériences de Santa Teresa — surf, pêche, bien-être, aventure. Tout est arrangé pour vous."
+       data-en="Our concierge team handpicks and arranges the best experiences Santa Teresa has to offer — surf, fishing, wellness, adventure. Everything taken care of."
+       data-es="Nuestro equipo de conserjería selecciona y organiza las mejores experiencias de Santa Teresa — surf, pesca, bienestar, aventura. Todo cuidado para usted.">
+      Our concierge team handpicks and arranges the best experiences Santa Teresa has to offer — surf, fishing, wellness, adventure. Everything taken care of.
+    </p>
+    <div class="exp-lang">
+      <button class="exp-lang-btn" data-lang="fr">FR</button>
+      <button class="exp-lang-btn active" data-lang="en">EN</button>
+      <button class="exp-lang-btn" data-lang="es">ES</button>
+    </div>
+  </div>
+</div>
+<hr class="exp-intro-rule">
+
+<!-- ── STICKY CAT NAV ── -->
+<nav class="exp-cat-nav" id="cat-nav">
+  <a class="cat-pill" href="#eau"
+     data-fr="Sur l'eau" data-en="On the water" data-es="En el agua">On the water</a>
+  <div class="cat-sep"></div>
+  <a class="cat-pill" href="#aventure"
+     data-fr="Aventure" data-en="Adventure" data-es="Aventura">Adventure</a>
+  <div class="cat-sep"></div>
+  <a class="cat-pill" href="#bienetre"
+     data-fr="Bien-être &amp; Lifestyle" data-en="Wellness &amp; Lifestyle" data-es="Bienestar &amp; Lifestyle">Wellness &amp; Lifestyle</a>
+</nav>
+
+
+<!-- ══════════════════════════════════════
+     01 — SUR L'EAU / ON THE WATER
+══════════════════════════════════════════ -->
+<section class="exp-section r" id="eau">
+  <div class="exp-section-head">
+    <div class="exp-section-num">01</div>
+    <div>
+      <div class="exp-section-label" data-fr="Sur l'eau" data-en="On the water" data-es="En el agua">On the water</div>
+      <div class="exp-section-name"
+           data-fr="Le Pacifique, à portée de main"
+           data-en="The Pacific, at your fingertips"
+           data-es="El Pacífico, al alcance de la mano">The Pacific, at your fingertips</div>
+    </div>
+  </div>
+
+  <div class="exp-grid exp-grid--eau r">
+
+    <!-- 1 · SURF — featured -->
+    <a class="exp-card" href="../contact.html" id="surf">
+      <div class="exp-card-photo" style="background-image:url('../images/exp-surf.webp');background-position:center 30%"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <span class="exp-card-tag" data-fr="Populaire" data-en="Popular" data-es="Popular">Popular</span>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Sur l'eau" data-en="On the water" data-es="En el agua">On the water</div>
+          <div class="exp-card-name" data-fr="Cours de surf" data-en="Surf lessons" data-es="Clases de surf">Surf lessons</div>
+        </div>
+        <div class="exp-card-cta">
+          <span data-fr="Découvrir" data-en="Discover" data-es="Descubrir">Discover</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- 2 · PÊCHE -->
+    <a class="exp-card" href="../contact.html" id="peche">
+      <div class="exp-card-photo" style="background-image:url('../images/exp-peche.webp')"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Sur l'eau" data-en="On the water" data-es="En el agua">On the water</div>
+          <div class="exp-card-name" data-fr="Pêche hauturière" data-en="Deep-sea fishing" data-es="Pesca de altura">Deep-sea fishing</div>
+        </div>
+        <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </a>
+
+    <!-- 3 · TORTUGA ISLAND -->
+    <a class="exp-card" href="../contact.html" id="tortuga">
+      <div class="exp-card-photo" style="background-image:url('../images/exp-tortuga.webp');background-position:center center"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Excursion" data-en="Excursion" data-es="Excursión">Excursion</div>
+          <div class="exp-card-name">Tortuga Island</div>
+        </div>
+        <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </a>
+
+    <!-- 4 · BIOLUMINESCENCE -->
+    <a class="exp-card" href="../contact.html" id="bio">
+      <div class="exp-card-photo" style="background-image:url('../images/exp-bio.webp');background-position:center center"></div>
+      <div class="exp-card-shadow" style="background:linear-gradient(to top,rgba(4,4,16,.95) 0%,rgba(4,4,16,.3) 55%,transparent 100%)"></div>
+      <div class="exp-card-hover"></div>
+      <span class="exp-card-tag" data-fr="Unique" data-en="Unique" data-es="Único">Unique</span>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Nuit" data-en="Night" data-es="Noche">Night</div>
+          <div class="exp-card-name" data-fr="Bioluminescence" data-en="Bioluminescence" data-es="Bioluminiscencia">Bioluminescence</div>
+        </div>
+        <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </a>
+
+    <!-- 5 · PLONGÉE -->
+    <a class="exp-card" href="../contact.html" id="plongee">
+      <div class="exp-card-photo" style="background-image:url('../images/exp-plongee.webp');background-position:center center"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Sur l'eau" data-en="On the water" data-es="En el agua">On the water</div>
+          <div class="exp-card-name" data-fr="Plongée sous-marine" data-en="Scuba diving" data-es="Buceo">Scuba diving</div>
+        </div>
+        <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </a>
+
+    <!-- 6 · SUP -->
+    <a class="exp-card" href="../contact.html" id="sup">
+      <div class="exp-card-photo" style="background-image:url('../images/exp-sup.webp');background-position:center center"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Sur l'eau" data-en="On the water" data-es="En el agua">On the water</div>
+          <div class="exp-card-name" data-fr="Stand-up paddle" data-en="Stand-up paddle" data-es="Paddle surf">Stand-up paddle</div>
+        </div>
+        <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </a>
+
+    <!-- 7 · CATAMARAN -->
+    <a class="exp-card" href="../contact.html" id="catamaran">
+      <div class="exp-card-photo" style="background-image:url('https://images.pexels.com/photos/4784477/pexels-photo-4784477.jpeg?auto=compress&cs=tinysrgb&w=1920');background-position:center center"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <span class="exp-card-tag" data-fr="Coucher de soleil" data-en="Sunset" data-es="Atardecer">Sunset</span>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Excursion" data-en="Excursion" data-es="Excursión">Excursion</div>
+          <div class="exp-card-name" data-fr="Catamaran" data-en="Catamaran cruise" data-es="Crucero catamarán">Catamaran cruise</div>
+        </div>
+        <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </a>
+
+    <!-- 8 · KAYAK -->
+    <a class="exp-card" href="../contact.html" id="kayak">
+      <div class="exp-card-photo" style="background-image:url('../images/exp-kayak.webp');background-position:center center"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Sur l'eau" data-en="On the water" data-es="En el agua">On the water</div>
+          <div class="exp-card-name" data-fr="Kayak de mer" data-en="Sea kayaking" data-es="Kayak de mar">Sea kayaking</div>
+        </div>
+        <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<hr class="exp-rule">
+
+<!-- ══════════════════════════════════════
+     02 — AVENTURE / ADVENTURE
+══════════════════════════════════════════ -->
+<section class="exp-section r" id="aventure">
+  <div class="exp-section-head">
+    <div class="exp-section-num">02</div>
+    <div>
+      <div class="exp-section-label" data-fr="Aventure" data-en="Adventure" data-es="Aventura">Adventure</div>
+      <div class="exp-section-name"
+           data-fr="Jungle, cascades &amp; pistes sauvages"
+           data-en="Jungle, waterfalls &amp; wild trails"
+           data-es="Selva, cascadas y senderos salvajes">Jungle, waterfalls &amp; wild trails</div>
+    </div>
+  </div>
+
+  <div class="exp-grid exp-grid--aventure r">
+
+    <!-- 1 · TYROLIENNE — featured -->
+    <a class="exp-card" href="../contact.html" id="tyrolienne">
+      <div class="exp-card-photo" style="background-image:url('../images/exp-tyrolienne.webp')"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Aventure" data-en="Adventure" data-es="Aventura">Adventure</div>
+          <div class="exp-card-name" data-fr="Tyrolienne" data-en="Zip line" data-es="Tirolesa">Zip line</div>
+        </div>
+        <div class="exp-card-cta">
+          <span data-fr="Découvrir" data-en="Discover" data-es="Descubrir">Discover</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- 2 · QUAD -->
+    <a class="exp-card" href="../contact.html" id="quad">
+      <div class="exp-card-photo" style="background-image:url('../images/exp-quad.webp')"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Aventure" data-en="Adventure" data-es="Aventura">Adventure</div>
+          <div class="exp-card-name" data-fr="Quad · ATV" data-en="Quad · ATV" data-es="Quad · ATV">Quad · ATV</div>
+        </div>
+        <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </a>
+
+    <!-- 3 · CASCADES -->
+    <a class="exp-card" href="../contact.html" id="waterfall">
+      <div class="exp-card-photo" style="background-image:url('../images/exp-waterfall.webp')"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Randonnée" data-en="Hiking" data-es="Senderismo">Hiking</div>
+          <div class="exp-card-name" data-fr="Cascades" data-en="Waterfalls" data-es="Cascadas">Waterfalls</div>
+        </div>
+        <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </a>
+
+    <!-- 4 · CHEVAL -->
+    <a class="exp-card" href="../contact.html" id="cheval">
+      <div class="exp-card-photo" style="background-image:url('../images/exp-cheval.webp')"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Aventure" data-en="Adventure" data-es="Aventura">Adventure</div>
+          <div class="exp-card-name" data-fr="Balade à cheval" data-en="Horse riding" data-es="Paseo a caballo">Horse riding</div>
+        </div>
+        <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </a>
+
+    <!-- 5 · CABO BLANCO -->
+    <a class="exp-card" href="../contact.html" id="cabo">
+      <div class="exp-card-photo" style="background-image:url('https://images.pexels.com/photos/11181988/pexels-photo-11181988.jpeg?auto=compress&cs=tinysrgb&w=1920');background-position:center center"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <span class="exp-card-tag" data-fr="40 min" data-en="40 min" data-es="40 min">40 min</span>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Nature" data-en="Nature" data-es="Naturaleza">Nature</div>
+          <div class="exp-card-name" data-fr="Cabo Blanco" data-en="Cabo Blanco Reserve" data-es="Reserva Cabo Blanco">Cabo Blanco Reserve</div>
+        </div>
+        <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </a>
+
+    <!-- 6 · BIRD WATCHING -->
+    <a class="exp-card" href="../contact.html" id="birds">
+      <div class="exp-card-photo" style="background-image:url('https://images.pexels.com/photos/1123767/pexels-photo-1123767.jpeg?auto=compress&cs=tinysrgb&w=1920');background-position:center center"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Nature" data-en="Nature" data-es="Naturaleza">Nature</div>
+          <div class="exp-card-name" data-fr="Bird watching" data-en="Bird watching" data-es="Observación de aves">Bird watching</div>
+        </div>
+        <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </a>
+
+    <!-- 7 · VTT -->
+    <a class="exp-card" href="../contact.html" id="vtt">
+      <div class="exp-card-photo" style="background-image:url('../images/exp-vtt.webp');background-position:center center"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Aventure" data-en="Adventure" data-es="Aventura">Adventure</div>
+          <div class="exp-card-name" data-fr="VTT jungle" data-en="Mountain biking" data-es="Bicicleta de montaña">Mountain biking</div>
+        </div>
+        <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </a>
+
+
+  </div>
+</section>
+
+<hr class="exp-rule">
+
+<!-- ══════════════════════════════════════
+     03 — BIEN-ÊTRE & LIFESTYLE
+══════════════════════════════════════════ -->
+<section class="exp-section r" id="bienetre">
+  <div class="exp-section-head">
+    <div class="exp-section-num">03</div>
+    <div>
+      <div class="exp-section-label"
+           data-fr="Bien-être &amp; Lifestyle" data-en="Wellness &amp; Lifestyle" data-es="Bienestar &amp; Lifestyle">Wellness &amp; Lifestyle</div>
+      <div class="exp-section-name"
+           data-fr="Ralentir. Se reconnecter."
+           data-en="Slow down. Reconnect."
+           data-es="Desacelerar. Reconectarse.">Slow down. Reconnect.</div>
+    </div>
+  </div>
+
+  <div class="exp-grid exp-grid--wellness r">
+
+    <!-- 1 · MASSAGE — featured -->
+    <a class="exp-card" href="../contact.html" id="massage">
+      <div class="exp-card-photo" style="background-image:url('../images/exp-massage.webp');background-position:center 20%"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <span class="exp-card-tag" data-fr="Bestseller" data-en="Bestseller" data-es="Más vendido">Bestseller</span>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Bien-être" data-en="Wellness" data-es="Bienestar">Wellness</div>
+          <div class="exp-card-name" data-fr="Massage in-villa" data-en="In-villa massage" data-es="Masaje en villa">In-villa massage</div>
+        </div>
+        <div class="exp-card-cta">
+          <span data-fr="Découvrir" data-en="Discover" data-es="Descubrir">Discover</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- 2 · PILATES -->
+    <a class="exp-card" href="../contact.html" id="pilates">
+      <div class="exp-card-photo" style="background-image:url('../images/exp-pilates.webp')"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Bien-être" data-en="Wellness" data-es="Bienestar">Wellness</div>
+          <div class="exp-card-name">Pilates</div>
+        </div>
+        <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </a>
+
+    <!-- 3 · CHEF -->
+    <a class="exp-card" href="../contact.html" id="chef">
+      <div class="exp-card-photo" style="background-image:url('../images/exp-chef.webp')"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <span class="exp-card-tag" data-fr="Exclusif" data-en="Exclusive" data-es="Exclusivo">Exclusive</span>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Lifestyle" data-en="Lifestyle" data-es="Lifestyle">Lifestyle</div>
+          <div class="exp-card-name" data-fr="Chef à domicile" data-en="Private chef" data-es="Chef privado">Private chef</div>
+        </div>
+        <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </a>
+
+    <!-- 4 · YOGA -->
+    <a class="exp-card" href="../contact.html" id="yoga">
+      <div class="exp-card-photo" style="background-image:url('../images/exp-yoga.webp');background-position:center 30%"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Bien-être" data-en="Wellness" data-es="Bienestar">Wellness</div>
+          <div class="exp-card-name">Yoga</div>
+        </div>
+        <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </a>
+
+    <!-- 5 · COURS DE CUISINE -->
+    <a class="exp-card" href="../contact.html" id="cuisine">
+      <div class="exp-card-photo" style="background-image:url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="exp-card-shadow"></div><div class="exp-card-hover"></div>
+      <div class="exp-card-body">
+        <div class="exp-card-info">
+          <div class="exp-card-cat" data-fr="Lifestyle" data-en="Lifestyle" data-es="Lifestyle">Lifestyle</div>
+          <div class="exp-card-name" data-fr="Cours de cuisine" data-en="Cooking class" data-es="Clase de cocina">Cooking class</div>
+        </div>
+        <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ── CTA FINALE ── -->
+<section id="main-content" class="exp-cta r">
+  <p class="exp-cta-label"
+     data-fr="Notre conciergerie" data-en="Our concierge team" data-es="Nuestro equipo de conserjería">Our concierge team</p>
+  <h2 class="exp-cta-title"
+      data-fr="Composez votre journée idéale"
+      data-en="Compose your perfect day"
+      data-es="Componga su día perfecto">Compose your perfect day</h2>
+  <p class="exp-cta-text"
+     data-fr="Nous organisons tout — combinaisons d'expériences, transferts, équipements. Dites-nous ce que vous souhaitez."
+     data-en="We handle everything — experience combinations, transfers, equipment. Just tell us what you have in mind."
+     data-es="Nos encargamos de todo — combinaciones de experiencias, traslados, equipamiento. Solo díganos qué tiene en mente.">
+    We handle everything — experience combinations, transfers, equipment. Just tell us what you have in mind.
+  </p>
+  <a href="../contact.html" class="exp-cta-btn"
+     data-fr="Contacter la conciergerie"
+     data-en="Contact our concierge"
+     data-es="Contactar conserjería">
+    Contact our concierge
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="13" height="13"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+</section>
+
+<footer>
+  <div>
+    <div class="f-logo">Les Roches</div>
+    <div class="f-tagline">Six private villas in the heart of<br>Santa Teresa, Costa Rica.</div>
+  </div>
+  <div>
+    <div class="fct">Navigation</div>
+    <div class="flinks">
+      <a href="../villas.html" class="flink">Villas</a>
+      <a href="../experiences.html" class="flink">Expériences</a>
+      <a href="../about.html" class="flink">À propos</a>
+      <a href="../contact.html" class="flink">Contact</a>
+    </div>
+  </div>
+  <div class="fcopy" id="fcopy-secret">© 2025 Les Roches · Tous droits réservés</div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+(function(){
+
+  /* ── Sticky nav + active pill ── */
+  const catNav   = document.getElementById('cat-nav');
+  const pills    = catNav.querySelectorAll('.cat-pill[href^="#"]');
+  const sections = ['eau','aventure','bienetre'].map(id => document.getElementById(id));
+
+  window.addEventListener('scroll', () => {
+    catNav.classList.toggle('shadow', scrollY > 100);
+    let current = null;
+    sections.forEach(s => { if (s && scrollY >= s.offsetTop - 160) current = s.id; });
+    pills.forEach(p => p.classList.toggle('active', p.getAttribute('href').replace('#','') === current));
+  }, { passive: true });
+
+  pills.forEach(p => {
+    p.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.getElementById(p.getAttribute('href').replace('#',''));
+      if (t) window.scrollTo({ top: t.offsetTop - catNav.offsetHeight - 12, behavior: 'smooth' });
+    });
+  });
+
+  /* ── Lang switcher ── */
+  const allLangBtns = document.querySelectorAll('.exp-lang-btn');
+
+  function setLang(lang) {
+    allLangBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (!val) return;
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.value = val;
+      else el.innerHTML = val;
+    });
+    document.documentElement.lang = lang;
+    try { localStorage.setItem('lr_lang', lang); } catch(e){}
+  }
+
+  allLangBtns.forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+  const savedLang = (function(){ try { return localStorage.getItem('lr_lang'); } catch(e){ return null; } })();
+  const browserLang = (navigator.language || 'en').slice(0,2).toLowerCase();
+  setLang(savedLang || (['fr','es'].includes(browserLang) ? browserLang : 'en'));
+
+  /* ── Admin secret ── */
+  const fcopy = document.getElementById('fcopy-secret');
+  if (fcopy) fcopy.addEventListener('dblclick', () => { window.location.href = 'admin/index.html'; });
+
+})();
+</script>
+<script src="../cookie-consent.js" defer></script>
+<script src="../js/lazy-bg.js" defer></script>
+<script src="../js/swipe.js" defer></script>
+</body>
+</html>

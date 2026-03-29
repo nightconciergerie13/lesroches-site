@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santa Teresa, Costa Rica: The Complete Travel Guide — Les Roches · Santa Teresa</title>
+<meta name="description" content="How to get there, where to eat, what to do and when to visit — your complete guide to Santa Teresa, Costa Rica's most captivating coastal village.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+a{text-decoration:none}
+:root{--w:#faf7f2;--c:#f3ede3;--c2:#e9e0d2;--sand:#d6c9b0;--ter:#b8734a;--ter2:#a05f38;--mid:#9a8f82;--ink:#1e1b18;--ink2:#2e2a26}
+html{background:var(--w);color:var(--ink);scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden}
+*{cursor:none}
+#cur{position:fixed;width:8px;height:8px;background:var(--ink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .35s,height .35s;mix-blend-mode:multiply}
+#cur.hov{width:46px;height:46px;background:rgba(30,27,24,.1)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 4rem;background:rgba(250,247,242,.96);border-bottom:1px solid var(--c2);backdrop-filter:blur(12px)}
+.nl-logo{font-family:'Gilda Display',serif;font-size:1.35rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.nav-mid{display:flex;gap:2.2rem}
+.nl{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);opacity:.65;transition:opacity .2s}
+.nl:hover{opacity:1}
+.nav-right{display:flex;align-items:center;gap:2rem}
+.lang-sw{display:flex;gap:.4rem;font-size:.5rem;letter-spacing:.18em;color:rgba(30,27,24,.3)}
+.lang-sw span{transition:color .2s;text-transform:uppercase}
+.lang-sw span.on{color:var(--ter)}
+.lsep{opacity:.3}
+.nav-book{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;padding:.6rem 1.6rem;border:1px solid rgba(30,27,24,.3);color:var(--ink);border-radius:1px;transition:all .25s}
+.nav-book:hover{background:var(--ter);border-color:var(--ter);color:var(--w)}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:.4rem;cursor:pointer}
+.nav-burger span{display:block;width:24px;height:1px;background:var(--ink)}
+.nav-overlay{position:fixed;inset:0;background:var(--ink);z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.77,0,.175,1)}
+.nav-overlay.open{transform:translateX(0)}
+.nav-overlay .nl{color:var(--w);font-size:.85rem;opacity:.6}
+.nav-overlay .nl:hover{opacity:1}
+.nav-close{position:absolute;top:1.5rem;right:2rem;background:none;border:none;color:var(--w);font-size:1.2rem;cursor:pointer;opacity:.4}
+
+/* ARTICLE HERO */
+.art-hero{height:65vh;min-height:400px;position:relative;overflow:hidden;display:flex;align-items:flex-end}
+.art-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.art-hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,8,6,.85) 0%,rgba(10,8,6,.2) 60%,transparent 100%)}
+.art-hero-c{position:relative;z-index:2;padding:3rem 5vw;max-width:860px}
+.art-breadcrumb{font-size:.46rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.art-breadcrumb a{color:rgba(255,255,255,.38);transition:color .2s}
+.art-breadcrumb a:hover{color:rgba(255,255,255,.7)}
+.art-cat{font-size:.46rem;letter-spacing:.38em;text-transform:uppercase;color:var(--ter);display:block;margin-bottom:.8rem}
+.art-title{font-family:'Gilda Display',serif;font-size:clamp(1.8rem,4vw,3.2rem);color:var(--w);line-height:1.12;margin-bottom:1.2rem}
+.art-meta{display:flex;align-items:center;gap:1.5rem;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.art-meta span{display:flex;align-items:center;gap:.4rem}
+
+/* ARTICLE BODY */
+.art-body{max-width:760px;margin:0 auto;padding:4rem 2rem 6rem}
+.art-lead{font-family:'Libre Baskerville',serif;font-style:italic;font-size:1.05rem;color:var(--ink);line-height:1.8;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid var(--c2)}
+.art-body h2{font-family:'Gilda Display',serif;font-size:1.5rem;color:var(--ink);margin:3rem 0 1.2rem;line-height:1.2}
+.art-body h3{font-family:'Gilda Display',serif;font-size:1.1rem;color:var(--ink);margin:2rem 0 .8rem}
+.art-body p{font-size:.8rem;color:var(--mid);line-height:2;margin-bottom:1.4rem}
+.art-body strong{color:var(--ink);font-weight:400}
+.art-body ul{margin:1rem 0 1.4rem 1.2rem}
+.art-body ul li{font-size:.8rem;color:var(--mid);line-height:1.9;margin-bottom:.4rem}
+.art-pull{background:var(--c);border-left:3px solid var(--ter);padding:1.5rem 2rem;margin:2.5rem 0;font-family:'Libre Baskerville',serif;font-style:italic;font-size:.95rem;color:var(--ink);line-height:1.7}
+.art-tip{background:var(--ink);padding:1.5rem 2rem;margin:2.5rem 0;border-radius:2px}
+.art-tip-label{font-size:.44rem;letter-spacing:.35em;text-transform:uppercase;color:var(--ter);display:block;margin-bottom:.5rem}
+.art-tip p{color:rgba(250,247,242,.65);margin-bottom:0}
+
+/* CTA BOX */
+.art-cta{background:var(--ink2);padding:3rem;margin:3rem 0;text-align:center;border-radius:2px}
+.art-cta-eye{font-size:.44rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.3);display:block;margin-bottom:.8rem}
+.art-cta-title{font-family:'Gilda Display',serif;font-size:1.4rem;color:var(--w);margin-bottom:.8rem;line-height:1.2}
+.art-cta p{font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:1.5rem;line-height:1.8}
+.art-cta-btn{display:inline-flex;align-items:center;gap:.7rem;padding:.85rem 2.5rem;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;border-radius:1px;transition:all .25s}
+.art-cta-btn:hover{border-color:var(--ter);color:var(--w);background:rgba(184,115,74,.1)}
+
+/* RELATED */
+.art-related{background:var(--c);padding:4rem 5vw}
+.art-related-title{font-family:'Gilda Display',serif;font-size:1.4rem;color:var(--ink);margin-bottom:2rem}
+.art-rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--c2)}
+.art-rel-card{background:var(--w);padding:1.5rem;display:block;transition:background .2s}
+.art-rel-card:hover{background:var(--c)}
+.art-rel-lang{font-size:.4rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:.4rem}
+.art-rel-t{font-family:'Gilda Display',serif;font-size:.95rem;color:var(--ink);line-height:1.3;margin-bottom:.5rem}
+.art-rel-arr{font-size:.7rem;color:var(--ter)}
+
+/* FOOTER */
+footer{background:var(--ink);padding:4rem 5vw 2rem}
+.ftop{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:4rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.flogo{font-family:'Gilda Display',serif;font-size:1.35rem;letter-spacing:.18em;text-transform:uppercase;color:var(--w);margin-bottom:.9rem}
+.ftag{font-size:.62rem;color:rgba(255,255,255,.25);line-height:1.8}
+.fct{font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1.2rem}
+.flinks{display:flex;flex-direction:column;gap:.6rem}
+.flink{font-size:.64rem;color:rgba(255,255,255,.38);transition:color .2s}
+.flink:hover{color:var(--w)}
+.fbot{display:flex;align-items:center;justify-content:space-between;padding-top:2rem}
+.fcopy{font-size:.5rem;color:rgba(255,255,255,.18);letter-spacing:.1em}
+.fsoc{display:flex;gap:1.5rem}
+.fsocl{font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2)}
+
+@media(max-width:900px){
+  nav{padding:1.2rem 1.5rem}
+  .nav-mid,.nav-right .lang-sw{display:none}
+  .nav-burger{display:flex}
+  .art-hero{height:50vh}
+  .art-body{padding:2.5rem 1.5rem 4rem}
+  .art-rel-grid{grid-template-columns:1fr}
+  footer{padding:3rem 1.5rem 2rem}
+  .ftop{grid-template-columns:1fr;gap:2rem}
+}
+</style>
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Santa Teresa, Costa Rica: The Complete Travel Guide">
+  <meta property="og:description" content="How to get there, where to eat, what to do — your complete guide to Santa Teresa, Costa Rica.">
+  <meta property="og:image" content="https://lesrochesretreat.com/images/drone-sunset-1.jpg">
+  <meta property="og:url" content="https://lesrochesretreat.com/journal/en/santa-teresa-travel-guide.html">
+  <meta property="og:site_name" content="Les Roches Retreat">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Santa Teresa, Costa Rica: The Complete Travel Guide">
+  <meta name="twitter:description" content="How to get there, where to eat, what to do — your complete guide to Santa Teresa, Costa Rica.">
+  <meta name="twitter:image" content="https://lesrochesretreat.com/images/drone-sunset-1.jpg">
+  <link rel="canonical" href="https://lesrochesretreat.com/journal/en/santa-teresa-travel-guide.html">
+<!-- Google Analytics GA4 — Measurement ID: G-WFWBDDTMF0 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFWBDDTMF0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WFWBDDTMF0', { anonymize_ip: true });
+</script>
+</head>
+<body>
+<div id="cur"></div>
+<nav>
+  <a href="../../index.html" class="nl-logo">Les Roches</a>
+  <div class="nav-mid">
+    <a href="../../villas.html" class="nl">Villas</a>
+    <a href="../../experiences.html" class="nl">Experiences</a>
+    <a href="../../about.html" class="nl">About</a>
+    <a href="../../santa-teresa.html" class="nl">Santa Teresa</a>
+    <a href="../../journal.html" class="nl">Journal</a>
+  </div>
+  <div class="nav-right">
+    <div class="lang-sw"><span class="on">EN</span><span class="lsep">/</span><span>FR</span><span class="lsep">/</span><span>ES</span></div>
+    <a href="../../contact.html" class="nav-book">Book Now</a>
+  </div>
+  <button class="nav-burger" id="burger"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-overlay" id="nav-overlay">
+  <button class="nav-close" id="nav-close">✕</button>
+  <a href="../../villas.html" class="nl">Villas</a>
+  <a href="../../experiences.html" class="nl">Experiences</a>
+  <a href="../../about.html" class="nl">About</a>
+  <a href="../../santa-teresa.html" class="nl">Santa Teresa</a>
+  <a href="../../journal.html" class="nl">Journal</a>
+  <a href="../../contact.html" class="nl">Book Now</a>
+</div>
+
+<div class="art-hero" style="background-image:url('../../images/drone-sunset-1.jpg')">
+  <div class="art-hero-bg"></div>
+  <div class="art-hero-ov"></div>
+  <div class="art-hero-c">
+    <div class="art-breadcrumb">
+      <a href="../../journal.html">Journal</a> / <span>Travel</span>
+    </div>
+    <span class="art-cat">Travel</span>
+    <h1 class="art-title">Santa Teresa, Costa Rica: The Complete Travel Guide</h1>
+    <div class="art-meta">
+      <span>March 2025</span>
+      <span>10 min read</span>
+    </div>
+  </div>
+</div>
+
+<article class="art-body">
+  <p class="art-lead">Santa Teresa feels like a discovery rather than a destination. This small coastal village, perched at the southern tip of Costa Rica's Nicoya Peninsula, remains relatively untouched by mass tourism despite its growing reputation. It's a place where the jungle meets the Pacific with genuine magic—where sunrise hikes through cloud forest lead to hidden waterfalls, evening walks along the beach reveal bioluminescent creatures, and the pace of life still revolves around tides and sunset.</p>
+
+  <h2>How to Get There</h2>
+
+  <p>Santa Teresa isn't quite as direct as flying into San José, which is part of its charm. There are three main routes, each with advantages:</p>
+
+  <figure class="art-photo">
+    <img src="../../images/drone-ocean-blue.jpg" alt="" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block">
+    <figcaption></figcaption>
+  </figure>
+
+
+
+  <h3>Ferry + Road (Most Popular)</h3>
+  <p>This is the classic route favored by most visitors. Drive from San José via Highway 27 to Puntarenas, then take the ferry across the Gulf of Nicoya from Puntarenas to Paquera. The ferry typically takes 80 minutes, and you'll need to reserve in advance during high season—spots fill quickly. From Paquera, it's another 70–90 minutes of driving through mountain roads to reach Santa Teresa. Total travel time: 4–6 hours depending on traffic. The journey is spectacular, offering views of rural Costa Rica that most tourists never see.</p>
+
+  <h3>Domestic Flight (Fastest)</h3>
+  <p>SANSA Airlines operates direct flights from San José to Cobano (the nearest airstrip to Santa Teresa), taking approximately 30 minutes. As of October 2023, this replaced the older Tambor airstrip. Flights cost around $110 USD per person, with 1–2 departures daily depending on season. This option is ideal if you value time over budget, and eliminates the long drive and ferry wait.</p>
+
+  <h3>Public Bus</h3>
+  <p>Costa Rica's public bus system is surprisingly efficient but requires patience. Buses depart from Terminal TIG in San José at 6 a.m. and take 6–7 hours. While economical, the experience can be intense, with the journey covering winding mountain roads. This is a genuine Costa Rican experience, though most visitors prefer the comfort of the ferry or flight.</p>
+
+  <div class="art-tip">
+    <span class="art-tip-label">Travel Tip</span>
+    <p>Don't drive at night. Mountain roads to Santa Teresa are poorly lit and potentially dangerous after dark. If you're driving yourself, arrange to arrive by late afternoon. Many visitors hire private drivers ($150–250 USD) for a safer, more comfortable experience.</p>
+  </div>
+
+  <h2>When to Visit</h2>
+
+  <p>Santa Teresa's climate divides neatly into two distinct seasons, each with character:</p>
+
+  <h3>Dry Season: November–April</h3>
+  <p>Clear skies, morning sun, and minimal rain define these months. It's peak tourist season—hotels book weeks in advance, and beaches are lively. The air is crisp, hikes are comfortable, and sunsets are predictable. If you're planning activities like the Montezuma Falls hike, this is when to come. However, expect higher prices and larger crowds, especially December–January.</p>
+
+  <h3>Green Season: May–August</h3>
+  <p>Don't let the name fool you—it rains, but intermittently. Mornings are often clear, afternoon showers cool the air, and the landscape explodes with color. Prices drop 20–30%, restaurants have tables available, and the lineup at surf breaks thins considerably. The jungle comes alive with wildlife: howler monkeys call throughout the day, birds are more active, and the experience feels more authentic. If you're a traveler rather than a tourist, this is magical.</p>
+
+  <p>September–October represents shoulder season: unpredictable, occasionally wet, but occasionally perfect. Book accordingly.</p>
+
+  <h2>Where to Eat & Drink</h2>
+
+  <h3>Koji's</h3>
+  <p>The gold standard for sushi in the region. Koji's occupies a charming garden space with atmospheric lighting, and the quality is exceptional—think pristine fish, creative rolls, and their famous warm sake. Reservations are essential in high season. The experience is upscale-casual, with prices reflecting the quality (mains $18–28).</p>
+
+  <figure class="art-photo">
+    <img src="../../images/drone-beach-panorama.jpg" alt="" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block">
+    <figcaption></figcaption>
+  </figure>
+
+
+
+  <h3>Katana</h3>
+  <p>Equally excellent to Koji's but at slightly lower price points. The vibe is more casual, almost hidden-gem feeling, and the food quality never wavers. If you can't get into Koji's, Katana delivers the same caliber meal in a more relaxed setting.</p>
+
+  <h3>The Bakery</h3>
+  <p>Start your mornings here. Excellent pastries, outstanding coffee, and genuine breakfast dishes—think eggs, avocado toast done right, and fresh orange juice. It's become a gathering spot for locals and visitors alike. Arrive early; it fills quickly.</p>
+
+  <h3>Eat Street</h3>
+  <p>A casual food court with four quality vendors serving everything from tacos to fresh fish plates. It's perfect for quick lunch between activities, with generous portions at $10–20. No reservation needed, genuine local energy.</p>
+
+  <div class="art-pull">
+    "The restaurant scene in Santa Teresa punches well above its size. You'll find exceptional sushi, excellent seafood, and surprising international cuisine—all without the pretension of resort towns."
+  </div>
+
+  <h2>What to Do</h2>
+
+  <h3>Montezuma Falls</h3>
+  <p>A short 45-minute drive leads to a trailhead where a 20-minute hike through jungle takes you to spectacular cascading waterfalls. The main pool is deep and cold—perfect for swimming after the hike. Wear proper footwear; the rocks are slippery. Sunrise hikes reward you with fewer crowds and wildlife sightings.</p>
+
+  <h3>Surf</h3>
+  <p>Playa Carmen, Santa Teresa Main, and La Lora offer waves for all levels. Board rentals and lessons are readily available. Spend a day or a week—the breaks are consistent enough for rapid improvement.</p>
+
+  <h3>Yoga & Wellness</h3>
+  <p>Several studios offer drop-in classes for $12–15. Whether you're a dedicated yogi or just stretching after activities, the combination of jungle setting and qualified instructors makes classes memorable.</p>
+
+  <h3>ATV Tours</h3>
+  <p>Explore hidden trails, secret beaches, and jungle paths with a local guide. Rentals run $50–70 per day, and guided tours offer better access to areas you wouldn't find alone.</p>
+
+  <h3>Tortuga Island</h3>
+  <p>Full-day snorkeling and beach excursions depart from nearby docks. The journey includes excellent snorkeling, white sand beaches, and often a beachside BBQ lunch. It's touristy but genuinely worthwhile.</p>
+
+  <h3>Curu Wildlife Reserve</h3>
+  <p>Just an hour away, this protected reserve is home to monkeys, coatis, exotic birds, and reptiles. Guided hikes offer excellent wildlife spotting, particularly in early morning. Entry is approximately $30 with guide.</p>
+
+  <h3>Horseback Riding</h3>
+  <p>Sunset rides along the beach are iconic. Local guides arrange trips ($40–60 including guide) that cater to all experience levels.</p>
+
+  <h3>Butterfly Garden & Brewery</h3>
+  <p>The Butterfly Brewing Company combines artisanal craft beer with a live butterfly garden—a pleasant few hours blending nature and cold beer.</p>
+
+  <h3>Tide Pools at Mar Azul</h3>
+  <p>South of town, tide pools reveal starfish, sea urchins, and tiny fish trapped in crystal-clear water. Best visited at low tide.</p>
+
+  <h2>Practical Information</h2>
+
+  <h3>Money & Banking</h3>
+  <p>Only two ATMs exist in the village, and both charge steep international fees. Bring cash in Costa Rican colones (exchange in San José before leaving). Credit cards work at restaurants and shops, but cash is king for small transactions. Consider USD; it's widely accepted.</p>
+
+  <figure class="art-photo">
+    <img src="../../images/drone-jungle-aerial.jpg" alt="" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block">
+    <figcaption></figcaption>
+  </figure>
+
+
+
+  <h3>Communication</h3>
+  <p>Most restaurants don't answer phone calls. Use WhatsApp for reservations—it's the standard communication method. Cell service is reliable; international plans work well.</p>
+
+  <h3>Transportation</h3>
+  <p>Rent an ATV ($50–70/day) or car ($40–60/day) for complete freedom. Taxis exist but are expensive for longer distances. Many accommodations arrange pickups from the airport or ferry.</p>
+
+  <h3>Shopping & Supplies</h3>
+  <p>Limited supermarkets serve basic needs. Stock up on essentials in Puntarenas before the ferry if staying remote. The village has pharmacies, a small hospital, and a few shops, but selection is limited.</p>
+
+  <h3>Wildlife Note</h3>
+  <p>Santa Teresa sits in one of the world's Blue Zones—areas with exceptional longevity and health. The Nicoya Peninsula's residents regularly live to 100 with vigor. Locals attribute it to the peaceful pace, fresh local food, and strong community bonds.</p>
+
+  <h3>Seasons Impact Everything</h3>
+  <p>High season (December–January) means booked restaurants and higher prices. Many establishments close during low season (September–October) for maintenance. Plan accordingly.</p>
+
+  <div class="art-cta">
+    <span class="art-cta-eye">Plan Your Escape</span>
+    <h3 class="art-cta-title">Stay in Private Villa Paradise</h3>
+    <p>Beyond Santa Teresa's hustle lies pure seclusion: Les Roches. Six private villas, each with infinity pool, jungle views, and complete privacy. The perfect base for exploring while having sanctuary to return to.</p>
+    <a href="../../contact.html" class="art-cta-btn">DISCOVER LES ROCHES →</a>
+  </div>
+
+  <h2>Final Thoughts</h2>
+
+  <p>Santa Teresa rewards those who take the time to get there. It's not a quick weekend escape from San José—it's a deliberate choice to step outside conventional tourism. The village remains authentic precisely because it's inconvenient to reach. You'll find travelers here, not tourists. You'll have conversations with locals. You'll discover restaurants nobody else knows about. And you'll understand why people return year after year, always finding something new in this beautiful, unhurried corner of Costa Rica.</p>
+</article>
+
+<section class="art-related">
+  <h2 class="art-related-title">Related Reading</h2>
+  <div class="art-rel-grid">
+    <a href="./santa-teresa-surf-guide.html" class="art-rel-card">
+      <span class="art-rel-lang">English</span>
+      <h3 class="art-rel-t">The Ultimate Surf Guide to Santa Teresa</h3>
+      <span class="art-rel-arr">Read →</span>
+    </a>
+    <a href="./luxury-villas-santa-teresa.html" class="art-rel-card">
+      <span class="art-rel-lang">English</span>
+      <h3 class="art-rel-t">Luxury Villas in Santa Teresa, Costa Rica</h3>
+      <span class="art-rel-arr">Read →</span>
+    </a>
+    <a href="../fr/guide-voyage-santa-teresa.html" class="art-rel-card">
+      <span class="art-rel-lang">Français</span>
+      <h3 class="art-rel-t">Santa Teresa Costa Rica : le guide voyage complet</h3>
+      <span class="art-rel-arr">Lire →</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="ftop">
+    <div>
+      <div class="flogo">Les Roches</div>
+      <p class="ftag">Six luxury private villas in Santa Teresa, Costa Rica. Each with private infinity pool, jungle and Pacific views, 5 minutes from the beach.</p>
+    </div>
+    <div>
+      <div class="fct">Explore</div>
+      <div class="flinks">
+        <a href="../../villas.html" class="flink">Villas</a>
+        <a href="../../experiences.html" class="flink">Experiences</a>
+        <a href="../../about.html" class="flink">About</a>
+        <a href="../../journal.html" class="flink">Journal</a>
+      </div>
+    </div>
+    <div>
+      <div class="fct">Plan</div>
+      <div class="flinks">
+        <a href="../../santa-teresa.html" class="flink">Santa Teresa</a>
+        <a href="../../contact.html" class="flink">Contact</a>
+        <a href="../../contact.html" class="flink">Reservations</a>
+      </div>
+    </div>
+  </div>
+  <div class="fbot">
+    <p class="fcopy">&copy; 2025 Les Roches. All rights reserved.</p>
+    <div class="fsoc">
+      <a href="#" class="fsocl">Instagram</a>
+      <a href="#" class="fsocl">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const cur=document.getElementById('cur');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+document.querySelectorAll('a').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cur.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>cur.classList.remove('hov'));
+});
+const burger=document.getElementById('burger'),overlay=document.getElementById('nav-overlay'),navClose=document.getElementById('nav-close');
+if(burger)burger.addEventListener('click',()=>overlay.classList.add('open'));
+if(navClose)navClose.addEventListener('click',()=>overlay.classList.remove('open'));
+</script>
+<script src="../../cookie-consent.js" defer></script>
+<script src="../../lang.js" defer></script>
+</body>
+</html>

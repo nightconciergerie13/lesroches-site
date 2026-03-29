@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Test LRPicker</title>
+  <link rel="stylesheet" href="js/datepicker.css">
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f5f5f5; }
+    *{ cursor: none } /* simule le site */
+    #cur { position:fixed;width:8px;height:8px;background:#333;border-radius:50%;pointer-events:none;z-index:9999; }
+    .widget { background: #1e1b18; padding: 1.5rem; border-radius: 4px; display: inline-flex; gap: 1rem; align-items: center; margin-top: 2rem; }
+    .field { background: rgba(255,255,255,.08); padding: .8rem 1.2rem; cursor: pointer; color: white; min-width: 140px; }
+    .field label { display:block; font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color: #b8734a; margin-bottom:.3rem; }
+    .field input { background:none; border:none; outline:none; color:white; font-size:.9rem; width:100%; cursor:pointer; }
+    #log { margin-top: 1rem; padding: 1rem; background: #2e2a26; color: #b8734a; font-family: monospace; font-size: .8rem; white-space: pre; border-radius: 4px; }
+    #result { margin-top: 1rem; font-size: 1.2rem; font-weight: bold; color: green; }
+  
+/* ── prefers-reduced-motion ─────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  body.has-cursor *{cursor:auto!important}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--ter,#b8734a);color:#fff;padding:.5rem 1rem;font-family:sans-serif;font-size:.875rem" onfocus="this.style.left='1rem';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-999px'">Skip to content</a>
+  <div id="cur"></div>
+  <h2>Test du calendrier LRPicker</h2>
+  <p>Cliquez sur Check-in puis sélectionnez deux dates</p>
+
+  <div class="widget">
+    <div class="field" id="f-checkin">
+      <label>Check-in</label>
+      <input type="text" id="ci" placeholder="Choisir date" readonly>
+    </div>
+    <div class="field" id="f-checkout">
+      <label>Check-out</label>
+      <input type="text" id="co" placeholder="Choisir date" readonly>
+    </div>
+  </div>
+
+  <div id="result"></div>
+  <div id="log">En attente d'interaction...</div>
+
+  <script>
+  document.addEventListener('mousemove', e => {
+    document.getElementById('cur').style.left = e.clientX + 'px';
+    document.getElementById('cur').style.top  = e.clientY + 'px';
+  });
+  </script>
+  <script src="js/datepicker.js"></script>
+  <script>
+  const log = document.getElementById('log');
+  function addLog(msg) { log.textContent += '\n' + new Date().toISOString().split('T')[1].split('.')[0] + ' ' + msg; }
+
+  addLog('LRPicker type: ' + typeof LRPicker);
+
+  if (typeof LRPicker === 'undefined') {
+    log.textContent = '❌ ERREUR: LRPicker non chargé! datepicker.js manquant.';
+  } else {
+    const ciInput = document.getElementById('ci');
+    const coInput = document.getElementById('co');
+    const fCheckin = document.getElementById('f-checkin');
+    const fCheckout = document.getElementById('f-checkout');
+
+    const fp = new LRPicker(ciInput, coInput, {
+      triggers: [fCheckin, fCheckout],
+      onChange: function(dates) {
+        const ci = dates[0].toISOString().split('T')[0];
+        const co = dates[1].toISOString().split('T')[0];
+        addLog('✅ onChange appelé! ci=' + ci + ' co=' + co);
+        document.getElementById('result').textContent = '✅ Sélection réussie: ' + ci + ' → ' + co;
+        ciInput.value = ci;
+        coInput.value = co;
+      },
+      onClear: function() {
+        addLog('Effacé');
+        document.getElementById('result').textContent = '';
+      }
+    });
+
+    addLog('Picker créé, _cal dans DOM: ' + document.body.contains(fp._cal));
+
+    fCheckin.addEventListener('click', function() {
+      addLog('Clic sur f-checkin → fp.open()');
+      fp.open();
+      addLog('fp._open après open(): ' + fp._open);
+    });
+    fCheckout.addEventListener('click', function() {
+      addLog('Clic sur f-checkout → fp.open()');
+      fp.open();
+    });
+
+    // Intercepter les clics pour déboguer
+    document.addEventListener('click', function(e) {
+      addLog('CLICK sur: ' + e.target.tagName + ' class="' + e.target.className + '" ds=' + (e.target.dataset && e.target.dataset.date || 'N/A'));
+    }, true);
+
+    document.addEventListener('mousedown', function(e) {
+      if (fp._open) {
+        addLog('mousedown (fp ouvert) sur: ' + e.target.tagName + ' class="' + e.target.className + '" dans_cal=' + fp._cal.contains(e.target));
+      }
+    }, true);
+  }
+  </script>
+</body>
+</html>

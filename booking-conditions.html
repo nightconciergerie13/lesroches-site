@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Booking Conditions — Les Roches Retreat · Santa Teresa, Costa Rica</title>
+<title>Booking Conditions — Les Roches, Santa Teresa, Costa Rica</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -12,7 +13,7 @@ a{text-decoration:none}
 :root{--w:#faf7f2;--c:#f3ede3;--c2:#e9e0d2;--sand:#d6c9b0;--ter:#b8734a;--ter2:#a05f38;--mid:#9a8f82;--ink:#1e1b18;--ink2:#2e2a26}
 html{background:var(--w);color:var(--ink);scroll-behavior:smooth}
 body{font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden}
-*{cursor:none}
+body.has-cursor *{cursor:none}
 #cur{position:fixed;width:8px;height:8px;background:var(--ink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .35s,height .35s;mix-blend-mode:multiply}
 #cur.hov{width:46px;height:46px;background:rgba(30,27,24,.1)}
 
@@ -27,7 +28,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 
 /* HERO */
 .hero{height:42vh;position:relative;overflow:hidden;display:flex;align-items:flex-end;margin-top:0}
-.hero-bg{position:absolute;inset:0;background-image:url('images/drone-ocean-dusk.jpg');background-size:cover;background-position:center 40%}
+.hero-bg{position:absolute;inset:0;background-image:url('images/drone-ocean-dusk.webp');background-size:cover;background-position:center 40%}
 .hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(18,14,10,.82) 0%,rgba(18,14,10,.2) 60%,transparent 100%)}
 .hero-inner{position:relative;z-index:2;padding:0 4rem 3.5rem;width:100%}
 .h-kicker{font-size:.5rem;letter-spacing:.5em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.9rem;display:flex;align-items:center;gap:.9rem}
@@ -118,23 +119,48 @@ footer{background:var(--ink);color:rgba(255,255,255,.45);padding:3rem 4rem;displ
   .step{grid-template-columns:40px 1fr;gap:0 1.2rem}
   footer{flex-direction:column;gap:1.5rem;text-align:center}
 }
+
+/* ── prefers-reduced-motion ─────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  body.has-cursor *{cursor:auto!important}
+}
 </style>
-<meta name="description" content="Conditions de réservation Les Roches Retreat — processus simple en 4 étapes, acompte 50%, virement bancaire sécurisé. Réservation directe sans frais.">
-<meta name="robots" content="index, follow">
+  <meta name="description" content="Terms and booking conditions for your stay at Les Roches Retreat, Santa Teresa, Costa Rica.">
+  <meta name="keywords" content="Les Roches booking conditions, villa rental terms Costa Rica">
+  <meta name="robots" content="index, follow">
+<link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/booking-conditions.html">
+<link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/booking-conditions.html">
+<link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/booking-conditions.html">
+<link rel="alternate" hreflang="x-default" href="https://lesrochesretreat.com/booking-conditions.html">
 <link rel="canonical" href="https://lesrochesretreat.com/booking-conditions.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Comment Réserver — Les Roches Retreat">
-<meta property="og:description" content="Réservation directe en 4 étapes simples. Meilleur tarif garanti, sans frais de service. Acompte 50% par virement bancaire.">
-<meta property="og:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.jpg">
+<meta property="og:title" content="Booking Conditions — Les Roches Retreat">
+<meta property="og:description" content="Booking terms and conditions for stays at Les Roches Retreat, Santa Teresa, Costa Rica.">
+<meta property="og:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.webp">
 <meta property="og:url" content="https://lesrochesretreat.com/booking-conditions.html">
 <meta property="og:site_name" content="Les Roches Retreat">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Comment Réserver — Les Roches Retreat">
 <meta name="twitter:description" content="Réservation directe en 4 étapes. Meilleur tarif garanti sans frais de service.">
-<meta name="twitter:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.jpg">
-<script src="js/track.js"></script>
+<meta name="twitter:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.webp">
+<script src="js/track.js" defer></script>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#b8734a">
+<!-- Google Analytics GA4 — Measurement ID: G-WFWBDDTMF0 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFWBDDTMF0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WFWBDDTMF0', { anonymize_ip: true });
+</script>
 </head>
 <body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--ter,#b8734a);color:#fff;padding:.5rem 1rem;font-family:sans-serif;font-size:.875rem" onfocus="this.style.left='1rem';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-999px'">Skip to content</a>
 <div id="cur"></div>
 
 <!-- NAV -->
@@ -146,8 +172,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.45);padding:3rem 4rem;displ
     <a href="about.html" class="nl">About</a>
     <a href="santa-teresa.html" class="nl">Santa Teresa</a>
     <a href="faq.html" class="nl">FAQ</a>
+  <a href="journal.html" class="nl">Journal</a>
   </div>
-  <a href="https://wa.me/33667749024?text=Bonjour%2C%20je%20souhaite%20réserver%20à%20Les%20Roches%20Retreat." class="nav-book" target="_blank" rel="noopener">Book via WhatsApp</a>
+  <a href="https://wa.me/33667749024?text=Bonjour%2C%20je%20souhaite%20réserver%20à%20Les%20Roches%20Retreat." class="nav-book" aria-label="Book a villa at Les Roches Retreat" target="_blank" rel="noopener">Book via WhatsApp</a>
 </nav>
 
 <!-- HERO -->
@@ -437,7 +464,7 @@ document.querySelectorAll('.copy-btn').forEach(btn=>{
 <div id="wa-bubble">
   <div id="wa-card">
     <div class="wa-head">
-      <img src="images/ian-whatsapp.jpg" alt="Ian" class="wa-avatar"
+      <img loading="lazy" src="images/ian-whatsapp.webp" alt="Ian" class="wa-avatar"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="wa-avatar" style="display:none;background:var(--ter);align-items:center;justify-content:center;font-family:'Gilda Display',serif;font-size:1.1rem;color:#fff;flex-shrink:0">I</div>
       <div class="wa-head-info">
@@ -461,7 +488,7 @@ document.querySelectorAll('.copy-btn').forEach(btn=>{
     </div>
   </div>
   <button id="wa-toggle" aria-label="Message Ian">
-    <img id="wa-toggle-photo" src="images/ian-whatsapp.jpg" alt="Ian"
+    <img loading="lazy" id="wa-toggle-photo" src="images/ian-whatsapp.webp" alt="Ian"
          onerror="this.style.background='var(--ink2)';this.style.objectFit='none'">
     <div id="wa-dot">
       <svg viewBox="0 0 24 24" fill="white" width="8" height="8"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -494,5 +521,9 @@ document.addEventListener('keydown',function(e){
   }
 });
 </script>
+<script src="lang.js" defer></script>
+<script src="cookie-consent.js" defer></script>
+<script src="js/lazy-bg.js" defer></script>
+<script src="js/swipe.js" defer></script>
 </body>
 </html>

@@ -23,7 +23,7 @@ a{text-decoration:none;color:inherit}
 
 /* CUSTOM CURSOR — desktop only */
 @media(hover:hover){
-  *{cursor:none}
+  body.has-cursor *{cursor:none}
   #cur{position:fixed;width:8px;height:8px;background:var(--ink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .35s,height .35s;mix-blend-mode:multiply}
   #cur.hov{width:46px;height:46px;background:rgba(30,27,24,.1)}
 }
@@ -58,7 +58,7 @@ nav.scrolled{background:rgba(250,247,242,.96);border-bottom:1px solid var(--c2);
 .nav-burger.dark span{background:var(--ink)}
 
 /* Mobile nav overlay */
-.nav-overlay{display:none;position:fixed;inset:0;z-index:190;background:var(--ink2);flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.nav-overlay{display:none;position:fixed;inset:0;z-index:250;background:var(--ink2);flex-direction:column;align-items:center;justify-content:center;gap:2rem}
 .nav-overlay.open{display:flex}
 .nav-overlay .nl{font-size:1.2rem;letter-spacing:.2em;opacity:.6;color:var(--w)}
 .nav-overlay .nl.dark{color:var(--w)}
@@ -68,7 +68,25 @@ nav.scrolled{background:rgba(250,247,242,.96);border-bottom:1px solid var(--c2);
 @media(max-width:768px){
   .nav-mid{display:none}
   .nav-book{display:none}
-  .nav-burger{display:flex}
+  /* Burger toujours visible : fond verre dépoli permanent */
+  .nav-burger{
+    display:flex;
+    background:rgba(10,8,6,.38);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:50px;
+    padding:7px 10px;
+    gap:5px;
+    transition:background .3s, border-color .3s;
+  }
+  /* Quand le nav est clair (scrolled) : fond transparent, lignes sombres */
+  nav.scrolled .nav-burger{
+    background:transparent;
+    border-color:rgba(30,27,24,.15);
+  }
+  nav.scrolled .nav-burger span,
+  .nav-burger.dark span{background:var(--ink)}
 }
 @media(min-width:769px){
   nav{padding:1.4rem 4rem}
@@ -236,3 +254,42 @@ footer{
    SHARED JS (inline at bottom of each page)
    ===================================================== */
 /* See js/main.js */
+
+
+/* ── Accessibilité : pas d'animations si l'utilisateur le préfère ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  body.has-cursor * { cursor: auto !important; }
+}
+
+/* ── Mobile booking widget — stacked full-width ──────────────── */
+@media(max-width:768px){
+  .bk-wrap{grid-template-columns:1fr 1fr;gap:1px}
+  .bk-btn{grid-column:1/-1;width:100%;padding:1.1rem}
+  .fp-avail{font-size:.47rem;padding:.6rem 1rem;text-align:center}
+}
+@media(max-width:480px){
+  .bk-wrap{grid-template-columns:1fr}
+  .bk-f{padding:.85rem 1rem}
+}
+
+/* ── Availability indicator ──────────────────────────────────── */
+.fp-avail{display:flex;align-items:center;justify-content:center;gap:.5rem;font-family:'Outfit',sans-serif;font-size:.47rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,247,242,.78);padding:.65rem 1.4rem;border-top:1px solid rgba(255,255,255,.14)}
+.fp-avail-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:pulse 2s ease-in-out infinite}
+.fp-cancel{font-family:'Outfit',sans-serif;font-size:.42rem;color:rgba(255,255,255,.65);letter-spacing:.1em;margin-top:.5rem;text-align:center}
+
+/* ── focus-visible ───────────────────────────────────────────── */
+:focus-visible{outline:2px solid var(--ter,#b8734a);outline-offset:3px;border-radius:2px}
+
+/* ── Form feedback states ────────────────────────────────────── */
+.bk-field-error{border-bottom:1px solid #e05252!important}
+.bk-err-msg{font-family:'Outfit',sans-serif;font-size:.44rem;color:#e05252;margin-top:.2rem;letter-spacing:.05em;display:none}
+.bk-err-msg.show{display:block}
+.fp-cta.loading{opacity:.6;pointer-events:none;position:relative}
+.fp-cta.loading::after{content:'';display:inline-block;width:12px;height:12px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;margin-left:.6rem;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}

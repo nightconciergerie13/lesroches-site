@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Three founders, one philosophy: create the ultimate private retreat in Santa Teresa, Costa Rica. Six villas, complete freedom.">
+  <meta name="keywords" content="Les Roches retreat story, luxury villa Santa Teresa founders, about Les Roches Costa Rica">
+  <title>Notre Histoire — The Vision Behind Les Roches, Santa Teresa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .hero {
+      height: 80vh;
+      background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.45)), url('../images/drone-jungle-aerial.webp') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--w);
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+    .hero-eyebrow {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(250,247,242,0.55);
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+      font-weight: 400;
+      line-height: 1.15;
+      max-width: 700px;
+    }
+
+    /* ── Vision ── */
+    .section-vision {
+      position: relative;
+      background: url('../images/sunset-view.webp') center 40%/cover no-repeat;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+    }
+    .section-vision::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(10,8,6,0.72) 0%, rgba(10,8,6,0.35) 60%, rgba(10,8,6,0.1) 100%);
+    }
+    .vision-inner {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 1.5rem;
+      max-width: 580px;
+    }
+    @media (min-width: 768px) {
+      .vision-inner { padding: 8rem 6vw; }
+    }
+    .section-eyebrow {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(184,115,74,0.85);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      color: #faf7f2;
+      margin-bottom: 1.5rem;
+      line-height: 1.15;
+    }
+    .vision-text {
+      font-family: 'Outfit', sans-serif;
+      color: rgba(250,247,242,0.7);
+      line-height: 1.85;
+      font-size: 0.95rem;
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+    }
+    /* ── Dark manifesto ── */
+    .dark-section {
+      background: url('../images/drone-night.webp') center/cover no-repeat;
+      background-color: rgba(30,27,24,0.82);
+      background-blend-mode: overlay;
+      padding: 7rem 2rem;
+      text-align: center;
+      color: var(--w);
+    }
+    .dark-section h2 {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(1.7rem, 4vw, 3rem);
+      line-height: 1.35;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    /* ── Values ── */
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 5rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .values-grid { grid-template-columns: repeat(3, 1fr); gap: 3rem; padding: 7rem 2rem; }
+    }
+    .value-card { padding: 2.5rem 0; border-top: 1px solid rgba(30,27,24,0.1); }
+    .value-line { width: 32px; height: 1px; background: var(--ter); margin-bottom: 1.5rem; }
+    .value-title { font-family: 'Gilda Display', serif; font-size: 1.5rem; color: var(--ink); margin-bottom: 0.75rem; }
+    .value-text { font-family: 'Outfit', sans-serif; font-size: 0.93rem; color: var(--mid); line-height: 1.75; font-weight: 300; }
+    /* ── Stats bar ── */
+    .stats-bar { background: var(--ink); color: var(--w); padding: 3.5rem 1.5rem; }
+    @media (min-width: 768px) { .stats-bar { padding: 4rem 2rem; } }
+    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; text-align: center; }
+    @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(6, 1fr); gap: 1.5rem; } }
+    .stat { display: flex; flex-direction: column; }
+    .stat-number { font-family: 'Gilda Display', serif; font-size: 2.5rem; color: var(--ter); font-weight: 400; }
+    .stat-label { font-family: 'Outfit', sans-serif; font-size: 0.8rem; color: rgba(250,247,242,0.4); margin-top: 0.5rem; font-weight: 300; }
+    /* ── Terrain panorama ── */
+    .terrain-strip { width:100%; height:55vw; max-height:600px; min-height:260px; background:url('../images/sunset-view.webp') center 40%/cover no-repeat; }
+    /* ── Founders ── */
+    .founders-s { background: var(--ink); padding: 6rem 1.5rem; }
+    @media (min-width: 768px) { .founders-s { padding: 8rem 5vw; } }
+    .founders-intro { text-align: center; max-width: 600px; margin: 0 auto 5rem; }
+    .founders-intro .eye { font-family: 'Outfit', sans-serif; font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(250,247,242,0.35); margin-bottom: 1rem; }
+    .founders-intro h2 { font-family: 'Gilda Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--w); line-height: 1.15; margin-bottom: 1.2rem; }
+    .founders-intro p { font-family: 'Outfit', sans-serif; font-size: 0.92rem; font-weight: 300; color: rgba(250,247,242,0.45); line-height: 1.8; }
+    .founders-grid { display: grid; grid-template-columns: 1fr; gap: 3.5rem; max-width: 1100px; margin: 0 auto 5rem; }
+    @media (min-width: 768px) { .founders-grid { grid-template-columns: repeat(3, 1fr); gap: 3rem; } }
+    .founder-card { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .founder-photo { width: 100%; max-width: 240px; aspect-ratio: 3 / 4; background-size: cover; background-position: center top; border-radius: 3px; margin-bottom: 1.75rem; filter: brightness(0.92) contrast(1.04); }
+    .founder-name { font-family: 'Gilda Display', serif; font-size: 1.5rem; color: var(--w); margin-bottom: 0.3rem; }
+    .founder-role { font-family: 'Outfit', sans-serif; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ter); margin-bottom: 1rem; }
+    .founder-bio { font-family: 'Outfit', sans-serif; font-size: 0.84rem; font-weight: 300; color: rgba(250,247,242,0.48); line-height: 1.8; }
+    .founders-stats { display: grid; grid-template-columns: 1fr; gap: 1.5rem; max-width: 900px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 3.5rem; }
+    @media (min-width: 768px) { .founders-stats { grid-template-columns: repeat(3, 1fr); } }
+    .f-stat-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); padding: 1.8rem; border-radius: 2px; }
+    .f-stat-num { font-family: 'Gilda Display', serif; font-size: 1.8rem; color: var(--w); line-height: 1; }
+    .f-stat-label { font-family: 'Outfit', sans-serif; font-size: 0.46rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(250,247,242,0.3); margin: 0.3rem 0 0.8rem; }
+    .f-stat-desc { font-family: 'Outfit', sans-serif; font-size: 0.64rem; font-weight: 300; color: rgba(250,247,242,0.45); line-height: 1.7; }
+  
+/* ── prefers-reduced-motion ─────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  body.has-cursor *{cursor:auto!important}
+}
+</style>
+<meta name="robots" content="index, follow">
+<link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/about.html">
+<link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/about.html">
+<link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/about.html">
+<link rel="alternate" hreflang="x-default" href="https://lesrochesretreat.com/about.html">
+<link rel="canonical" href="https://lesrochesretreat.com/fr/about.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Notre Histoire — The Vision Behind Les Roches">
+<meta property="og:description" content="Three founders, one philosophy: the ultimate private retreat in Santa Teresa, Costa Rica.">
+<meta property="og:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.webp">
+<meta property="og:url" content="https://lesrochesretreat.com/about.html">
+<meta property="og:site_name" content="Les Roches Retreat">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Notre Histoire — Les Roches Retreat">
+<meta name="twitter:description" content="Trois fondateurs, une philosophie : créer le refuge de luxe ultime à Santa Teresa, Costa Rica.">
+<meta name="twitter:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.webp">
+<script src="../js/track.js" defer></script>
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon-192.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#b8734a">
+<!-- Google Analytics GA4 — Measurement ID: G-WFWBDDTMF0 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFWBDDTMF0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WFWBDDTMF0', { anonymize_ip: true });
+</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--ter,#b8734a);color:#fff;padding:.5rem 1rem;font-family:sans-serif;font-size:.875rem" onfocus="this.style.left='1rem';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-999px'">Skip to content</a>
+  <div id="cur"></div>
+
+  <nav id="nav">
+    <a href="../index.html" class="nl-logo" id="logo">Les Roches</a>
+    <div class="nav-mid">
+      <a href="../villas.html" class="nl">Villas</a>
+      <a href="../experiences.html" class="nl">Expériences</a>
+      <a href="../about.html" class="nl">À propos</a>
+      <a href="../santa-teresa.html" class="nl">Santa Teresa</a>
+  <a href="../faq.html" class="nl">FAQ</a>
+  <a href="../journal.html" class="nl">Journal</a>
+  </div>
+    <a href="../villas.html#search" class="nav-book" aria-label="Book a villa at Les Roches Retreat" id="nb">Réserver</a>
+    <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="nav-overlay" id="nav-overlay">
+    <button class="nav-close" id="nav-close">✕</button>
+    <a href="../villas.html" class="nl">Villas</a>
+    <a href="../experiences.html" class="nl">Expériences</a>
+    <a href="../about.html" class="nl">À propos</a>
+    <a href="../santa-teresa.html" class="nl">Santa Teresa</a>
+  <a href="../faq.html" class="nl">FAQ</a>
+    <a href="../journal.html" class="nl">Journal</a>
+  <a href="../contact.html" class="nl">Réserver</a>
+  </div>
+
+  <!-- ── HERO ──────────────────────────────────────────────── -->
+  <section id="main-content" class="hero">
+    <p class="hero-eyebrow">Notre Histoire</p>
+    <h1>Un lieu qui n'existait pas.<br>Jusqu'à ce qu'on le construise.</h1>
+  </section>
+
+  <!-- ── LA VISION ──────────────────────────────────────────── -->
+  <section class="section-vision">
+    <div class="vision-inner">
+      <p class="section-eyebrow">La vision</p>
+      <h2 class="section-title">La plus belle vue<br>de Santa Teresa.</h2>
+      <p class="vision-text">On revenait sans cesse au Costa Rica à la recherche de la même chose. Une villa privée au-dessus de la jungle — une vraie piscine à débordement face au Pacifique, le bruit des singes hurleurs à l'aube, l'odeur du sel et de la terre. Assez proche de Santa Teresa pour en ressentir l'énergie. Assez loin pour que le monde cesse d'exister.</p>
+      <p class="vision-text">On ne la trouvait pas. Alors en 2022, on a trouvé le terrain — le point le plus haut avec la plus grande vue qu'on ait jamais vue — et on l'a construit de zéro. Six villas. Six piscines. Une obsession : que rien ne s'interpose entre vous et ce lieu.</p>
+    </div>
+  </section>
+
+  <!-- ── MANIFESTE ──────────────────────────────────────────── -->
+  <section class="dark-section r">
+    <h2>Six maisons. Une philosophie.<br>Rien entre vous et la beauté du Costa Rica.</h2>
+  </section>
+
+  <!-- ── VALEURS ────────────────────────────────────────────── -->
+  <section class="values-grid r">
+    <div class="value-card">
+      <div class="value-line"></div>
+      <h3 class="value-title">Intimité</h3>
+      <p class="value-text">Votre villa est à vous seuls. Pas de réception, pas de lobby, pas d'horaires. Juste les personnes que vous avez choisies — et la jungle autour de vous.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-line"></div>
+      <h3 class="value-title">Nature</h3>
+      <p class="value-text">La jungle n'est pas un décor. C'est l'expérience. Les singes hurleurs à 6h du matin. Le Pacifique au crépuscule. Des choses qui ne peuvent pas être mises en scène.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-line"></div>
+      <h3 class="value-title">Simplicité</h3>
+      <p class="value-text">On a supprimé tout ce qui concurrençait la vue. Ce qu'il reste est exactement suffisant.</p>
+    </div>
+  </section>
+
+  <!-- ── STATS ──────────────────────────────────────────────── -->
+  <section class="stats-bar r">
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-number">6</div><div class="stat-label">Villas</div></div>
+      <div class="stat"><div class="stat-number">6</div><div class="stat-label">Piscines à débordement</div></div>
+      <div class="stat"><div class="stat-number">5</div><div class="stat-label">Min de la plage</div></div>
+      <div class="stat"><div class="stat-number">3</div><div class="stat-label">Fondateurs</div></div>
+      <div class="stat"><div class="stat-number">3</div><div class="stat-label">Langues</div></div>
+      <div class="stat"><div class="stat-number">1</div><div class="stat-label">Mission</div></div>
+    </div>
+  </section>
+
+  <!-- ── FONDATEURS ─────────────────────────────────────────── -->
+  <section class="founders-s r">
+    <div class="founders-intro">
+      <div class="eye">Les Fondateurs</div>
+      <h2>Ce lieu nous a réunis.</h2>
+      <p>Trois personnes qui cherchaient sans cesse le même type d'escapade — et ne le trouvaient jamais tout à fait. Alors ils l'ont construit.</p>
+    </div>
+    <div class="founders-grid">
+      <div class="founder-card">
+        <div class="founder-photo r-img" data-bg="../images/ian-whatsapp.webp" style="background-image:url('../images/ian-whatsapp.webp');background-position:center 10%"></div>
+        <h3 class="founder-name">Ian</h3>
+        <p class="founder-role">Commercial & Développement</p>
+        <p class="founder-bio">La voix que vous entendrez quand vous nous écrirez. Ian gère la stratégie, les partenariats, et tout ce qui fait exister Les Roches dans le monde. Il répond vite, et connaît la propriété comme sa poche.</p>
+      </div>
+      <div class="founder-card">
+        <div class="founder-photo r-img" data-bg="../images/marie-profile.webp" style="background-image:url('../images/marie-profile.webp');background-position:center center"></div>
+        <h3 class="founder-name">Marie</h3>
+        <p class="founder-role">Expérience & Sur Place</p>
+        <p class="founder-bio">Marie est l'âme de Les Roches sur place. C'est grâce à elle que votre séjour dépasse ce que vous attendiez — les détails que vous remarquerez, et les cent que vous ne remarquerez pas. Elle est là pour que vous le ressentiez.</p>
+      </div>
+      <div class="founder-card">
+        <div class="founder-photo r-img" data-bg="../images/martin-profile.webp" style="background-image:url('../images/martin-profile.webp');background-position:center 20%"></div>
+        <h3 class="founder-name">Martin</h3>
+        <p class="founder-role">Expérience & Connexions Locales</p>
+        <p class="founder-bio">Martin est votre lien avec Santa Teresa. Les spots de surf qui méritent de se lever tôt, les endroits cachés, le rythme du pura vida. Il fait en sorte que vous repartiez en connaissant ce lieu comme la plupart des visiteurs ne le connaîtront jamais.</p>
+      </div>
+    </div>
+    <div class="founders-stats">
+      <div class="f-stat-card">
+        <div class="f-stat-num">2022</div>
+        <div class="f-stat-label">Fondé</div>
+        <div class="f-stat-desc">Premiers hôtes accueillis à Les Roches, Santa Teresa</div>
+      </div>
+      <div class="f-stat-card">
+        <div class="f-stat-num">4.9 / 5</div>
+        <div class="f-stat-label">Note invités</div>
+        <div class="f-stat-desc">Régulièrement classé parmi les meilleurs retreats de Santa Teresa</div>
+      </div>
+      <div class="f-stat-card">
+        <div class="f-stat-num">100%</div>
+        <div class="f-stat-label">Réservation directe</div>
+        <div class="f-stat-desc">Pas d'intermédiaire. Vous réservez directement avec nous.</div>
+      </div>
+    </div>
+  </section>
+
+<footer>
+    <div><div class="f-logo">Les Roches</div><div class="f-tagline">Six private villas in the heart of<br>Santa Teresa, Costa Rica.</div></div>
+    <div><div class="f-col-title">Navigation</div><a href="../villas.html" class="f-link">Villas</a><a href="../experiences.html" class="f-link">Expériences</a><a href="../about.html" class="f-link">Notre Histoire</a><a href="../booking-conditions.html" class="f-link">Réserver</a></div>
+    <div><div class="f-col-title">Contact</div><span class="f-link">hello@lesrochesretreat.com</span><span class="f-link" style="margin-top:.4rem;display:block">Calle Vista De Olas<br>Santa Teresa · Costa Rica</span></div>
+    <div class="f-copy">© 2026 Les Roches · Santa Teresa, Costa Rica · Tous droits réservés</div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    if(window.matchMedia('(hover:hover)').matches){
+      const cur=document.getElementById('cur');
+      document.querySelectorAll('a,button').forEach(el=>{
+        el.addEventListener('mouseenter',()=>cur.classList.add('hov'));
+        el.addEventListener('mouseleave',()=>cur.classList.remove('hov'));
+      });
+    }
+  </script>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/33667749024?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20une%20villa%20%C3%A0%20Les%20Roches%20Retreat." 
+   class="wa-btn" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+<style>
+.wa-btn{
+  position:fixed;
+  bottom:2rem;
+  right:2rem;
+  z-index:1000;
+  width:56px;
+  height:56px;
+  background:#25D366;
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.45);
+  transition:transform .25s ease, box-shadow .25s ease;
+  cursor:pointer;
+}
+.wa-btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 6px 28px rgba(37,211,102,.6);
+}
+</style>
+<!-- END WHATSAPP -->
+
+<style>
+/* ── Bulle contact — discrète et naturelle ── */
+#wa-bubble{position:fixed;bottom:1.6rem;right:1.6rem;z-index:2000;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+#wa-toggle{width:52px;height:52px;border-radius:50%;border:none;padding:0;cursor:pointer;background:none;position:relative;box-shadow:0 2px 12px rgba(0,0,0,.22);transition:transform .2s,box-shadow .2s;overflow:visible}
+#wa-toggle:hover{transform:scale(1.04);box-shadow:0 4px 18px rgba(0,0,0,.3)}
+#wa-toggle-photo{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:center 18%;display:block;border:2px solid rgba(250,247,242,.7)}
+#wa-dot{position:absolute;bottom:0;right:0;width:16px;height:16px;background:#25D366;border-radius:50%;border:2px solid var(--w,#faf7f2);display:flex;align-items:center;justify-content:center}
+#wa-dot svg{display:block}
+#wa-card{width:272px;background:var(--w,#faf7f2);border-radius:10px;box-shadow:0 4px 22px rgba(0,0,0,.13);overflow:hidden;transform:translateY(8px) scale(.97);opacity:0;pointer-events:none;transition:transform .28s cubic-bezier(.25,.8,.25,1),opacity .2s ease;transform-origin:bottom right;border:1px solid rgba(30,27,24,.07)}
+#wa-card.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+.wa-head{background:var(--ink2,#2e2a26);padding:.85rem 1rem;display:flex;align-items:center;gap:.75rem;position:relative}
+.wa-head-close{position:absolute;top:.55rem;right:.7rem;background:none;border:none;color:rgba(255,255,255,.25);font-size:.85rem;cursor:pointer;line-height:1;transition:color .18s}
+.wa-head-close:hover{color:rgba(255,255,255,.6)}
+.wa-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 18%;border:1px solid rgba(255,255,255,.12);flex-shrink:0}
+.wa-head-name{font-family:'Gilda Display',serif;font-size:.84rem;color:rgba(250,247,242,.88);letter-spacing:.02em}
+.wa-head-status{font-size:.48rem;color:rgba(255,255,255,.3);margin-top:.15rem;font-family:'Outfit',sans-serif;display:flex;align-items:center;gap:.3rem}
+.wa-head-status::before{content:'';width:5px;height:5px;background:#4ade80;border-radius:50%;flex-shrink:0}
+.wa-body{background:var(--c,#f3ede3);padding:.9rem .9rem .85rem}
+.wa-msg{background:var(--w,#faf7f2);border-radius:2px 9px 9px 9px;padding:.65rem .8rem;font-family:'Outfit',sans-serif;font-size:.66rem;line-height:1.7;color:var(--ink,#1e1b18);position:relative;max-width:94%;border:1px solid rgba(30,27,24,.04)}
+.wa-msg::before{content:'';position:absolute;top:0;left:-5px;width:0;height:0;border-top:5px solid var(--w,#faf7f2);border-left:5px solid transparent}
+.wa-time{font-size:.45rem;color:var(--mid,#9a8f82);text-align:right;margin-top:.3rem}
+.wa-cta-wrap{padding:.7rem .9rem .85rem;background:var(--c,#f3ede3);border-top:1px solid rgba(30,27,24,.05)}
+.wa-cta{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;background:var(--ter,#b8734a);border:none;border-radius:2px;padding:.65rem 1rem;font-family:'Outfit',sans-serif;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;cursor:pointer;text-decoration:none;transition:background .2s;opacity:.92}
+.wa-cta:hover{background:var(--ter2,#a05f38);opacity:1}
+</style>
+
+<div id="wa-bubble">
+  <div id="wa-card">
+    <div class="wa-head">
+      <img loading="lazy" src="../images/ian-whatsapp.webp" alt="Ian" class="wa-avatar"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="wa-avatar" style="display:none;background:var(--ter);align-items:center;justify-content:center;font-family:'Gilda Display',serif;font-size:1.1rem;color:#fff;flex-shrink:0">I</div>
+      <div class="wa-head-info">
+        <div class="wa-head-name">Ian &nbsp;—&nbsp; Les Roches</div>
+        <div class="wa-head-status">En ligne · répond rapidement</div>
+      </div>
+      <button class="wa-head-close" id="wa-close" aria-label="Fermer">✕</button>
+    </div>
+    <div class="wa-body">
+      <div class="wa-msg">
+        Bonjour ! 👋<br>Pour toutes questions sur les villas, les disponibilités ou une réservation, n'hésitez pas à m'envoyer un message — je vous réponds rapidement.
+        <div class="wa-time">maintenant</div>
+      </div>
+    </div>
+    <div class="wa-cta-wrap">
+      <a href="https://wa.me/33667749024?text=Bonjour%20Ian%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20Les%20Roches%20Retreat%20%F0%9F%8C%8A"
+         target="_blank" rel="noopener" class="wa-cta">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Envoyer un message
+      </a>
+    </div>
+  </div>
+  <button id="wa-toggle" aria-label="Message Ian">
+    <img loading="lazy" id="wa-toggle-photo" src="../images/ian-whatsapp.webp" alt="Ian"
+         onerror="this.style.background='var(--ink2)';this.style.objectFit='none'">
+    <div id="wa-dot">
+      <svg viewBox="0 0 24 24" fill="white" width="8" height="8"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </div>
+  </button>
+</div>
+
+<script>
+(function(){
+  const toggle=document.getElementById('wa-toggle'),
+        card=document.getElementById('wa-card'),
+        close=document.getElementById('wa-close');
+  let open=false;
+  function setOpen(v){ open=v; card.classList.toggle('open',v); }
+  if(!sessionStorage.getItem('wa_shown')){
+    setTimeout(()=>{setOpen(true);sessionStorage.setItem('wa_shown','1')},6000);
+  }
+  toggle.addEventListener('click',()=>setOpen(!open));
+  close.addEventListener('click',()=>setOpen(false));
+})();
+</script>
+<!-- END WHATSAPP -->
+
+
+<script>
+document.addEventListener('keydown',function(e){
+  if((e.ctrlKey||e.metaKey)&&e.shiftKey&&e.key.toLowerCase()==='a'){
+    e.preventDefault();
+    window.location.href='/admin/index.html';
+  }
+});
+</script>
+<script src="../lang.js" defer></script>
+<script src="../cookie-consent.js" defer></script>
+<script src="../js/lazy-bg.js" defer></script>
+<script src="../js/swipe.js" defer></script>
+</body>
+</html>

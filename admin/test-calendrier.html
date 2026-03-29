@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Les Roches — Test Calendrier & Supabase</title>
+<script src="js/config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  body { font-family: monospace; background: #1a1a1a; color: #e0e0e0; padding: 2rem; }
+  h1 { color: #b8734a; }
+  h2 { color: #d6c9b0; margin-top: 2rem; }
+  .ok  { color: #4caf50; }
+  .err { color: #f44336; }
+  .warn{ color: #ff9800; }
+  .info{ color: #64b5f6; }
+  pre  { background: #2a2a2a; padding: 1rem; border-radius: 4px; overflow-x: auto; white-space: pre-wrap; }
+  table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
+  th, td { border: 1px solid #444; padding: .5rem 1rem; text-align: left; }
+  th { background: #333; color: #b8734a; }
+  tr:nth-child(even) { background: #222; }
+  .btn { background: #b8734a; color: white; border: none; padding: .5rem 1.5rem; border-radius: 4px; cursor: pointer; font-size: 1rem; margin-right: .5rem; }
+  .btn:hover { background: #a05f38; }
+  #log { margin-top: 1rem; }
+  .log-entry { padding: .3rem 0; border-bottom: 1px solid #333; }
+
+/* ── prefers-reduced-motion ─────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  body.has-cursor *{cursor:auto!important}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--ter,#b8734a);color:#fff;padding:.5rem 1rem;font-family:sans-serif;font-size:.875rem" onfocus="this.style.left='1rem';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-999px'">Skip to content</a>
+<h1>🔍 Les Roches — Diagnostic Calendrier</h1>
+<p>Cette page vérifie la connexion Supabase et les dates bloquées pour chaque villa.</p>
+
+<h2>1. Statut des bibliothèques</h2>
+<div id="lib-status"></div>
+
+<h2>2. Test connexion Supabase</h2>
+<div id="conn-status"></div>
+
+<h2>3. Dates bloquées par villa</h2>
+<div id="dates-status">Cliquez sur "Tester" pour charger...</div>
+<br>
+<button class="btn" onclick="runTests()">▶ Lancer les tests</button>
+<button class="btn" onclick="addTestDates()">➕ Ajouter dates de test (opale)</button>
+
+<h2>4. Log détaillé</h2>
+<div id="log"></div>
+
+<script>
+const VILLAS = ['opale', 'jade', 'onyx', 'topaze', 'agate', 'ambre'];
+
+function log(msg, type='info') {
+  const d = document.getElementById('log');
+  const e = document.createElement('div');
+  e.className = 'log-entry ' + type;
+  e.textContent = new Date().toLocaleTimeString() + ' — ' + msg;
+  d.prepend(e);
+}
+
+function checkLibs() {
+  const el = document.getElementById('lib-status');
+  const rows = [
+    ['flatpickr (CDN)',    typeof flatpickr !== 'undefined'],
+    ['supabase-js (CDN)',  typeof supabase  !== 'undefined'],
+    ['SUPABASE_URL',       typeof SUPABASE_URL  !== 'undefined'],
+    ['SUPABASE_ANON',      typeof SUPABASE_ANON !== 'undefined'],
+  ];
+  el.innerHTML = '<table><tr><th>Bibliothèque</th><th>Statut</th></tr>' +
+    rows.map(([name, ok]) =>
+      `<tr><td>${name}</td><td class="${ok?'ok':'err'}">${ok ? '✅ Chargée' : '❌ Non disponible'}</td></tr>`
+    ).join('') + '</table>';
+  rows.forEach(([name, ok]) => log(name + ': ' + (ok ? 'OK' : 'MANQUANT'), ok ? 'ok' : 'err'));
+}
+
+async function testConnection() {
+  const el = document.getElementById('conn-status');
+  el.innerHTML = '<span class="warn">⏳ Test en cours...</span>';
+  try {
+    if (typeof supabase === 'undefined') throw new Error('supabase-js non chargé');
+    if (typeof SUPABASE_URL === 'undefined') throw new Error('SUPABASE_URL non défini');
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+    // Try a simple query
+    const { data, error } = await sb.from('blocked_dates').select('count', { count: 'exact', head: true });
+    if (error) throw error;
+    el.innerHTML = `<span class="ok">✅ Connexion Supabase OK — Table 'blocked_dates' accessible</span>`;
+    log('Connexion Supabase OK', 'ok');
+    return sb;
+  } catch(e) {
+    el.innerHTML = `<span class="err">❌ Erreur: ${e.message}</span><br>
+      <span class="warn">💡 Vérifiez que :</span><br>
+      <ul style="color:#ff9800">
+        <li>La table 'blocked_dates' existe dans Supabase</li>
+        <li>RLS (Row Level Security) autorise SELECT pour le rôle 'anon'</li>
+        <li>La clé ANON dans js/config.js est correcte</li>
+      </ul>`;
+    log('Erreur Supabase: ' + e.message, 'err');
+    return null;
+  }
+}
+
+async function loadDatesForVilla(sb, villa) {
+  const today = new Date().toISOString().split('T')[0];
+  const { data, error } = await sb
+    .from('blocked_dates')
+    .select('date, reason')
+    .eq('villa_id', villa)
+    .gte('date', today)
+    .order('date');
+  if (error) return { villa, error: error.message, dates: [] };
+  return { villa, dates: data || [], error: null };
+}
+
+async function runTests() {
+  checkLibs();
+  const sb = await testConnection();
+  if (!sb) return;
+
+  const el = document.getElementById('dates-status');
+  el.innerHTML = '<span class="warn">⏳ Chargement des dates...</span>';
+
+  const results = await Promise.all(VILLAS.map(v => loadDatesForVilla(sb, v)));
+
+  let html = '<table><tr><th>Villa</th><th>villa_id</th><th>Dates bloquées</th><th>Statut</th></tr>';
+  results.forEach(r => {
+    const status = r.error ? `<span class="err">❌ ${r.error}</span>` :
+      r.dates.length === 0 ? `<span class="warn">⚠️ Aucune date (table vide pour cette villa)</span>` :
+      `<span class="ok">✅ ${r.dates.length} date(s)</span>`;
+    const dates = r.dates.length > 0
+      ? r.dates.slice(0,5).map(d => d.date + (d.reason ? ` (${d.reason})` : '')).join(', ') + (r.dates.length > 5 ? '…' : '')
+      : '—';
+    html += `<tr><td>Casa ${r.villa.charAt(0).toUpperCase() + r.villa.slice(1)}</td><td>${r.villa}</td><td>${dates}</td><td>${status}</td></tr>`;
+    log(`${r.villa}: ${r.dates.length} date(s) bloquée(s)`, r.dates.length > 0 ? 'ok' : 'warn');
+  });
+  html += '</table>';
+
+  // Also show all data raw
+  if (results.some(r => r.dates.length > 0)) {
+    html += '<h3 style="margin-top:1.5rem;color:#d6c9b0">Détail complet</h3><pre>' +
+      JSON.stringify(results.filter(r => r.dates.length > 0).map(r => ({villa: r.villa, dates: r.dates})), null, 2) + '</pre>';
+  }
+
+  html += `<div style="margin-top:1.5rem;padding:1rem;background:#2a2a2a;border-radius:4px">
+    <p class="warn"><strong>💡 Si aucune date n'est bloquée :</strong></p>
+    <ol style="color:#e0e0e0;line-height:2">
+      <li>Ouvrez <a href="https://supabase.com/dashboard/project/vrufclzcaswkdgrffdwm/editor" target="_blank" style="color:#64b5f6">Supabase Table Editor</a></li>
+      <li>Sélectionnez la table <strong>blocked_dates</strong></li>
+      <li>Vérifiez qu'elle contient des lignes avec <code>villa_id</code> = 'opale', 'jade', etc.</li>
+      <li>Si la table est vide, <a href="https://supabase.com/dashboard/project/vrufclzcaswkdgrffdwm/auth/policies" target="_blank" style="color:#64b5f6">vérifiez les policies RLS</a> — SELECT doit être autorisé pour 'anon'</li>
+    </ol>
+  </div>`;
+
+  el.innerHTML = html;
+}
+
+async function addTestDates() {
+  if (!confirm('Ajouter des dates de test pour Casa Opale dans Supabase ?')) return;
+  try {
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+    const today = new Date();
+    const testDates = [];
+    // Add 5 random blocked dates in the next 3 months
+    for (let i = 0; i < 5; i++) {
+      const d = new Date(today);
+      d.setDate(d.getDate() + 15 + i * 12);
+      testDates.push({ villa_id: 'opale', date: d.toISOString().split('T')[0], reason: 'test' });
+    }
+    const { error } = await sb.from('blocked_dates').insert(testDates);
+    if (error) throw error;
+    log('Dates de test ajoutées pour opale: ' + testDates.map(d=>d.date).join(', '), 'ok');
+    alert('✅ Dates de test ajoutées ! Relancez les tests.');
+  } catch(e) {
+    log('Erreur ajout dates test: ' + e.message, 'err');
+    alert('❌ Erreur: ' + e.message + '\n\nNote: La clé anon ne peut peut-être pas écrire. Utilisez la clé service_role dans Supabase Dashboard.');
+  }
+}
+
+// Auto-run on load
+window.addEventListener('load', checkLibs);
+</script>
+</body>
+</html>

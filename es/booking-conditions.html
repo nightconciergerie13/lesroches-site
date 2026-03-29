@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Conditions — Les Roches, Santa Teresa, Costa Rica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+a{text-decoration:none}
+:root{--w:#faf7f2;--c:#f3ede3;--c2:#e9e0d2;--sand:#d6c9b0;--ter:#b8734a;--ter2:#a05f38;--mid:#9a8f82;--ink:#1e1b18;--ink2:#2e2a26}
+html{background:var(--w);color:var(--ink);scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden}
+body.has-cursor *{cursor:none}
+#cur{position:fixed;width:8px;height:8px;background:var(--ink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .35s,height .35s;mix-blend-mode:multiply}
+#cur.hov{width:46px;height:46px;background:rgba(30,27,24,.1)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 4rem;background:rgba(250,247,242,.96);border-bottom:1px solid var(--c2);backdrop-filter:blur(12px)}
+.nl-logo{font-family:'Gilda Display',serif;font-size:1.35rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.nav-mid{display:flex;gap:2.2rem}
+.nl{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);opacity:.55;transition:opacity .2s}
+.nl:hover{opacity:1}
+.nav-book{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;padding:.6rem 1.6rem;border:1px solid rgba(30,27,24,.3);color:var(--ink);border-radius:1px;transition:all .25s}
+.nav-book:hover{background:var(--ter);border-color:var(--ter);color:var(--w)}
+
+/* HERO */
+.hero{height:42vh;position:relative;overflow:hidden;display:flex;align-items:flex-end;margin-top:0}
+.hero-bg{position:absolute;inset:0;background-image:url('../images/drone-ocean-dusk.webp');background-size:cover;background-position:center 40%}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(18,14,10,.82) 0%,rgba(18,14,10,.2) 60%,transparent 100%)}
+.hero-inner{position:relative;z-index:2;padding:0 4rem 3.5rem;width:100%}
+.h-kicker{font-size:.5rem;letter-spacing:.5em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.9rem;display:flex;align-items:center;gap:.9rem}
+.h-kicker::before{content:'';width:20px;height:1px;background:var(--ter)}
+.h-title{font-family:'Gilda Display',serif;font-size:clamp(2rem,3.5vw,3.4rem);color:rgba(250,247,242,.92);line-height:1.05;letter-spacing:.01em}
+.h-title em{font-family:'Libre Baskerville',serif;font-style:italic;color:var(--ter)}
+
+/* MAIN CONTENT */
+.page-wrap{max-width:860px;margin:0 auto;padding:5rem 4rem 6rem}
+
+/* PROCESS STEPS */
+.process-section{margin-bottom:5rem}
+.section-eye{font-size:.56rem;letter-spacing:.42em;text-transform:uppercase;color:var(--ter);margin-bottom:1.2rem;display:flex;align-items:center;gap:.9rem}
+.section-eye::before{content:'';width:18px;height:1px;background:var(--ter)}
+.section-title{font-family:'Gilda Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);color:var(--ink);line-height:1.1;margin-bottom:2.5rem}
+.section-title em{font-family:'Libre Baskerville',serif;font-style:italic;color:var(--ter)}
+
+.steps{display:flex;flex-direction:column;gap:0}
+.step{display:grid;grid-template-columns:56px 1fr;gap:0 2rem;padding:2rem 0;border-bottom:1px solid var(--c2)}
+.step:last-child{border-bottom:none}
+.step-num{font-family:'Gilda Display',serif;font-size:2.4rem;color:var(--c2);line-height:1;padding-top:.1rem}
+.step-body{}
+.step-title{font-family:'Gilda Display',serif;font-size:1.15rem;color:var(--ink);margin-bottom:.6rem}
+.step-text{font-size:.75rem;color:var(--mid);line-height:1.85}
+.step-tag{display:inline-block;margin-top:.8rem;font-size:.44rem;letter-spacing:.28em;text-transform:uppercase;padding:.3rem .9rem;border-radius:1px}
+.tag-ter{background:rgba(184,115,74,.1);color:var(--ter);border:1px solid rgba(184,115,74,.25)}
+.tag-ink{background:rgba(30,27,24,.06);color:var(--ink);border:1px solid rgba(30,27,24,.12)}
+
+/* BANK DETAILS */
+.bank-card{background:var(--ink);border-radius:3px;padding:2.5rem;margin:2.5rem 0;position:relative;overflow:hidden}
+.bank-card::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:rgba(184,115,74,.08)}
+.bank-label{font-size:.48rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.5rem}
+.bank-value{font-family:'Gilda Display',serif;font-size:1.1rem;color:var(--w);letter-spacing:.04em;margin-bottom:1.6rem}
+.bank-value.iban{font-size:.95rem;letter-spacing:.08em;font-family:'Outfit',sans-serif;font-weight:300}
+.bank-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 3rem}
+.bank-row{}
+.bank-note{margin-top:2rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.08);font-size:.62rem;color:rgba(255,255,255,.3);line-height:1.7}
+.bank-value-wrap{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+.copy-btn{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.4);border-radius:2px;padding:.3rem .7rem;font-family:'Outfit',sans-serif;font-size:.42rem;letter-spacing:.18em;text-transform:uppercase;transition:all .2s;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.copy-btn:hover{background:rgba(184,115,74,.15);border-color:rgba(184,115,74,.4);color:var(--ter)}
+.copy-btn.copied{background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.3);color:#4ade80}
+.copy-lbl{line-height:1}
+
+/* WHATSAPP CTA */
+.wa-cta{display:flex;align-items:center;gap:1.5rem;background:var(--c);border-radius:3px;padding:2rem 2.2rem;margin:2.5rem 0;border:1px solid var(--c2)}
+.wa-icon{width:48px;height:48px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wa-icon svg{width:26px;height:26px;fill:#fff}
+.wa-cta-body{}
+.wa-cta-title{font-family:'Gilda Display',serif;font-size:1.1rem;color:var(--ink);margin-bottom:.35rem}
+.wa-cta-text{font-size:.68rem;color:var(--mid);line-height:1.7}
+.wa-btn-link{display:inline-block;margin-top:.8rem;font-size:.5rem;letter-spacing:.25em;text-transform:uppercase;background:#25D366;color:#fff;padding:.6rem 1.4rem;border-radius:1px;transition:background .2s}
+.wa-btn-link:hover{background:#1da851}
+
+/* CANCELLATION */
+.policy-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2rem 0}
+.policy-card{background:var(--c);border-radius:3px;padding:2rem;border:1px solid var(--c2)}
+.policy-card.alt{background:var(--w);border-color:var(--sand)}
+.policy-icon{font-size:1.6rem;margin-bottom:.9rem}
+.policy-card-title{font-family:'Gilda Display',serif;font-size:1rem;color:var(--ink);margin-bottom:.7rem}
+.policy-card-text{font-size:.68rem;color:var(--mid);line-height:1.85}
+.policy-card-text strong{color:var(--ink);font-weight:400}
+
+/* FORCE MAJEURE */
+.fm-list{margin-top:1.5rem;display:flex;flex-direction:column;gap:.6rem}
+.fm-item{display:flex;align-items:flex-start;gap:.8rem;font-size:.7rem;color:var(--mid);line-height:1.7}
+.fm-item::before{content:'—';color:var(--ter);flex-shrink:0;margin-top:.05rem}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--c2);margin:4rem 0}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,.45);padding:3rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.f-logo{font-family:'Gilda Display',serif;font-size:1.1rem;letter-spacing:.18em;text-transform:uppercase;color:var(--w)}
+.f-copy{font-size:.54rem;letter-spacing:.12em}
+.f-links{display:flex;gap:2rem}
+.f-link{font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);transition:color .2s}
+.f-link:hover{color:var(--ter)}
+
+@keyframes fu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hero-inner{animation:fu .9s .2s both}
+
+@media(max-width:768px){
+  nav{padding:1.2rem 1.5rem}
+  .nav-mid{display:none}
+  .hero-inner,.page-wrap{padding-left:1.5rem;padding-right:1.5rem}
+  .bank-grid{grid-template-columns:1fr}
+  .policy-grid{grid-template-columns:1fr}
+  .step{grid-template-columns:40px 1fr;gap:0 1.2rem}
+  footer{flex-direction:column;gap:1.5rem;text-align:center}
+}
+
+/* ── prefers-reduced-motion ─────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  body.has-cursor *{cursor:auto!important}
+}
+</style>
+  <meta name="description" content="Terms and booking conditions for your stay at Les Roches Retreat, Santa Teresa, Costa Rica.">
+  <meta name="keywords" content="Les Roches booking conditions, villa rental terms Costa Rica">
+  <meta name="robots" content="index, follow">
+<link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/booking-conditions.html">
+<link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/booking-conditions.html">
+<link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/booking-conditions.html">
+<link rel="alternate" hreflang="x-default" href="https://lesrochesretreat.com/booking-conditions.html">
+<link rel="canonical" href="https://lesrochesretreat.com/es/booking-conditions.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Booking Conditions — Les Roches Retreat">
+<meta property="og:description" content="Booking terms and conditions for stays at Les Roches Retreat, Santa Teresa, Costa Rica.">
+<meta property="og:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.webp">
+<meta property="og:url" content="https://lesrochesretreat.com/booking-conditions.html">
+<meta property="og:site_name" content="Les Roches Retreat">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Comment Réserver — Les Roches Retreat">
+<meta name="twitter:description" content="Réservation directe en 4 étapes. Meilleur tarif garanti sans frais de service.">
+<meta name="twitter:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.webp">
+<script src="../js/track.js" defer></script>
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon-192.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#b8734a">
+<!-- Google Analytics GA4 — Measurement ID: G-WFWBDDTMF0 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFWBDDTMF0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WFWBDDTMF0', { anonymize_ip: true });
+</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--ter,#b8734a);color:#fff;padding:.5rem 1rem;font-family:sans-serif;font-size:.875rem" onfocus="this.style.left='1rem';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-999px'">Skip to content</a>
+<div id="cur"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nl-logo">Les Roches</a>
+  <div class="nav-mid">
+    <a href="../villas.html" class="nl">Villas</a>
+    <a href="../experiences.html" class="nl">Experiencias</a>
+    <a href="../about.html" class="nl">Nosotros</a>
+    <a href="../santa-teresa.html" class="nl">Santa Teresa</a>
+    <a href="../faq.html" class="nl">FAQ</a>
+  <a href="../journal.html" class="nl">Blog</a>
+  </div>
+  <a href="https://wa.me/33667749024?text=Bonjour%2C%20je%20souhaite%20réserver%20à%20Les%20Roches%20Retreat." class="nav-book" aria-label="Book a villa at Les Roches Retreat" target="_blank" rel="noopener">Book via WhatsApp</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-inner">
+    <div class="h-kicker">Reservations · Les Roches Retreat</div>
+    <h1 class="h-title">How to <em>book</em> your stay</h1>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="page-wrap">
+
+  <!-- BOOKING PROCESS -->
+  <div class="process-section">
+    <div class="section-eye">Step by step</div>
+    <h2 class="section-title">The reservation <em>process</em></h2>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <div class="step-title">Choose your villa &amp; dates</div>
+          <div class="step-text">Browse our collection of six private villas and select the one that speaks to you. Check availability directly on this site or contact us via WhatsApp for personalised advice on which villa best suits your group and travel dates.</div>
+          <div class="step-tag tag-ter">Instant availability check</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <div class="step-title">Receive your reservation confirmation</div>
+          <div class="step-text">Once your request is submitted, we will contact you within a few hours on WhatsApp to confirm availability, share the detailed booking summary, and provide our bank transfer details. Your villa is held for <strong>48 hours</strong> pending receipt of the deposit.</div>
+          <div class="step-tag tag-ink">Response within a few hours · Via WhatsApp</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <div class="step-title">Secure your booking — 50% deposit by wire transfer</div>
+          <div class="step-text">To confirm your reservation, a deposit of <strong>50% of the total stay amount</strong> is required by international bank transfer within <strong>48 hours</strong> of receiving our confirmation. After this period, the villa will be released and made available to other guests. Once your transfer is received, we will send you a written booking confirmation.</div>
+          <div class="step-tag tag-ter">Wire transfer · 48h deadline</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <div class="step-title">Balance — 50% upon arrival</div>
+          <div class="step-text">The remaining 50% is settled upon your arrival at Les Roches. We accept payment by <strong>cash (USD or CRC)</strong>, <strong>credit or debit card</strong>, or <strong>bank transfer</strong>. Our team will welcome you personally and handle check-in at your convenience.</div>
+          <div class="step-tag tag-ink">Cash · Card · Wire transfer</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- BANK DETAILS -->
+  <div class="process-section">
+    <div class="section-eye">Wire transfer</div>
+    <h2 class="section-title">Our banking <em>details</em></h2>
+    <p style="font-size:.75rem;color:var(--mid);line-height:1.85;margin-bottom:1.5rem">Please use the exact details below for your international wire transfer. Include your full name and villa name in the transfer reference so we can identify your payment quickly.</p>
+
+    <div class="bank-card">
+      <div class="bank-grid">
+        <div class="bank-row">
+          <div class="bank-label">Account holder</div>
+          <div class="bank-value-wrap">
+            <div class="bank-value" id="v-holder">NIGHT CONCIERGERIE SRL</div>
+            <button class="copy-btn" data-copy="NIGHT CONCIERGERIE SRL" aria-label="Copy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              <span class="copy-lbl">Copy</span>
+            </button>
+          </div>
+        </div>
+        <div class="bank-row">
+          <div class="bank-label">Bank</div>
+          <div class="bank-value-wrap">
+            <div class="bank-value">BANCO LAFISE</div>
+            <button class="copy-btn" data-copy="BANCO LAFISE" aria-label="Copy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              <span class="copy-lbl">Copy</span>
+            </button>
+          </div>
+        </div>
+        <div class="bank-row">
+          <div class="bank-label">Bank address</div>
+          <div class="bank-value-wrap">
+            <div class="bank-value" style="font-size:.75rem;font-family:'Outfit',sans-serif;font-weight:300;line-height:1.6">50m de la Rotonda de la Fuente de la Hispanidad<br>San Pedro de Montes de Oca, San José, Costa Rica</div>
+          </div>
+        </div>
+        <div class="bank-row">
+          <div class="bank-label">IBAN</div>
+          <div class="bank-value-wrap">
+            <div class="bank-value iban" id="iban-val">CR19 0114 0000 7812 3915 72</div>
+            <button class="copy-btn" data-copy="CR19011400007812391572" aria-label="Copy IBAN">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              <span class="copy-lbl">Copy</span>
+            </button>
+          </div>
+        </div>
+        <div class="bank-row">
+          <div class="bank-label">SWIFT / BIC</div>
+          <div class="bank-value-wrap">
+            <div class="bank-value" id="swift-val">BCCECRSJ</div>
+            <button class="copy-btn" data-copy="BCCECRSJ" aria-label="Copy SWIFT">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              <span class="copy-lbl">Copy</span>
+            </button>
+          </div>
+        </div>
+        <div class="bank-row">
+          <div class="bank-label">Currency</div>
+          <div class="bank-value-wrap">
+            <div class="bank-value">USD — US Dollar</div>
+          </div>
+        </div>
+        <div class="bank-row" style="grid-column:1/-1">
+          <div class="bank-label">Transfer reference</div>
+          <div class="bank-value" style="font-size:.78rem;font-family:'Outfit',sans-serif;font-weight:300;margin-top:.3rem">Your full name + villa name<br><span style="color:rgba(255,255,255,.3);font-size:.68rem">e.g. "SMITH — CASA JADE — JUN 2025"</span></div>
+        </div>
+      </div>
+      <div class="bank-note">
+        All bank transfer fees are the responsibility of the sender. Please ensure the full amount is received net of charges. Once your transfer is processed, please send us confirmation of payment via WhatsApp — this allows us to confirm your booking immediately without waiting for bank processing times.
+      </div>
+    </div>
+
+    <!-- WhatsApp CTA -->
+    <div class="wa-cta">
+      <div class="wa-icon">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </div>
+      <div class="wa-cta-body">
+        <div class="wa-cta-title">Send your payment confirmation on WhatsApp</div>
+        <div class="wa-cta-text">Once your wire transfer is sent, simply forward us the bank receipt on WhatsApp. We confirm your booking within the hour.</div>
+        <a href="https://wa.me/33667749024?text=Bonjour%2C%20je%20viens%20d%27effectuer%20mon%20virement%20pour%20ma%20réservation%20aux%20Roches%20Retreat." class="wa-btn-link" target="_blank" rel="noopener">Send confirmation on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CANCELLATION POLICY -->
+  <div class="process-section">
+    <div class="section-eye">Cancellation &amp; conditions</div>
+    <h2 class="section-title">Our booking <em>policy</em></h2>
+
+    <div class="policy-grid">
+
+      <div class="policy-card">
+        <div class="policy-icon">🏡</div>
+        <div class="policy-card-title">Villa hold — 48 hours</div>
+        <div class="policy-card-text">Upon receiving your booking request, your chosen villa is held exclusively for you for <strong>48 hours</strong>. If the 50% deposit is not received within this window, the villa is automatically released and made available to other guests. No charges apply if no payment is made.</div>
+      </div>
+
+      <div class="policy-card">
+        <div class="policy-icon">💳</div>
+        <div class="policy-card-title">Deposit — 50% non-refundable</div>
+        <div class="policy-card-text">The 50% deposit paid at the time of booking is <strong>non-refundable</strong> in the event of cancellation. However, as a gesture of goodwill, we offer a <strong>credit of 50% of the deposit amount</strong> applicable toward a future stay at Les Roches, valid for 24 months from the original booking date.</div>
+      </div>
+
+      <div class="policy-card alt">
+        <div class="policy-icon">✦</div>
+        <div class="policy-card-title">Credit toward a future stay</div>
+        <div class="policy-card-text">Rather than a simple forfeiture, we convert 50% of your deposit into a stay credit — <strong>valid 24 months</strong> and applicable to any villa in our collection, subject to availability. This credit is personal and non-transferable.</div>
+      </div>
+
+      <div class="policy-card alt">
+        <div class="policy-icon">⚡</div>
+        <div class="policy-card-title">Force majeure — full refund</div>
+        <div class="policy-card-text">In the event of <strong>force majeure</strong> that prevents travel or access to Les Roches, a full refund of the deposit is issued. See qualifying circumstances below.</div>
+      </div>
+
+    </div>
+
+    <!-- Force majeure detail -->
+    <div style="background:var(--c);border:1px solid var(--c2);border-radius:3px;padding:2rem;margin-top:1rem">
+      <div style="font-size:.5rem;letter-spacing:.35em;text-transform:uppercase;color:var(--ter);margin-bottom:1rem">Force majeure — qualifying circumstances</div>
+      <div style="font-size:.72rem;color:var(--mid);line-height:1.7;margin-bottom:1.2rem">The following circumstances qualify for a full refund of the deposit, provided official documentation is supplied:</div>
+      <div class="fm-list">
+        <div class="fm-item">Global or regional <strong style="color:var(--ink);font-weight:400">pandemic</strong> officially declared by the WHO, resulting in travel bans or border closures preventing access to Costa Rica</div>
+        <div class="fm-item"><strong style="color:var(--ink);font-weight:400">Armed conflict or war</strong> in Costa Rica or in the guest's country of origin that prevents safe travel</div>
+        <div class="fm-item"><strong style="color:var(--ink);font-weight:400">Natural disaster</strong> directly affecting Santa Teresa or the Nicoya Peninsula — including earthquake, tsunami, or volcanic eruption — rendering the property inaccessible or uninhabitable</div>
+      </div>
+      <div style="margin-top:1.4rem;font-size:.62rem;color:rgba(155,143,130,.7);line-height:1.7">Force majeure claims must be submitted in writing with supporting official documentation within 7 days of the event. Les Roches Retreat reserves the right to assess each case individually.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT / QUESTIONS -->
+  <div style="text-align:center;padding:1rem 0 2rem">
+    <div class="section-eye" style="justify-content:center">Questions</div>
+    <h2 class="section-title" style="text-align:center;margin-bottom:1rem">Any questions<br>about your <em>reservation?</em></h2>
+    <p style="font-size:.75rem;color:var(--mid);line-height:1.85;max-width:440px;margin:0 auto 2rem">Our team is available on WhatsApp every day. We are happy to help you choose the right villa, discuss your dates, or answer any questions about the booking process.</p>
+    <a href="https://wa.me/33667749024?text=Bonjour%2C%20j%27ai%20une%20question%20concernant%20une%20réservation%20aux%20Roches%20Retreat." class="wa-btn-link" target="_blank" rel="noopener" style="font-size:.54rem;letter-spacing:.26em;text-transform:uppercase;background:#25D366;color:#fff;padding:.85rem 2.2rem;border-radius:1px;display:inline-block;transition:background .2s">Contacto us on WhatsApp</a>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">Les Roches</div>
+  <div class="f-copy">© 2025 Les Roches Retreat · Santa Teresa, Costa Rica</div>
+  <div class="f-links">
+    <a href="../villas.html" class="f-link">Villas</a>
+    <a href="../booking-conditions.html" class="f-link">Booking Conditions</a>
+    <a href="../faq.html" class="f-link">FAQ</a>
+    <a href="../contact.html" class="f-link">Contacto</a>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/33667749024?text=Bonjour%2C%20je%20souhaite%20réserver%20à%20Les%20Roches%20Retreat." class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<style>
+.wa-float{position:fixed;bottom:2rem;right:2rem;z-index:1000;width:56px;height:56px;background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .25s,box-shadow .25s;cursor:pointer}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.6)}
+</style>
+
+<script>
+const cur=document.getElementById('cur');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+document.querySelectorAll('a,button,.copy-btn').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cur.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>cur.classList.remove('hov'));
+});
+
+// Copy to clipboard
+document.querySelectorAll('.copy-btn').forEach(btn=>{
+  btn.addEventListener('click',async()=>{
+    const text=btn.dataset.copy;
+    try{
+      await navigator.clipboard.writeText(text);
+      const lbl=btn.querySelector('.copy-lbl');
+      const orig=lbl.textContent;
+      btn.classList.add('copied');
+      lbl.textContent='Copied!';
+      setTimeout(()=>{btn.classList.remove('copied');lbl.textContent=orig},2000);
+    }catch(e){
+      // Fallback for older browsers
+      const ta=document.createElement('textarea');
+      ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+      document.body.appendChild(ta);ta.select();
+      document.execCommand('copy');document.body.removeChild(ta);
+      const lbl=btn.querySelector('.copy-lbl');
+      btn.classList.add('copied');lbl.textContent='Copied!';
+      setTimeout(()=>{btn.classList.remove('copied');lbl.textContent='Copy'},2000);
+    }
+  });
+});
+</script>
+
+<style>
+/* ── Bulle contact — discrète et naturelle ── */
+#wa-bubble{position:fixed;bottom:1.6rem;right:1.6rem;z-index:2000;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+#wa-toggle{width:52px;height:52px;border-radius:50%;border:none;padding:0;cursor:pointer;background:none;position:relative;box-shadow:0 2px 12px rgba(0,0,0,.22);transition:transform .2s,box-shadow .2s;overflow:visible}
+#wa-toggle:hover{transform:scale(1.04);box-shadow:0 4px 18px rgba(0,0,0,.3)}
+#wa-toggle-photo{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:center 18%;display:block;border:2px solid rgba(250,247,242,.7)}
+#wa-dot{position:absolute;bottom:0;right:0;width:16px;height:16px;background:#25D366;border-radius:50%;border:2px solid var(--w,#faf7f2);display:flex;align-items:center;justify-content:center}
+#wa-dot svg{display:block}
+#wa-card{width:272px;background:var(--w,#faf7f2);border-radius:10px;box-shadow:0 4px 22px rgba(0,0,0,.13);overflow:hidden;transform:translateY(8px) scale(.97);opacity:0;pointer-events:none;transition:transform .28s cubic-bezier(.25,.8,.25,1),opacity .2s ease;transform-origin:bottom right;border:1px solid rgba(30,27,24,.07)}
+#wa-card.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+.wa-head{background:var(--ink2,#2e2a26);padding:.85rem 1rem;display:flex;align-items:center;gap:.75rem;position:relative}
+.wa-head-close{position:absolute;top:.55rem;right:.7rem;background:none;border:none;color:rgba(255,255,255,.25);font-size:.85rem;cursor:pointer;line-height:1;transition:color .18s}
+.wa-head-close:hover{color:rgba(255,255,255,.6)}
+.wa-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 18%;border:1px solid rgba(255,255,255,.12);flex-shrink:0}
+.wa-head-name{font-family:'Gilda Display',serif;font-size:.84rem;color:rgba(250,247,242,.88);letter-spacing:.02em}
+.wa-head-status{font-size:.48rem;color:rgba(255,255,255,.3);margin-top:.15rem;font-family:'Outfit',sans-serif;display:flex;align-items:center;gap:.3rem}
+.wa-head-status::before{content:'';width:5px;height:5px;background:#4ade80;border-radius:50%;flex-shrink:0}
+.wa-body{background:var(--c,#f3ede3);padding:.9rem .9rem .85rem}
+.wa-msg{background:var(--w,#faf7f2);border-radius:2px 9px 9px 9px;padding:.65rem .8rem;font-family:'Outfit',sans-serif;font-size:.66rem;line-height:1.7;color:var(--ink,#1e1b18);position:relative;max-width:94%;border:1px solid rgba(30,27,24,.04)}
+.wa-msg::before{content:'';position:absolute;top:0;left:-5px;width:0;height:0;border-top:5px solid var(--w,#faf7f2);border-left:5px solid transparent}
+.wa-time{font-size:.45rem;color:var(--mid,#9a8f82);text-align:right;margin-top:.3rem}
+.wa-cta-wrap{padding:.7rem .9rem .85rem;background:var(--c,#f3ede3);border-top:1px solid rgba(30,27,24,.05)}
+.wa-cta{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;background:var(--ter,#b8734a);border:none;border-radius:2px;padding:.65rem 1rem;font-family:'Outfit',sans-serif;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;cursor:pointer;text-decoration:none;transition:background .2s;opacity:.92}
+.wa-cta:hover{background:var(--ter2,#a05f38);opacity:1}
+</style>
+
+<div id="wa-bubble">
+  <div id="wa-card">
+    <div class="wa-head">
+      <img loading="lazy" src="../images/ian-whatsapp.webp" alt="Ian" class="wa-avatar"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="wa-avatar" style="display:none;background:var(--ter);align-items:center;justify-content:center;font-family:'Gilda Display',serif;font-size:1.1rem;color:#fff;flex-shrink:0">I</div>
+      <div class="wa-head-info">
+        <div class="wa-head-name">Ian &nbsp;—&nbsp; Les Roches</div>
+        <div class="wa-head-status">En ligne · répond rapidement</div>
+      </div>
+      <button class="wa-head-close" id="wa-close" aria-label="Fermer">✕</button>
+    </div>
+    <div class="wa-body">
+      <div class="wa-msg">
+        Bonjour ! 👋<br>Pour toutes questions sur les villas, les disponibilités ou une réservation, n'hésitez pas à m'envoyer un message — je vous réponds rapidement.
+        <div class="wa-time">maintenant</div>
+      </div>
+    </div>
+    <div class="wa-cta-wrap">
+      <a href="https://wa.me/33667749024?text=Bonjour%20Ian%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20Les%20Roches%20Retreat%20%F0%9F%8C%8A"
+         target="_blank" rel="noopener" class="wa-cta">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Envoyer un message
+      </a>
+    </div>
+  </div>
+  <button id="wa-toggle" aria-label="Message Ian">
+    <img loading="lazy" id="wa-toggle-photo" src="../images/ian-whatsapp.webp" alt="Ian"
+         onerror="this.style.background='var(--ink2)';this.style.objectFit='none'">
+    <div id="wa-dot">
+      <svg viewBox="0 0 24 24" fill="white" width="8" height="8"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </div>
+  </button>
+</div>
+
+<script>
+(function(){
+  const toggle=document.getElementById('wa-toggle'),
+        card=document.getElementById('wa-card'),
+        close=document.getElementById('wa-close');
+  let open=false;
+  function setOpen(v){ open=v; card.classList.toggle('open',v); }
+  if(!sessionStorage.getItem('wa_shown')){
+    setTimeout(()=>{setOpen(true);sessionStorage.setItem('wa_shown','1')},6000);
+  }
+  toggle.addEventListener('click',()=>setOpen(!open));
+  close.addEventListener('click',()=>setOpen(false));
+})();
+</script>
+<!-- END WHATSAPP -->
+
+
+<script>
+document.addEventListener('keydown',function(e){
+  if((e.ctrlKey||e.metaKey)&&e.shiftKey&&e.key.toLowerCase()==='a'){
+    e.preventDefault();
+    window.location.href='/admin/index.html';
+  }
+});
+</script>
+<script src="../lang.js" defer></script>
+<script src="../cookie-consent.js" defer></script>
+<script src="../js/lazy-bg.js" defer></script>
+<script src="../js/swipe.js" defer></script>
+</body>
+</html>

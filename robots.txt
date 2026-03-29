@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Disallow admin panel from crawlers
+Disallow: /admin/
+
+# Sitemap
+Sitemap: https://lesrochesretreat.com/sitemap.xml

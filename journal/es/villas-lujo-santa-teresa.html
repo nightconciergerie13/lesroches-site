@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Villas de Lujo en Santa Teresa, Costa Rica: Qué Esperar — Les Roches · Santa Teresa</title>
+<meta name="description" content="Piscinas infinitas privadas, vistas a la selva y el Pacífico — qué hace que una villa de lujo en Santa Teresa sea verdaderamente excepcional.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+a{text-decoration:none}
+:root{--w:#faf7f2;--c:#f3ede3;--c2:#e9e0d2;--sand:#d6c9b0;--ter:#b8734a;--ter2:#a05f38;--mid:#9a8f82;--ink:#1e1b18;--ink2:#2e2a26}
+html{background:var(--w);color:var(--ink);scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden}
+*{cursor:none}
+#cur{position:fixed;width:8px;height:8px;background:var(--ink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .35s,height .35s;mix-blend-mode:multiply}
+#cur.hov{width:46px;height:46px;background:rgba(30,27,24,.1)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 4rem;background:rgba(250,247,242,.96);border-bottom:1px solid var(--c2);backdrop-filter:blur(12px)}
+.nl-logo{font-family:'Gilda Display',serif;font-size:1.35rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.nav-mid{display:flex;gap:2.2rem}
+.nl{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);opacity:.65;transition:opacity .2s}
+.nl:hover{opacity:1}
+.nav-right{display:flex;align-items:center;gap:2rem}
+.lang-sw{display:flex;gap:.4rem;font-size:.5rem;letter-spacing:.18em;color:rgba(30,27,24,.3)}
+.lang-sw span{transition:color .2s;text-transform:uppercase}
+.lang-sw span.on{color:var(--ter)}
+.lsep{opacity:.3}
+.nav-book{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;padding:.6rem 1.6rem;border:1px solid rgba(30,27,24,.3);color:var(--ink);border-radius:1px;transition:all .25s}
+.nav-book:hover{background:var(--ter);border-color:var(--ter);color:var(--w)}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:.4rem;cursor:pointer}
+.nav-burger span{display:block;width:24px;height:1px;background:var(--ink)}
+.nav-overlay{position:fixed;inset:0;background:var(--ink);z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.77,0,.175,1)}
+.nav-overlay.open{transform:translateX(0)}
+.nav-overlay .nl{color:var(--w);font-size:.85rem;opacity:.6}
+.nav-overlay .nl:hover{opacity:1}
+.nav-close{position:absolute;top:1.5rem;right:2rem;background:none;border:none;color:var(--w);font-size:1.2rem;cursor:pointer;opacity:.4}
+
+/* ARTICLE HERO */
+.art-hero{height:65vh;min-height:400px;position:relative;overflow:hidden;display:flex;align-items:flex-end}
+.art-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.art-hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,8,6,.85) 0%,rgba(10,8,6,.2) 60%,transparent 100%)}
+.art-hero-c{position:relative;z-index:2;padding:3rem 5vw;max-width:860px}
+.art-breadcrumb{font-size:.46rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.art-breadcrumb a{color:rgba(255,255,255,.38);transition:color .2s}
+.art-breadcrumb a:hover{color:rgba(255,255,255,.7)}
+.art-cat{font-size:.46rem;letter-spacing:.38em;text-transform:uppercase;color:var(--ter);display:block;margin-bottom:.8rem}
+.art-title{font-family:'Gilda Display',serif;font-size:clamp(1.8rem,4vw,3.2rem);color:var(--w);line-height:1.12;margin-bottom:1.2rem}
+.art-meta{display:flex;align-items:center;gap:1.5rem;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.art-meta span{display:flex;align-items:center;gap:.4rem}
+
+/* ARTICLE BODY */
+.art-body{max-width:760px;margin:0 auto;padding:4rem 2rem 6rem}
+.art-lead{font-family:'Libre Baskerville',serif;font-style:italic;font-size:1.05rem;color:var(--ink);line-height:1.8;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid var(--c2)}
+.art-body h2{font-family:'Gilda Display',serif;font-size:1.5rem;color:var(--ink);margin:3rem 0 1.2rem;line-height:1.2}
+.art-body h3{font-family:'Gilda Display',serif;font-size:1.1rem;color:var(--ink);margin:2rem 0 .8rem}
+.art-body p{font-size:.8rem;color:var(--mid);line-height:2;margin-bottom:1.4rem}
+.art-body strong{color:var(--ink);font-weight:400}
+.art-body ul{margin:1rem 0 1.4rem 1.2rem}
+.art-body ul li{font-size:.8rem;color:var(--mid);line-height:1.9;margin-bottom:.4rem}
+.art-pull{background:var(--c);border-left:3px solid var(--ter);padding:1.5rem 2rem;margin:2.5rem 0;font-family:'Libre Baskerville',serif;font-style:italic;font-size:.95rem;color:var(--ink);line-height:1.7}
+.art-tip{background:var(--ink);padding:1.5rem 2rem;margin:2.5rem 0;border-radius:2px}
+.art-tip-label{font-size:.44rem;letter-spacing:.35em;text-transform:uppercase;color:var(--ter);display:block;margin-bottom:.5rem}
+.art-tip p{color:rgba(250,247,242,.65);margin-bottom:0}
+
+/* CTA BOX */
+.art-cta{background:var(--ink2);padding:3rem;margin:3rem 0;text-align:center;border-radius:2px}
+.art-cta-eye{font-size:.44rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.3);display:block;margin-bottom:.8rem}
+.art-cta-title{font-family:'Gilda Display',serif;font-size:1.4rem;color:var(--w);margin-bottom:.8rem;line-height:1.2}
+.art-cta p{font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:1.5rem;line-height:1.8}
+.art-cta-btn{display:inline-flex;align-items:center;gap:.7rem;padding:.85rem 2.5rem;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;border-radius:1px;transition:all .25s}
+.art-cta-btn:hover{border-color:var(--ter);color:var(--w);background:rgba(184,115,74,.1)}
+
+/* RELATED */
+.art-related{background:var(--c);padding:4rem 5vw}
+.art-related-title{font-family:'Gilda Display',serif;font-size:1.4rem;color:var(--ink);margin-bottom:2rem}
+.art-rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--c2)}
+.art-rel-card{background:var(--w);padding:1.5rem;display:block;transition:background .2s}
+.art-rel-card:hover{background:var(--c)}
+.art-rel-lang{font-size:.4rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:.4rem}
+.art-rel-t{font-family:'Gilda Display',serif;font-size:.95rem;color:var(--ink);line-height:1.3;margin-bottom:.5rem}
+.art-rel-arr{font-size:.7rem;color:var(--ter)}
+
+/* FOOTER */
+footer{background:var(--ink);padding:4rem 5vw 2rem}
+.ftop{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:4rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.flogo{font-family:'Gilda Display',serif;font-size:1.35rem;letter-spacing:.18em;text-transform:uppercase;color:var(--w);margin-bottom:.9rem}
+.ftag{font-size:.62rem;color:rgba(255,255,255,.25);line-height:1.8}
+.fct{font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1.2rem}
+.flinks{display:flex;flex-direction:column;gap:.6rem}
+.flink{font-size:.64rem;color:rgba(255,255,255,.38);transition:color .2s}
+.flink:hover{color:var(--w)}
+.fbot{display:flex;align-items:center;justify-content:space-between;padding-top:2rem}
+.fcopy{font-size:.5rem;color:rgba(255,255,255,.18);letter-spacing:.1em}
+.fsoc{display:flex;gap:1.5rem}
+.fsocl{font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2)}
+
+@media(max-width:900px){
+  nav{padding:1.2rem 1.5rem}
+  .nav-mid,.nav-right .lang-sw{display:none}
+  .nav-burger{display:flex}
+  .art-hero{height:50vh}
+  .art-body{padding:2.5rem 1.5rem 4rem}
+  .art-rel-grid{grid-template-columns:1fr}
+  footer{padding:3rem 1.5rem 2rem}
+  .ftop{grid-template-columns:1fr;gap:2rem}
+}
+</style>
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Villas de Lujo en Santa Teresa, Costa Rica: Qué Esperar">
+  <meta property="og:description" content="Piscinas infinitas privadas, vistas a la selva y el Pacífico — qué hace excepcional una villa en Santa Teresa.">
+  <meta property="og:image" content="https://lesrochesretreat.com/images/retreat-vue-ocean.jpg">
+  <meta property="og:url" content="https://lesrochesretreat.com/journal/es/villas-lujo-santa-teresa.html">
+  <meta property="og:site_name" content="Les Roches Retreat">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Villas de Lujo en Santa Teresa, Costa Rica: Qué Esperar">
+  <meta name="twitter:description" content="Piscinas infinitas privadas, vistas a la selva y el Pacífico — qué hace excepcional una villa en Santa Teresa.">
+  <meta name="twitter:image" content="https://lesrochesretreat.com/images/retreat-vue-ocean.jpg">
+  <link rel="canonical" href="https://lesrochesretreat.com/journal/es/villas-lujo-santa-teresa.html">
+<!-- Google Analytics GA4 — Measurement ID: G-WFWBDDTMF0 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFWBDDTMF0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WFWBDDTMF0', { anonymize_ip: true });
+</script>
+</head>
+<body>
+<div id="cur"></div>
+<nav>
+  <a href="../../index.html" class="nl-logo">Les Roches</a>
+  <div class="nav-mid">
+    <a href="../../villas.html" class="nl">Villas</a>
+    <a href="../../experiences.html" class="nl">Experiencias</a>
+    <a href="../../about.html" class="nl">Acerca</a>
+    <a href="../../santa-teresa.html" class="nl">Santa Teresa</a>
+    <a href="../../journal.html" class="nl">Journal</a>
+  </div>
+  <div class="nav-right">
+    <div class="lang-sw"><span>EN</span><span class="lsep">/</span><span>FR</span><span class="lsep">/</span><span class="on">ES</span></div>
+    <a href="../../contact.html" class="nav-book">Reservar</a>
+  </div>
+  <button class="nav-burger" id="burger"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-overlay" id="nav-overlay">
+  <button class="nav-close" id="nav-close">✕</button>
+  <a href="../../villas.html" class="nl">Villas</a>
+  <a href="../../experiences.html" class="nl">Experiencias</a>
+  <a href="../../about.html" class="nl">Acerca</a>
+  <a href="../../santa-teresa.html" class="nl">Santa Teresa</a>
+  <a href="../../journal.html" class="nl">Journal</a>
+  <a href="../../contact.html" class="nl">Reservar</a>
+</div>
+
+<div class="art-hero" style="background-image:url('../../images/retreat-vue-ocean.jpg')">
+  <div class="art-hero-bg"></div>
+  <div class="art-hero-ov"></div>
+  <div class="art-hero-c">
+    <div class="art-breadcrumb">
+      <a href="../../journal.html">Journal</a> / <span>Villas</span>
+    </div>
+    <span class="art-cat">Villas</span>
+    <h1 class="art-title">Villas de Lujo en Santa Teresa, Costa Rica: Qué Esperar</h1>
+    <div class="art-meta">
+      <span>Marzo 2025</span>
+      <span>6 minutos de lectura</span>
+    </div>
+  </div>
+</div>
+
+<article class="art-body">
+  <p class="art-lead">El mercado de villas de lujo en Santa Teresa ha evolucionado dramáticamente en la última década. Lo que alguna vez significaba una simple casa frente al mar con patio ahora abarca una categoría completamente diferente de experiencia: retiros privados diseñados para seclusion total, con arquitectura que disuelve el límite entre interior y selva, y comodidades que rivalizan con hoteles de cinco estrellas—sin las multitudes.</p>
+
+  <h2>Por qué Santa Teresa para una villa</h2>
+
+  <p>La ubicación remota de Santa Teresa es precisamente lo que la hace ideal para la vida en villa. A diferencia de pueblos de playa populares que pueden sentirse congestionados y turísticos, Santa Teresa mantiene privacidad genuina. Estás alojado en colinas rodeadas de selva, con vistas al océano en lugar de playa llena de gente. El vecino más cercano podría estar a un kilómetro. Este aislamiento no es soledad—es seclusion intencional.</p>
+
+  <figure class="art-photo">
+    <img src="../../images/jade-sunset-pool.jpg" alt="" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block">
+    <figcaption></figcaption>
+  </figure>
+
+
+
+  <p>La infraestructura ha madurado. Los caminos, aunque aún sin asfaltar en algunos lugares, son transitables. La electricidad es confiable. El WiFi es ahora estándar (esencial para muchos viajeros). Y las comodidades—chefs privados, servicios spa, soporte de conciergerie—han materializado para servir este mercado creciente.</p>
+
+  <h2>Qué define una villa verdaderamente excepcional</h2>
+
+  <h3>Diseño Interior-Exterior</h3>
+  <p>Las mejores villas en Santa Teresa no distinguen entre adentro y afuera. Las paredes de vidrio del piso al techo se abren completamente a terrazas y jardines. Los dormitorios fluyen directamente a espacios exteriores privados. Las cocinas se fusionan con áreas de comedor que se extienden en pabellones. La selva se convierte en parte de tu espacio de vida. Esto requiere pensamiento arquitectónico cuidadoso: sombra apropiada, ventilación inteligente, y uso estratégico de materiales para mantener el espacio cómodo todo el año.</p>
+
+  <h3>Piscinas Infinitas Privadas</h3>
+  <p>Casi cada villa de importancia incluye una piscina infinita—y el diseño importa enormemente. Las mejores versiones parecen verterse en el paisaje mismo, con vistas que se extienden al océano o se pierden en dosel de selva. Una piscina mediocre se siente como una característica de resort. Una excepcional se siente como un oasis privado.</p>
+
+  <h3>Vistas que justifican la ubicación</h3>
+  <p>Las villas Santa Teresa comandean precios premium, y deberían ofrecer vistas extraordinarias. Busca villas con vistas sin obstáculos al Pacífico, vistas de selva desde múltiples ángulos, y líneas de vista del atardecer. La vista es el 40% de tu experiencia villa—no comprometas en esto.</p>
+
+  <h3>Servicios y Conciergerie Reflexiva</h3>
+  <p>La villa se convierte en secundaria respecto a la experiencia. Las propiedades excepcionales ofrecen conciergerie personalizada (reservas de restaurantes, arreglos de actividades, introducciones locales), limpieza diaria, servicios opcionales de chef privado, y tratamientos spa disponibles en el sitio o cercanos. Estos no son lujos—es lo que permite una estancia apropiada cuando estás intencionalmente aislado.</p>
+
+  <h2>El Enfoque Les Roches</h2>
+
+  <p>Les Roches representa una filosofía particular: seis villas individuales, cada una completamente privada, diseñadas como retiros intencionales en lugar de propiedades de alquiler. Cada villa cuenta con una piscina infinita privada, vida interior-exterior completa, y posicionamiento en colinas para maximizar vistas de selva y Pacífico. Cada una está a cinco minutos de caminata de la playa—lo suficientemente cerca para conveniencia, lo suficientemente lejos para mantener privacidad total.</p>
+
+  <figure class="art-photo">
+    <img src="../../images/drone-complex-pool-1.jpg" alt="" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block">
+    <figcaption></figcaption>
+  </figure>
+
+
+
+  <p>El lenguaje de diseño es distintamente minimalista. Ninguna ornamentación innecesaria, ninguna estética de resort. Líneas arquitectónicas limpias, materiales naturales, y paisajismo inteligente. Esta contención permite que el paisaje mismo—selva, océano, cielo—se convierta en la decoración.</p>
+
+  <h3>Qué los Distingue</h3>
+  <p>Las villas individuales significan que no compartes paredes, estacionamiento, o espacios exteriores con otros huéspedes. Sin ruidos de ascensor. Sin ruidos de pasillo. Sin preguntarse si la persona al lado está disfrutando la experiencia. En Les Roches, estás verdaderamente solo—a cinco minutos de caminata de la playa, pero psicológicamente distante de cualquier ambiente de resort.</p>
+
+  <p>La limpieza diaria, conciergerie personalizada, y servicios opcionales de spa o chef transforman la villa de alojamiento a verdadera residencia. No estás "alojado en un alquiler"—estás habitando una casa privada.</p>
+
+  <div class="art-pull">
+    « Una villa de lujo en Santa Teresa no se trata de cuenta de hilos o marca de electrodomésticos—se trata de la rara experiencia de privacidad total en uno de los lugares más hermosos del mundo. »
+  </div>
+
+  <h2>Qué Empacar y Cómo Prepararse</h2>
+
+  <h3>Ropa</h3>
+  <p>Las telas ligeras que evocan la humedad son esenciales—la humedad es constante. Trae una chaqueta de lluvia ligera para la estación verde. Zapatos de caminar cómodos para senderos de selva y exploración de playa. Traje de baño (obvio), más cubiertas o pantalones ligeros para protección solar. El código de vestuario es casual-resort; Santa Teresa no favorece noches formales.</p>
+
+  <h3>Protector Solar y Bienestar</h3>
+  <p>El sol tropical es intenso. Trae protector solar SPF alto y planea reaplicar constantemente. Repelente de insectos con DEET es esencial, especialmente durante la estación verde. Medicamentos que usas regularmente—los reabastecimientos son limitados y las farmacias tienen variedad limitada. Considera traer suplementos de electrolitos; el calor puede ser deshidratante.</p>
+
+  <h3>Electrónica</h3>
+  <p>Trae cargadores de teléfono y adaptadores (Costa Rica usa enchufes estilo estadounidense). Linternas frontales o linternas son útiles para caminatas nocturnas. Buenos auriculares con cancelación de ruido si disfrutas música o podcasts.</p>
+
+  <h3>Mentalidad</h3>
+  <p>Este es el elemento más importante. Una estancia en villa en Santa Teresa está diseñada para desconexión total. El email puede esperar. El trabajo puede esperar. Trae una novela, tapete de yoga, o diario. Planifica tiempo para absolutamente nada. Los mejores huéspedes villa llegan con la intención explícita de desacelerar.</p>
+
+  <div class="art-cta">
+    <span class="art-cta-eye">Experimenta Verdadera Seclusion</span>
+    <h3 class="art-cta-title">Tu Santuario Privado te Espera</h3>
+    <p>Seis villas individuales. Piscinas infinitas mirando selva y Pacífico. Conciergerie personal. Privacidad absoluta. Esto es lo que se siente como un verdadero retiro villa de lujo.</p>
+    <a href="../../contact.html" class="art-cta-btn">RESERVA LES ROCHES →</a>
+  </div>
+
+  <h2>Reflexiones Finales</h2>
+
+  <p>Los alquileres de villas de lujo en Santa Teresa ya no son novedad—son una alternativa genuina a hoteles y resorts tradicionales. Los mejores, como Les Roches, entienden que el verdadero lujo no es lujo maximizado—es privacidad maximizada, diseño reflexivo, y la libertad de vivir a tu propio ritmo en una de las regiones más hermosas de Costa Rica. Si eso te atrae, una villa en Santa Teresa podría ser exactamente lo que buscas.</p>
+
+  <figure class="art-photo">
+    <img src="../../images/jade-pool.jpg" alt="" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block">
+    <figcaption></figcaption>
+  </figure>
+
+
+</article>
+
+<section class="art-related">
+  <h2 class="art-related-title">Lecturas Relacionadas</h2>
+  <div class="art-rel-grid">
+    <a href="./guia-viaje-santa-teresa.html" class="art-rel-card">
+      <span class="art-rel-lang">Español</span>
+      <h3 class="art-rel-t">Santa Teresa Costa Rica: Guía de Viaje Completa</h3>
+      <span class="art-rel-arr">Leer →</span>
+    </a>
+    <a href="./guia-surf-santa-teresa.html" class="art-rel-card">
+      <span class="art-rel-lang">Español</span>
+      <h3 class="art-rel-t">Guía de Surf en Santa Teresa, Costa Rica</h3>
+      <span class="art-rel-arr">Leer →</span>
+    </a>
+    <a href="../en/luxury-villas-santa-teresa.html" class="art-rel-card">
+      <span class="art-rel-lang">English</span>
+      <h3 class="art-rel-t">Luxury Villas in Santa Teresa, Costa Rica</h3>
+      <span class="art-rel-arr">Read →</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="ftop">
+    <div>
+      <div class="flogo">Les Roches</div>
+      <p class="ftag">Seis villas privadas de lujo en Santa Teresa, Costa Rica. Cada una con piscina infinita privada, vista a la selva y al Pacífico, a 5 minutos de la playa.</p>
+    </div>
+    <div>
+      <div class="fct">Explorar</div>
+      <div class="flinks">
+        <a href="../../villas.html" class="flink">Villas</a>
+        <a href="../../experiences.html" class="flink">Experiencias</a>
+        <a href="../../about.html" class="flink">Acerca</a>
+        <a href="../../journal.html" class="flink">Journal</a>
+      </div>
+    </div>
+    <div>
+      <div class="fct">Planificar</div>
+      <div class="flinks">
+        <a href="../../santa-teresa.html" class="flink">Santa Teresa</a>
+        <a href="../../contact.html" class="flink">Contacto</a>
+        <a href="../../contact.html" class="flink">Reservaciones</a>
+      </div>
+    </div>
+  </div>
+  <div class="fbot">
+    <p class="fcopy">&copy; 2025 Les Roches. Todos los derechos reservados.</p>
+    <div class="fsoc">
+      <a href="#" class="fsocl">Instagram</a>
+      <a href="#" class="fsocl">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const cur=document.getElementById('cur');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+document.querySelectorAll('a').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cur.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>cur.classList.remove('hov'));
+});
+const burger=document.getElementById('burger'),overlay=document.getElementById('nav-overlay'),navClose=document.getElementById('nav-close');
+if(burger)burger.addEventListener('click',()=>overlay.classList.add('open'));
+if(navClose)navClose.addEventListener('click',()=>overlay.classList.remove('open'));
+</script>
+<script src="../../cookie-consent.js" defer></script>
+<script src="../../lang.js" defer></script>
+</body>
+</html>

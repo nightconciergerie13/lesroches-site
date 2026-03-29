@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Reserve your private luxury villa directly. Best rates guaranteed, personalized service. No middleman. Les Roches Retreat.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="book luxury villa Santa Teresa Costa Rica, villa rental Les Roches, book stay Costa Rica">
+  <title>Book Your Stay — Direct Booking · Les Roches, Santa Teresa, Costa Rica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init({publicKey: 'gmNZITv2YRzhK9VK0'});</script>
+  <style>
+    .hero {
+      height: 45vh;
+      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('../images/drone-night.webp') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--w);
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+    }
+
+    .booking-section {
+      padding: 4rem 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .booking-section {
+        padding: 5rem 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: flex-start;
+      }
+    }
+
+    .form-container {
+      order: 2;
+    }
+    @media (min-width: 768px) {
+      .form-container {
+        order: 1;
+      }
+    }
+
+    .info-container {
+      order: 1;
+    }
+    @media (min-width: 768px) {
+      .info-container {
+        order: 2;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      color: var(--ter);
+      margin-bottom: 0.5rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      border: 1px solid var(--c2);
+      background: var(--c);
+      color: var(--ink);
+      border-radius: 0.25rem;
+      box-sizing: border-box;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--mid);
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--ter);
+      background: var(--w);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .submit-btn {
+      background: var(--ink);
+      color: var(--w);
+      padding: 0.85rem 2rem;
+      border: 2px solid var(--ink);
+      border-radius: 0.25rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.3s;
+    }
+    .submit-btn:hover {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .info-box {
+      background: var(--c);
+      padding: 2rem;
+      border-radius: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .info-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: var(--ter);
+      letter-spacing: 0.5px;
+      margin-bottom: 0.75rem;
+      font-weight: 400;
+    }
+
+    .info-content {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      color: var(--ink);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .info-content:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-link {
+      color: var(--ter);
+      text-decoration: none;
+      font-weight: 400;
+      border-bottom: 1px solid var(--ter);
+    }
+
+    .villas-preview {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    @media (min-width: 1024px) {
+      .villas-preview {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+
+    .villa-thumb {
+      height: 60px;
+      border-radius: 0.25rem;
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .villa-thumb:hover {
+      transform: scale(1.05);
+    }
+
+    .benefits-section {
+      padding: 4rem 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .benefits-section {
+        padding: 6rem 2rem;
+      }
+    }
+
+    .benefits-title {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--ink);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .benefits-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+      }
+    }
+
+    .benefit-card {
+      background: var(--c);
+      padding: 2rem;
+      border-radius: 0.5rem;
+      text-align: center;
+    }
+
+    .benefit-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .benefit-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      font-weight: 400;
+    }
+
+    .benefit-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+  
+/* ── prefers-reduced-motion ─────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  body.has-cursor *{cursor:auto!important}
+}
+</style>
+  <meta name="keywords" content="book luxury villa Santa Teresa Costa Rica, villa rental Les Roches, book stay Costa Rica">
+  <meta name="robots" content="index, follow">
+  <link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/contact.html">
+<link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/contact.html">
+<link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/contact.html">
+<link rel="alternate" hreflang="x-default" href="https://lesrochesretreat.com/contact.html">
+<link rel="canonical" href="https://lesrochesretreat.com/es/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Book Your Stay at Les Roches — Santa Teresa, Costa Rica">
+  <meta property="og:description" content="Reserve your private luxury villa directly with our team. Best rates guaranteed, personalized service from day one.">
+  <meta property="og:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.webp">
+  <meta property="og:url" content="https://lesrochesretreat.com/contact.html">
+  <meta property="og:site_name" content="Les Roches Retreat">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Réserver — Les Roches Retreat">
+  <meta name="twitter:description" content="Réservez directement votre villa de luxe à Santa Teresa, Costa Rica.">
+  <meta name="twitter:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.webp">
+<script src="../js/track.js" defer></script>
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon-192.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#b8734a">
+<!-- Google Analytics GA4 — Measurement ID: G-WFWBDDTMF0 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFWBDDTMF0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WFWBDDTMF0', { anonymize_ip: true });
+</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--ter,#b8734a);color:#fff;padding:.5rem 1rem;font-family:sans-serif;font-size:.875rem" onfocus="this.style.left='1rem';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-999px'">Skip to content</a>
+  <div id="cur"></div>
+
+  <nav id="nav">
+    <a href="../index.html" class="nl-logo" id="logo">Les Roches</a>
+    <div class="nav-mid">
+      <a href="../villas.html" class="nl">Villas</a>
+      <a href="../experiences.html" class="nl">Experiencias</a>
+      <a href="../about.html" class="nl">Nosotros</a>
+      <a href="../santa-teresa.html" class="nl">Santa Teresa</a>
+  <a href="../faq.html" class="nl">FAQ</a>
+  <a href="../journal.html" class="nl">Blog</a>
+  </div>
+    <a href="../villas.html#search" class="nav-book" aria-label="Book a villa at Les Roches Retreat" id="nb">Reservar</a>
+    <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="nav-overlay" id="nav-overlay">
+    <button class="nav-close" id="nav-close">✕</button>
+    <a href="../villas.html" class="nl">Villas</a>
+    <a href="../experiences.html" class="nl">Experiencias</a>
+    <a href="../about.html" class="nl">Nosotros</a>
+    <a href="../santa-teresa.html" class="nl">Santa Teresa</a>
+  <a href="../faq.html" class="nl">FAQ</a>
+    <a href="../journal.html" class="nl">Blog</a>
+  <a href="../contact.html" class="nl">Reservar</a>
+  </div>
+
+  <section id="main-content" class="hero">
+    <h1>Book Your Stay</h1>
+    <p>Reserve directly — best rates guaranteed</p>
+  </section>
+
+  <section class="booking-section r">
+    <div class="form-container">
+      <form id="contact-form" onsubmit="handleContactoForm(event)">
+        <div class="form-group">
+          <label for="villa" class="form-label">Select Your Villa</label>
+          <select id="villa" class="form-select" required>
+            <option value="">Choose a villa</option>
+            <option value="Casa Jade">Casa Jade</option>
+            <option value="Casa Topaze">Casa Topaze</option>
+            <option value="Casa Onyx">Casa Onyx</option>
+            <option value="Casa Agate">Casa Agate</option>
+            <option value="Casa Ambre">Casa Ambre</option>
+            <option value="Casa Opale">Casa Opale</option>
+            <option value="Multiple villas">Several villas / Full estate</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="checkin" class="form-label">Check-in Date</label>
+            <input type="date" id="checkin" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label for="checkout" class="form-label">Check-out Date</label>
+            <input type="date" id="checkout" class="form-input" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="guests" class="form-label">Number of Huéspedes</label>
+          <select id="guests" class="form-select" required>
+            <option value="">Select guests</option>
+            <option value="1">1 Guest</option>
+            <option value="2">2 Huéspedes</option>
+            <option value="3">3 Huéspedes</option>
+            <option value="4">4 Huéspedes</option>
+            <option value="5">5 Huéspedes</option>
+            <option value="6">6+ Huéspedes</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname" class="form-label">First Name</label>
+            <input type="text" id="fname" class="form-input" placeholder="Your first name" required>
+          </div>
+          <div class="form-group">
+            <label for="lname" class="form-label">Last Name</label>
+            <input type="text" id="lname" class="form-input" placeholder="Your last name" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" class="form-input" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="tel" id="phone" class="form-input" placeholder="+1 (555) 000-0000" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="requests" class="form-label">Special Requests</label>
+          <textarea id="requests" class="form-textarea" placeholder="Dietary preferences, special occasions, or any other requests..."></textarea>
+        </div>
+
+        <div style="background:var(--c,#f3ede3);border-left:3px solid #b8734a;padding:.9rem 1.2rem;margin-bottom:1.4rem;font-size:.72rem;color:#6b5f54;line-height:1.7">
+          📲 Once your request is received, our team will contact you <strong>via WhatsApp within 24 hours</strong> to confirm availability and finalise your booking. A confirmation email will also be sent to you automatically.
+        </div>
+
+        <button type="submit" class="submit-btn">Send Booking Request</button>
+      </form>
+    </div>
+
+    <div class="info-container">
+      <div class="info-box">
+        <div class="info-title">Contacto Information</div>
+        <div class="info-content">
+          <strong>Email</strong><br>
+          <a href="mailto:hello@lesrochesretreat.com" class="info-link">hello@lesrochesretreat.com</a>
+        </div>
+        <div class="info-content">
+          <strong>WhatsApp</strong><br>
+          <a href="https://wa.me/33667749024" class="info-link">Message us on WhatsApp</a>
+        </div>
+        <div class="info-content">
+          <strong>Address</strong><br>
+          Calle Vista De Olas<br>
+          Malpais, Santa Teresa<br>
+          Costa Rica
+        </div>
+        <div class="info-content">
+          <em>Response within 24 hours guaranteed.</em>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-title">Direct Booking Advantage</div>
+        <div class="info-content">
+          Save <strong>15–20%</strong> compared to booking through third-party sites. Direct booking means direct communication with our team, flexible terms, and transparent pricing.
+        </div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-title">Our Villas</div>
+        <div class="villas-preview">
+          <div class="villa-thumb" style="background: linear-gradient(160deg,#8ab0a0,#3a6858)" title="Casa Jade"></div>
+          <div class="villa-thumb" style="background: linear-gradient(160deg,#9ab088,#4a6840)" title="Topaze"></div>
+          <div class="villa-thumb" style="background: linear-gradient(160deg,#808890,#303840)" title="Onyx"></div>
+          <div class="villa-thumb" style="background: linear-gradient(160deg,#b0a898,#6a6050)" title="Agate"></div>
+          <div class="villa-thumb" style="background: linear-gradient(160deg,#c8a878,#784828)" title="Ambre"></div>
+          <div class="villa-thumb" style="background: linear-gradient(160deg,#98b8c8,#385878)" title="Opale"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits-section r">
+    <h2 class="benefits-title">Why Book Direct?</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">💰</div>
+        <h3 class="benefit-title">Best Price Guaranteed</h3>
+        <p class="benefit-text">Direct rates are always lower than OTA platforms. Save 15–20% by booking with us.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">💬</div>
+        <h3 class="benefit-title">Direct Communication</h3>
+        <p class="benefit-text">Talk directly with our team. No middlemen, no delays. Your questions answered in 24 hours.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">🤝</div>
+        <h3 class="benefit-title">Flexible Cancellation</h3>
+        <p class="benefit-text">Our cancellation terms are flexible. We work with you, not against you.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div><div class="f-logo">Les Roches</div><div class="f-tagline">Six private villas in the heart of<br>Santa Teresa, Costa Rica.</div></div>
+    <div><div class="f-col-title">Navegación</div><a href="../villas.html" class="f-link">Villas</a><a href="../experiences.html" class="f-link">Experiencias</a><a href="../about.html" class="f-link">Nuestra Historia</a><a href="../booking-conditions.html" class="f-link">Reservar</a></div>
+    <div><div class="f-col-title">Contacto</div><span class="f-link">hello@lesrochesretreat.com</span><span class="f-link" style="margin-top:.4rem;display:block">Calle Vista De Olas<br>Santa Teresa · Costa Rica</span></div>
+    <div class="f-copy">© 2026 Les Roches · Santa Teresa, Costa Rica · <a href="privacy-policy.html" style="color:inherit;opacity:.6">Privacy Policy</a></div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    if(window.matchMedia('(hover:hover)').matches){
+      const cur=document.getElementById('cur');
+      document.querySelectorAll('a,button').forEach(el=>{
+        el.addEventListener('mouseenter',()=>cur.classList.add('hov'));
+        el.addEventListener('mouseleave',()=>cur.classList.remove('hov'));
+      });
+    }
+  </script>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/33667749024?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20une%20villa%20%C3%A0%20Les%20Roches%20Retreat." 
+   class="wa-btn" target="_blank" rel="noopener" aria-label="Contacto us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+<style>
+.wa-btn{
+  position:fixed;
+  bottom:2rem;
+  right:2rem;
+  z-index:1000;
+  width:56px;
+  height:56px;
+  background:#25D366;
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.45);
+  transition:transform .25s ease, box-shadow .25s ease;
+  cursor:pointer;
+}
+.wa-btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 6px 28px rgba(37,211,102,.6);
+}
+</style>
+<!-- END WHATSAPP -->
+
+<script>
+function handleContactoForm(e) {
+  e.preventDefault();
+  const form = document.getElementById('contact-form');
+  const btn = form.querySelector('button[type="submit"], .submit-btn');
+  if(btn) { btn.disabled = true; btn.textContent = 'Envoi en cours…'; }
+
+  const fname = document.getElementById('fname')?.value || '';
+  const lname = document.getElementById('lname')?.value || '';
+  const templateParams = {
+    from_name:  (fname + ' ' + lname).trim(),
+    from_email: document.getElementById('email')?.value || '',
+    phone:      document.getElementById('phone')?.value || '',
+    villa:      document.getElementById('villa')?.value || '',
+    checkin:    document.getElementById('checkin')?.value || '',
+    checkout:   document.getElementById('checkout')?.value || '',
+    guests:     document.getElementById('guests')?.value || '',
+    message:    document.getElementById('requests')?.value || ''
+  };
+
+  const SERVICE_ID  = 'service_yrlj12a';
+  const OWNER_TPL   = 'template_t4frhpk';
+  const CLIENT_TPL  = 'template_x200nab';
+
+  // Send both emails in parallel
+  Promise.all([
+    emailjs.send(SERVICE_ID, OWNER_TPL,  templateParams),
+    emailjs.send(SERVICE_ID, CLIENT_TPL, templateParams)
+  ])
+  .then(() => {
+    const msg = document.createElement('div');
+    msg.style.cssText = 'padding:2.5rem;text-align:center';
+    msg.innerHTML = `
+      <div style="width:56px;height:56px;background:#f3ede3;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.6rem;font-size:1.5rem">✓</div>
+      <div style="font-family:'Gilda Display',serif;font-size:1.7rem;color:#1e1b18;margin-bottom:.8rem">Demande bien reçue !</div>
+      <p style="font-size:.76rem;color:#9a8f82;line-height:1.9;max-width:380px;margin:0 auto 1.6rem">
+        Un email de confirmation vient de vous être envoyé.<br>
+        Notre équipe reviendra vers vous <strong style="color:#1e1b18;font-weight:400">via WhatsApp sous 24h</strong> pour confirmer la disponibilité et finaliser votre réservation.
+      </p>
+      <div style="width:40px;height:1px;background:#e9e0d2;margin:0 auto 1.6rem"></div>
+      <p style="font-size:.72rem;color:#9a8f82;line-height:1.8;max-width:320px;margin:0 auto 1.4rem">
+        Si vous avez des questions en attendant, n'hésitez pas à prendre les devants — nous sommes disponibles.
+      </p>
+      <a href="https://wa.me/33667749024" target="_blank" rel="noopener"
+         style="display:inline-flex;align-items:center;gap:.65rem;background:#fff;color:#1e1b18;border:1px solid #e2d9cd;padding:.85rem 1.8rem;border-radius:2px;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:background .2s">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Nous contacter sur WhatsApp
+      </a>`;
+    form.style.display = 'none';
+    form.parentElement.appendChild(msg);
+  })
+  .catch((err) => {
+    console.error('EmailJS error:', err);
+    if(btn) { btn.disabled = false; btn.textContent = 'Send Booking Request'; }
+    alert('Une erreur est survenue. Veuillez réessayer ou nous contacter directement par email.');
+  });
+}
+</script>
+
+
+<style>
+/* ── Bulle contact — discrète et naturelle ── */
+#wa-bubble{position:fixed;bottom:1.6rem;right:1.6rem;z-index:2000;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+#wa-toggle{width:52px;height:52px;border-radius:50%;border:none;padding:0;cursor:pointer;background:none;position:relative;box-shadow:0 2px 12px rgba(0,0,0,.22);transition:transform .2s,box-shadow .2s;overflow:visible}
+#wa-toggle:hover{transform:scale(1.04);box-shadow:0 4px 18px rgba(0,0,0,.3)}
+#wa-toggle-photo{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:center 18%;display:block;border:2px solid rgba(250,247,242,.7)}
+#wa-dot{position:absolute;bottom:0;right:0;width:16px;height:16px;background:#25D366;border-radius:50%;border:2px solid var(--w,#faf7f2);display:flex;align-items:center;justify-content:center}
+#wa-dot svg{display:block}
+#wa-card{width:272px;background:var(--w,#faf7f2);border-radius:10px;box-shadow:0 4px 22px rgba(0,0,0,.13);overflow:hidden;transform:translateY(8px) scale(.97);opacity:0;pointer-events:none;transition:transform .28s cubic-bezier(.25,.8,.25,1),opacity .2s ease;transform-origin:bottom right;border:1px solid rgba(30,27,24,.07)}
+#wa-card.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+.wa-head{background:var(--ink2,#2e2a26);padding:.85rem 1rem;display:flex;align-items:center;gap:.75rem;position:relative}
+.wa-head-close{position:absolute;top:.55rem;right:.7rem;background:none;border:none;color:rgba(255,255,255,.25);font-size:.85rem;cursor:pointer;line-height:1;transition:color .18s}
+.wa-head-close:hover{color:rgba(255,255,255,.6)}
+.wa-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 18%;border:1px solid rgba(255,255,255,.12);flex-shrink:0}
+.wa-head-name{font-family:'Gilda Display',serif;font-size:.84rem;color:rgba(250,247,242,.88);letter-spacing:.02em}
+.wa-head-status{font-size:.48rem;color:rgba(255,255,255,.3);margin-top:.15rem;font-family:'Outfit',sans-serif;display:flex;align-items:center;gap:.3rem}
+.wa-head-status::before{content:'';width:5px;height:5px;background:#4ade80;border-radius:50%;flex-shrink:0}
+.wa-body{background:var(--c,#f3ede3);padding:.9rem .9rem .85rem}
+.wa-msg{background:var(--w,#faf7f2);border-radius:2px 9px 9px 9px;padding:.65rem .8rem;font-family:'Outfit',sans-serif;font-size:.66rem;line-height:1.7;color:var(--ink,#1e1b18);position:relative;max-width:94%;border:1px solid rgba(30,27,24,.04)}
+.wa-msg::before{content:'';position:absolute;top:0;left:-5px;width:0;height:0;border-top:5px solid var(--w,#faf7f2);border-left:5px solid transparent}
+.wa-time{font-size:.45rem;color:var(--mid,#9a8f82);text-align:right;margin-top:.3rem}
+.wa-cta-wrap{padding:.7rem .9rem .85rem;background:var(--c,#f3ede3);border-top:1px solid rgba(30,27,24,.05)}
+.wa-cta{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;background:var(--ter,#b8734a);border:none;border-radius:2px;padding:.65rem 1rem;font-family:'Outfit',sans-serif;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;cursor:pointer;text-decoration:none;transition:background .2s;opacity:.92}
+.wa-cta:hover{background:var(--ter2,#a05f38);opacity:1}
+</style>
+
+<div id="wa-bubble">
+  <div id="wa-card">
+    <div class="wa-head">
+      <img loading="lazy" src="../images/ian-whatsapp.webp" alt="Ian" class="wa-avatar"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="wa-avatar" style="display:none;background:var(--ter);align-items:center;justify-content:center;font-family:'Gilda Display',serif;font-size:1.1rem;color:#fff;flex-shrink:0">I</div>
+      <div class="wa-head-info">
+        <div class="wa-head-name">Ian &nbsp;—&nbsp; Les Roches</div>
+        <div class="wa-head-status">En ligne · répond rapidement</div>
+      </div>
+      <button class="wa-head-close" id="wa-close" aria-label="Fermer">✕</button>
+    </div>
+    <div class="wa-body">
+      <div class="wa-msg">
+        Bonjour ! 👋<br>Pour toutes questions sur les villas, les disponibilités ou une réservation, n'hésitez pas à m'envoyer un message — je vous réponds rapidement.
+        <div class="wa-time">maintenant</div>
+      </div>
+    </div>
+    <div class="wa-cta-wrap">
+      <a href="https://wa.me/33667749024?text=Bonjour%20Ian%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20Les%20Roches%20Retreat%20%F0%9F%8C%8A"
+         target="_blank" rel="noopener" class="wa-cta">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Envoyer un message
+      </a>
+    </div>
+  </div>
+  <button id="wa-toggle" aria-label="Message Ian">
+    <img loading="lazy" id="wa-toggle-photo" src="../images/ian-whatsapp.webp" alt="Ian"
+         onerror="this.style.background='var(--ink2)';this.style.objectFit='none'">
+    <div id="wa-dot">
+      <svg viewBox="0 0 24 24" fill="white" width="8" height="8"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </div>
+  </button>
+</div>
+
+<script>
+(function(){
+  const toggle=document.getElementById('wa-toggle'),
+        card=document.getElementById('wa-card'),
+        close=document.getElementById('wa-close');
+  let open=false;
+  function setOpen(v){ open=v; card.classList.toggle('open',v); }
+  if(!sessionStorage.getItem('wa_shown')){
+    setTimeout(()=>{setOpen(true);sessionStorage.setItem('wa_shown','1')},6000);
+  }
+  toggle.addEventListener('click',()=>setOpen(!open));
+  close.addEventListener('click',()=>setOpen(false));
+})();
+</script>
+<!-- END WHATSAPP -->
+
+
+<script>
+document.addEventListener('keydown',function(e){
+  if((e.ctrlKey||e.metaKey)&&e.shiftKey&&e.key.toLowerCase()==='a'){
+    e.preventDefault();
+    window.location.href='/admin/index.html';
+  }
+});
+</script>
+<script src="../lang.js" defer></script>
+<script src="../cookie-consent.js" defer></script>
+<script src="../js/lazy-bg.js" defer></script>
+<script src="../js/swipe.js" defer></script>
+</body>
+</html>

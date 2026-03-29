@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Six private luxury villas with pool in Santa Teresa, Costa Rica. Ocean views, jungle setting, direct booking from $350/night.">
+  <title>Villas de Lujo Santa Teresa Costa Rica — Les Roches Retreat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../js/datepicker.css">
+  <meta name="robots" content="index, follow">
+  <link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villas.html">
+<link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villas.html">
+<link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villas.html">
+<link rel="alternate" hreflang="x-default" href="https://lesrochesretreat.com/villas.html">
+<link rel="canonical" href="https://lesrochesretreat.com/es/villas.html">
+  <meta property="og:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.webp">
+  <script src="../js/track.js" defer></script>
+
+  <style>
+    /* ════════════════════════════════════════════
+       PAGE INTRO
+    ════════════════════════════════════════════ */
+    .pg-intro {
+      padding: 4rem 5vw 3rem;
+      background: var(--ink);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      gap: 3rem;
+    }
+    .pg-intro-left {}
+    .pg-eyebrow {
+      font-family: 'Outfit', sans-serif;
+      font-size: .38rem;
+      letter-spacing: .5em;
+      text-transform: uppercase;
+      color: var(--ter);
+      margin-bottom: 1.4rem;
+      opacity: .85;
+    }
+    .pg-title {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(3.5rem, 6vw, 6.5rem);
+      font-weight: 400;
+      color: var(--w);
+      line-height: .88;
+    }
+    .pg-intro-right {
+      padding-bottom: .4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1.8rem;
+    }
+    .pg-desc {
+      font-family: 'Outfit', sans-serif;
+      font-size: .72rem;
+      font-weight: 300;
+      color: rgba(250,247,242,.45);
+      line-height: 1.85;
+      max-width: 32ch;
+      text-align: right;
+    }
+    .pg-intro-stats {
+      display: flex;
+      gap: 2.5rem;
+    }
+    .pg-stat {
+      text-align: right;
+    }
+    .pg-stat-num {
+      font-family: 'Gilda Display', serif;
+      font-size: 1.4rem;
+      color: var(--w);
+      line-height: 1;
+      display: block;
+    }
+    .pg-stat-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: .33rem;
+      letter-spacing: .38em;
+      text-transform: uppercase;
+      color: rgba(250,247,242,.35);
+      display: block;
+      margin-top: .3rem;
+    }
+
+    /* ════════════════════════════════════════════
+       DATE SEARCH — intégré dans le floor-header
+    ════════════════════════════════════════════ */
+    .fh-search {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr auto;
+      background: var(--w);
+      border: 1px solid var(--sand);
+      border-radius: 4px;
+      max-width: 720px;
+      margin: 0 5vw;
+      overflow: hidden;
+    }
+    .ds-field {
+      padding: .7rem 1.2rem;
+      border-right: 1px solid var(--c2);
+      display: flex;
+      flex-direction: column;
+      gap: .1rem;
+      transition: background .18s;
+      cursor: pointer;
+    }
+    .ds-field:hover { background: var(--c); }
+    .ds-field label {
+      font-family: 'Outfit', sans-serif;
+      font-size: .44rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--mid);
+      cursor: pointer;
+    }
+    .ds-field input,
+    .ds-field select {
+      font-family: 'Gilda Display', serif;
+      font-size: .75rem;
+      color: var(--ink);
+      background: transparent;
+      border: none;
+      outline: none;
+      width: 100%;
+    }
+    .ds-field input::placeholder {
+      font-family: 'Outfit', sans-serif;
+      font-size: .6rem;
+      font-weight: 300;
+      color: var(--mid);
+    }
+    .ds-field select option { background: var(--w); color: var(--ink); }
+    .ds-btn {
+      background: var(--ink);
+      border: none;
+      padding: 0 1.6rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: .5rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--w);
+      cursor: pointer;
+      transition: background .2s;
+      white-space: nowrap;
+    }
+    .ds-btn:hover { background: var(--ter); }
+    .ds-feedback {
+      font-family: 'Gilda Display', serif;
+      font-size: 1.1rem;
+      color: var(--ter);
+      text-align: right;
+      line-height: 1.3;
+      display: none;
+    }
+    .ds-feedback.show { display: block; }
+
+    /* ════════════════════════════════════════════
+       FLOOR SECTION
+    ════════════════════════════════════════════ */
+    .floor {
+      background: var(--w);
+    }
+
+    .floor-header {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid rgba(0,0,0,.07);
+      padding-bottom: 1.6rem;
+    }
+    .fh-body {
+      padding: 0.55rem 5vw 1.2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 2rem;
+    }
+
+    .floor-tag-row {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: .55rem;
+    }
+    .floor-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: .46rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--w);
+      background: var(--ter);
+      padding: .28rem .9rem .22rem;
+      display: inline-block;
+    }
+    .floor-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: .5rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .floor-name {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(2rem, 3.8vw, 4rem);
+      font-weight: 400;
+      color: var(--ink);
+      line-height: .90;
+    }
+
+    .floor-meta {
+      text-align: right;
+      padding-bottom: .2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: .8rem;
+    }
+    .floor-villas-list {
+      font-family: 'Outfit', sans-serif;
+      font-size: .52rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--mid);
+      line-height: 2.1;
+      text-align: right;
+    }
+    .floor-count {
+      display: none;
+    }
+
+
+    /* ════════════════════════════════════════════
+       VILLA GRID — 3 columns
+    ════════════════════════════════════════════ */
+    .vg {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(0,0,0,.07);
+    }
+
+    .vc {
+      border-right: 1px solid rgba(0,0,0,.07);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      transition: background .3s;
+      position: relative;
+    }
+    .vc:last-child { border-right: none; }
+    .vc:hover { background: rgba(0,0,0,.025); }
+
+    /* Photo */
+    .vc-photo {
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      position: relative;
+    }
+    .vc-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .8s cubic-bezier(.25,.46,.45,.94);
+    }
+    .vc:hover .vc-photo img { transform: scale(1.05); }
+
+    /* Hover overlay on photo */
+    .vc-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(18,14,10,.35);
+      opacity: 0;
+      transition: opacity .35s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .vc:hover .vc-overlay { opacity: 1; }
+    .vc-overlay-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: .46rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--w);
+      border: 1px solid rgba(255,255,255,.5);
+      padding: .65rem 1.6rem;
+      transition: border-color .2s, background .2s;
+    }
+    .vc:hover .vc-overlay-text { border-color: var(--w); background: rgba(255,255,255,.08); }
+
+    /* Info below photo */
+    .vc-info {
+      padding: 1.6rem 1.8rem 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-top: 1px solid rgba(0,0,0,.07);
+    }
+
+    .vc-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: .5rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: .7rem;
+    }
+
+    .vc-name {
+      font-family: 'Gilda Display', serif;
+      font-size: 1.6rem;
+      color: var(--ink);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: .5rem;
+      transition: color .22s;
+    }
+    .vc:hover .vc-name { color: var(--ter); }
+
+    .vc-tagline {
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+      font-size: .78rem;
+      color: var(--mid);
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    .vc-specs {
+      font-family: 'Outfit', sans-serif;
+      font-size: .48rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .45rem;
+      margin-bottom: 1.4rem;
+    }
+    .vc-spec-row {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+    }
+    .vc-spec-item {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      color: var(--ink2);
+    }
+    .vc-spec-item svg {
+      width: 13px;
+      height: 13px;
+      opacity: .5;
+      flex-shrink: 0;
+    }
+
+    .vc-price-block {
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(0,0,0,.07);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: .5rem;
+    }
+    .vc-price-left {}
+    .vc-from {
+      font-family: 'Outfit', sans-serif;
+      font-size: .5rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      display: block;
+      margin-bottom: .15rem;
+    }
+    .vc-price {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+      color: var(--ink);
+      line-height: 1;
+    }
+    .vc-night {
+      font-family: 'Outfit', sans-serif;
+      font-size: .54rem;
+      font-weight: 300;
+      color: var(--mid);
+      margin-left: .2rem;
+    }
+    .vc-total {
+      font-family: 'Outfit', sans-serif;
+      font-size: .82rem;
+      font-weight: 400;
+      color: var(--ter);
+      min-height: 1rem;
+      text-align: right;
+      line-height: 1.4;
+      letter-spacing: .04em;
+    }
+
+    /* Unavailable */
+    .vc.unavail { opacity: .4; }
+    .vc.unavail .vc-photo img { filter: grayscale(80%); }
+
+    /* ════════════════════════════════════════════
+       DIVIDER between floors
+    ════════════════════════════════════════════ */
+    .floor-divider {
+      height: 1px;
+      background: var(--c2);
+      margin: 0 5vw;
+    }
+
+    /* ════════════════════════════════════════════
+       BOTTOM
+    ════════════════════════════════════════════ */
+    .pg-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid rgba(0,0,0,.08);
+      background: var(--w);
+    }
+    .pg-bottom-left {
+      padding: 3.5rem 5vw;
+      border-right: 1px solid rgba(0,0,0,.08);
+    }
+    .pg-bottom-title {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(1.2rem, 2vw, 1.7rem);
+      color: var(--ink);
+      margin-bottom: .5rem;
+      line-height: 1.2;
+    }
+    .pg-bottom-sub {
+      font-family: 'Outfit', sans-serif;
+      font-size: .62rem;
+      font-weight: 300;
+      color: var(--mid);
+      margin-bottom: 1.6rem;
+      line-height: 1.7;
+    }
+    .pg-bottom-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: .44rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      padding: .8rem 1.8rem;
+      background: var(--ink);
+      color: var(--w);
+      text-decoration: none;
+      border-radius: 1px;
+      transition: background .2s;
+    }
+    .pg-bottom-btn:hover { background: var(--ter); }
+    .pg-bottom-right {
+      padding: 3.5rem 5vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .pg-email-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: .38rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--ter);
+      margin-bottom: .6rem;
+    }
+    .pg-email-title {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(1rem, 1.6vw, 1.4rem);
+      color: var(--ink);
+      margin-bottom: 1.4rem;
+      line-height: 1.3;
+    }
+    .pg-email-form {
+      display: flex;
+      gap: .5rem;
+    }
+    .pg-email-input {
+      flex: 1;
+      padding: .75rem 1rem;
+      background: var(--c);
+      border: 1px solid var(--c2);
+      border-radius: 2px;
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-size: .72rem;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .pg-email-input:focus { border-color: var(--sand); }
+    .pg-email-input::placeholder { color: var(--mid); }
+    .pg-email-btn {
+      padding: .75rem 1.4rem;
+      background: var(--ter);
+      color: var(--w);
+      border: none;
+      border-radius: 2px;
+      font-family: 'Outfit', sans-serif;
+      font-size: .4rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .2s;
+      white-space: nowrap;
+    }
+    .pg-email-btn:hover { background: var(--ter2); }
+    #email-msg {
+      margin-top: .5rem;
+      font-size: .55rem;
+      color: var(--ter);
+      min-height: .8rem;
+    }
+
+    /* ════════════════════════════════════════════
+       MODAL
+    ════════════════════════════════════════════ */
+    .modal-overlay{position:fixed;inset:0;background:rgba(18,14,10,.82);z-index:900;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(6px)}
+    .modal-overlay.open{opacity:1;pointer-events:all}
+    .modal{background:var(--w);border-radius:4px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;position:relative}
+    .modal-header{background:var(--ink);padding:2rem 2.2rem 1.5rem;position:relative}
+    .modal-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;color:rgba(255,255,255,.4);font-size:1.2rem;cursor:pointer;transition:color .2s;line-height:1}
+    .modal-close:hover{color:var(--w)}
+    .modal-villa-tag{font-size:.46rem;letter-spacing:.35em;text-transform:uppercase;color:var(--ter);margin-bottom:.4rem}
+    .modal-title{font-family:'Gilda Display',serif;font-size:1.6rem;color:var(--w);line-height:1.1;margin-bottom:.3rem}
+    .modal-dates{font-size:.62rem;color:rgba(255,255,255,.4);letter-spacing:.06em}
+    .modal-body{padding:2rem 2.2rem}
+    .modal-section-title{font-size:.48rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ter);margin-bottom:1.2rem;display:flex;align-items:center;gap:.7rem}
+    .modal-section-title::before{content:'';width:14px;height:1px;background:var(--ter)}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem}
+    .form-group{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.8rem}
+    .form-group label{font-size:.44rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mid)}
+    .form-group input{font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:300;color:var(--ink);background:var(--c);border:1px solid var(--c2);border-radius:2px;padding:.75rem .9rem;outline:none;transition:border-color .2s}
+    .form-group input:focus{border-color:var(--sand)}
+    .form-group input::placeholder{color:rgba(155,143,130,.5)}
+    .modal-summary{background:var(--c);border-radius:3px;padding:1.4rem 1.6rem;margin:1.5rem 0;border:1px solid var(--c2)}
+    .summary-row{display:flex;justify-content:space-between;align-items:baseline;padding:.4rem 0;font-size:.68rem;color:var(--mid);border-bottom:1px solid var(--c2)}
+    .summary-row:last-child{border-bottom:none;margin-top:.4rem;padding-top:.8rem}
+    .summary-row.total{font-family:'Gilda Display',serif;font-size:1rem;color:var(--ink)}
+    .summary-row.deposit{color:var(--ter)}
+    .payment-only-note{display:flex;align-items:flex-start;gap:.8rem;background:#fff8f5;border:1px solid rgba(184,115,74,.2);border-radius:3px;padding:1rem 1.2rem;margin-bottom:1.5rem}
+    .payment-only-note svg{flex-shrink:0;margin-top:.1rem}
+    .payment-only-note-text{font-size:.64rem;color:var(--mid);line-height:1.75}
+    .payment-only-note-text strong{color:var(--ink);font-weight:400}
+    .modal-submit{width:100%;padding:1.1rem;background:var(--ink);color:var(--w);border:none;border-radius:2px;font-family:'Outfit',sans-serif;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;cursor:pointer;transition:background .22s;margin-top:.4rem}
+    .modal-submit:hover{background:var(--ter)}
+    .modal-submit:disabled{background:var(--mid);cursor:not-allowed}
+    .modal-legal{font-size:.54rem;color:var(--mid);line-height:1.7;margin-top:1rem;text-align:center}
+    .modal-legal a{color:var(--ter)}
+    .modal-confirm{display:none;padding:2.5rem 2.2rem;text-align:center}
+    .modal-confirm.show{display:block}
+    .confirm-icon{width:60px;height:60px;background:rgba(184,115,74,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.6rem}
+    .confirm-title{font-family:'Gilda Display',serif;font-size:1.8rem;color:var(--ink);margin-bottom:.6rem}
+    .confirm-sub{font-size:.7rem;color:var(--mid);line-height:1.8;margin-bottom:2rem}
+    .confirm-steps{text-align:left;background:var(--c);border-radius:3px;padding:1.4rem 1.6rem;border:1px solid var(--c2);margin-bottom:1.5rem}
+    .confirm-step{display:flex;gap:.9rem;align-items:flex-start;padding:.5rem 0;border-bottom:1px solid var(--c2);font-size:.66rem;color:var(--mid);line-height:1.65}
+    .confirm-step:last-child{border-bottom:none}
+    .confirm-step-n{font-family:'Gilda Display',serif;font-size:1rem;color:var(--ter);flex-shrink:0;line-height:1.3}
+    .confirm-wa{display:inline-flex;align-items:center;gap:.6rem;background:#25D366;color:#fff;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;padding:.8rem 1.8rem;border-radius:1px;margin-top:.5rem;transition:background .2s;text-decoration:none}
+    .confirm-wa:hover{background:#1da851}
+
+    /* ════════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .ds-inner { grid-template-columns: 1fr 1fr 1fr auto; }
+    }
+    @media (max-width: 800px) {
+      .vg { grid-template-columns: 1fr; }
+      .vc { border-right: none; border-bottom: 1px solid rgba(0,0,0,.07); }
+      .vc-photo { aspect-ratio: 16 / 9; }
+      .vc-overlay { display: none; }
+      .fh-body { grid-template-columns: 1fr; gap: 1rem; }
+      .floor-meta { text-align: left; align-items: flex-start; }
+      .floor-villas-list { text-align: left; }
+      .pg-bottom { grid-template-columns: 1fr; }
+      .pg-bottom-left { border-right: none; border-bottom: 1px solid rgba(0,0,0,.08); }
+      .pg-intro { grid-template-columns: 1fr; gap: 1.5rem; }
+      .pg-desc { text-align: left; }
+      .pg-intro-stats { justify-content: flex-start; }
+      .pg-intro-right { align-items: flex-start; }
+      .fh-search { margin: 0 4vw; max-width: 100%; }
+    }
+    @media (max-width: 600px) {
+      .fh-search { grid-template-columns: 1fr 1fr; }
+      .ds-field:first-child { padding-left: 4vw; }
+      .ds-btn { grid-column: 1 / -1; padding: .9rem; text-align: center; }
+      .form-row { grid-template-columns: 1fr; }
+      .modal { max-height: 95vh; }
+    }
+
+    /* ════════════════════════════════════════════
+       FLATPICKR — dark custom theme
+    ════════════════════════════════════════════ */
+    .flatpickr-calendar {
+      background: #1e1b18 !important;
+      border: 1px solid rgba(255,255,255,.12) !important;
+      box-shadow: 0 12px 48px rgba(0,0,0,.55) !important;
+      border-radius: 2px !important;
+      font-family: 'Outfit', sans-serif !important;
+      width: auto !important;
+    }
+    .flatpickr-calendar.hasRange.open,
+    .flatpickr-calendar.open { display: flex; flex-wrap: wrap; }
+    .flatpickr-months { background: #1e1b18; padding: .6rem 0 .3rem; }
+    .flatpickr-month { color: rgba(250,247,242,.9) !important; fill: rgba(250,247,242,.9) !important; }
+    .flatpickr-current-month { font-family: 'Gilda Display', serif; font-size: 1rem !important; color: rgba(250,247,242,.9) !important; }
+    .flatpickr-current-month select { color: rgba(250,247,242,.9) !important; background: transparent !important; }
+    .flatpickr-prev-month svg, .flatpickr-next-month svg { fill: rgba(250,247,242,.5) !important; }
+    .flatpickr-prev-month:hover svg, .flatpickr-next-month:hover svg { fill: #b8734a !important; }
+    .flatpickr-weekdays { background: #1e1b18 !important; }
+    span.flatpickr-weekday { background: #1e1b18 !important; color: rgba(250,247,242,.3) !important; font-family: 'Outfit', sans-serif; font-size: .38rem; letter-spacing: .2em; }
+    .flatpickr-day { color: rgba(250,247,242,.75) !important; font-family: 'Outfit', sans-serif; font-size: .62rem; border-radius: 0 !important; height: 36px; line-height: 36px; }
+    .flatpickr-day:hover { background: rgba(184,115,74,.18) !important; color: rgba(250,247,242,1) !important; border-color: transparent !important; }
+    .flatpickr-day.today { border-color: rgba(184,115,74,.4) !important; }
+    .flatpickr-day.today:hover { background: rgba(184,115,74,.2) !important; }
+    .flatpickr-day.selected,
+    .flatpickr-day.startRange,
+    .flatpickr-day.endRange { background: #b8734a !important; border-color: #b8734a !important; color: #faf7f2 !important; }
+    .flatpickr-day.inRange { background: rgba(184,115,74,.15) !important; border-color: transparent !important; box-shadow: -5px 0 0 rgba(184,115,74,.15), 5px 0 0 rgba(184,115,74,.15) !important; color: rgba(250,247,242,.9) !important; }
+    .flatpickr-day.disabled { color: rgba(250,247,242,.15) !important; }
+    .flatpickr-day.flatpickr-disabled { color: rgba(250,247,242,.1) !important; }
+    .numInputWrapper:hover, .numInputWrapper { background: transparent !important; }
+    .flatpickr-innerContainer { border-bottom: none !important; }
+    .flatpickr-rContainer { padding: 0 .5rem .5rem; }
+  
+/* ── prefers-reduced-motion ─────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  body.has-cursor *{cursor:auto!important}
+}
+</style>
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon-192.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#b8734a">
+<!-- Google Analytics GA4 — Measurement ID: G-WFWBDDTMF0 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFWBDDTMF0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WFWBDDTMF0', { anonymize_ip: true });
+</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--ter,#b8734a);color:#fff;padding:.5rem 1rem;font-family:sans-serif;font-size:.875rem" onfocus="this.style.left='1rem';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-999px'">Skip to content</a>
+  <div id="cur"></div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="../index.html" class="nl-logo" id="logo">Les Roches</a>
+    <div class="nav-mid">
+      <a href="../villas.html" class="nl">Villas</a>
+      <a href="../experiences.html" class="nl">Experiencias</a>
+      <a href="../about.html" class="nl">Nosotros</a>
+      <a href="../santa-teresa.html" class="nl">Santa Teresa</a>
+      <a href="../faq.html" class="nl">FAQ</a>
+      <a href="../journal.html" class="nl">Blog</a>
+    </div>
+    <a href="#" class="nav-book" aria-label="Book a villa at Les Roches Retreat" id="nb" onclick="document.getElementById('ds-checkin').focus();return false;">Reservar</a>
+    <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="nav-overlay" id="nav-overlay">
+    <button class="nav-close" id="nav-close">✕</button>
+    <a href="../villas.html" class="nl">Villas</a>
+    <a href="../experiences.html" class="nl">Experiencias</a>
+    <a href="../about.html" class="nl">Nosotros</a>
+    <a href="../santa-teresa.html" class="nl">Santa Teresa</a>
+    <a href="../faq.html" class="nl">FAQ</a>
+    <a href="../journal.html" class="nl">Blog</a>
+    <a href="../contact.html" class="nl">Reservar</a>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       UPPER ESTATE — Opale · Onyx · Casa Jade
+  ══════════════════════════════════════════ -->
+  <section class="floor" id="upper-estate">
+    <div class="floor-header">
+      <div class="fh-body">
+        <div>
+          <div class="floor-name">Panoramic<br>Ocean Views</div>
+        </div>
+        <div class="floor-meta">
+          <div class="ds-feedback" id="ds-feedback"></div>
+        </div>
+      </div>
+      <div class="fh-search" id="ds-wrap">
+        <div class="ds-field">
+          <label for="ds-checkin">Check-in</label>
+          <input type="text" id="ds-checkin" placeholder="Add date" readonly>
+        </div>
+        <div class="ds-field">
+          <label for="ds-checkout">Check-out</label>
+          <input type="text" id="ds-checkout" placeholder="Add date" readonly>
+        </div>
+        <div class="ds-field">
+          <label for="ds-guests">Huéspedes</label>
+          <select id="ds-guests">
+            <option value="1">1 guest</option>
+            <option value="2" selected>2 personas</option>
+            <option value="3">3 personas</option>
+            <option value="4">4 personas</option>
+            <option value="5">5 guests</option>
+            <option value="6">6 guests</option>
+          </select>
+        </div>
+        <button class="ds-btn" id="ds-btn">Check rates →</button>
+      </div>
+    </div>
+
+    <div class="vg">
+
+      <!-- Opale -->
+      <a class="vc" href="../villa-opale.html" id="vc-opale">
+        <div class="vc-photo">
+          <img src="../images/opale-hero.webp" alt="Opale" loading="eager">
+          <div class="vc-overlay"><div class="vc-overlay-text">Explore villa</div></div>
+        </div>
+        <div class="vc-info">
+          <div>
+            <div class="vc-num">Villa 01 · Opale</div>
+            <div class="vc-name">Opale</div>
+            <div class="vc-tagline">Closest to the Pacific — fall asleep to the sound of waves.</div>
+            <div class="vc-specs">
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                  2 Bedrooms
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                  2 Bathrooms
+                </span>
+              </div>
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  Private Pool
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Top Left
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="vc-price-block">
+            <div class="vc-price-left">
+              <span class="vc-from" id="label-opale">From</span>
+              <span class="vc-price" id="price-opale">$480</span><span class="vc-night" id="unit-opale">/ noche</span>
+            </div>
+            <div class="vc-total" id="total-opale"></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Onyx -->
+      <a class="vc" href="../villa-onyx.html" id="vc-onyx">
+        <div class="vc-photo">
+          <img src="../images/onyx-hero.webp" alt="Onyx" loading="eager">
+          <div class="vc-overlay"><div class="vc-overlay-text">Explore villa</div></div>
+        </div>
+        <div class="vc-info">
+          <div>
+            <div class="vc-num">Villa 02 · Onyx</div>
+            <div class="vc-name">Onyx</div>
+            <div class="vc-tagline">The largest — three bedrooms, sprawling terraces, room for everyone.</div>
+            <div class="vc-specs">
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                  2 Bedrooms
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                  2 Bathrooms
+                </span>
+              </div>
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  Private Pool
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Top Center
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="vc-price-block">
+            <div class="vc-price-left">
+              <span class="vc-from" id="label-onyx">From</span>
+              <span class="vc-price" id="price-onyx">$550</span><span class="vc-night" id="unit-onyx">/ noche</span>
+            </div>
+            <div class="vc-total" id="total-onyx"></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Casa Jade -->
+      <a class="vc" href="../villa-jade.html" id="vc-jade">
+        <div class="vc-photo">
+          <img src="../images/jade-hero.webp" alt="Casa Jade" loading="eager">
+          <div class="vc-overlay"><div class="vc-overlay-text">Explore villa</div></div>
+        </div>
+        <div class="vc-info">
+          <div>
+            <div class="vc-num">Villa 03 · Casa Jade</div>
+            <div class="vc-name">Casa Jade</div>
+            <div class="vc-tagline">Where the jungle meets the Pacific — the original villa, the one that started it all.</div>
+            <div class="vc-specs">
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                  2 Bedrooms
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                  2 Bathrooms
+                </span>
+              </div>
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  Private Pool
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Top Right
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="vc-price-block">
+            <div class="vc-price-left">
+              <span class="vc-from" id="label-jade">From</span>
+              <span class="vc-price" id="price-jade">$450</span><span class="vc-night" id="unit-jade">/ noche</span>
+            </div>
+            <div class="vc-total" id="total-jade"></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- ─── Garden Level ─── -->
+
+      <!-- Topaze -->
+      <a class="vc" href="../villa-topaze.html" id="vc-topaze" data-level="garden">
+        <div class="vc-photo">
+          <img src="../images/topaze-hero.webp" alt="Topaze" loading="lazy">
+          <div class="vc-overlay"><div class="vc-overlay-text">Explore villa</div></div>
+        </div>
+        <div class="vc-info">
+          <div>
+            <div class="vc-num">Villa 04 · Topaze</div>
+            <div class="vc-name">Topaze</div>
+            <div class="vc-tagline">Immersed in the jungle canopy — absolute privacy, private pool, and Pacific sunsets on the horizon.</div>
+            <div class="vc-specs">
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                  2 Bedrooms
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                  2 Bathrooms
+                </span>
+              </div>
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  Private Pool
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Bottom Left
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="vc-price-block">
+            <div class="vc-price-left">
+              <span class="vc-from" id="label-topaze">From</span>
+              <span class="vc-price" id="price-topaze">$420</span><span class="vc-night" id="unit-topaze">/ noche</span>
+            </div>
+            <div class="vc-total" id="total-topaze"></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Agate -->
+      <a class="vc" href="../villa-agate.html" id="vc-agate">
+        <div class="vc-photo">
+          <img src="../images/agate-hero.webp" alt="Agate" loading="lazy">
+          <div class="vc-overlay"><div class="vc-overlay-text">Explore villa</div></div>
+        </div>
+        <div class="vc-info">
+          <div>
+            <div class="vc-num">Villa 05 · Agate</div>
+            <div class="vc-name">Agate</div>
+            <div class="vc-tagline">The most intimate — one bedroom, 360° views, and the Pacific horizon all to yourself.</div>
+            <div class="vc-specs">
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                  2 Bedrooms
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                  2 Bathrooms
+                </span>
+              </div>
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  Private Pool
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Bottom Center
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="vc-price-block">
+            <div class="vc-price-left">
+              <span class="vc-from" id="label-agate">From</span>
+              <span class="vc-price" id="price-agate">$350</span><span class="vc-night" id="unit-agate">/ noche</span>
+            </div>
+            <div class="vc-total" id="total-agate"></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Ambre -->
+      <a class="vc" href="../villa-ambre.html" id="vc-ambre">
+        <div class="vc-photo">
+          <img src="../images/ambre-hero.webp" alt="Ambre" loading="lazy">
+          <div class="vc-overlay"><div class="vc-overlay-text">Explore villa</div></div>
+        </div>
+        <div class="vc-info">
+          <div>
+            <div class="vc-num">Villa 06 · Ambre</div>
+            <div class="vc-name">Ambre</div>
+            <div class="vc-tagline">Face west — perfectly positioned for the sunsets that made Santa Teresa legendary.</div>
+            <div class="vc-specs">
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                  2 Bedrooms
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                  2 Bathrooms
+                </span>
+              </div>
+              <div class="vc-spec-row">
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  Private Pool
+                </span>
+                <span class="vc-spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Bottom Right
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="vc-price-block">
+            <div class="vc-price-left">
+              <span class="vc-from" id="label-ambre">From</span>
+              <span class="vc-price" id="price-ambre">$420</span><span class="vc-night" id="unit-ambre">/ noche</span>
+            </div>
+            <div class="vc-total" id="total-ambre"></div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- BOTTOM -->
+  <div class="pg-bottom">
+    <div class="pg-bottom-left">
+      <div class="pg-bottom-title">Not sure which villa?<br>We'll help you choose.</div>
+      <div class="pg-bottom-sub">Write to us — we know every corner of each villa and will match you with the right one based on your dates, group, and way of travelling.</div>
+      <a href="https://wa.me/33667749024" class="pg-bottom-btn" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+    <div class="pg-bottom-right">
+      <div>
+        <div class="pg-email-label">Mantente informado</div>
+        <div class="pg-email-title">Last-minute rates.<br>First access to availability.</div>
+      </div>
+      <div>
+        <form id="email-capture-form" class="pg-email-form" onsubmit="handleEmailCapture(event)">
+          <input type="email" id="capture-email" class="pg-email-input" placeholder="tu@email.com" required>
+          <button type="submit" class="pg-email-btn">Subscribe</button>
+        </form>
+        <div id="email-msg"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div><div class="f-logo">Les Roches</div><div class="f-tagline">Six private villas in the heart of<br>Santa Teresa, Costa Rica.</div></div>
+    <div><div class="f-col-title">Navegación</div><a href="../villas.html" class="f-link">Villas</a><a href="../experiences.html" class="f-link">Experiencias</a><a href="../about.html" class="f-link">Nuestra Historia</a><a href="../booking-conditions.html" class="f-link">Booking conditions</a></div>
+    <div><div class="f-col-title">Contacto</div><span class="f-link">hello@lesrochesretreat.com</span><span class="f-link" style="margin-top:.4rem;display:block">Calle Vista De Olas<br>Santa Teresa · Costa Rica</span></div>
+    <div class="f-copy">© 2026 Les Roches · Santa Teresa, Costa Rica · <a href="privacy-policy.html" style="color:inherit;opacity:.6">Privacy Policy</a></div>
+  </footer>
+
+  <!-- BOOKING MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <button class="modal-close" id="modal-close">✕</button>
+        <div class="modal-villa-tag" id="modal-villa-tag">Reservation request</div>
+        <div class="modal-title" id="modal-title">—</div>
+        <div class="modal-dates" id="modal-dates">—</div>
+      </div>
+      <div class="modal-body" id="modal-form-screen">
+        <div class="modal-section-title">Your details</div>
+        <div class="form-row">
+          <div class="form-group"><label>First name *</label><input type="text" id="f-firstname" placeholder="John" required></div>
+          <div class="form-group"><label>Last name *</label><input type="text" id="f-lastname" placeholder="Smith" required></div>
+        </div>
+        <div class="form-group"><label>Email address *</label><input type="email" id="f-email" placeholder="john@example.com" required></div>
+        <div class="form-group"><label>WhatsApp number *</label><input type="tel" id="f-whatsapp" placeholder="+1 555 000 0000" required></div>
+        <div class="modal-summary">
+          <div class="summary-row"><span>Villa</span><span id="s-villa">—</span></div>
+          <div class="summary-row"><span>Check-in</span><span id="s-checkin">—</span></div>
+          <div class="summary-row"><span>Check-out</span><span id="s-checkout">—</span></div>
+          <div class="summary-row"><span>Huéspedes</span><span id="s-guests">—</span></div>
+          <div class="summary-row"><span>Duration</span><span id="s-nights">—</span></div>
+          <div class="summary-row total"><span>Total stay</span><span id="s-total">—</span></div>
+          <div class="summary-row deposit"><span>Deposit (50%) — wire transfer</span><span id="s-deposit">—</span></div>
+        </div>
+        <div class="payment-only-note">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b8734a" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01" stroke-linecap="round"/></svg>
+          <div class="payment-only-note-text"><strong>Payment by wire transfer only.</strong><br>50% deposit within 48h. Saldo al llegar.</div>
+        </div>
+        <button class="modal-submit" id="modal-submit">Send reservation request</button>
+        <div class="modal-legal">By submitting you agree to our <a href="../booking-conditions.html">booking conditions</a>.</div>
+      </div>
+      <div class="modal-confirm" id="modal-confirm">
+        <div class="confirm-icon">✓</div>
+        <div class="confirm-title">Request received!</div>
+        <div class="confirm-sub">We'll reach out on WhatsApp within a few hours to confirm and send payment details.<br><br>Villa held <strong>48 hours</strong> pending deposit.</div>
+        <div class="confirm-steps">
+          <div class="confirm-step"><div class="confirm-step-n">01</div><div>Confirmation email sent to you</div></div>
+          <div class="confirm-step"><div class="confirm-step-n">02</div><div>We contact you on WhatsApp with availability confirmation and booking summary</div></div>
+          <div class="confirm-step"><div class="confirm-step-n">03</div><div>Wire 50% to <strong>NIGHT CONCIERGERIE SRL</strong> — IBAN: CR19 0114 0000 7812 3915 72 — within 48h</div></div>
+          <div class="confirm-step"><div class="confirm-step-n">04</div><div>Reservation confirmed. Balance paid on arrival.</div></div>
+        </div>
+        <a href="https://wa.me/33667749024" class="confirm-wa" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/datepicker.js"></script>
+  <script>
+  // Direct Supabase REST helper (no CDN dependency)
+  async function sbFetch(table, qs) {
+    const url = SUPABASE_URL + '/rest/v1/' + table + (qs ? '?' + qs : '');
+    const resp = await fetch(url, {
+      headers: { 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON }
+    });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    return resp.json();
+  }
+  async function sbInsert(table, payload) {
+    const resp = await fetch(SUPABASE_URL + '/rest/v1/' + table, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON,
+        'Authorization': 'Bearer ' + SUPABASE_ANON,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+  }
+  async function sbUpsert(table, payload) {
+    const resp = await fetch(SUPABASE_URL + '/rest/v1/' + table, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON,
+        'Authorization': 'Bearer ' + SUPABASE_ANON,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal,resolution=merge-duplicates'
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+  }
+
+  let CURRENCY = 'USD', EUR_RATE = null;
+  const EUROZONE = ['fr','de','it','pt','nl','fi','el','sk','sl','et','lv','lt','mt','ga','hr'];
+  async function initCurrency() {
+    const lang = ((navigator.languages&&navigator.languages[0])||navigator.language||'en').toLowerCase().split('-')[0];
+    if(!EUROZONE.includes(lang)) return;
+    try {
+      const r = await fetch('https://api.frankfurter.app/latest?from=USD&to=EUR');
+      const d = await r.json();
+      if(d.rates&&d.rates.EUR) { EUR_RATE=d.rates.EUR; CURRENCY='EUR'; }
+    } catch(e) {}
+  }
+  function fmt(usd) {
+    return CURRENCY==='EUR'&&EUR_RATE ? '€'+Math.round(usd*EUR_RATE).toLocaleString('fr-FR') : '$'+Math.round(usd).toLocaleString('en-US');
+  }
+  function nl() { return CURRENCY==='EUR' ? '/ nuit' : '/ noche'; }
+
+  const VILLAS = {
+    opale:  { name:'Opale',     price:480, maxHuéspedes:4, minNights:3 },
+    onyx:   { name:'Onyx',      price:550, maxHuéspedes:4, minNights:3 },
+    jade:   { name:'Casa Jade', price:450, maxHuéspedes:4, minNights:3 },
+    topaze: { name:'Topaze',    price:420, maxHuéspedes:4, minNights:3 },
+    agate:  { name:'Agate',     price:350, maxHuéspedes:4, minNights:3 },
+    ambre:  { name:'Ambre',     price:420, maxHuéspedes:4, minNights:3 },
+  };
+  let searchState = { checkin:null, checkout:null, guests:2, nights:0 };
+
+  function setPrice(slug, price, unit, fromLabel) {
+    const p=document.getElementById('price-'+slug);
+    const u=document.getElementById('unit-'+slug);
+    const l=document.getElementById('label-'+slug);
+    if(p) p.textContent=price;
+    if(u) u.textContent=unit;
+    if(l&&fromLabel!==undefined) l.textContent=fromLabel;
+  }
+
+  async function loadVillaPrices() {
+    // Show hardcoded defaults first
+    Object.entries(VILLAS).forEach(([s,v])=>setPrice(s,fmt(v.price),nl(),'À partir de'));
+    try {
+      const data = await sbFetch('villas', 'select=id,price_per_night,min_nights');
+      (data||[]).forEach(v=>{
+        if(!VILLAS[v.id]) return;
+        VILLAS[v.id].price = v.price_per_night;
+        VILLAS[v.id].minNights = v.min_nights || 3;
+        setPrice(v.id, fmt(v.price_per_night), nl(), 'À partir de');
+      });
+    } catch(e) { console.warn('loadVillaPrices:', e.message); }
+  }
+
+  async function checkAvailability(ci,co) {
+    try {
+      const [blocked, rates] = await Promise.all([
+        sbFetch('blocked_dates', 'select=villa_id,date&date=gte.' + ci + '&date=lt.' + co),
+        sbFetch('daily_rates',   'select=villa_id,date,price_per_night,min_nights&date=gte.' + ci + '&date=lt.' + co)
+      ]);
+      // A villa is unavailable if ANY of its dates in the range are blocked
+      const unavailable = new Set((blocked||[]).map(d=>d.villa_id));
+      const dailyRates = {};
+      (rates||[]).forEach(r=>{
+        dailyRates[r.villa_id+':'+r.date] = {price:r.price_per_night, minNights:r.min_nights};
+      });
+      return {unavailable, dailyRates};
+    } catch(e) {
+      console.warn('checkAvailability:', e.message);
+      return {unavailable:new Set(), dailyRates:{}};
+    }
+  }
+
+  function calcTotal(slug,ci,co,dr) {
+    const n=calcNights(ci,co); if(n<1) return {total:0,minN:0};
+    let total=0,maxMin=0;
+    let cur=new Date(ci+'T00:00:00');
+    for(let i=0;i<n;i++){
+      const ds=cur.toISOString().split('T')[0];
+      const r=dr[slug+':'+ds];
+      total+=r?r.price:VILLAS[slug].price;
+      if(r&&r.minNights>maxMin) maxMin=r.minNights;
+      cur.setDate(cur.getDate()+1);
+    }
+    return {total,minN:maxMin||VILLAS[slug].minNights||3};
+  }
+
+  initCurrency().then(()=>loadVillaPrices());
+
+  function fmtDate(d) { return d?new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}):'—'; }
+  function calcNights(a,b) { return(!a||!b)?0:Math.round((new Date(b)-new Date(a))/86400000); }
+
+  const dsCheckin  = document.getElementById('ds-checkin');
+  const dsCheckout = document.getElementById('ds-checkout');
+  const dsHuéspedes   = document.getElementById('ds-guests');
+  const dsFeedback = document.getElementById('ds-feedback');
+  const dsBtn      = document.getElementById('ds-btn');
+  const today = new Date().toISOString().split('T')[0];
+
+  // LRPicker — custom date range picker (no CDN)
+  const fpRange = new LRPicker(dsCheckin, dsCheckout, {
+    onChange: function(selectedDates) {
+      // selectedDates[0] = check-in Date, selectedDates[1] = check-out Date
+    }
+  });
+  dsCheckin.addEventListener('click', function() { fpRange.open(); });
+  dsCheckout.addEventListener('click', function() { fpRange.open(); });
+
+  // ── Lecture des paramètres URL (redirection depuis la home page) ──
+  (function initFromURL() {
+    const p = new URLSearchParams(window.location.search);
+    const ci = p.get('checkin'), co = p.get('checkout'), g = parseInt(p.get('guests'));
+    if (!ci || !co) return;
+    // Pré-remplir les dates dans le picker
+    fpRange.setDates(ci, co);
+    // Pré-remplir le sélecteur de guests
+    if (g && dsHuéspedes) {
+      const opt = [...dsHuéspedes.options].find(o => parseInt(o.value) === g);
+      if (opt) dsHuéspedes.value = opt.value;
+    }
+    // Déclencher la recherche automatiquement après un court délai
+    // (laisser le temps à loadVillaPrices de s'exécuter d'abord)
+    setTimeout(function() { dsBtn.click(); }, 400);
+  })();
+
+  dsBtn.addEventListener('click', async ()=>{
+    const ci=dsCheckin.value, co=dsCheckout.value;
+    const nights=calcNights(ci,co), guests=parseInt(dsHuéspedes.value);
+    if(!ci||!co||nights<1) { alert('Please select valid dates.'); return; }
+    searchState={checkin:ci,checkout:co,guests,nights};
+    dsBtn.textContent='Checking…'; dsBtn.disabled=true;
+
+    const {unavailable,dailyRates}=await checkAvailability(ci,co);
+    let avail=0;
+
+    Object.entries(VILLAS).forEach(([slug,v])=>{
+      const {total,minN}=calcTotal(slug,ci,co,dailyRates);
+      const avg=nights>0?Math.round(total/nights):v.price;
+      const card=document.getElementById('vc-'+slug);
+      const totEl=document.getElementById('total-'+slug);
+
+      if(unavailable.has(slug)){
+        setPrice(slug,fmt(avg),nl()+' avg','');
+        card&&card.classList.add('unavail');
+        if(totEl){totEl.textContent='Not available';totEl.style.color='#c0392b';}
+      } else if(nights<minN){
+        setPrice(slug,fmt(avg),nl()+' avg','');
+        card&&card.classList.remove('unavail');
+        if(totEl){totEl.textContent='Min '+minN+' nights';totEl.style.color='var(--ter)';}
+      } else {
+        avail++;
+        setPrice(slug,fmt(avg),nl()+' avg','');
+        card&&card.classList.remove('unavail');
+        if(totEl){totEl.textContent=nights+'n · Total '+fmt(total);totEl.style.color='var(--ter)';}
+      }
+    });
+
+    dsBtn.textContent='Check rates →'; dsBtn.disabled=false;
+    const msg=sb?avail+' villa'+(avail!==1?'s':'')+' available · '+fmtDate(ci)+' → '+fmtDate(co):'Rates updated · Contacto us to confirm availability';
+    dsFeedback.textContent=msg; dsFeedback.classList.add('show');
+
+    // Scroll to villa results — if all upper-estate villas are unavailable, jump to garden level
+    setTimeout(()=>{
+      const upperSlugs = ['opale','onyx','jade'];
+      const allUpperUnavail = upperSlugs.every(s => document.getElementById('vc-'+s)?.classList.contains('unavail'));
+      const navHeight = 68;
+
+      if(allUpperUnavail){
+        const gardenEl = document.querySelector('[data-level="garden"]');
+        if(gardenEl){
+          const top = gardenEl.getBoundingClientRect().top + window.pageYOffset - navHeight - 24;
+          window.scrollTo({ top, behavior: 'smooth' });
+          return;
+        }
+      }
+
+      const target = document.getElementById('upper-estate');
+      const dsHeight = document.getElementById('ds-wrap').offsetHeight;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - navHeight - dsHeight - 8;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }, 120);
+  });
+
+  // Prevent click on unavailable
+  document.querySelectorAll('.vc').forEach(card=>{
+    card.addEventListener('click',e=>{
+      if(card.classList.contains('unavail')){
+        e.preventDefault();
+        alert(card.querySelector('.vc-name').textContent+' is not available for these dates.');
+      }
+    });
+  });
+
+  // Modal helpers
+  let activeVilla=null;
+  function openModal(slug){
+    activeVilla=slug;
+    const v=VILLAS[slug], nights=searchState.nights;
+    const total=nights>0?v.price*nights:null;
+    const deposit=total?Math.round(total*.5):null;
+    document.getElementById('modal-villa-tag').textContent='Villa · Les Roches Retreat';
+    document.getElementById('modal-title').textContent=v.name;
+    document.getElementById('modal-dates').textContent=nights>0?fmtDate(searchState.checkin)+' → '+fmtDate(searchState.checkout)+' · '+nights+' nights':'No dates selected — we will confirm via WhatsApp';
+    document.getElementById('s-villa').textContent=v.name;
+    document.getElementById('s-checkin').textContent=fmtDate(searchState.checkin);
+    document.getElementById('s-checkout').textContent=fmtDate(searchState.checkout);
+    document.getElementById('s-guests').textContent=searchState.guests+' guest'+(searchState.guests>1?'s':'');
+    document.getElementById('s-nights').textContent=nights>0?nights+' night'+(nights>1?'s':''):'—';
+    document.getElementById('s-total').textContent=total?fmt(total):'To be confirmed';
+    document.getElementById('s-deposit').textContent=deposit?fmt(deposit)+' (wire within 48h)':'To be confirmed';
+    document.getElementById('modal-form-screen').style.display='block';
+    document.getElementById('modal-confirm').classList.remove('show');
+    document.getElementById('modal-overlay').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  document.getElementById('modal-close').addEventListener('click',closeModal);
+  document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target.id==='modal-overlay')closeModal();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+  function closeModal(){document.getElementById('modal-overlay').classList.remove('open');document.body.style.overflow='';}
+
+  document.getElementById('modal-submit').addEventListener('click',async()=>{
+    const fn=document.getElementById('f-firstname').value.trim();
+    const ln=document.getElementById('f-lastname').value.trim();
+    const em=document.getElementById('f-email').value.trim();
+    const wa=document.getElementById('f-whatsapp').value.trim();
+    if(!fn||!ln||!em||!wa){alert('Please fill in all fields.');return;}
+    if(!/^[^@]+@[^@]+\.[^@]+$/.test(em)){alert('Please enter a valid email.');return;}
+    const btn=document.getElementById('modal-submit');
+    btn.disabled=true;btn.textContent='Sending...';
+    const v=VILLAS[activeVilla],nights=searchState.nights;
+    const total=nights>0?v.price*nights:'To be confirmed';
+    const deposit=nights>0?Math.round(v.price*nights*.5):'To be confirmed';
+    const tp={guest_name:fn+' '+ln,guest_email:em,guest_whatsapp:wa,villa_name:v.name,checkin:fmtDate(searchState.checkin),checkout:fmtDate(searchState.checkout),nights:nights>0?nights+' nights':'To be confirmed',guests:searchState.guests,total:typeof total==='number'?'$'+total.toLocaleString():total,deposit:typeof deposit==='number'?'$'+deposit.toLocaleString():deposit,owner_email:OWNER_EMAIL,iban:'CR19 0114 0000 7812 3915 72',swift:'BCCECRSJ',bank:'BANCO LAFISE',account_holder:'NIGHT CONCIERGERIE SRL'};
+    try{await sbInsert('reservations',{villa_id:activeVilla,villa_name:v.name,checkin:searchState.checkin||null,checkout:searchState.checkout||null,nights:nights>0?nights:null,guests:searchState.guests,firstname:fn,lastname:ln,email:em,whatsapp:wa,total_usd:typeof total==='number'?total:null,deposit_usd:typeof deposit==='number'?deposit:null,status:'pending'});}catch(e){}
+    document.getElementById('modal-form-screen').style.display='none';
+    document.getElementById('modal-confirm').classList.add('show');
+  });
+
+  function handleEmailCapture(e){
+    e.preventDefault();
+    const email=document.getElementById('capture-email').value.trim();
+    if(!email) return;
+    sbUpsert('email_captures',{email,captured_at:new Date().toISOString(),source:'villas_page'}).catch(()=>{});
+    document.getElementById('email-msg').textContent="You're in. We'll be in touch.";
+    document.getElementById('capture-email').value='';
+  }
+  </script>
+<script src="../cookie-consent.js" defer></script>
+<script src="../js/lazy-bg.js" defer></script>
+<script src="../js/swipe.js" defer></script>
+<script>
+// ── Ouvre le calendrier si ?book=1 dans l'URL (depuis la barre sticky mobile) ──
+if(new URLSearchParams(window.location.search).get('book') === '1'){
+  // Attendre que flatpickr soit initialisé (scripts en defer)
+  window.addEventListener('load', function(){
+    var el = document.getElementById('ds-checkin');
+    var wrap = document.getElementById('ds-wrap');
+    if(!el) return;
+    // Scroll jusqu'au widget de recherche
+    if(wrap) wrap.scrollIntoView({behavior:'smooth', block:'center'});
+    // Ouvrir le calendrier après un court délai (scroll + init)
+    setTimeout(function(){ el.click(); }, 400);
+  });
+}
+</script>
+</body>
+</html>

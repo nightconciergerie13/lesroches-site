@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- ===== MAIN PAGES — ENGLISH ===== -->
+  <url>
+    <loc>https://lesrochesretreat.com/</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/villas.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villas.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villas.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villas.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/experiences.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/experiences.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/experiences.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/experiences.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/about.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/about.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/about.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/contact.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/contact.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/faq.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/faq.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/journal.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/journal.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/booking-conditions.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/booking-conditions.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/booking-conditions.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/booking-conditions.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/privacy-policy.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/privacy-policy.html"/>
+  </url>
+
+  <!-- ===== MAIN PAGES — FRENCH ===== -->
+  <url>
+    <loc>https://lesrochesretreat.com/fr/</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/fr/villas.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villas.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villas.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villas.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/fr/experiences.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/experiences.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/experiences.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/experiences.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/fr/about.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/about.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/about.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/fr/santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/fr/contact.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/contact.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/fr/faq.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/faq.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/fr/journal.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/journal.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/journal.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/fr/booking-conditions.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/booking-conditions.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/booking-conditions.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/booking-conditions.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/fr/privacy-policy.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/privacy-policy.html"/>
+  </url>
+
+  <!-- ===== MAIN PAGES — SPANISH ===== -->
+  <url>
+    <loc>https://lesrochesretreat.com/es/</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/es/villas.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villas.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villas.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villas.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/es/experiences.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/experiences.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/experiences.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/experiences.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/es/about.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/about.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/about.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/es/santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/es/contact.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/contact.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/es/faq.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/faq.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/es/journal.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/journal.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/journal.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/es/booking-conditions.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/booking-conditions.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/booking-conditions.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/booking-conditions.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/es/privacy-policy.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/privacy-policy.html"/>
+  </url>
+
+  <!-- ===== VILLA PAGES — ENGLISH ===== -->
+  <url>
+    <loc>https://lesrochesretreat.com/villa-jade.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-jade.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-jade.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-jade.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/villa-topaze.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-topaze.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-topaze.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-topaze.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/villa-onyx.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-onyx.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-onyx.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-onyx.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/villa-opale.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-opale.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-opale.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-opale.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/villa-agate.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-agate.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-agate.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-agate.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/villa-ambre.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-ambre.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-ambre.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-ambre.html"/>
+  </url>
+
+  <!-- ===== VILLA PAGES — FRENCH ===== -->
+  <url>
+    <loc>https://lesrochesretreat.com/fr/villa-jade.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-jade.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-jade.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-jade.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/fr/villa-topaze.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-topaze.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-topaze.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-topaze.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/fr/villa-onyx.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-onyx.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-onyx.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-onyx.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/fr/villa-opale.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-opale.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-opale.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-opale.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/fr/villa-agate.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-agate.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-agate.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-agate.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/fr/villa-ambre.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-ambre.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-ambre.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-ambre.html"/>
+  </url>
+
+  <!-- ===== VILLA PAGES — SPANISH ===== -->
+  <url>
+    <loc>https://lesrochesretreat.com/es/villa-jade.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-jade.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-jade.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-jade.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/es/villa-topaze.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-topaze.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-topaze.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-topaze.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/es/villa-onyx.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-onyx.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-onyx.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-onyx.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/es/villa-opale.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-opale.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-opale.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-opale.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/es/villa-agate.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-agate.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-agate.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-agate.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/es/villa-ambre.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/villa-ambre.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/villa-ambre.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/villa-ambre.html"/>
+  </url>
+
+  <!-- ===== JOURNAL ARTICLES — ENGLISH ===== -->
+  <url>
+    <loc>https://lesrochesretreat.com/journal/en/santa-teresa-surf-guide.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/santa-teresa-surf-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/guide-surf-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/guia-surf-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/en/santa-teresa-travel-guide.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/santa-teresa-travel-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/guide-voyage-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/guia-viaje-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/en/luxury-villas-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/luxury-villas-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/villas-luxe-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/villas-lujo-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/en/best-restaurants-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/best-restaurants-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/meilleurs-restaurants-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/mejores-restaurantes-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/en/yoga-wellness-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/yoga-wellness-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/yoga-bien-etre-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/yoga-bienestar-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/en/best-beaches-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/best-beaches-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/meilleures-plages-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/mejores-playas-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/en/wildlife-nature-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/wildlife-nature-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/faune-nature-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/fauna-naturaleza-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/en/nightlife-sunset-bars-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/nightlife-sunset-bars-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/vie-nocturne-bars-coucher-soleil-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/vida-nocturna-bares-sunset-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/en/perfect-week-santa-teresa-itinerary.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/perfect-week-santa-teresa-itinerary.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/itineraire-semaine-parfaite-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/itinerario-semana-perfecta-santa-teresa.html"/>
+  </url>
+
+  <!-- ===== JOURNAL ARTICLES — FRENCH ===== -->
+  <url>
+    <loc>https://lesrochesretreat.com/journal/fr/guide-surf-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/santa-teresa-surf-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/guide-surf-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/guia-surf-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/fr/guide-voyage-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/santa-teresa-travel-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/guide-voyage-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/guia-viaje-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/fr/villas-luxe-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/luxury-villas-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/villas-luxe-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/villas-lujo-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/fr/meilleurs-restaurants-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/best-restaurants-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/meilleurs-restaurants-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/mejores-restaurantes-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/fr/yoga-bien-etre-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/yoga-wellness-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/yoga-bien-etre-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/yoga-bienestar-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/fr/meilleures-plages-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/best-beaches-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/meilleures-plages-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/mejores-playas-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/fr/faune-nature-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/wildlife-nature-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/faune-nature-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/fauna-naturaleza-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/fr/vie-nocturne-bars-coucher-soleil-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/nightlife-sunset-bars-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/vie-nocturne-bars-coucher-soleil-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/vida-nocturna-bares-sunset-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/fr/itineraire-semaine-parfaite-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/perfect-week-santa-teresa-itinerary.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/itineraire-semaine-parfaite-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/itinerario-semana-perfecta-santa-teresa.html"/>
+  </url>
+
+  <!-- ===== JOURNAL ARTICLES — SPANISH ===== -->
+  <url>
+    <loc>https://lesrochesretreat.com/journal/es/guia-surf-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/santa-teresa-surf-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/guide-surf-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/guia-surf-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/es/guia-viaje-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/santa-teresa-travel-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/guide-voyage-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/guia-viaje-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/es/villas-lujo-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/luxury-villas-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/villas-luxe-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/villas-lujo-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/es/mejores-restaurantes-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/best-restaurants-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/meilleurs-restaurants-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/mejores-restaurantes-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/es/yoga-bienestar-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/yoga-wellness-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/yoga-bien-etre-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/yoga-bienestar-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/es/mejores-playas-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/best-beaches-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/meilleures-plages-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/mejores-playas-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/es/fauna-naturaleza-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/wildlife-nature-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/faune-nature-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/fauna-naturaleza-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/es/vida-nocturna-bares-sunset-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/nightlife-sunset-bars-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/vie-nocturne-bars-coucher-soleil-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/vida-nocturna-bares-sunset-santa-teresa.html"/>
+  </url>
+  <url>
+    <loc>https://lesrochesretreat.com/journal/es/itinerario-semana-perfecta-santa-teresa.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/journal/en/perfect-week-santa-teresa-itinerary.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/journal/fr/itineraire-semaine-parfaite-santa-teresa.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/journal/es/itinerario-semana-perfecta-santa-teresa.html"/>
+  </url>
+
+</urlset>

@@ -3,21 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Frequently asked questions about Les Roches Retreat — booking, check-in, amenities, policies and more. Six private villas in Santa Teresa, Costa Rica.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="FAQ — Les Roches Retreat · Santa Teresa, Costa Rica">
-<meta property="og:description" content="Everything you need to know about staying at Les Roches Retreat. Six private villas in Santa Teresa, Costa Rica.">
-<meta property="og:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.jpg">
+  <meta name="description" content="Frequently asked questions about Les Roches Retreat: booking, payment, cancellation, villa services and more.">
+  <meta name="keywords" content="Les Roches FAQ, luxury villa Santa Teresa FAQ, stay Les Roches questions">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="FAQ — Everything About Staying at Les Roches">
+<meta property="og:description" content="Your questions answered — from arrival to check-out, everything you need to know about a stay at Les Roches, Santa Teresa.">
+<meta property="og:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.webp">
 <meta property="og:url" content="https://lesrochesretreat.com/faq.html">
 <meta property="og:site_name" content="Les Roches Retreat">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="FAQ — Les Roches Retreat">
 <meta name="twitter:description" content="Everything you need to know about staying at Les Roches Retreat, Santa Teresa, Costa Rica.">
-<meta name="twitter:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.jpg">
+<meta name="twitter:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.webp">
+<link rel="alternate" hreflang="en" href="https://lesrochesretreat.com/faq.html">
+<link rel="alternate" hreflang="fr" href="https://lesrochesretreat.com/fr/faq.html">
+<link rel="alternate" hreflang="es" href="https://lesrochesretreat.com/es/faq.html">
+<link rel="alternate" hreflang="x-default" href="https://lesrochesretreat.com/faq.html">
 <link rel="canonical" href="https://lesrochesretreat.com/faq.html">
 <meta name="robots" content="index,follow">
-<title>FAQ — Les Roches Retreat · Santa Teresa, Costa Rica</title>
+<title>FAQ — Booking, Villas & Services · Les Roches, Santa Teresa</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -25,7 +31,7 @@ a{text-decoration:none}
 :root{--w:#faf7f2;--c:#f3ede3;--c2:#e9e0d2;--sand:#d6c9b0;--ter:#b8734a;--ter2:#a05f38;--mid:#9a8f82;--ink:#1e1b18;--ink2:#2e2a26}
 html{background:var(--w);color:var(--ink);scroll-behavior:smooth}
 body{font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden}
-*{cursor:none}
+body.has-cursor *{cursor:none}
 #cur{position:fixed;width:8px;height:8px;background:var(--ink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .35s,height .35s;mix-blend-mode:multiply}
 #cur.hov{width:46px;height:46px;background:rgba(30,27,24,.1)}
 
@@ -47,18 +53,27 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nav-close{background:none;border:none;color:var(--w);font-size:1.5rem;position:absolute;top:2rem;right:2rem;cursor:pointer}
 
 /* HERO */
-.faq-hero{padding:10rem 4rem 5rem;background:var(--c);border-bottom:1px solid var(--c2)}
-.faq-hero-eye{font-size:.52rem;letter-spacing:.36em;text-transform:uppercase;color:var(--ter);margin-bottom:1.2rem}
-.faq-hero-title{font-family:'Gilda Display',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:400;line-height:1.1;color:var(--ink)}
+.faq-hero{display:grid;grid-template-columns:1fr 1fr;min-height:420px;margin-top:64px}
+.faq-hero-body{padding:5rem 5vw;background:var(--c);display:flex;flex-direction:column;justify-content:center}
+.faq-hero-eye{font-size:.48rem;letter-spacing:.36em;text-transform:uppercase;color:var(--ter);margin-bottom:1.2rem}
+.faq-hero-title{font-family:'Gilda Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.1;color:var(--ink)}
 .faq-hero-title em{font-family:'Libre Baskerville',serif;font-style:italic;color:var(--ter)}
-.faq-hero-sub{margin-top:1.2rem;font-size:.78rem;color:var(--mid);letter-spacing:.04em;max-width:480px;line-height:1.8}
+.faq-hero-sub{margin-top:1.2rem;font-size:.75rem;color:var(--mid);max-width:420px;line-height:1.85}
+.faq-hero-img{position:relative;overflow:hidden}
+.faq-hero-img img{width:100%;height:100%;object-fit:cover;object-position:center}
 
 /* LAYOUT */
-.faq-wrap{max-width:860px;margin:0 auto;padding:5rem 4rem 7rem}
+.faq-body{display:grid;grid-template-columns:220px 1fr;gap:0;max-width:1200px;margin:0 auto;padding:5rem 5vw 7rem;align-items:start}
+
+/* SIDEBAR */
+.faq-sidebar{position:sticky;top:100px;padding-right:3rem}
+.faq-sidebar-label{font-size:.42rem;letter-spacing:.34em;text-transform:uppercase;color:var(--mid);margin-bottom:1.2rem}
+.faq-nav-item{display:block;font-size:.62rem;color:var(--mid);padding:.5rem 0;border-left:2px solid var(--c2);padding-left:.9rem;margin-bottom:.2rem;transition:color .2s,border-color .2s;cursor:pointer}
+.faq-nav-item:hover,.faq-nav-item.active{color:var(--ter);border-left-color:var(--ter)}
 
 /* CATEGORIES */
 .faq-cat{margin-bottom:3.5rem}
-.faq-cat-title{font-size:.52rem;letter-spacing:.36em;text-transform:uppercase;color:var(--ter);margin-bottom:1.6rem;display:flex;align-items:center;gap:.8rem}
+.faq-cat-title{font-size:.48rem;letter-spacing:.34em;text-transform:uppercase;color:var(--ter);margin-bottom:1.4rem;display:flex;align-items:center;gap:.8rem}
 .faq-cat-title::after{content:'';flex:1;height:1px;background:var(--c2)}
 
 /* ACCORDION */
@@ -70,14 +85,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .faq-item.open .faq-icon{transform:rotate(45deg);background:var(--ter);border-color:var(--ter);color:#fff}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
 .faq-item.open .faq-a{max-height:800px;padding-bottom:1.4rem}
-.faq-a-inner{font-size:.77rem;color:var(--mid);line-height:1.9;letter-spacing:.02em}
+.faq-a-inner{font-size:.77rem;color:var(--mid);line-height:1.9;letter-spacing:.02em;padding-left:0}
+.faq-item.open .faq-a-inner{border-left:2px solid var(--ter);padding-left:1.2rem}
 .faq-a-inner a{color:var(--ter);border-bottom:1px solid transparent;transition:border-color .2s}
 .faq-a-inner a:hover{border-color:var(--ter)}
 .faq-a-inner strong{color:var(--ink);font-weight:400}
 
 /* CTA */
-.faq-cta{background:var(--ink2);padding:4rem;text-align:center;margin-top:1rem}
-.faq-cta-title{font-family:'Gilda Display',serif;font-size:1.8rem;color:var(--w);margin-bottom:.8rem}
+.faq-cta{background:var(--ink2);padding:5rem;text-align:center}
+.faq-cta-title{font-family:'Gilda Display',serif;font-size:2rem;color:var(--w);margin-bottom:.8rem}
 .faq-cta-title em{font-family:'Libre Baskerville',serif;font-style:italic;color:var(--sand)}
 .faq-cta-sub{font-size:.72rem;color:rgba(255,255,255,.45);letter-spacing:.08em;margin-bottom:2rem}
 .faq-cta-btn{display:inline-block;padding:.9rem 2.8rem;border:1px solid rgba(255,255,255,.25);color:var(--w);font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;border-radius:1px;transition:all .25s;margin:.4rem}
@@ -103,15 +119,38 @@ footer{background:var(--ink2);padding:3.5rem 4rem;display:grid;grid-template-col
   nav{padding:1.2rem 1.5rem}
   .nav-mid,.nav-right{display:none}
   .nav-burger{display:flex}
-  .faq-hero{padding:8rem 1.5rem 4rem}
-  .faq-wrap{padding:3rem 1.5rem 5rem}
+  .faq-hero{grid-template-columns:1fr;margin-top:56px}
+  .faq-hero-img{height:240px}
+  .faq-hero-body{padding:3rem 1.5rem}
+  .faq-body{grid-template-columns:1fr;padding:2.5rem 1.5rem 4rem}
+  .faq-sidebar{display:none}
   footer{grid-template-columns:1fr;padding:2.5rem 1.5rem}
   .faq-cta{padding:3rem 1.5rem}
 }
+
+/* ── prefers-reduced-motion ─────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  body.has-cursor *{cursor:auto!important}
+}
 </style>
-<script src="js/track.js"></script>
+<script src="js/track.js" defer></script>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#b8734a">
+<!-- Google Analytics GA4 — Measurement ID: G-WFWBDDTMF0 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFWBDDTMF0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WFWBDDTMF0', { anonymize_ip: true });
+</script>
 </head>
 <body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--ter,#b8734a);color:#fff;padding:.5rem 1rem;font-family:sans-serif;font-size:.875rem" onfocus="this.style.left='1rem';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-999px'">Skip to content</a>
 <div id="cur"></div>
 
 <!-- NAV -->
@@ -125,7 +164,7 @@ footer{background:var(--ink2);padding:3.5rem 4rem;display:grid;grid-template-col
     <a href="faq.html" class="nl" style="opacity:1;color:var(--ter)">FAQ</a>
   </div>
   <div class="nav-right">
-    <a href="contact.html" class="nav-book">Book Now</a>
+    <a href="contact.html" class="nav-book" aria-label="Book a villa at Les Roches Retreat">Book Now</a>
   </div>
   <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -136,21 +175,38 @@ footer{background:var(--ink2);padding:3.5rem 4rem;display:grid;grid-template-col
   <a href="about.html" class="nl">About</a>
   <a href="santa-teresa.html" class="nl">Santa Teresa</a>
   <a href="faq.html" class="nl">FAQ</a>
+  <a href="journal.html" class="nl">Journal</a>
   <a href="contact.html" class="nl">Book Now</a>
 </div>
 
 <!-- HERO -->
-<div class="faq-hero r">
-  <div class="faq-hero-eye">Help & Information</div>
-  <h1 class="faq-hero-title">Frequently asked<br><em>questions</em></h1>
-  <p class="faq-hero-sub">Everything you need to know before your stay at Les Roches. If you can't find the answer you're looking for, <a href="contact.html" style="color:var(--ter)">reach out directly</a> — we reply within 24 hours.</p>
+<div class="faq-hero">
+  <div class="faq-hero-body r">
+    <div class="faq-hero-eye">Help & Information</div>
+    <h1 class="faq-hero-title">Frequently asked<br><em>questions</em></h1>
+    <p class="faq-hero-sub">Everything you need to know before your stay. Can't find what you're looking for? <a href="contact.html" style="color:var(--ter)">Reach out directly</a> — we reply within 24 hours.</p>
+  </div>
+  <div class="faq-hero-img">
+    <img src="images/retreat-vue-ocean.webp" alt="Les Roches — Santa Teresa">
+  </div>
 </div>
 
 <!-- FAQ CONTENT -->
-<div class="faq-wrap">
+<div class="faq-body">
+
+  <!-- SIDEBAR -->
+  <div class="faq-sidebar">
+    <div class="faq-sidebar-label">Topics</div>
+    <span class="faq-nav-item" onclick="scrollTo('cat-booking')">Booking &amp; Rates</span>
+    <span class="faq-nav-item" onclick="scrollTo('cat-arrival')">Arrival &amp; Check-in</span>
+    <span class="faq-nav-item" onclick="scrollTo('cat-villas')">Villas &amp; Amenities</span>
+    <span class="faq-nav-item" onclick="scrollTo('cat-experiences')">Experiences &amp; Area</span>
+  </div>
+
+  <div>
 
   <!-- BOOKING & RATES -->
-  <div class="faq-cat r">
+  <div class="faq-cat r" id="cat-booking">
     <div class="faq-cat-title">Booking &amp; Rates</div>
 
     <div class="faq-item">
@@ -160,48 +216,48 @@ footer{background:var(--ink2);padding:3.5rem 4rem;display:grid;grid-template-col
 
     <div class="faq-item">
       <div class="faq-q"><span class="faq-q-text">What is the minimum stay?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Our standard minimum stay is <strong>7 nights</strong>. During peak season (December 15 – January 10 and Semana Santa) a minimum of <strong>10 nights</strong> applies. Shorter stays may occasionally be available last-minute — just ask.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Our standard minimum stay is <strong>3 nights</strong>. Exceptionally, 1-night stays may be possible depending on availability — feel free to ask. We recommend at least 3 nights to truly settle in and make the most of Santa Teresa.</div></div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-q"><span class="faq-q-text">What payment methods do you accept?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">We accept bank transfers (EUR or USD), and payments via Wise or PayPal. A <strong>40% deposit</strong> is required at booking to confirm your reservation. The remaining balance is due <strong>60 days before arrival</strong>. For last-minute bookings (within 60 days), full payment is required at time of booking.</div></div>
+      <div class="faq-q"><span class="faq-q-text">What are the payment terms?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">A <strong>50% deposit</strong> is required at the time of booking to confirm your reservation. The remaining balance is due <strong>on arrival</strong>.</div></div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-q"><span class="faq-q-text">Are prices per night or per week?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Rates are shown <strong>per night</strong> and vary by villa, season, and length of stay. Longer stays and direct bookings often qualify for preferential rates. Weekly and monthly rates are available — please <a href="contact.html">contact us</a> for a personalised quote.</div></div>
+      <div class="faq-q"><span class="faq-q-text">Are prices displayed on the site?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Rates vary by villa, season, and length of stay. We prefer to give you a personalised quote — simply <a href="contact.html">contact us</a> with your dates and we'll come back to you quickly.</div></div>
     </div>
 
     <div class="faq-item">
       <div class="faq-q"><span class="faq-q-text">Can I book multiple villas for a group or family?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Absolutely. Les Roches was designed with groups and families in mind. You can book 2 to 6 villas simultaneously for a shared retreat while maintaining complete privacy in each villa. We offer special group rates and can arrange collective experiences (private dinners, surf lessons, yoga sessions) for the whole group. <a href="contact.html">Contact us</a> for a tailored proposal.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Absolutely. Les Roches was designed with groups and families in mind. You can book 2 to 6 villas simultaneously for a shared retreat while maintaining complete privacy in each villa. We can also arrange collective experiences for the whole group. <a href="contact.html">Contact us</a> for a tailored proposal.</div></div>
     </div>
 
     <div class="faq-item">
       <div class="faq-q"><span class="faq-q-text">What is your cancellation policy?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Cancellations made <strong>90+ days before arrival</strong>: full deposit refund minus a €150 administrative fee.<br><br>Cancellations <strong>60–89 days before arrival</strong>: 50% of total stay refunded.<br><br>Cancellations <strong>less than 60 days before arrival</strong>: no refund, though we'll do our best to find a new guest and offer you a credit for a future stay.<br><br>We strongly recommend travel insurance. Full details in our <a href="booking-conditions.html">Booking Conditions</a>.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">The deposit is <strong>non-refundable</strong>. However, in the event of cancellation, we offer a <strong>credit note equivalent to 50% of your deposit</strong>, valid for 12 months, to be used towards a future stay at Les Roches. We strongly recommend taking out travel insurance. Full details in our <a href="booking-conditions.html">Booking Conditions</a>.</div></div>
     </div>
 
   </div>
 
   <!-- ARRIVAL & CHECK-IN -->
-  <div class="faq-cat r">
+  <div class="faq-cat r" id="cat-arrival">
     <div class="faq-cat-title">Arrival &amp; Check-In</div>
 
     <div class="faq-item">
       <div class="faq-q"><span class="faq-q-text">What are the check-in and check-out times?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Check-in is from <strong>3:00 PM</strong>. Check-out is by <strong>11:00 AM</strong>. Early check-in and late check-out can often be arranged depending on availability — just let us know in advance. We can also organise luggage storage if you have a gap between checkout and your flight.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Check-in is from <strong>3:00 PM</strong>. Check-out is by <strong>11:00 AM</strong>. If you need to adjust these times, just let us know in advance and we'll do our best to accommodate you.</div></div>
     </div>
 
     <div class="faq-item">
       <div class="faq-q"><span class="faq-q-text">How do I get to Les Roches from San José?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">The most convenient option is a <strong>direct flight from San José (SJO) to Tambor airport (TMU)</strong> — a 30-minute flight with SANSA or Green Airways, followed by a 30-minute transfer to Santa Teresa. Alternatively, the scenic overland route takes around 4–5 hours via Puntarenas and the Paquera ferry (recommended for those who want to see the coast). We can arrange private transfers from any airport — <a href="contact.html">ask us</a> when booking.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">The most convenient option is a <strong>direct flight from San José (SJO) to Tambor airport (TMU)</strong> — a 30-minute flight, followed by a short transfer to Santa Teresa. Alternatively, the scenic overland route takes around 4–5 hours via Puntarenas and the Paquera ferry. We can organise <strong>private transfers from any airport</strong> (billed separately) — just let us know when booking.</div></div>
     </div>
 
     <div class="faq-item">
       <div class="faq-q"><span class="faq-q-text">Is there a concierge or welcome team on arrival?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Yes. A member of our team will greet you on arrival, walk you through the villa, and ensure everything is perfect before leaving you to settle in. We'll share our contact number and are always available by WhatsApp during your stay for anything you need — from restaurant recommendations to a last-minute surf lesson booking.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes. A member of our team will be there to welcome you, show you around your villa, and make sure everything is perfect. We remain available by WhatsApp <strong>before your stay and throughout your stay</strong> for anything you need — restaurant recommendations, activity bookings, or any question at all.</div></div>
     </div>
 
     <div class="faq-item">
@@ -212,12 +268,12 @@ footer{background:var(--ink2);padding:3.5rem 4rem;display:grid;grid-template-col
   </div>
 
   <!-- VILLAS & AMENITIES -->
-  <div class="faq-cat r">
+  <div class="faq-cat r" id="cat-villas">
     <div class="faq-cat-title">Villas &amp; Amenities</div>
 
     <div class="faq-item">
       <div class="faq-q"><span class="faq-q-text">Are the pools private per villa?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Yes. Every villa at Les Roches has its own <strong>private infinity pool</strong> — you won't share it with any other guests. Pools are heated to a comfortable temperature and maintained daily by our team.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes. Every villa at Les Roches has its own <strong>private infinity pool</strong> — you won't share it with any other guests. Pools are not heated (the tropical climate makes it unnecessary) and are maintained daily by our team.</div></div>
     </div>
 
     <div class="faq-item">
@@ -232,28 +288,33 @@ footer{background:var(--ink2);padding:3.5rem 4rem;display:grid;grid-template-col
 
     <div class="faq-item">
       <div class="faq-q"><span class="faq-q-text">Is there a kitchen? Are meals included?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Each villa has a <strong>fully equipped kitchen</strong> with everything you need to cook. We stock your fridge with a welcome basket of fresh local produce before arrival. Meals are not included in the villa rate, but we can arrange a private chef for in-villa dining, or recommend our favourite local restaurants in Santa Teresa — some of the best in Costa Rica.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Each villa has a <strong>fully equipped kitchen</strong> with everything you need to cook. Meals are not included in the villa rate, but through our concierge service we can arrange a <strong>private chef</strong> for in-villa dining. We can also recommend our favourite restaurants in Santa Teresa — some of the best in Costa Rica.</div></div>
     </div>
 
     <div class="faq-item">
       <div class="faq-q"><span class="faq-q-text">Is cleaning included?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Daily housekeeping is included in all villa rates. Our team visits each morning (at a time agreed with you) to clean, refresh towels and linens, and maintain the villa and pool. Towels and premium bathroom amenities are provided and replenished throughout your stay.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes, housekeeping is included <strong>every day except Sunday</strong>. Our team visits each morning to clean, refresh towels and linens, and maintain the villa and pool. Towels and bathroom amenities are provided and replenished throughout your stay.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-text">Are pets allowed?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes, we are pet-friendly! You are welcome to bring <strong>one dog</strong> with you. Please mention it when booking so we can prepare the villa accordingly.</div></div>
     </div>
 
     <div class="faq-item">
       <div class="faq-q"><span class="faq-q-text">Are the villas suitable for children?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Yes, families are very welcome. Please note that all villas have private infinity pools — we recommend close supervision for young children at all times near the pool. Pool safety barriers can be arranged on request. We can provide travel cots, high chairs and baby equipment with advance notice.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes, families are very welcome. Please note that all villas have private infinity pools — we recommend close supervision for young children at all times. Travel cots, high chairs and baby equipment can be provided <strong>on request with advance notice</strong>.</div></div>
     </div>
 
   </div>
 
   <!-- EXPERIENCES & AREA -->
-  <div class="faq-cat r">
+  <div class="faq-cat r" id="cat-experiences">
     <div class="faq-cat-title">Experiences &amp; Santa Teresa</div>
 
     <div class="faq-item">
       <div class="faq-q"><span class="faq-q-text">Can you help arrange surf lessons, yoga or other experiences?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Absolutely. We work with the best local instructors and operators to arrange everything from <strong>surf lessons at Playa Carmen</strong>, private yoga sessions at your villa, horseback riding on the beach, waterfall hikes, sport fishing, snorkelling, ATV tours, and more. Just let us know your interests and we'll have it all organised before you arrive. See our <a href="experiences.html">Experiences page</a> for inspiration.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Absolutely. Our concierge team is available <strong>before and during your stay</strong> to organise everything — surf lessons, private yoga sessions, horseback riding, sport fishing, ATV tours, waterfalls hikes, and more. Just tell us what you'd like and we'll take care of it. See our <a href="experiences.html">Experiences page</a> for inspiration.</div></div>
     </div>
 
     <div class="faq-item">
@@ -263,7 +324,7 @@ footer{background:var(--ink2);padding:3.5rem 4rem;display:grid;grid-template-col
 
     <div class="faq-item">
       <div class="faq-q"><span class="faq-q-text">How far is the beach from Les Roches?</span><span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Les Roches is located about <strong>5 minutes by car</strong> (or 15 minutes on foot) from Playa Santa Teresa — one of the most beautiful surf beaches in Central America. We provide beach towels and beach bags in each villa. Quad bike rentals are available locally for easy, fun beach access.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">The nearest beach is about <strong>6 to 7 minutes away</strong>. Quad bikes and ATVs are available to rent locally and are the most fun way to get there.</div></div>
     </div>
 
     <div class="faq-item">
@@ -278,15 +339,16 @@ footer{background:var(--ink2);padding:3.5rem 4rem;display:grid;grid-template-col
 
   </div>
 
-  <!-- STILL HAVE QUESTIONS -->
-  <div class="faq-cta r">
+  </div><!-- end faq content col -->
+</div><!-- end faq-body -->
+
+<!-- STILL HAVE QUESTIONS -->
+<div class="faq-cta r">
     <div class="faq-cta-title">Still have a question?</div>
     <p class="faq-cta-sub">Our team is always happy to help — usually within a few hours.</p>
     <a href="contact.html" class="faq-cta-btn primary">Send us a message</a>
     <a href="https://wa.me/33667749024?text=Bonjour%2C%20j%27ai%20une%20question%20sur%20Les%20Roches%20Retreat." target="_blank" rel="noopener" class="faq-cta-btn">WhatsApp us</a>
   </div>
-
-</div>
 
 <!-- FOOTER -->
 <footer>
@@ -308,7 +370,7 @@ footer{background:var(--ink2);padding:3.5rem 4rem;display:grid;grid-template-col
     <span class="f-link">hello@lesrochesretreat.com</span>
     <span class="f-link" style="margin-top:.4rem;display:block">Calle Vista De Olas<br>Santa Teresa · Costa Rica</span>
   </div>
-  <div class="f-copy">© 2025 Les Roches · Santa Teresa, Costa Rica · All rights reserved</div>
+  <div class="f-copy">© 2026 Les Roches · Santa Teresa, Costa Rica · <a href="privacy-policy.html" style="color:inherit;opacity:.6">Privacy Policy</a></div>
 </footer>
 
 <!-- WHATSAPP FLOATING BUTTON -->
@@ -350,10 +412,27 @@ document.querySelectorAll('.r').forEach(el=>obs.observe(el));
 document.querySelectorAll('.faq-item').forEach(item=>{
   item.querySelector('.faq-q').addEventListener('click',()=>{
     const wasOpen = item.classList.contains('open');
-    // Close all
     document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
-    // Open clicked unless it was already open
     if(!wasOpen) item.classList.add('open');
+  });
+});
+
+// Sidebar scroll function
+function scrollTo(id){
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+// Sidebar active state on scroll
+const cats = document.querySelectorAll('.faq-cat');
+const navItems = document.querySelectorAll('.faq-nav-item');
+window.addEventListener('scroll',()=>{
+  let current = '';
+  cats.forEach(cat=>{
+    if(window.scrollY >= cat.offsetTop - 140) current = cat.id;
+  });
+  navItems.forEach(item=>{
+    item.classList.toggle('active', item.getAttribute('onclick').includes(current));
   });
 });
 </script>
@@ -387,7 +466,7 @@ document.querySelectorAll('.faq-item').forEach(item=>{
 <div id="wa-bubble">
   <div id="wa-card">
     <div class="wa-head">
-      <img src="images/ian-whatsapp.jpg" alt="Ian" class="wa-avatar"
+      <img loading="lazy" src="images/ian-whatsapp.webp" alt="Ian" class="wa-avatar"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="wa-avatar" style="display:none;background:var(--ter);align-items:center;justify-content:center;font-family:'Gilda Display',serif;font-size:1.1rem;color:#fff;flex-shrink:0">I</div>
       <div class="wa-head-info">
@@ -411,7 +490,7 @@ document.querySelectorAll('.faq-item').forEach(item=>{
     </div>
   </div>
   <button id="wa-toggle" aria-label="Message Ian">
-    <img id="wa-toggle-photo" src="images/ian-whatsapp.jpg" alt="Ian"
+    <img loading="lazy" id="wa-toggle-photo" src="images/ian-whatsapp.webp" alt="Ian"
          onerror="this.style.background='var(--ink2)';this.style.objectFit='none'">
     <div id="wa-dot">
       <svg viewBox="0 0 24 24" fill="white" width="8" height="8"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -444,5 +523,9 @@ document.addEventListener('keydown',function(e){
   }
 });
 </script>
+<script src="lang.js" defer></script>
+<script src="cookie-consent.js" defer></script>
+<script src="js/lazy-bg.js" defer></script>
+<script src="js/swipe.js" defer></script>
 </body>
 </html>
