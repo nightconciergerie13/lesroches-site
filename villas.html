@@ -1176,17 +1176,34 @@
   var _fromLabel = _pp.includes('/fr/') ? 'Ã partir de' : _pp.includes('/es/') ? 'Desde' : 'From';
 
   async function loadVillaPrices() {
-    // Show loading skeleton while fetching
-    Object.keys(VILLAS).forEach(s=>setPrice(s,'â',nl(),_fromLabel));
+    // Show hardcoded defaults first
+    Object.entries(VILLAS).forEach(([s,v])=>setPrice(s,fmt(v.price),nl(),'À partir de'));
+    // Load base data (min_nights) from villas table
     try {
       const data = await sbFetch('villas', 'select=id,price_per_night,min_nights');
       (data||[]).forEach(v=>{
         if(!VILLAS[v.id]) return;
         VILLAS[v.id].price = v.price_per_night;
         VILLAS[v.id].minNights = v.min_nights || 3;
-        setPrice(v.id, fmt(v.price_per_night), nl(), _fromLabel);
+        setPrice(v.id, fmt(v.price_per_night), nl(), 'À partir de');
       });
-    } catch(e) { console.warn('loadVillaPrices:', e.message); }
+    } catch(e) { console.warn('loadVillaPrices villas:', e.message); }
+    // Load minimum future price from daily_rates (shows cheapest available night)
+    try {
+      const today = new Date().toISOString().split('T')[0];
+      const rates = await sbFetch('daily_rates', 'select=villa_id,price_per_night&date=gte.' + today + '&limit=1000');
+      if (rates && rates.length > 0) {
+        const minByVilla = {};
+        rates.forEach(function(r) {
+          if (minByVilla[r.villa_id] === undefined || r.price_per_night < minByVilla[r.villa_id]) {
+            minByVilla[r.villa_id] = r.price_per_night;
+          }
+        });
+        Object.entries(minByVilla).forEach(function([villaId, minPrice]) {
+          if (VILLAS[villaId]) setPrice(villaId, fmt(minPrice), nl(), 'À partir de');
+        });
+      }
+    } catch(e) { console.warn('loadVillaPrices daily_rates:', e.message); }
   }
 
   async function checkAvailability(ci,co) {
