@@ -293,3 +293,9 @@ footer{
 .fp-cta.loading{opacity:.6;pointer-events:none;position:relative}
 .fp-cta.loading::after{content:'';display:inline-block;width:12px;height:12px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;margin-left:.6rem;vertical-align:middle}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* Mobile sticky book bar */
+.mob-book-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:199;background:var(--ter);padding:1rem 1.5rem;text-align:center;box-shadow:0 -4px 20px rgba(0,0,0,.28)}
+.mob-book-bar a{font-family:'Outfit',sans-serif;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:#fff;display:block;min-height:28px;line-height:28px}
+.mob-book-bar a::after{content:' →';letter-spacing:0}
+@media(max-width:768px){.mob-book-bar{display:block}}
