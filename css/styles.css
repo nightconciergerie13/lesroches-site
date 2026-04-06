@@ -299,3 +299,4 @@ footer{
 .mob-book-bar a{font-family:'Outfit',sans-serif;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:#fff;display:block;min-height:28px;line-height:28px}
 .mob-book-bar a::after{content:' →';letter-spacing:0}
 @media(max-width:768px){.mob-book-bar{display:block}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
