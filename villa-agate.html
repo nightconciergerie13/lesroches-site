@@ -685,9 +685,10 @@ try {
     onChange: async function(selectedDates) {
       if (!selectedDates || selectedDates.length < 2) return;
       const [d1, d2] = selectedDates;
+            const toYMD = d => d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
       const nights = Math.round((d2 - d1) / 86400000);
-      document.getElementById('sb-checkin').value  = fmtDate(d1.toISOString().slice(0,10));
-      document.getElementById('sb-checkout').value = fmtDate(d2.toISOString().slice(0,10));
+      document.getElementById('sb-checkin').value  = fmtDate(toYMD(d1));
+      document.getElementById('sb-checkout').value = fmtDate(toYMD(d2));
       if (nights <= 0) {
         document.getElementById('sb-total').style.display = 'none';
         document.getElementById('sb-checkin').value  = '';
@@ -697,8 +698,8 @@ try {
       document.getElementById('sb-total').style.display = 'block';
       document.getElementById('sb-total-val').textContent = '\u2026';
       try {
-        const from = d1.toISOString().slice(0,10);
-        const to   = d2.toISOString().slice(0,10);
+        const from = toYMD(d1);
+        const to   = toYMD(d2);
         const h = {'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON};
         const resp = await fetch(
           SUPABASE_URL + '/rest/v1/daily_rates?villa_id=eq.agate&date=gte.' + from + '&date=lt.' + to,
@@ -711,7 +712,7 @@ try {
         let total = 0;
         for (let i = 0; i < nights; i++) {
           const dt = new Date(d1); dt.setDate(dt.getDate() + i);
-          const key = dt.toISOString().slice(0,10);
+          const key = toYMD(dt);
           total += rateMap[key] || PRICE_PER_NIGHT;
         }
         document.getElementById('sb-total-val').textContent = '$' + total.toLocaleString('en-US');
