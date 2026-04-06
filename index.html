@@ -74,6 +74,7 @@ nav.scrolled{background:rgba(250,247,242,.96);border-bottom:1px solid var(--c2);
 
 /* ── Nav dropdown villas ── */
 .nav-drop{position:relative;display:flex;align-items:center}
+.nav-drop-menu::before{content:'';position:absolute;top:-14px;left:0;right:0;height:14px}
 .nav-drop-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);background:rgba(18,14,10,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.1);border-radius:2px;padding:.4rem 0;min-width:210px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:300}
 .nav-drop:hover .nav-drop-menu,.nav-drop:focus-within .nav-drop-menu{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
 .ndl{display:flex;justify-content:flex-start;align-items:center;padding:.6rem 1.2rem;font-family:'Outfit',sans-serif;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,247,242,.55);text-decoration:none;transition:color .18s,background .18s}
@@ -1354,7 +1355,10 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
     open=v;
     card.classList.toggle('open',v);
   }
-  // Auto-ouverture désactivée (couvrait les cartes villas)
+  // Ouvrir automatiquement après 6s (une seule fois par session)
+  if(!sessionStorage.getItem('wa_shown')){
+    setTimeout(()=>{setOpen(true);sessionStorage.setItem('wa_shown','1')},6000);
+  }
   toggle.addEventListener('click',()=>setOpen(!open));
   close.addEventListener('click',()=>setOpen(false));
 })();
