@@ -9,7 +9,7 @@
 <meta property="og:image" content="https://lesrochesretreat.com/images/jade-hero.webp">
 <meta property="og:url" content="https://lesrochesretreat.com/villa-jade.html">
 <meta property="og:site_name" content="Les Roches Retreat">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary_large_image"
 <meta name="twitter:title" content="Casa Jade Ã¯Â¿Â½ÃÂÃÂ Les Roches Retreat">
 <meta name="twitter:description" content="Casa Jade: tropical villa with private pool and ocean views at Les Roches Retreat, Santa Teresa.">
 <meta name="twitter:image" content="https://lesrochesretreat.com/images/jade-hero.webp">
@@ -684,8 +684,8 @@ try {
       if (!selectedDates || selectedDates.length < 2) return;
       const [d1, d2] = selectedDates;
       const nights = Math.round((d2 - d1) / 86400000);
-      document.getElementById('sb-checkin').value  = fmtDate(d1);
-      document.getElementById('sb-checkout').value = fmtDate(d2);
+      document.getElementById('sb-checkin').value  = fmtDate(d1.toISOString().slice(0,10));
+      document.getElementById('sb-checkout').value = fmtDate(d2.toISOString().slice(0,10));
       if (nights <= 0) {
         document.getElementById('sb-total').style.display = 'none';
         document.getElementById('sb-checkin').value  = '';
