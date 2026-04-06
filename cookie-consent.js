@@ -1,59 +1,93 @@
-/* ══════════════════════════════════════════════════════════════
-   LES ROCHES — GDPR Cookie Consent Banner
-   Stores preference in localStorage (functional only — not analytics)
-   ══════════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════
+   cookie-consent.js  |  Les Roches Retreat
+   RGPD / GDPR compliant banner + Google Consent Mode v2
+   ═══════════════════════════════════════════════════════════════ */
+
 (function () {
-  'use strict';
+  const STORAGE_KEY = 'lr_cookie_consent';
+  const stored = localStorage.getItem(STORAGE_KEY);
 
-  const KEY = 'lr_cookie_consent';
-  const stored = localStorage.getItem(KEY);
-  if (stored) return; // Already decided
-
-  // ── Inject CSS ────────────────────────────────────────────────
-  const css = `
-#lr-cookie{position:fixed;bottom:0;left:0;right:0;z-index:8000;background:rgba(30,27,24,.97);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.08);padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;transform:translateY(100%);transition:transform .4s cubic-bezier(.25,.8,.25,1)}
-#lr-cookie.show{transform:translateY(0)}
-.lr-ck-txt{font-family:'Outfit',sans-serif;font-size:.62rem;font-weight:300;color:rgba(250,247,242,.65);line-height:1.7;max-width:640px}
-.lr-ck-txt a{color:var(--ter,#b8734a);text-decoration:underline}
-.lr-ck-btns{display:flex;gap:.7rem;flex-shrink:0}
-.lr-ck-btn{font-family:'Outfit',sans-serif;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;padding:.55rem 1.4rem;border-radius:1px;cursor:pointer;transition:all .2s;white-space:nowrap}
-.lr-ck-accept{background:var(--ter,#b8734a);color:#fff;border:1px solid var(--ter,#b8734a)}
-.lr-ck-accept:hover{background:var(--ter2,#a05f38)}
-.lr-ck-decline{background:transparent;color:rgba(250,247,242,.4);border:1px solid rgba(255,255,255,.15)}
-.lr-ck-decline:hover{color:rgba(250,247,242,.75);border-color:rgba(255,255,255,.35)}
-@media(max-width:680px){#lr-cookie{padding:1rem 1.2rem}.lr-ck-btns{width:100%}.lr-ck-btn{flex:1;text-align:center}}
-  `;
-  const style = document.createElement('style');
-  style.textContent = css;
-  document.head.appendChild(style);
-
-  // ── Build banner ──────────────────────────────────────────────
-  const banner = document.createElement('div');
-  banner.id = 'lr-cookie';
-  banner.setAttribute('role', 'dialog');
-  banner.setAttribute('aria-label', 'Cookie consent');
-  banner.innerHTML = `
-    <p class="lr-ck-txt">
-      We use cookies to analyze site traffic and improve your experience.
-      By clicking <strong>Accept</strong>, you consent to our use of analytics cookies.
-      Read our <a href="/booking-conditions.html">Privacy Policy</a>.
-    </p>
-    <div class="lr-ck-btns">
-      <button class="lr-ck-btn lr-ck-decline" id="lr-ck-decline">Decline</button>
-      <button class="lr-ck-btn lr-ck-accept" id="lr-ck-accept">Accept</button>
-    </div>
-  `;
-  document.body.appendChild(banner);
-
-  // Show with slight delay so CSS transition works
-  requestAnimationFrame(() => requestAnimationFrame(() => banner.classList.add('show')));
-
-  function dismiss(choice) {
-    localStorage.setItem(KEY, choice);
-    banner.style.transform = 'translateY(100%)';
-    setTimeout(() => banner.remove(), 420);
+  // --- Google Consent Mode v2 helpers ---
+  function setConsent(granted) {
+    if (typeof gtag !== 'function') return;
+    const state = granted ? 'granted' : 'denied';
+    gtag('consent', 'update', {
+      analytics_storage: state,
+      ad_storage: state,
+      ad_user_data: state,
+      ad_personalization: state
+    });
   }
 
-  document.getElementById('lr-ck-accept').addEventListener('click', () => dismiss('accepted'));
-  document.getElementById('lr-ck-decline').addEventListener('click', () => dismiss('declined'));
+  // Apply stored preference immediately (before banner renders)
+  if (stored === 'accepted') { setConsent(true); return; }
+  if (stored === 'declined') { setConsent(false); return; }
+
+  // --- Build banner ---
+  const lang = document.documentElement.lang || 'en';
+  const isFR = lang.startsWith('fr');
+  const isES = lang.startsWith('es');
+
+  const text = isFR
+    ? 'Nous utilisons des cookies pour analyser le trafic et améliorer votre expérience.'
+    : isES
+    ? 'Usamos cookies para analizar el tráfico y mejorar tu experiencia.'
+    : 'We use cookies to analyse traffic and improve your experience.';
+
+  const acceptLabel = isFR ? 'Accepter' : isES ? 'Aceptar' : 'Accept';
+  const declineLabel = isFR ? 'Refuser' : isES ? 'Rechazar' : 'Decline';
+
+  const banner = document.createElement('div');
+  banner.id = 'cookie-banner';
+  banner.setAttribute('role', 'dialog');
+  banner.setAttribute('aria-label', isFR ? 'Consentement cookies' : isES ? 'Consentimiento de cookies' : 'Cookie consent');
+  banner.style.cssText = [
+    'position:fixed', 'bottom:0', 'left:0', 'right:0', 'z-index:9999',
+    'background:rgba(14,13,11,.96)', 'color:#f5f0e8', 'padding:1.1rem 1.5rem',
+    'display:flex', 'align-items:center', 'gap:1rem', 'flex-wrap:wrap',
+    'font-family:inherit', 'font-size:.78rem', 'letter-spacing:.03em',
+    'border-top:1px solid rgba(245,240,232,.12)', 'backdrop-filter:blur(8px)'
+  ].join(';');
+
+  const msg = document.createElement('span');
+  msg.style.cssText = 'flex:1;min-width:200px;line-height:1.6;opacity:.85';
+  msg.textContent = text;
+
+  const btnWrap = document.createElement('div');
+  btnWrap.style.cssText = 'display:flex;gap:.6rem;flex-shrink:0';
+
+  function makeBtn(label, primary) {
+    const b = document.createElement('button');
+    b.textContent = label;
+    b.style.cssText = [
+      'font-size:.62rem', 'letter-spacing:.18em', 'text-transform:uppercase',
+      'padding:.55rem 1.4rem', 'border-radius:1px', 'cursor:pointer',
+      'border:1px solid ' + (primary ? 'transparent' : 'rgba(245,240,232,.3)'),
+      'background:' + (primary ? '#b09060' : 'transparent'),
+      'color:' + (primary ? '#0e0d0b' : '#f5f0e8'),
+      'font-family:inherit', 'transition:opacity .2s'
+    ].join(';');
+    return b;
+  }
+
+  const acceptBtn = makeBtn(acceptLabel, true);
+  const declineBtn = makeBtn(declineLabel, false);
+
+  acceptBtn.addEventListener('click', function () {
+    localStorage.setItem(STORAGE_KEY, 'accepted');
+    setConsent(true);
+    banner.remove();
+  });
+
+  declineBtn.addEventListener('click', function () {
+    localStorage.setItem(STORAGE_KEY, 'declined');
+    setConsent(false);
+    banner.remove();
+  });
+
+  btnWrap.appendChild(acceptBtn);
+  btnWrap.appendChild(declineBtn);
+  banner.appendChild(msg);
+  banner.appendChild(btnWrap);
+  document.body.appendChild(banner);
 })();
