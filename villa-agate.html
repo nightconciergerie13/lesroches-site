@@ -686,8 +686,8 @@ try {
       if (!selectedDates || selectedDates.length < 2) return;
       const [d1, d2] = selectedDates;
       const nights = Math.round((d2 - d1) / 86400000);
-      document.getElementById('sb-checkin').value  = fmtDate(d1);
-      document.getElementById('sb-checkout').value = fmtDate(d2);
+      document.getElementById('sb-checkin').value  = fmtDate(d1.toISOString().slice(0,10));
+      document.getElementById('sb-checkout').value = fmtDate(d2.toISOString().slice(0,10));
       if (nights <= 0) {
         document.getElementById('sb-total').style.display = 'none';
         document.getElementById('sb-checkin').value  = '';
