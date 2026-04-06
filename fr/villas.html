@@ -640,7 +640,28 @@
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   body.has-cursor *{cursor:auto!important}
 }
-</style>
+
+    /* === PHOTO-FORWARD CARD REDESIGN === */
+    .vc { display: block !important; min-height: 640px; overflow: hidden; position: relative; }
+    .vc:hover { background: transparent !important; }
+    .vc-photo { position: absolute !important; inset: 0 !important; aspect-ratio: unset !important; overflow: hidden; }
+    .vc-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vc-info { position: absolute !important; bottom: 0; left: 0; right: 0; flex: none !important; border-top: none !important; padding: 3.5rem 2rem 2rem !important; background: linear-gradient(to top, rgba(10,8,6,.94) 0%, rgba(10,8,6,.70) 45%, rgba(10,8,6,.22) 80%, transparent 100%) !important; z-index: 2; }
+    .vc-num { color: rgba(255,255,255,.58) !important; }
+    .vc-name { color: #fff !important; font-size: 2.1rem !important; letter-spacing: .01em !important; }
+    .vc:hover .vc-name { color: rgba(255,255,255,.88) !important; }
+    .vc-spec-item { color: rgba(255,255,255,.88) !important; font-size: .80rem !important; letter-spacing: .09em !important; }
+    .vc-spec-item svg { stroke: rgba(255,255,255,.75) !important; opacity: 1 !important; width: 15px !important; height: 15px !important; }
+    .vc-price-block { border-top-color: rgba(255,255,255,.18) !important; }
+    .vc-from { color: rgba(255,255,255,.55) !important; }
+    .vc-price { color: #fff !important; }
+    .vc-night { color: rgba(255,255,255,.55) !important; }
+    .vc-total { color: rgba(255,255,255,.8) !important; }
+    @media (max-width: 768px) {
+      .vg { grid-template-columns: 1fr !important; }
+      .vc { min-height: 520px; border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.08); }
+    }
+  </style>
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <link rel="icon" type="image/png" sizes="192x192" href="../favicon-192.png">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -692,7 +713,7 @@
   </div>
 
   <!-- ══════════════════════════════════════════
-       UPPER ESTATE — Opale · Onyx · Casa Jade
+       UPPER ESTATE — Opale · Onyx · Jade
   ══════════════════════════════════════════ -->
   <h1 class="sr-only">Villas de luxe privées — Les Roches Retreat, Santa Teresa, Costa Rica</h1>
   <section class="floor" id="upper-estate">
@@ -741,7 +762,6 @@
           <div>
             <div class="vc-num">Villa 01 · Opale</div>
             <div class="vc-name">Opale</div>
-            <div class="vc-tagline">Closest to the Pacific — fall asleep to the sound of waves.</div>
             <div class="vc-specs">
               <div class="vc-spec-row">
                 <span class="vc-spec-item">
@@ -785,7 +805,6 @@
           <div>
             <div class="vc-num">Villa 02 · Onyx</div>
             <div class="vc-name">Onyx</div>
-            <div class="vc-tagline">The largest — three bedrooms, sprawling terraces, room for everyone.</div>
             <div class="vc-specs">
               <div class="vc-spec-row">
                 <span class="vc-spec-item">
@@ -819,17 +838,16 @@
         </div>
       </a>
 
-      <!-- Casa Jade -->
+      <!-- Jade -->
       <a class="vc" href="villa-jade.html" id="vc-jade">
         <div class="vc-photo">
-          <img src="../images/jade-hero.webp" alt="Casa Jade" loading="eager">
+          <img src="../images/jade-hero.webp" alt="Jade" loading="eager">
           <div class="vc-overlay"><div class="vc-overlay-text">Explore villa</div></div>
         </div>
         <div class="vc-info">
           <div>
-            <div class="vc-num">Villa 03 · Casa Jade</div>
-            <div class="vc-name">Casa Jade</div>
-            <div class="vc-tagline">Where the jungle meets the Pacific — the original villa, the one that started it all.</div>
+            <div class="vc-num">Villa 03 · Jade</div>
+            <div class="vc-name">Jade</div>
             <div class="vc-specs">
               <div class="vc-spec-row">
                 <span class="vc-spec-item">
@@ -875,7 +893,6 @@
           <div>
             <div class="vc-num">Villa 04 · Topaze</div>
             <div class="vc-name">Topaze</div>
-            <div class="vc-tagline">Immersed in the jungle canopy — absolute privacy, private pool, and Pacific sunsets on the horizon.</div>
             <div class="vc-specs">
               <div class="vc-spec-row">
                 <span class="vc-spec-item">
@@ -919,7 +936,6 @@
           <div>
             <div class="vc-num">Villa 05 · Agate</div>
             <div class="vc-name">Agate</div>
-            <div class="vc-tagline">The most intimate — one bedroom, 360° views, and the Pacific horizon all to yourself.</div>
             <div class="vc-specs">
               <div class="vc-spec-row">
                 <span class="vc-spec-item">
@@ -963,7 +979,6 @@
           <div>
             <div class="vc-num">Villa 06 · Ambre</div>
             <div class="vc-name">Ambre</div>
-            <div class="vc-tagline">Face west — perfectly positioned for the sunsets that made Santa Teresa legendary.</div>
             <div class="vc-specs">
               <div class="vc-spec-row">
                 <span class="vc-spec-item">
