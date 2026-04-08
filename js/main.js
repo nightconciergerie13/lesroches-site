@@ -122,11 +122,11 @@ if (burger && overlay) {
 // Scroll reveal
 const obs = new IntersectionObserver(e => e.forEach(x => {
   if (x.isIntersecting) x.target.classList.add('on');
-}), { threshold: 0.06 });
+}), { threshold: 0.01 });
 document.querySelectorAll('.r').forEach(el => obs.observe(el));
 
 // Full photo parallax reveal
 const fpObs = new IntersectionObserver(e => e.forEach(x => {
   if (x.isIntersecting) x.target.classList.add('in-view');
-}), { threshold: 0.1 });
+}), { threshold: 0.05 });
 document.querySelectorAll('.full-photo').forEach(el => fpObs.observe(el));
