@@ -750,9 +750,9 @@ html, body { overflow-x: hidden; max-width: 100%; }
 .wa-float-txt strong { font-weight: 400; display: block; font-size: .58rem; }
 
 /* ─── REVEAL ANIMATIONS ─────────────────────────────── */
-.r { opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform .8s ease; }
+.r { opacity: 0; transform: translateY(20px); transition: opacity .4s ease, transform .4s ease; }
 .r.on { opacity: 1; transform: none; }
-.r.d1 { transition-delay: .1s } .r.d2 { transition-delay: .2s } .r.d3 { transition-delay: .3s }
+.r.d1 { transition-delay: .05s } .r.d2 { transition-delay: .1s } .r.d3 { transition-delay: .15s }
 
 /* ─── FLATPICKR DARK THEME ──────────────────────────── */
 span.numInputWrapper { background: transparent !important; }
