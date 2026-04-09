@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <title>Espace Partenaires · Les Roches Retreat</title>
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── GLOBAL RESETS ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --w: #faf7f2; --c: #f3ede3; --c2: #e9e0d2; --sand: #d6c9b0;
+      --ter: #b8734a; --ter2: #a05f38; --mid: #9a8f82;
+      --ink: #1e1b18; --ink2: #2e2a26;
+      --radius: 2px; --gap: clamp(1.5rem, 4vw, 3rem);
+    }
+    body { background: var(--w); color: var(--ink); font-family: 'Outfit', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── PASSWORD GATE ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    #gate {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--ink);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 2rem; padding: 2rem;
+      transition: opacity .6s ease, visibility .6s ease;
+    }
+    #gate.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    #gate .g-logo { font-family: 'Gilda Display', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); color: var(--w); letter-spacing: .04em; text-align: center; }
+    #gate .g-sub { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: .8rem; color: var(--sand); letter-spacing: .18em; text-transform: uppercase; text-align: center; margin-top: -.8rem; }
+    #gate .g-divider { width: 40px; height: 1px; background: var(--ter); }
+    #gate .g-label { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: .78rem; color: var(--mid); letter-spacing: .12em; text-transform: uppercase; text-align: center; }
+    #gate .g-input-wrap { position: relative; width: min(320px, 90vw); }
+    #gate .g-input {
+      width: 100%; padding: .9rem 1.2rem; background: transparent;
+      border: 1px solid #3a3632; border-radius: var(--radius);
+      color: var(--w); font-family: 'Outfit', sans-serif; font-size: .9rem;
+      outline: none; letter-spacing: .08em; text-align: center;
+      transition: border-color .3s;
+    }
+    #gate .g-input::placeholder { color: #4a453f; }
+    #gate .g-input:focus { border-color: var(--ter); }
+    #gate .g-btn {
+      width: 100%; padding: .9rem; background: var(--ter); border: none;
+      border-radius: var(--radius); color: var(--w); font-family: 'Outfit', sans-serif;
+      font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+      cursor: pointer; transition: background .3s;
+    }
+    #gate .g-btn:hover { background: var(--ter2); }
+    #gate .g-error { color: #c0392b; font-size: .75rem; letter-spacing: .08em; opacity: 0; transition: opacity .3s; min-height: 1em; text-align: center; }
+    #gate .g-error.show { opacity: 1; }
+    #gate .g-note { font-size: .7rem; color: #3a3632; letter-spacing: .06em; text-align: center; margin-top: 1rem; }
+
+    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── REVEAL ANIMATION (same as site) ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    .r { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
+    .r.visible { opacity: 1; transform: none; }
+    .r-left { opacity: 0; transform: translateX(-28px); transition: opacity .8s ease, transform .8s ease; }
+    .r-left.visible { opacity: 1; transform: none; }
+    .r-right { opacity: 0; transform: translateX(28px); transition: opacity .8s ease, transform .8s ease; }
+    .r-right.visible { opacity: 1; transform: none; }
+
+    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── HERO ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    .p-hero {
+      position: relative; height: 100svh; min-height: 560px;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+      padding-bottom: clamp(3rem, 8vh, 6rem);
+      overflow: hidden;
+    }
+    .p-hero-img {
+      position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%;
+      filter: brightness(.55);
+    }
+    .p-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(30,27,24,.75) 0%, rgba(30,27,24,.15) 60%, rgba(30,27,24,.4) 100%);
+    }
+    .p-hero-content { position: relative; text-align: center; }
+    .p-hero-badge {
+      display: inline-block; border: 1px solid var(--ter); color: var(--ter);
+      font-family: 'Outfit', sans-serif; font-size: .65rem; font-weight: 400;
+      letter-spacing: .2em; text-transform: uppercase; padding: .4rem 1.1rem;
+      margin-bottom: 1.4rem; border-radius: 1px;
+    }
+    .p-hero-title {
+      font-family: 'Libre Baskerville', serif; font-style: italic;
+      font-size: clamp(1.3rem, 3vw, 2rem); color: var(--w); font-weight: 400;
+      letter-spacing: .02em;
+    }
+    .p-hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+    }
+    .p-hero-scroll span { font-size: .6rem; color: var(--sand); letter-spacing: .2em; text-transform: uppercase; }
+    .p-hero-scroll-line {
+      width: 1px; height: 40px; background: linear-gradient(to bottom, var(--sand), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine { 0%,100%{transform:scaleY(1);opacity:1} 50%{transform:scaleY(.5);opacity:.4} }
+
+    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── SECTION BASE ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    section { padding: clamp(4rem, 9vw, 7rem) clamp(1.2rem, 6vw, 5rem); }
+    .s-eyebrow { font-family: 'Outfit', sans-serif; font-size: .68rem; font-weight: 400; letter-spacing: .22em; text-transform: uppercase; color: var(--ter); margin-bottom: 1rem; }
+    .s-title { font-family: 'Gilda Display', serif; font-size: clamp(2rem, 4.5vw, 3.4rem); line-height: 1.12; color: var(--ink); margin-bottom: 1.6rem; }
+    .s-title.light { color: var(--w); }
+    .s-sub { font-family: 'Libre Baskerville', serif; font-style: italic; font-size: clamp(.95rem, 1.6vw, 1.15rem); color: var(--mid); line-height: 1.7; margin-bottom: 2rem; }
+    .s-body { font-size: .93rem; color: var(--ink2); line-height: 1.9; max-width: 620px; }
+
+    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── INTRO ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    .p-intro { background: var(--w); }
+    .p-intro-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); align-items: start; }
+    @media(max-width:768px) { .p-intro-inner { grid-template-columns: 1fr; } }
+    .p-pillars { display: flex; flex-direction: column; gap: 1.4rem; padding-top: .5rem; }
+    .p-pillar {
+      display: flex; align-items: flex-start; gap: 1.2rem;
+      padding: 1.4rem 1.6rem; background: var(--c); border-left: 2px solid var(--ter);
+    }
+    .p-pillar-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: .1rem; }
+    .p-pillar-title { font-family: 'Outfit', sans-serif; font-size: .85rem; font-weight: 500; color: var(--ink); margin-bottom: .3rem; letter-spacing: .04em; }
+    .p-pillar-body { font-size: .82rem; color: var(--mid); line-height: 1.7; }
+
+    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── VILLAS ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    .p-villas { background: var(--c); }
+    .p-villas-head { max-width: 1200px; margin: 0 auto 3rem; }
+    .p-villas-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); gap: 1.5rem; }
+    .p-villa-card {
+      background: var(--w); overflow: hidden;
+      transition: transform .4s ease, box-shadow .4s ease;
+      cursor: pointer;
+    }
+    .p-villa-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(30,27,24,.12); }
+    .p-villa-card-img { position: relative; aspect-ratio: 4/3; overflow: hidden; }
+    .p-villa-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; }
+    .p-villa-card:hover .p-villa-card-img img { transform: scale(1.04); }
+    .p-villa-card-tag {
+      position: absolute; top: 1rem; left: 1rem;
+      background: var(--ink); color: var(--sand); font-size: .6rem;
+      letter-spacing: .18em; text-transform: uppercase; padding: .35rem .75rem;
+    }
+    .p-villa-card-body { padding: 1.6rem; }
+    .p-villa-card-name { font-family: 'Gilda Display', serif; font-size: 1.3rem; color: var(--ink); margin-bottom: .4rem; }
+    .p-villa-card-specs { font-size: .72rem; color: var(--mid); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .9rem; }
+    .p-villa-card-desc { font-size: .83rem; color: var(--ink2); line-height: 1.8; margin-bottom: 1.3rem; }
+    .p-villa-card-prices { display: flex; gap: 1.5rem; margin-bottom: 1.2rem; padding: .9rem; background: var(--c); }
+    .p-price-block { display: flex; flex-direction: column; gap: .2rem; }
+    .p-price-label { font-size: .6rem; color: var(--mid); letter-spacing: .12em; text-transform: uppercase; }
+    .p-price-rack { font-size: .82rem; color: var(--mid); text-decoration: line-through; }
+    .p-price-net { font-family: 'Gilda Display', serif; font-size: 1.2rem; color: var(--ter); }
+    .p-price-net-label { font-size: .6rem; color: var(--ter); letter-spacing: .1em; }
+    .p-villa-cta {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink);
+      text-decoration: none; border-bottom: 1px solid var(--c2); padding-bottom: .15rem;
+      transition: color .3s, border-color .3s;
+    }
+    .p-villa-cta:hover { color: var(--ter); border-color: var(--ter); }
+
+    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── PRICING TABLE ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    .p-pricing { background: var(--c2); }
+    .p-pricing-inner { max-width: 1200px; margin: 0 auto; }
+    .p-pricing-head { max-width: 600px; margin-bottom: 3rem; }
+    .p-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .p-table {
+      width: 100%; border-collapse: collapse; min-width: 680px;
+      font-family: 'Outfit', sans-serif;
+    }
+    .p-table th {
+      padding: 1rem 1.2rem; text-align: left; font-size: .68rem;
+      letter-spacing: .15em; text-transform: uppercase; font-weight: 400;
+      color: var(--w); background: var(--ink); white-space: nowrap;
+    }
+    .p-table th:first-child { background: var(--ter); }
+    .p-table td { padding: 1rem 1.2rem; font-size: .86rem; color: var(--ink2); border-bottom: 1px solid var(--c2); vertical-align: middle; }
+    .p-table tr:last-child td { border-bottom: none; }
+    .p-table tr:nth-child(even) td { background: rgba(255,255,255,.5); }
+    .p-table .villa-name { font-family: 'Gilda Display', serif; font-size: 1rem; color: var(--ink); white-space: nowrap; }
+    .p-table .net-price { color: var(--ter); font-weight: 500; font-size: .92rem; }
+    .p-table .min-stay { font-size: .75rem; color: var(--mid); }
+    .p-table-note {
+      margin-top: 1.5rem; font-size: .75rem; color: var(--mid); line-height: 1.7;
+      padding: 1rem 1.2rem; border-left: 2px solid var(--ter); background: rgba(255,255,255,.4);
+    }
+    .p-dl-btn {
+      display: inline-flex; align-items: center; gap: .6rem;
+      margin-top: 2rem; padding: .85rem 1.8rem;
+      background: var(--ink); color: var(--w); text-decoration: none;
+      font-family: 'Outfit', sans-serif; font-size: .73rem; letter-spacing: .14em;
+      text-transform: uppercase; transition: background .3s;
+      border: none; cursor: pointer;
+    }
+    .p-dl-btn:hover { background: var(--ter); }
+    .p-dl-icon { font-size: 1rem; }
+
+    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── PROCESS ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    .p-process { background: var(--w); }
+    .p-process-inner { max-width: 1200px; margin: 0 auto; }
+    .p-process-head { max-width: 600px; margin-bottom: 3.5rem; }
+    .p-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    @media(max-width:768px) { .p-steps { grid-template-columns: 1fr; } }
+    .p-step { position: relative; padding: 2rem; }
+    .p-step::before {
+      content: ''; position: absolute; top: 2rem; right: 0;
+      width: 1px; height: 50%; background: var(--c2);
+    }
+    .p-step:last-child::before { display: none; }
+    @media(max-width:768px) { .p-step::before { display: none; } }
+    .p-step-num { font-family: 'Gilda Display', serif; font-size: 3.5rem; color: var(--c2); line-height: 1; margin-bottom: 1rem; }
+    .p-step-title { font-family: 'Outfit', sans-serif; font-size: .88rem; font-weight: 500; letter-spacing: .06em; color: var(--ink); margin-bottom: .8rem; text-transform: uppercase; }
+    .p-step-body { font-size: .84rem; color: var(--mid); line-height: 1.8; }
+    .p-step-time { display: inline-block; margin-top: .8rem; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ter); padding: .3rem .7rem; border: 1px solid var(--ter); }
+
+    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── SEASONS ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    .p-seasons { background: var(--ink); }
+    .p-seasons-inner { max-width: 1200px; margin: 0 auto; }
+    .p-seasons-head { max-width: 600px; margin-bottom: 3rem; }
+    .p-cal { display: grid; grid-template-columns: repeat(12, 1fr); gap: .3rem; margin-bottom: 2rem; }
+    @media(max-width:768px) { .p-cal { grid-template-columns: repeat(6, 1fr); } }
+    .p-cal-month {
+      padding: .8rem .4rem .6rem; text-align: center; border-radius: var(--radius);
+      transition: transform .2s;
+    }
+    .p-cal-month:hover { transform: scale(1.05); }
+    .p-cal-month-name { font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 400; margin-bottom: .3rem; }
+    .p-cal-month-bar { height: 4px; border-radius: 2px; margin: .3rem auto 0; width: 70%; }
+    .season-high { background: rgba(255,255,255,.05); }
+    .season-high .p-cal-month-name { color: var(--w); }
+    .season-high .p-cal-month-bar { background: var(--ter); }
+    .season-low { background: rgba(255,255,255,.03); }
+    .season-low .p-cal-month-name { color: var(--mid); }
+    .season-low .p-cal-month-bar { background: var(--sand); }
+    .season-peak { background: rgba(184,115,74,.12); }
+    .season-peak .p-cal-month-name { color: #e8a47a; }
+    .season-peak .p-cal-month-bar { background: #e8a47a; }
+    .p-cal-legend { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2.5rem; }
+    .p-cal-legend-item { display: flex; align-items: center; gap: .5rem; font-size: .72rem; color: var(--mid); letter-spacing: .08em; }
+    .p-cal-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .p-seasons-note { background: rgba(255,255,255,.04); border-left: 2px solid var(--ter); padding: 1.2rem 1.5rem; }
+    .p-seasons-note p { font-size: .84rem; color: var(--sand); line-height: 1.8; }
+    .p-seasons-cta-row { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+    .p-wa-btn-inline {
+      display: inline-flex; align-items: center; gap: .7rem;
+      padding: .9rem 1.8rem; background: #25d366; color: var(--w); text-decoration: none;
+      font-size: .73rem; letter-spacing: .12em; text-transform: uppercase;
+      transition: background .3s;
+    }
+    .p-wa-btn-inline:hover { background: #1da851; }
+    .p-wa-btn-inline svg { width: 18px; height: 18px; fill: currentColor; }
+    .p-email-btn {
+      display: inline-flex; align-items: center; gap: .7rem;
+      padding: .9rem 1.8rem; border: 1px solid rgba(255,255,255,.15); color: var(--sand);
+      text-decoration: none; font-size: .73rem; letter-spacing: .12em; text-transform: uppercase;
+      transition: border-color .3s, color .3s;
+    }
+    .p-email-btn:hover { border-color: var(--ter); color: var(--ter); }
+
+    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── FORM ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    .p-form-section { background: var(--c); }
+    .p-form-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.6fr; gap: var(--gap); align-items: start; }
+    @media(max-width:900px) { .p-form-inner { grid-template-columns: 1fr; } }
+    .p-form-left .s-title { font-size: clamp(1.7rem, 3.5vw, 2.6rem); }
+    .p-form-bullets { margin-top: 2rem; display: flex; flex-direction: column; gap: .8rem; }
+    .p-form-bullet { display: flex; align-items: center; gap: .7rem; font-size: .82rem; color: var(--mid); }
+    .p-form-bullet::before { content: '→'; color: var(--ter); font-size: .8rem; flex-shrink: 0; }
+    .p-form { display: grid; gap: 1rem; }
+    .p-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media(max-width:600px) { .p-form-row { grid-template-columns: 1fr; } }
+    .p-field { display: flex; flex-direction: column; gap: .4rem; }
+    .p-field label { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--mid); }
+    .p-field input, .p-field select, .p-field textarea {
+      padding: .85rem 1rem; background: var(--w);
+      border: 1px solid var(--c2); border-radius: var(--radius);
+      font-family: 'Outfit', sans-serif; font-size: .88rem; color: var(--ink);
+      outline: none; transition: border-color .3s;
+      -webkit-appearance: none;
+    }
+    .p-field input:focus, .p-field select:focus, .p-field textarea:focus { border-color: var(--ter); }
+    .p-field textarea { min-height: 110px; resize: vertical; }
+    .p-checkboxes { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; }
+    @media(max-width:500px) { .p-checkboxes { grid-template-columns: repeat(2,1fr); } }
+    .p-checkbox-item { display: flex; align-items: center; gap: .5rem; cursor: pointer; font-size: .8rem; color: var(--ink2); }
+    .p-checkbox-item input[type=checkbox] { accent-color: var(--ter); width: 14px; height: 14px; flex-shrink: 0; cursor: pointer; }
+    .p-gdpr { display: flex; align-items: flex-start; gap: .6rem; font-size: .75rem; color: var(--mid); line-height: 1.6; cursor: pointer; }
+    .p-gdpr input[type=checkbox] { accent-color: var(--ter); width: 14px; height: 14px; flex-shrink: 0; margin-top: .15rem; cursor: pointer; }
+    .p-submit {
+      padding: 1rem 2rem; background: var(--ter); color: var(--w); border: none;
+      font-family: 'Outfit', sans-serif; font-size: .75rem; letter-spacing: .16em;
+      text-transform: uppercase; cursor: pointer; transition: background .3s; align-self: start;
+    }
+    .p-submit:hover { background: var(--ter2); }
+    .p-form-success {
+      display: none; background: var(--ink); color: var(--w); padding: 1.5rem;
+      font-size: .85rem; line-height: 1.8; text-align: center;
+    }
+    .p-form-success.show { display: block; }
+
+    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── TRUST ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    .p-trust { background: var(--w); }
+    .p-trust-inner { max-width: 1200px; margin: 0 auto; }
+    .p-stats { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--c2); margin-bottom: 3.5rem; }
+    .p-stat { flex: 1; min-width: 160px; padding: 2rem 1.5rem; text-align: center; border-right: 1px solid var(--c2); }
+    .p-stat:last-child { border-right: none; }
+    .p-stat-num { font-family: 'Gilda Display', serif; font-size: 2.2rem; color: var(--ter); }
+    .p-stat-label { font-size: .7rem; color: var(--mid); letter-spacing: .12em; text-transform: uppercase; margin-top: .3rem; }
+    .p-gallery { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 240px 240px; gap: 4px; margin-bottom: 3.5rem; }
+    @media(max-width:768px) { .p-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; } }
+    .p-gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .p-gallery img:hover { transform: scale(1.03); }
+    .p-gallery .g-main { grid-row: 1 / 3; overflow: hidden; }
+    @media(max-width:768px) { .p-gallery .g-main { grid-row: 1; grid-column: 1 / 3; } }
+    .p-gallery .g-secondary { overflow: hidden; }
+    .p-quote {
+      max-width: 700px; margin: 0 auto; text-align: center;
+      padding: 3rem 2rem; border-top: 1px solid var(--c2); border-bottom: 1px solid var(--c2);
+    }
+    .p-quote blockquote {
+      font-family: 'Libre Baskerville', serif; font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.3rem); color: var(--ink2); line-height: 1.75;
+      margin-bottom: 1.2rem;
+    }
+    .p-quote cite { font-size: .72rem; color: var(--ter); letter-spacing: .14em; text-transform: uppercase; font-style: normal; }
+
+    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── FOOTER B2B ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    .p-footer { background: var(--ink); padding: 3rem clamp(1.2rem, 6vw, 5rem); }
+    .p-footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
+    @media(max-width:768px) { .p-footer-inner { grid-template-columns: 1fr; } }
+    .p-footer-logo { font-family: 'Gilda Display', serif; font-size: 1.5rem; color: var(--w); margin-bottom: .4rem; }
+    .p-footer-tagline { font-size: .72rem; color: var(--mid); line-height: 1.7; margin-bottom: 1rem; }
+    .p-footer-back { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ter); text-decoration: none; }
+    .p-footer-back:hover { text-decoration: underline; }
+    .p-footer-col-title { font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ter); margin-bottom: .8rem; }
+    .p-footer-col a, .p-footer-col p { font-size: .8rem; color: var(--mid); line-height: 1.9; text-decoration: none; display: block; }
+    .p-footer-col a:hover { color: var(--sand); }
+    .p-footer-bottom { max-width: 1200px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.07); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+    .p-footer-bottom p { font-size: .68rem; color: #3a3632; letter-spacing: .06em; }
+    .p-footer-noindex { font-size: .62rem; color: #2e2b27; letter-spacing: .05em; font-style: italic; }
+
+    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── WHATSAPP FLOAT ─────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    .p-wa-float {
+      position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 100;
+      background: #25d366; color: var(--w); width: 54px; height: 54px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,.4);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .p-wa-float:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,.5); }
+    .p-wa-float svg { width: 26px; height: 26px; fill: white; }
+
+    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── UTILS ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    .ter { color: var(--ter); }
+    .max-w { max-width: 1200px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+     PASSWORD GATE
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+<div id="gate">
+  <div class="g-logo">Les Roches</div>
+  <div class="g-sub">Retreat · Santa Teresa</div>
+  <div class="g-divider"></div>
+  <div class="g-label">Espace réservé aux partenaires</div>
+  <div class="g-input-wrap">
+    <input class="g-input" id="g-pw" type="password" placeholder="Mot de passe" autocomplete="current-password">
+  </div>
+  <div class="g-input-wrap">
+    <button class="g-btn" onclick="checkPassword()">Accéder →</button>
+  </div>
+  <div class="g-error" id="g-err">Mot de passe incorrect. Contactez-nous pour obtenir l'accès.</div>
+  <div class="g-note">Vous n'avez pas encore accès ? Écrivez-nous à partenaires@lesrochesretreat.com</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+     NAVIGATION (identique au site)
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+<nav id="nav">
+  <a href="index.html" class="nl-logo" id="logo">Les Roches</a>
+  <div class="nav-mid">
+    <a href="villas.html" class="nl">Villas</a>
+    <a href="experiences.html" class="nl">Experiences</a>
+    <a href="about.html" class="nl">About</a>
+    <a href="santa-teresa.html" class="nl">Santa Teresa</a>
+    <a href="faq.html" class="nl">FAQ</a>
+    <a href="journal.html" class="nl">Journal</a>
+  </div>
+  <a href="villas.html" class="nav-book" id="nb">Book Now</a>
+  <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+<section class="p-hero" aria-label="Hero partenaires">
+  <img class="p-hero-img" src="images/drone-sunset-1.webp" alt="Les Roches Retreat aerial view" loading="eager" fetchpriority="high">
+  <div class="p-hero-overlay"></div>
+  <div class="p-hero-content r">
+    <div class="p-hero-badge">Accès professionnel exclusif</div>
+    <h1 class="p-hero-title">Espace partenaires · Les Roches Retreat</h1>
+  </div>
+  <div class="p-hero-scroll">
+    <div class="p-hero-scroll-line"></div>
+    <span>Découvrir</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+     INTRODUCTION B2B
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+<section class="p-intro" id="intro">
+  <div class="p-intro-inner">
+    <div>
+      <p class="s-eyebrow r">Bienvenue</p>
+      <h2 class="s-title r">Un retreat d'exception,<br>une collaboration privilégiée.</h2>
+      <p class="s-sub r">
+        Les Roches Retreat vous ouvre ses portes en exclusivité. Retrouvez ici tout ce dont vous avez besoin pour proposer nos villas à vos clients les plus exigeants — tarifs nets, disponibilités, processus simplifié.
+      </p>
+      <p class="s-body r">
+        Six villas individuelles avec piscine à débordement privée, perchées au-dessus de la jungle et du Pacifique. Santa Teresa, la destination la plus en vogue du Costa Rica. Une architecture minimaliste unique en Amérique Centrale. Et une équipe disponible pour vous répondre en moins de 2 heures.
+      </p>
+    </div>
+    <div class="p-pillars">
+      <div class="p-pillar r">
+        <div class="p-pillar-icon">◈</div>
+        <div>
+          <div class="p-pillar-title">Commission 20 %</div>
+          <div class="p-pillar-body">Appliquée sur le tarif rack public. Versement sous 5 jours après le séjour. Pas de minimum de réservations.</div>
+        </div>
+      </div>
+      <div class="p-pillar r">
+        <div class="p-pillar-icon">◈</div>
+        <div>
+          <div class="p-pillar-title">Réponse sous 2 heures</div>
+          <div class="p-pillar-body">WhatsApp dédié partenaires, 7j/7. Option ferme de 48h sur chaque demande. Devis détaillé immédiat.</div>
+        </div>
+      </div>
+      <div class="p-pillar r">
+        <div class="p-pillar-icon">◈</div>
+        <div>
+          <div class="p-pillar-title">Support complet</div>
+          <div class="p-pillar-body">Photos HD, fiches villas, matériel de vente. Fam trip sur demande. Conciergerie pour votre client de A à Z.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+     LES 6 VILLAS
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+<section class="p-villas" id="villas">
+  <div class="p-villas-head">
+    <p class="s-eyebrow r">Le domaine</p>
+    <h2 class="s-title r">Six villas privées.<br>Six expériences uniques.</h2>
+    <p class="s-sub r">Chaque villa dispose de sa propre piscine à débordement, vue jungle et Pacifique, architecture minimaliste. Prix nets partenaire affichés ci-dessous.</p>
+  </div>
+  <div class="p-villas-grid">
+
+    <!-- JADE -->
+    <article class="p-villa-card r">
+      <div class="p-villa-card-img">
+        <img src="images/jade-hero.webp" alt="Casa Jade - Les Roches Retreat" loading="lazy">
+        <div class="p-villa-card-tag">Villa Jade</div>
+      </div>
+      <div class="p-villa-card-body">
+        <div class="p-villa-card-name">Casa Jade</div>
+        <div class="p-villa-card-specs">2 personnes · Piscine privée · Vue océan</div>
+        <div class="p-villa-card-desc">Rive est du domaine, entre végétation tropicale dense et vue océan ouverte. La villa la plus intimiste — immergée dans les sons de la nature, le Pacifique se déploie en contrebas.</div>
+        <div class="p-villa-card-prices">
+          <div class="p-price-block">
+            <span class="p-price-label">Prix public</span>
+            <span class="p-price-rack">à partir de 450 $/nuit</span>
+          </div>
+          <div class="p-price-block">
+            <span class="p-price-label">Tarif net partenaire</span>
+            <span class="p-price-net">360 $</span>
+            <span class="p-price-net-label">/ nuit · comm. incluse</span>
+          </div>
+        </div>
+        <a href="#contact" class="p-villa-cta">Demander une disponibilité →</a>
+      </div>
+    </article>
+
+    <!-- TOPAZE -->
+    <article class="p-villa-card r">
+      <div class="p-villa-card-img">
+        <img src="images/topaze-hero.webp" alt="Villa Topaze - Les Roches Retreat" loading="lazy">
+        <div class="p-villa-card-tag">Villa Topaze</div>
+      </div>
+      <div class="p-villa-card-body">
+        <div class="p-villa-card-name">Villa Topaze</div>
+        <div class="p-villa-card-specs">2 personnes · Piscine privée · Coucher de soleil</div>
+        <div class="p-villa-card-desc">Tonalités chaudes et architecture ouverte. La plus lumineuse du domaine, baignée par la lumière dorée du Pacifique à chaque fin de journée. Un coucher de soleil à couper le souffle, chaque soir.</div>
+        <div class="p-villa-card-prices">
+          <div class="p-price-block">
+            <span class="p-price-label">Prix public</span>
+            <span class="p-price-rack">à partir de 420 $/nuit</span>
+          </div>
+          <div class="p-price-block">
+            <span class="p-price-label">Tarif net partenaire</span>
+            <span class="p-price-net">336 $</span>
+            <span class="p-price-net-label">/ nuit · comm. incluse</span>
+          </div>
+        </div>
+        <a href="#contact" class="p-villa-cta">Demander une disponibilité →</a>
+      </div>
+    </article>
+
+    <!-- ONYX -->
+    <article class="p-villa-card r">
+      <div class="p-villa-card-img">
+        <img src="images/onyx-hero.webp" alt="Villa Onyx - Les Roches Retreat" loading="lazy">
+        <div class="p-villa-card-tag">Villa Onyx</div>
+      </div>
+      <div class="p-villa-card-body">
+        <div class="p-villa-card-name">Villa Onyx</div>
+        <div class="p-villa-card-specs">2 personnes · Piscine privée · Vue panoramique</div>
+        <div class="p-villa-card-desc">Au sommet du domaine. Lever de soleil panoramique de Malpaís à la pointe de Cabo Blanco. La villa la plus haute, la plus aérienne, pour ceux qui veulent voir le monde à leurs pieds.</div>
+        <div class="p-villa-card-prices">
+          <div class="p-price-block">
+            <span class="p-price-label">Prix public</span>
+            <span class="p-price-rack">à partir de 400 $/nuit</span>
+          </div>
+          <div class="p-price-block">
+            <span class="p-price-label">Tarif net partenaire</span>
+            <span class="p-price-net">320 $</span>
+            <span class="p-price-net-label">/ nuit · comm. incluse</span>
+          </div>
+        </div>
+        <a href="#contact" class="p-villa-cta">Demander une disponibilité →</a>
+      </div>
+    </article>
+
+    <!-- AGATE -->
+    <article class="p-villa-card r">
+      <div class="p-villa-card-img">
+        <img src="images/agate-hero.webp" alt="Villa Agate - Les Roches Retreat" loading="lazy">
+        <div class="p-villa-card-tag">Villa Agate</div>
+      </div>
+      <div class="p-villa-card-body">
+        <div class="p-villa-card-name">Villa Agate</div>
+        <div class="p-villa-card-specs">4 personnes · Piscine privée · Niveau jardin</div>
+        <div class="p-villa-card-desc">Au cœur du niveau jardin du domaine. Conçue pour la connexion — familles, amis, groupes. La plus spacieuse, la plus conviviale, avec un accès direct au jardin tropical.</div>
+        <div class="p-villa-card-prices">
+          <div class="p-price-block">
+            <span class="p-price-label">Prix public</span>
+            <span class="p-price-rack">à partir de 420 $/nuit</span>
+          </div>
+          <div class="p-price-block">
+            <span class="p-price-label">Tarif net partenaire</span>
+            <span class="p-price-net">336 $</span>
+            <span class="p-price-net-label">/ nuit · comm. incluse</span>
+          </div>
+        </div>
+        <a href="#contact" class="p-villa-cta">Demander une disponibilité →</a>
+      </div>
+    </article>
+
+    <!-- AMBRE -->
+    <article class="p-villa-card r">
+      <div class="p-villa-card-img">
+        <img src="images/ambre-hero.webp" alt="Villa Ambre - Les Roches Retreat" loading="lazy">
+        <div class="p-villa-card-tag">Villa Ambre</div>
+      </div>
+      <div class="p-villa-card-body">
+        <div class="p-villa-card-name">Villa Ambre</div>
+        <div class="p-villa-card-specs">2–3 personnes · Piscine privée · Lumière ambre</div>
+        <div class="p-villa-card-desc">Elle tire son nom de la lumière ambre qui l'inonde chaque soir. Une piscine qui brille dorée au coucher du soleil. Un moment suspendu, hors du temps. La villa des amoureux et des amoureux de la lumière.</div>
+        <div class="p-villa-card-prices">
+          <div class="p-price-block">
+            <span class="p-price-label">Prix public</span>
+            <span class="p-price-rack">à partir de 400 $/nuit</span>
+          </div>
+          <div class="p-price-block">
+            <span class="p-price-label">Tarif net partenaire</span>
+            <span class="p-price-net">320 $</span>
+            <span class="p-price-net-label">/ nuit · comm. incluse</span>
+          </div>
+        </div>
+        <a href="#contact" class="p-villa-cta">Demander une disponibilité →</a>
+      </div>
+    </article>
+
+    <!-- OPALE -->
+    <article class="p-villa-card r">
+      <div class="p-villa-card-img">
+        <img src="images/opale-hero.webp" alt="Villa Opale - Les Roches Retreat" loading="lazy">
+        <div class="p-villa-card-tag">Villa Opale</div>
+      </div>
+      <div class="p-villa-card-body">
+        <div class="p-villa-card-name">Villa Opale</div>
+        <div class="p-villa-card-specs">2 personnes · Piscine privée · Vue changeante</div>
+        <div class="p-villa-card-desc">Des reflets changeants selon la lumière du jour. Une surprise à chaque heure, une découverte à chaque instant. La villa la plus mystérieuse du domaine — celle dont vos clients se souviendront.</div>
+        <div class="p-villa-card-prices">
+          <div class="p-price-block">
+            <span class="p-price-label">Prix public</span>
+            <span class="p-price-rack">à partir de 450 $/nuit</span>
+          </div>
+          <div class="p-price-block">
+            <span class="p-price-label">Tarif net partenaire</span>
+            <span class="p-price-net">360 $</span>
+            <span class="p-price-net-label">/ nuit · comm. incluse</span>
+          </div>
+        </div>
+        <a href="#contact" class="p-villa-cta">Demander une disponibilité →</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+     GRILLE TARIFAIRE
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+<section class="p-pricing" id="tarifs">
+  <div class="p-pricing-inner">
+    <div class="p-pricing-head">
+      <p class="s-eyebrow r">Tarifs partenaires</p>
+      <h2 class="s-title r">Grille tarifaire nette.<br>Transparente. À jour.</h2>
+      <p class="s-sub r">Commission de 20 % déjà intégrée dans vos tarifs nets ci-dessous. Valable pour les réservations 2025–2026.</p>
+    </div>
+    <div class="p-table-wrap r">
+      <table class="p-table" aria-label="Grille tarifaire partenaires Les Roches">
+        <thead>
+          <tr>
+            <th>Villa</th>
+            <th>Basse saison<br><small style="font-weight:300;font-size:.6rem;letter-spacing:.06em">Mai — Nov</small></th>
+            <th>Haute saison<br><small style="font-weight:300;font-size:.6rem;letter-spacing:.06em">Déc — Avr</small></th>
+            <th>Noël / Jour de l'An<br><small style="font-weight:300;font-size:.6rem;letter-spacing:.06em">Peak</small></th>
+            <th>Séjour min.</th>
+            <th>Commission</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="villa-name">Casa Jade</span><br><span class="min-stay">2 pers.</span></td>
+            <td><span class="net-price">324 $ / nuit</span></td>
+            <td><span class="net-price">360 $ / nuit</span></td>
+            <td><span class="net-price">540 $ / nuit</span></td>
+            <td class="min-stay">3 nuits BS · 5 nuits HS</td>
+            <td><span class="net-price">20 %</span></td>
+          </tr>
+          <tr>
+            <td><span class="villa-name">Villa Topaze</span><br><span class="min-stay">2 pers.</span></td>
+            <td><span class="net-price">302 $ / nuit</span></td>
+            <td><span class="net-price">336 $ / nuit</span></td>
+            <td><span class="net-price">504 $ / nuit</span></td>
+            <td class="min-stay">3 nuits BS · 5 nuits HS</td>
+            <td><span class="net-price">20 %</span></td>
+          </tr>
+          <tr>
+            <td><span class="villa-name">Villa Onyx</span><br><span class="min-stay">2 pers.</span></td>
+            <td><span class="net-price">288 $ / nuit</span></td>
+            <td><span class="net-price">320 $ / nuit</span></td>
+            <td><span class="net-price">480 $ / nuit</span></td>
+            <td class="min-stay">3 nuits BS · 5 nuits HS</td>
+            <td><span class="net-price">20 %</span></td>
+          </tr>
+          <tr>
+            <td><span class="villa-name">Villa Agate</span><br><span class="min-stay">4 pers.</span></td>
+            <td><span class="net-price">302 $ / nuit</span></td>
+            <td><span class="net-price">336 $ / nuit</span></td>
+            <td><span class="net-price">504 $ / nuit</span></td>
+            <td class="min-stay">3 nuits BS · 5 nuits HS</td>
+            <td><span class="net-price">20 %</span></td>
+          </tr>
+          <tr>
+            <td><span class="villa-name">Villa Ambre</span><br><span class="min-stay">2–3 pers.</span></td>
+            <td><span class="net-price">288 $ / nuit</span></td>
+            <td><span class="net-price">320 $ / nuit</span></td>
+            <td><span class="net-price">480 $ / nuit</span></td>
+            <td class="min-stay">3 nuits BS · 5 nuits HS</td>
+            <td><span class="net-price">20 %</span></td>
+          </tr>
+          <tr>
+            <td><span class="villa-name">Villa Opale</span><br><span class="min-stay">2 pers.</span></td>
+            <td><span class="net-price">324 $ / nuit</span></td>
+            <td><span class="net-price">360 $ / nuit</span></td>
+            <td><span class="net-price">540 $ / nuit</span></td>
+            <td class="min-stay">3 nuits BS · 5 nuits HS</td>
+            <td><span class="net-price">20 %</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="p-table-note r">
+      Tarifs en USD · Nets partenaire (hors taxes locales éventuelles) · Commission de 20 % incluse et versée sous 5 jours après le check-out · Valides jusqu'au 31 décembre 2026 · Mise à jour mensuelle garantie · Tarifs susceptibles de révision avec préavis 30 jours.
+    </div>
+    <button class="p-dl-btn r" onclick="window.open('mailto:partenaires@lesrochesretreat.com?subject=Grille%20tarifaire%20PDF%20-%20Demande&body=Bonjour%2C%20je%20souhaite%20recevoir%20la%20grille%20tarifaire%20PDF%20partenaires.')">
+      <span class="p-dl-icon">↓</span> Recevoir la grille tarifaire PDF
+    </button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+     PROCESSUS DE RÉSERVATION
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+<section class="p-process" id="processus">
+  <div class="p-process-inner">
+    <div class="p-process-head">
+      <p class="s-eyebrow r">Réservation simplifiée</p>
+      <h2 class="s-title r">Réserver en 3 étapes.</h2>
+      <p class="s-sub r">Un processus pensé pour vous faire gagner du temps — et impressionner vos clients.</p>
+    </div>
+    <div class="p-steps">
+      <div class="p-step r">
+        <div class="p-step-num">01</div>
+        <div class="p-step-title">Vérifiez les disponibilités</div>
+        <div class="p-step-body">Envoyez-nous les dates souhaitées via WhatsApp ou le formulaire ci-dessous. Précisez la villa et le nombre de personnes. Nous vous répondons avec les disponibilités exactes.</div>
+        <span class="p-step-time">Réponse garantie < 2h</span>
+      </div>
+      <div class="p-step r">
+        <div class="p-step-num">02</div>
+        <div class="p-step-title">Recevez votre confirmation</div>
+        <div class="p-step-body">Nous vous envoyons une option ferme valable 48h avec le devis détaillé pour votre client — tarif total, conditions, acompte requis, détails de la villa.</div>
+        <span class="p-step-time">Option ferme 48h</span>
+      </div>
+      <div class="p-step r">
+        <div class="p-step-num">03</div>
+        <div class="p-step-title">Confirmez & facturez</div>
+        <div class="p-step-body">50 % à la réservation, 50 % à l'arrivée. Votre commission est versée sous 5 jours après le check-out. Rapport et facture envoyés automatiquement.</div>
+        <span class="p-step-time">Commission sous 5 jours</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+     SAISONNALIT─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+<section class="p-seasons" id="saisonnalite">
+  <div class="p-seasons-inner">
+    <div class="p-seasons-head">
+      <p class="s-eyebrow r" style="color:var(--ter)">Calendrier 2026</p>
+      <h2 class="s-title light r">Saisonnalité & disponibilités.</h2>
+      <p class="s-sub r" style="color:var(--sand)">Planifiez vos ventes avec les bonnes saisons — et captez les périodes les plus rentables.</p>
+    </div>
+    <div class="p-cal-legend r">
+      <div class="p-cal-legend-item"><div class="p-cal-legend-dot" style="background:var(--ter)"></div> Haute saison · Tarifs standards</div>
+      <div class="p-cal-legend-item"><div class="p-cal-legend-dot" style="background:var(--sand)"></div> Basse saison · Tarifs réduits</div>
+      <div class="p-cal-legend-item"><div class="p-cal-legend-dot" style="background:#e8a47a"></div> Peak · Tarifs majorés (+50 %)</div>
+    </div>
+    <div class="p-cal r">
+      <!-- Jan-Avr: Haute saison -->
+      <div class="p-cal-month season-high"><div class="p-cal-month-name">Jan</div><div class="p-cal-month-bar"></div></div>
+      <div class="p-cal-month season-high"><div class="p-cal-month-name">Fév</div><div class="p-cal-month-bar"></div></div>
+      <div class="p-cal-month season-high"><div class="p-cal-month-name">Mar</div><div class="p-cal-month-bar"></div></div>
+      <div class="p-cal-month season-high"><div class="p-cal-month-name">Avr</div><div class="p-cal-month-bar"></div></div>
+      <!-- Mai-Nov: Basse saison -->
+      <div class="p-cal-month season-low"><div class="p-cal-month-name">Mai</div><div class="p-cal-month-bar"></div></div>
+      <div class="p-cal-month season-low"><div class="p-cal-month-name">Juin</div><div class="p-cal-month-bar"></div></div>
+      <div class="p-cal-month season-low"><div class="p-cal-month-name">Juil</div><div class="p-cal-month-bar"></div></div>
+      <div class="p-cal-month season-low"><div class="p-cal-month-name">Août</div><div class="p-cal-month-bar"></div></div>
+      <div class="p-cal-month season-low"><div class="p-cal-month-name">Sep</div><div class="p-cal-month-bar"></div></div>
+      <div class="p-cal-month season-low"><div class="p-cal-month-name">Oct</div><div class="p-cal-month-bar"></div></div>
+      <div class="p-cal-month season-low"><div class="p-cal-month-name">Nov</div><div class="p-cal-month-bar"></div></div>
+      <!-- Déc: Peak -->
+      <div class="p-cal-month season-peak"><div class="p-cal-month-name">Déc ✦</div><div class="p-cal-month-bar"></div></div>
+    </div>
+    <div class="p-seasons-note r">
+      <p><strong style="color:var(--w)">Semana Santa (Pâques)</strong> — Période peak également. Réservez tôt : les 6 villas se remplissent souvent 3 à 6 mois à l'avance. Noël et Nouvel An : dernières disponibilités à confirmer directement.</p>
+    </div>
+    <div class="p-seasons-cta-row r">
+      <a class="p-wa-btn-inline" href="https://wa.me/33667749024?text=Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20pour%20mon%20agence." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Vérifier les disponibilités
+      </a>
+      <a class="p-email-btn" href="mailto:partenaires@lesrochesretreat.com">
+        ✉ Nous écrire
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+     FORMULAIRE DE CONTACT B2B
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+<section class="p-form-section" id="contact">
+  <div class="p-form-inner">
+    <div class="p-form-left">
+      <p class="s-eyebrow r">Nous contacter</p>
+      <h2 class="s-title r">Demande de partenariat<br>ou de disponibilité.</h2>
+      <p class="s-sub r">Nous revenons vers vous sous 2 heures, 7j/7.</p>
+      <div class="p-form-bullets r">
+        <div class="p-form-bullet">Devis détaillé sous 2 heures</div>
+        <div class="p-form-bullet">Option ferme 48h garantie</div>
+        <div class="p-form-bullet">Kit partenaire complet envoyé à la signature</div>
+        <div class="p-form-bullet">Fam trip sur demande</div>
+        <div class="p-form-bullet">Photos HD et fiches villas incluses</div>
+      </div>
+    </div>
+    <div>
+      <form class="p-form r" name="partenaires" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="partner-form">
+        <input type="hidden" name="form-name" value="partenaires">
+        <input type="hidden" name="bot-field" style="display:none">
+
+        <div class="p-form-row">
+          <div class="p-field">
+            <label for="f-prenom">Prénom</label>
+            <input type="text" id="f-prenom" name="prenom" placeholder="Votre prénom" required>
+          </div>
+          <div class="p-field">
+            <label for="f-nom">Nom</label>
+            <input type="text" id="f-nom" name="nom" placeholder="Votre nom" required>
+          </div>
+        </div>
+
+        <div class="p-form-row">
+          <div class="p-field">
+            <label for="f-agence">Agence</label>
+            <input type="text" id="f-agence" name="agence" placeholder="Nom de votre agence" required>
+          </div>
+          <div class="p-field">
+            <label for="f-pays">Pays</label>
+            <input type="text" id="f-pays" name="pays" placeholder="France, Suisse, USA...">
+          </div>
+        </div>
+
+        <div class="p-form-row">
+          <div class="p-field">
+            <label for="f-email">Email professionnel</label>
+            <input type="email" id="f-email" name="email" placeholder="contact@agence.com" required>
+          </div>
+          <div class="p-field">
+            <label for="f-tel">Téléphone / WhatsApp</label>
+            <input type="tel" id="f-tel" name="telephone" placeholder="+33 6 ...">
+          </div>
+        </div>
+
+        <div class="p-field">
+          <label for="f-type">Type de demande</label>
+          <select id="f-type" name="type_demande">
+            <option value="">Sélectionnez...</option>
+            <option value="partenariat">Devenir partenaire</option>
+            <option value="disponibilite">Vérifier une disponibilité</option>
+            <option value="grille">Demander la grille tarifaire PDF</option>
+            <option value="famtrip">Demander un fam trip</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+
+        <div class="p-field">
+          <label>Villas souhaitées</label>
+          <div class="p-checkboxes">
+            <label class="p-checkbox-item"><input type="checkbox" name="villas" value="Jade"> Casa Jade</label>
+            <label class="p-checkbox-item"><input type="checkbox" name="villas" value="Topaze"> Villa Topaze</label>
+            <label class="p-checkbox-item"><input type="checkbox" name="villas" value="Onyx"> Villa Onyx</label>
+            <label class="p-checkbox-item"><input type="checkbox" name="villas" value="Agate"> Villa Agate</label>
+            <label class="p-checkbox-item"><input type="checkbox" name="villas" value="Ambre"> Villa Ambre</label>
+            <label class="p-checkbox-item"><input type="checkbox" name="villas" value="Opale"> Villa Opale</label>
+          </div>
+        </div>
+
+        <div class="p-form-row">
+          <div class="p-field">
+            <label for="f-dates">Dates envisagées</label>
+            <input type="text" id="f-dates" name="dates" placeholder="Ex : 15–22 janv. 2026">
+          </div>
+          <div class="p-field">
+            <label for="f-pers">Nombre de personnes</label>
+            <input type="number" id="f-pers" name="personnes" min="1" max="12" placeholder="2">
+          </div>
+        </div>
+
+        <div class="p-field">
+          <label for="f-message">Message libre</label>
+          <textarea id="f-message" name="message" placeholder="Précisions, profil client, questions spécifiques..."></textarea>
+        </div>
+
+        <label class="p-gdpr">
+          <input type="checkbox" name="newsletter" value="oui">
+          J'accepte de recevoir les actualités partenaires des Roches Retreat (disponibilités, nouveautés, offres exclusives).
+        </label>
+
+        <button type="submit" class="p-submit">Envoyer ma demande →</button>
+      </form>
+      <div class="p-form-success" id="form-success">
+        <p style="font-family:'Gilda Display',serif;font-size:1.3rem;margin-bottom:.8rem;color:var(--w)">Message reçu.</p>
+        <p style="color:var(--sand)">Nous reviendrons vers vous dans les 2 heures.<br>En attendant, n'hésitez pas à nous écrire directement sur WhatsApp.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+     SECTION CONFIANCE
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+<section class="p-trust" id="confiance">
+  <div class="p-trust-inner">
+    <p class="s-eyebrow r">Pourquoi nous choisir</p>
+    <div class="p-stats r">
+      <div class="p-stat">
+        <div class="p-stat-num">6</div>
+        <div class="p-stat-label">Villas privées</div>
+      </div>
+      <div class="p-stat">
+        <div class="p-stat-num">6</div>
+        <div class="p-stat-label">Piscines à débordement</div>
+      </div>
+      <div class="p-stat">
+        <div class="p-stat-num">20 %</div>
+        <div class="p-stat-label">De commission partenaire</div>
+      </div>
+      <div class="p-stat">
+        <div class="p-stat-num">< 2h</div>
+        <div class="p-stat-label">Délai de réponse garanti</div>
+      </div>
+    </div>
+    <div class="p-gallery r">
+      <div class="g-main">
+        <img src="images/drone-complex-pool-1.webp" alt="Les Roches Retreat vue aérienne" loading="lazy">
+      </div>
+      <div class="g-secondary">
+        <img src="images/jade-sunset-pool.webp" alt="Piscine au coucher du soleil" loading="lazy">
+      </div>
+      <div class="g-secondary">
+        <img src="images/onyx-sunset.webp" alt="Villa Onyx coucher de soleil" loading="lazy">
+      </div>
+      <div class="g-secondary">
+        <img src="images/ambre-pool.webp" alt="Piscine Villa Ambre" loading="lazy">
+      </div>
+      <div class="g-secondary">
+        <img src="images/drone-jungle-aerial.webp" alt="Jungle et Pacifique vue aérienne" loading="lazy">
+      </div>
+    </div>
+    <div class="p-quote r">
+      <blockquote>
+        "Nous construisons des partenariats sur le long terme avec des agences qui partagent nos valeurs — le luxe authentique, l'attention aux détails, et l'amour du Costa Rica."
+      </blockquote>
+      <cite>— Ian, Marie & Martin · Fondateurs, Les Roches Retreat</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+     FOOTER B2B
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+<footer class="p-footer">
+  <div class="p-footer-inner">
+    <div>
+      <div class="p-footer-logo">Les Roches</div>
+      <div class="p-footer-tagline">Six private villas in the heart of<br>Santa Teresa, Costa Rica.</div>
+      <a href="index.html" class="p-footer-back">← Retour au site public</a>
+    </div>
+    <div class="p-footer-col">
+      <div class="p-footer-col-title">Contact partenaires</div>
+      <a href="mailto:partenaires@lesrochesretreat.com">partenaires@lesrochesretreat.com</a>
+      <a href="https://wa.me/33667749024" target="_blank" rel="noopener">WhatsApp : +33 6 67 74 90 24</a>
+      <p style="margin-top:.5rem">Disponible 7j/7 · Réponse < 2h</p>
+    </div>
+    <div class="p-footer-col">
+      <div class="p-footer-col-title">Navigation</div>
+      <a href="#intro">Programme partenaires</a>
+      <a href="#villas">Les villas</a>
+      <a href="#tarifs">Grille tarifaire</a>
+      <a href="#processus">Processus</a>
+      <a href="#contact">Nous contacter</a>
+    </div>
+  </div>
+  <div class="p-footer-bottom">
+    <p>© 2026 Les Roches Retreat · Santa Teresa, Costa Rica</p>
+    <p class="p-footer-noindex">Page réservée aux partenaires professionnels · Non indexée par les moteurs de recherche</p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+     WHATSAPP BUTTON FIXE
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+<a class="p-wa-float" href="https://wa.me/33667749024?text=Bonjour%2C%20je%20suis%20[agence]%20et%20je%20souhaite%20en%20savoir%20plus%20sur%20votre%20programme%20partenaires." target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+<script src="js/main.js"></script>
+<script>
+// ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── PASSWORD GATE ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+const PASS = 'RochesPartner26';
+const COOKIE_KEY = 'lr_partner_auth';
+const COOKIE_DAYS = 30;
+
+function setCookie(val, days) {
+  const d = new Date();
+  d.setTime(d.getTime() + days * 864e5);
+  document.cookie = COOKIE_KEY + '=' + val + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
+}
+function getCookie() {
+  const c = document.cookie.split(';').find(c => c.trim().startsWith(COOKIE_KEY + '='));
+  return c ? c.trim().split('=')[1] : null;
+}
+function unlockPage() {
+  document.getElementById('gate').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+function checkPassword() {
+  const val = document.getElementById('g-pw').value.trim();
+  const err = document.getElementById('g-err');
+  if (val === PASS) {
+    setCookie('ok', COOKIE_DAYS);
+    unlockPage();
+  } else {
+    err.classList.add('show');
+    document.getElementById('g-pw').focus();
+    setTimeout(() => err.classList.remove('show'), 3500);
+  }
+}
+document.getElementById('g-pw').addEventListener('keydown', e => { if (e.key === 'Enter') checkPassword(); });
+
+// Check existing cookie
+if (getCookie() === 'ok') {
+  unlockPage();
+} else {
+  document.body.style.overflow = 'hidden';
+}
+
+// ──────────────────────────────────────────────────────────────────────────────────────────────────────────── SCROLL REVEAL ──────────────────────────────────────────────────────────────────────────────────────────────────────────
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.r, .r-left, .r-right').forEach(el => revealObs.observe(el));
+
+// ──────────────────────────────────────────────────────────────────────────────────────────────────────────── FORM SUBMIT (Netlify + JS fallback confirmation) ──────────────────────────────────────────────────────────
+const form = document.getElementById('partner-form');
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    try {
+      await fetch('/', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: new URLSearchParams(data).toString() });
+    } catch {}
+    form.style.display = 'none';
+    document.getElementById('form-success').classList.add('show');
+    document.getElementById('form-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+}
+
+// ──────────────────────────────────────────────────────────────────────────────────────────────────────────── SMOOTH SCROLL for internal links ──────────────────────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+
+</body>
+</html>
