@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── GLOBAL RESETS ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    /* ── GLOBAL RESETS ─────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -24,7 +24,7 @@
     }
     body { background: var(--w); color: var(--ink); font-family: 'Outfit', sans-serif; font-weight: 300; overflow-x: hidden; }
 
-    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── PASSWORD GATE ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    /* ── PASSWORD GATE ─────────────────────────────────────────────── */
     #gate {
       position: fixed; inset: 0; z-index: 9999;
       background: var(--ink);
@@ -59,7 +59,7 @@
     #gate .g-error.show { opacity: 1; }
     #gate .g-note { font-size: .7rem; color: #3a3632; letter-spacing: .06em; text-align: center; margin-top: 1rem; }
 
-    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── REVEAL ANIMATION (same as site) ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    /* ── REVEAL ANIMATION (same as site) ──────────────────────────── */
     .r { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
     .r.visible { opacity: 1; transform: none; }
     .r-left { opacity: 0; transform: translateX(-28px); transition: opacity .8s ease, transform .8s ease; }
@@ -67,45 +67,7 @@
     .r-right { opacity: 0; transform: translateX(28px); transition: opacity .8s ease, transform .8s ease; }
     .r-right.visible { opacity: 1; transform: none; }
 
-    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── HERO ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
-    .p-hero {
-      position: relative; height: 100svh; min-height: 560px;
-      display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
-      padding-bottom: clamp(3rem, 8vh, 6rem);
-      overflow: hidden;
-    }
-    .p-hero-img {
-      position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%;
-      filter: brightness(.55);
-    }
-    .p-hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(30,27,24,.75) 0%, rgba(30,27,24,.15) 60%, rgba(30,27,24,.4) 100%);
-    }
-    .p-hero-content { position: relative; text-align: center; }
-    .p-hero-badge {
-      display: inline-block; border: 1px solid var(--ter); color: var(--ter);
-      font-family: 'Outfit', sans-serif; font-size: .65rem; font-weight: 400;
-      letter-spacing: .2em; text-transform: uppercase; padding: .4rem 1.1rem;
-      margin-bottom: 1.4rem; border-radius: 1px;
-    }
-    .p-hero-title {
-      font-family: 'Libre Baskerville', serif; font-style: italic;
-      font-size: clamp(1.3rem, 3vw, 2rem); color: var(--w); font-weight: 400;
-      letter-spacing: .02em;
-    }
-    .p-hero-scroll {
-      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: .5rem;
-    }
-    .p-hero-scroll span { font-size: .6rem; color: var(--sand); letter-spacing: .2em; text-transform: uppercase; }
-    .p-hero-scroll-line {
-      width: 1px; height: 40px; background: linear-gradient(to bottom, var(--sand), transparent);
-      animation: scrollLine 2s ease-in-out infinite;
-    }
-    @keyframes scrollLine { 0%,100%{transform:scaleY(1);opacity:1} 50%{transform:scaleY(.5);opacity:.4} }
-
-    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── SECTION BASE ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    /* ── SECTION BASE ─────────────────────────────────────────────── */
     section { padding: clamp(4rem, 9vw, 7rem) clamp(1.2rem, 6vw, 5rem); }
     .s-eyebrow { font-family: 'Outfit', sans-serif; font-size: .68rem; font-weight: 400; letter-spacing: .22em; text-transform: uppercase; color: var(--ter); margin-bottom: 1rem; }
     .s-title { font-family: 'Gilda Display', serif; font-size: clamp(2rem, 4.5vw, 3.4rem); line-height: 1.12; color: var(--ink); margin-bottom: 1.6rem; }
@@ -113,8 +75,8 @@
     .s-sub { font-family: 'Libre Baskerville', serif; font-style: italic; font-size: clamp(.95rem, 1.6vw, 1.15rem); color: var(--mid); line-height: 1.7; margin-bottom: 2rem; }
     .s-body { font-size: .93rem; color: var(--ink2); line-height: 1.9; max-width: 620px; }
 
-    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── INTRO ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
-    .p-intro { background: var(--w); }
+    /* ── INTRO ────────────────────────────────────────────────────── */
+    .p-intro { background: var(--w); padding-top: clamp(5rem, 10vw, 8rem); }
     .p-intro-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); align-items: start; }
     @media(max-width:768px) { .p-intro-inner { grid-template-columns: 1fr; } }
     .p-pillars { display: flex; flex-direction: column; gap: 1.4rem; padding-top: .5rem; }
@@ -126,7 +88,7 @@
     .p-pillar-title { font-family: 'Outfit', sans-serif; font-size: .85rem; font-weight: 500; color: var(--ink); margin-bottom: .3rem; letter-spacing: .04em; }
     .p-pillar-body { font-size: .82rem; color: var(--mid); line-height: 1.7; }
 
-    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── VILLAS ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    /* ── VILLAS ───────────────────────────────────────────────────── */
     .p-villas { background: var(--c); }
     .p-villas-head { max-width: 1200px; margin: 0 auto 3rem; }
     .p-villas-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); gap: 1.5rem; }
@@ -162,7 +124,7 @@
     }
     .p-villa-cta:hover { color: var(--ter); border-color: var(--ter); }
 
-    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── PRICING TABLE ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    /* ── PRICING TABLE ─────────────────────────────────────────────── */
     .p-pricing { background: var(--c2); }
     .p-pricing-inner { max-width: 1200px; margin: 0 auto; }
     .p-pricing-head { max-width: 600px; margin-bottom: 3rem; }
@@ -198,7 +160,7 @@
     .p-dl-btn:hover { background: var(--ter); }
     .p-dl-icon { font-size: 1rem; }
 
-    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── PROCESS ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    /* ── PROCESS ───────────────────────────────────────────────────── */
     .p-process { background: var(--w); }
     .p-process-inner { max-width: 1200px; margin: 0 auto; }
     .p-process-head { max-width: 600px; margin-bottom: 3.5rem; }
@@ -216,7 +178,7 @@
     .p-step-body { font-size: .84rem; color: var(--mid); line-height: 1.8; }
     .p-step-time { display: inline-block; margin-top: .8rem; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ter); padding: .3rem .7rem; border: 1px solid var(--ter); }
 
-    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── SEASONS ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    /* ── SEASONS ───────────────────────────────────────────────────── */
     .p-seasons { background: var(--ink); }
     .p-seasons-inner { max-width: 1200px; margin: 0 auto; }
     .p-seasons-head { max-width: 600px; margin-bottom: 3rem; }
@@ -260,7 +222,7 @@
     }
     .p-email-btn:hover { border-color: var(--ter); color: var(--ter); }
 
-    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── FORM ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    /* ── FORM ──────────────────────────────────────────────────────── */
     .p-form-section { background: var(--c); }
     .p-form-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.6fr; gap: var(--gap); align-items: start; }
     @media(max-width:900px) { .p-form-inner { grid-template-columns: 1fr; } }
@@ -300,7 +262,7 @@
     }
     .p-form-success.show { display: block; }
 
-    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── TRUST ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    /* ── TRUST ──────────────────────────────────────────────────────── */
     .p-trust { background: var(--w); }
     .p-trust-inner { max-width: 1200px; margin: 0 auto; }
     .p-stats { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--c2); margin-bottom: 3.5rem; }
@@ -326,7 +288,7 @@
     }
     .p-quote cite { font-size: .72rem; color: var(--ter); letter-spacing: .14em; text-transform: uppercase; font-style: normal; }
 
-    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── FOOTER B2B ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    /* ── FOOTER B2B ────────────────────────────────────────────────── */
     .p-footer { background: var(--ink); padding: 3rem clamp(1.2rem, 6vw, 5rem); }
     .p-footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
     @media(max-width:768px) { .p-footer-inner { grid-template-columns: 1fr; } }
@@ -341,7 +303,7 @@
     .p-footer-bottom p { font-size: .68rem; color: #3a3632; letter-spacing: .06em; }
     .p-footer-noindex { font-size: .62rem; color: #2e2b27; letter-spacing: .05em; font-style: italic; }
 
-    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── WHATSAPP FLOAT ─────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    /* ── WHATSAPP FLOAT ────────────────────────────────────────────── */
     .p-wa-float {
       position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 100;
       background: #25d366; color: var(--w); width: 54px; height: 54px;
@@ -352,16 +314,16 @@
     .p-wa-float:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,.5); }
     .p-wa-float svg { width: 26px; height: 26px; fill: white; }
 
-    /* ────────────────────────────────────────────────────────────────────────────────────────────────────── UTILS ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    /* ── UTILS ──────────────────────────────────────────────────────── */
     .ter { color: var(--ter); }
     .max-w { max-width: 1200px; margin: 0 auto; }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════════════
      PASSWORD GATE
-═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+════════════════════════════════════════════════════════════════════ -->
 <div id="gate">
   <div class="g-logo">Les Roches</div>
   <div class="g-sub">Retreat · Santa Teresa</div>
@@ -377,9 +339,9 @@
   <div class="g-note">Vous n'avez pas encore accès ? Écrivez-nous à partenaires@lesrochesretreat.com</div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════════════
      NAVIGATION (identique au site)
-═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+════════════════════════════════════════════════════════════════════ -->
 <nav id="nav">
   <a href="index.html" class="nl-logo" id="logo">Les Roches</a>
   <div class="nav-mid">
@@ -394,25 +356,9 @@
   <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
-     HERO
-═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
-<section class="p-hero" aria-label="Hero partenaires">
-  <img class="p-hero-img" src="images/drone-sunset-1.webp" alt="Les Roches Retreat aerial view" loading="eager" fetchpriority="high">
-  <div class="p-hero-overlay"></div>
-  <div class="p-hero-content r">
-    <div class="p-hero-badge">Accès professionnel exclusif</div>
-    <h1 class="p-hero-title">Espace partenaires · Les Roches Retreat</h1>
-  </div>
-  <div class="p-hero-scroll">
-    <div class="p-hero-scroll-line"></div>
-    <span>Découvrir</span>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════════════
      INTRODUCTION B2B
-═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+════════════════════════════════════════════════════════════════════ -->
 <section class="p-intro" id="intro">
   <div class="p-intro-inner">
     <div>
@@ -451,9 +397,9 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════════════
      LES 6 VILLAS
-═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+════════════════════════════════════════════════════════════════════ -->
 <section class="p-villas" id="villas">
   <div class="p-villas-head">
     <p class="s-eyebrow r">Le domaine</p>
@@ -521,7 +467,7 @@
       <div class="p-villa-card-body">
         <div class="p-villa-card-name">Villa Onyx</div>
         <div class="p-villa-card-specs">2 personnes · Piscine privée · Vue panoramique</div>
-        <div class="p-villa-card-desc">Au sommet du domaine. Lever de soleil panoramique de Malpaís à la pointe de Cabo Blanco. La villa la plus haute, la plus aérienne, pour ceux qui veulent voir le monde à leurs pieds.</div>
+        <div class="p-villa-card-desc">Au sommet du domaine. Lever de soleil panoramique de Mal País à la pointe de Cabo Blanco. La villa la plus haute, la plus aérienne, pour ceux qui veulent voir le monde à leurs pieds.</div>
         <div class="p-villa-card-prices">
           <div class="p-price-block">
             <span class="p-price-label">Prix public</span>
@@ -545,12 +491,22 @@
       </div>
       <div class="p-villa-card-body">
         <div class="p-villa-card-name">Villa Agate</div>
-        <div class="p-villa-card-specs">4 personnes · Piscine privée · Niveau jardin</div>
-        <div class="p-villa-card-desc">Au cœur du niveau jardin du domaine. Conçue pour la connexion — familles, amis, groupes. La plus spacieuse, la plus conviviale, avec un accès direct au jardin tropical.</div>
+        <div class="p-villa-card-specs">2 personnes · Piscine privée · Jardin tropical</div>
+        <div class="p-villa-card-desc">Nichée au cœur de la végétation. La villa la plus immergée dans la jungle, avec une terrasse-jardin à 360°. Pour les clients qui veulent se fondre dans la nature tropicale.</div>
         <div class="p-villa-card-prices">
           <div class="p-price-block">
             <span class="p-price-label">Prix public</span>
             <span class="p-price-rack">à partir de 420 $/nuit</span>
+          </div>
+          <div class="p-price-block">
+            <span class="p-price-label">Tarif net partenaire</span>
+            <span class="p-price-net">336 $</span>
+            <span class="p-price-net-label">/ nuit · comm. incluse</span>
+          </div>
+        </div>
+        <a href="#contact" class="p-villa-cta">Demander une disponibilité →</a>
+      </div>
+    </article>   <span class="p-price-rack">à partir de 420 $/nuit</span>
           </div>
           <div class="p-price-block">
             <span class="p-price-label">Tarif net partenaire</span>
@@ -615,9 +571,9 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════════════
      GRILLE TARIFAIRE
-═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+════════════════════════════════════════════════════════════════════ -->
 <section class="p-pricing" id="tarifs">
   <div class="p-pricing-inner">
     <div class="p-pricing-head">
@@ -698,9 +654,9 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════════════
      PROCESSUS DE RÉSERVATION
-═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+════════════════════════════════════════════════════════════════════ -->
 <section class="p-process" id="processus">
   <div class="p-process-inner">
     <div class="p-process-head">
@@ -713,7 +669,7 @@
         <div class="p-step-num">01</div>
         <div class="p-step-title">Vérifiez les disponibilités</div>
         <div class="p-step-body">Envoyez-nous les dates souhaitées via WhatsApp ou le formulaire ci-dessous. Précisez la villa et le nombre de personnes. Nous vous répondons avec les disponibilités exactes.</div>
-        <span class="p-step-time">Réponse garantie < 2h</span>
+        <span class="p-step-time">Réponse garantie &lt; 2h</span>
       </div>
       <div class="p-step r">
         <div class="p-step-num">02</div>
@@ -723,7 +679,7 @@
       </div>
       <div class="p-step r">
         <div class="p-step-num">03</div>
-        <div class="p-step-title">Confirmez & facturez</div>
+        <div class="p-step-title">Confirmez &amp; facturez</div>
         <div class="p-step-body">50 % à la réservation, 50 % à l'arrivée. Votre commission est versée sous 5 jours après le check-out. Rapport et facture envoyés automatiquement.</div>
         <span class="p-step-time">Commission sous 5 jours</span>
       </div>
@@ -731,13 +687,14 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
-     SAISONNALIT─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+<!-- ══════════════════════════════════════════════════════════════════
+     SAISONNALITÉ
+════════════════════════════════════════════════════════════════════ -->
 <section class="p-seasons" id="saisonnalite">
   <div class="p-seasons-inner">
     <div class="p-seasons-head">
       <p class="s-eyebrow r" style="color:var(--ter)">Calendrier 2026</p>
-      <h2 class="s-title light r">Saisonnalité & disponibilités.</h2>
+      <h2 class="s-title light r">Saisonnalité &amp; disponibilités.</h2>
       <p class="s-sub r" style="color:var(--sand)">Planifiez vos ventes avec les bonnes saisons — et captez les périodes les plus rentables.</p>
     </div>
     <div class="p-cal-legend r">
@@ -777,9 +734,9 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════════════
      FORMULAIRE DE CONTACT B2B
-═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+════════════════════════════════════════════════════════════════════ -->
 <section class="p-form-section" id="contact">
   <div class="p-form-inner">
     <div class="p-form-left">
@@ -887,9 +844,9 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════════════
      SECTION CONFIANCE
-═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+════════════════════════════════════════════════════════════════════ -->
 <section class="p-trust" id="confiance">
   <div class="p-trust-inner">
     <p class="s-eyebrow r">Pourquoi nous choisir</p>
@@ -907,7 +864,7 @@
         <div class="p-stat-label">De commission partenaire</div>
       </div>
       <div class="p-stat">
-        <div class="p-stat-num">< 2h</div>
+        <div class="p-stat-num">&lt; 2h</div>
         <div class="p-stat-label">Délai de réponse garanti</div>
       </div>
     </div>
@@ -932,14 +889,14 @@
       <blockquote>
         "Nous construisons des partenariats sur le long terme avec des agences qui partagent nos valeurs — le luxe authentique, l'attention aux détails, et l'amour du Costa Rica."
       </blockquote>
-      <cite>— Ian, Marie & Martin · Fondateurs, Les Roches Retreat</cite>
+      <cite>— Ian, Marie &amp; Martin · Fondateurs, Les Roches Retreat</cite>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════════════
      FOOTER B2B
-═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+════════════════════════════════════════════════════════════════════ -->
 <footer class="p-footer">
   <div class="p-footer-inner">
     <div>
@@ -951,7 +908,7 @@
       <div class="p-footer-col-title">Contact partenaires</div>
       <a href="mailto:partenaires@lesrochesretreat.com">partenaires@lesrochesretreat.com</a>
       <a href="https://wa.me/33667749024" target="_blank" rel="noopener">WhatsApp : +33 6 67 74 90 24</a>
-      <p style="margin-top:.5rem">Disponible 7j/7 · Réponse < 2h</p>
+      <p style="margin-top:.5rem">Disponible 7j/7 · Réponse &lt; 2h</p>
     </div>
     <div class="p-footer-col">
       <div class="p-footer-col-title">Navigation</div>
@@ -968,19 +925,19 @@
   </div>
 </footer>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════════════
      WHATSAPP BUTTON FIXE
-═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+════════════════════════════════════════════════════════════════════ -->
 <a class="p-wa-float" href="https://wa.me/33667749024?text=Bonjour%2C%20je%20suis%20[agence]%20et%20je%20souhaite%20en%20savoir%20plus%20sur%20votre%20programme%20partenaires." target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════════════
      SCRIPTS
-═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+════════════════════════════════════════════════════════════════════ -->
 <script src="js/main.js"></script>
 <script>
-// ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── PASSWORD GATE ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+// ── PASSWORD GATE ────────────────────────────────────────────────────
 const PASS = 'RochesPartner26';
 const COOKIE_KEY = 'lr_partner_auth';
 const COOKIE_DAYS = 30;
@@ -1019,13 +976,13 @@ if (getCookie() === 'ok') {
   document.body.style.overflow = 'hidden';
 }
 
-// ──────────────────────────────────────────────────────────────────────────────────────────────────────────── SCROLL REVEAL ──────────────────────────────────────────────────────────────────────────────────────────────────────────
+// ── SCROLL REVEAL ────────────────────────────────────────────────────
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
 }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.r, .r-left, .r-right').forEach(el => revealObs.observe(el));
 
-// ──────────────────────────────────────────────────────────────────────────────────────────────────────────── FORM SUBMIT (Netlify + JS fallback confirmation) ──────────────────────────────────────────────────────────
+// ── FORM SUBMIT (Netlify + JS fallback confirmation) ─────────────────
 const form = document.getElementById('partner-form');
 if (form) {
   form.addEventListener('submit', async (e) => {
@@ -1040,7 +997,7 @@ if (form) {
   });
 }
 
-// ──────────────────────────────────────────────────────────────────────────────────────────────────────────── SMOOTH SCROLL for internal links ──────────────────────────────────────────────────────────
+// ── SMOOTH SCROLL for internal links ────────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
