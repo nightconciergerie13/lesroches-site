@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Tarifs Partenaires · Les Roches Retreat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+/* ── RESET & VARS ──────────────────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1e1b18;--ink2:#2e2a26;--w:#faf7f2;--c:#f3ede3;--c2:#e9e0d2;
+  --sand:#d6c9b0;--ter:#b8734a;--ter2:#a05f38;--mid:#9a8f82;--r:3px;
+  --green:#22c55e;--red:#ef4444;
+}
+html{font-size:clamp(14px,1.1vw,16px)}
+body{font-family:'Outfit',sans-serif;font-weight:300;color:var(--ink);background:var(--c);min-height:100vh}
+a{color:inherit;text-decoration:none}
+
+/* ── GATE ─────────────────────────────────────────────────────────────────────────── */
+#gate{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--ink);display:flex;align-items:center;justify-content:center;
+}
+.gate-box{
+  background:var(--w);padding:3.5rem 3rem;max-width:400px;width:90%;
+  border-radius:var(--r);text-align:center;
+}
+.gate-logo{
+  font-family:'Gilda Display',serif;font-size:1.3rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink);margin-bottom:.3rem;
+}
+.gate-sub{
+  font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--ter);margin-bottom:2.5rem;
+}
+.gate-label{
+  display:block;font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--mid);margin-bottom:.6rem;text-align:left;
+}
+.gate-input{
+  width:100%;padding:.9rem 1rem;border:1px solid var(--c2);border-radius:var(--r);
+  font-family:'Outfit',sans-serif;font-size:.9rem;font-weight:300;
+  background:var(--c);outline:none;transition:border-color .2s;
+  letter-spacing:.1em;text-align:center;
+}
+.gate-input:focus{border-color:var(--sand)}
+.gate-btn{
+  width:100%;margin-top:1.2rem;padding:.95rem;
+  background:var(--ink);color:var(--w);border:none;border-radius:var(--r);
+  font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;transition:background .2s;
+}
+.gate-btn:hover{background:var(--ter)}
+.gate-err{font-size:.62rem;color:#c0392b;margin-top:.8rem;min-height:1rem}
+
+/* ── NAV ──────────────────────────────────────────────────────────────────────────── */
+.nav{
+  background:rgba(250,247,242,.97);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--c2);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem clamp(1.5rem,5vw,4rem);
+  position:sticky;top:0;z-index:100;
+}
+.nav-logo{
+  font-family:'Gilda Display',serif;font-size:.95rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink);
+}
+.nav-logo span{
+  display:block;font-family:'Outfit',sans-serif;font-size:.42rem;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--ter);margin-top:.1rem;
+}
+.nav-back{
+  font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);
+  display:flex;align-items:center;gap:.4rem;transition:color .2s;
+}
+.nav-back:hover{color:var(--ter)}
+
+/* ── HEADER ─────────────────────────────────────────────────────────────────────────── */
+.cal-header{
+  background:var(--ink);color:var(--w);
+  padding:clamp(2.5rem,5vw,4rem) clamp(1.5rem,5vw,4rem) 2rem;
+}
+.cal-header-inner{max-width:1100px;margin:0 auto}
+.cal-eyebrow{
+  font-size:.48rem;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--ter);margin-bottom:.8rem;
+}
+.cal-title{
+  font-family:'Gilda Display',serif;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:1.15;
+  margin-bottom:.6rem;
+}
+.cal-sub{
+  font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.7;
+  max-width:560px;
+}
+.cal-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  margin-top:1.2rem;padding:.5rem 1rem;
+  border:1px solid rgba(255,255,255,.1);border-radius:20px;
+  font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.4);
+}
+.cal-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0}
+
+/* ── VILLA TABS ──────────────────────────────────────────────────────────────────────────── */
+.tabs-wrap{
+  background:var(--w);border-bottom:1px solid var(--c2);
+  position:sticky;top:56px;z-index:90;
+}
+.tabs{
+  max-width:1100px;margin:0 auto;
+  display:flex;overflow-x:auto;gap:0;scrollbar-width:none;padding:0 clamp(1rem,3vw,2rem);
+}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  flex-shrink:0;
+  padding:.9rem 1.4rem;background:none;border:none;border-bottom:2px solid transparent;
+  font-family:'Outfit',sans-serif;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mid);cursor:pointer;transition:all .2s;white-space:nowrap;
+}
+.tab.active{color:var(--ter);border-bottom-color:var(--ter)}
+.tab:hover{color:var(--ink)}
+
+/* ── CALENDAR AREA ──────────────────────────────────────────────────────────────────────────── */
+.cal-area{
+  max-width:1100px;margin:0 auto;
+  padding:2rem clamp(1rem,3vw,2rem) 4rem;
+}
+
+/* ── MONTH NAV ──────────────────────────────────────────────────────────────────────────── */
+.month-nav{
+  display:flex;align-items:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;
+}
+.month-btn{
+  width:36px;height:36px;background:var(--w);border:1px solid var(--c2);
+  border-radius:var(--r);font-size:1.1rem;display:flex;align-items:center;
+  justify-content:center;cursor:pointer;color:var(--ink);transition:all .2s;flex-shrink:0;
+}
+.month-btn:hover{border-color:var(--ter);color:var(--ter)}
+.month-label{
+  font-family:'Gilda Display',serif;font-size:1.3rem;color:var(--ink);
+  flex:1;
+}
+.month-nav-jump{display:flex;gap:.5rem;margin-left:auto}
+.month-jump-btn{
+  font-size:.45rem;letter-spacing:.16em;text-transform:uppercase;
+  padding:.4rem .8rem;border:1px solid var(--c2);border-radius:var(--r);
+  background:none;color:var(--mid);cursor:pointer;transition:all .2s;white-space:nowrap;
+}
+.month-jump-btn:hover{border-color:var(--ter);color:var(--ter)}
+
+/* ── LEGEND ──────────────────────────────────────────────────────────────────────────── */
+.cal-legend{
+  display:flex;gap:1.2rem;margin-bottom:1.2rem;flex-wrap:wrap;
+}
+.leg-item{display:flex;align-items:center;gap:.4rem;font-size:.52rem;color:var(--mid)}
+.leg-swatch{width:14px;height:14px;border-radius:2px;flex-shrink:0}
+.leg-avail{background:var(--w);border:1px solid var(--c2)}
+.leg-rate{background:#f0fdf4;border:1px solid #d1fae5}
+.leg-blocked{background:repeating-linear-gradient(45deg,rgba(239,68,68,.12),rgba(239,68,68,.12) 4px,#fff 4px,#fff 10px);border:1px solid rgba(239,68,68,.2)}
+.leg-past{background:#f5f5f5;border:1px solid #e5e5e5}
+
+/* ── CALENDAR GRID ──────────────────────────────────────────────────────────────────────────── */
+.cal-grid-wrap{
+  background:var(--w);border:1px solid var(--c2);border-radius:var(--r);
+  overflow:hidden;
+}
+.cal-weekdays{
+  display:grid;grid-template-columns:repeat(7,1fr);
+  background:var(--c);border-bottom:1px solid var(--c2);
+}
+.cal-wd{
+  padding:.6rem .4rem;text-align:center;
+  font-size:.42rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);
+}
+.cal-cells{display:grid;grid-template-columns:repeat(7,1fr)}
+.cal-cell{
+  min-height:80px;padding:.5rem .4rem;border-right:1px solid var(--c2);border-bottom:1px solid var(--c2);
+  position:relative;transition:background .15s;
+}
+.cal-cell:nth-child(7n){border-right:none}
+.cal-cell.empty{background:var(--c);opacity:.4}
+.cal-cell.past{background:#fafafa;cursor:not-allowed}
+.cal-cell.past .cell-day{color:#ccc}
+.cal-cell.blocked{
+  background:repeating-linear-gradient(45deg,rgba(239,68,68,.08),rgba(239,68,68,.08) 5px,#fff 5px,#fff 14px);
+}
+.cal-cell.has-rate{background:#fafff8}
+.cal-cell.today{box-shadow:inset 0 0 0 2px var(--ter)}
+.cell-day{
+  font-size:.65rem;font-weight:400;color:var(--ink);margin-bottom:.2rem;
+}
+.cell-price{
+  font-family:'Gilda Display',serif;font-size:.88rem;color:var(--ter);
+  line-height:1.1;margin-top:.2rem;
+}
+.cell-min{
+  font-size:.4rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--mid);margin-top:.2rem;
+}
+.cell-blocked-label{
+  font-size:.42rem;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(239,68,68,.6);margin-top:.4rem;
+}
+.cell-default-price{
+  font-family:'Gilda Display',serif;font-size:.88rem;color:var(--sand);
+  margin-top:.2rem;
+}
+
+/* ── LOADING / ERROR ────────────────────────────────────────────────────────────────────────── */
+.cal-status{
+  padding:3rem;text-align:center;
+}
+.cal-spinner{
+  width:32px;height:32px;border:2px solid var(--c2);border-top-color:var(--ter);
+  border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 1rem;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cal-status-text{font-size:.72rem;color:var(--mid)}
+.cal-error{color:var(--red);font-size:.72rem;padding:2rem;text-align:center}
+
+/* ── VILLA INFO BAR ─────────────────────────────────────────────────────────────────────────── */
+.villa-bar{
+  background:var(--w);border:1px solid var(--c2);border-radius:var(--r);
+  padding:1.2rem 1.6rem;margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;
+}
+.villa-bar-img{
+  width:56px;height:56px;border-radius:var(--r);overflow:hidden;flex-shrink:0;
+}
+.villa-bar-img img{width:100%;height:100%;object-fit:cover}
+.villa-bar-name{
+  font-family:'Gilda Display',serif;font-size:1.2rem;color:var(--ink);
+}
+.villa-bar-specs{
+  font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ter);
+}
+.villa-bar-wa{
+  margin-left:auto;display:flex;align-items:center;gap:.6rem;
+  padding:.6rem 1.2rem;background:var(--ter);color:var(--w);
+  border-radius:var(--r);font-size:.46rem;letter-spacing:.18em;text-transform:uppercase;
+  transition:background .2s;
+}
+.villa-bar-wa:hover{background:var(--ter2)}
+.villa-bar-wa svg{width:15px;height:15px}
+
+/* DISCLAIMER */
+.disclaimer{
+  margin-top:2rem;padding:1.2rem 1.6rem;
+  background:var(--w);border:1px solid var(--c2);border-radius:var(--r);
+  font-size:.65rem;color:var(--mid);line-height:1.7;
+}
+.disclaimer strong{color:var(--ink);font-weight:400}
+
+/* MOBILE */
+@media(max-width:600px){
+  .cal-cell{min-height:64px;padding:.4rem .3rem}
+  .cell-price,.cell-default-price{font-size:.75rem}
+  .cal-weekdays{display:none}
+  .cal-cells{grid-template-columns:repeat(7,1fr)}
+  .cell-day{font-size:.6rem}
+  .cell-min{display:none}
+  .month-nav-jump{display:none}
+}
+
+/* WA FLOAT */
+.wa-float{
+  position:fixed;bottom:1.8rem;right:1.8rem;z-index:500;
+  width:52px;height:52px;background:#25d366;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.35);transition:transform .2s;
+}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:26px;height:26px;fill:white}
+  </style>
+</head>
+<body>
+
+<div id="gate" role="dialog" aria-label="Access partners" aria-modal="true">
+  <div class="gate-box">
+    <div class="gate-logo">Les Roches</div>
+    <div class="gate-sub">Retreat · Calendar Partners</div>
+    <label class="gate-label" for="gate-input">Access Code</label>
+    <input type="password" id="gate-input" class="gate-input" placeholder="••••••••••••" autocomplete="off">
+    <button class="gate-btn" onclick="checkGate()">Access →</button>
+    <div class="gate-err" id="gate-err" role="alert" aria-live="polite"></div>
+  </div>
+</div>
+
+<div id="content" style="display:none">
+
+<nav class="nav">
+  <div class="nav-logo">
+    Les Roches
+    <span>Calendar Partners</span>
+  </div>
+  <a href="partners.html" class="nav-back">
+    ← Back to partner space
+  </a>
+</nav>
+
+<div class="cal-header">
+  <div class="cal-header-inner">
+    <p class="cal-eyebrow">Synchronized in real time</p>
+    <h1 class="cal-title">Partner rates · Direct</h1>
+    <p class="cal-sub">Prices shown at -20% of public rate. Minimum nights included. Data automatically updated from our admin panel.</p>
+    <div class="cal-badge">
+      <span class="cal-badge-dot"></span>
+      Connected to our system · Real-time update
+    </div>
+  </div>
+</div>
+
+<div class="tabs-wrap">
+  <div class="tabs" role="tablist" aria-label="Villa selection">
+    <button class="tab active" role="tab" aria-selected="true"  data-villa="jade"   onclick="selectVilla('jade')">Casa Jade</button>
+    <button class="tab"        role="tab" aria-selected="false" data-villa="topaze" onclick="selectVilla('topaze')">Villa Topaze</button>
+    <button class="tab"        role="tab" aria-selected="false" data-villa="onyx"   onclick="selectVilla('onyx')">Villa Onyx</button>
+    <button class="tab"        role="tab" aria-selected="false" data-villa="agate"  onclick="selectVilla('agate')">Villa Agate</button>
+    <button class="tab"        role="tab" aria-selected="false" data-villa="ambre"  onclick="selectVilla('ambre')">Villa Ambre</button>
+    <button class="tab"        role="tab" aria-selected="false" data-villa="opale"  onclick="selectVilla('opale')">Villa Opale</button>
+  </div>
+</div>
+
+<div class="cal-area">
+
+  <div class="villa-bar" id="villa-bar">
+    <div class="villa-bar-img">
+      <img id="vbar-img" src="images/jade-hero.jpg" alt="">
+    </div>
+    <div>
+      <div class="villa-bar-name" id="vbar-name">Casa Jade</div>
+      <div class="villa-bar-specs" id="vbar-specs">2 people · Private pool · Ocean view</div>
+    </div>
+    <a id="vbar-wa" href="https://wa.me/33667749024?text=Hello%2C%20I%20want%20to%20check%20availability%20of%20Casa%20Jade%20for%20my%20clients." target="_blank" rel="noopener" class="villa-bar-wa">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.858L.073 23.27a.75.75 0 0 0 .916.952l5.565-1.453A11.926 11.926 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.74 9.74 0 0 1-4.97-1.36l-.354-.213-3.668.958.978-3.579-.232-.369A9.712 9.712 0 0 1 2.25 12c0-5.376 4.374-9.75 9.75-9.75s9.75 4.374 9.75 9.75-4.374 9.75-9.75 9.75z"/></svg>
+      Check availability
+    </a>
+  </div>
+
+  <div class="month-nav">
+    <button class="month-btn" onclick="changeMonth(-1)" aria-label="Previous month">‹</button>
+    <div class="month-label" id="month-label">April 2026</div>
+    <button class="month-btn" onclick="changeMonth(1)" aria-label="Next month">›</button>
+    <div class="month-nav-jump">
+      <button class="month-jump-btn" onclick="jumpToMonth(0)">This month</button>
+      <button class="month-jump-btn" onclick="jumpToMonth(1)">Next month</button>
+      <button class="month-jump-btn" onclick="jumpToMonth(3)">+3 months</button>
+    </div>
+  </div>
+
+  <div class="cal-legend">
+    <div class="leg-item"><div class="leg-swatch leg-avail"></div>Base rate</div>
+    <div class="leg-item"><div class="leg-swatch leg-rate"></div>Custom rate</div>
+    <div class="leg-item"><div class="leg-swatch leg-blocked"></div>Unavailable</div>
+    <div class="leg-item"><div class="leg-swatch leg-past"></div>Past</div>
+  </div>
+
+  <div class="cal-grid-wrap" id="cal-grid-wrap">
+    <div class="cal-weekdays">
+      <div class="cal-wd">Mon</div>
+      <div class="cal-wd">Tue</div>
+      <div class="cal-wd">Wed</div>
+      <div class="cal-wd">Thu</div>
+      <div class="cal-wd">Fri</div>
+      <div class="cal-wd">Sat</div>
+      <div class="cal-wd">Sun</div>
+    </div>
+    <div id="cal-cells" class="cal-cells">
+      <div class="cal-status"><div class="cal-spinner"></div><div class="cal-status-text">Loading rates...</div></div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Displayed rates:</strong> Net partner prices at -20% of public rate. Commission included — the displayed rate is what you pay. Minimum night according to period displayed on each date. <strong>Rates may vary</strong> depending on period and demand — this calendar always reflects our current pricing. For any reservation or question, contact us directly on WhatsApp.
+  </div>
+
+</div>
+
+</div>
+
+<a class="wa-float" href="https://wa.me/33667749024?text=Hello%2C%20I%20consulted%20the%20partner%20calendar%20and%20I%20want%20to%20make%20an%20availability%20request." target="_blank" rel="noopener" aria-label="Contact on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.858L.073 23.27a.75.75 0 0 0 .916.952l5.565-1.453A11.926 11.926 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.74 9.74 0 0 1-4.97-1.36l-.354-.213-3.668.958.978-3.579-.232-.369A9.712 9.712 0 0 1 2.25 12c0-5.376 4.374-9.75 9.75-9.75s9.75 4.374 9.75 9.75-4.374 9.75-9.75 9.75z"/></svg>
+</a>
+
+<script>
+var SB_URL  = 'https://api.example.com';
+var COMMISSION = 0.80;
+
+var VILLAS = {
+  jade:   {name:'Casa Jade',   specs:'2 people · Private pool · Ocean view',      img:'jade.jpg'},
+  topaze: {name:'Villa Topaze',specs:'2 people · Private pool · Sunset',img:'topaze.jpg'},
+  onyx:   {name:'Villa Onyx',  specs:'2 people · Private pool · Panoramic', img:'onyx.jpg'},
+  agate:  {name:'Villa Agate', specs:'4 people · Private pool · Garden level',   img:'agate.jpg'},
+  ambre:  {name:'Villa Ambre', specs:'2-3 people · Private pool · Amber light', img:'ambre.jpg'},
+  opale:  {name:'Villa Opale', specs:'2 people · Private pool · Changing view',  img:'opale.jpg'}
+};
+
+var curVilla = 'jade';
+var curYear  = new Date().getFullYear();
+var curMonth = new Date().getMonth();
+
+function updateVillaBar(){
+  var info = VILLAS[curVilla];
+  document.getElementById('vbar-name').textContent = info.name;
+  document.getElementById('vbar-specs').textContent = info.specs;
+}
+
+window.selectVilla = function(v){
+  curVilla = v;
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.classList.toggle('active', t.dataset.villa === v);
+  });
+  updateVillaBar();
+};
+
+window.changeMonth = function(dir){
+  curMonth += dir;
+  if(curMonth < 0){curMonth = 11; curYear--;}
+  if(curMonth > 11){curMonth = 0;  curYear++;}
+};
+
+window.jumpToMonth = function(offset){
+  var d = new Date();
+  d.setMonth(d.getMonth() + offset);
+  curYear  = d.getFullYear();
+  curMonth = d.getMonth();
+};
+
+function checkGate(){
+  var v=document.getElementById('gate-input').value.trim();
+  if(v==='RochesPartner26'){
+    document.getElementById('gate').style.display='none';
+    document.getElementById('content').style.display='block';
+    updateVillaBar();
+  }
+}
+</script>
+
+</body>
+</html>
+ 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.858L.073 23.27a.75.75 0 0 0 .916.952l5.565-1.453A11.926 11.926 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.74 9.74 0 0 1-4.97-1.36l-.354-.213-3.668.958.978-3.579-.232-.369A9.712 9.712 0 0 1 2.25 12c0-5.376 4.374-9.75 9.75-9.75s9.75 4.374 9.75 9.75-4.374 9.75-9.75 9.75z"/></svg>
+</a>
+
+<!-- SCRIPTS -->
+<script>
+/* CONFIG */
+var SB_URL  = 'https://vrufclzcaswkdgrffdwm.supabase.co';
+var SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZydWZjbHpjYXN3a2RncmZmZHdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyOTE2MjgsImV4cCI6MjA4OTg2NzYyOH0.cHllj6HZms7qf5PVc3LPy057r3rvCv6JyjfAfVlH34E';
+var COMMISSION = 0.80;
+
+var VILLAS = {
+  jade:   {name:'Casa Jade',   specs:'2 personnes · Piscine privée · Vue océan',      img:'images/jade-hero.jpg'},
+  topaze: {name:'Villa Topaze',specs:'2 personnes · Piscine privée · Coucher de soleil',img:'images/topaze-hero.jpg'},
+  onyx:   {name:'Villa Onyx',  specs:'2 personnes · Piscine privée · Vue panoramique', img:'images/onyx-hero.jpg'},
+  agate:  {name:'Villa Agate', specs:'4 personnes · Piscine privée · Niveau jardin',   img:'images/agate-hero.jpg'},
+  ambre:  {name:'Villa Ambre', specs:'2–3 personnes · Piscine privée · Lumière ambre', img:'images/ambre-hero.jpg'},
+  opale:  {name:'Villa Opale', specs:'2 personnes · Piscine privée · Vue changeante',  img:'images/opale-hero.jpg'}
+};
+
+var WA_MSGS = {
+  jade:   'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Casa%20Jade%20pour%20mes%20clients.',
+  topaze: 'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Villa%20Topaze%20pour%20mes%20clients.',
+  onyx:   'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Villa%20Onyx%20pour%20mes%20clients.',
+  agate:  'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Villa%20Agate%20pour%20mes%20clients.',
+  ambre:  'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Villa%20Ambre%20pour%20mes%20clients.',
+  opale:  'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Villa%20Opale%20pour%20mes%20clients.'
+};
+
+var FR_MONTHS = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+var curVilla = 'jade';
+var curYear  = new Date().getFullYear();
+var curMonth = new Date().getMonth();
+var cache    = {};
+
+(function(){
+  function getCookie(n){
+    return document.cookie.split(';').map(c=>c.trim()).find(c=>c.startsWith(n+'='))?.split('=')[1]||null;
+  }
+  function unlock(){
+    document.getElementById('gate').style.display='none';
+    var c=document.getElementById('content');
+    c.style.display='block';
+    initApp();
+  }
+  if(getCookie('lr_partner_auth')==='ok'){unlock();return;}
+  document.getElementById('gate-input').addEventListener('keydown',function(e){
+    if(e.key==='Enter') checkGate();
+  });
+  window.checkGate=function(){
+    var v=document.getElementById('gate-input').value.trim();
+    if(v==='RochesPartner26'){
+      var exp=new Date(Date.now()+30*24*3600*1000).toUTCString();
+      document.cookie='lr_partner_auth=ok;expires='+exp+';path=/;SameSite=Strict';
+      unlock();
+    } else {
+      document.getElementById('gate-err').textContent='Code incorrect.';
+      document.getElementById('gate-input').value='';
+      setTimeout(function(){document.getElementById('gate-err').textContent='';},3000);
+    }
+  };
+})();
+
+function initApp(){
+  var hash = window.location.hash.replace('#','');
+  if(VILLAS[hash]) curVilla = hash;
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.classList.toggle('active', t.dataset.villa === curVilla);
+    t.setAttribute('aria-selected', t.dataset.villa === curVilla ? 'true' : 'false');
+  });
+  updateVillaBar();
+  loadAndRender();
+}
+
+window.selectVilla = function(v){
+  curVilla = v;
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.classList.toggle('active', t.dataset.villa === v);
+    t.setAttribute('aria-selected', t.dataset.villa === v ? 'true' : 'false');
+  });
+  updateVillaBar();
+  loadAndRender();
+};
+
+function updateVillaBar(){
+  var info = VILLAS[curVilla];
+  document.getElementById('vbar-img').src  = info.img;
+  document.getElementById('vbar-img').alt  = info.name;
+  document.getElementById('vbar-name').textContent  = info.name;
+  document.getElementById('vbar-specs').textContent = info.specs;
+  document.getElementById('vbar-wa').href = 'https://wa.me/33667749024?text='+WA_MSGS[curVilla];
+}
+
+window.changeMonth = function(dir){
+  curMonth += dir;
+  if(curMonth < 0){curMonth = 11; curYear--;}
+  if(curMonth > 11){curMonth = 0;  curYear++;}
+  loadAndRender();
+};
+
+window.jumpToMonth = function(offset){
+  var d = new Date();
+  d.setMonth(d.getMonth() + offset);
+  curYear  = d.getFullYear();
+  curMonth = d.getMonth();
+  loadAndRender();
+};
+
+function pad(n){return String(n).padStart(2,'0');}
+
+async function fetchMonthData(){
+  var key = curVilla+':'+curYear+'-'+pad(curMonth+1);
+  if(cache[key]) return cache[key];
+
+  var start = curYear+'-'+pad(curMonth+1)+'-01';
+  var end   = curYear+'-'+pad(curMonth+1)+'-31';
+
+  var headers = {'apikey': SB_ANON, 'Authorization': 'Bearer '+SB_ANON};
+
+  var [rRes, bRes] = await Promise.all([
+    fetch(SB_URL+'/rest/v1/daily_rates?select=date,price_per_night,min_nights&villa_id=eq.'+curVilla+'&date=gte.'+start+'&date=lte.'+end+'&order=date', {headers}),
+    fetch(SB_URL+'/rest/v1/blocked_dates?select=date,source&villa_id=eq.'+curVilla+'&date=gte.'+start+'&date=lte.'+end, {headers})
+  ]);
+
+  if(!rRes.ok && !bRes.ok) throw new Error('Erreur de connexion Supabase');
+
+  var rates   = rRes.ok   ? await rRes.json()   : [];
+  var blocked = bRes.ok   ? await bRes.json()   : [];
+
+  var rateMap    = {};
+  var blockedSet = new Set();
+  rates.forEach(function(r){rateMap[r.date] = r;});
+  blocked.forEach(function(b){blockedSet.add(b.date);});
+
+  var vRes = await fetch(SB_URL+'/rest/v1/villas?select=id,default_price,default_min_nights&id=eq.'+curVilla, {headers});
+  var vData = vRes.ok ? await vRes.json() : [];
+  var defaults = vData.length ? vData[0] : null;
+
+  var result = {rateMap, blockedSet, defaults};
+  cache[key] = result;
+  return result;
+}
+
+function showLoading(){
+  document.getElementById('cal-cells').innerHTML =
+    '<div class="cal-status"><div class="cal-spinner"></div><div class="cal-status-text">Chargement des tarifs...</div></div>';
+}
+
+function showError(msg){
+  document.getElementById('cal-cells').innerHTML =
+    '<div class="cal-error">'+msg+'</div>';
+}
+
+async function loadAndRender(){
+  document.getElementById('month-label').textContent = FR_MONTHS[curMonth]+' '+curYear;
+  showLoading();
+
+  try {
+    var data = await fetchMonthData();
+    renderCalendar(data);
+  } catch(e) {
+    showError('Impossible de charger les tarifs.');
+    console.error(e);
+  }
+}
+
+function renderCalendar(data){
+  var today = new Date();
+  today.setHours(0,0,0,0);
+
+  var firstDow = new Date(curYear, curMonth, 1).getDay();
+  var moFirst  = (firstDow === 0) ? 6 : firstDow - 1;
+  var daysInMo = new Date(curYear, curMonth + 1, 0).getDate();
+
+  var cells = '';
+
+  for(var e = 0; e < moFirst; e++){
+    cells += '<div class="cal-cell empty"></div>';
+  }
+
+  for(var d = 1; d <= daysInMo; d++){
+    var dateStr = curYear+'-'+pad(curMonth+1)+'-'+pad(d);
+    var cellDate = new Date(curYear, curMonth, d);
+    var isPast   = cellDate < today;
+    var isToday  = cellDate.getTime() === today.getTime();
+    var isBlocked = data.blockedSet.has(dateStr);
+    var rate      = data.rateMap[dateStr];
+
+    var cls = 'cal-cell';
+    if(isPast)    cls += ' past';
+    if(isToday)   cls += ' today';
+    if(isBlocked) cls += ' blocked';
+    else if(rate) cls += ' has-rate';
+
+    var inner = '<div class="cell-day">'+d+'</div>';
+
+    if(isBlocked){
+      inner += '<div class="cell-blocked-label">Non dispo</div>';
+    } else if(rate){
+      var partnerPrice = Math.round(rate.price_per_night * COMMISSION);
+      inner += '<div class="cell-price">'+partnerPrice+' $</div>';
+      if(rate.min_nights && rate.min_nights > 1){
+        inner += '<div class="cell-min">min '+rate.min_nights+'n</div>';
+      }
+    } else if(data.defaults && data.defaults.default_price){
+      var defPrice = Math.round(data.defaults.default_price * COMMISSION);
+      inner += '<div class="cell-default-price">~'+defPrice+' $</div>';
+      if(data.defaults.default_min_nights && data.defaults.default_min_nights > 1){
+        inner += '<div class="cell-min">min '+data.defaults.default_min_nights+'n</div>';
+      }
+    } else {
+      inner += '<div class="cell-min">Sur demande</div>';
+    }
+
+    cells += '<div class="'+cls+'">'+inner+'</div>';
+  }
+
+  var totalCells = moFirst + daysInMo;
+  var remainder  = totalCells % 7;
+  if(remainder !== 0){
+    for(var f = 0; f < (7 - remainder); f++){
+      cells += '<div class="cal-cell empty"></div>';
+    }
+  }
+
+  document.getElementById('cal-cells').innerHTML = cells;
+}
+</script>
+
+</body>
+</html>
