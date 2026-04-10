@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-/* ─── RESET & VARS ──────────────────────────────────────────────────────── */
+/* ── RESET & VARS ──────────────────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --ink:#1e1b18;--ink2:#2e2a26;--w:#faf7f2;--c:#f3ede3;--c2:#e9e0d2;
@@ -21,7 +21,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 a{color:inherit;text-decoration:none}
 button{cursor:pointer;font-family:'Outfit',sans-serif}
 
-/* ─── GATE ────────────────────────────────────────────────────────────── */
+/* ── GATE ──────────────────────────────────────────────────────────────── */
 #gate{
   position:fixed;inset:0;z-index:9999;
   background:var(--ink);display:flex;align-items:center;justify-content:center;
@@ -64,11 +64,11 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
   color:var(--sand);
 }
 
-/* ─── REVEAL ─────────────────────────────────────────────────────────── */
+/* ── REVEAL ────────────────────────────────────────────────────────────── */
 .r{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
 .r.visible{opacity:1;transform:none}
 
-/* ─── NAV ──────────────────────────────────────────────────────────────── */
+/* ── NAV ───────────────────────────────────────────────────────────────── */
 .p-nav{
   position:sticky;top:0;z-index:100;
   background:rgba(250,247,242,.96);backdrop-filter:blur(8px);
@@ -98,7 +98,7 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
 .p-nav-wa:hover{background:var(--ter);color:var(--w)}
 @media(max-width:640px){.p-nav-links{display:none}}
 
-/* ─── INTRO ────────────────────────────────────────────────────────────── */
+/* ── INTRO ──────────────────────────────────────────────────────────────── */
 .p-intro{
   background:var(--w);
   padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem) clamp(3rem,6vw,5rem);
@@ -118,7 +118,7 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
   max-width:600px;margin-bottom:3.5rem;
 }
 
-/* ─── PILLARS ──────────────────────────────────────────────────────────── */
+/* ── PILLARS ────────────────────────────────────────────────────────────── */
 .p-pillars{
   display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
 }
@@ -139,7 +139,7 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
 }
 .p-pillar-body{font-size:.75rem;color:var(--mid);line-height:1.75}
 
-/* ─── DOMAIN / VIDEO ───────────────────────────────────────────────────────── */
+/* ── DOMAIN / VIDEO ─────────────────────────────────────────────────────── */
 .p-domain{background:var(--ink);color:var(--w);padding:clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,4rem)}
 .p-domain-inner{
   max-width:1100px;margin:0 auto;
@@ -170,7 +170,7 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
   border-radius:20px;color:rgba(255,255,255,.5);
 }
 
-/* ─── VILLAS ───────────────────────────────────────────────────────────── */
+/* ── VILLAS ────────────────────────────────────────────────────────────── */
 .p-villas{
   background:var(--c);padding:clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,4rem);
 }
@@ -231,7 +231,7 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
 }
 .p-vcard-tarif-link:hover{background:var(--ter2);border-color:var(--ter2)}
 
-/* ─── MID CTA BAR ────────────────────────────────────────────────────────── ──── */
+/* ── MID CTA BAR ────────────────────────────────────────────────────────── */
 .p-cta-bar{
   background:var(--ter);padding:2rem clamp(1.5rem,5vw,4rem);
   display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;
@@ -248,7 +248,7 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
 .p-cta-bar-btn:hover{transform:scale(1.03)}
 .p-cta-bar-btn svg{width:16px;height:16px;flex-shrink:0}
 
-/* ─── LIVE RATES ────────────────────────────────────────────────────────── */
+/* ── LIVE RATES ─────────────────────────────────────────────────────────── */
 .p-live{
   background:var(--w);padding:clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,4rem);
 }
@@ -289,7 +289,7 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
   letter-spacing:.06em;line-height:1.6;
 }
 
-/* ─── PROCESS ───────────────────────────────────────────────────────────── */
+/* ── PROCESS ────────────────────────────────────────────────────────────── */
 .p-process{
   background:var(--c);padding:clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,4rem);
 }
@@ -310,7 +310,7 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
 }
 .p-step-body{font-size:.72rem;color:var(--mid);line-height:1.7}
 
-/* ─── FAQ ──────────────────────────────────────────────────────────────── */
+/* ── FAQ ───────────────────────────────────────────────────────────────── */
 .p-faq{
   background:var(--w);padding:clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,4rem);
 }
@@ -331,7 +331,7 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
 }
 .p-faq-item.open .p-faq-a{max-height:200px;padding-bottom:1.4rem}
 
-/* ─── CONTACT ──────────────────────────────────────────────────────────── */
+/* ── CONTACT ────────────────────────────────────────────────────────────── */
 .p-contact{
   background:var(--ink);padding:clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,4rem);
   text-align:center;
@@ -369,7 +369,7 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
   margin-top:2rem;font-size:.56rem;color:rgba(255,255,255,.25);letter-spacing:.06em;
 }
 
-/* ─── FOOTER ────────────────────────────────────────────────────────────── */
+/* ── FOOTER ────────────────────────────────────────────────────────────── */
 .p-footer{
   background:var(--ink2);padding:1.5rem clamp(1.5rem,5vw,4rem);
   display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
@@ -383,7 +383,7 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
   font-size:.48rem;letter-spacing:.1em;color:rgba(255,255,255,.2);
 }
 
-/* ─── WA FLOAT ──────────────────────────────────────────────────────────── */
+/* ── WA FLOAT ──────────────────────────────────────────────────────────── */
 .p-wa-float{
   position:fixed;bottom:1.8rem;right:1.8rem;z-index:500;
   width:52px;height:52px;background:#25d366;border-radius:50%;
@@ -393,7 +393,7 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
 .p-wa-float:hover{transform:scale(1.08)}
 .p-wa-float svg{width:26px;height:26px;fill:white}
 
-/* ─── LIGHTBOX ──────────────────────────────────────────────────────────── */
+/* ── LIGHTBOX ──────────────────────────────────────────────────────────── */
 #lightbox{
   position:fixed;inset:0;z-index:9000;background:rgba(20,18,16,.96);
   display:flex;align-items:center;justify-content:center;
@@ -444,30 +444,30 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
 </head>
 <body>
 
-<!-- ══ GATE ════════════════════════════════════════════════════════════════════ -->
-<div id="gate" role="dialog" aria-label="Accès partenaires protégé" aria-modal="true">
+<!-- ══ GATE ══════════════════════════════════════════════════════════════════ -->
+<div id="gate" role="dialog" aria-label="Acces partenaires protege" aria-modal="true">
   <div class="gate-box">
     <div class="gate-logo">Les Roches</div>
     <div class="gate-sub">Retreat · Espace Partenaires</div>
-    <label class="gate-label" for="gate-input">Code d'accès</label>
-    <input type="password" id="gate-input" class="gate-input" placeholder="•••••••••••••••••••••" autocomplete="off">
-    <button class="gate-btn" id="gate-btn" onclick="checkGate()">Accéder à l'espace →</button>
+    <label class="gate-label" for="gate-input">Code d'acces</label>
+    <input type="password" id="gate-input" class="gate-input" placeholder="••••••••••••" autocomplete="off">
+    <button class="gate-btn" id="gate-btn" onclick="checkGate()">Acceder a l'espace →</button>
     <div class="gate-err" id="gate-err" role="alert" aria-live="polite"></div>
-    <div class="gate-footer">Espace réservé aux professionnels du voyage agréés</div>
+    <div class="gate-footer">Espace reserve aux professionnels du voyage agrees</div>
   </div>
 </div>
 
-<!-- ══ MAIN CONTENT ══════════════════════════════════════════════════════════════ -->
+<!-- ══ MAIN CONTENT ══════════════════════════════════════════════════════════ -->
 <div id="content" style="display:none" aria-hidden="true">
 
-<!-- ── NAV ──────────────────────────────────────────────────────────────────────── -->
+<!-- ── NAV ───────────────────────────────────────────────────────────────── -->
 <nav class="p-nav" aria-label="Navigation partenaires">
   <div class="p-nav-logo">
     Les Roches
     <span>Espace Partenaires</span>
   </div>
   <div class="p-nav-links" aria-label="Liens de navigation">
-    <a href="#domaine">L'établissement</a>
+    <a href="#domaine">L'etablissement</a>
     <a href="#villas">Les villas</a>
     <a href="#tarifs">Tarifs</a>
     <a href="#fonctionnement">Fonctionnement</a>
@@ -475,11 +475,11 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
   </div>
 </nav>
 
-<!-- ── INTRO ───────────────────────────────────────────────────────────────────── -->
-<section class="p-intro" id="accueil" aria-label="Présentation partenaires">
-  <p class="p-eyebrow r">Accès professionnel exclusif</p>
-  <h1 class="p-intro-title r">Le partenariat le plus<br>simple du marché.</h1>
-  <p class="p-intro-sub r">Nous avons conçu notre programme pour que chaque réservation soit fluide, rentable, et mémorable pour vos clients. Pas de complexité, pas de mauvaises surprises.</p>
+<!-- ── INTRO ──────────────────────────────────────────────────────────────── -->
+<section class="p-intro" id="accueil" aria-label="Presentation partenaires">
+  <p class="p-eyebrow r">Acces professionnel exclusif</p>
+  <h1 class="p-intro-title r">Le partenariat le plus<br>simple du marche.</h1>
+  <p class="p-intro-sub r">Nous avons concu notre programme pour que chaque reservation soit fluide, rentable, et memorable pour vos clients. Pas de complexite, pas de mauvaises surprises.</p>
 
   <div class="p-pillars">
 
@@ -488,15 +488,15 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
         <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
       </div>
       <div class="p-pillar-title">Commission 20 %</div>
-      <div class="p-pillar-body">Tarif net partenaire direct, sans frais cachés ni commissions additionnelles. Ce que vous voyez est ce que vous payez.</div>
+      <div class="p-pillar-body">Tarif net partenaire direct, sans frais caches ni commissions additionnelles. Ce que vous voyez est ce que vous payez.</div>
     </div>
 
     <div class="p-pillar r">
       <div class="p-pillar-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
       </div>
-      <div class="p-pillar-title">Réponse sous 2 heures</div>
-      <div class="p-pillar-body">WhatsApp dédié partenaires, 7j/7. Option ferme de 48h sur chaque demande. Devis détaillé par retour immédiat.</div>
+      <div class="p-pillar-title">Reponse sous 2 heures</div>
+      <div class="p-pillar-body">WhatsApp dedie partenaires, 7j/7. Option ferme de 48h sur chaque demande. Devis detaille par retour immediat.</div>
     </div>
 
     <div class="p-pillar r">
@@ -504,32 +504,32 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
         <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       </div>
       <div class="p-pillar-title">Vos clients au petit soin</div>
-      <div class="p-pillar-body">Accueil personnalisé, conciergerie sur mesure, expériences locales. Vos clients repartent avec l'envie de revenir — et de recommander.</div>
+      <div class="p-pillar-body">Accueil personnalise, conciergerie sur mesure, experiences locales. Vos clients repartent avec l'envie de revenir — et de recommander.</div>
     </div>
 
   </div>
 </section>
 
-<!-- ── DOMAIN / VIDEO ──────────────────────────────────────────────────────────── -->
-<section class="p-domain" id="domaine" aria-label="Présentation du domaine">
+<!-- ── DOMAIN / VIDEO ─────────────────────────────────────────────────────── -->
+<section class="p-domain" id="domaine" aria-label="Presentation du domaine">
   <div class="p-domain-inner">
 
     <div class="p-domain-video r">
       <video autoplay muted loop playsinline preload="auto" poster="images/drone-complex-pool-1.jpg" aria-hidden="true">
         <source src="images/video-home.mp4" type="video/mp4">
-        <img src="images/drone-complex-pool-1.jpg" alt="Les Roches Retreat vue aérienne">
+        <img src="images/drone-complex-pool-1.jpg" alt="Les Roches Retreat vue aerienne">
       </video>
     </div>
 
     <div class="p-domain-text">
-      <p class="p-eyebrow r">Santa Teresa · Péninsule de Nicoya</p>
-      <h2 class="p-domain-title r">Six villas privées sur les hauteurs du Pacifique.</h2>
-      <p class="p-domain-desc r">Santa Teresa est l'une des destinations les plus prisées d'Amérique centrale : surf de classe mondiale, jungle tropicale, couchers de soleil légendaires. Les Roches Retreat est posé en hauteur, entre mer et forêt, à 10 minutes du centre de Santa Teresa, à 2h30 de San José.<br><br>Chaque villa est une maison privée avec piscine à débordement, vue Pacifique ou jungle, et architecture minimaliste tropicale. Un lieu pensé pour l'expérience — pas pour la quantité.</p>
+      <p class="p-eyebrow r">Santa Teresa · Peninsule de Nicoya</p>
+      <h2 class="p-domain-title r">Six villas privees sur les hauteurs du Pacifique.</h2>
+      <p class="p-domain-desc r">Santa Teresa est l'une des destinations les plus prises d'Amerique centrale : surf de classe mondiale, jungle tropicale, couchers de soleil legendaires. Les Roches Retreat est pose en hauteur, entre mer et foret, a 10 minutes du centre de Santa Teresa, a 2h30 de San Jose.<br><br>Chaque villa est une maison privee avec piscine a debordement, vue Pacifique ou jungle, et architecture minimaliste tropicale. Un lieu pense pour l'experience — pas pour la quantite.</p>
       <div class="p-domain-tags r">
-        <span class="p-domain-tag">2h30 de San José</span>
+        <span class="p-domain-tag">2h30 de San Jose</span>
         <span class="p-domain-tag">Surf world-class</span>
-        <span class="p-domain-tag">6 villas privées</span>
-        <span class="p-domain-tag">Piscine à débordement</span>
+        <span class="p-domain-tag">6 villas privees</span>
+        <span class="p-domain-tag">Piscine a debordement</span>
         <span class="p-domain-tag">Vue Pacifique</span>
       </div>
     </div>
@@ -537,12 +537,12 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
   </div>
 </section>
 
-<!-- ── LES 6 VILLAS ────────────────────────────────────────────────────────────── -->
+<!-- ── LES 6 VILLAS ──────────────────────────────────────────────────────── -->
 <section class="p-villas" id="villas" aria-label="Les six villas">
   <div class="p-section-head">
     <p class="p-eyebrow r">Le domaine</p>
-    <h2 class="p-section-title r">Six villas.<br>Six expériences uniques.</h2>
-    <p class="p-section-sub r">Chaque villa dispose de sa propre piscine à débordement et d'une architecture minimaliste tropicale. Cliquez sur « Voir les photos » pour découvrir l'intérieur en détail.</p>
+    <h2 class="p-section-title r">Six villas.<br>Six experiences uniques.</h2>
+    <p class="p-section-sub r">Chaque villa dispose de sa propre piscine a debordement et d'une architecture minimaliste tropicale. Cliquez sur « Voir les photos » pour decouvrir l'interieur en detail.</p>
   </div>
 
   <div class="p-villas-grid">
@@ -555,8 +555,8 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
       </div>
       <div class="p-vcard-body">
         <div class="p-vcard-name">Casa Jade</div>
-        <div class="p-vcard-specs">2 personnes · Piscine privée · Vue océan</div>
-        <div class="p-vcard-desc">La plus intimiste du domaine. Immergée dans la végétation, le Pacifique en contrebas. Idéale pour les couples à la recherche d'isolement total.</div>
+        <div class="p-vcard-specs">2 personnes · Piscine privee · Vue ocean</div>
+        <div class="p-vcard-desc">La plus intimiste du domaine. Immergee dans la vegetation, le Pacifique en contrebas. Ideale pour les couples a la recherche d'isolement total.</div>
         <div class="p-vcard-actions">
           <button class="p-vcard-gallery-btn" onclick="openLightbox('jade',0)">Voir les photos</button>
           <a href="partenaires-tarifs.html#jade" class="p-vcard-tarif-link">Tarifs →</a>
@@ -572,8 +572,8 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
       </div>
       <div class="p-vcard-body">
         <div class="p-vcard-name">Villa Topaze</div>
-        <div class="p-vcard-specs">2 personnes · Piscine privée · Coucher de soleil</div>
-        <div class="p-vcard-desc">La plus lumineuse du domaine. Baignée par la lumière dorée du Pacifique à chaque fin de journée. Un coucher de soleil à couper le souffle, chaque soir.</div>
+        <div class="p-vcard-specs">2 personnes · Piscine privee · Coucher de soleil</div>
+        <div class="p-vcard-desc">La plus lumineuse du domaine. Baignee par la lumiere doree du Pacifique a chaque fin de journee. Un coucher de soleil a couper le souffle, chaque soir.</div>
         <div class="p-vcard-actions">
           <button class="p-vcard-gallery-btn" onclick="openLightbox('topaze',0)">Voir les photos</button>
           <a href="partenaires-tarifs.html#topaze" class="p-vcard-tarif-link">Tarifs →</a>
@@ -589,8 +589,8 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
       </div>
       <div class="p-vcard-body">
         <div class="p-vcard-name">Villa Onyx</div>
-        <div class="p-vcard-specs">2 personnes · Piscine privée · Vue panoramique</div>
-        <div class="p-vcard-desc">Au sommet du domaine. Lever de soleil panoramique de Malpaís à Cabo Blanco. La villa la plus aérienne, pour ceux qui veulent voir le monde à leurs pieds.</div>
+        <div class="p-vcard-specs">2 personnes · Piscine privee · Vue panoramique</div>
+        <div class="p-vcard-desc">Au sommet du domaine. Lever de soleil panoramique de Mal Pais a Cabo Blanco. La villa la plus aerienne, pour ceux qui veulent voir le monde a leurs pieds.</div>
         <div class="p-vcard-actions">
           <button class="p-vcard-gallery-btn" onclick="openLightbox('onyx',0)">Voir les photos</button>
           <a href="partenaires-tarifs.html#onyx" class="p-vcard-tarif-link">Tarifs →</a>
@@ -606,8 +606,8 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
       </div>
       <div class="p-vcard-body">
         <div class="p-vcard-name">Villa Agate</div>
-        <div class="p-vcard-specs">4 personnes · Piscine privée · Niveau jardin</div>
-        <div class="p-vcard-desc">La plus spacieuse, la plus conviviale. Conçue pour les familles et groupes d'amis avec accès direct au jardin tropical et vue ouverte.</div>
+        <div class="p-vcard-specs">4 personnes · Piscine privee · Niveau jardin</div>
+        <div class="p-vcard-desc">La plus spacieuse, la plus conviviale. Concue pour les familles et groupes d'amis avec acces direct au jardin tropical et vue ouverte.</div>
         <div class="p-vcard-actions">
           <button class="p-vcard-gallery-btn" onclick="openLightbox('agate',0)">Voir les photos</button>
           <a href="partenaires-tarifs.html#agate" class="p-vcard-tarif-link">Tarifs →</a>
@@ -623,8 +623,8 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
       </div>
       <div class="p-vcard-body">
         <div class="p-vcard-name">Villa Ambre</div>
-        <div class="p-vcard-specs">2–3 personnes · Piscine privée · Lumière ambre</div>
-        <div class="p-vcard-desc">Elle tire son nom de la lumière ambre qui l'inonde chaque soir. La piscine brille dorée au coucher du soleil. La villa des couples amoureux de la lumière.</div>
+        <div class="p-vcard-specs">2–3 personnes · Piscine privee · Lumiere ambre</div>
+        <div class="p-vcard-desc">Elle tire son nom de la lumiere ambre qui l'inonde chaque soir. La piscine brille doree au coucher du soleil. La villa des couples amoureux de la lumiere.</div>
         <div class="p-vcard-actions">
           <button class="p-vcard-gallery-btn" onclick="openLightbox('ambre',0)">Voir les photos</button>
           <a href="partenaires-tarifs.html#ambre" class="p-vcard-tarif-link">Tarifs →</a>
@@ -640,8 +640,8 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
       </div>
       <div class="p-vcard-body">
         <div class="p-vcard-name">Villa Opale</div>
-        <div class="p-vcard-specs">2 personnes · Piscine privée · Vue changeante</div>
-        <div class="p-vcard-desc">Des reflets changeants selon la lumière du jour. Une surprise à chaque heure. La villa la plus mystérieuse — celle dont vos clients se souviendront longtemps.</div>
+        <div class="p-vcard-specs">2 personnes · Piscine privee · Vue changeante</div>
+        <div class="p-vcard-desc">Des reflets changeants selon la lumiere du jour. Une surprise a chaque heure. La villa la plus mysterieuse — celle dont vos clients se souviendront longtemps.</div>
         <div class="p-vcard-actions">
           <button class="p-vcard-gallery-btn" onclick="openLightbox('opale',0)">Voir les photos</button>
           <a href="partenaires-tarifs.html#opale" class="p-vcard-tarif-link">Tarifs →</a>
@@ -652,65 +652,65 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
   </div>
 </section>
 
-<!-- ── MID CTA BAR ─────────────────────────────────────────────────────────────── -->
+<!-- ── MID CTA BAR ────────────────────────────────────────────────────────── -->
 <div class="p-cta-bar" aria-label="Contact rapide">
-  <div class="p-cta-bar-text">Une villa correspond à vos clients ?</div>
-  <a href="https://wa.me/33667749024?text=Bonjour%2C%20j%27ai%20vu%20les%20villas%20et%20j%27aimerais%20v%C3%A9rifier%20les%20disponibilit%C3%A9s%20pour%20mes%20clients." target="_blank" rel="noopener" class="p-cta-bar-btn">
+  <div class="p-cta-bar-text">Une villa correspond a vos clients ?</div>
+  <a href="https://wa.me/33667749024?text=Bonjour%2C%20j%27ai%20vu%20les%20villas%20et%20j%27aimerais%20verifier%20les%20disponibilites%20pour%20mes%20clients." target="_blank" rel="noopener" class="p-cta-bar-btn">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.858L.073 23.27a.75.75 0 0 0 .916.952l5.565-1.453A11.926 11.926 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.74 9.74 0 0 1-4.97-1.36l-.354-.213-3.668.958.978-3.579-.232-.369A9.712 9.712 0 0 1 2.25 12c0-5.376 4.374-9.75 9.75-9.75s9.75 4.374 9.75 9.75-4.374 9.75-9.75 9.75z"/></svg>
-    Écrire sur WhatsApp
+    Ecrire sur WhatsApp
   </a>
 </div>
 
-<!-- ── LIVE RATES ──────────────────────────────────────────────────────────────── -->
+<!-- ── LIVE RATES ─────────────────────────────────────────────────────────── -->
 <section class="p-live" id="tarifs" aria-label="Tarifs en direct">
   <div class="p-live-card r">
     <div class="p-live-icon" aria-hidden="true">
       <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
     </div>
-    <p class="p-live-eyebrow">Synchronisé en temps réel</p>
+    <p class="p-live-eyebrow">Synchronise en temps reel</p>
     <h2 class="p-live-title">Vos tarifs partenaires<br>en direct.</h2>
-    <p class="p-live-desc">Accédez au calendrier de disponibilité connecté à notre système de réservation. Les prix sont affichés à −20 % du tarif public, avec les nuits minimum par période. Mis à jour automatiquement à chaque modification de notre part.</p>
+    <p class="p-live-desc">Accedez au calendrier de disponibilites connecte a notre systeme de reservation. Les prix sont affiches a −20 % du tarif public, avec les nuits minimum par periode. Mis a jour automatiquement a chaque modification de notre part.</p>
     <a href="partenaires-tarifs.html" class="p-live-btn">
       <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/></svg>
       Consulter le calendrier des tarifs →
     </a>
-    <p class="p-live-note">Données issues de notre panneau admin · Actualisées en temps réel</p>
+    <p class="p-live-note">Donnees issues de notre panneau admin · Actualisees en temps reel</p>
   </div>
 </section>
 
-<!-- ── PROCESS ─────────────────────────────────────────────────────────────────── -->
-<section class="p-process" id="fonctionnement" aria-label="Comment ça marche">
+<!-- ── PROCESS ────────────────────────────────────────────────────────────── -->
+<section class="p-process" id="fonctionnement" aria-label="Comment ca marche">
   <div class="p-section-head">
     <p class="p-eyebrow r">Simple. Rapide. Fiable.</p>
-    <h2 class="p-section-title r">Comment ça marche.</h2>
-    <p class="p-section-sub r">De la demande à l'arrivée de vos clients, tout est géré par nous. Vous n'avez qu'à envoyer la demande.</p>
+    <h2 class="p-section-title r">Comment ca marche.</h2>
+    <p class="p-section-sub r">De la demande a l'arrivee de vos clients, tout est gere par nous. Vous n'avez qu'a envoyer la demande.</p>
   </div>
   <div class="p-steps">
     <div class="p-step r">
       <div class="p-step-num">01</div>
       <div class="p-step-title">Vous envoyez la demande</div>
-      <div class="p-step-body">Via WhatsApp ou le formulaire ci-dessous. Villa souhaitée, dates, nombre de personnes.</div>
+      <div class="p-step-body">Via WhatsApp ou le formulaire ci-dessous. Villa souhaitee, dates, nombre de personnes.</div>
     </div>
     <div class="p-step r">
       <div class="p-step-num">02</div>
       <div class="p-step-title">On confirme sous 2h</div>
-      <div class="p-step-body">Disponibilité confirmée, option ferme de 48h, devis partenaire net envoyé immédiatement.</div>
+      <div class="p-step-body">Disponibilite confirmee, option ferme de 48h, devis partenaire net envoye immediatement.</div>
     </div>
     <div class="p-step r">
       <div class="p-step-num">03</div>
-      <div class="p-step-title">Réservation et contrat</div>
-      <div class="p-step-body">Contrat de partenariat simple, acompte sécurisé. Tout est clair et documenté.</div>
+      <div class="p-step-title">Reservation et contrat</div>
+      <div class="p-step-body">Contrat de partenariat simple, acompte securise. Tout est clair et documente.</div>
     </div>
     <div class="p-step r">
       <div class="p-step-num">04</div>
       <div class="p-step-title">Vos clients arrivent</div>
-      <div class="p-step-body">Accueil personnalisé, conciergerie sur mesure dès le premier jour. Vous n'avez plus rien à faire.</div>
+      <div class="p-step-body">Accueil personnalise, conciergerie sur mesure des le premier jour. Vous n'avez plus rien a faire.</div>
     </div>
   </div>
 </section>
 
-<!-- ── FAQ ─────────────────────────────────────────────────────────────────────── -->
-<section class="p-faq" id="faq" aria-label="Questions fréquentes">
+<!-- ── FAQ ────────────────────────────────────────────────────────────────── -->
+<section class="p-faq" id="faq" aria-label="Questions frequentes">
   <div class="p-section-head">
     <p class="p-eyebrow r">Vos questions</p>
     <h2 class="p-section-title r">FAQ Partenaires.</h2>
@@ -719,18 +719,18 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
 
     <div class="p-faq-item r" role="listitem">
       <button class="p-faq-q" aria-expanded="false" onclick="toggleFaq(this)">
-        Quel est le délai de confirmation d'une réservation ?
+        Quel est le delai de confirmation d'une reservation ?
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
       </button>
-      <div class="p-faq-a">Nous nous engageons à vous répondre sous 2 heures ouvrées, 7j/7. Dès réception de votre demande via WhatsApp ou formulaire, nous vous envoyons les disponibilités exactes et un devis net partenaire. Une option ferme de 48h est posée automatiquement à la demande.</div>
+      <div class="p-faq-a">Nous nous engageons a vous repondre sous 2 heures ouvrables, 7j/7. Des reception de votre demande via WhatsApp ou formulaire, nous vous envoyons les disponibilites exactes et un devis net partenaire. Une option ferme de 48h est posee automatiquement a la demande.</div>
     </div>
 
     <div class="p-faq-item r" role="listitem">
       <button class="p-faq-q" aria-expanded="false" onclick="toggleFaq(this)">
-        Y a-t-il des frais cachés ou commissions supplémentaires ?
+        Y a-t-il des frais caches ou commissions supplementaires ?
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
       </button>
-      <div class="p-faq-a">Aucun. Le tarif net partenaire affiché dans notre calendrier est le prix final que vous payez. La commission de 20 % est déjà intégrée dans ce tarif : vous vendez le prix public à vos clients, la différence est votre marge. Pas de frais de dossier, pas de frais cachés.</div>
+      <div class="p-faq-a">Aucun. Le tarif net partenaire affiche dans notre calendrier est le prix final que vous payez. La commission de 20 % est deja integree dans ce tarif : vous vendez le prix public a vos clients, la difference est votre marge. Pas de frais de dossier, pas de frais caches.</div>
     </div>
 
     <div class="p-faq-item r" role="listitem">
@@ -738,25 +738,25 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
         Comment fonctionne la politique d'annulation ?
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
       </button>
-      <div class="p-faq-a">Notre politique partenaires est flexible et différenciée selon les délais. Les conditions exactes vous sont transmises avec chaque devis. En cas d'annulation du client final, nous travaillons avec vous pour trouver la meilleure solution — report, crédit ou remboursement partiel selon le préavis.</div>
+      <div class="p-faq-a">Notre politique partenaires est flexible et differenciee selon les delais. Les conditions exactes vous sont transmises avec chaque devis. En cas d'annulation du client final, nous travaillons avec vous pour trouver la meilleure solution — report, credit ou remboursement partiel selon le preavis.</div>
     </div>
 
     <div class="p-faq-item r" role="listitem">
       <button class="p-faq-q" aria-expanded="false" onclick="toggleFaq(this)">
-        Proposez-vous des expériences ou services additionnels pour nos clients ?
+        Proposez-vous des experiences ou services additionnels pour nos clients ?
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
       </button>
-      <div class="p-faq-a">Oui. Notre conciergerie locale propose des transferts depuis San José, des cours de surf, du yoga, des excursions en kayak, des dîners privés au bord de la piscine et bien plus. Ces services peuvent être inclus dans votre package ou proposés en option. Nous vous transmettons le catalogue complet sur demande.</div>
+      <div class="p-faq-a">Oui. Notre conciergerie locale propose des transferts depuis San Jose, des cours de surf, du yoga, des excursions en kayak, des diners prives au bord de la piscine et bien plus. Ces services peuvent etre inclus dans votre package ou proposes en option. Nous vous transmettons le catalogue complet sur demande.</div>
     </div>
 
   </div>
 </section>
 
-<!-- ── CONTACT ─────────────────────────────────────────────────────────────────── -->
+<!-- ── CONTACT ────────────────────────────────────────────────────────────── -->
 <section class="p-contact" id="contact" aria-label="Contact partenaires">
   <p class="p-eyebrow r">Travaillons ensemble</p>
-  <h2 class="p-contact-title r">Prêt à proposer<br>Les Roches ?</h2>
-  <p class="p-contact-sub r">Écrivez-nous directement sur WhatsApp — c'est le moyen le plus rapide. On revient vers vous dans les 2 heures. Vous pouvez aussi nous envoyer un email si vous préférez.</p>
+  <h2 class="p-contact-title r">Pret a proposer<br>Les Roches ?</h2>
+  <p class="p-contact-sub r">Ecrivez-nous directement sur WhatsApp — c'est le moyen le plus rapide. On revient vers vous dans les 2 heures. Vous pouvez aussi nous envoyer un email si vous preferez.</p>
   <div class="p-contact-actions">
     <a href="https://wa.me/33667749024?text=Bonjour%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20votre%20programme%20partenaires%20Les%20Roches%20Retreat." target="_blank" rel="noopener" class="p-contact-wa r">
       <svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.858L.073 23.27a.75.75 0 0 0 .916.952l5.565-1.453A11.926 11.926 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.74 9.74 0 0 1-4.97-1.36l-.354-.213-3.668.958.978-3.579-.232-.369A9.712 9.712 0 0 1 2.25 12c0-5.376 4.374-9.75 9.75-9.75s9.75 4.374 9.75 9.75-4.374 9.75-9.75 9.75z"/></svg>
@@ -767,21 +767,21 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
       partenaires@lesrochesretreat.com
     </a>
   </div>
-  <p class="p-contact-note r">Réponse garantie sous 2 heures · Espace réservé aux professionnels agréés</p>
+  <p class="p-contact-note r">Reponse garantie sous 2 heures · Espace reserve aux professionnels agrees</p>
 </section>
 
-<!-- ── FOOTER ──────────────────────────────────────────────────────────────────── -->
+<!-- ── FOOTER ─────────────────────────────────────────────────────────────── -->
 <footer class="p-footer">
   <div class="p-footer-logo">Les Roches Retreat</div>
-  <div class="p-footer-copy">© 2025–2026 · Espace Partenaires · Accès confidentiel</div>
+  <div class="p-footer-copy">(c) 2025–2026 · Espace Partenaires · Acces confidentiel</div>
 </footer>
 
 </div><!-- /#content -->
 
-<!-- ── LIGHTBOX ────────────────────────────────────────────────────────────────── -->
+<!-- ── LIGHTBOX ──────────────────────────────────────────────────────────── -->
 <div id="lightbox" role="dialog" aria-modal="true" aria-label="Galerie photos">
   <button class="lb-close" onclick="closeLightbox()" aria-label="Fermer la galerie">×</button>
-  <button class="lb-arrow" id="lb-prev" onclick="lbNav(-1)" aria-label="Photo précédente">‹</button>
+  <button class="lb-arrow" id="lb-prev" onclick="lbNav(-1)" aria-label="Photo precedente">‹</button>
   <div id="lb-img-wrap">
     <img id="lb-img" src="" alt="Photo villa">
   </div>
@@ -793,14 +793,14 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
   </div>
 </div>
 
-<!-- ── WA FLOAT ────────────────────────────────────────────────────────────────── -->
+<!-- ── WA FLOAT ──────────────────────────────────────────────────────────── -->
 <a class="p-wa-float" href="https://wa.me/33667749024?text=Bonjour%2C%20je%20suis%20un%20prestataire%20et%20je%20souhaite%20en%20savoir%20plus%20sur%20votre%20programme%20partenaires." target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.858L.073 23.27a.75.75 0 0 0 .916.952l5.565-1.453A11.926 11.926 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.74 9.74 0 0 1-4.97-1.36l-.354-.213-3.668.958.978-3.579-.232-.369A9.712 9.712 0 0 1 2.25 12c0-5.376 4.374-9.75 9.75-9.75s9.75 4.374 9.75 9.75-4.374 9.75-9.75 9.75z"/></svg>
 </a>
 
-<!-- ══ SCRIPTS ════════════════════════════════════════════════════════════════════ -->
+<!-- ══ SCRIPTS ════════════════════════════════════════════════════════════ -->
 <script>
-/* ── GATE ──────────────────────────────────────────────────────────────────────── */
+/* ── GATE ──────────────────────────────────────────────────────────────── */
 (function(){
   function getCookie(n){
     return document.cookie.split(';').map(c=>c.trim()).find(c=>c.startsWith(n+'='))?.split('=')[1]||null;
@@ -811,7 +811,18 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
     c.style.display='block';
     c.removeAttribute('aria-hidden');
     document.getElementById('gate').setAttribute('aria-hidden','true');
-    initReveal();
+    // Double rAF ensures browser has repainted before IntersectionObserver observes
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        initReveal();
+        // Safety fallback: if observer hasn't fired after 800ms, reveal all
+        setTimeout(function(){
+          document.querySelectorAll('.r:not(.visible)').forEach(function(el){
+            el.classList.add('visible');
+          });
+        }, 800);
+      });
+    });
   }
   if(getCookie('lr_partner_auth')==='ok'){unlock();return;}
   document.getElementById('gate-input').addEventListener('keydown',function(e){
@@ -825,14 +836,14 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
       unlock();
     } else {
       var err=document.getElementById('gate-err');
-      err.textContent='Code incorrect. Vérifiez auprès de notre équipe.';
+      err.textContent='Code incorrect. Verifiez aupres de notre equipe.';
       document.getElementById('gate-input').value='';
       setTimeout(function(){err.textContent='';},4000);
     }
   };
 })();
 
-/* ── SCROLL REVEAL ─────────────────────────────────────────────────────────────── */
+/* ── SCROLL REVEAL ──────────────────────────────────────────────────────── */
 function initReveal(){
   var obs=new IntersectionObserver(function(entries){
     entries.forEach(function(e){
@@ -842,7 +853,7 @@ function initReveal(){
   document.querySelectorAll('.r').forEach(function(el){obs.observe(el);});
 }
 
-/* ── SMOOTH SCROLL ─────────────────────────────────────────────────────────────── */
+/* ── SMOOTH SCROLL ──────────────────────────────────────────────────────── */
 document.addEventListener('click',function(e){
   var a=e.target.closest('a[href^="#"]');
   if(!a)return;
@@ -850,7 +861,7 @@ document.addEventListener('click',function(e){
   if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
 });
 
-/* ── FAQ ACCORDION ─────────────────────────────────────────────────────────────── */
+/* ── FAQ ACCORDION ──────────────────────────────────────────────────────── */
 window.toggleFaq=function(btn){
   var item=btn.closest('.p-faq-item');
   var isOpen=item.classList.contains('open');
@@ -864,7 +875,7 @@ window.toggleFaq=function(btn){
   }
 };
 
-/* ── LIGHTBOX ──────────────────────────────────────────────────────────────────── */
+/* ── LIGHTBOX ──────────────────────────────────────────────────────────── */
 var GALLERIES={
   jade:{
     name:'Casa Jade',
