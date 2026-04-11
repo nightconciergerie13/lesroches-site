@@ -247,6 +247,109 @@ a{color:inherit;text-decoration:none}
 .villa-bar-wa:hover{background:var(--ter2)}
 .villa-bar-wa svg{width:15px;height:15px}
 
+/* ── MULTI-VILLA SEARCH ─────────────────────────────────────────────────────── */
+.search-wrap{
+  background:var(--w);border:1px solid var(--c2);border-radius:var(--r);
+  padding:1.8rem clamp(1.2rem,3vw,2rem);margin-bottom:2.5rem;
+}
+.search-eyebrow{
+  font-size:.45rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--ter);margin-bottom:.6rem;
+}
+.search-title{
+  font-family:'Gilda Display',serif;font-size:1.5rem;color:var(--ink);
+  margin-bottom:.5rem;line-height:1.2;
+}
+.search-sub{
+  font-size:.7rem;color:var(--mid);line-height:1.6;
+  max-width:520px;margin-bottom:1.4rem;
+}
+.search-form{
+  display:flex;gap:.8rem;align-items:flex-end;flex-wrap:wrap;
+}
+.search-field{
+  display:flex;flex-direction:column;gap:.4rem;flex:1;min-width:140px;
+}
+.search-field span{
+  font-size:.45rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);
+}
+.search-input{
+  padding:.8rem 1rem;border:1px solid var(--c2);border-radius:var(--r);
+  background:var(--c);font-family:'Outfit',sans-serif;font-size:.85rem;
+  font-weight:300;color:var(--ink);outline:none;transition:border-color .2s;
+}
+.search-input:focus{border-color:var(--ter)}
+.search-btn{
+  padding:.9rem 1.4rem;background:var(--ink);color:var(--w);
+  border:none;border-radius:var(--r);cursor:pointer;
+  font-family:'Outfit',sans-serif;font-size:.5rem;letter-spacing:.22em;
+  text-transform:uppercase;transition:background .2s;white-space:nowrap;
+}
+.search-btn:hover{background:var(--ter)}
+.search-btn:disabled{background:var(--mid);cursor:wait}
+.search-meta{
+  margin-top:1.1rem;font-size:.62rem;color:var(--mid);min-height:.9rem;
+  letter-spacing:.04em;
+}
+.search-meta strong{color:var(--ink);font-weight:400;letter-spacing:.06em}
+.search-results{margin-top:1rem}
+.search-row{
+  display:grid;grid-template-columns:56px 1.5fr 1fr auto;gap:1.1rem;align-items:center;
+  padding:1rem 1.1rem;border:1px solid var(--c2);border-radius:var(--r);
+  background:var(--w);margin-bottom:.6rem;transition:border-color .2s;
+}
+.search-row:hover{border-color:var(--sand)}
+.search-row.unavail{opacity:.55}
+.search-row-img{
+  width:56px;height:56px;border-radius:var(--r);overflow:hidden;flex-shrink:0;
+}
+.search-row-img img{width:100%;height:100%;object-fit:cover}
+.search-row-name{
+  font-family:'Gilda Display',serif;font-size:1.05rem;color:var(--ink);
+  line-height:1.2;margin-bottom:.25rem;
+}
+.search-row-specs{
+  font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mid);margin-bottom:.5rem;
+}
+.search-row-status{
+  display:inline-block;
+  font-size:.42rem;letter-spacing:.18em;text-transform:uppercase;
+  padding:.3rem .65rem;border-radius:2px;white-space:nowrap;
+}
+.status-avail{background:#ecfdf5;color:#15803d;border:1px solid #bbf7d0}
+.status-partial{background:#fef9c3;color:#854d0e;border:1px solid #fde68a}
+.status-unavail{background:#fef2f2;color:#b91c1c;border:1px solid #fecaca}
+.search-row-price{text-align:right}
+.search-row-price-main{
+  font-family:'Gilda Display',serif;font-size:1.25rem;color:var(--ter);
+  line-height:1.1;
+}
+.search-row-price-sub{
+  font-size:.52rem;color:var(--mid);letter-spacing:.04em;margin-top:.25rem;
+}
+.search-row-cta{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.7rem 1rem;background:var(--ter);color:var(--w);
+  font-size:.42rem;letter-spacing:.2em;text-transform:uppercase;
+  border-radius:var(--r);white-space:nowrap;transition:background .2s;
+}
+.search-row-cta:hover{background:var(--ter2)}
+.search-row-cta.disabled{background:var(--mid);pointer-events:none;opacity:.6}
+.search-empty{
+  padding:2rem;text-align:center;font-size:.7rem;color:var(--mid);
+  border:1px dashed var(--c2);border-radius:var(--r);
+}
+@media(max-width:720px){
+  .search-row{
+    grid-template-columns:56px 1fr;grid-template-rows:auto auto auto;gap:.6rem 1rem;
+  }
+  .search-row-img{grid-row:1/3}
+  .search-row-price{grid-column:2;text-align:left}
+  .search-row-price-main{font-size:1.15rem}
+  .search-row-cta{grid-column:1/3;justify-content:center;padding:.8rem}
+}
+
 /* DISCLAIMER */
 .disclaimer{
   margin-top:2rem;padding:1.2rem 1.6rem;
@@ -364,9 +467,30 @@ a{color:inherit;text-decoration:none}
 
 <div class="cal-area">
 
+  <!-- ── NEW: MULTI-VILLA SEARCH ────────────────────────────────────────────── -->
+  <section class="search-wrap" id="search-wrap" aria-label="Recherche par dates">
+    <div class="search-eyebrow">Recherche rapide</div>
+    <h2 class="search-title">Disponibilités par dates</h2>
+    <p class="search-sub">Sélectionnez vos dates pour voir en un coup d'œil les villas disponibles et les tarifs nets partenaires pour la période.</p>
+    <div class="search-form">
+      <label class="search-field">
+        <span>Arrivée</span>
+        <input type="date" id="search-in" class="search-input">
+      </label>
+      <label class="search-field">
+        <span>Départ</span>
+        <input type="date" id="search-out" class="search-input">
+      </label>
+      <button type="button" class="search-btn" id="search-btn" onclick="runMultiSearch()">Voir les villas disponibles →</button>
+    </div>
+    <div class="search-meta" id="search-meta"></div>
+    <div class="search-results" id="search-results"></div>
+  </section>
+  <!-- ── /NEW ───────────────────────────────────────────────────────────────── -->
+
   <div class="villa-bar" id="villa-bar">
     <div class="villa-bar-img">
-      <img id="vbar-img" src="images/jade-hero.jpg" alt="">
+      <img id="vbar-img" src="images/jade-hero.webp" alt="">
     </div>
     <div>
       <div class="villa-bar-name" id="vbar-name">Casa Jade</div>
@@ -490,12 +614,12 @@ var SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJl
 var COMMISSION = 0.80;
 
 var VILLAS = {
-  jade:   {name:'Casa Jade',   specs:'2 personnes · Piscine privée · Vue océan',      img:'images/jade-hero.jpg'},
-  topaze: {name:'Villa Topaze',specs:'2 personnes · Piscine privée · Coucher de soleil',img:'images/topaze-hero.jpg'},
-  onyx:   {name:'Villa Onyx',  specs:'2 personnes · Piscine privée · Vue panoramique', img:'images/onyx-hero.jpg'},
-  agate:  {name:'Villa Agate', specs:'4 personnes · Piscine privée · Niveau jardin',   img:'images/agate-hero.jpg'},
-  ambre:  {name:'Villa Ambre', specs:'2–3 personnes · Piscine privée · Lumière ambre', img:'images/ambre-hero.jpg'},
-  opale:  {name:'Villa Opale', specs:'2 personnes · Piscine privée · Vue changeante',  img:'images/opale-hero.jpg'}
+  jade:   {name:'Casa Jade',   specs:'2 personnes · Piscine privée · Vue océan',      img:'images/jade-hero.webp'},
+  topaze: {name:'Villa Topaze',specs:'2 personnes · Piscine privée · Coucher de soleil',img:'images/topaze-hero.webp'},
+  onyx:   {name:'Villa Onyx',  specs:'2 personnes · Piscine privée · Vue panoramique', img:'images/onyx-hero.webp'},
+  agate:  {name:'Villa Agate', specs:'4 personnes · Piscine privée · Niveau jardin',   img:'images/agate-hero.webp'},
+  ambre:  {name:'Villa Ambre', specs:'2–3 personnes · Piscine privée · Lumière ambre', img:'images/ambre-hero.webp'},
+  opale:  {name:'Villa Opale', specs:'2 personnes · Piscine privée · Vue changeante',  img:'images/opale-hero.webp'}
 };
 
 var WA_MSGS = {
@@ -550,6 +674,7 @@ function initApp(){
   });
   updateVillaBar();
   loadAndRender();
+  initSearchDates();
 }
 
 window.selectVilla = function(v){
@@ -644,6 +769,186 @@ async function loadAndRender(){
     console.error(e);
   }
 }
+
+/* ── MULTI-VILLA SEARCH ─────────────────────────────────────────────────────── */
+function parseDateISO(s){
+  var p = s.split('-');
+  return new Date(parseInt(p[0],10), parseInt(p[1],10)-1, parseInt(p[2],10));
+}
+function dateToISO(d){
+  return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+}
+function addDays(d,n){var r=new Date(d);r.setDate(r.getDate()+n);return r;}
+function fmtDateFR(iso){
+  var d = parseDateISO(iso);
+  return pad(d.getDate())+'/'+pad(d.getMonth()+1)+'/'+d.getFullYear();
+}
+
+function initSearchDates(){
+  var inEl  = document.getElementById('search-in');
+  var outEl = document.getElementById('search-out');
+  if(!inEl || !outEl) return;
+  var today = new Date(); today.setHours(0,0,0,0);
+  var todayISO = dateToISO(today);
+  inEl.min  = todayISO;
+  outEl.min = todayISO;
+  if(!inEl.value)  inEl.value  = todayISO;
+  if(!outEl.value) outEl.value = dateToISO(addDays(today, 7));
+}
+
+async function fetchVillaPeriod(villaId, startISO, lastNightISO){
+  var headers = {'apikey': SB_ANON, 'Authorization': 'Bearer '+SB_ANON};
+  var results = await Promise.all([
+    fetch(SB_URL+'/rest/v1/daily_rates?select=date,price_per_night,min_nights&villa_id=eq.'+villaId+'&date=gte.'+startISO+'&date=lte.'+lastNightISO, {headers}),
+    fetch(SB_URL+'/rest/v1/blocked_dates?select=date&villa_id=eq.'+villaId+'&date=gte.'+startISO+'&date=lte.'+lastNightISO, {headers}),
+    fetch(SB_URL+'/rest/v1/villas?select=id,price_per_night,min_nights&id=eq.'+villaId, {headers})
+  ]);
+  var rates   = results[0].ok ? await results[0].json() : [];
+  var blocked = results[1].ok ? await results[1].json() : [];
+  var vData   = results[2].ok ? await results[2].json() : [];
+  return {rates: rates, blocked: blocked, defaults: vData[0] || null};
+}
+
+function computeQuote(data, startISO, endISO){
+  var start = parseDateISO(startISO);
+  var end   = parseDateISO(endISO);
+  var nights = Math.round((end - start) / (1000*60*60*24));
+  var blockedSet = new Set(data.blocked.map(function(b){return b.date;}));
+  var rateMap = {};
+  data.rates.forEach(function(r){rateMap[r.date]=r;});
+
+  var totalRack = 0;
+  var missingRate = 0;
+  var hasBlocked = false;
+  var minNightsRequired = 1;
+
+  for(var i = 0; i < nights; i++){
+    var iso = dateToISO(addDays(start, i));
+    if(blockedSet.has(iso)) hasBlocked = true;
+    var r = rateMap[iso];
+    if(r){
+      totalRack += r.price_per_night || 0;
+      if(r.min_nights && r.min_nights > minNightsRequired) minNightsRequired = r.min_nights;
+    } else if(data.defaults && data.defaults.price_per_night){
+      totalRack += data.defaults.price_per_night;
+      if(data.defaults.min_nights && data.defaults.min_nights > minNightsRequired) minNightsRequired = data.defaults.min_nights;
+    } else {
+      missingRate++;
+    }
+  }
+
+  var status;
+  if(hasBlocked)                       status = 'unavail';
+  else if(nights < minNightsRequired)  status = 'partial';
+  else if(missingRate > 0)             status = 'partial';
+  else                                 status = 'avail';
+
+  var totalPartner = Math.round(totalRack * COMMISSION);
+  return {
+    nights: nights,
+    totalPartner: totalPartner,
+    avgPartner: nights ? Math.round(totalPartner / nights) : 0,
+    minNights: minNightsRequired,
+    status: status
+  };
+}
+
+window.runMultiSearch = async function(){
+  var inEl    = document.getElementById('search-in');
+  var outEl   = document.getElementById('search-out');
+  var meta    = document.getElementById('search-meta');
+  var results = document.getElementById('search-results');
+  var btn     = document.getElementById('search-btn');
+
+  var startISO = inEl.value;
+  var endISO   = outEl.value;
+
+  if(!startISO || !endISO){
+    meta.innerHTML = '<span style="color:var(--red)">Sélectionnez une date d\'arrivée et de départ.</span>';
+    results.innerHTML = '';
+    return;
+  }
+  if(parseDateISO(endISO) <= parseDateISO(startISO)){
+    meta.innerHTML = '<span style="color:var(--red)">La date de départ doit être après la date d\'arrivée.</span>';
+    results.innerHTML = '';
+    return;
+  }
+
+  var nights = Math.round((parseDateISO(endISO) - parseDateISO(startISO)) / (1000*60*60*24));
+  var lastNightISO = dateToISO(addDays(parseDateISO(endISO), -1));
+
+  btn.disabled = true;
+  btn.textContent = 'Recherche…';
+  meta.textContent = '';
+  results.innerHTML = '<div class="cal-status"><div class="cal-spinner"></div><div class="cal-status-text">Interrogation des 6 villas…</div></div>';
+
+  var villaIds = Object.keys(VILLAS);
+  try {
+    var all = await Promise.all(villaIds.map(function(id){
+      return fetchVillaPeriod(id, startISO, lastNightISO);
+    }));
+    var rows = villaIds.map(function(id, i){
+      return {id: id, quote: computeQuote(all[i], startISO, endISO)};
+    });
+
+    var order = {avail:0, partial:1, unavail:2};
+    rows.sort(function(a,b){
+      if(order[a.quote.status] !== order[b.quote.status]){
+        return order[a.quote.status] - order[b.quote.status];
+      }
+      return a.quote.totalPartner - b.quote.totalPartner;
+    });
+
+    meta.innerHTML = '<strong>'+fmtDateFR(startISO)+' → '+fmtDateFR(endISO)+'</strong> · '+nights+' nuit'+(nights>1?'s':'')+' · Tarifs nets partenaires (−20 % du public)';
+
+    var html = '';
+    rows.forEach(function(r){
+      var info = VILLAS[r.id];
+      var q = r.quote;
+      var statusLabel, statusClass;
+      if(q.status === 'avail'){
+        statusLabel = 'Disponible'; statusClass = 'status-avail';
+      } else if(q.status === 'partial'){
+        statusLabel = (nights < q.minNights) ? ('Min. '+q.minNights+' nuits') : 'À confirmer';
+        statusClass = 'status-partial';
+      } else {
+        statusLabel = 'Non disponible'; statusClass = 'status-unavail';
+      }
+
+      var waMsg = encodeURIComponent('Bonjour, je souhaite réserver '+info.name+' du '+fmtDateFR(startISO)+' au '+fmtDateFR(endISO)+' ('+nights+' nuits) pour mes clients.');
+      var waUrl = 'https://wa.me/33667749024?text='+waMsg;
+
+      html += '<div class="search-row'+(q.status==='unavail'?' unavail':'')+'">';
+      html +=   '<div class="search-row-img"><img src="'+info.img+'" alt="'+info.name+'"></div>';
+      html +=   '<div>';
+      html +=     '<div class="search-row-name">'+info.name+'</div>';
+      html +=     '<div class="search-row-specs">'+info.specs+'</div>';
+      html +=     '<span class="search-row-status '+statusClass+'">'+statusLabel+'</span>';
+      html +=   '</div>';
+      if(q.status !== 'unavail' && q.totalPartner > 0){
+        html += '<div class="search-row-price">';
+        html +=   '<div class="search-row-price-main">'+q.totalPartner.toLocaleString('fr-FR')+' $</div>';
+        html +=   '<div class="search-row-price-sub">≈ '+q.avgPartner.toLocaleString('fr-FR')+' $/nuit · '+nights+' nuit'+(nights>1?'s':'')+'</div>';
+        html += '</div>';
+      } else {
+        html += '<div class="search-row-price"><div class="search-row-price-sub">—</div></div>';
+      }
+      if(q.status === 'unavail'){
+        html += '<span class="search-row-cta disabled">Indispo</span>';
+      } else {
+        html += '<a class="search-row-cta" href="'+waUrl+'" target="_blank" rel="noopener">Réserver →</a>';
+      }
+      html += '</div>';
+    });
+    results.innerHTML = html;
+  } catch(err){
+    console.error(err);
+    results.innerHTML = '<div class="cal-error">Impossible d\'interroger Supabase. Réessayez dans un instant.</div>';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Voir les villas disponibles →';
+  }
+};
 
 function renderCalendar(data){
   var today = new Date();
