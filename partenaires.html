@@ -441,6 +441,11 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
 }
 .lb-dot.active{background:var(--ter)}
   
+
+/* ── VILLA SPECS BULLETS ── */
+.p-vcard-specs{display:flex;flex-wrap:wrap;gap:.35rem .6rem;margin:.45rem 0 .7rem;padding:0}
+.spec-item{display:inline-flex;align-items:center;gap:.35rem;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);font-weight:400}
+.spec-item::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--ter);flex-shrink:0}
 /* ── KIT MÉDIA ─── */
 .p-mediakit{padding:5rem var(--gap)}
 .p-mk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-top:2.5rem}
@@ -569,12 +574,17 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
     <!-- JADE -->
     <article class="p-vcard r" data-villa="jade">
       <div class="p-vcard-img">
-        <img src="images/jade-hero.webp" alt="Casa Jade - Les Roches Retreat" loading="lazy">
-        <div class="p-vcard-tag">Villa Jade</div>
+        <img src="images/jade-hero.webp" alt="Jade - Les Roches Retreat" loading="lazy">
+        <div class="p-vcard-tag">Jade</div>
       </div>
       <div class="p-vcard-body">
-        <div class="p-vcard-name">Casa Jade</div>
-        <div class="p-vcard-specs" data-i18n="jade_specs">2 personnes · Piscine privee · Vue ocean</div>
+        <div class="p-vcard-name">Jade</div>
+        <div class="p-vcard-specs">
+          <span class="spec-item" data-i18n-spec="spec_bedrooms">2 chambres</span>
+          <span class="spec-item" data-i18n-spec="spec_bathrooms">2 salles de bain</span>
+          <span class="spec-item" data-i18n-spec="spec_pool">Piscine privée</span>
+          <span class="spec-item" data-i18n-spec="spec_view_ocean">Vue océan</span>
+        </div>
         <div class="p-vcard-desc" data-i18n="jade_desc">La plus intimiste du domaine. Immergee dans la vegetation, le Pacifique en contrebas. Ideale pour les couples a la recherche d'isolement total.</div>
         <div class="p-vcard-actions">
           <button class="p-vcard-gallery-btn" data-i18n-btn-photos data-i18n="vcard_btn_photos" onclick="openLightbox('jade',0)">Voir les photos</button>
@@ -586,12 +596,17 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
     <!-- TOPAZE -->
     <article class="p-vcard r" data-villa="topaze">
       <div class="p-vcard-img">
-        <img src="images/topaze-hero.webp" alt="Villa Topaze - Les Roches Retreat" loading="lazy">
-        <div class="p-vcard-tag">Villa Topaze</div>
+        <img src="images/topaze-hero.webp" alt="Topaze - Les Roches Retreat" loading="lazy">
+        <div class="p-vcard-tag">Topaze</div>
       </div>
       <div class="p-vcard-body">
-        <div class="p-vcard-name">Villa Topaze</div>
-        <div class="p-vcard-specs" data-i18n="topaze_specs">2 personnes · Piscine privee · Coucher de soleil</div>
+        <div class="p-vcard-name">Topaze</div>
+        <div class="p-vcard-specs">
+          <span class="spec-item" data-i18n-spec="spec_bedrooms">2 chambres</span>
+          <span class="spec-item" data-i18n-spec="spec_bathrooms">2 salles de bain</span>
+          <span class="spec-item" data-i18n-spec="spec_pool">Piscine privée</span>
+          <span class="spec-item" data-i18n-spec="spec_view_sunset">Vue coucher de soleil</span>
+        </div>
         <div class="p-vcard-desc" data-i18n="topaze_desc">La plus lumineuse du domaine. Baignee par la lumiere doree du Pacifique a chaque fin de journee. Un coucher de soleil a couper le souffle, chaque soir.</div>
         <div class="p-vcard-actions">
           <button class="p-vcard-gallery-btn" data-i18n-btn-photos data-i18n="vcard_btn_photos" onclick="openLightbox('topaze',0)">Voir les photos</button>
@@ -603,12 +618,17 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
     <!-- ONYX -->
     <article class="p-vcard r" data-villa="onyx">
       <div class="p-vcard-img">
-        <img src="images/onyx-hero.webp" alt="Villa Onyx - Les Roches Retreat" loading="lazy">
-        <div class="p-vcard-tag">Villa Onyx</div>
+        <img src="images/onyx-hero.webp" alt="Onyx - Les Roches Retreat" loading="lazy">
+        <div class="p-vcard-tag">Onyx</div>
       </div>
       <div class="p-vcard-body">
-        <div class="p-vcard-name">Villa Onyx</div>
-        <div class="p-vcard-specs" data-i18n="onyx_specs">2 personnes · Piscine privee · Vue panoramique</div>
+        <div class="p-vcard-name">Onyx</div>
+        <div class="p-vcard-specs">
+          <span class="spec-item" data-i18n-spec="spec_bedrooms">2 chambres</span>
+          <span class="spec-item" data-i18n-spec="spec_bathrooms">2 salles de bain</span>
+          <span class="spec-item" data-i18n-spec="spec_pool">Piscine privée</span>
+          <span class="spec-item" data-i18n-spec="spec_view_panoramic">Vue panoramique</span>
+        </div>
         <div class="p-vcard-desc" data-i18n="onyx_desc">Au sommet du domaine. Lever de soleil panoramique de Mal Pais a Cabo Blanco. La villa la plus aerienne, pour ceux qui veulent voir le monde a leurs pieds.</div>
         <div class="p-vcard-actions">
           <button class="p-vcard-gallery-btn" data-i18n-btn-photos data-i18n="vcard_btn_photos" onclick="openLightbox('onyx',0)">Voir les photos</button>
@@ -620,12 +640,17 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
     <!-- AGATE -->
     <article class="p-vcard r" data-villa="agate">
       <div class="p-vcard-img">
-        <img src="images/agate-hero.webp" alt="Villa Agate - Les Roches Retreat" loading="lazy">
-        <div class="p-vcard-tag">Villa Agate</div>
+        <img src="images/agate-hero.webp" alt="Agate - Les Roches Retreat" loading="lazy">
+        <div class="p-vcard-tag">Agate</div>
       </div>
       <div class="p-vcard-body">
-        <div class="p-vcard-name">Villa Agate</div>
-        <div class="p-vcard-specs" data-i18n="agate_specs">4 personnes · Piscine privee · Niveau jardin</div>
+        <div class="p-vcard-name">Agate</div>
+        <div class="p-vcard-specs">
+          <span class="spec-item" data-i18n-spec="spec_bedrooms">2 chambres</span>
+          <span class="spec-item" data-i18n-spec="spec_bathrooms">2 salles de bain</span>
+          <span class="spec-item" data-i18n-spec="spec_pool">Piscine privée</span>
+          <span class="spec-item" data-i18n-spec="spec_view_garden">Jardin tropical</span>
+        </div>
         <div class="p-vcard-desc" data-i18n="agate_desc">La plus spacieuse, la plus conviviale. Concue pour les familles et groupes d'amis avec acces direct au jardin tropical et vue ouverte.</div>
         <div class="p-vcard-actions">
           <button class="p-vcard-gallery-btn" data-i18n-btn-photos data-i18n="vcard_btn_photos" onclick="openLightbox('agate',0)">Voir les photos</button>
@@ -637,12 +662,17 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
     <!-- AMBRE -->
     <article class="p-vcard r" data-villa="ambre">
       <div class="p-vcard-img">
-        <img src="images/ambre-hero.webp" alt="Villa Ambre - Les Roches Retreat" loading="lazy">
-        <div class="p-vcard-tag">Villa Ambre</div>
+        <img src="images/ambre-hero.webp" alt="Ambre - Les Roches Retreat" loading="lazy">
+        <div class="p-vcard-tag">Ambre</div>
       </div>
       <div class="p-vcard-body">
-        <div class="p-vcard-name">Villa Ambre</div>
-        <div class="p-vcard-specs" data-i18n="ambre_specs">2–3 personnes · Piscine privee · Lumiere ambre</div>
+        <div class="p-vcard-name">Ambre</div>
+        <div class="p-vcard-specs">
+          <span class="spec-item" data-i18n-spec="spec_bedrooms">2 chambres</span>
+          <span class="spec-item" data-i18n-spec="spec_bathrooms">2 salles de bain</span>
+          <span class="spec-item" data-i18n-spec="spec_pool">Piscine privée</span>
+          <span class="spec-item" data-i18n-spec="spec_view_ocean">Vue océan</span>
+        </div>
         <div class="p-vcard-desc" data-i18n="ambre_desc">Elle tire son nom de la lumiere ambre qui l'inonde chaque soir. La piscine brille doree au coucher du soleil. La villa des couples amoureux de la lumiere.</div>
         <div class="p-vcard-actions">
           <button class="p-vcard-gallery-btn" data-i18n-btn-photos data-i18n="vcard_btn_photos" onclick="openLightbox('ambre',0)">Voir les photos</button>
@@ -654,12 +684,17 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
     <!-- OPALE -->
     <article class="p-vcard r" data-villa="opale">
       <div class="p-vcard-img">
-        <img src="images/opale-hero.webp" alt="Villa Opale - Les Roches Retreat" loading="lazy">
-        <div class="p-vcard-tag">Villa Opale</div>
+        <img src="images/opale-hero.webp" alt="Opale - Les Roches Retreat" loading="lazy">
+        <div class="p-vcard-tag">Opale</div>
       </div>
       <div class="p-vcard-body">
-        <div class="p-vcard-name">Villa Opale</div>
-        <div class="p-vcard-specs" data-i18n="opale_specs">2 personnes · Piscine privee · Vue changeante</div>
+        <div class="p-vcard-name">Opale</div>
+        <div class="p-vcard-specs">
+          <span class="spec-item" data-i18n-spec="spec_bedrooms">2 chambres</span>
+          <span class="spec-item" data-i18n-spec="spec_bathrooms">2 salles de bain</span>
+          <span class="spec-item" data-i18n-spec="spec_pool">Piscine privée</span>
+          <span class="spec-item" data-i18n-spec="spec_view_ocean">Vue océan</span>
+        </div>
         <div class="p-vcard-desc" data-i18n="opale_desc">Des reflets changeants selon la lumiere du jour. Une surprise a chaque heure. La villa la plus mysterieuse — celle dont vos clients se souviendront longtemps.</div>
         <div class="p-vcard-actions">
           <button class="p-vcard-gallery-btn" data-i18n-btn-photos data-i18n="vcard_btn_photos" onclick="openLightbox('opale',0)">Voir les photos</button>
@@ -798,32 +833,32 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
   </div>
   <div class="p-mk-grid">
     <div class="p-mk-card r" data-villa-mk="jade">
-      <div class="p-mk-thumb"><img src="images/jade-hero.webp" alt="Villa Jade" loading="lazy"></div>
+      <div class="p-mk-thumb"><img src="images/jade-hero.webp" alt="Jade" loading="lazy"></div>
       <div class="p-mk-name">Villa Jade</div><div class="p-mk-count">16 photos · webp</div>
       <button class="p-mk-btn" onclick="downloadVillaPhotos('jade')" data-i18n="media_dl_btn">Télécharger les photos</button>
     </div>
     <div class="p-mk-card r" data-villa-mk="topaze">
-      <div class="p-mk-thumb"><img src="images/topaze-hero.webp" alt="Villa Topaze" loading="lazy"></div>
+      <div class="p-mk-thumb"><img src="images/topaze-hero.webp" alt="Topaze" loading="lazy"></div>
       <div class="p-mk-name">Villa Topaze</div><div class="p-mk-count">10 photos · webp</div>
       <button class="p-mk-btn" onclick="downloadVillaPhotos('topaze')" data-i18n="media_dl_btn">Télécharger les photos</button>
     </div>
     <div class="p-mk-card r" data-villa-mk="onyx">
-      <div class="p-mk-thumb"><img src="images/onyx-hero.webp" alt="Villa Onyx" loading="lazy"></div>
+      <div class="p-mk-thumb"><img src="images/onyx-hero.webp" alt="Onyx" loading="lazy"></div>
       <div class="p-mk-name">Villa Onyx</div><div class="p-mk-count">10 photos · webp</div>
       <button class="p-mk-btn" onclick="downloadVillaPhotos('onyx')" data-i18n="media_dl_btn">Télécharger les photos</button>
     </div>
     <div class="p-mk-card r" data-villa-mk="agate">
-      <div class="p-mk-thumb"><img src="images/agate-hero.webp" alt="Villa Agate" loading="lazy"></div>
+      <div class="p-mk-thumb"><img src="images/agate-hero.webp" alt="Agate" loading="lazy"></div>
       <div class="p-mk-name">Villa Agate</div><div class="p-mk-count">10 photos · webp</div>
       <button class="p-mk-btn" onclick="downloadVillaPhotos('agate')" data-i18n="media_dl_btn">Télécharger les photos</button>
     </div>
     <div class="p-mk-card r" data-villa-mk="ambre">
-      <div class="p-mk-thumb"><img src="images/ambre-hero.webp" alt="Villa Ambre" loading="lazy"></div>
+      <div class="p-mk-thumb"><img src="images/ambre-hero.webp" alt="Ambre" loading="lazy"></div>
       <div class="p-mk-name">Villa Ambre</div><div class="p-mk-count">10 photos · webp</div>
       <button class="p-mk-btn" onclick="downloadVillaPhotos('ambre')" data-i18n="media_dl_btn">Télécharger les photos</button>
     </div>
     <div class="p-mk-card r" data-villa-mk="opale">
-      <div class="p-mk-thumb"><img src="images/opale-hero.webp" alt="Villa Opale" loading="lazy"></div>
+      <div class="p-mk-thumb"><img src="images/opale-hero.webp" alt="Opale" loading="lazy"></div>
       <div class="p-mk-name">Villa Opale</div><div class="p-mk-count">10 photos · webp</div>
       <button class="p-mk-btn" onclick="downloadVillaPhotos('opale')" data-i18n="media_dl_btn">Télécharger les photos</button>
     </div>
@@ -942,27 +977,27 @@ window.toggleFaq=function(btn){
 /* ── LIGHTBOX ──────────────────────────────────────────────────────────── */
 var GALLERIES={
   jade:{
-    name:'Casa Jade',
+    name:'Jade',
     imgs:['images/jade-hero.webp','images/jade-pool.webp','images/jade-living.webp','images/jade-kitchen.webp','images/jade-deck.webp','images/jade-garden.webp','images/jade-bathroom.webp','images/jade-bedroom.webp','images/jade-sunset-pool.webp','images/jade-drone.webp']
   },
   topaze:{
-    name:'Villa Topaze',
+    name:'Topaze',
     imgs:['images/topaze-hero.webp','images/topaze-pool.webp','images/topaze-salon.webp','images/topaze-cuisine.webp','images/topaze-ext1.webp','images/topaze-ext2.webp','images/topaze-sdb.webp','images/topaze-chambre.webp','images/topaze-sunset.webp']
   },
   onyx:{
-    name:'Villa Onyx',
+    name:'Onyx',
     imgs:['images/onyx-hero.webp','images/onyx-pool.webp','images/onyx-salon.webp','images/onyx-cuisine.webp','images/onyx-ext1.webp','images/onyx-ext2.webp','images/onyx-sdb.webp','images/onyx-chambre.webp','images/onyx-sunset.webp']
   },
   agate:{
-    name:'Villa Agate',
+    name:'Agate',
     imgs:['images/agate-hero.webp','images/agate-pool.webp','images/agate-salon.webp','images/agate-cuisine.webp','images/agate-ext1.webp','images/agate-ext2.webp','images/agate-sdb.webp','images/agate-chambre.webp','images/agate-sunset.webp']
   },
   ambre:{
-    name:'Villa Ambre',
+    name:'Ambre',
     imgs:['images/ambre-hero.webp','images/ambre-pool.webp','images/ambre-salon.webp','images/ambre-cuisine.webp','images/ambre-ext1.webp','images/ambre-ext2.webp','images/ambre-sdb.webp','images/ambre-chambre.webp','images/ambre-sunset.webp']
   },
   opale:{
-    name:'Villa Opale',
+    name:'Opale',
     imgs:['images/opale-hero.webp','images/opale-pool.webp','images/opale-salon.webp','images/opale-cuisine.webp','images/opale-ext1.webp','images/opale-ext2.webp','images/opale-sdb.webp','images/opale-chambre.webp','images/opale-sunset.webp']
   }
 };

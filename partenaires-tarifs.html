@@ -550,7 +550,21 @@ a{color:inherit;text-decoration:none}
 <script src="js/i18n-partenaires.js"></script>
 <script>
 var SB_URL  = 'https://api.example.com';
-var COMMISSION = 0.80;
+/* Commission dynamique selon la saison */
+var COMMISSION_STANDARD   = 0.80; /* 20% — haute saison */
+var COMMISSION_BASSE      = 0.85; /* 15% — basse saison (mai–nov) */
+var COMMISSION_PEAK       = 0.90; /* 10% — 20 déc → 5 jan */
+
+function getCommission(dateISO) {
+  var m = parseInt(dateISO.slice(5,7), 10);
+  var d = parseInt(dateISO.slice(8,10), 10);
+  /* Peak: 20 déc → 5 jan */
+  if ((m === 12 && d >= 20) || (m === 1 && d <= 5)) return COMMISSION_PEAK;
+  /* Basse saison: mai → novembre */
+  if (m >= 5 && m <= 11) return COMMISSION_BASSE;
+  /* Standard: fév–avr + jan 6–19 + déc 1–19 */
+  return COMMISSION_STANDARD;
+}
 
 var VILLAS = {
   jade:   {name:'Casa Jade',   specs:'2 people · Private pool · Ocean view',      img:'jade.jpg'},
@@ -612,7 +626,6 @@ function checkGate(){
 /* CONFIG */
 var SB_URL  = 'https://vrufclzcaswkdgrffdwm.supabase.co';
 var SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZydWZjbHpjYXN3a2RncmZmZHdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyOTE2MjgsImV4cCI6MjA4OTg2NzYyOH0.cHllj6HZms7qf5PVc3LPy057r3rvCv6JyjfAfVlH34E';
-var COMMISSION = 0.80;
 
 var VILLAS = {
   jade:   {name:'Casa Jade',   specs:'2 personnes · Piscine privée · Vue océan',      img:'images/jade-hero.webp'},
@@ -819,6 +832,7 @@ function computeQuote(data, startISO, endISO){
   data.rates.forEach(function(r){rateMap[r.date]=r;});
 
   var totalRack = 0;
+  var totalPartner = 0;
   var missingRate = 0;
   var hasBlocked = false;
   var minNightsRequired = 1;
@@ -828,10 +842,14 @@ function computeQuote(data, startISO, endISO){
     if(blockedSet.has(iso)) hasBlocked = true;
     var r = rateMap[iso];
     if(r){
-      totalRack += r.price_per_night || 0;
+      var rp = r.price_per_night || 0;
+      totalRack += rp;
+      totalPartner += Math.round(rp * getCommission(iso));
       if(r.min_nights && r.min_nights > minNightsRequired) minNightsRequired = r.min_nights;
     } else if(data.defaults && data.defaults.price_per_night){
-      totalRack += data.defaults.price_per_night;
+      var dp = data.defaults.price_per_night;
+      totalRack += dp;
+      totalPartner += Math.round(dp * getCommission(iso));
       if(data.defaults.min_nights && data.defaults.min_nights > minNightsRequired) minNightsRequired = data.defaults.min_nights;
     } else {
       missingRate++;
@@ -844,7 +862,7 @@ function computeQuote(data, startISO, endISO){
   else if(missingRate > 0)             status = 'partial';
   else                                 status = 'avail';
 
-  var totalPartner = Math.round(totalRack * COMMISSION);
+  /* totalPartner is now computed per-night with dynamic commission */
   return {
     nights: nights,
     totalPartner: totalPartner,
@@ -984,13 +1002,13 @@ function renderCalendar(data){
     if(isBlocked){
       inner += '<div class="cell-blocked-label">Non dispo</div>';
     } else if(rate){
-      var partnerPrice = Math.round(rate.price_per_night * COMMISSION);
+      var partnerPrice = Math.round(rate.price_per_night * getCommission(rate.date || dateToISO(new Date())));
       inner += '<div class="cell-price">'+partnerPrice+' $</div>';
       if(rate.min_nights && rate.min_nights > 1){
         inner += '<div class="cell-min">min '+rate.min_nights+'n</div>';
       }
     } else if(data.defaults && data.defaults.price_per_night){
-      var defPrice = Math.round(data.defaults.price_per_night * COMMISSION);
+      var defPrice = Math.round(data.defaults.price_per_night * COMMISSION_STANDARD);
       inner += '<div class="cell-default-price">~'+defPrice+' $</div>';
       if(data.defaults.min_nights && data.defaults.min_nights > 1){
         inner += '<div class="cell-min">min '+data.defaults.min_nights+'n</div>';

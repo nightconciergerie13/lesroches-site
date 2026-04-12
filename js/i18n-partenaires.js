@@ -113,6 +113,15 @@ var LR_I18N = {
 
     /* ── FOOTER ── */
     footer_copy: '(c) 2025–2026 · Espace Partenaires · Accès confidentiel',
+    /* ── VILLA SPECS (bullet points) ── */
+    spec_bedrooms:      '2 chambres',
+    spec_bathrooms:     '2 salles de bain privées',
+    spec_pool:          'Piscine privée',
+    spec_view_ocean:    'Vue océan',
+    spec_view_sunset:   'Vue coucher de soleil',
+    spec_view_panoramic:'Vue panoramique',
+    spec_view_garden:   'Jardin tropical',
+
 
     /* ── MEDIA KIT ── */
     media_eyebrow:  'Ressources partenaires',
@@ -236,6 +245,15 @@ var LR_I18N = {
     contact_note:    'Reply guaranteed within 2 hours · Reserved for approved professionals',
 
     footer_copy: '(c) 2025–2026 · Partner Portal · Confidential access',
+    /* ── VILLA SPECS (bullet points) ── */
+    spec_bedrooms:      '2 bedrooms',
+    spec_bathrooms:     '2 private bathrooms',
+    spec_pool:          'Private pool',
+    spec_view_ocean:    'Ocean view',
+    spec_view_sunset:   'Sunset view',
+    spec_view_panoramic:'Panoramic view',
+    spec_view_garden:   'Tropical garden',
+
 
     media_eyebrow:  'Partner resources',
     media_title:    'Media kit.',
@@ -357,6 +375,15 @@ var LR_I18N = {
     contact_note:    'Respuesta garantizada en 2 horas · Reservado a profesionales acreditados',
 
     footer_copy: '(c) 2025–2026 · Portal de Socios · Acceso confidencial',
+    /* ── VILLA SPECS (bullet points) ── */
+    spec_bedrooms:      '2 habitaciones',
+    spec_bathrooms:     '2 baños privados',
+    spec_pool:          'Piscina privada',
+    spec_view_ocean:    'Vista al océano',
+    spec_view_sunset:   'Vista al atardecer',
+    spec_view_panoramic:'Vista panorámica',
+    spec_view_garden:   'Jardín tropical',
+
 
     media_eyebrow:  'Recursos para socios',
     media_title:    'Kit de medios.',
@@ -419,6 +446,14 @@ function applyLang(lang, pageType) {
       } else {
         el.textContent = t[key];
       }
+    }
+  });
+
+  // Walk all data-i18n-spec elements (villa bullet specs)
+  document.querySelectorAll('[data-i18n-spec]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-spec');
+    if (t[key] \!== undefined) {
+      el.textContent = t[key];
     }
   });
 
