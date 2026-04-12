@@ -577,12 +577,12 @@ tr:hover td{background:#faf9f7}
       </div><!-- /page-daily -->
 
       
-      <\!-- ── PAGE: PARTENAIRES ── -->
+      <!-- ── PAGE: PARTENAIRES ── -->
       <div class="page" id="page-partners">
         <div class="page-title">Espace Partenaires</div>
         <div class="page-sub">Pilotage du portail partenaires — accès, tarifs, disponibilités en temps réel</div>
 
-        <\!-- Quick links -->
+        <!-- Quick links -->
         <div class="table-wrap" style="margin-bottom:1.5rem;padding:1.4rem 1.6rem">
           <div class="table-title" style="margin-bottom:1rem">Accès rapide</div>
           <div class="partner-quick-links">
@@ -601,7 +601,7 @@ tr:hover td{background:#faf9f7}
           </div>
         </div>
 
-        <\!-- Acces & mot de passe -->
+        <!-- Acces & mot de passe -->
         <div class="table-wrap" style="margin-bottom:1.5rem;padding:1.4rem 1.6rem">
           <div class="table-title" style="margin-bottom:.4rem">Code d acces partenaire</div>
           <div style="font-size:.62rem;color:var(--mid);margin-bottom:.8rem">Partage avec les agences agreees. Le nouveau code sera actif immediatement.</div>
@@ -620,7 +620,7 @@ tr:hover td{background:#faf9f7}
           <div id="partner-pwd-msg" style="font-size:.62rem;margin-top:.6rem;min-height:1rem"></div>
         </div>
 
-        <\!-- Disponibilites 7 prochains jours -->
+        <!-- Disponibilites 7 prochains jours -->
         <div class="table-wrap" style="margin-bottom:1.5rem;padding:1.4rem 1.6rem">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
             <div class="table-title">Disponibilites -- 7 prochains jours</div>
@@ -631,7 +631,7 @@ tr:hover td{background:#faf9f7}
           </div>
         </div>
 
-        <\!-- Stats -->
+        <!-- Stats -->
         <div class="table-wrap" style="padding:1.4rem 1.6rem">
           <div class="table-title" style="margin-bottom:1rem">Resume</div>
           <div class="partner-stat-row">
@@ -2197,8 +2197,8 @@ function changePartnerPwd() {
   var p1 = document.getElementById('partner-new-pwd').value.trim();
   var p2 = document.getElementById('partner-new-pwd2').value.trim();
   var msg = document.getElementById('partner-pwd-msg');
-  if (\!p1 || p1.length < 8) { msg.style.color='var(--red)'; msg.textContent='Le code doit faire au moins 8 caractères.'; return; }
-  if (p1 \!== p2) { msg.style.color='var(--red)'; msg.textContent='Les deux codes ne correspondent pas.'; return; }
+  if (!p1 || p1.length < 8) { msg.style.color='var(--red)'; msg.textContent='Le code doit faire au moins 8 caractères.'; return; }
+  if (p1 !== p2) { msg.style.color='var(--red)'; msg.textContent='Les deux codes ne correspondent pas.'; return; }
   localStorage.setItem(PARTNER_PWD_KEY, p1);
   msg.style.color='var(--green)';
   msg.textContent='✓ Code mis à jour. Note : ce changement est local à ce navigateur. Pour le déployer globalement, contactez votre développeur.';
@@ -2237,7 +2237,7 @@ async function loadPartnerAvail() {
         if (blocked.has(iso)) { hasBlocked = true; }
         else {
           var r = rates.find(function(x){ return x.date === iso; });
-          if (\!r) { hasGap = true; }
+          if (!r) { hasGap = true; }
           else { nights++; total += r.rack_price * COMMISSION; }
         }
         cur.setDate(cur.getDate()+1);
