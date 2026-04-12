@@ -1261,9 +1261,9 @@ function ucalQuickPick() {
   const end   = document.getElementById('ucal-qp-end').value;
 
   if (!villa) { toast('Choisissez une villa', 'red'); return; }
-  if (!start) { toast('Choisissez une date d'arrivée', 'red'); return; }
-  if (!end)   { toast('Choisissez une date de départ', 'red'); return; }
-  if (end < start) { toast('Le départ doit être après l'arrivée', 'red'); return; }
+  if (!start) { toast("Choisissez une date d'arrivée", "red"); return; }
+  if (!end)   { toast("Choisissez une date de départ", "red"); return; }
+  if (end < start) { toast("Le départ doit être après l'arrivée", "red"); return; }
 
   ucalSelVilla = villa;
   ucalSelStart = start;
