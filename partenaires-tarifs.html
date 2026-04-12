@@ -264,6 +264,25 @@ a{color:inherit;text-decoration:none}
   font-size:.7rem;color:var(--mid);line-height:1.6;
   max-width:520px;margin-bottom:1.4rem;
 }
+
+/* ── Range date picker ── */
+.rp-calendar{position:relative;background:var(--c);border:1px solid var(--c2);border-radius:var(--r);padding:1rem;margin-top:.6rem;max-width:340px;box-shadow:0 4px 24px rgba(0,0,0,.08);z-index:50}
+.rp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem}
+.rp-month{font-family:'Gilda Display',serif;font-size:.9rem;color:var(--ink)}
+.rp-nav{background:none;border:1px solid var(--c2);border-radius:var(--r);width:32px;height:32px;cursor:pointer;font-size:1.1rem;color:var(--mid);transition:all .2s;display:flex;align-items:center;justify-content:center}
+.rp-nav:hover{border-color:var(--ter);color:var(--ter)}
+.rp-weekdays{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:.4rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);margin-bottom:.4rem}
+.rp-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.rp-day{padding:.55rem .2rem;text-align:center;font-size:.75rem;cursor:pointer;border-radius:4px;transition:all .15s;color:var(--ink);font-family:'Outfit',sans-serif}
+.rp-day:hover:not(.rp-disabled):not(.rp-empty){background:var(--sand);color:var(--ink)}
+.rp-day.rp-today{font-weight:600}
+.rp-day.rp-selected{background:var(--ter);color:#fff;font-weight:500}
+.rp-day.rp-in-range{background:rgba(184,115,74,.12);color:var(--ink)}
+.rp-day.rp-disabled{color:var(--c2);cursor:default}
+.rp-day.rp-empty{cursor:default}
+.rp-hint{font-size:.5rem;color:var(--mid);text-align:center;margin-top:.6rem;letter-spacing:.08em}
+.search-field{cursor:pointer}
+.search-input[readonly]{cursor:pointer;background:var(--c)}
 .search-form{
   display:flex;gap:.8rem;align-items:flex-end;flex-wrap:wrap;
 }
@@ -446,7 +465,7 @@ a{color:inherit;text-decoration:none}
   <div class="cal-header-inner">
     <p class="cal-eyebrow">Synchronized in real time</p>
     <h1 class="cal-title">Partner rates · Direct</h1>
-    <p class="cal-sub">Prices shown at -20% of public rate. Minimum nights included. Data automatically updated from our admin panel.</p>
+    <p class="cal-sub">Prices shown at -15% of public rate. Minimum nights included. Data automatically updated from our admin panel.</p>
     <div class="cal-badge">
       <span class="cal-badge-dot"></span>
       Connected to our system · Real-time update
@@ -456,12 +475,12 @@ a{color:inherit;text-decoration:none}
 
 <div class="tabs-wrap">
   <div class="tabs" role="tablist" aria-label="Villa selection">
-    <button class="tab active" role="tab" aria-selected="true"  data-villa="jade"   onclick="selectVilla('jade')">Casa Jade</button>
-    <button class="tab"        role="tab" aria-selected="false" data-villa="topaze" onclick="selectVilla('topaze')">Villa Topaze</button>
-    <button class="tab"        role="tab" aria-selected="false" data-villa="onyx"   onclick="selectVilla('onyx')">Villa Onyx</button>
-    <button class="tab"        role="tab" aria-selected="false" data-villa="agate"  onclick="selectVilla('agate')">Villa Agate</button>
-    <button class="tab"        role="tab" aria-selected="false" data-villa="ambre"  onclick="selectVilla('ambre')">Villa Ambre</button>
-    <button class="tab"        role="tab" aria-selected="false" data-villa="opale"  onclick="selectVilla('opale')">Villa Opale</button>
+    <button class="tab active" role="tab" aria-selected="true"  data-villa="jade"   onclick="selectVilla('jade')">Jade</button>
+    <button class="tab"        role="tab" aria-selected="false" data-villa="topaze" onclick="selectVilla('topaze')">Topaze</button>
+    <button class="tab"        role="tab" aria-selected="false" data-villa="onyx"   onclick="selectVilla('onyx')">Onyx</button>
+    <button class="tab"        role="tab" aria-selected="false" data-villa="agate"  onclick="selectVilla('agate')">Agate</button>
+    <button class="tab"        role="tab" aria-selected="false" data-villa="ambre"  onclick="selectVilla('ambre')">Ambre</button>
+    <button class="tab"        role="tab" aria-selected="false" data-villa="opale"  onclick="selectVilla('opale')">Opale</button>
   </div>
 </div>
 
@@ -473,15 +492,27 @@ a{color:inherit;text-decoration:none}
     <h2 class="search-title" data-i18n="search_title">Disponibilités par dates</h2>
     <p class="search-sub" data-i18n="search_sub">Sélectionnez vos dates pour voir les villas disponibles et les tarifs nets partenaires.</p>
     <div class="search-form">
-      <label class="search-field">
+      <label class="search-field" onclick="openRangePicker('in')">
         <span data-i18n="search_label_in">Arrivée</span>
-        <input type="date" id="search-in" class="search-input">
+        <input type="text" id="search-in-display" class="search-input" placeholder="── / ── / ────" readonly>
+        <input type="hidden" id="search-in">
       </label>
-      <label class="search-field">
+      <label class="search-field" onclick="openRangePicker('out')">
         <span data-i18n="search_label_out">Départ</span>
-        <input type="date" id="search-out" class="search-input">
+        <input type="text" id="search-out-display" class="search-input" placeholder="── / ── / ────" readonly>
+        <input type="hidden" id="search-out">
       </label>
       <button type="button" class="search-btn" id="search-btn" onclick="runMultiSearch()" data-i18n="search_btn">Voir les villas disponibles →</button>
+    </div>
+    <div class="rp-calendar" id="rp-calendar" style="display:none">
+      <div class="rp-header">
+        <button class="rp-nav" onclick="rpChangeMonth(-1)">‹</button>
+        <span class="rp-month" id="rp-month-label"></span>
+        <button class="rp-nav" onclick="rpChangeMonth(1)">›</button>
+      </div>
+      <div class="rp-weekdays"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+      <div class="rp-days" id="rp-days"></div>
+      <div class="rp-hint" id="rp-hint"></div>
     </div>
     <div class="search-meta" id="search-meta"></div>
     <div class="search-results" id="search-results"></div>
@@ -493,10 +524,10 @@ a{color:inherit;text-decoration:none}
       <img id="vbar-img" src="images/jade-hero.webp" alt="">
     </div>
     <div>
-      <div class="villa-bar-name" id="vbar-name">Casa Jade</div>
+      <div class="villa-bar-name" id="vbar-name">Jade</div>
       <div class="villa-bar-specs" id="vbar-specs">2 people · Private pool · Ocean view</div>
     </div>
-    <a id="vbar-wa" href="https://wa.me/33667749024?text=Hello%2C%20I%20want%20to%20check%20availability%20of%20Casa%20Jade%20for%20my%20clients." target="_blank" rel="noopener" class="villa-bar-wa">
+    <a id="vbar-wa" href="https://wa.me/33667749024?text=Hello%2C%20I%20want%20to%20check%20availability%20of%20Jade%20for%20my%20clients." target="_blank" rel="noopener" class="villa-bar-wa">
       <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.858L.073 23.27a.75.75 0 0 0 .916.952l5.565-1.453A11.926 11.926 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.74 9.74 0 0 1-4.97-1.36l-.354-.213-3.668.958.978-3.579-.232-.369A9.712 9.712 0 0 1 2.25 12c0-5.376 4.374-9.75 9.75-9.75s9.75 4.374 9.75 9.75-4.374 9.75-9.75 9.75z"/></svg>
       Check availability
     </a>
@@ -536,7 +567,7 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <div class="disclaimer">
-    <strong>Displayed rates:</strong> Net partner prices at -20% of public rate. Commission included — the displayed rate is what you pay. Minimum night according to period displayed on each date. <strong>Rates may vary</strong> depending on period and demand — this calendar always reflects our current pricing. For any reservation or question, contact us directly on WhatsApp.
+    <strong>Displayed rates:</strong> Net partner prices at -15% of public rate. Commission of 15% included — the displayed rate is what you pay. Minimum night according to period displayed on each date. <strong>Rates may vary</strong> depending on period and demand — this calendar always reflects our current pricing. For any reservation or question, contact us directly on WhatsApp.
   </div>
 
 </div>
@@ -549,100 +580,39 @@ a{color:inherit;text-decoration:none}
 
 <script src="js/i18n-partenaires.js"></script>
 <script>
-var SB_URL  = 'https://api.example.com';
 /* Commission dynamique selon la saison */
-var COMMISSION_STANDARD   = 0.80; /* 20% — haute saison */
-var COMMISSION_BASSE      = 0.85; /* 15% — basse saison (mai–nov) */
-var COMMISSION_PEAK       = 0.90; /* 10% — 20 déc → 5 jan */
+var COMMISSION_STANDARD   = 0.85; /* 15% — standard */
+var COMMISSION_BASSE      = 0.85; /* 15% — basse saison (mai-nov) */
+var COMMISSION_PEAK       = 0.90; /* 10% — 20 dec - 5 jan */
 
 function getCommission(dateISO) {
   var m = parseInt(dateISO.slice(5,7), 10);
   var d = parseInt(dateISO.slice(8,10), 10);
-  /* Peak: 20 déc → 5 jan */
   if ((m === 12 && d >= 20) || (m === 1 && d <= 5)) return COMMISSION_PEAK;
-  /* Basse saison: mai → novembre */
   if (m >= 5 && m <= 11) return COMMISSION_BASSE;
-  /* Standard: fév–avr + jan 6–19 + déc 1–19 */
   return COMMISSION_STANDARD;
 }
 
-var VILLAS = {
-  jade:   {name:'Casa Jade',   specs:'2 people · Private pool · Ocean view',      img:'jade.jpg'},
-  topaze: {name:'Villa Topaze',specs:'2 people · Private pool · Sunset',img:'topaze.jpg'},
-  onyx:   {name:'Villa Onyx',  specs:'2 people · Private pool · Panoramic', img:'onyx.jpg'},
-  agate:  {name:'Villa Agate', specs:'4 people · Private pool · Garden level',   img:'agate.jpg'},
-  ambre:  {name:'Villa Ambre', specs:'2-3 people · Private pool · Amber light', img:'ambre.jpg'},
-  opale:  {name:'Villa Opale', specs:'2 people · Private pool · Changing view',  img:'opale.jpg'}
-};
-
-var curVilla = 'jade';
-var curYear  = new Date().getFullYear();
-var curMonth = new Date().getMonth();
-
-function updateVillaBar(){
-  var info = VILLAS[curVilla];
-  document.getElementById('vbar-name').textContent = info.name;
-  document.getElementById('vbar-specs').textContent = info.specs;
-}
-
-window.selectVilla = function(v){
-  curVilla = v;
-  document.querySelectorAll('.tab').forEach(function(t){
-    t.classList.toggle('active', t.dataset.villa === v);
-  });
-  updateVillaBar();
-};
-
-window.changeMonth = function(dir){
-  curMonth += dir;
-  if(curMonth < 0){curMonth = 11; curYear--;}
-  if(curMonth > 11){curMonth = 0;  curYear++;}
-};
-
-window.jumpToMonth = function(offset){
-  var d = new Date();
-  d.setMonth(d.getMonth() + offset);
-  curYear  = d.getFullYear();
-  curMonth = d.getMonth();
-};
-
-function checkGate(){
-  var v=document.getElementById('gate-input').value.trim();
-  if(v==='RochesPartner26'){
-    document.getElementById('gate').style.display='none';
-    document.getElementById('content').style.display='block';
-    updateVillaBar();
-  }
-}
-</script>
-
-</body>
-</html>
- 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.858L.073 23.27a.75.75 0 0 0 .916.952l5.565-1.453A11.926 11.926 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.74 9.74 0 0 1-4.97-1.36l-.354-.213-3.668.958.978-3.579-.232-.369A9.712 9.712 0 0 1 2.25 12c0-5.376 4.374-9.75 9.75-9.75s9.75 4.374 9.75 9.75-4.374 9.75-9.75 9.75z"/></svg>
-</a>
-
-<!-- SCRIPTS -->
-<script>
 /* CONFIG */
 var SB_URL  = 'https://vrufclzcaswkdgrffdwm.supabase.co';
 var SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZydWZjbHpjYXN3a2RncmZmZHdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyOTE2MjgsImV4cCI6MjA4OTg2NzYyOH0.cHllj6HZms7qf5PVc3LPy057r3rvCv6JyjfAfVlH34E';
 
 var VILLAS = {
-  jade:   {name:'Casa Jade',   specs:'2 personnes · Piscine privée · Vue océan',      img:'images/jade-hero.webp'},
-  topaze: {name:'Villa Topaze',specs:'2 personnes · Piscine privée · Coucher de soleil',img:'images/topaze-hero.webp'},
-  onyx:   {name:'Villa Onyx',  specs:'2 personnes · Piscine privée · Vue panoramique', img:'images/onyx-hero.webp'},
-  agate:  {name:'Villa Agate', specs:'4 personnes · Piscine privée · Niveau jardin',   img:'images/agate-hero.webp'},
-  ambre:  {name:'Villa Ambre', specs:'2–3 personnes · Piscine privée · Lumière ambre', img:'images/ambre-hero.webp'},
-  opale:  {name:'Villa Opale', specs:'2 personnes · Piscine privée · Vue changeante',  img:'images/opale-hero.webp'}
+  jade:   {name:'Jade',   specs:'2 personnes · Piscine privée · Vue océan',      img:'images/jade-hero.webp'},
+  topaze: {name:'Topaze',specs:'2 personnes · Piscine privée · Coucher de soleil',img:'images/topaze-hero.webp'},
+  onyx:   {name:'Onyx',  specs:'2 personnes · Piscine privée · Vue panoramique', img:'images/onyx-hero.webp'},
+  agate:  {name:'Agate', specs:'4 personnes · Piscine privée · Niveau jardin',   img:'images/agate-hero.webp'},
+  ambre:  {name:'Ambre', specs:'2–3 personnes · Piscine privée · Lumière ambre', img:'images/ambre-hero.webp'},
+  opale:  {name:'Opale', specs:'2 personnes · Piscine privée · Vue changeante',  img:'images/opale-hero.webp'}
 };
 
 var WA_MSGS = {
-  jade:   'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Casa%20Jade%20pour%20mes%20clients.',
-  topaze: 'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Villa%20Topaze%20pour%20mes%20clients.',
-  onyx:   'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Villa%20Onyx%20pour%20mes%20clients.',
-  agate:  'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Villa%20Agate%20pour%20mes%20clients.',
-  ambre:  'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Villa%20Ambre%20pour%20mes%20clients.',
-  opale:  'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Villa%20Opale%20pour%20mes%20clients.'
+  jade:   'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Jade%20pour%20mes%20clients.',
+  topaze: 'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Topaze%20pour%20mes%20clients.',
+  onyx:   'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Onyx%20pour%20mes%20clients.',
+  agate:  'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Agate%20pour%20mes%20clients.',
+  ambre:  'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Ambre%20pour%20mes%20clients.',
+  opale:  'Bonjour%2C%20je%20souhaite%20vérifier%20les%20disponibilités%20de%20Opale%20pour%20mes%20clients.'
 };
 
 var FR_MONTHS = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
@@ -918,7 +888,7 @@ window.runMultiSearch = async function(){
       return a.quote.totalPartner - b.quote.totalPartner;
     });
 
-    meta.innerHTML = '<strong>'+fmtDateFR(startISO)+' → '+fmtDateFR(endISO)+'</strong> · '+nights+' nuit'+(nights>1?'s':'')+' · Tarifs nets partenaires (−20 % du public)';
+    meta.innerHTML = '<strong>'+fmtDateFR(startISO)+' → '+fmtDateFR(endISO)+'</strong> · '+nights+' nuit'+(nights>1?'s':'')+' · Tarifs nets partenaires (−15 % du public)';
 
     var html = '';
     rows.forEach(function(r){
@@ -1039,6 +1009,137 @@ function renderCalendar(data){
 
   /* init i18n */
   window.addEventListener('DOMContentLoaded', function(){ initI18n('tarifs'); });
+
+
+/* ── Range Date Picker ─────────────────────────────────────────────────── */
+var rpYear, rpMonth, rpStart = null, rpEnd = null, rpPhase = 'in';
+var RP_MONTHS_FR = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+
+function openRangePicker(phase) {
+  rpPhase = phase || 'in';
+  var cal = document.getElementById('rp-calendar');
+  if (cal.style.display === 'none' || cal.style.display === '') {
+    var now = new Date();
+    rpYear = now.getFullYear();
+    rpMonth = now.getMonth();
+    cal.style.display = 'block';
+  }
+  renderRP();
+}
+
+function rpChangeMonth(dir) {
+  rpMonth += dir;
+  if (rpMonth < 0) { rpMonth = 11; rpYear--; }
+  if (rpMonth > 11) { rpMonth = 0; rpYear++; }
+  renderRP();
+}
+
+function rpPad(n) { return n < 10 ? '0' + n : '' + n; }
+
+function renderRP() {
+  var label = document.getElementById('rp-month-label');
+  label.textContent = RP_MONTHS_FR[rpMonth] + ' ' + rpYear;
+
+  var container = document.getElementById('rp-days');
+  container.innerHTML = '';
+
+  var firstDay = new Date(rpYear, rpMonth, 1).getDay();
+  firstDay = firstDay === 0 ? 6 : firstDay - 1; // Monday = 0
+  var daysInMonth = new Date(rpYear, rpMonth + 1, 0).getDate();
+  var today = new Date(); today.setHours(0,0,0,0);
+
+  // Empty cells
+  for (var i = 0; i < firstDay; i++) {
+    var empty = document.createElement('div');
+    empty.className = 'rp-day rp-empty';
+    container.appendChild(empty);
+  }
+
+  for (var d = 1; d <= daysInMonth; d++) {
+    var cell = document.createElement('div');
+    cell.className = 'rp-day';
+    cell.textContent = d;
+    var dt = new Date(rpYear, rpMonth, d);
+    var iso = rpYear + '-' + rpPad(rpMonth+1) + '-' + rpPad(d);
+
+    if (dt < today) {
+      cell.classList.add('rp-disabled');
+    } else {
+      cell.dataset.iso = iso;
+      cell.addEventListener('click', rpSelect);
+    }
+
+    if (dt.getTime() === today.getTime()) cell.classList.add('rp-today');
+
+    // Highlight range
+    if (rpStart && iso === rpStart) cell.classList.add('rp-selected');
+    if (rpEnd && iso === rpEnd) cell.classList.add('rp-selected');
+    if (rpStart && rpEnd && iso > rpStart && iso < rpEnd) cell.classList.add('rp-in-range');
+
+    container.appendChild(cell);
+  }
+
+  // Hint
+  var hint = document.getElementById('rp-hint');
+  if (\!rpStart) {
+    hint.textContent = 'Sélectionnez la date d\'arrivée';
+  } else if (\!rpEnd) {
+    hint.textContent = 'Sélectionnez la date de départ';
+  } else {
+    hint.textContent = '';
+  }
+}
+
+function rpSelect(e) {
+  var iso = e.target.dataset.iso;
+  if (\!iso) return;
+
+  if (\!rpStart || (rpStart && rpEnd)) {
+    // First click or restart
+    rpStart = iso;
+    rpEnd = null;
+    document.getElementById('search-in').value = iso;
+    document.getElementById('search-in-display').value = rpFormatDate(iso);
+    document.getElementById('search-out').value = '';
+    document.getElementById('search-out-display').value = '';
+    renderRP();
+  } else {
+    // Second click = end date
+    if (iso <= rpStart) {
+      // Clicked before start, restart
+      rpStart = iso;
+      rpEnd = null;
+      document.getElementById('search-in').value = iso;
+      document.getElementById('search-in-display').value = rpFormatDate(iso);
+      document.getElementById('search-out').value = '';
+      document.getElementById('search-out-display').value = '';
+    } else {
+      rpEnd = iso;
+      document.getElementById('search-out').value = iso;
+      document.getElementById('search-out-display').value = rpFormatDate(iso);
+      // Close calendar after both dates selected
+      setTimeout(function() {
+        document.getElementById('rp-calendar').style.display = 'none';
+      }, 300);
+    }
+    renderRP();
+  }
+}
+
+function rpFormatDate(iso) {
+  var p = iso.split('-');
+  return p[2] + '/' + p[1] + '/' + p[0];
+}
+
+// Close picker when clicking outside
+document.addEventListener('click', function(e) {
+  var cal = document.getElementById('rp-calendar');
+  var wrap = document.getElementById('search-wrap');
+  if (cal && cal.style.display === 'block' && wrap && \!wrap.contains(e.target)) {
+    cal.style.display = 'none';
+  }
+});
+
 </script>
 
 
