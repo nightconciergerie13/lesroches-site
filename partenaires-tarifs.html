@@ -618,7 +618,7 @@ var cache    = {};
     return document.cookie.split(';').map(function(c){return c.trim();}).find(function(c){return c.startsWith(n+'=');});
   }
   var val = getCookie('lr_partner_auth');
-  if(\!val || val.indexOf('ok') === -1){
+  if(!val || val.indexOf('ok') === -1){
     window.location.replace('/partenaires.html?redirect=tarifs');
     return;
   }
@@ -1057,9 +1057,9 @@ function renderRP() {
 
   // Hint
   var hint = document.getElementById('rp-hint');
-  if (\!rpStart) {
+  if (!rpStart) {
     hint.textContent = 'Sélectionnez la date d\'arrivée';
-  } else if (\!rpEnd) {
+  } else if (!rpEnd) {
     hint.textContent = 'Sélectionnez la date de départ';
   } else {
     hint.textContent = '';
@@ -1068,9 +1068,9 @@ function renderRP() {
 
 function rpSelect(e) {
   var iso = e.target.dataset.iso;
-  if (\!iso) return;
+  if (!iso) return;
 
-  if (\!rpStart || (rpStart && rpEnd)) {
+  if (!rpStart || (rpStart && rpEnd)) {
     // First click or restart
     rpStart = iso;
     rpEnd = null;
@@ -1111,7 +1111,7 @@ function rpFormatDate(iso) {
 document.addEventListener('click', function(e) {
   var cal = document.getElementById('rp-calendar');
   var wrap = document.getElementById('search-wrap');
-  if (cal && cal.style.display === 'block' && wrap && \!wrap.contains(e.target)) {
+  if (cal && cal.style.display === 'block' && wrap && !wrap.contains(e.target)) {
     cal.style.display = 'none';
   }
 });
