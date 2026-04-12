@@ -932,6 +932,10 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
     if(v==='RochesPartner26'){
       var exp=new Date(Date.now()+30*24*3600*1000).toUTCString();
       document.cookie='lr_partner_auth=ok;expires='+exp+';path=/;SameSite=Strict';
+      if(window.location.search.indexOf('redirect=tarifs')\!==-1){
+        window.location.replace('/partenaires-tarifs.html');
+        return;
+      }
       unlock();
     } else {
       var err=document.getElementById('gate-err');

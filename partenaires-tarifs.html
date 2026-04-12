@@ -438,18 +438,10 @@ a{color:inherit;text-decoration:none}
 </head>
 <body>
 
-<div id="gate" role="dialog" aria-label="Access partners" aria-modal="true">
-  <div class="gate-box">
-    <div class="gate-logo">Les Roches</div>
-    <div class="gate-sub"><span data-i18n="gate_sub">Retreat · Espace Partenaires</span></div>
-    <label class="gate-label" for="gate-input"><span data-i18n="gate_label">Code d\'accès</span></label>
-    <input type="password" id="gate-input" class="gate-input" placeholder="••••••••••••" autocomplete="off">
-    <button class="gate-btn" onclick="checkGate()"><span data-i18n="gate_btn">Accéder à l\'espace →</span></button>
-    <div class="gate-err" id="gate-err" role="alert" aria-live="polite"></div>
   </div>
 </div>
 
-<div id="content" style="display:none">
+<div id="content">
 
 <nav class="nav">
   <div class="nav-logo">
@@ -623,30 +615,14 @@ var cache    = {};
 
 (function(){
   function getCookie(n){
-    return document.cookie.split(';').map(c=>c.trim()).find(c=>c.startsWith(n+'='))?.split('=')[1]||null;
+    return document.cookie.split(';').map(function(c){return c.trim();}).find(function(c){return c.startsWith(n+'=');});
   }
-  function unlock(){
-    document.getElementById('gate').style.display='none';
-    var c=document.getElementById('content');
-    c.style.display='block';
-    initApp();
+  var val = getCookie('lr_partner_auth');
+  if(\!val || val.indexOf('ok') === -1){
+    window.location.replace('/partenaires.html?redirect=tarifs');
+    return;
   }
-  if(getCookie('lr_partner_auth')==='ok'){unlock();return;}
-  document.getElementById('gate-input').addEventListener('keydown',function(e){
-    if(e.key==='Enter') checkGate();
-  });
-  window.checkGate=function(){
-    var v=document.getElementById('gate-input').value.trim();
-    if(v==='RochesPartner26'){
-      var exp=new Date(Date.now()+30*24*3600*1000).toUTCString();
-      document.cookie='lr_partner_auth=ok;expires='+exp+';path=/;SameSite=Strict';
-      unlock();
-    } else {
-      document.getElementById('gate-err').textContent='Code incorrect.';
-      document.getElementById('gate-input').value='';
-      setTimeout(function(){document.getElementById('gate-err').textContent='';},3000);
-    }
-  };
+  initApp();
 })();
 
 function initApp(){
