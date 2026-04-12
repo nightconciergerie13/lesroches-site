@@ -281,8 +281,16 @@ a{color:inherit;text-decoration:none}
 .rp-day.rp-disabled{color:var(--c2);cursor:default}
 .rp-day.rp-empty{cursor:default}
 .rp-hint{font-size:.5rem;color:var(--mid);text-align:center;margin-top:.6rem;letter-spacing:.08em}
-.search-field{cursor:pointer}
-.search-input[readonly]{cursor:pointer;background:var(--c)}
+.search-field{cursor:pointer;user-select:none}
+.search-field-label{font-size:.45rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);margin-bottom:.4rem;display:block}
+.search-input-fake{
+  padding:.8rem 1rem;border:1px solid var(--c2);border-radius:var(--r);
+  background:var(--c);font-family:'Outfit',sans-serif;font-size:.85rem;
+  font-weight:300;color:var(--ink);transition:border-color .2s;cursor:pointer;
+  min-width:140px;
+}
+.search-input-fake:hover{border-color:var(--ter)}
+.search-input-fake.rp-active{border-color:var(--ter);background:#fff}
 .search-form{
   display:flex;gap:.8rem;align-items:flex-end;flex-wrap:wrap;
 }
@@ -484,16 +492,16 @@ a{color:inherit;text-decoration:none}
     <h2 class="search-title" data-i18n="search_title">Disponibilités par dates</h2>
     <p class="search-sub" data-i18n="search_sub">Sélectionnez vos dates pour voir les villas disponibles et les tarifs nets partenaires.</p>
     <div class="search-form">
-      <label class="search-field" onclick="openRangePicker('in')">
-        <span data-i18n="search_label_in">Arrivée</span>
-        <input type="text" id="search-in-display" class="search-input" placeholder="── / ── / ────" readonly>
+      <div class="search-field" onclick="openRangePicker('in')">
+        <span class="search-field-label" data-i18n="search_label_in">Arrivée</span>
+        <div class="search-input-fake" id="search-in-display">── / ── / ────</div>
         <input type="hidden" id="search-in">
-      </label>
-      <label class="search-field" onclick="openRangePicker('out')">
-        <span data-i18n="search_label_out">Départ</span>
-        <input type="text" id="search-out-display" class="search-input" placeholder="── / ── / ────" readonly>
+      </div>
+      <div class="search-field" onclick="openRangePicker('out')">
+        <span class="search-field-label" data-i18n="search_label_out">Départ</span>
+        <div class="search-input-fake" id="search-out-display">── / ── / ────</div>
         <input type="hidden" id="search-out">
-      </label>
+      </div>
       <button type="button" class="search-btn" id="search-btn" onclick="runMultiSearch()" data-i18n="search_btn">Voir les villas disponibles →</button>
     </div>
     <div class="rp-calendar" id="rp-calendar" style="display:none">
@@ -994,12 +1002,20 @@ var RP_MONTHS_FR = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','
 function openRangePicker(phase) {
   rpPhase = phase || 'in';
   var cal = document.getElementById('rp-calendar');
-  if (cal.style.display === 'none' || cal.style.display === '') {
-    var now = new Date();
-    rpYear = now.getFullYear();
-    rpMonth = now.getMonth();
-    cal.style.display = 'block';
+  var isOpen = cal.style.display === 'block';
+  // Toggle: if already open and same field clicked, close
+  if (isOpen && rpPhase === phase) {
+    cal.style.display = 'none';
+    document.getElementById('search-in-display').classList.remove('rp-active');
+    document.getElementById('search-out-display').classList.remove('rp-active');
+    return;
   }
+  var now = new Date();
+  rpYear = now.getFullYear();
+  rpMonth = now.getMonth();
+  cal.style.display = 'block';
+  document.getElementById('search-in-display').classList.toggle('rp-active', phase === 'in');
+  document.getElementById('search-out-display').classList.toggle('rp-active', phase === 'out');
   renderRP();
 }
 
@@ -1075,9 +1091,9 @@ function rpSelect(e) {
     rpStart = iso;
     rpEnd = null;
     document.getElementById('search-in').value = iso;
-    document.getElementById('search-in-display').value = rpFormatDate(iso);
+    document.getElementById('search-in-display').textContent = rpFormatDate(iso);
     document.getElementById('search-out').value = '';
-    document.getElementById('search-out-display').value = '';
+    document.getElementById('search-out-display').textContent = '── / ── / ────';
     renderRP();
   } else {
     // Second click = end date
@@ -1086,13 +1102,13 @@ function rpSelect(e) {
       rpStart = iso;
       rpEnd = null;
       document.getElementById('search-in').value = iso;
-      document.getElementById('search-in-display').value = rpFormatDate(iso);
+      document.getElementById('search-in-display').textContent = rpFormatDate(iso);
       document.getElementById('search-out').value = '';
-      document.getElementById('search-out-display').value = '';
+      document.getElementById('search-out-display').textContent = '── / ── / ────';
     } else {
       rpEnd = iso;
       document.getElementById('search-out').value = iso;
-      document.getElementById('search-out-display').value = rpFormatDate(iso);
+      document.getElementById('search-out-display').textContent = rpFormatDate(iso);
       // Close calendar after both dates selected
       setTimeout(function() {
         document.getElementById('rp-calendar').style.display = 'none';
