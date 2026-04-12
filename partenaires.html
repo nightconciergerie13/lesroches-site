@@ -440,7 +440,25 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
   border:none;cursor:pointer;transition:background .2s;
 }
 .lb-dot.active{background:var(--ter)}
-  </style>
+  
+/* ── KIT MÉDIA ─── */
+.p-mediakit{padding:5rem var(--gap)}
+.p-mk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-top:2.5rem}
+.p-mk-card{background:var(--c);border-radius:var(--r);overflow:hidden;border:1px solid var(--c2);transition:transform .2s}
+.p-mk-card:hover{transform:translateY(-3px)}
+.p-mk-thumb{height:160px;overflow:hidden}
+.p-mk-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.p-mk-card:hover .p-mk-thumb img{transform:scale(1.04)}
+.p-mk-name{font-family:'Gilda Display',serif;font-size:.95rem;letter-spacing:.08em;padding:1rem 1.2rem .2rem}
+.p-mk-count{font-size:.58rem;letter-spacing:.15em;color:var(--mid);text-transform:uppercase;padding:0 1.2rem .8rem}
+.p-mk-btn{display:block;width:calc(100% - 2.4rem);margin:0 1.2rem 1.2rem;padding:.7rem 1rem;
+  background:var(--ink);color:var(--w);border:none;border-radius:var(--r);
+  font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;font-family:'Outfit',sans-serif;
+  cursor:pointer;transition:background .2s}
+.p-mk-btn:hover{background:var(--ter)}
+.p-mk-btn--all{display:inline-block;width:auto;padding:.8rem 2.5rem;margin:0}
+
+</style>
 </head>
 <body>
 
@@ -448,12 +466,12 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
 <div id="gate" role="dialog" aria-label="Acces partenaires protege" aria-modal="true">
   <div class="gate-box">
     <div class="gate-logo">Les Roches</div>
-    <div class="gate-sub">Retreat · Espace Partenaires</div>
-    <label class="gate-label" for="gate-input">Code d'acces</label>
+    <div class="gate-sub" data-i18n="gate_sub">Retreat · Espace Partenaires</div>
+    <label class="gate-label" for="gate-input" data-i18n="gate_label">Code d'accès</label>
     <input type="password" id="gate-input" class="gate-input" placeholder="••••••••••••" autocomplete="off">
-    <button class="gate-btn" id="gate-btn" onclick="checkGate()">Acceder a l'espace →</button>
+    <button class="gate-btn" id="gate-btn" onclick="checkGate()" data-i18n="gate_btn">Accéder à l'espace →</button>
     <div class="gate-err" id="gate-err" role="alert" aria-live="polite"></div>
-    <div class="gate-footer">Espace reserve aux professionnels du voyage agrees</div>
+    <div class="gate-footer" data-i18n="gate_footer">Espace réservé aux professionnels du voyage agréés</div>
   </div>
 </div>
 
@@ -464,22 +482,23 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
 <nav class="p-nav" aria-label="Navigation partenaires">
   <div class="p-nav-logo">
     Les Roches
-    <span>Espace Partenaires</span>
+    <span data-i18n="nav_brand_sub">Espace Partenaires</span>
   </div>
   <div class="p-nav-links" aria-label="Liens de navigation">
-    <a href="#domaine">L'etablissement</a>
-    <a href="#villas">Les villas</a>
-    <a href="#tarifs">Tarifs</a>
-    <a href="#fonctionnement">Fonctionnement</a>
-    <a href="https://wa.me/33667749024?text=Bonjour%2C%20je%20suis%20un%20prestataire%20et%20je%20souhaite%20en%20savoir%20plus%20sur%20le%20programme%20partenaires%20Les%20Roches." target="_blank" rel="noopener" class="p-nav-wa">WhatsApp</a>
+    <a href="#domaine"><span data-i18n="nav_domaine">L\'établissement</span></a>
+    <a href="#villas"><span data-i18n="nav_villas">Les villas</span></a>
+    <a href="#tarifs"><span data-i18n="nav_tarifs">Tarifs</span></a>
+    <a href="#fonctionnement"><span data-i18n="nav_process">Fonctionnement</span></a>
+    <a href="#media">Kit</a>
+    <a href="https://wa.me/33667749024?text=Bonjour%2C%20je%20suis%20un%20prestataire%20et%20je%20souhaite%20en%20savoir%20plus%20sur%20le%20programme%20partenaires%20Les%20Roches." target="_blank" rel="noopener" class="p-nav-wa"><span data-i18n="nav_wa">WhatsApp</span></a>
   </div>
 </nav>
 
 <!-- ── INTRO ──────────────────────────────────────────────────────────────── -->
 <section class="p-intro" id="accueil" aria-label="Presentation partenaires">
-  <p class="p-eyebrow r">Acces professionnel exclusif</p>
-  <h1 class="p-intro-title r">Le partenariat le plus<br>simple du marche.</h1>
-  <p class="p-intro-sub r">Nous avons concu notre programme pour que chaque reservation soit fluide, rentable, et memorable pour vos clients. Pas de complexite, pas de mauvaises surprises.</p>
+  <p class="p-eyebrow r" data-i18n="intro_eyebrow">Accès professionnel exclusif</p>
+  <h1 class="p-intro-title r" data-i18n="intro_title" data-i18n-html="true">Le partenariat le plus<br>simple du marché.</h1>
+  <p class="p-intro-sub r" data-i18n="intro_sub">Nous avons conçu notre programme pour que chaque réservation soit fluide, rentable, et mémorable pour vos clients. Pas de complexité, pas de mauvaises surprises.</p>
 
   <div class="p-pillars">
 
@@ -487,24 +506,24 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
       <div class="p-pillar-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
       </div>
-      <div class="p-pillar-title">Commission 20 %</div>
-      <div class="p-pillar-body">Tarif net partenaire direct, sans frais caches ni commissions additionnelles. Ce que vous voyez est ce que vous payez.</div>
+      <div class="p-pillar-title" data-i18n="pillar1_title">Commission 20 %</div>
+      <div class="p-pillar-body" data-i18n="pillar1_body">Tarif net partenaire direct, sans frais cachés ni commissions additionnelles. Ce que vous voyez est ce que vous payez.</div>
     </div>
 
     <div class="p-pillar r">
       <div class="p-pillar-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
       </div>
-      <div class="p-pillar-title">Reponse sous 2 heures</div>
-      <div class="p-pillar-body">WhatsApp dedie partenaires, 7j/7. Option ferme de 48h sur chaque demande. Devis detaille par retour immediat.</div>
+      <div class="p-pillar-title" data-i18n="pillar2_title">Réponse sous 2 heures</div>
+      <div class="p-pillar-body" data-i18n="pillar2_body">WhatsApp dédié partenaires, 7j/7. Option ferme de 48h sur chaque demande. Devis détaillé par retour immédiat.</div>
     </div>
 
     <div class="p-pillar r">
       <div class="p-pillar-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       </div>
-      <div class="p-pillar-title">Vos clients au petit soin</div>
-      <div class="p-pillar-body">Accueil personnalise, conciergerie sur mesure, experiences locales. Vos clients repartent avec l'envie de revenir — et de recommander.</div>
+      <div class="p-pillar-title" data-i18n="pillar3_title">Vos clients au petit soin</div>
+      <div class="p-pillar-body" data-i18n="pillar3_body">Accueil personnalisé, conciergerie sur mesure, expériences locales. Vos clients repartent avec l'envie de revenir — et de recommander.</div>
     </div>
 
   </div>
@@ -522,9 +541,9 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
     </div>
 
     <div class="p-domain-text">
-      <p class="p-eyebrow r">Santa Teresa · Peninsule de Nicoya</p>
-      <h2 class="p-domain-title r">Six villas privees sur les hauteurs du Pacifique.</h2>
-      <p class="p-domain-desc r">Santa Teresa est l'une des destinations les plus prises d'Amerique centrale : surf de classe mondiale, jungle tropicale, couchers de soleil legendaires. Les Roches Retreat est pose en hauteur, entre mer et foret, a 10 minutes du centre de Santa Teresa, a 2h30 de San Jose.<br><br>Chaque villa est une maison privee avec piscine a debordement, vue Pacifique ou jungle, et architecture minimaliste tropicale. Un lieu pense pour l'experience — pas pour la quantite.</p>
+      <p class="p-eyebrow r" data-i18n="domain_eyebrow">Santa Teresa · Péninsule de Nicoya</p>
+      <h2 class="p-domain-title r" data-i18n="domain_title">Six villas privées sur les hauteurs du Pacifique.</h2>
+      <p class="p-domain-desc r" data-i18n="domain_desc" data-i18n-html="true">Santa Teresa est l'une des destinations les plus prisées d'Amérique centrale : surf de classe mondiale, jungle tropicale, couchers de soleil légendaires. Les Roches Retreat est posé en hauteur, entre mer et forêt, à 10 minutes du centre de Santa Teresa, à 2h30 de San Jose.<br><br>Chaque villa est une maison privée avec piscine à débordement, vue Pacifique ou jungle, et architecture minimaliste tropicale. Un lieu pensé pour l'expérience — pas pour la quantité.</p>
       <div class="p-domain-tags r">
         <span class="p-domain-tag">2h30 de San Jose</span>
         <span class="p-domain-tag">Surf world-class</span>
@@ -540,8 +559,8 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
 <!-- ── LES 6 VILLAS ──────────────────────────────────────────────────────── -->
 <section class="p-villas" id="villas" aria-label="Les six villas">
   <div class="p-section-head">
-    <p class="p-eyebrow r">Le domaine</p>
-    <h2 class="p-section-title r">Six villas.<br>Six experiences uniques.</h2>
+    <p class="p-eyebrow r" data-i18n="villas_eyebrow">Le domaine</p>
+    <h2 class="p-section-title r" data-i18n="villas_title" data-i18n-html="true">Six villas.<br>Six expériences uniques.</h2>
     <p class="p-section-sub r">Chaque villa dispose de sa propre piscine a debordement et d'une architecture minimaliste tropicale. Cliquez sur « Voir les photos » pour decouvrir l'interieur en detail.</p>
   </div>
 
@@ -555,11 +574,11 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
       </div>
       <div class="p-vcard-body">
         <div class="p-vcard-name">Casa Jade</div>
-        <div class="p-vcard-specs">2 personnes · Piscine privee · Vue ocean</div>
-        <div class="p-vcard-desc">La plus intimiste du domaine. Immergee dans la vegetation, le Pacifique en contrebas. Ideale pour les couples a la recherche d'isolement total.</div>
+        <div class="p-vcard-specs" data-i18n="jade_specs">2 personnes · Piscine privee · Vue ocean</div>
+        <div class="p-vcard-desc" data-i18n="jade_desc">La plus intimiste du domaine. Immergee dans la vegetation, le Pacifique en contrebas. Ideale pour les couples a la recherche d'isolement total.</div>
         <div class="p-vcard-actions">
-          <button class="p-vcard-gallery-btn" onclick="openLightbox('jade',0)">Voir les photos</button>
-          <a href="partenaires-tarifs.html#jade" class="p-vcard-tarif-link">Tarifs →</a>
+          <button class="p-vcard-gallery-btn" data-i18n-btn-photos data-i18n="vcard_btn_photos" onclick="openLightbox('jade',0)">Voir les photos</button>
+          <a href="partenaires-tarifs.html#jade" class="p-vcard-tarif-link" data-i18n="vcard_btn_tarifs">Tarifs →</a>
         </div>
       </div>
     </article>
@@ -572,11 +591,11 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
       </div>
       <div class="p-vcard-body">
         <div class="p-vcard-name">Villa Topaze</div>
-        <div class="p-vcard-specs">2 personnes · Piscine privee · Coucher de soleil</div>
-        <div class="p-vcard-desc">La plus lumineuse du domaine. Baignee par la lumiere doree du Pacifique a chaque fin de journee. Un coucher de soleil a couper le souffle, chaque soir.</div>
+        <div class="p-vcard-specs" data-i18n="topaze_specs">2 personnes · Piscine privee · Coucher de soleil</div>
+        <div class="p-vcard-desc" data-i18n="topaze_desc">La plus lumineuse du domaine. Baignee par la lumiere doree du Pacifique a chaque fin de journee. Un coucher de soleil a couper le souffle, chaque soir.</div>
         <div class="p-vcard-actions">
-          <button class="p-vcard-gallery-btn" onclick="openLightbox('topaze',0)">Voir les photos</button>
-          <a href="partenaires-tarifs.html#topaze" class="p-vcard-tarif-link">Tarifs →</a>
+          <button class="p-vcard-gallery-btn" data-i18n-btn-photos data-i18n="vcard_btn_photos" onclick="openLightbox('topaze',0)">Voir les photos</button>
+          <a href="partenaires-tarifs.html#topaze" class="p-vcard-tarif-link" data-i18n="vcard_btn_tarifs">Tarifs →</a>
         </div>
       </div>
     </article>
@@ -589,11 +608,11 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
       </div>
       <div class="p-vcard-body">
         <div class="p-vcard-name">Villa Onyx</div>
-        <div class="p-vcard-specs">2 personnes · Piscine privee · Vue panoramique</div>
-        <div class="p-vcard-desc">Au sommet du domaine. Lever de soleil panoramique de Mal Pais a Cabo Blanco. La villa la plus aerienne, pour ceux qui veulent voir le monde a leurs pieds.</div>
+        <div class="p-vcard-specs" data-i18n="onyx_specs">2 personnes · Piscine privee · Vue panoramique</div>
+        <div class="p-vcard-desc" data-i18n="onyx_desc">Au sommet du domaine. Lever de soleil panoramique de Mal Pais a Cabo Blanco. La villa la plus aerienne, pour ceux qui veulent voir le monde a leurs pieds.</div>
         <div class="p-vcard-actions">
-          <button class="p-vcard-gallery-btn" onclick="openLightbox('onyx',0)">Voir les photos</button>
-          <a href="partenaires-tarifs.html#onyx" class="p-vcard-tarif-link">Tarifs →</a>
+          <button class="p-vcard-gallery-btn" data-i18n-btn-photos data-i18n="vcard_btn_photos" onclick="openLightbox('onyx',0)">Voir les photos</button>
+          <a href="partenaires-tarifs.html#onyx" class="p-vcard-tarif-link" data-i18n="vcard_btn_tarifs">Tarifs →</a>
         </div>
       </div>
     </article>
@@ -606,11 +625,11 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
       </div>
       <div class="p-vcard-body">
         <div class="p-vcard-name">Villa Agate</div>
-        <div class="p-vcard-specs">4 personnes · Piscine privee · Niveau jardin</div>
-        <div class="p-vcard-desc">La plus spacieuse, la plus conviviale. Concue pour les familles et groupes d'amis avec acces direct au jardin tropical et vue ouverte.</div>
+        <div class="p-vcard-specs" data-i18n="agate_specs">4 personnes · Piscine privee · Niveau jardin</div>
+        <div class="p-vcard-desc" data-i18n="agate_desc">La plus spacieuse, la plus conviviale. Concue pour les familles et groupes d'amis avec acces direct au jardin tropical et vue ouverte.</div>
         <div class="p-vcard-actions">
-          <button class="p-vcard-gallery-btn" onclick="openLightbox('agate',0)">Voir les photos</button>
-          <a href="partenaires-tarifs.html#agate" class="p-vcard-tarif-link">Tarifs →</a>
+          <button class="p-vcard-gallery-btn" data-i18n-btn-photos data-i18n="vcard_btn_photos" onclick="openLightbox('agate',0)">Voir les photos</button>
+          <a href="partenaires-tarifs.html#agate" class="p-vcard-tarif-link" data-i18n="vcard_btn_tarifs">Tarifs →</a>
         </div>
       </div>
     </article>
@@ -623,11 +642,11 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
       </div>
       <div class="p-vcard-body">
         <div class="p-vcard-name">Villa Ambre</div>
-        <div class="p-vcard-specs">2–3 personnes · Piscine privee · Lumiere ambre</div>
-        <div class="p-vcard-desc">Elle tire son nom de la lumiere ambre qui l'inonde chaque soir. La piscine brille doree au coucher du soleil. La villa des couples amoureux de la lumiere.</div>
+        <div class="p-vcard-specs" data-i18n="ambre_specs">2–3 personnes · Piscine privee · Lumiere ambre</div>
+        <div class="p-vcard-desc" data-i18n="ambre_desc">Elle tire son nom de la lumiere ambre qui l'inonde chaque soir. La piscine brille doree au coucher du soleil. La villa des couples amoureux de la lumiere.</div>
         <div class="p-vcard-actions">
-          <button class="p-vcard-gallery-btn" onclick="openLightbox('ambre',0)">Voir les photos</button>
-          <a href="partenaires-tarifs.html#ambre" class="p-vcard-tarif-link">Tarifs →</a>
+          <button class="p-vcard-gallery-btn" data-i18n-btn-photos data-i18n="vcard_btn_photos" onclick="openLightbox('ambre',0)">Voir les photos</button>
+          <a href="partenaires-tarifs.html#ambre" class="p-vcard-tarif-link" data-i18n="vcard_btn_tarifs">Tarifs →</a>
         </div>
       </div>
     </article>
@@ -640,11 +659,11 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
       </div>
       <div class="p-vcard-body">
         <div class="p-vcard-name">Villa Opale</div>
-        <div class="p-vcard-specs">2 personnes · Piscine privee · Vue changeante</div>
-        <div class="p-vcard-desc">Des reflets changeants selon la lumiere du jour. Une surprise a chaque heure. La villa la plus mysterieuse — celle dont vos clients se souviendront longtemps.</div>
+        <div class="p-vcard-specs" data-i18n="opale_specs">2 personnes · Piscine privee · Vue changeante</div>
+        <div class="p-vcard-desc" data-i18n="opale_desc">Des reflets changeants selon la lumiere du jour. Une surprise a chaque heure. La villa la plus mysterieuse — celle dont vos clients se souviendront longtemps.</div>
         <div class="p-vcard-actions">
-          <button class="p-vcard-gallery-btn" onclick="openLightbox('opale',0)">Voir les photos</button>
-          <a href="partenaires-tarifs.html#opale" class="p-vcard-tarif-link">Tarifs →</a>
+          <button class="p-vcard-gallery-btn" data-i18n-btn-photos data-i18n="vcard_btn_photos" onclick="openLightbox('opale',0)">Voir les photos</button>
+          <a href="partenaires-tarifs.html#opale" class="p-vcard-tarif-link" data-i18n="vcard_btn_tarifs">Tarifs →</a>
         </div>
       </div>
     </article>
@@ -654,10 +673,10 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
 
 <!-- ── MID CTA BAR ────────────────────────────────────────────────────────── -->
 <div class="p-cta-bar" aria-label="Contact rapide">
-  <div class="p-cta-bar-text">Une villa correspond a vos clients ?</div>
+  <div class="p-cta-bar-text" data-i18n="cta_bar_text">Une villa correspond à vos clients ?</div>
   <a href="https://wa.me/33667749024?text=Bonjour%2C%20j%27ai%20vu%20les%20villas%20et%20j%27aimerais%20verifier%20les%20disponibilites%20pour%20mes%20clients." target="_blank" rel="noopener" class="p-cta-bar-btn">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.858L.073 23.27a.75.75 0 0 0 .916.952l5.565-1.453A11.926 11.926 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.74 9.74 0 0 1-4.97-1.36l-.354-.213-3.668.958.978-3.579-.232-.369A9.712 9.712 0 0 1 2.25 12c0-5.376 4.374-9.75 9.75-9.75s9.75 4.374 9.75 9.75-4.374 9.75-9.75 9.75z"/></svg>
-    Ecrire sur WhatsApp
+    <span data-i18n="cta_bar_btn">Écrire sur WhatsApp</span>
   </a>
 </div>
 
@@ -667,44 +686,44 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
     <div class="p-live-icon" aria-hidden="true">
       <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
     </div>
-    <p class="p-live-eyebrow">Synchronise en temps reel</p>
-    <h2 class="p-live-title">Vos tarifs partenaires<br>en direct.</h2>
-    <p class="p-live-desc">Accedez au calendrier de disponibilites connecte a notre systeme de reservation. Les prix sont affiches a −20 % du tarif public, avec les nuits minimum par periode. Mis a jour automatiquement a chaque modification de notre part.</p>
+    <p class="p-live-eyebrow" data-i18n="live_eyebrow">Synchronisé en temps réel</p>
+    <h2 class="p-live-title" data-i18n="live_title" data-i18n-html="true">Vos tarifs partenaires<br>en direct.</h2>
+    <p class="p-live-desc" data-i18n="live_desc">Accédez au calendrier de disponibilités connecté à notre système de réservation. Les prix sont affichés à −20 % du tarif public, avec les nuits minimum par période. Mis à jour automatiquement à chaque modification de notre part.</p>
     <a href="partenaires-tarifs.html" class="p-live-btn">
       <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/></svg>
-      Consulter le calendrier des tarifs →
+      <span data-i18n="live_btn">Consulter le calendrier des tarifs →</span>
     </a>
-    <p class="p-live-note">Donnees issues de notre panneau admin · Actualisees en temps reel</p>
+    <p class="p-live-note" data-i18n="live_note">Données issues de notre panneau admin · Actualisées en temps réel</p>
   </div>
 </section>
 
 <!-- ── PROCESS ────────────────────────────────────────────────────────────── -->
 <section class="p-process" id="fonctionnement" aria-label="Comment ca marche">
   <div class="p-section-head">
-    <p class="p-eyebrow r">Simple. Rapide. Fiable.</p>
-    <h2 class="p-section-title r">Comment ca marche.</h2>
-    <p class="p-section-sub r">De la demande a l'arrivee de vos clients, tout est gere par nous. Vous n'avez qu'a envoyer la demande.</p>
+    <p class="p-eyebrow r" data-i18n="process_eyebrow">Simple. Rapide. Fiable.</p>
+    <h2 class="p-section-title r" data-i18n="process_title">Comment ça marche.</h2>
+    <p class="p-section-sub r" data-i18n="process_sub">De la demande à l'arrivée de vos clients, tout est géré par nous. Vous n'avez qu'à envoyer la demande.</p>
   </div>
   <div class="p-steps">
     <div class="p-step r">
       <div class="p-step-num">01</div>
-      <div class="p-step-title">Vous envoyez la demande</div>
-      <div class="p-step-body">Via WhatsApp ou le formulaire ci-dessous. Villa souhaitee, dates, nombre de personnes.</div>
+      <div class="p-step-title" data-i18n="step1_title">Vous envoyez la demande</div>
+      <div class="p-step-body" data-i18n="step1_body">Via WhatsApp ou le formulaire ci-dessous. Villa souhaitee, dates, nombre de personnes.</div>
     </div>
     <div class="p-step r">
       <div class="p-step-num">02</div>
-      <div class="p-step-title">On confirme sous 2h</div>
-      <div class="p-step-body">Disponibilite confirmee, option ferme de 48h, devis partenaire net envoye immediatement.</div>
+      <div class="p-step-title" data-i18n="step2_title">On confirme sous 2h</div>
+      <div class="p-step-body" data-i18n="step2_body">Disponibilite confirmee, option ferme de 48h, devis partenaire net envoye immediatement.</div>
     </div>
     <div class="p-step r">
       <div class="p-step-num">03</div>
-      <div class="p-step-title">Reservation et contrat</div>
-      <div class="p-step-body">Contrat de partenariat simple, acompte securise. Tout est clair et documente.</div>
+      <div class="p-step-title" data-i18n="step3_title">Reservation et contrat</div>
+      <div class="p-step-body" data-i18n="step3_body">Contrat de partenariat simple, acompte securise. Tout est clair et documente.</div>
     </div>
     <div class="p-step r">
       <div class="p-step-num">04</div>
-      <div class="p-step-title">Vos clients arrivent</div>
-      <div class="p-step-body">Accueil personnalise, conciergerie sur mesure des le premier jour. Vous n'avez plus rien a faire.</div>
+      <div class="p-step-title" data-i18n="step4_title">Vos clients arrivent</div>
+      <div class="p-step-body" data-i18n="step4_body">Accueil personnalise, conciergerie sur mesure des le premier jour. Vous n'avez plus rien a faire.</div>
     </div>
   </div>
 </section>
@@ -712,41 +731,41 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
 <!-- ── FAQ ────────────────────────────────────────────────────────────────── -->
 <section class="p-faq" id="faq" aria-label="Questions frequentes">
   <div class="p-section-head">
-    <p class="p-eyebrow r">Vos questions</p>
-    <h2 class="p-section-title r">FAQ Partenaires.</h2>
+    <p class="p-eyebrow r" data-i18n="faq_eyebrow">Vos questions</p>
+    <h2 class="p-section-title r" data-i18n="faq_title">FAQ Partenaires.</h2>
   </div>
   <div class="p-faq-list" role="list">
 
     <div class="p-faq-item r" role="listitem">
       <button class="p-faq-q" aria-expanded="false" onclick="toggleFaq(this)">
-        Quel est le delai de confirmation d'une reservation ?
+        <span data-i18n="faq1_q">Quel est le delai de confirmation d'une reservation ?</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
       </button>
-      <div class="p-faq-a">Nous nous engageons a vous repondre sous 2 heures ouvrables, 7j/7. Des reception de votre demande via WhatsApp ou formulaire, nous vous envoyons les disponibilites exactes et un devis net partenaire. Une option ferme de 48h est posee automatiquement a la demande.</div>
+      <div class="p-faq-a" data-i18n="faq1_a">Nous nous engageons a vous repondre sous 2 heures ouvrables, 7j/7. Des reception de votre demande via WhatsApp ou formulaire, nous vous envoyons les disponibilites exactes et un devis net partenaire. Une option ferme de 48h est posee automatiquement a la demande.</div>
     </div>
 
     <div class="p-faq-item r" role="listitem">
       <button class="p-faq-q" aria-expanded="false" onclick="toggleFaq(this)">
-        Y a-t-il des frais caches ou commissions supplementaires ?
+        <span data-i18n="faq2_q">Y a-t-il des frais caches ou commissions supplementaires ?</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
       </button>
-      <div class="p-faq-a">Aucun. Le tarif net partenaire affiche dans notre calendrier est le prix final que vous payez. La commission de 20 % est deja integree dans ce tarif : vous vendez le prix public a vos clients, la difference est votre marge. Pas de frais de dossier, pas de frais caches.</div>
+      <div class="p-faq-a" data-i18n="faq2_a">Aucun. Le tarif net partenaire affiche dans notre calendrier est le prix final que vous payez. La commission de 20 % est deja integree dans ce tarif : vous vendez le prix public a vos clients, la difference est votre marge. Pas de frais de dossier, pas de frais caches.</div>
     </div>
 
     <div class="p-faq-item r" role="listitem">
       <button class="p-faq-q" aria-expanded="false" onclick="toggleFaq(this)">
-        Comment fonctionne la politique d'annulation ?
+        <span data-i18n="faq3_q">Comment fonctionne la politique d'annulation ?</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
       </button>
-      <div class="p-faq-a">Notre politique partenaires est flexible et differenciee selon les delais. Les conditions exactes vous sont transmises avec chaque devis. En cas d'annulation du client final, nous travaillons avec vous pour trouver la meilleure solution — report, credit ou remboursement partiel selon le preavis.</div>
+      <div class="p-faq-a" data-i18n="faq3_a">Notre politique partenaires est flexible et differenciee selon les delais. Les conditions exactes vous sont transmises avec chaque devis. En cas d'annulation du client final, nous travaillons avec vous pour trouver la meilleure solution — report, credit ou remboursement partiel selon le preavis.</div>
     </div>
 
     <div class="p-faq-item r" role="listitem">
       <button class="p-faq-q" aria-expanded="false" onclick="toggleFaq(this)">
-        Proposez-vous des experiences ou services additionnels pour nos clients ?
+        <span data-i18n="faq4_q">Proposez-vous des experiences ou services additionnels pour nos clients ?</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
       </button>
-      <div class="p-faq-a">Oui. Notre conciergerie locale propose des transferts depuis San Jose, des cours de surf, du yoga, des excursions en kayak, des diners prives au bord de la piscine et bien plus. Ces services peuvent etre inclus dans votre package ou proposes en option. Nous vous transmettons le catalogue complet sur demande.</div>
+      <div class="p-faq-a" data-i18n="faq4_a">Oui. Notre conciergerie locale propose des transferts depuis San Jose, des cours de surf, du yoga, des excursions en kayak, des diners prives au bord de la piscine et bien plus. Ces services peuvent etre inclus dans votre package ou proposes en option. Nous vous transmettons le catalogue complet sur demande.</div>
     </div>
 
   </div>
@@ -754,9 +773,9 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
 
 <!-- ── CONTACT ────────────────────────────────────────────────────────────── -->
 <section class="p-contact" id="contact" aria-label="Contact partenaires">
-  <p class="p-eyebrow r">Travaillons ensemble</p>
-  <h2 class="p-contact-title r">Pret a proposer<br>Les Roches ?</h2>
-  <p class="p-contact-sub r">Ecrivez-nous directement sur WhatsApp — c'est le moyen le plus rapide. On revient vers vous dans les 2 heures. Vous pouvez aussi nous envoyer un email si vous preferez.</p>
+  <p class="p-eyebrow r" data-i18n="contact_eyebrow">Travaillons ensemble</p>
+  <h2 class="p-contact-title r" data-i18n="contact_title" data-i18n-html="true">Prêt à proposer<br>Les Roches ?</h2>
+  <p class="p-contact-sub r" data-i18n="contact_sub">Écrivez-nous directement sur WhatsApp — c'est le moyen le plus rapide. On revient vers vous dans les 2 heures. Vous pouvez aussi nous envoyer un email si vous préférez.</p>
   <div class="p-contact-actions">
     <a href="https://wa.me/33667749024?text=Bonjour%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20votre%20programme%20partenaires%20Les%20Roches%20Retreat." target="_blank" rel="noopener" class="p-contact-wa r">
       <svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.858L.073 23.27a.75.75 0 0 0 .916.952l5.565-1.453A11.926 11.926 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.74 9.74 0 0 1-4.97-1.36l-.354-.213-3.668.958.978-3.579-.232-.369A9.712 9.712 0 0 1 2.25 12c0-5.376 4.374-9.75 9.75-9.75s9.75 4.374 9.75 9.75-4.374 9.75-9.75 9.75z"/></svg>
@@ -767,13 +786,13 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
       partenaires@lesrochesretreat.com
     </a>
   </div>
-  <p class="p-contact-note r">Reponse garantie sous 2 heures · Espace reserve aux professionnels agrees</p>
+  <p class="p-contact-note r" data-i18n="contact_note">Réponse garantie sous 2 heures · Espace réservé aux professionnels agréés</p>
 </section>
 
 <!-- ── FOOTER ─────────────────────────────────────────────────────────────── -->
 <footer class="p-footer">
   <div class="p-footer-logo">Les Roches Retreat</div>
-  <div class="p-footer-copy">(c) 2025–2026 · Espace Partenaires · Acces confidentiel</div>
+  <div class="p-footer-copy" data-i18n="footer_copy">(c) 2025–2026 · Espace Partenaires · Accès confidentiel</div>
 </footer>
 
 </div><!-- /#content -->
@@ -799,6 +818,7 @@ button{cursor:pointer;font-family:'Outfit',sans-serif}
 </a>
 
 <!-- ══ SCRIPTS ════════════════════════════════════════════════════════════ -->
+<script src="js/i18n-partenaires.js"></script>
 <script>
 /* ── GATE ──────────────────────────────────────────────────────────────── */
 (function(){
@@ -951,6 +971,77 @@ document.addEventListener('keydown',function(e){
 document.getElementById('lightbox').addEventListener('click',function(e){
   if(e.target===this)closeLightbox();
 });
+
+  /* ── MEDIA KIT DOWNLOAD ──────────────────────────────────────────────── */
+  var VILLA_PHOTOS = {
+    jade:   ['jade-hero','jade-pool','jade-pool-night','jade-deck','jade-living','jade-bedroom','jade-bedroom-2','jade-bathroom','jade-kitchen','jade-terrace','jade-garden','jade-interior-1','jade-interior-2','jade-entrance','jade-drone','jade-sunset-pool'],
+    topaze: ['topaze-hero','topaze-pool','topaze-salon','topaze-cuisine','topaze-chambre','topaze-sdb','topaze-ext1','topaze-ext2','topaze-detail','topaze-sunset'],
+    onyx:   ['onyx-hero','onyx-pool','onyx-salon','onyx-cuisine','onyx-chambre','onyx-sdb','onyx-ext1','onyx-ext2','onyx-detail','onyx-sunset'],
+    agate:  ['agate-hero','agate-pool','agate-salon','agate-cuisine','agate-chambre','agate-sdb','agate-ext1','agate-ext2','agate-detail','agate-sunset'],
+    ambre:  ['ambre-hero','ambre-pool','ambre-salon','ambre-cuisine','ambre-chambre','ambre-sdb','ambre-ext1','ambre-ext2','ambre-detail','ambre-sunset'],
+    opale:  ['opale-hero','opale-pool','opale-salon','opale-cuisine','opale-chambre','opale-sdb','opale-ext1','opale-ext2','opale-detail','opale-sunset']
+  };
+
+  function downloadVillaPhotos(villaId) {
+    var btn = document.querySelector('[data-villa-mk="'+villaId+'"] .p-mk-btn');
+    var origText = btn.textContent;
+    var photos = VILLA_PHOTOS[villaId] || [];
+    var downloaded = 0;
+    btn.textContent = '0 / ' + photos.length + '…';
+    btn.disabled = true;
+
+    function dl(idx) {
+      if (idx >= photos.length) {
+        btn.textContent = origText;
+        btn.disabled = false;
+        return;
+      }
+      var a = document.createElement('a');
+      a.href = 'images/' + photos[idx] + '.webp';
+      a.download = 'LesRoches_' + villaId.charAt(0).toUpperCase() + villaId.slice(1) + '_' + photos[idx] + '.webp';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      downloaded++;
+      btn.textContent = downloaded + ' / ' + photos.length + '…';
+      setTimeout(function(){ dl(idx + 1); }, 350);
+    }
+    dl(0);
+  }
+
+  function downloadAllPhotos() {
+    var villas = Object.keys(VILLA_PHOTOS);
+    var allBtn = document.querySelector('.p-mk-btn--all');
+    allBtn.disabled = true;
+    var origText = allBtn.textContent;
+    var total = villas.reduce(function(s,v){ return s + VILLA_PHOTOS[v].length; }, 0);
+    var done = 0;
+    var allPhotos = [];
+    villas.forEach(function(v){ VILLA_PHOTOS[v].forEach(function(p){ allPhotos.push({villa:v, file:p}); }); });
+
+    function dlAll(idx) {
+      if (idx >= allPhotos.length) {
+        allBtn.textContent = origText;
+        allBtn.disabled = false;
+        return;
+      }
+      var item = allPhotos[idx];
+      var a = document.createElement('a');
+      a.href = 'images/' + item.file + '.webp';
+      a.download = 'LesRoches_' + item.villa.charAt(0).toUpperCase() + item.villa.slice(1) + '_' + item.file + '.webp';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      done++;
+      allBtn.textContent = done + ' / ' + total + '…';
+      setTimeout(function(){ dlAll(idx + 1); }, 300);
+    }
+    dlAll(0);
+  }
+
+  /* ── i18n INIT ───────────────────────────────────────────────────────── */
+  initI18n('main');
+
 </script>
 
 </body>
