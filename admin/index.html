@@ -130,6 +130,17 @@ tr:hover td{background:#faf9f7}
 /* ── UNIFIED CALENDAR ── */
 .ucal-nav-btn{font-size:1.2rem;background:var(--w);border:1px solid var(--c2);color:var(--ink);width:32px;height:32px;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
 .ucal-nav-btn:hover{background:var(--c2)}
+/* ── QUICK DATE PICKER ─────────────────────────────────────────────────────── */
+.ucal-quickpick{background:var(--c);border:1px solid var(--c2);border-radius:3px;padding:1rem 1.4rem;margin-bottom:1.5rem}
+.ucal-qp-eyebrow{font-size:.43rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ter);margin-bottom:.75rem}
+.ucal-qp-row{display:flex;gap:.8rem;align-items:flex-end;flex-wrap:wrap}
+.ucal-qp-field{display:flex;flex-direction:column;gap:.3rem}
+.ucal-qp-field label{font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid)}
+.ucal-qp-field select,.ucal-qp-field input[type="date"]{background:var(--w);border:1px solid var(--c2);border-radius:2px;padding:.45rem .75rem;font-size:.68rem;color:var(--ink);font-family:'Outfit',sans-serif;height:34px;min-width:130px}
+.ucal-qp-field select:focus,.ucal-qp-field input[type="date"]:focus{outline:none;border-color:var(--ter)}
+.ucal-qp-btn{background:var(--ink);color:var(--w);border:none;border-radius:2px;padding:0 1.3rem;font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;font-family:'Outfit',sans-serif;height:34px;cursor:pointer;transition:background .2s;white-space:nowrap;align-self:flex-end}
+.ucal-qp-btn:hover{background:var(--ter)}
+
 .ucal-nav{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
 .ucal-month-label{font-family:'Gilda Display',serif;font-size:1.2rem;color:var(--ink);flex:1;text-align:center}
 .ucal-scroll{overflow-x:auto;border:1px solid var(--c2);border-radius:3px;background:var(--w)}
@@ -399,6 +410,33 @@ tr:hover td{background:#faf9f7}
       <div class="page" id="page-pricing">
         <div class="page-title">Calendrier</div>
         <div class="page-sub">Toutes les villas en une seule vue. Cliquez sur une date de début puis une date de fin pour définir le tarif, les nuits minimum et la disponibilité.</div>
+        <!-- ── Sélection rapide par date picker ── -->
+        <div class="ucal-quickpick" id="ucal-quickpick">
+          <div class="ucal-qp-eyebrow">Sélection rapide</div>
+          <div class="ucal-qp-row">
+            <div class="ucal-qp-field">
+              <label>Villa</label>
+              <select id="ucal-qp-villa">
+                <option value="">— choisir —</option>
+                <option value="jade">Jade</option>
+                <option value="topaze">Topaze</option>
+                <option value="onyx">Onyx</option>
+                <option value="agate">Agate</option>
+                <option value="ambre">Ambre</option>
+                <option value="opale">Opale</option>
+              </select>
+            </div>
+            <div class="ucal-qp-field">
+              <label>Arrivée</label>
+              <input type="date" id="ucal-qp-start" autocomplete="off">
+            </div>
+            <div class="ucal-qp-field">
+              <label>Départ</label>
+              <input type="date" id="ucal-qp-end" autocomplete="off">
+            </div>
+            <button class="ucal-qp-btn" onclick="ucalQuickPick()">Modifier cette période →</button>
+          </div>
+        </div>
         <div class="ucal-nav">
           <button class="ucal-nav-btn" id="ucal-prev">‹</button>
           <div class="ucal-month-label" id="ucal-month-label">—</div>
@@ -1189,6 +1227,56 @@ function renderUcal() {
   document.getElementById('ucal-table').innerHTML = thead + tbody;
 }
 
+
+// ── Quick date picker ────────────────────────────────────────────────────────
+function initUcalQuickPick() {
+  const startEl = document.getElementById('ucal-qp-start');
+  const endEl   = document.getElementById('ucal-qp-end');
+  if (!startEl || !endEl) return;
+
+  // Auto-advance: on start change, set end to start+3 and focus end
+  startEl.addEventListener('change', function() {
+    if (!startEl.value) return;
+    endEl.min = startEl.value;
+    if (!endEl.value || endEl.value <= startEl.value) {
+      const d = new Date(startEl.value + 'T12:00:00');
+      d.setDate(d.getDate() + 3);
+      endEl.value = dsLocal(d);
+    }
+    setTimeout(() => { endEl.focus(); if (endEl.showPicker) endEl.showPicker(); }, 60);
+  });
+
+  endEl.addEventListener('change', function() {
+    if (endEl.value && startEl.value && endEl.value <= startEl.value) {
+      const d = new Date(startEl.value + 'T12:00:00');
+      d.setDate(d.getDate() + 1);
+      endEl.value = dsLocal(d);
+    }
+  });
+}
+
+function ucalQuickPick() {
+  const villa = document.getElementById('ucal-qp-villa').value;
+  const start = document.getElementById('ucal-qp-start').value;
+  const end   = document.getElementById('ucal-qp-end').value;
+
+  if (!villa) { toast('Choisissez une villa', 'red'); return; }
+  if (!start) { toast('Choisissez une date d'arrivée', 'red'); return; }
+  if (!end)   { toast('Choisissez une date de départ', 'red'); return; }
+  if (end < start) { toast('Le départ doit être après l'arrivée', 'red'); return; }
+
+  ucalSelVilla = villa;
+  ucalSelStart = start;
+  ucalSelEnd   = end;
+
+  // Navigate calendar to the month of start date
+  const d = new Date(start + 'T00:00:00');
+  ucalYear  = d.getFullYear();
+  ucalMonth = d.getMonth();
+
+  renderUcal();
+  showUcalPanel();
+}
 function ucalClick(villaId, ds) {
   if(!ucalSelStart || ucalSelVilla !== villaId || ucalSelEnd) {
     // Start new selection
@@ -1202,6 +1290,7 @@ function ucalClick(villaId, ds) {
     if(ucalSelEnd < ucalSelStart) [ucalSelStart, ucalSelEnd] = [ucalSelEnd, ucalSelStart];
     showUcalPanel();
   }
+  initUcalQuickPick();
   renderUcal();
 }
 
