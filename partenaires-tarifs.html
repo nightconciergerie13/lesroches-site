@@ -265,33 +265,18 @@ a{color:inherit;text-decoration:none}
   max-width:520px;margin-bottom:1.4rem;
 }
 
-/* ── Range date picker ── */
-.rp-calendar{position:relative;background:var(--c);border:1px solid var(--c2);border-radius:var(--r);padding:1rem;margin-top:.6rem;max-width:340px;box-shadow:0 4px 24px rgba(0,0,0,.08);z-index:50}
-.rp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem}
-.rp-month{font-family:'Gilda Display',serif;font-size:.9rem;color:var(--ink)}
-.rp-nav{background:none;border:1px solid var(--c2);border-radius:var(--r);width:32px;height:32px;cursor:pointer;font-size:1.1rem;color:var(--mid);transition:all .2s;display:flex;align-items:center;justify-content:center}
-.rp-nav:hover{border-color:var(--ter);color:var(--ter)}
-.rp-weekdays{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:.4rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);margin-bottom:.4rem}
-.rp-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
-.rp-day{padding:.55rem .2rem;text-align:center;font-size:.75rem;cursor:pointer;border-radius:4px;transition:all .15s;color:var(--ink);font-family:'Outfit',sans-serif}
-.rp-day:hover:not(.rp-disabled):not(.rp-empty){background:var(--sand);color:var(--ink)}
-.rp-day.rp-today{font-weight:600}
-.rp-day.rp-selected{background:var(--ter);color:#fff;font-weight:500}
-.rp-day.rp-in-range{background:rgba(184,115,74,.12);color:var(--ink)}
-.rp-day.rp-disabled{color:var(--c2);cursor:default}
-.rp-day.rp-empty{cursor:default}
-.rp-hint{font-size:.5rem;color:var(--mid);text-align:center;margin-top:.6rem;letter-spacing:.08em}
-.search-field{cursor:pointer;user-select:none}
-.search-field-label{font-size:.45rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);margin-bottom:.4rem;display:block}
-.search-input-fake{
+/* ── Date inputs ─────────────────────────────────── */
+.search-field-wrap{display:flex;flex-direction:column;gap:.4rem;flex:1;min-width:140px}
+.search-field-lbl{font-size:.45rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mid)}
+.search-input-date{
   padding:.8rem 1rem;border:1px solid var(--c2);border-radius:var(--r);
   background:var(--c);font-family:'Outfit',sans-serif;font-size:.85rem;
-  font-weight:300;color:var(--ink);transition:border-color .2s;cursor:pointer;
-  min-width:140px;
+  font-weight:300;color:var(--ink);outline:none;transition:border-color .2s;
+  cursor:pointer;width:100%;
 }
-.search-input-fake:hover{border-color:var(--ter)}
-.search-input-fake.rp-active{border-color:var(--ter);background:#fff}
-.search-form{
+.search-input-date:focus{border-color:var(--ter)}
+.search-input-date::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.5}
+
   display:flex;gap:.8rem;align-items:flex-end;flex-wrap:wrap;
 }
 .search-field{
@@ -493,27 +478,17 @@ a{color:inherit;text-decoration:none}
     <h2 class="search-title" data-i18n="search_title">Disponibilités par dates</h2>
     <p class="search-sub" data-i18n="search_sub">Sélectionnez vos dates pour voir les villas disponibles et les tarifs nets partenaires.</p>
     <div class="search-form">
-      <div class="search-field" onclick="openRangePicker('in')">
-        <span class="search-field-label" data-i18n="search_label_in">Arrivée</span>
-        <div class="search-input-fake" id="search-in-display">── / ── / ────</div>
-        <input type="hidden" id="search-in">
-      </div>
-      <div class="search-field" onclick="openRangePicker('out')">
-        <span class="search-field-label" data-i18n="search_label_out">Départ</span>
-        <div class="search-input-fake" id="search-out-display">── / ── / ────</div>
-        <input type="hidden" id="search-out">
-      </div>
-      <button type="button" class="search-btn" id="search-btn" onclick="runMultiSearch()" data-i18n="search_btn">Voir les villas disponibles →</button>
+      <label class="search-field-wrap">
+        <span class="search-field-lbl">Arrivée</span>
+        <input type="date" id="search-in" class="search-input-date" autocomplete="off">
+      </label>
+      <label class="search-field-wrap">
+        <span class="search-field-lbl">Départ</span>
+        <input type="date" id="search-out" class="search-input-date" autocomplete="off">
+      </label>
+      <button type="button" class="search-btn" id="search-btn" onclick="runMultiSearch()">Voir les disponibilités →</button>
     </div>
-    <div class="rp-calendar" id="rp-calendar" style="display:none">
-      <div class="rp-header">
-        <button class="rp-nav" onclick="rpChangeMonth(-1)">‹</button>
-        <span class="rp-month" id="rp-month-label"></span>
-        <button class="rp-nav" onclick="rpChangeMonth(1)">›</button>
-      </div>
-      <div class="rp-weekdays"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
-      <div class="rp-days" id="rp-days"></div>
-      <div class="rp-hint" id="rp-hint"></div>
+      <button type="button" class="search-btn" id="search-btn" onclick="runMultiSearch()" data-i18n="search_btn">Voir les villas disponibles →</button>
     </div>
     <div class="search-meta" id="search-meta"></div>
     <div class="search-results" id="search-results"></div>
@@ -758,12 +733,24 @@ function initSearchDates(){
   if(!inEl || !outEl) return;
   var today = new Date(); today.setHours(0,0,0,0);
   var todayISO = dateToISO(today);
-  inEl.min  = todayISO;
+  inEl.min = todayISO;
   outEl.min = todayISO;
-  if(!inEl.value)  inEl.value  = todayISO;
-  if(!outEl.value) outEl.value = dateToISO(addDays(today, 7));
-}
 
+  inEl.addEventListener('change', function(){
+    if(!inEl.value) return;
+    outEl.min = inEl.value;
+    if(!outEl.value || outEl.value <= inEl.value){
+      outEl.value = dateToISO(addDays(parseDateISO(inEl.value), 3));
+    }
+    setTimeout(function(){ outEl.focus(); if(outEl.showPicker) outEl.showPicker(); }, 60);
+  });
+
+  outEl.addEventListener('change', function(){
+    if(outEl.value && inEl.value && outEl.value <= inEl.value){
+      outEl.value = dateToISO(addDays(parseDateISO(inEl.value), 1));
+    }
+  });
+}
 async function fetchVillaPeriod(villaId, startISO, lastNightISO){
   var headers = {'apikey': SB_ANON, 'Authorization': 'Bearer '+SB_ANON};
   var results = await Promise.all([
@@ -880,7 +867,7 @@ window.runMultiSearch = async function(){
       var q = r.quote;
       var statusLabel, statusClass;
       if(q.status === 'avail'){
-        statusLabel = t('result_avail'); statusClass = 'status-avail';
+        statusLabel = 'Disponible'; statusClass = 'status-avail';
       } else if(q.status === 'partial'){
         statusLabel = (nights < q.minNights) ? ('Min. '+q.minNights+' nuits') : 'À confirmer';
         statusClass = 'status-partial';
@@ -919,7 +906,7 @@ window.runMultiSearch = async function(){
     results.innerHTML = '<div class="cal-error">Impossible d\'interroger Supabase. Réessayez dans un instant.</div>';
   } finally {
     btn.disabled = false;
-    btn.textContent = t('search_btn');
+    btn.textContent = 'Voir les disponibilités →';
   }
 };
 
@@ -995,143 +982,6 @@ function renderCalendar(data){
   /* init i18n */
   window.addEventListener('DOMContentLoaded', function(){ initI18n('tarifs'); });
 
-
-/* ── Range Date Picker ─────────────────────────────────────────────────── */
-var rpYear, rpMonth, rpStart = null, rpEnd = null, rpPhase = 'in';
-var RP_MONTHS_FR = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-
-function openRangePicker(phase) {
-  rpPhase = phase || 'in';
-  var cal = document.getElementById('rp-calendar');
-  var isOpen = cal.style.display === 'block';
-  // Toggle: if already open and same field clicked, close
-  if (isOpen && rpPhase === phase) {
-    cal.style.display = 'none';
-    document.getElementById('search-in-display').classList.remove('rp-active');
-    document.getElementById('search-out-display').classList.remove('rp-active');
-    return;
-  }
-  var now = new Date();
-  rpYear = now.getFullYear();
-  rpMonth = now.getMonth();
-  cal.style.display = 'block';
-  document.getElementById('search-in-display').classList.toggle('rp-active', phase === 'in');
-  document.getElementById('search-out-display').classList.toggle('rp-active', phase === 'out');
-  renderRP();
-}
-
-function rpChangeMonth(dir) {
-  rpMonth += dir;
-  if (rpMonth < 0) { rpMonth = 11; rpYear--; }
-  if (rpMonth > 11) { rpMonth = 0; rpYear++; }
-  renderRP();
-}
-
-function rpPad(n) { return n < 10 ? '0' + n : '' + n; }
-
-function renderRP() {
-  var label = document.getElementById('rp-month-label');
-  label.textContent = RP_MONTHS_FR[rpMonth] + ' ' + rpYear;
-
-  var container = document.getElementById('rp-days');
-  container.innerHTML = '';
-
-  var firstDay = new Date(rpYear, rpMonth, 1).getDay();
-  firstDay = firstDay === 0 ? 6 : firstDay - 1; // Monday = 0
-  var daysInMonth = new Date(rpYear, rpMonth + 1, 0).getDate();
-  var today = new Date(); today.setHours(0,0,0,0);
-
-  // Empty cells
-  for (var i = 0; i < firstDay; i++) {
-    var empty = document.createElement('div');
-    empty.className = 'rp-day rp-empty';
-    container.appendChild(empty);
-  }
-
-  for (var d = 1; d <= daysInMonth; d++) {
-    var cell = document.createElement('div');
-    cell.className = 'rp-day';
-    cell.textContent = d;
-    var dt = new Date(rpYear, rpMonth, d);
-    var iso = rpYear + '-' + rpPad(rpMonth+1) + '-' + rpPad(d);
-
-    if (dt < today) {
-      cell.classList.add('rp-disabled');
-    } else {
-      cell.dataset.iso = iso;
-      cell.addEventListener('click', rpSelect);
-    }
-
-    if (dt.getTime() === today.getTime()) cell.classList.add('rp-today');
-
-    // Highlight range
-    if (rpStart && iso === rpStart) cell.classList.add('rp-selected');
-    if (rpEnd && iso === rpEnd) cell.classList.add('rp-selected');
-    if (rpStart && rpEnd && iso > rpStart && iso < rpEnd) cell.classList.add('rp-in-range');
-
-    container.appendChild(cell);
-  }
-
-  // Hint
-  var hint = document.getElementById('rp-hint');
-  if (!rpStart) {
-    hint.textContent = 'Sélectionnez la date d\'arrivée';
-  } else if (!rpEnd) {
-    hint.textContent = 'Sélectionnez la date de départ';
-  } else {
-    hint.textContent = '';
-  }
-}
-
-function rpSelect(e) {
-  var iso = e.target.dataset.iso;
-  if (!iso) return;
-
-  if (!rpStart || (rpStart && rpEnd)) {
-    // First click or restart
-    rpStart = iso;
-    rpEnd = null;
-    document.getElementById('search-in').value = iso;
-    document.getElementById('search-in-display').textContent = rpFormatDate(iso);
-    document.getElementById('search-out').value = '';
-    document.getElementById('search-out-display').textContent = '── / ── / ────';
-    renderRP();
-  } else {
-    // Second click = end date
-    if (iso <= rpStart) {
-      // Clicked before start, restart
-      rpStart = iso;
-      rpEnd = null;
-      document.getElementById('search-in').value = iso;
-      document.getElementById('search-in-display').textContent = rpFormatDate(iso);
-      document.getElementById('search-out').value = '';
-      document.getElementById('search-out-display').textContent = '── / ── / ────';
-    } else {
-      rpEnd = iso;
-      document.getElementById('search-out').value = iso;
-      document.getElementById('search-out-display').textContent = rpFormatDate(iso);
-      // Close calendar after both dates selected
-      setTimeout(function() {
-        document.getElementById('rp-calendar').style.display = 'none';
-      }, 300);
-    }
-    renderRP();
-  }
-}
-
-function rpFormatDate(iso) {
-  var p = iso.split('-');
-  return p[2] + '/' + p[1] + '/' + p[0];
-}
-
-// Close picker when clicking outside
-document.addEventListener('click', function(e) {
-  var cal = document.getElementById('rp-calendar');
-  var wrap = document.getElementById('search-wrap');
-  if (cal && cal.style.display === 'block' && wrap && !wrap.contains(e.target)) {
-    cal.style.display = 'none';
-  }
-});
 
 </script>
 
