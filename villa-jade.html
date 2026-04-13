@@ -928,8 +928,81 @@ footer { padding: 3rem 5vw; }
 .bk-ok-close:hover { background: var(--c2); color: var(--ink); }
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "LodgingBusiness",
+    "VacationRental"
+  ],
+  "name": "Casa Jade - Les Roches Retreat",
+  "description": "Tropical villa with private pool and ocean views at Les Roches Retreat, Santa Teresa, Costa Rica.",
+  "url": "https://lesrochesretreat.com/villa-jade.html",
+  "image": "https://lesrochesretreat.com/images/jade-hero.webp",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Playa Santa Teresa",
+    "addressLocality": "Santa Teresa",
+    "addressRegion": "Puntarenas",
+    "addressCountry": "CR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 9.6398,
+    "longitude": -85.1673
+  },
+  "numberOfBedrooms": 2,
+  "numberOfBathroomsTotal": 2,
+  "occupancy": {
+    "@type": "QuantitativeValue",
+    "maxValue": 4
+  },
+  "amenityFeature": [
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Private Pool",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Ocean view",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Air Conditioning",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Free WiFi",
+      "value": true
+    }
+  ],
+  "checkinTime": "15:00",
+  "checkoutTime": "11:00",
+  "petsAllowed": false,
+  "parentOrganization": {
+    "@type": "LodgingBusiness",
+    "name": "Les Roches Retreat",
+    "url": "https://lesrochesretreat.com"
+  }
+}
+</script>
+  <script src="cookie-consent.js" defer></script>
+  <\!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFWBDDTMF0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WFWBDDTMF0', { anonymize_ip: true });
+  </script>
 </head>
 <body>
+    <\!-- SEO: indexable images -->
+    <img src="images/jade-hero.webp" alt="Casa Jade - Private luxury villa with pool at Les Roches Retreat, Santa Teresa" width="1200" height="800" loading="eager" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">
+    <img src="images/jade-pool.webp" alt="Casa Jade private pool" width="800" height="600" loading="lazy" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">
 <div id="cur"></div>
 
 <!-- NAV -->
@@ -944,6 +1017,7 @@ footer { padding: 3rem 5vw; }
     <a href="journal.html" class="nl">Journal</a>
   </div>
   <a href="villas.html" class="nav-book" id="nb">Book Now</a>
+      <div class="best-price-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>Best Price &mdash; Book Direct</div>
   <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="nav-overlay" id="nav-overlay">
@@ -967,7 +1041,7 @@ footer { padding: 3rem 5vw; }
     <div class="hero-left">
       <a href="villas.html" class="h-back">Back to all villas</a>
       <h1 class="h-title">Casa Jade</h1>
-      <a href="#reserve" class="h-cta" id="h-reserve-btn" style="display:inline-block;margin-top:1.8rem">Reserve this villa</a>
+      <a href="#reserve" class="h-cta" id="h-reserve-btn" style="display:inline-block;margin-top:1.8rem">Book Now</a>
     </div>
   </div>
 </div>
@@ -1074,6 +1148,7 @@ footer { padding: 3rem 5vw; }
         <div>
           <div class="reviews-stars">★★★★★</div>
           <div class="reviews-meta">Based on Airbnb reviews</div>
+      <div class="reviews-sources" style="display:flex;gap:1rem;margin-top:.6rem;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase"><a href="https://www.google.com/maps/place/Les+Roches+Retreat/" target="_blank" rel="noopener" style="color:#b8734a;text-decoration:underline">Google Reviews</a><a href="https://www.airbnb.com/rooms/search?query=Les+Roches+Santa+Teresa" target="_blank" rel="noopener" style="color:#b8734a;text-decoration:underline">Airbnb Reviews</a></div>
         </div>
       </div>
       <div class="reviews-grid">
@@ -1173,7 +1248,7 @@ footer { padding: 3rem 5vw; }
         <!-- CTA -->
         <button class="sb-btn" id="sb-cta" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          Reserve this villa
+          Book Now
         </button>
 
         <div class="sb-note">
@@ -1231,7 +1306,7 @@ footer { padding: 3rem 5vw; }
     <div id="bk-form-wrap">
       <div class="bk-head">
         <div class="bk-head-eye">Casa Jade · Les Roches</div>
-        <h3 class="bk-head-title">Reserve this villa</h3>
+        <h3 class="bk-head-title">Book Now</h3>
       </div>
 
       <!-- Dates + total summary (shown if dates are selected) -->

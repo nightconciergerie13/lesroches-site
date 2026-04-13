@@ -53,7 +53,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
   align-items: center;
   gap: .55rem;
   font-family: 'Outfit', sans-serif;
-  font-size: .48rem;
+  font-size: .75rem;
   letter-spacing: .28em;
   text-transform: uppercase;
   color: rgba(255,255,255,.7);
@@ -67,11 +67,11 @@ html, body { overflow-x: hidden; max-width: 100%; }
   transition: background .2s, color .2s;
 }
 .h-back:hover { background: rgba(255,255,255,.18); color: #fff; }
-.h-back::before { content: '←'; font-size: .65rem; }
+.h-back::before { content: '←'; font-size: .75rem; }
 
 .h-eyebrow {
   font-family: 'Outfit', sans-serif;
-  font-size: .44rem;
+  font-size: .75rem;
   letter-spacing: .5em;
   text-transform: uppercase;
   color: var(--ter);
@@ -96,7 +96,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 }
 .hero-chip {
   font-family: 'Outfit', sans-serif;
-  font-size: .44rem;
+  font-size: .75rem;
   letter-spacing: .24em;
   text-transform: uppercase;
   color: rgba(255,255,255,.55);
@@ -109,7 +109,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
   display: inline-block;
   margin-top: 1.2rem;
   font-family: 'Outfit', sans-serif;
-  font-size: .48rem;
+  font-size: .75rem;
   letter-spacing: .24em;
   text-transform: uppercase;
   padding: .75rem 1.8rem;
@@ -168,7 +168,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 .gs-item:hover .gs-ov { opacity: 1; }
 .gs-ov-txt {
   font-family: 'Outfit', sans-serif;
-  font-size: .42rem;
+  font-size: .75rem;
   letter-spacing: .3em;
   text-transform: uppercase;
   color: rgba(255,255,255,.9);
@@ -200,7 +200,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
   top: 1rem;
   right: 1rem;
   font-family: 'Outfit', sans-serif;
-  font-size: .4rem;
+  font-size: .75rem;
   letter-spacing: .22em;
   text-transform: uppercase;
   color: rgba(255,255,255,.8);
@@ -231,7 +231,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 
 .sec-eye {
   font-family: 'Outfit', sans-serif;
-  font-size: .5rem;
+  font-size: .75rem;
   letter-spacing: .44em;
   text-transform: uppercase;
   color: var(--ter);
@@ -281,7 +281,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
   align-items: center;
   gap: .5rem;
   font-family: 'Outfit', sans-serif;
-  font-size: .62rem;
+  font-size: .75rem;
   font-weight: 300;
   letter-spacing: .08em;
   color: var(--ink2);
@@ -326,7 +326,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 }
 .vp-photo-eye {
   font-family: 'Outfit', sans-serif;
-  font-size: .44rem;
+  font-size: .75rem;
   letter-spacing: .44em;
   text-transform: uppercase;
   color: rgba(255,255,255,.38);
@@ -383,7 +383,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 }
 .reviews-meta {
   font-family: 'Outfit', sans-serif;
-  font-size: .56rem;
+  font-size: .75rem;
   font-weight: 300;
   color: var(--mid);
   letter-spacing: .06em;
@@ -408,7 +408,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
   border-radius: 4px;
   padding: 1.6rem;
 }
-.rev-stars { font-size: .6rem; letter-spacing: .1em; color: var(--ter); margin-bottom: .9rem; }
+.rev-stars { font-size: .75rem; letter-spacing: .1em; color: var(--ter); margin-bottom: .9rem; }
 .rev-text {
   font-family: 'Libre Baskerville', serif;
   font-style: italic;
@@ -437,14 +437,14 @@ html, body { overflow-x: hidden; max-width: 100%; }
 }
 .rev-name {
   font-family: 'Outfit', sans-serif;
-  font-size: .54rem;
+  font-size: .75rem;
   font-weight: 400;
   color: var(--ink);
   letter-spacing: .06em;
 }
 .rev-location {
   font-family: 'Outfit', sans-serif;
-  font-size: .46rem;
+  font-size: .75rem;
   font-weight: 300;
   color: var(--mid);
   letter-spacing: .06em;
@@ -452,7 +452,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 }
 .rev-source {
   margin-left: auto;
-  font-size: .36rem;
+  font-size: .75rem;
   letter-spacing: .22em;
   text-transform: uppercase;
   color: var(--mid);
@@ -499,7 +499,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 }
 .sb-tag {
   font-family: 'Outfit', sans-serif;
-  font-size: .44rem;
+  font-size: .75rem;
   letter-spacing: .3em;
   text-transform: uppercase;
   color: var(--ter);
@@ -516,7 +516,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 }
 .sb-price-lbl {
   font-family: 'Outfit', sans-serif;
-  font-size: .46rem;
+  font-size: .75rem;
   letter-spacing: .24em;
   text-transform: uppercase;
   color: var(--mid);
@@ -529,7 +529,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 }
 .sb-price-val small {
   font-family: 'Outfit', sans-serif;
-  font-size: .52rem;
+  font-size: .75rem;
   font-weight: 300;
   color: var(--mid);
 }
@@ -550,7 +550,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 .sb-field:focus-within { border-color: var(--sand); }
 .sb-field label {
   font-family: 'Outfit', sans-serif;
-  font-size: .4rem;
+  font-size: .75rem;
   letter-spacing: .32em;
   text-transform: uppercase;
   color: var(--ter);
@@ -558,7 +558,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 }
 .sb-field input, .sb-field select {
   font-family: 'Outfit', sans-serif;
-  font-size: .7rem;
+  font-size: .75rem;
   font-weight: 300;
   color: var(--ink);
   background: transparent;
@@ -567,7 +567,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
   width: 100%;
 }
 .sb-field select option { background: var(--w); }
-.sb-field input::placeholder { color: var(--mid); font-size: .66rem; }
+.sb-field input::placeholder { color: var(--mid); font-size: .75rem; }
 
 .sb-dates-row {
   display: grid;
@@ -594,7 +594,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 .sb-total-row:last-child { margin-bottom: 0; }
 .sb-total-lbl {
   font-family: 'Outfit', sans-serif;
-  font-size: .5rem;
+  font-size: .75rem;
   font-weight: 300;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -607,7 +607,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 }
 .sb-total-nights {
   font-family: 'Outfit', sans-serif;
-  font-size: .5rem;
+  font-size: .75rem;
   font-weight: 300;
   color: var(--mid);
 }
@@ -625,7 +625,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
   border: none;
   border-radius: 3px;
   font-family: 'Outfit', sans-serif;
-  font-size: .5rem;
+  font-size: .75rem;
   letter-spacing: .24em;
   text-transform: uppercase;
   cursor: pointer;
@@ -638,7 +638,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 
 .sb-note {
   font-family: 'Outfit', sans-serif;
-  font-size: .72rem;
+  font-size: .75rem;
   font-weight: 300;
   color: var(--mid);
   text-align: center;
@@ -654,7 +654,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 }
 .sb-cond-title {
   font-family: 'Outfit', sans-serif;
-  font-size: .58rem;
+  font-size: .75rem;
   letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--ink2);
@@ -707,7 +707,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 .ov5 { background: linear-gradient(160deg, #d6d3cc, #928c86); }
 .ov-body { padding: .9rem; }
 .ov-name { font-family: 'Gilda Display', serif; font-size: .9rem; color: var(--ink); }
-.ov-detail { font-family: 'Outfit', sans-serif; font-size: .44rem; letter-spacing: .1em; text-transform: uppercase; color: var(--mid); margin-top: .25rem; }
+.ov-detail { font-family: 'Outfit', sans-serif; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--mid); margin-top: .25rem; }
 
 /* ─── WHATSAPP FLOATING ─────────────────────────────── */
 .wa-float {
@@ -741,13 +741,13 @@ html, body { overflow-x: hidden; max-width: 100%; }
 }
 .wa-float-txt {
   font-family: 'Outfit', sans-serif;
-  font-size: .56rem;
+  font-size: .75rem;
   font-weight: 300;
   color: var(--ink2);
   letter-spacing: .04em;
   white-space: nowrap;
 }
-.wa-float-txt strong { font-weight: 400; display: block; font-size: .58rem; }
+.wa-float-txt strong { font-weight: 400; display: block; font-size: .75rem; }
 
 /* ─── REVEAL ANIMATIONS ─────────────────────────────── */
 .r { opacity: 0; transform: translateY(20px); transition: opacity .4s ease, transform .4s ease; }
@@ -804,7 +804,7 @@ footer { padding: 3rem 5vw; }
 }
 .bk-head-eye {
   font-family: 'Outfit', sans-serif;
-  font-size: .44rem; letter-spacing: .42em; text-transform: uppercase;
+  font-size: .75rem; letter-spacing: .42em; text-transform: uppercase;
   color: var(--ter); margin-bottom: .55rem;
 }
 .bk-head-title {
@@ -820,12 +820,12 @@ footer { padding: 3rem 5vw; }
   gap: 1rem;
 }
 .bk-sum-label {
-  font-family: 'Outfit', sans-serif; font-size: .38rem;
+  font-family: 'Outfit', sans-serif; font-size: .75rem;
   letter-spacing: .3em; text-transform: uppercase; color: var(--mid);
   margin-bottom: .2rem;
 }
 .bk-sum-dates {
-  font-family: 'Outfit', sans-serif; font-size: .62rem;
+  font-family: 'Outfit', sans-serif; font-size: .75rem;
   font-weight: 300; color: var(--ink2); letter-spacing: .03em;
 }
 .bk-sum-right { text-align: right; flex-shrink: 0; }
@@ -845,13 +845,13 @@ footer { padding: 3rem 5vw; }
 
 .bk-field label {
   font-family: 'Outfit', sans-serif;
-  font-size: .4rem; letter-spacing: .32em; text-transform: uppercase;
+  font-size: .75rem; letter-spacing: .32em; text-transform: uppercase;
   color: var(--ter);
 }
 .bk-field input,
 .bk-field select,
 .bk-field textarea {
-  font-family: 'Outfit', sans-serif; font-size: .68rem; font-weight: 300;
+  font-family: 'Outfit', sans-serif; font-size: .75rem; font-weight: 300;
   color: var(--ink); background: var(--c);
   border: 1px solid var(--c2); border-radius: 3px;
   padding: .65rem .9rem; outline: none; width: 100%;
@@ -861,13 +861,13 @@ footer { padding: 3rem 5vw; }
 .bk-field select:focus,
 .bk-field textarea:focus { border-color: var(--sand); background: var(--w); }
 .bk-field input::placeholder,
-.bk-field textarea::placeholder { color: var(--mid); font-size: .65rem; }
+.bk-field textarea::placeholder { color: var(--mid); font-size: .75rem; }
 .bk-field textarea { min-height: 76px; resize: vertical; }
 .bk-field input[readonly] { cursor: pointer; }
 .bk-field input[readonly]:focus { border-color: var(--ter); }
 
 .bk-error {
-  font-family: 'Outfit', sans-serif; font-size: .54rem; font-weight: 300;
+  font-family: 'Outfit', sans-serif; font-size: .75rem; font-weight: 300;
   color: #c0392b; margin-bottom: .6rem; display: none; line-height: 1.6;
 }
 .bk-error.show { display: block; }
@@ -876,7 +876,7 @@ footer { padding: 3rem 5vw; }
   width: 100%; padding: .9rem 1rem; margin-top: .3rem;
   background: var(--ink); color: var(--w);
   border: none; border-radius: 3px; cursor: pointer;
-  font-family: 'Outfit', sans-serif; font-size: .5rem;
+  font-family: 'Outfit', sans-serif; font-size: .75rem;
   letter-spacing: .24em; text-transform: uppercase;
   transition: background .22s, transform .15s;
 }
@@ -885,7 +885,7 @@ footer { padding: 3rem 5vw; }
 .bk-submit:disabled { opacity: .55; cursor: default; transform: none; }
 
 .bk-legal {
-  font-family: 'Outfit', sans-serif; font-size: .62rem; font-weight: 400; letter-spacing: .02em;
+  font-family: 'Outfit', sans-serif; font-size: .75rem; font-weight: 400; letter-spacing: .02em;
   color: #fff; text-align: center; line-height: 1.85; margin-top: 1.4rem;
   background: rgba(184,115,74,.18); border: 1px solid rgba(184,115,74,.5);
   border-radius: 3px; padding: 1rem 1.2rem;
@@ -912,14 +912,14 @@ footer { padding: 3rem 5vw; }
   font-size: 1.7rem; color: var(--ink); font-weight: 400; margin-bottom: .85rem;
 }
 .bk-ok-text {
-  font-family: 'Outfit', sans-serif; font-size: .62rem; font-weight: 300;
+  font-family: 'Outfit', sans-serif; font-size: .75rem; font-weight: 300;
   color: var(--mid); line-height: 1.85; max-width: 340px;
 }
 .bk-ok-text strong { color: var(--ink2); font-weight: 400; }
 .bk-ok-close {
   margin-top: 2rem; padding: .7rem 2.4rem;
   background: transparent; border: 1px solid var(--c2); border-radius: 3px;
-  font-family: 'Outfit', sans-serif; font-size: .46rem;
+  font-family: 'Outfit', sans-serif; font-size: .75rem;
   letter-spacing: .22em; text-transform: uppercase;
   color: var(--mid); cursor: pointer; transition: all .2s;
 }
@@ -931,3 +931,16 @@ footer { padding: 3rem 5vw; }
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   body.has-cursor *{cursor:auto!important}
 }
+
+/* ── Scroll-reveal safety fallback ── */
+@media (prefers-reduced-motion: reduce) {
+  .r { opacity: 1 \!important; transform: none \!important; transition: none \!important; }
+}
+.r.visible { opacity: 1; transform: translateY(0); }
+/* Fallback: if JS fails, show content after 4s */
+@keyframes reveal-fallback { to { opacity: 1; transform: translateY(0); } }
+.r { animation: reveal-fallback 0s 4s forwards; }
+
+/* ── Best Price Badge ── */
+.best-price-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#1e1b18,#2e2a26);color:#faf7f2;padding:.5rem 1.1rem;border-radius:2px;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;font-family:'Outfit',sans-serif;margin-top:1rem}
+.best-price-badge svg{width:14px;height:14px;fill:#b8734a}
