@@ -942,5 +942,4 @@ footer { padding: 3rem 5vw; }
 .r { animation: reveal-fallback 0s 4s forwards; }
 
 /* ── Best Price Badge ── */
-.best-price-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#1e1b18,#2e2a26);color:#faf7f2;padding:.5rem 1.1rem;border-radius:2px;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;font-family:'Outfit',sans-serif;margin-top:1rem}
-.best-price-badge svg{width:14px;height:14px;fill:#b8734a}
+.best-price-badge{font-size:.44rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-top:.9rem;display:block}
