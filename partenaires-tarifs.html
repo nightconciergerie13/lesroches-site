@@ -451,7 +451,7 @@ a{color:inherit;text-decoration:none}
   <div class="cal-header-inner">
     <p class="cal-eyebrow">Synchronized in real time</p>
     <h1 class="cal-title">Partner rates · Direct</h1>
-    <p class="cal-sub">Prices shown at -15% of public rate. Minimum nights included. Data automatically updated from our admin panel.</p>
+    <p class="cal-sub">Prices shown at -12% of public rate. Minimum nights included. Data automatically updated from our admin panel.</p>
     <div class="cal-badge">
       <span class="cal-badge-dot"></span>
       Connected to our system · Real-time update
@@ -541,7 +541,7 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <div class="disclaimer">
-    <strong>Displayed rates:</strong> Net partner prices at -15% of public rate. Commission of 15% included — the displayed rate is what you pay. Minimum night according to period displayed on each date. <strong>Rates may vary</strong> depending on period and demand — this calendar always reflects our current pricing. For any reservation or question, contact us directly on WhatsApp.
+    <strong>Displayed rates:</strong> Net partner prices at -12% of public rate. Commission of 12% included — the displayed rate is what you pay. Minimum night according to period displayed on each date. <strong>Rates may vary</strong> depending on period and demand — this calendar always reflects our current pricing. For any reservation or question, contact us directly on WhatsApp.
   </div>
 
 </div>
@@ -554,8 +554,8 @@ a{color:inherit;text-decoration:none}
 
 <script>
 /* Commission dynamique selon la saison */
-var COMMISSION_STANDARD   = 0.85; /* 15% — standard */
-var COMMISSION_BASSE      = 0.85; /* 15% — basse saison (mai-nov) */
+var COMMISSION_STANDARD   = 0.88; /* 12% — standard */
+var COMMISSION_BASSE      = 0.88; /* 12% — basse saison (mai-nov) */
 var COMMISSION_PEAK       = 0.90; /* 10% — 20 dec - 5 jan */
 
 function getCommission(dateISO) {
@@ -857,7 +857,7 @@ window.runMultiSearch = async function(){
       return a.quote.totalPartner - b.quote.totalPartner;
     });
 
-    meta.innerHTML = '<strong>'+fmtDateFR(startISO)+' → '+fmtDateFR(endISO)+'</strong> · '+nights+' nuit'+(nights>1?'s':'')+' · Tarifs nets partenaires (−15 % du public)';
+    meta.innerHTML = '<strong>'+fmtDateFR(startISO)+' → '+fmtDateFR(endISO)+'</strong> · '+nights+' nuit'+(nights>1?'s':'')+' · Tarifs nets partenaires (−12 % du public)';
 
     var html = '';
     rows.forEach(function(r){
