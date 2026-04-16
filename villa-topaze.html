@@ -1813,15 +1813,18 @@ bkFormEl.addEventListener('submit', function(e) {
         'Prefer': 'return=minimal'
       },
       body: JSON.stringify({
-        villa: 'Casa Topaze',
-        from_name: name,
-        from_email: email,
-        phone: phone || '',
-        checkin: ci || '',
-        checkout: co || '',
-        guests: guests,
-        message: msg || '',
-        status: 'pending'
+        villa_id:   'topaze',
+        villa_name: 'Casa Topaze',
+        firstname:  name.split(' ')[0] || name,
+        lastname:   name.split(' ').slice(1).join(' ') || '',
+        email:      email,
+        whatsapp:   phone || '',
+        checkin:    ci || '',
+        checkout:   co || '',
+        nights:     (ci && co) ? Math.round((new Date(co)-new Date(ci))/(86400000)) : null,
+        guests:     guests,
+        notes:      msg || '',
+        status:     'pending'
       })
     }).catch(function(e) { console.warn('Supabase insert failed:', e); });
     document.getElementById('bk-ok-name').textContent = name.split(' ')[0];
