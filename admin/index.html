@@ -680,7 +680,7 @@ tr:hover td{background:#faf9f7}
             </div>
             <div class="partner-stat">
               <div class="stat-label">Commission partenaire</div>
-              <div class="stat-value">-15%</div>
+              <div class="stat-value">-12%</div>
               <div class="stat-sub">Sur le tarif public affiche</div>
             </div>
             <div class="partner-stat">
@@ -1042,8 +1042,8 @@ function renderReservations() {
     </tr></thead>
     <tbody>${filtered.map(r => `
       <tr>
-        <td><strong>${r.villa || '—'}</strong></td>
-        <td>${r.from_name || '—'}<br><span style="font-size:.58rem;color:var(--mid)">${r.from_email || ''}</span><br><span style="font-size:.58rem;color:#25D366">${r.phone || ''}</span></td>
+        <td><strong>${r.villa_name || r.villa_id || '—'}</strong></td>
+        <td>${(r.firstname||'') + (r.lastname ? ' '+r.lastname : '') || '—'}<br><span style="font-size:.58rem;color:var(--mid)">${r.email || ''}</span><br><span style="font-size:.58rem;color:#25D366">${r.whatsapp || ''}</span></td>
         <td>${fmt(r.checkin)}<br><span style="color:var(--mid)">→ ${fmt(r.checkout)}</span></td>
         <td>${r.guests || '—'}</td>
         <td style="font-size:.65rem">${r.created_at ? new Date(r.created_at).toLocaleDateString('fr-FR') : '—'}</td>
