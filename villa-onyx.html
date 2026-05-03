@@ -29,7 +29,8 @@
 
 <style>
 /* ─── Image declarations ────────────────────────────── */
-.hero-bg  { background-image: url('images/onyx-hero.webp') !important; }
+.hero-bg    { background-image: none !important; }
+video.hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
 .gi1      { background-image: url('images/onyx-pool.webp') !important; }
 .gi2      { background-image: url('images/onyx-salon.webp') !important; }
 .gi3      { background-image: url('images/onyx-cuisine.webp') !important; }
@@ -1093,12 +1094,11 @@ footer { padding: 3rem 5vw; }
   <a href="journal.html" class="nl">Journal</a>
   <a href="contact.html" class="nl">Book Now</a>
 </div>
-
 <!-- ══════════════════════════════════════════════════
      HERO
 ══════════════════════════════════════════════════ -->
 <div class="hero">
-  <div class="hero-bg"></div>
+  <video class="hero-bg" autoplay muted loop playsinline preload="auto"><source src="images/villa-onyx-tour.mp4" type="video/mp4"></video>
   <div class="hero-ov"></div>
   <div class="hero-inner">
     <div class="hero-left">
