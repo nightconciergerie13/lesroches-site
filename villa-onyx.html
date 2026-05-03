@@ -8,7 +8,7 @@
 <meta property="og:description" content="Casa Onyx: panoramic ocean villa with private infinity pool at Les Roches Retreat, Santa Teresa.">
 <meta property="og:image" content="https://lesrochesretreat.com/images/onyx-hero.webp">
 <meta property="og:url" content="https://lesrochesretreat.com/villa-onyx.html">
-<meta property="og:site_name" content="Les Roches Retreat">
+<meta property="og:site_name" content="Les Roches Retreat"
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Casa Onyx — Les Roches Retreat">
 <meta name="twitter:description" content="Casa Onyx: panoramic ocean villa with private infinity pool at Les Roches Retreat, Santa Teresa.">
@@ -1098,7 +1098,7 @@ footer { padding: 3rem 5vw; }
      HERO
 ══════════════════════════════════════════════════ -->
 <div class="hero">
-  <video class="hero-bg" autoplay muted loop playsinline preload="auto"><source src="images/villa-onyx-tour.mp4" type="video/mp4"></video>
+  <video class="hero-bg" autoplay muted loop playsinline preload="auto" poster="images/onyx-hero.webp"><source src="images/villa-onyx-tour.mp4" type="video/mp4"></video>
   <div class="hero-ov"></div>
   <div class="hero-inner">
     <div class="hero-left">
@@ -1612,7 +1612,7 @@ window.addEventListener('load', function() {
   }
 
   function next() { goTo(current >= steps ? 0 : current + 1); }
-  function startAuto() { timer = setInterval(next, 3400); }
+  function startAuto() { timer = // DISABLED: setInterval(next, 3400); }
   function stopAuto()  { clearInterval(timer); }
 
   startAuto();
