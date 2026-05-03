@@ -927,7 +927,9 @@ footer { padding: 3rem 5vw; }
 }
 .bk-ok-close:hover { background: var(--c2); color: var(--ink); }
 
-</style>
+
+  .hero-bg    { background-image: none !important; }
+  video.hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1098,12 +1100,11 @@ footer { padding: 3rem 5vw; }
      HERO
 ══════════════════════════════════════════════════ -->
 <div class="hero">
-  <div class="hero-bg"></div>
+  <video class="hero-bg" autoplay muted loop playsinline preload="auto" poster="images/agate-hero.webp"></video>
   <div class="hero-ov"></div>
   <div class="hero-inner">
     <div class="hero-left">
-      <a href="villas.html" class="h-back">Back to all villas</a>
-      <h1 class="h-title">Casa Agate</h1>
+      <a href="villas.html" class="h-back">Back to all <video class="hero-bg" autoplay muted loop playsinline preload="auto" poster="images/agate-hero.webp"></video>"h-title">Casa Agate</h1>
       <a href="#reserve" class="h-cta" id="h-reserve-btn" style="display:inline-block;margin-top:1.8rem">Book Now</a>
           <span class="best-price-badge">Best price — book direct</span>
     </div>
