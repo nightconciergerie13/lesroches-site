@@ -1612,7 +1612,7 @@ window.addEventListener('load', function() {
   }
 
   function next() { goTo(current >= steps ? 0 : current + 1); }
-  function startAuto() { timer = // DISABLED: setInterval(next, 3400); }
+  function startAuto() { timer = null; }
   function stopAuto()  { clearInterval(timer); }
 
   startAuto();
