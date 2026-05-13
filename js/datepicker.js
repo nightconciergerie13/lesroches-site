@@ -265,6 +265,18 @@
       return this._disabled.indexOf(ds) !== -1;
     },
 
+    /* Retourne le 1er jour bloqué strictement après startStr, ou null.
+       Utilisé pour autoriser le checkout sur la date de fin de dispo. */
+    _firstBlockedAfter: function (startStr) {
+      var after = [];
+      for (var i = 0; i < this._disabled.length; i++) {
+        if (this._disabled[i] > startStr) after.push(this._disabled[i]);
+      }
+      if (!after.length) return null;
+      after.sort();
+      return after[0];
+    },
+
     _render: function () {
       var id = this._id;
       var L = this._cal.querySelector('.lrp-L' + id);
@@ -295,13 +307,34 @@
 
       var daysInMonth = new Date(year, month + 1, 0).getDate();
 
+      /* ── checkout-ok : le 1er jour bloqué après le start est sélectionnable
+         comme date de départ (le client part ce jour-là, il n'y dort pas).
+         Exemple : dispo 13-15 mai → le 15 est "1er jour bloqué" et doit
+         rester cliquable comme checkout même s'il figure dans blocked_dates. ── */
+      var pickingEnd   = !!(this._startStr && !this._endStr);
+      var maxCheckout  = pickingEnd ? this._firstBlockedAfter(this._startStr) : null;
+
       for (var d = 1; d <= daysInMonth; d++) {
         var ds  = year + '-' +
                   String(month + 1).padStart(2, '0') + '-' +
                   String(d).padStart(2, '0');
         var cls = 'lrp-day';
 
-        if (this._isDisabled(ds)) {
+        /* Calcul disabled avec prise en compte du contexte checkout */
+        var disabled;
+        if (pickingEnd && ds > this._startStr) {
+          if (maxCheckout !== null && ds > maxCheckout) {
+            disabled = true;   /* au-delà du 1er jour bloqué : toujours interdit */
+          } else if (ds === maxCheckout) {
+            disabled = false;  /* checkout-ok : 1er jour bloqué = départ autorisé */
+          } else {
+            disabled = this._isDisabled(ds); /* entre start et maxCheckout : règle normale */
+          }
+        } else {
+          disabled = this._isDisabled(ds);
+        }
+
+        if (disabled) {
           cls += ' lrp-disabled';
         } else {
           if (ds === this.todayStr)  cls += ' lrp-today';
@@ -312,8 +345,7 @@
           }
         }
         html += '<span class="' + cls + '" data-date="' + ds + '">' + d + '</span>';
-      }
-      html += '</div>';
+      }      html += '</div>';
       return html;
     },
 
