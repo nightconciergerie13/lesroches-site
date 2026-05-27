@@ -1939,5 +1939,39 @@ function showBkError(msg) {
 (function(){var s=document.createElement('style');s.textContent='.sb-price{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.4rem}.sb-price-lbl{font-family:Outfit,sans-serif;font-size:.46rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mid)}.sb-price-val{font-family:"Gilda Display",serif;font-size:1.8rem;color:var(--ink);line-height:1}.sb-price-val small{font-family:Outfit,sans-serif;font-size:.52rem;font-weight:300;color:var(--mid)}';document.head.appendChild(s);var sep=document.querySelector('.sb-sep');if(sep){var d=document.createElement('div');d.className='sb-price';d.innerHTML='<span class="sb-price-lbl">From<\/span><div class="sb-price-val">$420 <small>\/ night<\/small><\/div>';sep.parentNode.insertBefore(d,sep.nextSibling);}})();
 (async function(){if(typeof SUPABASE_URL==='undefined')return;try{var today=new Date().toISOString().split('T')[0];var h={'apikey':SUPABASE_ANON,'Authorization':'Bearer '+SUPABASE_ANON};var b=await fetch(SUPABASE_URL+'/rest/v1/daily_rates?villa_id=eq.ambre&date=gte.'+today+'&select=price_per_night&order=price_per_night.asc&limit=1',{headers:h});var rd=await b.json();var fp=rd&&rd[0]?rd[0].price_per_night:420;var el=document.querySelector('.sb-price-val');if(el)el.innerHTML='$'+fp+' <small>\/ night<\/small>';}catch(e){}})();
 </script>
+
+<script>
+/* ── Patch: prix par nuit réel après sélection des dates ── */
+(function patchPriceDisplay() {
+  var inp = document.getElementById('sb-checkin');
+  if (!inp || !inp._flatpickr) { setTimeout(patchPriceDisplay, 300); return; }
+  var fp = inp._flatpickr;
+  var orig = fp.config.onChange.slice();
+  fp.config.onChange = [function(dates, str, inst) {
+    orig.forEach(function(fn) { fn(dates, str, inst); });
+    var lbl = document.querySelector('.sb-price-lbl');
+    var val = document.querySelector('.sb-price-val');
+    if (dates.length === 2) {
+      var toISO = function(d) { return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); };
+      var ci = toISO(dates[0]), co = toISO(dates[1]);
+      var nights = Math.round((dates[1]-dates[0])/86400000);
+      if (lbl) lbl.textContent = 'Per night';
+      if (val) val.innerHTML = '\u2026 <small>\/ night<\/small>';
+      if (typeof fetchTotalForDates==='function' && nights>0) {
+        fetchTotalForDates(ci,co).then(function(res) {
+          if (val && res.total>0) val.innerHTML='
+</html>
++Math.round(res.total\/nights)+' <small>\/ night<\/small>';
+        });
+      }
+    } else {
+      if (lbl) lbl.textContent='From';
+      if (val) val.innerHTML='
+</html>
++(window._lrFromPrice||155)+' <small>\/ night<\/small>';
+    }
+  }];
+})();
+<\/script>
 </body>
 </html>
