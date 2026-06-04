@@ -1024,102 +1024,25 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
 </section>
 
 
-<!-- REVIEWS ─────────────────────────────────────────────────── -->
-<section class="rev-s r">
-  <div class="rev-inner">
-    <div class="eye" style="justify-content:center">What guests say</div>
-    <div class="rev-carousel">
+<!-- SANTA TERESA VIDEO -->
+      <section class="st-video-s r">
+        <div class="rev-inner">
+          <div class="eye" style="justify-content:center">Life in Santa Teresa</div>
+          <div class="st-video-wrap">
+            <video class="st-video" autoplay muted loop playsinline preload="metadata" poster="images/st-hero.webp">
+              <source src="santa-teresa-lifestyle.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <style>
+          .st-video-s{padding:6rem 1.5rem;text-align:center}
+          .st-video-wrap{max-width:1000px;margin:1.6rem auto 0;border-radius:6px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.22)}
+          .st-video{display:block;width:100%;height:auto}
+          @media(max-width:700px){.st-video-s{padding:4rem 1rem}}
+        </style>
+      </section>
 
-      <blockquote class="rev-qt active" id="rev-0">
-        "Waking up above the jungle with nothing but the ocean in front — it's the most beautiful place we've ever stayed. Totally silent, totally private."
-        <cite class="rev-attr">— Sophie &amp; Marc L., Paris &nbsp;·&nbsp; October 2025</cite>
-      </blockquote>
-      <blockquote class="rev-qt" id="rev-1">
-        "The pool at sunrise is something you never forget. Les Roches is understated luxury at its absolute best."
-        <cite class="rev-attr">— James R., London &nbsp;·&nbsp; January 2026</cite>
-      </blockquote>
-      <blockquote class="rev-qt" id="rev-2">
-        "Best villa in Costa Rica, hands down. The team is incredibly attentive without being intrusive. We've already booked our next stay."
-        <cite class="rev-attr">— Camille D., Montréal &nbsp;·&nbsp; December 2025</cite>
-      </blockquote>
-
-      <div class="rev-dots">
-        <button class="rev-dot active" aria-label="Review 1" onclick="showRev(0)"></button>
-        <button class="rev-dot" aria-label="Review 2" onclick="showRev(1)"></button>
-        <button class="rev-dot" aria-label="Review 3" onclick="showRev(2)"></button>
-        <button class="rev-pause" id="rev-pause-btn" aria-label="Pause reviews">⏸</button>
-      </div>
-
-    </div>
-    <div class="rev-line"></div>
-    <div class="rev-scores">
-      <a class="rev-sc-item" href="https://www.google.com/maps/search/?api=1&query=Les+Roches+Retreat+Santa+Teresa+Costa+Rica" target="_blank" rel="noopener" aria-label="See our Google reviews">
-        <div class="rev-sc-num">4.9</div>
-        <div class="rev-sc-stars">★★★★★</div>
-        <div class="rev-sc-src">Google Reviews</div>
-      </a>
-      <div class="rev-sc-div"></div>
-      <a class="rev-sc-item" href="https://www.airbnb.fr/rooms/1073881336312192314" target="_blank" rel="noopener" aria-label="See our Airbnb reviews">
-        <div class="rev-sc-num">4.95</div>
-        <div class="rev-sc-stars">★★★★★</div>
-        <div class="rev-sc-src">Airbnb</div>
-      </a>
-      <div class="rev-sc-div"></div>
-      <div class="rev-sc-item">
-        <div class="rev-sc-num">127</div>
-        <div class="rev-sc-stars" style="color:var(--ter)">✦ ✦ ✦</div>
-        <div class="rev-sc-src">Verified guests</div>
-      </div>
-    </div>
-  </div>
-</section>
-<style>
-.rev-inner{max-width:820px;margin:0 auto}
-.rev-carousel{position:relative;min-height:140px;margin:2rem 0 1.8rem}
-.rev-qt{display:none;font-family:'Libre Baskerville',serif;font-style:italic;font-size:clamp(1.05rem,2vw,1.45rem);color:var(--ink);line-height:1.85;text-align:center;opacity:.88}
-.rev-qt.active{display:block}
-.rev-attr{display:block;font-style:normal;font-family:'Outfit',sans-serif;font-size:.46rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);margin-top:1rem;text-align:center}
-.rev-dots{display:flex;justify-content:center;align-items:center;gap:.6rem;margin-top:1.4rem}
-.rev-dot{width:6px;height:6px;border-radius:50%;background:var(--sand);border:none;cursor:pointer;transition:background .2s,transform .2s;padding:0}
-.rev-dot.active{background:var(--ter);transform:scale(1.3)}
-.rev-pause{background:none;border:none;cursor:pointer;color:var(--mid);font-size:.55rem;padding:.2rem .5rem;opacity:.5;transition:opacity .2s;letter-spacing:.05em}
-.rev-pause:hover{opacity:1}
-.rev-line{width:32px;height:1px;background:var(--ter);margin:1.8rem auto}
-.rev-sc-item{display:flex;flex-direction:column;align-items:center;gap:.3rem;text-decoration:none;transition:opacity .2s}
-a.rev-sc-item:hover{opacity:.75}
-</style>
-<script>
-var _revIdx=0, _revPaused=false, _revTimer=null;
-function showRev(i){
-  document.querySelectorAll('.rev-qt').forEach(function(el,j){el.classList.toggle('active',j===i)});
-  document.querySelectorAll('.rev-dot').forEach(function(el,j){el.classList.toggle('active',j===i)});
-  _revIdx=i;
-}
-function startRevTimer(){
-  _revTimer=setInterval(function(){if(!_revPaused)showRev((_revIdx+1)%3)},5200);
-}
-startRevTimer();
-document.addEventListener('DOMContentLoaded',function(){
-  var btn=document.getElementById('rev-pause-btn');
-  if(btn)btn.addEventListener('click',function(){
-    _revPaused=!_revPaused;
-    btn.textContent=_revPaused?'▶':'⏸';
-    btn.setAttribute('aria-label',_revPaused?'Play reviews':'Pause reviews');
-  });
-});
-</script>
-
-
-<style>
-.vcta-wrap{display:flex;align-items:center;justify-content:center;gap:1rem;padding:2.5rem 0 1rem;background:var(--w)}
-.vcta-btn{font-family:'Outfit',sans-serif;font-size:.54rem;letter-spacing:.22em;text-transform:uppercase;padding:.7rem 1.8rem;border-radius:1px;text-decoration:none;transition:all .22s}
-.vcta-pri{background:var(--ter);color:var(--w);border:1px solid var(--ter)}
-.vcta-pri:hover{background:var(--ter2);border-color:var(--ter2)}
-.vcta-sec{background:transparent;color:var(--ink);border:1px solid var(--c2)}
-.vcta-sec:hover{border-color:var(--ink)}
-</style>
-
-<!-- EXPERIENCES -->
+      <!-- EXPERIENCES -->
 <section class="exp-s">
   <div class="exp-head">
     <div>
