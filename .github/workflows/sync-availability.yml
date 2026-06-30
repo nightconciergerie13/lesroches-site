@@ -1,0 +1,38 @@
+name: Sync Beds24 availability
+
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-availability
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Lire la dispo Beds24 (lecture seule)
+        env:
+          BEDS24_APIKEY: ${{ secrets.BEDS24_APIKEY }}
+          BEDS24_PROPKEYS: ${{ secrets.BEDS24_PROPKEYS }}
+        run: node sync-availability.mjs
+      - name: Publier availability.json (si changement)
+        run: |
+          git config user.name "availability-bot"
+          git config user.email "availability-bot@users.noreply.github.com"
+          git add availability.json
+          if git diff --staged --quiet; then
+            echo "Aucun changement."
+          else
+            git commit -m "chore: maj availability.json [skip ci]"
+            git push
+          fi
