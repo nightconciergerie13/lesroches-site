@@ -41,6 +41,9 @@ async function fetchVilla(propId) {
 
 function extractRoomObject(data, roomId) {
   if (!data || typeof data !== 'object') return null;
+  // Cas reel : la reponse EST directement la map date -> info
+  if (Object.keys(data).some(k => /^\d{8}$/.test(k))) return data;
+  // Fallback : imbriquee sous le roomId
   if (data[String(roomId)]) return data[String(roomId)];
   if (data[roomId]) return data[roomId];
   for (const v of Object.values(data)) {
