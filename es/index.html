@@ -599,6 +599,7 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
   gtag('config', 'G-WFWBDDTMF0', { anonymize_ip: true });
 </script>
 <style id="lr-no-cursor">#cur{display:none!important}body.has-cursor *{cursor:auto!important}body.has-cursor a,body.has-cursor button,body.has-cursor [role=button],body.has-cursor .nl,body.has-cursor .nav-book,body.has-cursor .villa-card,body.has-cursor .exp-card,body.has-cursor .rv-card,body.has-cursor .bk-btn,body.has-cursor .h-cta,body.has-cursor .hero-cta,body.has-cursor summary,body.has-cursor label,body.has-cursor select{cursor:pointer!important}body.has-cursor input,body.has-cursor textarea{cursor:text!important}</style>
+<style>.hero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}</style>
 </head>
 <body>
 <a href="#main-content" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--ter,#b8734a);color:#fff;padding:.5rem 1rem;font-family:sans-serif;font-size:.875rem" onfocus="this.style.left='1rem';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-999px'">Saltar al contenido</a>
@@ -651,11 +652,7 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
 
 
 <!-- URGENCY BAR ─────────────────────────────────────────────── -->
-<div class="urgency-bar" id="urgency-bar">
-  <span class="urg-pulse"></span>
-  <span class="urg-txt" id="urg-txt"><strong>3 villas disponibles</strong> en los próximos 30 días, <a href="villas.html">consultar disponibilidad →</a></span>
-  <button class="urg-close" onclick="document.getElementById('urgency-bar').style.display='none'" aria-label="Close">✕</button>
-</div>
+
 <script>
 (function(){
   var SUPABASE_URL='https://vrufclzcaswkdgrffdwm.supabase.co';
@@ -690,12 +687,13 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
 <!-- HERO -->
 <div class="hero">
   <div class="hero-bg"></div>
+  <video autoplay muted loop playsinline preload="metadata" poster="../images/hero-poster.webp" class="hero-vid"><source media="(max-width:900px)" src="../les-roches-home-mobile.mp4" type="video/mp4"><source src="../les-roches-home.mp4" type="video/mp4"></video>
   <div class="hero-ov"></div>
   <div class="hero-grain"></div>
   <div class="hero-inner">
     <div class="h-bottom">
       <div>
-        <div class="h-kicker">Santa Teresa · Costa Rica · Océano Pacífico</div>
+        
         <h1 class="h-title">Seis villas privadas,<br>donde la selva se encuentra con el mar.</h1>
       </div>
       <div class="hero-right">
@@ -773,8 +771,8 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
       </div>
     </div>
     <button class="fp-cta" id="bk-submit" aria-label="Reserva tu retiro en Les Roches">Reservar tu retiro</button>
-    <div class="fp-avail"><span class="fp-avail-dot"></span>Reserva directa · Mejores tarifas garantizadas · Confirmación inmediata</div>
-    <div class="fp-cancel">50% de depósito para confirmar &nbsp;·&nbsp; Saldo al llegar &nbsp;·&nbsp; <a href="booking-conditions.html" style="color:rgba(255,255,255,.4);text-decoration:underline">Política de cancelación →</a></div>
+    
+    
     <input id="bk-range-input" aria-label="Dates" tabindex="-1" style="position:absolute;opacity:0;pointer-events:none;width:0;height:0;border:0;padding:0">
   </div>
 </div>
@@ -804,62 +802,29 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
       <button class="vnav" id="vnext" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
   </div>
-  <div class="vmore-wrap">
-    <a href="villas.html" class="vmore">Ver nuestras villas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-  </div>
+  
  </div>
 </section>
 
 
 <!-- REVIEWS ─────────────────────────────────────────────────── -->
-<section class="rev-s r">
-  <div class="rev-inner">
-    <div class="eye" style="justify-content:center">Lo que dicen nuestros huéspedes</div>
-    <div class="rev-carousel">
-
-      <blockquote class="rev-qt active" id="rev-0">
-        "Despertar sobre la selva, con el océano como único horizonte: es el lugar más hermoso en el que nos hemos alojado. Silencio absoluto, privacidad total."
-        <cite class="rev-attr">, Sophie y Marc L., París &nbsp;·&nbsp; Octubre de 2025</cite>
-      </blockquote>
-      <blockquote class="rev-qt" id="rev-1">
-        "La piscina al amanecer es algo que no se olvida. Les Roches es lujo sereno en su máxima expresión."
-        <cite class="rev-attr">, James R., Londres &nbsp;·&nbsp; Enero de 2026</cite>
-      </blockquote>
-      <blockquote class="rev-qt" id="rev-2">
-        "La mejor villa de Costa Rica, sin lugar a dudas. El equipo es de una atención exquisita, sin resultar invasivo. Ya tenemos reservada nuestra próxima estancia."
-        <cite class="rev-attr">, Camille D., Montreal &nbsp;·&nbsp; Diciembre de 2025</cite>
-      </blockquote>
-
-      <div class="rev-dots">
-        <button class="rev-dot active" aria-label="Review 1" onclick="showRev(0)"></button>
-        <button class="rev-dot" aria-label="Review 2" onclick="showRev(1)"></button>
-        <button class="rev-dot" aria-label="Review 3" onclick="showRev(2)"></button>
-        <button class="rev-pause" id="rev-pause-btn" aria-label="Pause reviews">⏸</button>
-      </div>
-
-    </div>
-    <div class="rev-line"></div>
-    <div class="rev-scores">
-      <a class="rev-sc-item" href="https://www.google.com/maps/search/?api=1&query=Les+Roches+Retreat+Santa+Teresa+Costa+Rica" target="_blank" rel="noopener" aria-label="See our Google reviews">
-        <div class="rev-sc-num">4.9</div>
-        <div class="rev-sc-stars">★★★★★</div>
-        <div class="rev-sc-src">Reseñas Google</div>
-      </a>
-      <div class="rev-sc-div"></div>
-      <a class="rev-sc-item" href="https://www.airbnb.fr/rooms/1073881336312192314" target="_blank" rel="noopener" aria-label="See our Airbnb reviews">
-        <div class="rev-sc-num">4.95</div>
-        <div class="rev-sc-stars">★★★★★</div>
-        <div class="rev-sc-src">Airbnb</div>
-      </a>
-      <div class="rev-sc-div"></div>
-      <div class="rev-sc-item">
-        <div class="rev-sc-num">127</div>
-        <div class="rev-sc-stars" style="color:var(--ter)">✦ ✦ ✦</div>
-        <div class="rev-sc-src">Huéspedes verificados</div>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="st-video-s r">
+        <div class="rev-inner">
+          <h2 class="sh">La vida en <em>Santa Teresa</em></h2>
+          <div class="st-video-wrap">
+            <video class="st-video" autoplay muted loop playsinline preload="none" poster="../images/st-hero.webp">
+              <source media="(max-width:900px)" src="../santa-teresa-lifestyle-mobile.mp4" type="video/mp4">
+              <source src="../santa-teresa-lifestyle.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <style>
+          .st-video-s{padding:2.5rem 1.5rem 6rem;text-align:center}
+          .st-video-wrap{max-width:1000px;margin:1.6rem auto 0;border-radius:6px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.22)}
+          .st-video{display:block;width:100%;height:auto}
+          @media(max-width:700px){.st-video-s{padding:4rem 1rem}}
+        </style>
+      </section>
 <style>
 .rev-inner{max-width:820px;margin:0 auto}
 .rev-carousel{position:relative;min-height:140px;margin:2rem 0 1.8rem}
@@ -896,10 +861,7 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 </script>
 
-<div class="vcta-wrap r">
-  <a href="villas.html" class="vcta-btn vcta-sec">Ver todas las villas</a>
-  <a href="villas.html?book=1" class="vcta-btn vcta-pri" aria-label="Reserva tu retiro en Les Roches">Reservar tu retiro →</a>
-</div>
+
 <style>
 .vcta-wrap{display:flex;align-items:center;justify-content:center;gap:1rem;padding:2.5rem 0 1rem;background:var(--w)}
 .vcta-btn{font-family:'Outfit',sans-serif;font-size:.54rem;letter-spacing:.22em;text-transform:uppercase;padding:.7rem 1.8rem;border-radius:1px;text-decoration:none;transition:all .22s}
@@ -1565,5 +1527,6 @@ document.addEventListener('DOMContentLoaded', function(){
 </div>
 <script>(function(){var SLUGS=["jade","topaze","onyx","agate","ambre","opale"],TODAY=new Date().toISOString().slice(0,10),union=null;function hd(){var iso=/^\d{4}-\d{2}-\d{2}$/;var vals=[].slice.call(document.querySelectorAll("input")).filter(function(e){return iso.test(e.value);}).map(function(e){return e.value;});var u=[];vals.forEach(function(v){if(u.indexOf(v)<0)u.push(v);});u.sort();return {ci:u[0]||"",co:(u.length>1?u[u.length-1]:"")};}function applyAll(){if(!union)return;var dd=hd(),pickCo=dd.ci&&!dd.co;document.querySelectorAll(".lrp-day[data-date]").forEach(function(c){var d=c.getAttribute("data-date");if(!d)return;var ok=pickCo?(d>dd.ci&&union.has(d)):(d>=TODAY&&union.has(d));if(ok)c.classList.remove("lrp-disabled");else c.classList.add("lrp-disabled");});}var pend=false;function sched(){if(pend)return;pend=true;setTimeout(function(){pend=false;applyAll();},30);}function wd(url){var dd=hd(),path=url.split("#")[0].split("?")[0],hash=url.indexOf("#")>-1?url.slice(url.indexOf("#")):"";if(!dd.ci)return path+hash;return path+"?checkin="+dd.ci+(dd.co?"&checkout="+dd.co:"")+hash;}document.addEventListener("click",function(e){var a=e.target.closest?e.target.closest("a[href*=\"villa-\"]"):null;if(a){var h=a.getAttribute("href");if(h&&/villa-[a-z]+\.html/i.test(h))a.setAttribute("href",wd(h));}},true);function bindSubmit(){var sub=document.getElementById("bk-submit");if(!sub)return;sub.addEventListener("click",function(e){var val=((document.getElementById("bk-villa")||{}).value||"").toLowerCase(),slug=SLUGS.filter(function(s){return val.indexOf(s)>-1;})[0],dd=hd();if(slug&&dd.ci){e.preventDefault();e.stopImmediatePropagation();window.location.href="villa-"+slug+".html?checkin="+dd.ci+(dd.co?"&checkout="+dd.co:"");}},true);}fetch("/availability.json?cb="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){var v=j.villas||{},u=new Set();Object.keys(v).forEach(function(k){(v[k].available||[]).forEach(function(d){u.add(d);});});if(u.size===0)return;union=u;applyAll();new MutationObserver(sched).observe(document.body,{childList:true,subtree:true});}).catch(function(){});if(document.readyState!=="loading")bindSubmit();else document.addEventListener("DOMContentLoaded",bindSubmit);})();</script>
 
+<script>(function(){function pv(){document.querySelectorAll("video").forEach(function(v){try{v.muted=true;v.setAttribute("muted","");var p=v.play();if(p&&p.catch)p.catch(function(){});}catch(e){}});}if(document.readyState!=="loading")pv();else document.addEventListener("DOMContentLoaded",pv);window.addEventListener("load",pv);document.addEventListener("canplay",function(e){if(e.target&&e.target.tagName==="VIDEO"){try{e.target.muted=true;var p=e.target.play();if(p&&p.catch)p.catch(function(){});}catch(_){}}},true);})();</script>
 </body>
 </html>
