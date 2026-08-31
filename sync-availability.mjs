@@ -5,6 +5,7 @@
 
 const APIKEY   = process.env.BEDS24_APIKEY;
 const PROPKEYS = JSON.parse(process.env.BEDS24_PROPKEYS || '{}');
+if (process.env.CASANOA_PROPKEY) PROPKEYS["casa-noa"] = process.env.CASANOA_PROPKEY; // Casa Noa : secret séparé
 const API      = "https://api.beds24.com/json/getRoomDates";
 
 const ROOMS = {
@@ -13,7 +14,23 @@ const ROOMS = {
   "326247": 677059, // Casa Opale
   "326259": 677075, // Casa Agate
   "326248": 677060, // Casa Onyx
-  "326251": 677063  // Casa Topaze
+  "326251": 677063, // Casa Topaze
+  "casa-noa": 326194  // Casa Noa
+};
+
+// Métadonnées Night (slug affiché, nom, groupe, capacité) — sert au fichier night-partners.json
+const NIGHT_META = {
+  "326257": { slug: "jade",     name: "Jade",     group: "les-roches" },
+  "326258": { slug: "ambre",    name: "Ambre",    group: "les-roches" },
+  "326247": { slug: "opale",    name: "Opale",    group: "les-roches" },
+  "326259": { slug: "agate",    name: "Agate",    group: "les-roches" },
+  "326248": { slug: "onyx",     name: "Onyx",     group: "les-roches" },
+  "326251": { slug: "topaze",   name: "Topaze",   group: "les-roches" },
+  "casa-noa": { slug: "casa-noa", name: "Casa Noa", group: "solo", maxGuests: 8 }
+};
+// Villas hors Beds24 (manuel) — injectées telles quelles dans night-partners.json
+const NIGHT_MANUAL = {
+  "nouli": { group: "solo", name: "Nouli", maxGuests: 2, mode: "on-request" }
 };
 
 const pad = (n) => String(n).padStart(2, "0");
@@ -75,5 +92,24 @@ function extractRoomObject(data, roomId) {
   const fs = await import("fs");
   fs.writeFileSync("availability.json", JSON.stringify(out));
   console.log("availability.json ecrit.");
+
+  // ---- Fichier Night (page partenaire, 8 maisons, indexé par slug) ----
+  const nightVillas = {};
+  for (const [propId, v] of Object.entries(villas)) {
+    const meta = NIGHT_META[propId];
+    if (!meta) continue;
+    nightVillas[meta.slug] = {
+      group: meta.group,
+      name: meta.name,
+      ...(meta.maxGuests ? { maxGuests: meta.maxGuests } : {}),
+      available: v.available,
+      minStay: v.minStay,
+      prices: v.prices
+    };
+  }
+  Object.assign(nightVillas, NIGHT_MANUAL); // Nouli en "sur demande"
+  const nightOut = { updated: new Date().toISOString(), source: "beds24+manuel", commission: 0.10, villas: nightVillas };
+  fs.writeFileSync("night-partners.json", JSON.stringify(nightOut));
+  console.log("night-partners.json ecrit.");
   console.log("DEBUG: " + debugRaw);
 })();
