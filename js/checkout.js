@@ -109,6 +109,58 @@
   </div>
 </div>`;
 
+  /**
+   * Corrige les textes de la page qui sont devenus faux avec le paiement en
+   * ligne. Ils sont ici, et pas dans les 18 fiches villa, pour une raison :
+   * le texte et le comportement changent par le meme code, donc ils ne peuvent
+   * pas diverger. Chaque entree : [texte a trouver, texte de remplacement].
+   */
+  var FIXES = {
+    en: [
+      ["You pay nothing today. Sending the request commits you to nothing, we confirm your dates first.",
+       "50% deposit today by card, balance on arrival. Your dates are confirmed instantly."],
+      ["Payment by bank transfer \u00b7 Confirmation within 24h",
+       "Secure card payment \u00b7 Instant confirmation"],
+      ["Request this booking", "Book now"],
+      ["Payment: 50% deposit by bank transfer on confirmation.",
+       "Payment: 50% deposit by card when you book."]
+    ],
+    fr: [
+      ["Vous ne payez rien aujourd'hui. Envoyer la demande ne vous engage \u00e0 rien, nous confirmons vos dates d'abord.",
+       "Acompte de 50 % aujourd'hui par carte, solde \u00e0 l'arriv\u00e9e. Vos dates sont confirm\u00e9es imm\u00e9diatement."],
+      ["Paiement par virement bancaire \u00b7 Confirmation sous 24h",
+       "Paiement par carte s\u00e9curis\u00e9 \u00b7 Confirmation imm\u00e9diate"],
+      ["Paiement : acompte de 50 % par virement bancaire \u00e0 la confirmation.",
+       "Paiement : acompte de 50 % par carte au moment de la r\u00e9servation."]
+    ],
+    es: [
+      ["No pagas nada hoy. Enviar la solicitud no te compromete a nada, primero confirmamos tus fechas.",
+       "Dep\u00f3sito del 50 % hoy con tarjeta, saldo a la llegada. Tus fechas se confirman al instante."],
+      ["Pago por transferencia \u00b7 Confirmaci\u00f3n en 24 h",
+       "Pago con tarjeta seguro \u00b7 Confirmaci\u00f3n inmediata"],
+      ["Solicitar esta reserva", "Reservar ahora"],
+      ["Pago: dep\u00f3sito del 50 % por transferencia bancaria al confirmar.",
+       "Pago: dep\u00f3sito del 50 % con tarjeta al reservar."]
+    ]
+  };
+
+  /** Remplace le texte d'un noeud, sans toucher au balisage autour. */
+  function fixTexts() {
+    var list = FIXES[LANG] || [];
+    if (!list.length) return;
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    var nodes = [], n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    nodes.forEach(function (node) {
+      if (node.parentNode && node.parentNode.closest && node.parentNode.closest("#lr-pay")) return;
+      var v = node.nodeValue;
+      if (!v || !v.trim()) return;
+      list.forEach(function (pair) {
+        if (v.indexOf(pair[0]) >= 0) { v = v.split(pair[0]).join(pair[1]); node.nodeValue = v; }
+      });
+    });
+  }
+
   /* Injection : styles dans le head, balisage en fin de body. */
   function inject() {
     if (document.getElementById("lr-pay")) return;          /* deja la */
@@ -132,6 +184,7 @@
 
   function boot() {
     inject();
+    fixTexts();        /* immediat : on n'affiche jamais un texte devenu faux */
     withSdk(start);
   }
 
