@@ -146,7 +146,10 @@
 
   /** Remplace le texte d'un noeud, sans toucher au balisage autour. */
   function fixTexts() {
-    var list = FIXES[LANG] || [];
+    /* Langue calculee ici meme : fixTexts tourne AVANT start(), ou vit LANG.
+       Dependre de LANG depuis ce point a casse le tunnel le 06-11-2026. */
+    var code = (document.documentElement.lang || "en").slice(0, 2).toLowerCase();
+    var list = FIXES[code] || FIXES.en || [];
     if (!list.length) return;
     var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     var nodes = [], n;
@@ -184,7 +187,9 @@
 
   function boot() {
     inject();
-    fixTexts();        /* immediat : on n'affiche jamais un texte devenu faux */
+    /* Les textes sont du confort : une erreur ici ne doit JAMAIS empecher
+       le tunnel de demarrer. Le 06-11-2026, elle l'a empeche. */
+    try { fixTexts(); } catch (e) { }
     withSdk(start);
   }
 
