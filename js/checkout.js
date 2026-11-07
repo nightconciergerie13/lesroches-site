@@ -19,123 +19,206 @@
 
   var CSS = `#lr-pay{position:fixed;inset:0;z-index:99999;background:rgba(20,18,16,.72);display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto}
   #lr-pay[hidden]{display:none}
-  #lr-pay-card{background:#fffdf9;color:#1d1b19;max-width:460px;width:100%;border-radius:14px;padding:26px 24px;position:relative;font:400 16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
-  #lr-pay-card h2{font:500 21px/1.3 inherit;margin:0 0 6px}
-  #lr-pay-card h3{font:500 19px/1.3 inherit;margin:0 0 8px}
-  #lr-pay-recap{margin:0 0 18px;color:#5f5b55;font-size:14px}
-  #lr-pay-close{position:absolute;top:10px;right:14px;border:0;background:none;font-size:28px;line-height:1;cursor:pointer;color:#8a857d}
-  #lr-pay label{display:block;margin:0 0 12px;font-size:13px;color:#5f5b55}
-  #lr-pay input{display:block;width:100%;box-sizing:border-box;margin-top:4px;padding:10px 12px;border:1px solid #d9d4cb;border-radius:8px;font-size:16px;background:#fff;color:#1d1b19}
-  #lr-pay .lr-row{display:flex;gap:12px}
-  #lr-pay .lr-row label{flex:1;min-width:0}
-  #lr-pay button.lr-next{flex:1;padding:14px;border:0;border-radius:8px;background:#1d1b19;color:#fffdf9;font-size:16px;cursor:pointer;margin-top:4px}
-  #lr-pay button.lr-back{flex:0 0 auto;padding:14px 18px;border:1px solid #d9d4cb;border-radius:8px;background:#fffdf9;color:#5f5b55;font-size:16px;cursor:pointer;margin-top:4px}
-  #lr-pay .lr-nav{display:flex;gap:10px}
-  #lr-steps{display:flex;align-items:center;gap:8px;font-size:12px;color:#8a857d;margin:0 0 14px}
+  /* Un selecteur par identifiant (#lr-steps{display:flex}) l'emporte sur la
+     regle navigateur [hidden]{display:none} : sans ce !important, un bloc
+     masque par hidden reste visible. Constate le 07-11-2026 sur le fil
+     d'etapes, qui survivait a l'ecran de confirmation. */
+  #lr-pay [hidden]{display:none!important}
+  #lr-pay *{box-sizing:border-box}
+  #lr-pay-card{background:#fffdf9;color:#1d1b19;width:100%;max-width:960px;max-height:92vh;border-radius:14px;position:relative;display:flex;overflow:hidden;font:400 16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;box-shadow:0 24px 60px rgba(20,18,16,.35)}
+  #lr-main{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;overflow-y:auto;padding:28px 30px 0}
+  #lr-aside{flex:0 0 310px;background:#f4f1ea;padding:28px 26px;overflow-y:auto}
+  #lr-pay-close{position:absolute;top:10px;right:14px;z-index:2;border:0;background:none;font-size:28px;line-height:1;cursor:pointer;color:#8a857d}
+  #lr-pay-close:hover{color:#1d1b19}
+
+  #lr-pay-title{font:500 22px/1.3 inherit;margin:0 0 14px}
+  #lr-pay h3{font:500 19px/1.3 inherit;margin:0 0 8px}
+  #lr-steps{display:flex;align-items:center;gap:9px;font-size:12px;color:#8a857d;margin:0 0 20px}
   #lr-steps .lr-dots{display:flex;gap:5px}
   #lr-steps i{width:6px;height:6px;border-radius:50%;background:#ded9d0;display:block}
   #lr-steps i.on{background:#1d1b19}
-  #lr-band{background:#f4f1ea;border-radius:8px;padding:10px 12px;margin:0 0 16px;font-size:13px;color:#5f5b55}
-  #lr-band b{color:#1d1b19;font-weight:500;font-variant-numeric:tabular-nums}
-  #lr-band .lr-band-line{display:flex;justify-content:space-between;gap:12px;padding:1px 0}
-  #lr-pay .lr-step-title{font:500 16px/1.3 inherit;margin:0 0 4px;color:#1d1b19}
-  #lr-pay .lr-step-sub{font-size:13px;color:#8a857d;margin:0 0 14px}
-  #lr-pay button[disabled]{opacity:.5;cursor:default}
-  #lr-pay .lr-err{color:#a32d2d;font-size:14px;margin:0 0 12px}
-  #lr-pay .lr-trust{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#8a857d;margin:12px 0 0;text-align:center;text-decoration:none}
-  #lr-pay .lr-lock{color:#1d9e75;font-size:9px}
-  #lr-pay .lr-wa{color:#5f5b55;margin-top:7px;border-top:1px solid #efece5;padding-top:10px}
-  #lr-pay .lr-wa:hover{color:#1d1b19}
-  #lr-onvo{min-height:180px;margin-bottom:14px}
-  #lr-opts{border:1px solid #e4e0d8;border-radius:8px;padding:12px 14px 6px;margin:0 0 14px}
-  #lr-opts legend{font-size:13px;color:#5f5b55;padding:0 6px}
-  #lr-pay .lr-cb{display:flex;align-items:center;gap:8px;margin:0 0 8px;font-size:14px;color:#1d1b19;cursor:pointer}
-  #lr-pay .lr-cb input{width:auto;margin:0;flex:0 0 auto}
-  #lr-pay .lr-cb small{color:#8a857d}
-  #lr-pay .lr-sub{font-size:12px;color:#8a857d;margin:10px 0 6px}
-  #lr-services,#lr-activities{display:flex;flex-wrap:wrap;gap:6px 14px}
-  #lr-activities label{flex:0 0 calc(50% - 7px)}
-  #lr-services label{flex:0 0 100%;align-items:flex-start}
-  #lr-services .lr-sv-row input{margin-top:3px}
-  #lr-pay .lr-hint{display:block;font-size:11px;font-style:normal;color:#8a857d;line-height:1.4;margin-top:1px}
-  #lr-pay .lr-qty{width:52px;flex:0 0 auto;margin:0 0 0 auto;padding:4px 6px;font-size:14px;text-align:center}
+  .lr-step-title{font:500 17px/1.3 inherit;margin:0 0 4px;color:#1d1b19}
+  .lr-step-sub{font-size:13px;color:#8a857d;margin:0 0 18px}
+
+  #lr-pay label{display:block;margin:0 0 14px;font-size:13px;color:#5f5b55}
+  #lr-pay input,#lr-pay select{display:block;width:100%;margin-top:5px;padding:11px 12px;border:1px solid #d9d4cb;border-radius:8px;font-size:16px;background:#fff;color:#1d1b19;font-family:inherit}
+  #lr-pay input:focus,#lr-pay select:focus{outline:2px solid #1d1b19;outline-offset:-1px}
+  #lr-pay .lr-row{display:flex;gap:14px}
+  #lr-pay .lr-row label{flex:1 1 0;min-width:0}
+  #lr-pay .lr-tel{display:flex;gap:10px}
+  #lr-pay .lr-tel select{flex:0 0 150px}
+  #lr-pay .lr-tel input{flex:1 1 auto}
+
+  .lr-nav{position:sticky;bottom:0;display:flex;gap:10px;background:#fffdf9;padding:16px 0 24px;margin-top:auto}
+  .lr-nav:before{content:"";position:absolute;left:0;right:0;top:-18px;height:18px;background:linear-gradient(rgba(255,253,249,0),#fffdf9);pointer-events:none}
+  .lr-foot{position:sticky;bottom:0;background:#fffdf9;margin-top:auto;padding-top:14px}
+  .lr-foot:before{content:"";position:absolute;left:0;right:0;top:-18px;height:18px;background:linear-gradient(rgba(255,253,249,0),#fffdf9);pointer-events:none}
+  .lr-foot .lr-nav{position:static;padding-top:10px;margin-top:0}
+  .lr-foot .lr-nav:before{display:none}
+  #lr-pay button.lr-next{flex:1 1 auto;padding:14px;border:0;border-radius:8px;background:#1d1b19;color:#fffdf9;font-size:16px;font-family:inherit;cursor:pointer}
+  #lr-pay button.lr-back{flex:0 0 auto;padding:14px 20px;border:1px solid #d9d4cb;border-radius:8px;background:#fffdf9;color:#5f5b55;font-size:16px;font-family:inherit;cursor:pointer}
+  #lr-pay button.lr-back:hover{color:#1d1b19;border-color:#b9b2a6}
+  #lr-pay button[disabled]{opacity:.4;cursor:default}
+
+  .lr-aside-villa{font:500 19px/1.25 inherit;margin:0 0 8px}
+  .lr-aside-dates{font-size:14px;color:#1d1b19;margin:0 0 3px}
+  .lr-aside-meta{font-size:12px;color:#8a857d;margin:0 0 18px;line-height:1.5}
+  .lr-aside-sum{border-top:1px solid #e0dbd1;padding-top:13px}
+  .lr-aside-sum div{display:flex;justify-content:space-between;gap:12px;padding:4px 0;font-size:13px;color:#5f5b55}
+  .lr-aside-sum div b{font-weight:400;color:#1d1b19;font-variant-numeric:tabular-nums}
+  .lr-aside-sum div.lr-strong{font-size:15px;color:#1d1b19}
+  .lr-aside-sum div.lr-strong b{font-weight:500}
+  .lr-aside-note{font-size:11px;color:#8a857d;margin:14px 0 0;line-height:1.5}
+  .lr-aside-err{font-size:13px;color:#a32d2d;margin:0 0 14px}
+
+  #lr-pay .lr-cb{display:flex;align-items:flex-start;gap:9px;margin:0 0 10px;font-size:14px;color:#1d1b19;cursor:pointer;line-height:1.45}
+  #lr-pay .lr-cb input{width:auto;margin:3px 0 0;flex:0 0 auto}
+  #lr-services{display:grid;grid-template-columns:1fr 1fr;gap:4px 22px;margin:0 0 4px}
+  #lr-activities{display:grid;grid-template-columns:1fr 1fr;gap:2px 22px;margin:0 0 4px}
+  .lr-sv-txt{flex:1 1 auto;min-width:0}
+  .lr-sv-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .lr-price{font-style:normal;font-size:13px;color:#5f5b55;white-space:nowrap;font-variant-numeric:tabular-nums}
+  #lr-pay .lr-hint{display:block;font-size:11.5px;font-style:normal;color:#8a857d;line-height:1.45;margin-top:2px}
+  #lr-pay .lr-qty{width:54px;flex:0 0 auto;margin:0 0 0 8px;padding:5px 6px;font-size:14px;text-align:center}
   #lr-pay .lr-qty:disabled{opacity:.35}
-  #lr-pay .lr-note{font-size:12px;color:#8a857d;margin:8px 0 2px;line-height:1.45}
-  #lr-sum{margin:0 0 14px;font-size:14px}
-  #lr-sum div{display:flex;justify-content:space-between;padding:3px 0}
-  #lr-sum div.lr-strong{font-weight:500;border-top:1px solid #e4e0d8;margin-top:6px;padding-top:7px}
+  #lr-pay .lr-note{font-size:12px;color:#8a857d;margin:12px 0 2px;line-height:1.5}
+
+  #lr-sum{margin:0 0 16px;font-size:14px}
+  #lr-sum div{display:flex;justify-content:space-between;padding:4px 0}
+  #lr-sum div.lr-strong{font-weight:500;border-top:1px solid #e4e0d8;margin-top:6px;padding-top:8px}
   #lr-sum dt{margin:0;color:#5f5b55}
   #lr-sum dd{margin:0;color:#1d1b19;white-space:nowrap;font-variant-numeric:tabular-nums}
-  #lr-pay-policy{font-size:13px;color:#5f5b55;background:#f4f1ea;border-radius:8px;padding:10px 12px;margin:0 0 14px}`;
+  #lr-pay-policy{font-size:13px;color:#5f5b55;background:#f4f1ea;border-radius:8px;padding:12px 14px;margin:0 0 16px;line-height:1.55}
+  #lr-onvo{min-height:180px;margin:0 0 4px}
+  #lr-ack{margin:4px 0 0}
+  #lr-ack .lr-cb{font-size:13px;color:#5f5b55}
+  #lr-ack a{color:#1d1b19;text-decoration:underline}
+
+  #lr-pay .lr-err{color:#a32d2d;font-size:14px;margin:0 0 12px}
+  #lr-pay .lr-trust{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#8a857d;margin:0 0 4px;text-align:center;text-decoration:none}
+  #lr-pay .lr-lock{color:#1d9e75;font-size:9px}
+  #lr-aside .lr-wa{display:block;font-size:12px;color:#5f5b55;margin-top:18px;border-top:1px solid #e0dbd1;padding-top:14px;text-decoration:none;line-height:1.5}
+  #lr-aside .lr-wa:hover{color:#1d1b19}
+
+  @media (max-width:860px){
+    #lr-pay{padding:0;align-items:stretch}
+    #lr-pay-card{max-width:none;max-height:none;min-height:100%;border-radius:0;flex-direction:column}
+    #lr-aside{flex:0 0 auto;order:-1;padding:22px 20px 20px}
+    #lr-main{padding:22px 20px 0}
+    #lr-services,#lr-activities{grid-template-columns:1fr}
+    #lr-pay .lr-tel select{flex:0 0 124px}
+    /* Sur telephone le panneau sert de resume : on garde la maison, les dates
+       et les montants, on laisse tomber la phrase de bas de panneau. */
+    .lr-aside-note{display:none}
+    .lr-aside-villa{font-size:17px;margin-bottom:5px}
+    .lr-aside-meta{margin-bottom:12px}
+    #lr-aside .lr-wa{margin-top:12px;padding-top:11px}
+  }`;
 
   var HTML = `<div id="lr-pay" hidden role="dialog" aria-modal="true" aria-labelledby="lr-pay-title">
   <div id="lr-pay-card">
     <button type="button" id="lr-pay-close" aria-label="Close">&times;</button>
 
-    <h2 id="lr-pay-title"></h2>
-    <p id="lr-pay-recap"></p>
+    <div id="lr-main">
+      <h2 id="lr-pay-title"></h2>
 
-    <div id="lr-steps" hidden>
-      <span id="lr-step-txt"></span>
-      <span class="lr-dots"><i></i><i></i><i></i><i></i></span>
-    </div>
-
-    <div id="lr-band" hidden></div>
-
-    <div id="lr-s1">
-      <p class="lr-step-title" data-t="s1Title"></p>
-      <div class="lr-row">
-        <label><span data-t="firstName"></span><input id="lr-fn" autocomplete="given-name" required></label>
-        <label><span data-t="lastName"></span><input id="lr-ln" autocomplete="family-name" required></label>
+      <div id="lr-steps">
+        <span id="lr-step-txt"></span>
+        <span class="lr-dots"><i></i><i></i><i></i><i></i></span>
       </div>
-      <label><span data-t="email"></span><input id="lr-em" type="email" autocomplete="email" required></label>
-      <label><span data-t="phone"></span><input id="lr-ph" type="tel" autocomplete="tel" required></label>
-      <p id="lr-err1" class="lr-err" hidden></p>
-      <div class="lr-nav"><button type="button" id="lr-n1" class="lr-next"></button></div>
-    </div>
 
-    <div id="lr-s2" hidden>
-      <p class="lr-step-title" data-t="servicesTitle"></p>
-      <p class="lr-step-sub" data-t="optional"></p>
-      <label><span data-t="guests"></span><input id="lr-ad" type="number" min="1" max="12" value="2"></label>
-      <label class="lr-cb"><input type="checkbox" id="lr-cot"><span data-t="babyCot"></span></label>
-      <label class="lr-cb"><input type="checkbox" id="lr-pet"><span data-t="pet"></span></label>
-      <div id="lr-services"></div>
-      <div class="lr-nav">
-        <button type="button" id="lr-b2" class="lr-back"></button>
-        <button type="button" id="lr-n2" class="lr-next"></button>
+      <div id="lr-s1">
+        <p class="lr-step-title" data-t="s1Title"></p>
+        <p class="lr-step-sub" data-t="s1Sub"></p>
+        <div class="lr-row">
+          <label><span data-t="firstName"></span><input id="lr-fn" autocomplete="given-name" required></label>
+          <label><span data-t="lastName"></span><input id="lr-ln" autocomplete="family-name" required></label>
+        </div>
+        <label><span data-t="email"></span><input id="lr-em" type="email" autocomplete="email" required></label>
+        <label>
+          <span data-t="phone"></span>
+          <span class="lr-tel">
+            <select id="lr-cc" aria-label="Indicatif"></select>
+            <input id="lr-ph" type="tel" inputmode="tel" autocomplete="tel-national" required>
+          </span>
+        </label>
+        <div class="lr-row">
+          <label><span data-t="city"></span><input id="lr-ci" autocomplete="address-level2" required></label>
+          <label><span data-t="country"></span><input id="lr-co" list="lr-countries" autocomplete="country-name" required></label>
+        </div>
+        <datalist id="lr-countries"></datalist>
+        <p id="lr-err1" class="lr-err" hidden></p>
+        <div class="lr-nav"><button type="button" id="lr-n1" class="lr-next"></button></div>
+      </div>
+
+      <div id="lr-s2" hidden>
+        <p class="lr-step-title" data-t="servicesTitle"></p>
+        <p class="lr-step-sub" data-t="optional"></p>
+        <div class="lr-row">
+          <label><span data-t="guests"></span><input id="lr-ad" type="number" min="1" max="12" value="2"></label>
+          <span style="flex:1 1 0"></span>
+        </div>
+        <label class="lr-cb"><input type="checkbox" id="lr-cot"><span data-t="babyCot"></span></label>
+        <label class="lr-cb"><input type="checkbox" id="lr-pet"><span data-t="pet"></span></label>
+        <div id="lr-services"></div>
+        <div class="lr-nav">
+          <button type="button" id="lr-b2" class="lr-back"></button>
+          <button type="button" id="lr-n2" class="lr-next"></button>
+        </div>
+      </div>
+
+      <div id="lr-s3" hidden>
+        <p class="lr-step-title" data-t="activitiesTitle"></p>
+        <p class="lr-step-sub" data-t="optional"></p>
+        <div id="lr-activities"></div>
+        <p class="lr-note" data-t="activitiesNote"></p>
+        <p id="lr-err3" class="lr-err" hidden></p>
+        <div class="lr-nav">
+          <button type="button" id="lr-b3" class="lr-back"></button>
+          <button type="button" id="lr-n3" class="lr-next"></button>
+        </div>
+      </div>
+
+      <div id="lr-s4" hidden>
+        <p class="lr-step-title" data-t="s4Title"></p>
+        <dl id="lr-sum"></dl>
+        <p id="lr-pay-policy"></p>
+        <div id="lr-onvo"></div>
+        <div class="lr-foot">
+          <div id="lr-ack">
+            <label class="lr-cb"><input type="checkbox" id="lr-ack1"><span id="lr-ack1-t"></span></label>
+            <label class="lr-cb"><input type="checkbox" id="lr-ack2"><span id="lr-ack2-t"></span></label>
+          </div>
+          <p id="lr-err2" class="lr-err" hidden></p>
+          <p class="lr-trust"><span class="lr-lock" aria-hidden="true">&#9679;</span><span data-t="secure"></span></p>
+          <div class="lr-nav">
+            <button type="button" id="lr-b4" class="lr-back"></button>
+            <button type="button" id="lr-go2" class="lr-next"></button>
+          </div>
+        </div>
+      </div>
+
+      <div id="lr-blocked" hidden>
+        <p class="lr-step-title" data-t="blockedTitle"></p>
+        <p class="lr-step-sub" id="lr-blocked-txt"></p>
+        <div class="lr-nav"><button type="button" id="lr-redo" class="lr-next"></button></div>
+      </div>
+
+      <div id="lr-pay-done" hidden>
+        <h3 data-t="doneTitle"></h3>
+        <p id="lr-done-txt"></p>
+        <div class="lr-nav"><button type="button" id="lr-close2" class="lr-next"></button></div>
       </div>
     </div>
 
-    <div id="lr-s3" hidden>
-      <p class="lr-step-title" data-t="activitiesTitle"></p>
-      <p class="lr-step-sub" data-t="optional"></p>
-      <div id="lr-activities"></div>
-      <p class="lr-note" data-t="activitiesNote"></p>
-      <p id="lr-err3" class="lr-err" hidden></p>
-      <div class="lr-nav">
-        <button type="button" id="lr-b3" class="lr-back"></button>
-        <button type="button" id="lr-n3" class="lr-next"></button>
-      </div>
-    </div>
-
-    <div id="lr-s4" hidden>
-      <p class="lr-step-title" data-t="s4Title"></p>
-      <dl id="lr-sum"></dl>
-      <p id="lr-pay-policy"></p>
-      <div id="lr-onvo"></div>
-      <p id="lr-err2" class="lr-err" hidden></p>
-      <div class="lr-nav">
-        <button type="button" id="lr-b4" class="lr-back"></button>
-        <button type="button" id="lr-go2" class="lr-next"></button>
-      </div>
-      <p class="lr-trust"><span class="lr-lock" aria-hidden="true">&#9679;</span><span data-t="secure"></span></p>
-      <a id="lr-wa" class="lr-trust lr-wa" href="#" target="_blank" rel="noopener"><span data-t="whatsapp"></span></a>
-    </div>
-
-    <div id="lr-pay-done" hidden>
-      <h3 data-t="doneTitle"></h3>
-      <p id="lr-done-txt"></p>
+    <div id="lr-aside">
+      <p class="lr-aside-villa" id="lr-villa"></p>
+      <p class="lr-aside-dates" id="lr-dates"></p>
+      <p class="lr-aside-meta" id="lr-meta"></p>
+      <p class="lr-aside-err" id="lr-aside-err" hidden></p>
+      <div class="lr-aside-sum" id="lr-aside-sum"></div>
+      <p class="lr-aside-note" id="lr-aside-note"></p>
+      <a id="lr-wa" class="lr-wa" href="#" target="_blank" rel="noopener"><span data-t="whatsapp"></span></a>
     </div>
   </div>
 </div>`;
@@ -325,12 +408,46 @@
   var PROPS = { "326257":"jade","326248":"onyx","326251":"topaze",
                 "326258":"ambre","326247":"opale","326259":"agate" };
 
+  /* Le nom affichable, connu avant meme la reponse du serveur : le panneau
+     lateral ne doit jamais rester vide, meme quand le devis echoue. */
+  var NOMS = { jade:"Casa Jade", onyx:"Casa Onyx", topaze:"Casa Topaze",
+               ambre:"Casa Ambre", opale:"Casa Opale", agate:"Casa Agate" };
+
   var $ = function (id) { return document.getElementById(id); };
   var money = function (c) {
     return "$" + (c/100).toLocaleString("en-US", { minimumFractionDigits:2, maximumFractionDigits:2 });
   };
 
   /* ---- Langues. La page donne la langue ; l'anglais est le defaut. ------ */
+  /**
+   * Indicatifs WhatsApp : les pays d'ou viennent reellement les voyageurs,
+   * dans l'ordre ou on les attend. [code ISO, indicatif, en, fr, es]
+   */
+  var PAYS = [
+    ["CR","506","Costa Rica","Costa Rica","Costa Rica"],
+    ["US","1","United States","\u00c9tats-Unis","Estados Unidos"],
+    ["CA","1","Canada","Canada","Canad\u00e1"],
+    ["FR","33","France","France","Francia"],
+    ["GB","44","United Kingdom","Royaume-Uni","Reino Unido"],
+    ["ES","34","Spain","Espagne","Espa\u00f1a"],
+    ["IT","39","Italy","Italie","Italia"],
+    ["DE","49","Germany","Allemagne","Alemania"],
+    ["CH","41","Switzerland","Suisse","Suiza"],
+    ["BE","32","Belgium","Belgique","B\u00e9lgica"],
+    ["NL","31","Netherlands","Pays-Bas","Pa\u00edses Bajos"],
+    ["LU","352","Luxembourg","Luxembourg","Luxemburgo"],
+    ["PT","351","Portugal","Portugal","Portugal"],
+    ["SE","46","Sweden","Su\u00e8de","Suecia"],
+    ["IL","972","Israel","Isra\u00ebl","Israel"],
+    ["BR","55","Brazil","Br\u00e9sil","Brasil"],
+    ["AR","54","Argentina","Argentine","Argentina"],
+    ["MX","52","Mexico","Mexique","M\u00e9xico"],
+    ["CO","57","Colombia","Colombie","Colombia"],
+    ["CL","56","Chile","Chili","Chile"],
+    ["PA","507","Panama","Panama","Panam\u00e1"],
+    ["AU","61","Australia","Australie","Australia"]
+  ];
+
   var LANGS = {
     en: {
       title:"Book direct", firstName:"First name", lastName:"Last name", email:"Email",
@@ -340,6 +457,14 @@
       whatsapp:"A question before paying? We reply on WhatsApp, usually within minutes.",
       doneTitle:"You're booked.",
       s1Title:"Your details", s4Title:"Payment",
+      s1Sub:"So we can send your confirmation and reach you if anything changes.",
+      city:"City", country:"Country",
+      blockedTitle:"These dates aren't available",
+      redo:"Choose other dates", close:"Close",
+      nightsLabel:function(n){return n+(n>1?" nights":" night");},
+      discountNote:"All prices in USD. The 5% direct discount is already included.",
+      ack1:'By completing this booking, I agree with the <a href="/booking-conditions.html" target="_blank" rel="noopener">Booking Conditions</a>.',
+      ack2:'I agree with the <a href="/privacy-policy.html" target="_blank" rel="noopener">Privacy Terms</a>.',
       next:"Continue", back:"Back",
       optional:"Optional \u2014 continue if you need nothing here.",
       stepOf:function(n){return "Step "+n+" of 4";},
@@ -365,6 +490,9 @@
         guest_phone_invalid:"That phone number isn't valid.",
         guest_firstname_required:"Please enter your first name.",
         guest_lastname_required:"Please enter your last name.",
+        guest_city_required:"Please enter your city.",
+        guest_country_required:"Please enter your country.",
+        ack_required:"Please tick both boxes to continue.",
         payment_not_succeeded:"The payment did not go through. Nothing was charged.",
         beds24_rate_limited:"Service is busy. Please try again in a minute.",
         booking_write_unconfirmed:"Your payment went through, but the automatic confirmation failed. We will email you within the hour — please do not pay again.",
@@ -378,7 +506,15 @@
       secure:"Paiement par carte sécurisé · vous ne quittez pas lesrochesretreat.com",
       whatsapp:"Une question avant de payer ? On répond sur WhatsApp, en général en quelques minutes.",
       doneTitle:"C'est réservé.",
-      s1Title:"Vos coordonnées", s4Title:"Paiement",
+      s1Title:"Vos coordonn\u00e9es", s4Title:"Paiement",
+      s1Sub:"Pour vous envoyer la confirmation et vous joindre si quelque chose change.",
+      city:"Ville", country:"Pays",
+      blockedTitle:"Ces dates ne sont pas disponibles",
+      redo:"Choisir d'autres dates", close:"Fermer",
+      nightsLabel:function(n){return n+(n>1?" nuits":" nuit");},
+      discountNote:"Tous les prix sont en dollars US. La remise directe de 5 % est d\u00e9j\u00e0 comprise.",
+      ack1:'En validant cette r\u00e9servation, j\'accepte les <a href="/fr/booking-conditions.html" target="_blank" rel="noopener">conditions de r\u00e9servation</a>.',
+      ack2:'J\'accepte la <a href="/fr/privacy-policy.html" target="_blank" rel="noopener">politique de confidentialit\u00e9</a>.',
       next:"Suivant", back:"Retour",
       optional:"Facultatif \u2014 passez à la suite si vous n'avez besoin de rien.",
       stepOf:function(n){return "Étape "+n+" sur 4";},
@@ -404,6 +540,9 @@
         guest_phone_invalid:"Ce numéro de téléphone n'est pas valide.",
         guest_firstname_required:"Indiquez votre prénom.",
         guest_lastname_required:"Indiquez votre nom.",
+        guest_city_required:"Indiquez votre ville.",
+        guest_country_required:"Indiquez votre pays.",
+        ack_required:"Cochez les deux cases pour continuer.",
         payment_not_succeeded:"Le paiement n'a pas abouti. Aucun montant n'a été prélevé.",
         beds24_rate_limited:"Service momentanément occupé. Réessayez dans une minute.",
         booking_write_unconfirmed:"Votre paiement est bien passé, mais la confirmation automatique a échoué. Nous vous écrivons dans l'heure — ne payez pas une seconde fois.",
@@ -418,6 +557,14 @@
       whatsapp:"¿Alguna duda antes de pagar? Respondemos por WhatsApp, normalmente en minutos.",
       doneTitle:"Reserva confirmada.",
       s1Title:"Tus datos", s4Title:"Pago",
+      s1Sub:"Para enviarte la confirmaci\u00f3n y contactarte si algo cambia.",
+      city:"Ciudad", country:"Pa\u00eds",
+      blockedTitle:"Estas fechas no est\u00e1n disponibles",
+      redo:"Elegir otras fechas", close:"Cerrar",
+      nightsLabel:function(n){return n+(n>1?" noches":" noche");},
+      discountNote:"Todos los precios en d\u00f3lares US. El descuento directo del 5 % ya est\u00e1 incluido.",
+      ack1:'Al completar esta reserva, acepto las <a href="/es/booking-conditions.html" target="_blank" rel="noopener">condiciones de reserva</a>.',
+      ack2:'Acepto la <a href="/es/privacy-policy.html" target="_blank" rel="noopener">pol\u00edtica de privacidad</a>.',
       next:"Siguiente", back:"Atrás",
       optional:"Opcional \u2014 continúa si no necesitas nada aquí.",
       stepOf:function(n){return "Paso "+n+" de 4";},
@@ -443,6 +590,9 @@
         guest_phone_invalid:"Ese teléfono no es válido.",
         guest_firstname_required:"Indique su nombre.",
         guest_lastname_required:"Indique su apellido.",
+        guest_city_required:"Indique su ciudad.",
+        guest_country_required:"Indique su pa\u00eds.",
+        ack_required:"Marca las dos casillas para continuar.",
         payment_not_succeeded:"El pago no se completó. No se cobró nada.",
         beds24_rate_limited:"Servicio ocupado. Intente en un minuto.",
         booking_write_unconfirmed:"Su pago se realizó, pero la confirmación automática falló. Le escribimos dentro de la hora — no pague de nuevo.",
@@ -490,27 +640,38 @@
   }
 
   function unitLabel(u) {
-      return u === "night" ? L.perNight
-        : u === "person" ? L.perPerson
-        : u === "each" ? L.perEach
-        : L.perStay;
-    }
+    return u === "night" ? L.perNight
+      : u === "person" ? L.perPerson
+      : u === "each" ? L.perEach
+      : L.perStay;
+  }
+
+  /* "2026-12-15" -> "15 dec. 2026", dans la langue de la page. */
+  function jolieDate(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+    if (!m) return iso || "";
+    try {
+      return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]))
+        .toLocaleDateString(LANG, { day: "numeric", month: "short", year: "numeric" });
+    } catch (e) { return iso; }
+  }
 
   /* Dessine les deux listes a partir des catalogues du serveur. */
   function paintCatalogs(services, activities) {
     var box = $("lr-services");
     if (!box.dataset.done) {
       box.innerHTML = services.map(function (e) {
-        var price = e.priceCents == null
-          ? ""
-          : " — " + money(e.priceCents) + " " + unitLabel(e.unit);
+        var prix = '<em class="lr-price">' +
+          (e.priceCents == null ? L.onRequest : money(e.priceCents) + " " + unitLabel(e.unit)) +
+          "</em>";
         var note = e.note ? '<em class="lr-hint">' + e.note + "</em>" : "";
         var qty = e.unit === "each"
           ? '<input type="number" class="lr-qty" data-for="' + e.key + '" min="1" max="' +
             (e.maxQty || 10) + '" value="1" disabled aria-label="' + e.label + '">'
           : "";
         return '<label class="lr-cb lr-sv-row"><input type="checkbox" class="lr-sv" value="' + e.key + '">' +
-               "<span>" + e.label + "<small>" + price + "</small>" + note + "</span>" + qty + "</label>";
+               '<span class="lr-sv-txt"><span class="lr-sv-top"><span>' + e.label + "</span>" + prix +
+               "</span>" + note + "</span>" + qty + "</label>";
       }).join("");
       box.dataset.done = "1";
       Array.prototype.forEach.call(document.querySelectorAll(".lr-sv"), function (c) {
@@ -553,15 +714,25 @@
     }).join("");
   }
 
-  /* Le bandeau, visible a TOUTES les etapes : le client ne decouvre jamais
-     le montant a la derniere seconde, et il voit un service cochee bouger. */
-  function paintBand(q) {
-    var lignes = [[L.totalLine, money(q.totalCents)]];
-    if (q.balanceCents > 0) lignes.push([L.depositLine, money(q.depositCents)]);
-    $("lr-band").innerHTML = lignes.map(function (l) {
-      return '<div class="lr-band-line"><span>' + l[0] + "</span><b>" + l[1] + "</b></div>";
+  /**
+   * Le panneau lateral, visible a toutes les etapes : la maison, les dates et
+   * les montants. Le client ne decouvre jamais le prix a la derniere seconde,
+   * et il sait toujours quelle villa il reserve.
+   */
+  function paintAside(q) {
+    $("lr-villa").textContent = q.villa.name;
+    $("lr-dates").textContent = jolieDate(q.checkin) + " \u2192 " + jolieDate(q.checkout);
+    $("lr-meta").textContent = L.nightsLabel(q.nights) + " \u00b7 " + L.beds;
+    var lignes = [[L.totalLine, money(q.totalCents), true]];
+    if (q.balanceCents > 0) {
+      lignes.push([L.depositLine, money(q.depositCents), false]);
+      lignes.push([L.balanceLine, money(q.balanceCents), false]);
+    }
+    $("lr-aside-sum").innerHTML = lignes.map(function (l) {
+      return '<div class="' + (l[2] ? "lr-strong" : "") + '"><span>' + l[0] + "</span><b>" + l[1] + "</b></div>";
     }).join("");
-    $("lr-band").hidden = (etape === 4);
+    $("lr-aside-note").textContent = L.discountNote;
+    $("lr-aside-err").hidden = true;
   }
 
   var timer = null;
@@ -571,28 +742,42 @@
     post("/quote", { villa: villa, checkin: stay.checkin, checkout: stay.checkout, lang: LANG,
                      options: selectedOptions(), guest: { numAdult: Number($("lr-ad").value) || 2 } })
       .then(function (res) {
-        if (!res.body.ok) {
-          $("lr-pay-recap").textContent = say(res.body.error);
-          $("lr-band").hidden = true;
-          bloquer(true);
-          return;
-        }
+        if (!res.body.ok) return impasse(res.body.error);
         var q = res.body.quote || res.body;
         stay.quote = q;
         paintCatalogs(q.servicesCatalog || [], q.activitiesCatalog || []);
         var view = { nights:q.nights, checkin:q.checkin, checkout:q.checkout,
                      m:money(q.totalCents), d:money(q.depositCents), b:money(q.balanceCents) };
-        $("lr-pay-recap").textContent = L.recap(view) + " \u00b7 " + L.beds;
-        paintBand(q);
+        paintAside(q);
         paintTotals(q);
         $("lr-pay-policy").textContent = q.payFullUpfront ? L.policyFull(view) : L.policyPart(view);
         bloquer(false);
+        if (!$("lr-blocked").hidden) goStep(etape);     /* on sortait d'une impasse */
         if (WA_BASE) {
           $("lr-wa").href = WA_BASE + "?text=" + encodeURIComponent(
             q.villa.name + " \u2014 " + q.checkin + " / " + q.checkout + " \u2014 ");
         }
       })
-      .catch(function () { $("lr-pay-recap").textContent = say(); bloquer(true); });
+      .catch(function () { impasse(null); });
+  }
+
+  /**
+   * Dates vendues ou devis impossible : on ne laisse pas le client devant un
+   * formulaire qu'il ne peut pas valider. On dit pourquoi, on propose d'autres
+   * dates, et le WhatsApp reste a cote.
+   */
+  function impasse(code) {
+    ["lr-s1", "lr-s2", "lr-s3", "lr-s4", "lr-pay-done"].forEach(function (id) { $(id).hidden = true; });
+    $("lr-steps").hidden = true;
+    $("lr-blocked").hidden = false;
+    $("lr-blocked-txt").textContent = say(code);
+    $("lr-villa").textContent = NOMS[villa] || "";
+    $("lr-dates").textContent = stay ? jolieDate(stay.checkin) + " \u2192 " + jolieDate(stay.checkout) : "";
+    $("lr-meta").textContent = "";
+    $("lr-aside-err").textContent = say(code);
+    $("lr-aside-err").hidden = false;
+    $("lr-aside-sum").innerHTML = "";
+    $("lr-aside-note").textContent = "";
   }
 
   /* Tant que le devis n'a pas repondu, on n'avance pas. */
@@ -606,25 +791,30 @@
 
   function goStep(n) {
     etape = n;
+    $("lr-blocked").hidden = true;
+    $("lr-pay-done").hidden = true;
     ["lr-s1", "lr-s2", "lr-s3", "lr-s4"].forEach(function (id, i) {
       $(id).hidden = (i + 1) !== n;
     });
-    $("lr-pay-done").hidden = true;
     $("lr-steps").hidden = false;
     $("lr-step-txt").textContent = L.stepOf(n);
     Array.prototype.forEach.call($("lr-steps").querySelectorAll("i"), function (pt, i) {
       pt.className = i < n ? "on" : "";
     });
-    /* A l'etape 4 le detail complet remplace le bandeau : repeter les memes
-       montants deux fois juste au-dessus de la carte brouille la lecture. */
-    $("lr-band").hidden = (n === 4) || !$("lr-band").innerHTML;
-    $("lr-pay").scrollTop = 0;
+    $("lr-main").scrollTop = 0;
+  }
+
+  function indicatif() {
+    var sel = $("lr-cc");
+    return sel && sel.value ? "+" + sel.value : "";
   }
 
   function lireGuest() {
     return {
       firstName: $("lr-fn").value, lastName: $("lr-ln").value,
-      email: $("lr-em").value, phone: $("lr-ph").value,
+      email: $("lr-em").value,
+      phone: (indicatif() + " " + $("lr-ph").value).trim(),
+      city: $("lr-ci").value, country: $("lr-co").value,
       numAdult: Number($("lr-ad").value) || 2
     };
   }
@@ -636,7 +826,9 @@
     if (!g.firstName.trim()) return fail1("guest_firstname_required");
     if (!g.lastName.trim()) return fail1("guest_lastname_required");
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(g.email)) return fail1("guest_email_invalid");
-    if (g.phone.replace(/\D/g, "").length < 6) return fail1("guest_phone_invalid");
+    if ($("lr-ph").value.replace(/\D/g, "").length < 6) return fail1("guest_phone_invalid");
+    if (!g.city.trim()) return fail1("guest_city_required");
+    if (!g.country.trim()) return fail1("guest_country_required");
     $("lr-err1").hidden = true;
     guest = g;
     goStep(2);
@@ -651,11 +843,15 @@
     onvoInstance = null;
     $("lr-onvo").innerHTML = "";
     $("lr-err1").hidden = true; $("lr-err2").hidden = true; $("lr-err3").hidden = true;
-    $("lr-go2").disabled = false;
+    $("lr-ack1").checked = false; $("lr-ack2").checked = false;
+    $("lr-go2").disabled = true;
     goStep(1);
     bloquer(true);
-    $("lr-pay-recap").textContent = L.loading;
-    $("lr-band").hidden = true;
+    $("lr-villa").textContent = NOMS[villa] || "";
+    $("lr-dates").textContent = jolieDate(stay.checkin) + " \u2192 " + jolieDate(stay.checkout);
+    $("lr-meta").textContent = L.loading;
+    $("lr-aside-sum").innerHTML = "";
+    $("lr-aside-note").textContent = "";
     $("lr-pay").hidden = false;
     document.body.style.overflow = "hidden";
     load();
@@ -670,6 +866,11 @@
   function fail2(code) { $("lr-err2").textContent = say(code); $("lr-err2").hidden = false; }
   function fail3(code) { $("lr-err3").textContent = say(code); $("lr-err3").hidden = false; }
 
+  /* Le bouton Payer ne s'active qu'une fois les deux cases cochees. */
+  function majAck() {
+    $("lr-go2").disabled = !($("lr-ack1").checked && $("lr-ack2").checked);
+  }
+
   /**
    * Retour depuis la carte : on jette l'intention de paiement en cours.
    * Le client revient pour changer un service ou une activite, donc le montant
@@ -680,7 +881,8 @@
     onvoInstance = null;
     $("lr-onvo").innerHTML = "";
     $("lr-err2").hidden = true;
-    $("lr-go2").disabled = false;
+    $("lr-ack1").checked = false; $("lr-ack2").checked = false;
+    $("lr-go2").disabled = true;
     goStep(3);
   }
 
@@ -699,6 +901,7 @@
         intentId = res.body.paymentIntentId;
         goStep(4);
         $("lr-go2").textContent = L.pay + " " + money(res.body.amountCents);
+        majAck();
         renderCard(res.body.publishableKey, intentId);
       })
       .catch(function () {
@@ -722,12 +925,15 @@
       onSuccess: function () { finish(); },
       onError: function (e) {
         fail2((e && e.details && e.details.card && e.details.card.reason) || null);
-        $("lr-go2").disabled = false;
+        majAck();
       }
     });
     onvoInstance.render("#lr-onvo");
 
     $("lr-go2").onclick = function () {
+      /* Ceinture et bretelles : le bouton est deja desactive, mais on ne lance
+         jamais un paiement sans les deux acceptations. */
+      if (!$("lr-ack1").checked || !$("lr-ack2").checked) return fail2("ack_required");
       $("lr-err2").hidden = true;
       $("lr-go2").disabled = true;
       onvoInstance.submitPayment();
@@ -741,7 +947,6 @@
         if (!res.body.ok) { fail2(res.body.error); return; }
         $("lr-s4").hidden = true;
         $("lr-steps").hidden = true;
-        $("lr-band").hidden = true;
         $("lr-pay-done").hidden = false;
         $("lr-done-txt").textContent = L.done(guest, res.body.bookingId);
       })
@@ -755,6 +960,23 @@
 
     if (!$("sb-cta")) return;
 
+    /* Indicatifs WhatsApp + liste de pays, dans la langue de la page.
+       Le pays par defaut suit la langue : un visiteur francophone compose
+       presque toujours un +33. */
+    var col = LANG === "fr" ? 3 : LANG === "es" ? 4 : 2;
+    var parDefaut = LANG === "fr" ? "FR" : LANG === "es" ? "ES" : "US";
+    $("lr-cc").innerHTML = PAYS.map(function (c) {
+      return '<option value="' + c[1] + '"' + (c[0] === parDefaut ? " selected" : "") +
+             ">" + c[col] + " +" + c[1] + "</option>";
+    }).join("");
+    /* Le pays de residence reste libre : la liste suggere, elle n'enferme pas. */
+    $("lr-countries").innerHTML = PAYS.map(function (c) {
+      return '<option value="' + c[col] + '"></option>';
+    }).join("");
+
+    $("lr-ack1-t").innerHTML = L.ack1;
+    $("lr-ack2-t").innerHTML = L.ack2;
+
     /* Remplit les libelles dans la langue de la page. */
     $("lr-pay-title").textContent = L.title;
     $("lr-n1").textContent = L.next;
@@ -763,6 +985,8 @@
     $("lr-b2").textContent = L.back;
     $("lr-b3").textContent = L.back;
     $("lr-b4").textContent = L.back;
+    $("lr-redo").textContent = L.redo;
+    $("lr-close2").textContent = L.close;
     Array.prototype.forEach.call(document.querySelectorAll("#lr-pay [data-t]"), function (el) {
       var k = el.getAttribute("data-t");
       if (L[k]) el.textContent = L[k];
@@ -785,6 +1009,10 @@
     $("lr-cot").addEventListener("change", refresh);
     $("lr-pet").addEventListener("change", refresh);
     $("lr-ad").addEventListener("change", refresh);
+    $("lr-ack1").addEventListener("change", majAck);
+    $("lr-ack2").addEventListener("change", majAck);
+    $("lr-redo").addEventListener("click", close_);
+    $("lr-close2").addEventListener("click", close_);
 
     /* A partir d'ici l'intercepteur a de quoi ouvrir la modale. */
     OUVRIR = open_;
