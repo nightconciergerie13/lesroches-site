@@ -69,6 +69,30 @@
   .lr-aside-sum div.lr-strong{font-size:15px;color:#1d1b19}
   .lr-aside-sum div.lr-strong b{font-weight:500}
   .lr-aside-note{font-size:11px;color:#8a857d;margin:14px 0 0;line-height:1.5}
+  .lr-aside-sum div.lr-line{font-size:12.5px;color:#8a857d}
+  .lr-aside-sum div.lr-line b{font-weight:400;color:#5f5b55}
+  .lr-aside-sum div.lr-total{border-top:1px solid #e0dbd1;margin-top:8px;padding-top:10px}
+  .lr-aside-wa{margin-top:18px;border-top:1px solid #e0dbd1;padding-top:14px}
+  #lr-aside-toggle{display:none}
+  .lr-wa-q{font-size:12px;color:#8a857d;margin:0 0 9px;line-height:1.5}
+  a.lr-wa-btn{display:flex;align-items:center;justify-content:center;gap:7px;padding:10px 12px;border:1px solid #25d366;border-radius:8px;color:#1d1b19;background:#fff;font-size:14px;text-decoration:none}
+  a.lr-wa-btn:hover{background:#f0fbf4}
+  a.lr-wa-btn svg{flex:0 0 auto}
+
+  .lr-scroll-hint{display:none;font-size:12px;color:#8a857d;margin:0 0 12px}
+
+  #lr-activities{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 4px}
+  #lr-activities label.lr-ac-chip{display:flex;align-items:center;gap:8px;margin:0;padding:10px 11px;border:1px solid #e4e0d8;border-radius:9px;background:#fff;font-size:13.5px;line-height:1.35;color:#1d1b19;cursor:pointer}
+  #lr-activities label.lr-ac-chip.on{border-color:#1d1b19;background:#f7f5f0}
+  #lr-activities label.lr-ac-chip input{width:auto;margin:0;flex:0 0 auto}
+
+  #lr-policy-box{border:1px solid #e4e0d8;border-radius:8px;padding:0;margin:0 0 16px;background:#f9f7f2}
+  #lr-policy-box summary{cursor:pointer;padding:11px 14px;font-size:13px;color:#5f5b55;list-style:none}
+  #lr-policy-box summary::-webkit-details-marker{display:none}
+  #lr-policy-box summary:after{content:"\u25be";float:right;color:#8a857d}
+  #lr-policy-box[open] summary:after{content:"\u25b4"}
+  #lr-pay-policy{font-size:13px;color:#5f5b55;margin:0;padding:0 14px 13px;line-height:1.55;background:none;border-radius:0}
+  #lr-onvo{min-height:180px;margin:0 0 4px;border:1px solid #e4e0d8;border-radius:10px;padding:4px 10px;background:#fff}
   .lr-aside-err{font-size:13px;color:#a32d2d;margin:0 0 14px}
 
   #lr-pay .lr-cb{display:flex;align-items:flex-start;gap:9px;margin:0 0 10px;font-size:14px;color:#1d1b19;cursor:pointer;line-height:1.45}
@@ -88,8 +112,6 @@
   #lr-sum div.lr-strong{font-weight:500;border-top:1px solid #e4e0d8;margin-top:6px;padding-top:8px}
   #lr-sum dt{margin:0;color:#5f5b55}
   #lr-sum dd{margin:0;color:#1d1b19;white-space:nowrap;font-variant-numeric:tabular-nums}
-  #lr-pay-policy{font-size:13px;color:#5f5b55;background:#f4f1ea;border-radius:8px;padding:12px 14px;margin:0 0 16px;line-height:1.55}
-  #lr-onvo{min-height:180px;margin:0 0 4px}
   #lr-ack{margin:4px 0 0}
   #lr-ack .lr-cb{font-size:13px;color:#5f5b55}
   #lr-ack a{color:#1d1b19;text-decoration:underline}
@@ -97,22 +119,37 @@
   #lr-pay .lr-err{color:#a32d2d;font-size:14px;margin:0 0 12px}
   #lr-pay .lr-trust{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#8a857d;margin:0 0 4px;text-align:center;text-decoration:none}
   #lr-pay .lr-lock{color:#1d9e75;font-size:9px}
-  #lr-aside .lr-wa{display:block;font-size:12px;color:#5f5b55;margin-top:18px;border-top:1px solid #e0dbd1;padding-top:14px;text-decoration:none;line-height:1.5}
-  #lr-aside .lr-wa:hover{color:#1d1b19}
 
   @media (max-width:860px){
     #lr-pay{padding:0;align-items:stretch}
     #lr-pay-card{max-width:none;max-height:none;min-height:100%;border-radius:0;flex-direction:column}
     #lr-aside{flex:0 0 auto;order:-1;padding:22px 20px 20px}
     #lr-main{padding:22px 20px 0}
-    #lr-services,#lr-activities{grid-template-columns:1fr}
+    #lr-services{grid-template-columns:1fr}
     #lr-pay .lr-tel select{flex:0 0 124px}
     /* Sur telephone le panneau sert de resume : on garde la maison, les dates
        et les montants, on laisse tomber la phrase de bas de panneau. */
     .lr-aside-note{display:none}
     .lr-aside-villa{font-size:17px;margin-bottom:5px}
     .lr-aside-meta{margin-bottom:12px}
-    #lr-aside .lr-wa{margin-top:12px;padding-top:11px}
+    .lr-aside-wa{margin-top:12px;padding-top:11px}
+    /* L'indice de defilement ne sert qu'au telephone : sur ordinateur toute
+       l'etape tient a l'ecran. */
+    .lr-scroll-hint{display:block}
+    /* Etape paiement : le panneau repete ce que le recapitulatif dit deja.
+       On le retire pour que le formulaire de carte soit tout de suite visible. */
+    #lr-aside.lr-aside-off{display:none}
+    /* Le detail ligne par ligne allongeait le panneau au point de pousser
+       l'etape hors de l'ecran. Il se replie : les deux montants qui comptent
+       restent lisibles, le reste s'ouvre d'une pression. */
+    .lr-aside-meta{display:none}
+    #lr-aside-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;margin:12px 0 0;padding:10px 12px;border:1px solid #e0dbd1;border-radius:9px;background:#fffdf9;font:inherit;font-size:13px;color:#5f5b55;text-align:left;cursor:pointer}
+    #lr-aside-toggle .lr-chev{transition:transform .15s;color:#8a857d}
+    #lr-aside.open #lr-aside-toggle .lr-chev{transform:rotate(180deg)}
+    #lr-aside-mini{display:block}
+    #lr-aside-mini b{display:block;color:#1d1b19;font-weight:500;font-variant-numeric:tabular-nums}
+    #lr-aside-body{display:none;margin-top:4px}
+    #lr-aside.open #lr-aside-body{display:block}
   }`;
 
   var HTML = `<div id="lr-pay" hidden role="dialog" aria-modal="true" aria-labelledby="lr-pay-title">
@@ -154,6 +191,7 @@
       <div id="lr-s2" hidden>
         <p class="lr-step-title" data-t="servicesTitle"></p>
         <p class="lr-step-sub" data-t="optional"></p>
+        <p class="lr-scroll-hint" id="lr-hint2"></p>
         <div class="lr-row">
           <label><span data-t="guests"></span><input id="lr-ad" type="number" min="1" max="12" value="2"></label>
           <span style="flex:1 1 0"></span>
@@ -169,9 +207,8 @@
 
       <div id="lr-s3" hidden>
         <p class="lr-step-title" data-t="activitiesTitle"></p>
-        <p class="lr-step-sub" data-t="optional"></p>
+        <p class="lr-step-sub" data-t="activitiesNote"></p>
         <div id="lr-activities"></div>
-        <p class="lr-note" data-t="activitiesNote"></p>
         <p id="lr-err3" class="lr-err" hidden></p>
         <div class="lr-nav">
           <button type="button" id="lr-b3" class="lr-back"></button>
@@ -182,7 +219,10 @@
       <div id="lr-s4" hidden>
         <p class="lr-step-title" data-t="s4Title"></p>
         <dl id="lr-sum"></dl>
-        <p id="lr-pay-policy"></p>
+        <details id="lr-policy-box">
+          <summary data-t="policySummary"></summary>
+          <p id="lr-pay-policy"></p>
+        </details>
         <div id="lr-onvo"></div>
         <div class="lr-foot">
           <div id="lr-ack">
@@ -216,9 +256,20 @@
       <p class="lr-aside-dates" id="lr-dates"></p>
       <p class="lr-aside-meta" id="lr-meta"></p>
       <p class="lr-aside-err" id="lr-aside-err" hidden></p>
+      <button type="button" id="lr-aside-toggle" aria-expanded="false">
+        <span id="lr-aside-mini"></span><span class="lr-chev" aria-hidden="true">&#9662;</span>
+      </button>
+      <div id="lr-aside-body">
       <div class="lr-aside-sum" id="lr-aside-sum"></div>
       <p class="lr-aside-note" id="lr-aside-note"></p>
-      <a id="lr-wa" class="lr-wa" href="#" target="_blank" rel="noopener"><span data-t="whatsapp"></span></a>
+      <div class="lr-aside-wa" id="lr-wa-box">
+        <p class="lr-wa-q" data-t="whatsapp"></p>
+        <a id="lr-wa" class="lr-wa-btn" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="#25d366" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5.2-.4v-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4 7.6 7.6 0 0 0 1.6.5 3.7 3.7 0 0 0 1.7.1 2.8 2.8 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+          <span id="lr-wa-t"></span>
+        </a>
+      </div>
+      </div>
     </div>
   </div>
 </div>`;
@@ -468,6 +519,10 @@
       next:"Continue", back:"Back",
       optional:"Optional \u2014 continue if you need nothing here.",
       stepOf:function(n){return "Step "+n+" of 4";},
+      waBtn:"Message us on WhatsApp",
+      policySummary:"Payment & cancellation terms",
+      scrollHint:function(n){return "\u2193 Scroll down for the "+n+" services";},
+      stayLine:function(n){return "Stay \u00b7 "+n+(n>1?" nights":" night");},
       optsTitle:"A few details", babyCot:"We need a baby cot", pet:"We're bringing a pet (no extra charge)",
       servicesTitle:"Add a service — charged with your booking",
       activitiesTitle:"Interested in an activity?",
@@ -517,7 +572,11 @@
       ack2:'J\'accepte la <a href="/fr/privacy-policy.html" target="_blank" rel="noopener">politique de confidentialit\u00e9</a>.',
       next:"Suivant", back:"Retour",
       optional:"Facultatif \u2014 passez à la suite si vous n'avez besoin de rien.",
-      stepOf:function(n){return "Étape "+n+" sur 4";},
+      stepOf:function(n){return "\u00c9tape "+n+" sur 4";},
+      waBtn:"\u00c9crire sur WhatsApp",
+      policySummary:"Paiement et conditions d'annulation",
+      scrollHint:function(n){return "\u2193 Faites d\u00e9filer pour voir les "+n+" services";},
+      stayLine:function(n){return "S\u00e9jour \u00b7 "+n+(n>1?" nuits":" nuit");},
       optsTitle:"Quelques précisions", babyCot:"Nous avons besoin d'un lit bébé", pet:"Nous venons avec un animal (sans supplément)",
       servicesTitle:"Ajouter un service — facturé avec votre réservation",
       activitiesTitle:"Intéressé par une activité ?",
@@ -568,6 +627,10 @@
       next:"Siguiente", back:"Atrás",
       optional:"Opcional \u2014 continúa si no necesitas nada aquí.",
       stepOf:function(n){return "Paso "+n+" de 4";},
+      waBtn:"Escr\u00edbenos por WhatsApp",
+      policySummary:"Pago y condiciones de cancelaci\u00f3n",
+      scrollHint:function(n){return "\u2193 Desliza para ver los "+n+" servicios";},
+      stayLine:function(n){return "Estancia \u00b7 "+n+(n>1?" noches":" noche");},
       optsTitle:"Algunos detalles", babyCot:"Necesitamos una cuna", pet:"Venimos con una mascota (sin cargo)",
       servicesTitle:"Añadir un servicio — se cobra con su reserva",
       activitiesTitle:"¿Le interesa alguna actividad?",
@@ -686,15 +749,22 @@
         q.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); });
       });
       if (!services.length) { box.hidden = true; document.querySelector('[data-t="servicesTitle"]').hidden = true; }
+      else $("lr-hint2").textContent = L.scrollHint(services.length);
     }
 
     var abox = $("lr-activities");
     if (!abox.dataset.done) {
       abox.innerHTML = activities.map(function (e) {
-        return '<label class="lr-cb"><input type="checkbox" class="lr-ac" value="' + e.key + '">' +
+        return '<label class="lr-ac-chip"><input type="checkbox" class="lr-ac" value="' + e.key + '">' +
                "<span>" + e.label + "</span></label>";
       }).join("");
       abox.dataset.done = "1";
+      /* La pastille cochee se voit d'un coup d'oeil, sans dependre de :has(). */
+      Array.prototype.forEach.call(abox.querySelectorAll(".lr-ac"), function (c) {
+        c.addEventListener("change", function () {
+          c.parentNode.classList.toggle("on", c.checked);
+        });
+      });
       if (!activities.length) {
         abox.hidden = true;
         document.querySelector('[data-t="activitiesTitle"]').hidden = true;
@@ -723,15 +793,35 @@
     $("lr-villa").textContent = q.villa.name;
     $("lr-dates").textContent = jolieDate(q.checkin) + " \u2192 " + jolieDate(q.checkout);
     $("lr-meta").textContent = L.nightsLabel(q.nights) + " \u00b7 " + L.beds;
-    var lignes = [[L.totalLine, money(q.totalCents), true]];
+
+    /* Le detail d'abord : le client voit ce qu'il a ajoute, et combien ca
+       pese, avant de voir le total. Les libelles viennent du catalogue, donc
+       dans la langue de la page (ceux de serviceLines sont en francais,
+       parce qu'ils partent dans Beds24 pour Marie et Martin). */
+    var noms = {};
+    (q.servicesCatalog || []).forEach(function (e) { noms[e.key] = e.label; });
+
+    var html = ['<div class="lr-line"><span>' + L.stayLine(q.nights) +
+                "</span><b>" + money(q.accommodationCents) + "</b></div>"];
+
+    (q.serviceLines || []).forEach(function (l) {
+      if (!l.quoted) return;
+      var nom = noms[l.key] || l.label;
+      if (l.qty > 1) nom += " \u00d7 " + l.qty;
+      html.push('<div class="lr-line"><span>' + nom + "</span><b>" + money(l.cents) + "</b></div>");
+    });
+
+    html.push('<div class="lr-strong lr-total"><span>' + L.totalLine +
+              "</span><b>" + money(q.totalCents) + "</b></div>");
     if (q.balanceCents > 0) {
-      lignes.push([L.depositLine, money(q.depositCents), false]);
-      lignes.push([L.balanceLine, money(q.balanceCents), false]);
+      html.push("<div><span>" + L.depositLine + "</span><b>" + money(q.depositCents) + "</b></div>");
+      html.push("<div><span>" + L.balanceLine + "</span><b>" + money(q.balanceCents) + "</b></div>");
     }
-    $("lr-aside-sum").innerHTML = lignes.map(function (l) {
-      return '<div class="' + (l[2] ? "lr-strong" : "") + '"><span>' + l[0] + "</span><b>" + l[1] + "</b></div>";
-    }).join("");
+    $("lr-aside-sum").innerHTML = html.join("");
     $("lr-aside-note").textContent = L.discountNote;
+    $("lr-aside-mini").innerHTML =
+      "<b>" + L.totalLine + " " + money(q.totalCents) + "</b>" +
+      (q.balanceCents > 0 ? L.depositLine + " " + money(q.depositCents) : "");
     $("lr-aside-err").hidden = true;
   }
 
@@ -801,6 +891,10 @@
     Array.prototype.forEach.call($("lr-steps").querySelectorAll("i"), function (pt, i) {
       pt.className = i < n ? "on" : "";
     });
+    /* Sur telephone, l'etape paiement se passe du panneau : le recapitulatif
+       de l'etape dit deja les montants, et le formulaire de carte doit se
+       voir sans defiler. Sur ordinateur la classe ne change rien. */
+    $("lr-aside").classList.toggle("lr-aside-off", n === 4);
     $("lr-main").scrollTop = 0;
   }
 
@@ -986,6 +1080,10 @@
     $("lr-b3").textContent = L.back;
     $("lr-b4").textContent = L.back;
     $("lr-redo").textContent = L.redo;
+    $("lr-wa-t").textContent = L.waBtn;
+    /* Ordinateur : la politique est deroulee, il y a la place. Telephone :
+       repliee, pour que la carte reste visible. */
+    $("lr-policy-box").open = window.innerWidth > 860;
     $("lr-close2").textContent = L.close;
     Array.prototype.forEach.call(document.querySelectorAll("#lr-pay [data-t]"), function (el) {
       var k = el.getAttribute("data-t");
@@ -995,7 +1093,7 @@
     /* Reprend le numero WhatsApp deja present sur la page : un seul a maintenir. */
     var wa = document.querySelector('a[href*="wa.me/"]');
     if (wa) { WA_BASE = (wa.getAttribute("href") || "").split("?")[0]; $("lr-wa").href = WA_BASE; }
-    else { $("lr-wa").hidden = true; }
+    else { $("lr-wa-box").hidden = true; }
 
     $("lr-pay-close").addEventListener("click", close_);
     $("lr-pay").addEventListener("click", function (e) { if (e.target === $("lr-pay")) close_(); });
@@ -1011,6 +1109,10 @@
     $("lr-ad").addEventListener("change", refresh);
     $("lr-ack1").addEventListener("change", majAck);
     $("lr-ack2").addEventListener("change", majAck);
+    $("lr-aside-toggle").addEventListener("click", function () {
+      var ouvert = $("lr-aside").classList.toggle("open");
+      $("lr-aside-toggle").setAttribute("aria-expanded", ouvert ? "true" : "false");
+    });
     $("lr-redo").addEventListener("click", close_);
     $("lr-close2").addEventListener("click", close_);
 
