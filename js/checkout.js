@@ -16,6 +16,11 @@
   /* --------------------------------------------------------------------- */
 
   var SDK = "https://sdk.onvopay.com/sdk.js";
+  /* Apple Pay : deux scripts a part. Celui d'Apple definit ApplePaySession
+     et la balise <apple-pay-button> ; sans lui, isAvailable() repond non
+     ailleurs que dans Safari. ONVO.js est distinct du widget carte. */
+  var SDK_APPLE = "https://applepay.cdn-apple.com/jsapi/1.latest/apple-pay-sdk.js";
+  var SDK_ONVOJS = "https://js.onvopay.com/v1/";
 
   var CSS = `#lr-pay{position:fixed;inset:0;z-index:99999;background:rgba(20,18,16,.72);display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto}
   #lr-pay[hidden]{display:none}
@@ -92,6 +97,10 @@
   #lr-policy-box summary:after{content:"\u25be";float:right;color:#8a857d}
   #lr-policy-box[open] summary:after{content:"\u25b4"}
   #lr-pay-policy{font-size:13px;color:#5f5b55;margin:0;padding:0 14px 13px;line-height:1.55;background:none;border-radius:0}
+  #lr-wallet{margin:0 0 14px}
+  #lr-wallet apple-pay-button{--apple-pay-button-width:100%;--apple-pay-button-height:46px;--apple-pay-button-border-radius:8px;display:block;width:100%}
+  #lr-wallet-or{display:flex;align-items:center;gap:12px;margin:14px 0 10px;font-size:12.5px;color:#8a857d}
+  #lr-wallet-or:before,#lr-wallet-or:after{content:"";flex:1;height:1px;background:#e4e0d8}
   #lr-onvo{min-height:180px;margin:0 0 4px;border:1px solid #e4e0d8;border-radius:10px;padding:4px 10px;background:#fff}
   .lr-aside-err{font-size:13px;color:#a32d2d;margin:0 0 14px}
 
@@ -223,6 +232,10 @@
           <summary data-t="policySummary"></summary>
           <p id="lr-pay-policy"></p>
         </details>
+        <div id="lr-wallet" hidden>
+          <apple-pay-button id="lr-apple" buttonstyle="black" type="buy"></apple-pay-button>
+          <div id="lr-wallet-or"></div>
+        </div>
         <div id="lr-onvo"></div>
         <div class="lr-foot">
           <div id="lr-ack">
@@ -935,6 +948,7 @@
     guest = null;
     intentId = null;
     onvoInstance = null;
+    if ($("lr-wallet")) $("lr-wallet").hidden = true;
     $("lr-onvo").innerHTML = "";
     $("lr-err1").hidden = true; $("lr-err2").hidden = true; $("lr-err3").hidden = true;
     $("lr-ack1").checked = false; $("lr-ack2").checked = false;
@@ -973,6 +987,7 @@
   function retourCarte() {
     intentId = null;
     onvoInstance = null;
+    if ($("lr-wallet")) $("lr-wallet").hidden = true;
     $("lr-onvo").innerHTML = "";
     $("lr-err2").hidden = true;
     $("lr-ack1").checked = false; $("lr-ack2").checked = false;
@@ -997,12 +1012,94 @@
         $("lr-go2").textContent = L.pay + " " + money(res.body.amountCents);
         majAck();
         renderCard(res.body.publishableKey, intentId);
+        offrirApplePay(res.body.publishableKey, intentId, res.body.amountCents);
       })
       .catch(function () {
         $("lr-n3").disabled = false;
         $("lr-n3").textContent = L.go1;
         fail3();
       });
+  }
+
+  /* Charge les deux scripts d'Apple Pay, une seule fois. Si l'un manque, on
+     rend la main sans rien casser : le formulaire carte reste la voie normale. */
+  var walletTried = false;
+  function withWallet(then) {
+    if (walletTried) return then();
+    walletTried = true;
+    var restants = 2, fini = function () { if (--restants === 0) then(); };
+    [SDK_APPLE, SDK_ONVOJS].forEach(function (url) {
+      var el = document.createElement("script");
+      el.src = url; el.async = true;
+      el.onload = fini; el.onerror = fini;
+      document.head.appendChild(el);
+    });
+  }
+
+  var WALLET_OR = { en: "or pay by card", fr: "ou payer par carte", es: "o paga con tarjeta" };
+
+  /**
+   * Propose Apple Pay a l'etape 4, en plus du formulaire carte.
+   *
+   * Le bouton n'apparait que si l'appareil ET le domaine conviennent : c'est
+   * isAvailable() qui tranche. Tout echec est silencieux, le tunnel carte ne
+   * doit jamais en patir.
+   *
+   * Le montant n'est pas choisi ici : l'intention existe deja cote serveur avec
+   * sa somme et les metadonnees du sejour. Apple Pay ne fait que la payer.
+   */
+  function offrirApplePay(publicKey, paymentIntentId, amountCents) {
+    try {
+      var bloc = $("lr-wallet"), bouton = $("lr-apple");
+      if (!bloc || !bouton || !publicKey) return;
+      bloc.hidden = true;
+
+      withWallet(function () {
+        try {
+          if (typeof window.ONVO !== "function") return;
+          var onvojs = window.ONVO(publicKey);
+          if (!onvojs || typeof onvojs.applePay !== "function") return;
+
+          var applePay = onvojs.applePay({
+            countryCode: "CR",
+            currencyCode: "USD",
+            total: { label: "Les Roches Retreat", amount: (amountCents / 100).toFixed(2) }
+          });
+
+          applePay.isAvailable().then(function (dispo) {
+            if (!dispo) return;
+            $("lr-wallet-or").textContent = WALLET_OR[LANG] || WALLET_OR.en;
+            bloc.hidden = false;
+          }).catch(function () {});
+
+          bouton.onclick = function () {
+            /* Les deux acceptations valent pour Apple Pay comme pour la carte. */
+            if (!$("lr-ack1").checked || !$("lr-ack2").checked) return fail2("ack_required");
+            $("lr-err2").hidden = true;
+
+            /* begin() doit partir dans le clic lui-meme : Apple l'exige. */
+            applePay.begin({
+              onPaymentMethod: function (ev) {
+                return post("/pay-wallet", {
+                  paymentIntentId: paymentIntentId,
+                  paymentMethodId: ev.paymentMethodId
+                }).then(function (res) {
+                  var ok = !!(res.body && res.body.ok);
+                  ev.complete(ok ? "success" : "failure");
+                  if (ok) { $("lr-go2").disabled = true; finish(); }
+                  else fail2((res.body && res.body.error) || null);
+                }).catch(function () {
+                  ev.complete("failure");
+                  fail2();
+                });
+              },
+              onCancel: function () {},
+              onError: function () { fail2(); }
+            });
+          };
+        } catch (e) { /* Apple Pay indisponible : on n'affiche rien. */ }
+      });
+    } catch (e) { /* idem */ }
   }
 
   function renderCard(publicKey, paymentIntentId) {
