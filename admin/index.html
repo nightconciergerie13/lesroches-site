@@ -376,6 +376,10 @@ tr:hover td{background:#faf9f7}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
           Pilotage
         </div>
+        <div class="nav-item" data-page="refund">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10h11M9 5l-6 5 6 5"/><path d="M21 14h-7a4 4 0 00-4 4v1"/></svg>
+          Rembourser
+        </div>
       </div>
     </div>
 
@@ -768,6 +772,54 @@ tr:hover td{background:#faf9f7}
         </div>
 
       </div><!-- /page-analytics -->
+
+  <!-- ── PAGE: REMBOURSEMENT ── -->
+  <div class="page" id="page-refund">
+    <div class="page-title">Rembourser un client</div>
+
+    <div class="card" style="max-width:640px">
+      <div class="table-title" style="margin-bottom:.4rem">Politique en vigueur</div>
+      <div style="font-size:.8rem;line-height:1.6;color:var(--mid);margin-bottom:1.4rem">
+        Annulation <strong>plus de 60 jours</strong> avant l'arrivée : remboursement <strong>intégral</strong>.<br>
+        Annulation <strong>dans les 60 jours</strong> : <strong>moitié</strong> remboursée, moitié conservée.<br>
+        Le remboursement retourne sur la carte d'origine, sous quelques jours ouvrés.
+      </div>
+
+      <div class="login-field">
+        <label for="rf-id">Identifiant du paiement ONVO</label>
+        <input id="rf-id" type="text" autocomplete="off" spellcheck="false"
+               placeholder="cmvl94gm70lnek774f1gr29hh">
+      </div>
+      <div style="font-size:.7rem;color:var(--mid);margin:-.5rem 0 1.1rem">
+        Dans ONVO : <em>Pagos</em> → la ligne du client → menu <em>…</em> → <em>Copiar ID de pago</em>.
+      </div>
+
+      <div class="login-field">
+        <label>Montant à rendre</label>
+        <div style="display:flex;gap:1.4rem;padding-top:.3rem">
+          <label style="display:flex;align-items:center;gap:.45rem;font-size:.82rem;text-transform:none;letter-spacing:0;color:var(--ink);cursor:pointer">
+            <input type="radio" name="rf-part" value="full" checked> Tout (annulation à plus de 60 jours)
+          </label>
+          <label style="display:flex;align-items:center;gap:.45rem;font-size:.82rem;text-transform:none;letter-spacing:0;color:var(--ink);cursor:pointer">
+            <input type="radio" name="rf-part" value="half"> La moitié
+          </label>
+        </div>
+      </div>
+
+      <div class="login-field">
+        <label for="rf-key">Clé de remboursement</label>
+        <input id="rf-key" type="password" autocomplete="off" placeholder="••••••••••••">
+      </div>
+
+      <div style="display:flex;gap:.7rem;margin-top:1.2rem;flex-wrap:wrap">
+        <button id="rf-sim" class="login-btn" style="width:auto;padding:.8rem 1.6rem;background:var(--c2);color:var(--ink)">Vérifier sans rembourser</button>
+        <button id="rf-go" class="login-btn" style="width:auto;padding:.8rem 1.6rem">Rembourser</button>
+      </div>
+
+      <div id="rf-out" style="margin-top:1.3rem;font-size:.82rem;line-height:1.7"></div>
+    </div>
+  </div><!-- /page-refund -->
+
 
     </div><!-- /main -->
   </div><!-- /app-body -->
@@ -2354,5 +2406,78 @@ async function loadPartnerAvail() {
 }
 
 </script>
+
+<script>
+/* ── Remboursement ─────────────────────────────────────────────
+   Le montant n'est jamais calcule ici : le Worker relit le paiement
+   chez ONVO et decide. Cette page ne choisit que "tout" ou "moitie". */
+(function () {
+  var W = 'https://les-roches-paiement.nightconciergerie.workers.dev/refund';
+  var out = function (html, color) {
+    var el = document.getElementById('rf-out');
+    el.style.color = color || 'var(--ink)';
+    el.innerHTML = html;
+  };
+  var money = function (c, cur) {
+    return (c / 100).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ' + (cur || 'USD');
+  };
+  var LABEL = {
+    refund_not_configured: "La cle de remboursement n'est pas encore installee sur le serveur.",
+    bad_key: "Cle de remboursement incorrecte.",
+    bad_payment_id: "Cet identifiant de paiement n'a pas la bonne forme.",
+    payment_not_found: "Aucun paiement ne porte cet identifiant.",
+    payment_not_refundable: "Ce paiement n'est pas remboursable (il n'a pas abouti).",
+    already_refunded: "Ce paiement a deja ete entierement rembourse.",
+    amount_unknown: "Montant du paiement introuvable chez ONVO.",
+    onvo_error: "ONVO a refuse l'operation.",
+    onvo_not_configured: "La cle ONVO manque cote serveur."
+  };
+
+  async function call(dryRun) {
+    var id = (document.getElementById('rf-id').value || '').trim();
+    var key = document.getElementById('rf-key').value || '';
+    var part = (document.querySelector('input[name="rf-part"]:checked') || {}).value || 'full';
+    if (!id)  return out('Indiquez l\'identifiant du paiement.', 'var(--red)');
+    if (!key) return out('Indiquez la cle de remboursement.', 'var(--red)');
+
+    if (!dryRun) {
+      var quoi = part === 'half' ? 'LA MOITIE' : 'LA TOTALITE';
+      if (!window.confirm('Rembourser ' + quoi + ' de ce paiement ?\n\n' + id + '\n\nCette operation est definitive.')) return;
+    }
+
+    out(dryRun ? 'Verification en cours…' : 'Remboursement en cours…', 'var(--mid)');
+    try {
+      var r = await fetch(W, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ paymentIntentId: id, part: part, key: key, dryRun: !!dryRun })
+      });
+      var d = await r.json();
+      if (!d.ok) return out(LABEL[d.error] || ('Erreur : ' + d.error), 'var(--red)');
+
+      var lignes =
+        'Paye par le client : <strong>' + money(d.paidCents, d.currency) + '</strong><br>' +
+        (d.alreadyRefundedCents ? 'Deja rembourse : ' + money(d.alreadyRefundedCents, d.currency) + '<br>' : '') +
+        (d.simulation ? 'Serait rembourse' : 'Rembourse') + ' : <strong>' + money(d.refundedCents, d.currency) + '</strong><br>' +
+        'Resterait acquis : ' + money(d.remainingCents, d.currency);
+
+      if (d.simulation) {
+        out('<strong>Simulation — rien n\'a ete rembourse.</strong><br>' + lignes, 'var(--ink)');
+      } else {
+        document.getElementById('rf-key').value = '';
+        out('<strong>Remboursement effectue.</strong><br>' + lignes +
+            (d.refundId ? '<br><span style="color:var(--mid);font-size:.74rem">Reference ' + d.refundId + '</span>' : ''),
+            'var(--ter)');
+      }
+    } catch (e) {
+      out('Le serveur de paiement n\'a pas repondu. Reessayez.', 'var(--red)');
+    }
+  }
+
+  document.getElementById('rf-sim').addEventListener('click', function () { call(true); });
+  document.getElementById('rf-go').addEventListener('click', function () { call(false); });
+})();
+</script>
+
 </body>
 </html>
