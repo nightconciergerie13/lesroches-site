@@ -28,7 +28,18 @@
   #lr-pay input{display:block;width:100%;box-sizing:border-box;margin-top:4px;padding:10px 12px;border:1px solid #d9d4cb;border-radius:8px;font-size:16px;background:#fff;color:#1d1b19}
   #lr-pay .lr-row{display:flex;gap:12px}
   #lr-pay .lr-row label{flex:1;min-width:0}
-  #lr-pay button#lr-go1,#lr-pay button#lr-go2{width:100%;padding:14px;border:0;border-radius:8px;background:#1d1b19;color:#fffdf9;font-size:16px;cursor:pointer;margin-top:4px}
+  #lr-pay button.lr-next{flex:1;padding:14px;border:0;border-radius:8px;background:#1d1b19;color:#fffdf9;font-size:16px;cursor:pointer;margin-top:4px}
+  #lr-pay button.lr-back{flex:0 0 auto;padding:14px 18px;border:1px solid #d9d4cb;border-radius:8px;background:#fffdf9;color:#5f5b55;font-size:16px;cursor:pointer;margin-top:4px}
+  #lr-pay .lr-nav{display:flex;gap:10px}
+  #lr-steps{display:flex;align-items:center;gap:8px;font-size:12px;color:#8a857d;margin:0 0 14px}
+  #lr-steps .lr-dots{display:flex;gap:5px}
+  #lr-steps i{width:6px;height:6px;border-radius:50%;background:#ded9d0;display:block}
+  #lr-steps i.on{background:#1d1b19}
+  #lr-band{background:#f4f1ea;border-radius:8px;padding:10px 12px;margin:0 0 16px;font-size:13px;color:#5f5b55}
+  #lr-band b{color:#1d1b19;font-weight:500;font-variant-numeric:tabular-nums}
+  #lr-band .lr-band-line{display:flex;justify-content:space-between;gap:12px;padding:1px 0}
+  #lr-pay .lr-step-title{font:500 16px/1.3 inherit;margin:0 0 4px;color:#1d1b19}
+  #lr-pay .lr-step-sub{font-size:13px;color:#8a857d;margin:0 0 14px}
   #lr-pay button[disabled]{opacity:.5;cursor:default}
   #lr-pay .lr-err{color:#a32d2d;font-size:14px;margin:0 0 12px}
   #lr-pay .lr-trust{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#8a857d;margin:12px 0 0;text-align:center;text-decoration:none}
@@ -64,40 +75,60 @@
     <h2 id="lr-pay-title"></h2>
     <p id="lr-pay-recap"></p>
 
-    <div id="lr-pay-step1">
+    <div id="lr-steps" hidden>
+      <span id="lr-step-txt"></span>
+      <span class="lr-dots"><i></i><i></i><i></i><i></i></span>
+    </div>
+
+    <div id="lr-band" hidden></div>
+
+    <div id="lr-s1">
+      <p class="lr-step-title" data-t="s1Title"></p>
       <div class="lr-row">
         <label><span data-t="firstName"></span><input id="lr-fn" autocomplete="given-name" required></label>
         <label><span data-t="lastName"></span><input id="lr-ln" autocomplete="family-name" required></label>
       </div>
       <label><span data-t="email"></span><input id="lr-em" type="email" autocomplete="email" required></label>
-      <div class="lr-row">
-        <label><span data-t="phone"></span><input id="lr-ph" type="tel" autocomplete="tel" required></label>
-        <label><span data-t="guests"></span><input id="lr-ad" type="number" min="1" max="12" value="2"></label>
-      </div>
-
-      <fieldset id="lr-opts">
-        <legend data-t="optsTitle"></legend>
-        <label class="lr-cb"><input type="checkbox" id="lr-cot"><span data-t="babyCot"></span></label>
-        <label class="lr-cb"><input type="checkbox" id="lr-pet"><span data-t="pet"></span></label>
-
-        <p class="lr-sub" data-t="servicesTitle"></p>
-        <div id="lr-services"></div>
-
-        <p class="lr-sub" data-t="activitiesTitle"></p>
-        <div id="lr-activities"></div>
-        <p class="lr-note" data-t="activitiesNote"></p>
-      </fieldset>
-
-      <dl id="lr-sum"></dl>
-      <p id="lr-pay-policy"></p>
+      <label><span data-t="phone"></span><input id="lr-ph" type="tel" autocomplete="tel" required></label>
       <p id="lr-err1" class="lr-err" hidden></p>
-      <button type="button" id="lr-go1"></button>
+      <div class="lr-nav"><button type="button" id="lr-n1" class="lr-next"></button></div>
     </div>
 
-    <div id="lr-pay-step2" hidden>
+    <div id="lr-s2" hidden>
+      <p class="lr-step-title" data-t="servicesTitle"></p>
+      <p class="lr-step-sub" data-t="optional"></p>
+      <label><span data-t="guests"></span><input id="lr-ad" type="number" min="1" max="12" value="2"></label>
+      <label class="lr-cb"><input type="checkbox" id="lr-cot"><span data-t="babyCot"></span></label>
+      <label class="lr-cb"><input type="checkbox" id="lr-pet"><span data-t="pet"></span></label>
+      <div id="lr-services"></div>
+      <div class="lr-nav">
+        <button type="button" id="lr-b2" class="lr-back"></button>
+        <button type="button" id="lr-n2" class="lr-next"></button>
+      </div>
+    </div>
+
+    <div id="lr-s3" hidden>
+      <p class="lr-step-title" data-t="activitiesTitle"></p>
+      <p class="lr-step-sub" data-t="optional"></p>
+      <div id="lr-activities"></div>
+      <p class="lr-note" data-t="activitiesNote"></p>
+      <p id="lr-err3" class="lr-err" hidden></p>
+      <div class="lr-nav">
+        <button type="button" id="lr-b3" class="lr-back"></button>
+        <button type="button" id="lr-n3" class="lr-next"></button>
+      </div>
+    </div>
+
+    <div id="lr-s4" hidden>
+      <p class="lr-step-title" data-t="s4Title"></p>
+      <dl id="lr-sum"></dl>
+      <p id="lr-pay-policy"></p>
       <div id="lr-onvo"></div>
       <p id="lr-err2" class="lr-err" hidden></p>
-      <button type="button" id="lr-go2"></button>
+      <div class="lr-nav">
+        <button type="button" id="lr-b4" class="lr-back"></button>
+        <button type="button" id="lr-go2" class="lr-next"></button>
+      </div>
       <p class="lr-trust"><span class="lr-lock" aria-hidden="true">&#9679;</span><span data-t="secure"></span></p>
       <a id="lr-wa" class="lr-trust lr-wa" href="#" target="_blank" rel="noopener"><span data-t="whatsapp"></span></a>
     </div>
@@ -250,8 +281,33 @@
     document.head.appendChild(s);
   }
 
+  /* Mis par init() quand le tunnel est pret a s'ouvrir. */
+  var OUVRIR = null;
+  var clicEnAttente = false;
+
+  /**
+   * La fiche villa porte DEUX scripts en fin de page qui, sur DOMContentLoaded,
+   * reclonent #sb-cta et y rebranchent la redirection vers beds24.com. Tout
+   * ecouteur pose sur le bouton lui-meme est donc efface apres coup — constate
+   * le 07-11-2026. On intercepte sur `document`, en capture : ce noeud-la n'est
+   * jamais remplace, et la capture passe avant tout ecouteur du bouton.
+   */
+  function intercepterCta() {
+    document.addEventListener("click", function (e) {
+      var n = e.target;
+      var cta = n && n.closest ? n.closest("#sb-cta")
+              : (n && n.parentNode && n.parentNode.closest ? n.parentNode.closest("#sb-cta") : null);
+      if (!cta) return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      if (OUVRIR) OUVRIR();
+      else clicEnAttente = true;          /* clic avant la fin du chargement */
+    }, true);
+  }
+
   function boot() {
     inject();
+    intercepterCta();
     /* Les textes sont du confort : une erreur ici ne doit JAMAIS empecher
        le tunnel de demarrer. Le 06-11-2026, elle l'a empeche. */
     try { fixTexts(); } catch (e) { }
@@ -278,11 +334,15 @@
   var LANGS = {
     en: {
       title:"Book direct", firstName:"First name", lastName:"Last name", email:"Email",
-      phone:"Phone", guests:"Guests", go1:"Continue to payment", wait:"One moment…",
+      phone:"WhatsApp", guests:"Guests", go1:"Continue to payment", wait:"One moment…",
       pay:"Pay", loading:"Loading the amount…", confirming:"Confirming…",
       secure:"Secure card payment · you stay on lesrochesretreat.com",
       whatsapp:"A question before paying? We reply on WhatsApp, usually within minutes.",
       doneTitle:"You're booked.",
+      s1Title:"Your details", s4Title:"Payment",
+      next:"Continue", back:"Back",
+      optional:"Optional \u2014 continue if you need nothing here.",
+      stepOf:function(n){return "Step "+n+" of 4";},
       optsTitle:"A few details", babyCot:"We need a baby cot", pet:"We're bringing a pet (no extra charge)",
       servicesTitle:"Add a service — charged with your booking",
       activitiesTitle:"Interested in an activity?",
@@ -313,11 +373,15 @@
     },
     fr: {
       title:"Réserver en direct", firstName:"Prénom", lastName:"Nom", email:"E-mail",
-      phone:"Téléphone", guests:"Voyageurs", go1:"Continuer vers le paiement", wait:"Un instant…",
+      phone:"WhatsApp", guests:"Voyageurs", go1:"Continuer vers le paiement", wait:"Un instant…",
       pay:"Payer", loading:"Chargement du montant…", confirming:"Confirmation…",
       secure:"Paiement par carte sécurisé · vous ne quittez pas lesrochesretreat.com",
       whatsapp:"Une question avant de payer ? On répond sur WhatsApp, en général en quelques minutes.",
       doneTitle:"C'est réservé.",
+      s1Title:"Vos coordonnées", s4Title:"Paiement",
+      next:"Suivant", back:"Retour",
+      optional:"Facultatif \u2014 passez à la suite si vous n'avez besoin de rien.",
+      stepOf:function(n){return "Étape "+n+" sur 4";},
       optsTitle:"Quelques précisions", babyCot:"Nous avons besoin d'un lit bébé", pet:"Nous venons avec un animal (sans supplément)",
       servicesTitle:"Ajouter un service — facturé avec votre réservation",
       activitiesTitle:"Intéressé par une activité ?",
@@ -348,11 +412,15 @@
     },
     es: {
       title:"Reservar directo", firstName:"Nombre", lastName:"Apellido", email:"Correo",
-      phone:"Teléfono", guests:"Huéspedes", go1:"Continuar al pago", wait:"Un momento…",
+      phone:"WhatsApp", guests:"Huéspedes", go1:"Continuar al pago", wait:"Un momento…",
       pay:"Pagar", loading:"Cargando el monto…", confirming:"Confirmando…",
       secure:"Pago con tarjeta seguro · no sale de lesrochesretreat.com",
       whatsapp:"¿Alguna duda antes de pagar? Respondemos por WhatsApp, normalmente en minutos.",
       doneTitle:"Reserva confirmada.",
+      s1Title:"Tus datos", s4Title:"Pago",
+      next:"Siguiente", back:"Atrás",
+      optional:"Opcional \u2014 continúa si no necesitas nada aquí.",
+      stepOf:function(n){return "Paso "+n+" de 4";},
       optsTitle:"Algunos detalles", babyCot:"Necesitamos una cuna", pet:"Venimos con una mascota (sin cargo)",
       servicesTitle:"Añadir un servicio — se cobra con su reserva",
       activitiesTitle:"¿Le interesa alguna actividad?",
@@ -474,6 +542,7 @@
     }
   }
 
+  /* Le detail complet, montre a l'etape paiement. */
   function paintTotals(q) {
     var rows = [[L.totalLine, money(q.totalCents), true]];
     if (q.balanceCents > 0) {
@@ -484,6 +553,17 @@
     }).join("");
   }
 
+  /* Le bandeau, visible a TOUTES les etapes : le client ne decouvre jamais
+     le montant a la derniere seconde, et il voit un service cochee bouger. */
+  function paintBand(q) {
+    var lignes = [[L.totalLine, money(q.totalCents)]];
+    if (q.balanceCents > 0) lignes.push([L.depositLine, money(q.depositCents)]);
+    $("lr-band").innerHTML = lignes.map(function (l) {
+      return '<div class="lr-band-line"><span>' + l[0] + "</span><b>" + l[1] + "</b></div>";
+    }).join("");
+    $("lr-band").hidden = (etape === 4);
+  }
+
   var timer = null;
   function refresh() { clearTimeout(timer); timer = setTimeout(load, 250); }
 
@@ -491,31 +571,91 @@
     post("/quote", { villa: villa, checkin: stay.checkin, checkout: stay.checkout, lang: LANG,
                      options: selectedOptions(), guest: { numAdult: Number($("lr-ad").value) || 2 } })
       .then(function (res) {
-        if (!res.body.ok) { $("lr-pay-recap").textContent = say(res.body.error); $("lr-go1").disabled = true; return; }
+        if (!res.body.ok) {
+          $("lr-pay-recap").textContent = say(res.body.error);
+          $("lr-band").hidden = true;
+          bloquer(true);
+          return;
+        }
         var q = res.body.quote || res.body;
         stay.quote = q;
         paintCatalogs(q.servicesCatalog || [], q.activitiesCatalog || []);
         var view = { nights:q.nights, checkin:q.checkin, checkout:q.checkout,
                      m:money(q.totalCents), d:money(q.depositCents), b:money(q.balanceCents) };
-        $("lr-pay-recap").textContent = L.recap(view) + " · " + L.beds;
+        $("lr-pay-recap").textContent = L.recap(view) + " \u00b7 " + L.beds;
+        paintBand(q);
         paintTotals(q);
         $("lr-pay-policy").textContent = q.payFullUpfront ? L.policyFull(view) : L.policyPart(view);
-        $("lr-go1").disabled = false;
+        bloquer(false);
         if (WA_BASE) {
           $("lr-wa").href = WA_BASE + "?text=" + encodeURIComponent(
-            q.villa.name + " — " + q.checkin + " / " + q.checkout + " — ");
+            q.villa.name + " \u2014 " + q.checkin + " / " + q.checkout + " \u2014 ");
         }
       })
-      .catch(function () { $("lr-pay-recap").textContent = say(); });
+      .catch(function () { $("lr-pay-recap").textContent = say(); bloquer(true); });
+  }
+
+  /* Tant que le devis n'a pas repondu, on n'avance pas. */
+  function bloquer(oui) {
+    ["lr-n1", "lr-n2", "lr-n3"].forEach(function (id) { $(id).disabled = !!oui; });
+  }
+
+  /* ---- La machine a etapes : 1 coordonnees, 2 services, 3 activites, 4 carte */
+
+  var etape = 1;
+
+  function goStep(n) {
+    etape = n;
+    ["lr-s1", "lr-s2", "lr-s3", "lr-s4"].forEach(function (id, i) {
+      $(id).hidden = (i + 1) !== n;
+    });
+    $("lr-pay-done").hidden = true;
+    $("lr-steps").hidden = false;
+    $("lr-step-txt").textContent = L.stepOf(n);
+    Array.prototype.forEach.call($("lr-steps").querySelectorAll("i"), function (pt, i) {
+      pt.className = i < n ? "on" : "";
+    });
+    /* A l'etape 4 le detail complet remplace le bandeau : repeter les memes
+       montants deux fois juste au-dessus de la carte brouille la lecture. */
+    $("lr-band").hidden = (n === 4) || !$("lr-band").innerHTML;
+    $("lr-pay").scrollTop = 0;
+  }
+
+  function lireGuest() {
+    return {
+      firstName: $("lr-fn").value, lastName: $("lr-ln").value,
+      email: $("lr-em").value, phone: $("lr-ph").value,
+      numAdult: Number($("lr-ad").value) || 2
+    };
+  }
+
+  /* Les coordonnees sont verifiees ICI, pas au paiement : une faute de frappe
+     doit se voir a l'etape ou on l'a faite, pas trois ecrans plus loin. */
+  function etape1Suivant() {
+    var g = lireGuest();
+    if (!g.firstName.trim()) return fail1("guest_firstname_required");
+    if (!g.lastName.trim()) return fail1("guest_lastname_required");
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(g.email)) return fail1("guest_email_invalid");
+    if (g.phone.replace(/\D/g, "").length < 6) return fail1("guest_phone_invalid");
+    $("lr-err1").hidden = true;
+    guest = g;
+    goStep(2);
   }
 
   function open_() {
     var d = dates();
     if (!d) return;
     stay = d;
-    $("lr-err1").hidden = true; $("lr-err2").hidden = true;
-    $("lr-pay-step1").hidden = false; $("lr-pay-step2").hidden = true; $("lr-pay-done").hidden = true;
+    guest = null;
+    intentId = null;
+    onvoInstance = null;
+    $("lr-onvo").innerHTML = "";
+    $("lr-err1").hidden = true; $("lr-err2").hidden = true; $("lr-err3").hidden = true;
+    $("lr-go2").disabled = false;
+    goStep(1);
+    bloquer(true);
     $("lr-pay-recap").textContent = L.loading;
+    $("lr-band").hidden = true;
     $("lr-pay").hidden = false;
     document.body.style.overflow = "hidden";
     load();
@@ -528,38 +668,48 @@
 
   function fail1(code) { $("lr-err1").textContent = say(code); $("lr-err1").hidden = false; }
   function fail2(code) { $("lr-err2").textContent = say(code); $("lr-err2").hidden = false; }
+  function fail3(code) { $("lr-err3").textContent = say(code); $("lr-err3").hidden = false; }
 
-  function toPayment() {
-    guest = {
-      firstName: $("lr-fn").value, lastName: $("lr-ln").value,
-      email: $("lr-em").value, phone: $("lr-ph").value,
-      numAdult: Number($("lr-ad").value) || 2
-    };
-    if (!guest.firstName.trim()) return fail1("guest_firstname_required");
-    if (!guest.lastName.trim()) return fail1("guest_lastname_required");
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(guest.email)) return fail1("guest_email_invalid");
-    if (guest.phone.replace(/\D/g,"").length < 6) return fail1("guest_phone_invalid");
+  /**
+   * Retour depuis la carte : on jette l'intention de paiement en cours.
+   * Le client revient pour changer un service ou une activite, donc le montant
+   * peut bouger. Une intention non payee expire d'elle-meme chez ONVO.
+   */
+  function retourCarte() {
+    intentId = null;
+    onvoInstance = null;
+    $("lr-onvo").innerHTML = "";
+    $("lr-err2").hidden = true;
+    $("lr-go2").disabled = false;
+    goStep(3);
+  }
 
-    $("lr-err1").hidden = true;
-    $("lr-go1").disabled = true;
-    $("lr-go1").textContent = L.wait;
+  function versPaiement() {
+    guest = lireGuest();
+    $("lr-err3").hidden = true;
+    $("lr-n3").disabled = true;
+    $("lr-n3").textContent = L.wait;
 
     post("/intent", { villa: villa, checkin: stay.checkin, checkout: stay.checkout, lang: LANG,
                       guest: guest, options: selectedOptions() })
       .then(function (res) {
-        $("lr-go1").disabled = false;
-        $("lr-go1").textContent = L.go1;
-        if (!res.body.ok) return fail1(res.body.error);
+        $("lr-n3").disabled = false;
+        $("lr-n3").textContent = L.go1;
+        if (!res.body.ok) return fail3(res.body.error);
         intentId = res.body.paymentIntentId;
-        $("lr-pay-step1").hidden = true;
-        $("lr-pay-step2").hidden = false;
+        goStep(4);
         $("lr-go2").textContent = L.pay + " " + money(res.body.amountCents);
         renderCard(res.body.publishableKey, intentId);
       })
-      .catch(function () { $("lr-go1").disabled = false; fail1(); });
+      .catch(function () {
+        $("lr-n3").disabled = false;
+        $("lr-n3").textContent = L.go1;
+        fail3();
+      });
   }
 
   function renderCard(publicKey, paymentIntentId) {
+    $("lr-onvo").innerHTML = "";          /* un retour en arriere redessine */
     onvoInstance = window.onvo.pay({
       publicKey: publicKey,
       paymentIntentId: paymentIntentId,
@@ -586,7 +736,9 @@
     post("/confirm", { paymentIntentId: intentId, guest: guest })
       .then(function (res) {
         if (!res.body.ok) { fail2(res.body.error); return; }
-        $("lr-pay-step2").hidden = true;
+        $("lr-s4").hidden = true;
+        $("lr-steps").hidden = true;
+        $("lr-band").hidden = true;
         $("lr-pay-done").hidden = false;
         $("lr-done-txt").textContent = L.done(guest, res.body.bookingId);
       })
@@ -598,20 +750,16 @@
     villa = mm ? PROPS[mm[1]] : null;
     if (!villa) return;                    /* page sans villa identifiable : on ne touche a rien */
 
-    var cta = $("sb-cta");
-    if (!cta) return;
-
-    /* On remplace le bouton pour neutraliser les anciens ecouteurs
-       (la page en portait deux, qui redirigeaient vers beds24.com). */
-    var fresh = cta.cloneNode(true);
-    cta.parentNode.replaceChild(fresh, cta);
-    fresh.addEventListener("click", function (e) {
-      e.preventDefault(); e.stopImmediatePropagation(); open_();
-    }, true);
+    if (!$("sb-cta")) return;
 
     /* Remplit les libelles dans la langue de la page. */
     $("lr-pay-title").textContent = L.title;
-    $("lr-go1").textContent = L.go1;
+    $("lr-n1").textContent = L.next;
+    $("lr-n2").textContent = L.next;
+    $("lr-n3").textContent = L.go1;
+    $("lr-b2").textContent = L.back;
+    $("lr-b3").textContent = L.back;
+    $("lr-b4").textContent = L.back;
     Array.prototype.forEach.call(document.querySelectorAll("#lr-pay [data-t]"), function (el) {
       var k = el.getAttribute("data-t");
       if (L[k]) el.textContent = L[k];
@@ -625,10 +773,19 @@
     $("lr-pay-close").addEventListener("click", close_);
     $("lr-pay").addEventListener("click", function (e) { if (e.target === $("lr-pay")) close_(); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !$("lr-pay").hidden) close_(); });
-    $("lr-go1").addEventListener("click", toPayment);
+    $("lr-n1").addEventListener("click", etape1Suivant);
+    $("lr-n2").addEventListener("click", function () { goStep(3); });
+    $("lr-n3").addEventListener("click", versPaiement);
+    $("lr-b2").addEventListener("click", function () { goStep(1); });
+    $("lr-b3").addEventListener("click", function () { goStep(2); });
+    $("lr-b4").addEventListener("click", retourCarte);
     $("lr-cot").addEventListener("change", refresh);
     $("lr-pet").addEventListener("change", refresh);
     $("lr-ad").addEventListener("change", refresh);
+
+    /* A partir d'ici l'intercepteur a de quoi ouvrir la modale. */
+    OUVRIR = open_;
+    if (clicEnAttente) { clicEnAttente = false; open_(); }
   }
 
     init();
