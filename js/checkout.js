@@ -115,6 +115,12 @@
    * le texte et le comportement changent par le meme code, donc ils ne peuvent
    * pas diverger. Chaque entree : [texte a trouver, texte de remplacement].
    */
+  /**
+   * Textes de la page devenus faux le jour ou le site encaisse par carte.
+   * ⚠️ Chaque chaine de gauche est RELEVEE SUR LA PAGE EN LIGNE, jamais ecrite
+   * de memoire : trois d'entre elles ne correspondaient a rien le 07-11-2026.
+   * Correctif provisoire — la vraie correction est dans le HTML des 18 fiches.
+   */
   var FIXES = {
     en: [
       ["You pay nothing today. Sending the request commits you to nothing, we confirm your dates first.",
@@ -123,15 +129,24 @@
        "Secure card payment \u00b7 Instant confirmation"],
       ["Request this booking", "Book now"],
       ["Payment: 50% deposit by bank transfer on confirmation.",
-       "Payment: 50% deposit by card when you book."]
+       "Payment: 50% deposit by card when you book."],
+      ["The balance (50%) is payable on arrival by transfer, card, or cash.",
+       "The balance (50%) is payable on arrival by card, cash, or payment link."],
+      ["You will receive a confirmation by email within 24h, along with the bank details for the transfer.",
+       "You receive your confirmation by email straight away."]
     ],
     fr: [
-      ["Vous ne payez rien aujourd'hui. Envoyer la demande ne vous engage \u00e0 rien, nous confirmons vos dates d'abord.",
+      ["Vous ne payez rien aujourd'hui. Envoyer la demande ne vous engage \u00e0 rien, on confirme vos dates d'abord.",
        "Acompte de 50 % aujourd'hui par carte, solde \u00e0 l'arriv\u00e9e. Vos dates sont confirm\u00e9es imm\u00e9diatement."],
       ["Paiement par virement bancaire \u00b7 Confirmation sous 24h",
        "Paiement par carte s\u00e9curis\u00e9 \u00b7 Confirmation imm\u00e9diate"],
-      ["Paiement : acompte de 50 % par virement bancaire \u00e0 la confirmation.",
-       "Paiement : acompte de 50 % par carte au moment de la r\u00e9servation."]
+      ["Demander cette r\u00e9servation", "R\u00e9server maintenant"],
+      ["Paiement : 50 % d'acompte par virement bancaire \u00e0 la confirmation.",
+       "Paiement : 50 % d'acompte par carte au moment de la r\u00e9servation."],
+      ["Le solde (50 %) est r\u00e9gl\u00e9 \u00e0 l'arriv\u00e9e, par virement, carte ou esp\u00e8ces.",
+       "Le solde (50 %) est r\u00e9gl\u00e9 \u00e0 l'arriv\u00e9e, par carte, esp\u00e8ces ou lien de paiement."],
+      ["Vous recevrez une confirmation par email sous 24h, avec les coordonn\u00e9es bancaires pour le virement.",
+       "Vous recevez votre confirmation par email imm\u00e9diatement."]
     ],
     es: [
       ["No pagas nada hoy. Enviar la solicitud no te compromete a nada, primero confirmamos tus fechas.",
@@ -140,7 +155,11 @@
        "Pago con tarjeta seguro \u00b7 Confirmaci\u00f3n inmediata"],
       ["Solicitar esta reserva", "Reservar ahora"],
       ["Pago: dep\u00f3sito del 50 % por transferencia bancaria al confirmar.",
-       "Pago: dep\u00f3sito del 50 % con tarjeta al reservar."]
+       "Pago: dep\u00f3sito del 50 % con tarjeta al reservar."],
+      ["El saldo (50 %) se abona a la llegada por transferencia, tarjeta o efectivo.",
+       "El saldo (50 %) se abona a la llegada con tarjeta, en efectivo o por enlace de pago."],
+      ["Recibir\u00e1s una confirmaci\u00f3n por correo en 24 h con los datos bancarios para la transferencia.",
+       "Recibes tu confirmaci\u00f3n por correo de inmediato."]
     ]
   };
 
@@ -154,14 +173,25 @@
     var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     var nodes = [], n;
     while ((n = walker.nextNode())) nodes.push(n);
+    var faits = {};
     nodes.forEach(function (node) {
       if (node.parentNode && node.parentNode.closest && node.parentNode.closest("#lr-pay")) return;
       var v = node.nodeValue;
       if (!v || !v.trim()) return;
-      list.forEach(function (pair) {
-        if (v.indexOf(pair[0]) >= 0) { v = v.split(pair[0]).join(pair[1]); node.nodeValue = v; }
+      list.forEach(function (pair, i) {
+        if (v.indexOf(pair[0]) >= 0) {
+          v = v.split(pair[0]).join(pair[1]);
+          node.nodeValue = v;
+          faits[i] = (faits[i] || 0) + 1;
+        }
       });
     });
+    /* Temoin de verification : une correction qui ne s'applique jamais est une
+       chaine fausse, pas un texte absent. On veut pouvoir le constater. */
+    window.LR_FIXES = { langue: code, prevus: list.length,
+                        appliques: Object.keys(faits).length,
+                        manquants: list.map(function (pr, i) { return faits[i] ? null : pr[0].slice(0, 50); })
+                                       .filter(Boolean) };
   }
 
   /* Injection : styles dans le head, balisage en fin de body. */
