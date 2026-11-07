@@ -1069,13 +1069,13 @@
           <div class="summary-row"><span>Huéspedes</span><span id="s-guests">-</span></div>
           <div class="summary-row"><span>Duración</span><span id="s-nights">-</span></div>
           <div class="summary-row total"><span>Total de la estancia</span><span id="s-total">-</span></div>
-          <div class="summary-row deposit"><span>Depósito (50 %), transferencia</span><span id="s-deposit">-</span></div>
+          <div class="summary-row deposit"><span>Pagado hoy con tarjeta</span><span id="s-deposit">-</span></div>
         </div>
         <div class="payment-only-note">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b8734a" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01" stroke-linecap="round"/></svg>
-          <div class="payment-only-note-text"><strong>Pago únicamente por transferencia.</strong><br>50 % de depósito en 48 h. Saldo a la llegada.</div>
+          <div class="payment-only-note-text"><strong>Pago íntegro con tarjeta.</strong><br>Impuestos incluidos. Cancelación gratuita hasta 60 días antes de la llegada.</div>
         </div>
-        <button class="modal-submit" id="modal-submit">Enviar solicitud de reserva</button>
+        <button class="modal-submit" id="modal-submit">Continuar con la reserva</button>
         <div class="modal-legal">Al enviar aceptas nuestras <a href="booking-conditions.html">condiciones de reserva</a>.</div>
       </div>
       <div class="modal-confirm" id="modal-confirm">
@@ -1083,10 +1083,10 @@
         <div class="confirm-title">¡Solicitud recibida!</div>
         <div class="confirm-sub">Te contactaremos por WhatsApp en unas pocas horas para confirmar y enviarte los datos de pago.<br><br>La villa queda bloqueada <strong>48 horas</strong> a la espera del depósito.</div>
         <div class="confirm-steps">
-          <div class="confirm-step"><div class="confirm-step-n">01</div><div>Te enviamos un correo de confirmación</div></div>
-          <div class="confirm-step"><div class="confirm-step-n">02</div><div>Te escribimos por WhatsApp con la confirmación de disponibilidad y el resumen de la reserva</div></div>
-          <div class="confirm-step"><div class="confirm-step-n">03</div><div>Transfiere el 50 % a <strong>NIGHT CONCIERGERIE SRL</strong>, IBAN: CR19 0114 0000 7812 3915 72, en un plazo de 48 h</div></div>
-          <div class="confirm-step"><div class="confirm-step-n">04</div><div>Reserva confirmada. El saldo se abona a la llegada.</div></div>
+          <div class="confirm-step"><div class="confirm-step-n">01</div><div>Tu tarjeta se cobra por el importe total, impuestos incluidos</div></div>
+          <div class="confirm-step"><div class="confirm-step-n">02</div><div>Correo de confirmación enviado en pocos minutos</div></div>
+          <div class="confirm-step"><div class="confirm-step-n">03</div><div>Tus fechas se bloquean de inmediato en nuestro calendario</div></div>
+          <div class="confirm-step"><div class="confirm-step-n">04</div><div>Nada que pagar a la llegada. Cancelación gratuita hasta 60 días antes.</div></div>
         </div>
         <a href="https://wa.me/33667749024" class="confirm-wa" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1358,7 +1358,7 @@
     document.getElementById('s-guests').textContent=searchState.guests+' huésped'+(searchState.guests>1?'es':'');
     document.getElementById('s-nights').textContent=nights>0?nights+' noche'+(nights>1?'s':''):'-';
     document.getElementById('s-total').textContent=total?fmt(total):'Por confirmar';
-    document.getElementById('s-deposit').textContent=deposit?fmt(deposit)+' (transferencia en 48 h)':'Por confirmar';
+    document.getElementById('s-deposit').textContent=deposit?fmt(deposit):'Por confirmar';
     document.getElementById('modal-form-screen').style.display='block';
     document.getElementById('modal-confirm').classList.remove('show');
     document.getElementById('modal-overlay').classList.add('open');
@@ -1381,7 +1381,7 @@
     const v=VILLAS[activeVilla],nights=searchState.nights;
     const total=nights>0?v.price*nights:'Por confirmar';
     const deposit=nights>0?Math.round(v.price*nights*.5):'Por confirmar';
-    const tp={guest_name:fn+' '+ln,guest_email:em,guest_whatsapp:wa,villa_name:v.name,checkin:fmtDate(searchState.checkin),checkout:fmtDate(searchState.checkout),nights:nights>0?nights+' noches':'Por confirmar',guests:searchState.guests,total:typeof total==='number'?'$'+total.toLocaleString():total,deposit:typeof deposit==='number'?'$'+deposit.toLocaleString():deposit,owner_email:OWNER_EMAIL,iban:'CR19 0114 0000 7812 3915 72',swift:'BCCECRSJ',bank:'BANCO LAFISE',account_holder:'NIGHT CONCIERGERIE SRL'};
+    const tp={guest_name:fn+' '+ln,guest_email:em,guest_whatsapp:wa,villa_name:v.name,checkin:fmtDate(searchState.checkin),checkout:fmtDate(searchState.checkout),nights:nights>0?nights+' noches':'Por confirmar',guests:searchState.guests,total:typeof total==='number'?'$'+total.toLocaleString():total,deposit:typeof deposit==='number'?'$'+deposit.toLocaleString():deposit,owner_email:OWNER_EMAIL,iban:'',swift:'',bank:'',account_holder:''};
     try{await sbInsert('reservations',{villa_id:activeVilla,villa_name:v.name,checkin:searchState.checkin||null,checkout:searchState.checkout||null,nights:nights>0?nights:null,guests:searchState.guests,firstname:fn,lastname:ln,email:em,whatsapp:wa,total_usd:typeof total==='number'?total:null,deposit_usd:typeof deposit==='number'?deposit:null,status:'pending'});}catch(e){}
     document.getElementById('modal-form-screen').style.display='none';
     document.getElementById('modal-confirm').classList.add('show');
