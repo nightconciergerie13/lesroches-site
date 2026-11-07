@@ -97,6 +97,33 @@
   #lr-policy-box summary:after{content:"\u25be";float:right;color:#8a857d}
   #lr-policy-box[open] summary:after{content:"\u25b4"}
   #lr-pay-policy{font-size:13px;color:#5f5b55;margin:0;padding:0 14px 13px;line-height:1.55;background:none;border-radius:0}
+  /* Barre de reservation collante, mobile uniquement. Elle n'apparait que
+     lorsque le bloc de reservation est sorti de l'ecran : avant, elle ferait
+     doublon ; apres, c'est le seul rappel du prix pendant quatre ecrans. */
+  #lr-sticky{position:fixed;left:0;right:0;bottom:0;z-index:880;display:none;
+    align-items:center;gap:12px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.97);backdrop-filter:blur(8px);
+    border-top:1px solid #e4e0d8;box-shadow:0 -2px 14px rgba(29,27,25,.08)}
+  #lr-sticky.on{display:flex}
+  #lr-sticky-txt{flex:1 1 auto;min-width:0;line-height:1.25}
+  #lr-sticky-price{display:block;font-size:15px;font-weight:600;color:#1d1b19}
+  #lr-sticky-sub{display:block;font-size:11.5px;color:#8a857d;margin-top:1px}
+  #lr-sticky-go{flex:0 0 auto;padding:12px 20px;min-height:44px;border:0;border-radius:8px;
+    background:#1d1b19;color:#fff;font-size:13px;letter-spacing:.06em;cursor:pointer}
+  /* Le bouton flottant WhatsApp remonte pour ne pas passer sous la barre. */
+  body.lr-sticky-on .wa-float,body.lr-sticky-on #wa-float,
+  body.lr-sticky-on [class*="whatsapp-float"]{bottom:86px!important}
+  @media (min-width:861px){#lr-sticky{display:none!important}}
+
+  /* Zones tactiles : les champs de la fiche villa faisaient 14 a 16 px de haut. */
+  @media (max-width:860px){
+    #sb-checkin,#sb-checkout,#sb-guests,
+    .sb-dates-row .sb-field{min-height:44px}
+    #sb-checkin,#sb-checkout{display:flex;align-items:center}
+    #sb-guests{padding-top:10px;padding-bottom:10px}
+  }
+
+  .lr-req{color:#a32d2d;font-weight:600}
   #lr-wallet{margin:0 0 14px}
   #lr-wallet apple-pay-button{--apple-pay-button-width:100%;--apple-pay-button-height:46px;--apple-pay-button-border-radius:8px;display:block;width:100%}
   #lr-wallet-or{display:flex;align-items:center;gap:12px;margin:14px 0 10px;font-size:12.5px;color:#8a857d}
@@ -539,7 +566,7 @@
       optsTitle:"A few details", babyCot:"We need a baby cot", pet:"We're bringing a pet (no extra charge)",
       servicesTitle:"Add a service — charged with your booking",
       activitiesTitle:"Interested in an activity?",
-      activitiesNote:"Nothing is charged here. We'll message you on WhatsApp with the options, and you pay the provider directly.",
+      activitiesNote:"Just tick what appeals to you \u2014 nothing is booked and nothing is charged here. It simply tells us what to prepare: we send you the details and prices on WhatsApp before you arrive, and you pay the provider directly.",
       beds:"2 double beds · up to 4 guests",
       perStay:"per stay", perNight:"per night", perPerson:"per person", perEach:"each", onRequest:"on request",
       totalLine:"Total", depositLine:"To pay today", balanceLine:"On arrival",
@@ -593,7 +620,7 @@
       optsTitle:"Quelques précisions", babyCot:"Nous avons besoin d'un lit bébé", pet:"Nous venons avec un animal (sans supplément)",
       servicesTitle:"Ajouter un service — facturé avec votre réservation",
       activitiesTitle:"Intéressé par une activité ?",
-      activitiesNote:"Rien n'est facturé ici. Nous revenons vers vous par WhatsApp avec les différents éléments, et vous réglez directement le prestataire.",
+      activitiesNote:"Cochez simplement ce qui vous tente \u2014 rien n'est réservé ni facturé ici. Cela nous dit quoi préparer : nous vous envoyons les détails et les tarifs sur WhatsApp avant votre arrivée, et vous réglez directement le prestataire.",
       beds:"2 lits doubles · jusqu'à 4 voyageurs",
       perStay:"le séjour", perNight:"la nuit", perPerson:"la personne", perEach:"l’unité", onRequest:"sur demande",
       totalLine:"Total", depositLine:"À payer aujourd'hui", balanceLine:"À l'arrivée",
@@ -647,7 +674,7 @@
       optsTitle:"Algunos detalles", babyCot:"Necesitamos una cuna", pet:"Venimos con una mascota (sin cargo)",
       servicesTitle:"Añadir un servicio — se cobra con su reserva",
       activitiesTitle:"¿Le interesa alguna actividad?",
-      activitiesNote:"Aquí no se cobra nada. Le escribimos por WhatsApp con las opciones, y usted paga directamente al proveedor.",
+      activitiesNote:"Marque simplemente lo que le atraiga \u2014 aquí no se reserva ni se cobra nada. Nos dice qué preparar: le enviamos los detalles y los precios por WhatsApp antes de su llegada, y usted paga directamente al proveedor.",
       beds:"2 camas dobles · hasta 4 huéspedes",
       perStay:"por estancia", perNight:"por noche", perPerson:"por persona", perEach:"por unidad", onRequest:"a consultar",
       totalLine:"Total", depositLine:"A pagar hoy", balanceLine:"A la llegada",
@@ -1102,8 +1129,113 @@
     } catch (e) { /* idem */ }
   }
 
+  /**
+   * Barre de reservation collante en bas d'ecran, sur mobile.
+   *
+   * Constat 4 de l'audit : le bouton de reservation est a 61 % de la profondeur
+   * de la page, sans aucun rappel pendant le defilement. Un visiteur venu
+   * d'Instagram fait quatre ecrans avant de voir un prix.
+   *
+   * Elle ne s'affiche que lorsque le bloc de reservation est hors de l'ecran,
+   * et elle reprend le prix reel affiche par config.js — jamais un prix a elle.
+   */
+  function poserBarreCollante() {
+    try {
+      if (window.innerWidth > 860) return;
+      var carte = document.querySelector(".sb-card") || $("sb-cta");
+      if (!carte || $("lr-sticky")) return;
+
+      var LBL = {
+        en: { from: "from", night: "night", book: "Book" },
+        fr: { from: "dès", night: "nuit", book: "Réserver" },
+        es: { from: "desde", night: "noche", book: "Reservar" }
+      };
+      var T = LBL[LANG] || LBL.en;
+
+      var barre = document.createElement("div");
+      barre.id = "lr-sticky";
+      barre.innerHTML =
+        '<span id="lr-sticky-txt">' +
+          '<span id="lr-sticky-price"></span>' +
+          '<span id="lr-sticky-sub"></span>' +
+        '</span>' +
+        '<button type="button" id="lr-sticky-go">' + T.book + '</button>';
+      document.body.appendChild(barre);
+
+      /* Le prix vient de la page, pas d'un calcul a nous. */
+      function majPrix() {
+        var pv = document.querySelector(".sb-price-val");
+        var tv = $("sb-total-val");
+        var prix = pv ? pv.textContent.trim() : "";
+        var total = tv ? tv.textContent.trim() : "";
+        /* Dates choisies : on montre le total. Sinon le prix par nuit. */
+        if (total && /\d/.test(total)) {
+          $("lr-sticky-price").textContent = total;
+          $("lr-sticky-sub").textContent = ($("sb-checkin") || {}).value && ($("sb-checkout") || {}).value
+            ? ($("sb-checkin").value + " \u2192 " + $("sb-checkout").value) : "";
+        } else if (prix) {
+          $("lr-sticky-price").textContent = T.from + " " + prix.replace(/\s*\/.*$/, "");
+          $("lr-sticky-sub").textContent = "/ " + T.night;
+        }
+      }
+      majPrix();
+      setInterval(majPrix, 1200);
+
+      $("lr-sticky-go").onclick = function () {
+        carte.scrollIntoView({ behavior: "smooth", block: "center" });
+      };
+
+      /* On n'affiche la barre que quand le bloc de reservation a quitte l'ecran. */
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (entries) {
+          var visible = entries[0].isIntersecting;
+          barre.classList.toggle("on", !visible);
+          document.body.classList.toggle("lr-sticky-on", !visible);
+        }, { threshold: 0.12 }).observe(carte);
+      }
+    } catch (e) { /* la barre est un bonus : jamais bloquante */ }
+  }
+
+  var CHARGEMENT = {
+    en: "Loading secure payment\u2026",
+    fr: "Chargement du paiement s\u00e9curis\u00e9\u2026",
+    es: "Cargando el pago seguro\u2026"
+  };
+
+  /**
+   * Marque d'une etoile les champs que le tunnel exige.
+   *
+   * Constat 14 : les six champs de l'etape 1 sont obligatoires sans que rien
+   * ne le dise, et la validation ne signale qu'une erreur a la fois. L'etoile
+   * se pose depuis l'attribut `required` du champ : elle ne peut donc pas
+   * mentir sur ce qui est reellement exige.
+   */
+  function marquerObligatoires() {
+    try {
+      var vus = {};
+      [].forEach.call(document.querySelectorAll("#lr-pay label input[required]"), function (inp) {
+        var lab = inp.closest("label");
+        if (!lab) return;
+        var span = lab.querySelector("span[data-t]");
+        if (!span || vus[span.getAttribute("data-t")]) return;
+        if (span.querySelector(".lr-req")) return;
+        var et = document.createElement("span");
+        et.className = "lr-req";
+        et.setAttribute("aria-hidden", "true");
+        et.textContent = " *";
+        span.appendChild(et);
+        vus[span.getAttribute("data-t")] = true;
+        inp.setAttribute("aria-required", "true");
+      });
+    } catch (e) { /* cosmetique : jamais bloquant */ }
+  }
+
   function renderCard(publicKey, paymentIntentId) {
-    $("lr-onvo").innerHTML = "";          /* un retour en arriere redessine */
+    /* Le widget ONVO met plusieurs secondes a se monter. Sans ce mot, le client
+       voit un cadre blanc vide a l'instant precis ou il sort sa carte. */
+    $("lr-onvo").innerHTML =
+      '<p style="margin:0;padding:62px 0;text-align:center;font-size:13px;color:#8a857d">' +
+      (CHARGEMENT[LANG] || CHARGEMENT.en) + '</p>';
     onvoInstance = window.onvo.pay({
       publicKey: publicKey,
       paymentIntentId: paymentIntentId,
@@ -1151,6 +1283,8 @@
 
     if (!$("sb-cta")) return;
 
+    poserBarreCollante();
+
     /* Indicatifs WhatsApp + liste de pays, dans la langue de la page.
        Le pays par defaut suit la langue : un visiteur francophone compose
        presque toujours un +33. */
@@ -1186,6 +1320,10 @@
       var k = el.getAttribute("data-t");
       if (L[k]) el.textContent = L[k];
     });
+
+    /* Apres les libelles : cette boucle ecrase le contenu des spans, donc
+       l'etoile doit se poser ensuite, jamais avant. */
+    marquerObligatoires();
 
     /* Reprend le numero WhatsApp deja present sur la page : un seul a maintenir. */
     var wa = document.querySelector('a[href*="wa.me/"]');
