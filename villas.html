@@ -1376,7 +1376,7 @@
     });
 
     dsBtn.textContent='Check rates →'; dsBtn.disabled=false;
-    const msg=sb?avail+' villa'+(avail!==1?'s':'')+' available · '+fmtDate(ci)+' → '+fmtDate(co):'Rates updated · Contact us to confirm availability';
+    const msg=avail+' villa'+(avail!==1?'s':'')+' available · '+fmtDate(ci)+' → '+fmtDate(co);
     dsFeedback.textContent=msg; dsFeedback.classList.add('show');
 
     // Scroll to villa results — if all upper-estate villas are unavailable, jump to garden level

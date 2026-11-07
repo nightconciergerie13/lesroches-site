@@ -19,9 +19,34 @@
 (function (global) {
   'use strict';
 
-  var MONTHS_FR = ['Janvier','Février','Mars','Avril','Mai','Juin',
-                   'Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-  var DAYS_FR   = ['Lu','Ma','Me','Je','Ve','Sa','Di'];
+  /* Libellés du calendrier dans la langue de la page.
+     L'ordre des jours reste lundi → dimanche : la logique de rendu en dépend. */
+  var I18N = {
+    en: { months: ['January','February','March','April','May','June',
+                   'July','August','September','October','November','December'],
+          days:   ['Mo','Tu','We','Th','Fr','Sa','Su'],
+          clear:  'Clear' },
+    fr: { months: ['Janvier','Février','Mars','Avril','Mai','Juin',
+                   'Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+          days:   ['Lu','Ma','Me','Je','Ve','Sa','Di'],
+          clear:  'Effacer' },
+    es: { months: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+                   'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+          days:   ['Lu','Ma','Mi','Ju','Vi','Sá','Do'],
+          clear:  'Borrar' }
+  };
+
+  var LANG = (function () {
+    var path = location.pathname;
+    if (path.indexOf('/fr/') !== -1) return 'fr';
+    if (path.indexOf('/es/') !== -1) return 'es';
+    var tag = (document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
+    return I18N[tag] ? tag : 'en';
+  })();
+
+  var MONTHS = I18N[LANG].months;
+  var DAYS   = I18N[LANG].days;
+  var CLEAR  = I18N[LANG].clear;
 
   var _instanceCount = 0;
 
@@ -109,7 +134,7 @@
           '<div class="lrp-month-pane lrp-R' + id + '"></div>' +
         '</div>' +
         '<div class="lrp-footer">' +
-          '<span class="lrp-clear">Effacer</span>' +
+          '<span class="lrp-clear">' + CLEAR + '</span>' +
         '</div>';
       document.body.appendChild(cal);
       this._cal = cal;
@@ -290,13 +315,13 @@
     _renderMonth: function (year, month, showPrev, showNext) {
       var html = '<div class="lrp-month-header">';
       html += showPrev ? '<button class="lrp-nav lrp-prev" type="button">&#8249;</button>' : '<span></span>';
-      html += '<span class="lrp-month-title">' + MONTHS_FR[month] + ' ' + year + '</span>';
+      html += '<span class="lrp-month-title">' + MONTHS[month] + ' ' + year + '</span>';
       html += showNext ? '<button class="lrp-nav lrp-next" type="button">&#8250;</button>' : '<span></span>';
       html += '</div>';
 
       html += '<div class="lrp-weekdays">';
-      for (var w = 0; w < DAYS_FR.length; w++) {
-        html += '<span class="lrp-wd">' + DAYS_FR[w] + '</span>';
+      for (var w = 0; w < DAYS.length; w++) {
+        html += '<span class="lrp-wd">' + DAYS[w] + '</span>';
       }
       html += '</div>';
 

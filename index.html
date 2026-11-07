@@ -1364,7 +1364,7 @@ document.querySelectorAll('a,.vc,.ec,.rc,.nl,.nav-book,.hb,.nbtn,.vmore,.bk-btn'
   el.addEventListener('mouseleave',()=>cur.classList.remove('hov'));
 });
 const nav=document.getElementById('nav'),logo=document.getElementById('logo'),nb=document.getElementById('nb'),ls=document.getElementById('ls');
-const nls=['nl1','nl2','nl3','nl4'].map(id=>document.getElementById(id));
+const nls=Array.from(document.querySelectorAll('#nav .nav-mid .nl'));
 window.addEventListener('scroll',()=>{
   const s=scrollY>70;
   nav.classList.toggle('scrolled',s);

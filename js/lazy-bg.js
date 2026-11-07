@@ -29,7 +29,7 @@
       obs.unobserve(el);
     });
   }, {
-    rootMargin: '200px 0px',
+    rootMargin: '1200px 0px',
     threshold: 0
   });
 
