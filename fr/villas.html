@@ -743,8 +743,6 @@
             <option value="2" selected>2 personnes</option>
             <option value="3">3 personnes</option>
             <option value="4">4 personnes</option>
-            <option value="5">5 personnes</option>
-            <option value="6">6 personnes</option>
           </select>
         </div>
         <button class="ds-btn" id="ds-btn">Voir les tarifs →</button>
@@ -1145,9 +1143,13 @@
     const lang = ((navigator.languages&&navigator.languages[0])||navigator.language||'en').toLowerCase().split('-')[0];
     if(!EUROZONE.includes(lang)) return;
     try {
-      const r = await fetch('https://api.frankfurter.app/latest?from=USD&to=EUR');
-      const d = await r.json();
-      if(d.rates&&d.rates.EUR) { EUR_RATE=d.rates.EUR; CURRENCY='EUR'; }
+      /* frankfurter.app ne renvoie pas d'en-tete CORS : l'appel echouait a
+             chaque chargement et le visiteur europeen voyait toujours des dollars.
+             open.er-api.com repond avec access-control-allow-origin: *. */
+          const r = await fetch('https://open.er-api.com/v6/latest/USD');
+          const d = await r.json();
+          if(d.rates&&d.rates.EUR) { EUR_RATE=d.rates.EUR; CURRENCY='EUR'; }
+          else { EUR_RATE=0.90; CURRENCY='EUR'; }   /* repli : mieux qu'aucune conversion */
     } catch(e) {}
   }
   function fmt(usd) {

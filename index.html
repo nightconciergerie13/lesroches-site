@@ -983,7 +983,7 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
       <div class="fp-field">
         <label class="fp-field-lbl" for="bk-guests">Guests</label>
         <select class="bk-sel" id="bk-guests" aria-label="Number of guests">
-          <option>2 guests</option><option>3 guests</option><option>4 guests</option>
+          <option>1 guest</option><option>2 guests</option><option>3 guests</option><option>4 guests</option>
         </select>
       </div>
     </div>
@@ -1471,8 +1471,11 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
     open=v;
     card.classList.toggle('open',v);
   }
-  // Ouvrir automatiquement après 6s (une seule fois par session)
-  if(!sessionStorage.getItem('wa_shown')){
+  // Ouvrir automatiquement après 6s (une seule fois par session), mais
+  // seulement sur un ecran assez large. En dessous de 1280px la carte
+  // recouvrait le champ "Guests" du widget de dates : elle masquait
+  // l'outil qu'elle est censee soutenir.
+  if(!sessionStorage.getItem('wa_shown') && window.innerWidth >= 1280){
     setTimeout(()=>{setOpen(true);sessionStorage.setItem('wa_shown','1')},6000);
   }
   toggle.addEventListener('click',()=>setOpen(!open));
