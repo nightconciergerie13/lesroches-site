@@ -714,7 +714,10 @@
       publicKey: publicKey,
       paymentIntentId: paymentIntentId,
       paymentType: "one_time",
-      locale: "en",            /* sinon ONVO affiche le formulaire en espagnol */
+      /* ONVO ne connait que "es" et "en" (doc, section Locale) — et retombe en
+         espagnol si on ne dit rien. La fiche espagnole a donc son formulaire
+         en espagnol ; la francaise prend l'anglais, faute de mieux. */
+      locale: LANG === "es" ? "es" : "en",
       manualSubmit: true,      /* le bouton est le notre */
       onSuccess: function () { finish(); },
       onError: function (e) {
