@@ -30,6 +30,9 @@ html, body { overflow-x: hidden; max-width: 100%; }
   flex-direction: column;
   justify-content: flex-end;
 }
+/* Opale et Ambre ont une video en fond de heros, pas une image. */
+video.hero-bg { width: 100%; height: 100%; object-fit: cover; }
+
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -306,11 +309,11 @@ html, body { overflow-x: hidden; max-width: 100%; }
   cursor: pointer;
 }
 .vp-photo-img {
+  /* L'image est propre a chaque villa : declaree en ligne dans la fiche. */
   width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
-  background-image: url('../images/jade-sunset-pool.webp');
   transition: transform 12s ease;
   transform: scale(1.04);
 }
