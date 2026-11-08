@@ -92,10 +92,10 @@
   #lr-activities label.lr-ac-chip input{width:auto;margin:0;flex:0 0 auto}
 
   #lr-policy-box{border:1px solid #e4e0d8;border-radius:8px;padding:0;margin:0 0 16px;background:#f9f7f2}
-  #lr-policy-box summary{cursor:pointer;padding:11px 14px;font-size:13px;color:#5f5b55;list-style:none}
-  #lr-policy-box summary::-webkit-details-marker{display:none}
-  #lr-policy-box summary:after{content:"\u25be";float:right;color:#8a857d}
-  #lr-policy-box[open] summary:after{content:"\u25b4"}
+  /* Bloc non repliable : au moment de payer, la politique doit etre lue, pas depliee.
+     Elle etait repliee par defaut sous 860 px, c'est-a-dire sur mobile. */
+  #lr-policy-ttl{margin:0;padding:11px 14px 0;font-size:12px;letter-spacing:.04em;
+    text-transform:uppercase;color:#8a857d}
   #lr-pay-policy{font-size:13px;color:#5f5b55;margin:0;padding:0 14px 13px;line-height:1.55;background:none;border-radius:0}
   /* Barre de reservation collante, mobile uniquement. Elle n'apparait que
      lorsque le bloc de reservation est sorti de l'ecran : avant, elle ferait
@@ -255,10 +255,10 @@
       <div id="lr-s4" hidden>
         <p class="lr-step-title" data-t="s4Title"></p>
         <dl id="lr-sum"></dl>
-        <details id="lr-policy-box">
-          <summary data-t="policySummary"></summary>
+        <div id="lr-policy-box">
+          <p id="lr-policy-ttl" data-t="policySummary"></p>
           <p id="lr-pay-policy"></p>
-        </details>
+        </div>
         <div id="lr-wallet" hidden>
           <apple-pay-button id="lr-apple" buttonstyle="black" type="buy"></apple-pay-button>
           <div id="lr-wallet-or"></div>
@@ -571,7 +571,7 @@
       perStay:"per stay", perNight:"per night", perPerson:"per person", perEach:"each", onRequest:"on request",
       totalLine:"Total", depositLine:"To pay today", balanceLine:"On arrival",
       recap:function(q){return q.nights+(q.nights>1?" nights":" night")+" from "+q.checkin+" to "+q.checkout+" · total "+q.m+" (5% direct discount included)";},
-      policyFull:function(q){return "You pay "+q.d+" today by card — the full amount, taxes included. Cancel up to 60 days before arrival and 96% is refunded to your card; the 4% card processing fee is not, as our provider never returns it. Cancel later than that and half of the amount is refunded.";},
+      policyFull:function(q){return "You pay "+q.d+" today by card, the full amount including taxes. Cancel up to 60 days before arrival: 96% refunded, the 4% card fee is not recoverable. After that: 50% refunded.";},
       done:function(g,id){return "Thank you "+g.firstName+". Your booking is confirmed and a confirmation email is on its way to "+g.email+". Reference "+id+".";},
       err:{
         night_unavailable:"One of the nights has just been booked. Please choose other dates.",
@@ -624,7 +624,7 @@
       perStay:"le séjour", perNight:"la nuit", perPerson:"la personne", perEach:"l’unité", onRequest:"sur demande",
       totalLine:"Total", depositLine:"À payer aujourd'hui", balanceLine:"À l'arrivée",
       recap:function(q){return q.nights+(q.nights>1?" nuits":" nuit")+" du "+q.checkin+" au "+q.checkout+" · total "+q.m+" (remise directe de 5 % incluse)";},
-      policyFull:function(q){return "Vous payez "+q.d+" aujourd'hui par carte — la totalité, taxes comprises. En cas d'annulation jusqu'à 60 jours avant l'arrivée, 96 % vous sont remboursés sur votre carte ; les 4 % de frais bancaires ne le sont pas, notre prestataire ne nous les rendant jamais. Passé ce délai, la moitié du montant vous est remboursée.";},
+      policyFull:function(q){return "Vous payez "+q.d+" aujourd'hui par carte, la totalité taxes comprises. Annulation jusqu'à 60 jours avant l'arrivée : 96 % remboursés, les 4 % de frais bancaires non récupérables. Au-delà : 50 % remboursés.";},
       done:function(g,id){return "Merci "+g.firstName+". Votre réservation est confirmée et un e-mail de confirmation part à "+g.email+". Référence "+id+".";},
       err:{
         night_unavailable:"Une des nuits de votre séjour vient d'être réservée. Choisissez d'autres dates.",
@@ -677,7 +677,7 @@
       perStay:"por estancia", perNight:"por noche", perPerson:"por persona", perEach:"por unidad", onRequest:"a consultar",
       totalLine:"Total", depositLine:"A pagar hoy", balanceLine:"A la llegada",
       recap:function(q){return q.nights+(q.nights>1?" noches":" noche")+" del "+q.checkin+" al "+q.checkout+" · total "+q.m+" (5 % de descuento directo incluido)";},
-      policyFull:function(q){return "Paga "+q.d+" hoy con tarjeta — el total, impuestos incluidos. Si cancelas hasta 60 días antes de la llegada, se te reembolsa el 96 % a tu tarjeta; la comisión bancaria del 4 % no se reembolsa, porque nuestro proveedor nunca nos la devuelve. Después de ese plazo, se reembolsa la mitad del importe.";},
+      policyFull:function(q){return "Pagas "+q.d+" hoy con tarjeta, el total con impuestos incluidos. Cancelación hasta 60 días antes de la llegada: se reembolsa el 96 %, la comisión bancaria del 4 % no es recuperable. Después: 50 % reembolsado.";},
       done:function(g,id){return "Gracias "+g.firstName+". Su reserva está confirmada y le enviamos un correo a "+g.email+". Referencia "+id+".";},
       err:{
         night_unavailable:"Una de las noches acaba de ser reservada. Elija otras fechas.",
@@ -1312,7 +1312,6 @@
     $("lr-wa-t").textContent = L.waBtn;
     /* Ordinateur : la politique est deroulee, il y a la place. Telephone :
        repliee, pour que la carte reste visible. */
-    $("lr-policy-box").open = window.innerWidth > 860;
     $("lr-close2").textContent = L.close;
     Array.prototype.forEach.call(document.querySelectorAll("#lr-pay [data-t]"), function (el) {
       var k = el.getAttribute("data-t");
