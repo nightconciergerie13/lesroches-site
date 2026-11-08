@@ -15,7 +15,7 @@
 <link rel="alternate" hreflang="x-default" href="https://lesrochesretreat.com/villas.html">
 <link rel="canonical" href="https://lesrochesretreat.com/fr/villas.html">
   <meta property="og:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.webp">
-  <script src="../js/track.js?v=2026-11-08d" defer></script>
+  <script src="../js/track.js?v=2026-11-08e" defer></script>
 
   <style>
     /* ════════════════════════════════════════════
@@ -1100,19 +1100,10 @@
     </div>
   </div>
 
-  <script src="../js/main.js?v=2026-11-08d"></script>
-  <script src="../js/config.js?v=2026-11-08d"></script>
-  <script src="../js/datepicker.js?v=2026-11-08d"></script>
+  <script src="../js/main.js?v=2026-11-08e"></script>
+  <script src="../js/config.js?v=2026-11-08e"></script>
+  <script src="../js/datepicker.js?v=2026-11-08e"></script>
   <script>
-  // Direct Supabase REST helper (no CDN dependency)
-  async function sbFetch(table, qs) {
-    const url = SUPABASE_URL + '/rest/v1/' + table + (qs ? '?' + qs : '');
-    const resp = await fetch(url, {
-      headers: { 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON }
-    });
-    if (!resp.ok) throw new Error('HTTP ' + resp.status);
-    return resp.json();
-  }
   async function sbInsert(table, payload) {
     const resp = await fetch(SUPABASE_URL + '/rest/v1/' + table, {
       method: 'POST',
@@ -1140,25 +1131,11 @@
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
   }
 
-  let CURRENCY = 'USD', EUR_RATE = null;
-  const EUROZONE = ['fr','de','it','pt','nl','fi','el','sk','sl','et','lv','lt','mt','ga','hr'];
-  async function initCurrency() {
-    const lang = ((navigator.languages&&navigator.languages[0])||navigator.language||'en').toLowerCase().split('-')[0];
-    if(!EUROZONE.includes(lang)) return;
-    try {
-      /* frankfurter.app ne renvoie pas d'en-tete CORS : l'appel echouait a
-             chaque chargement et le visiteur europeen voyait toujours des dollars.
-             open.er-api.com repond avec access-control-allow-origin: *. */
-          const r = await fetch('https://open.er-api.com/v6/latest/USD');
-          const d = await r.json();
-          if(d.rates&&d.rates.EUR) { EUR_RATE=d.rates.EUR; CURRENCY='EUR'; }
-          else { EUR_RATE=0.90; CURRENCY='EUR'; }   /* repli : mieux qu'aucune conversion */
-    } catch(e) {}
-  }
+  /* Les prix sont affiches en dollars, comme la facturation ONVO. */
+  const CURRENCY = 'USD', EUR_RATE = null;
   function fmt(usd) {
     return CURRENCY==='EUR'&&EUR_RATE ? '€'+Math.round(usd*EUR_RATE).toLocaleString('fr-FR') : '$'+Math.round(usd).toLocaleString('en-US');
   }
-  function nl() { return CURRENCY==='EUR' ? '/ nuit' : '/ nuit'; }
 
   const VILLAS = {
     opale:  { name:'Opale',     price:480, maxVoyageurs:4, minNights:3 },
@@ -1170,80 +1147,11 @@
   };
   let searchState = { checkin:null, checkout:null, guests:2, nights:0 };
 
-  function setPrice(slug, price, unit, fromLabel) {
-    const p=document.getElementById('price-'+slug);
-    const u=document.getElementById('unit-'+slug);
-    const l=document.getElementById('label-'+slug);
-    if(p) p.textContent=price;
-    if(u) u.textContent=unit;
-    if(l&&fromLabel!==undefined) l.textContent=fromLabel;
-  }
+  /* Prix et disponibilites : plus rien n'est calcule ici.
+     Source unique = Beds24 (/availability.json), appliquee par enforce()
+     dans js/config.js. Cette page ne fait plus que passer les dates. */
 
-  async function loadVillaPrices() {
-    // Show hardcoded defaults first
-    Object.entries(VILLAS).forEach(([s,v])=>setPrice(s,fmt(v.price),nl(),'À partir de'));
-    // Load base data (min_nights) from villas table
-    try {
-      const data = await sbFetch('villas', 'select=id,price_per_night,min_nights');
-      (data||[]).forEach(v=>{
-        if(!VILLAS[v.id]) return;
-        VILLAS[v.id].price = v.price_per_night;
-        VILLAS[v.id].minNights = v.min_nights || 3;
-        if(!searchState.checkin) setPrice(v.id, fmt(v.price_per_night), nl(), 'À partir de');
-      });
-    } catch(e) { console.warn('loadVillaPrices villas:', e.message); }
-    // Load minimum future price from daily_rates (shows cheapest available night)
-    try {
-      const today = new Date().toISOString().split('T')[0];
-      const rates = await sbFetch('daily_rates', 'select=villa_id,price_per_night&date=gte.' + today + '&limit=1000');
-      if (rates && rates.length > 0) {
-        const minByVilla = {};
-        rates.forEach(function(r) {
-          if (minByVilla[r.villa_id] === undefined || r.price_per_night < minByVilla[r.villa_id]) {
-            minByVilla[r.villa_id] = r.price_per_night;
-          }
-        });
-        Object.entries(minByVilla).forEach(function([villaId, minPrice]) {
-          if (VILLAS[villaId] && !searchState.checkin) setPrice(villaId, fmt(minPrice), nl(), 'À partir de');
-        });
-      }
-    } catch(e) { console.warn('loadVillaPrices daily_rates:', e.message); }
-  }
 
-  async function checkAvailability(ci,co) {
-    try {
-      const [blocked, rates] = await Promise.all([
-        sbFetch('blocked_dates', 'select=villa_id,date&date=gte.' + ci + '&date=lt.' + co),
-        sbFetch('daily_rates',   'select=villa_id,date,price_per_night,min_nights&date=gte.' + ci + '&date=lt.' + co)
-      ]);
-      // A villa is unavailable if ANY of its dates in the range are blocked
-      const unavailable = new Set((blocked||[]).map(d=>d.villa_id));
-      const dailyRates = {};
-      (rates||[]).forEach(r=>{
-        dailyRates[r.villa_id+':'+r.date] = {price:r.price_per_night, minNights:r.min_nights};
-      });
-      return {unavailable, dailyRates};
-    } catch(e) {
-      console.warn('checkAvailability:', e.message);
-      return {unavailable:new Set(), dailyRates:{}};
-    }
-  }
-
-  function calcTotal(slug,ci,co,dr) {
-    const n=calcNights(ci,co); if(n<1) return {total:0,minN:0};
-    let total=0,maxMin=0;
-    let cur=new Date(ci+'T00:00:00');
-    for(let i=0;i<n;i++){
-      const ds=cur.getFullYear()+'-'+String(cur.getMonth()+1).padStart(2,'0')+'-'+String(cur.getDate()).padStart(2,'0');
-      const r=dr[slug+':'+ds];
-      total+=r?r.price:VILLAS[slug].price;
-      if(r&&r.minNights>maxMin) maxMin=r.minNights;
-      cur.setDate(cur.getDate()+1);
-    }
-    return {total,minN:maxMin||VILLAS[slug].minNights||3};
-  }
-
-  initCurrency().then(()=>loadVillaPrices());
 
   function fmtDate(d) { return d?new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}):'—'; }
   function calcNights(a,b) { return(!a||!b)?0:Math.round((new Date(b)-new Date(a))/86400000); }
@@ -1277,7 +1185,6 @@
       if (opt) dsVoyageurs.value = opt.value;
     }
     // Déclencher la recherche automatiquement après un court délai
-    // (laisser le temps à loadVillaPrices de s'exécuter d'abord)
     setTimeout(function() { dsBtn.click(); }, 400);
   })();
 
@@ -1286,37 +1193,16 @@
     const nights=calcNights(ci,co), guests=parseInt(dsVoyageurs.value);
     if(!ci||!co||nights<1) { alert('Merci de choisir des dates valides.'); return; }
     searchState={checkin:ci,checkout:co,guests,nights};
-    dsBtn.textContent='Vérification…'; dsBtn.disabled=true;
-
-    const {unavailable,dailyRates}=await checkAvailability(ci,co);
-    let avail=0;
-
-    Object.entries(VILLAS).forEach(([slug,v])=>{
-      const {total,minN}=calcTotal(slug,ci,co,dailyRates);
-      const avg=nights>0?Math.round(total/nights):v.price;
+    // Cartes et compteur remplis par enforce() (js/config.js) : source unique Beds24.
+    Object.keys(VILLAS).forEach(function(slug){
       const card=document.getElementById('vc-'+slug);
       if(card) card.setAttribute('href','villa-'+slug+'.html?checkin='+ci+'&checkout='+co+'&guests='+guests);
-      const totEl=document.getElementById('total-'+slug);
-
-      if(unavailable.has(slug)){
-        setPrice(slug,'','','');   // prix masque : la villa est complete sur ces dates
-        card&&card.classList.add('unavail');
-        if(totEl){totEl.textContent='Non disponible sur ces dates';totEl.style.color='#c0392b';}
-      } else if(nights<minN){
-        setPrice(slug,fmt(avg),nl()+' moy.','');
-        card&&card.classList.remove('unavail');
-        if(totEl){totEl.textContent='Min. '+minN+' nuits';totEl.style.color='var(--ter)';}
-      } else {
-        avail++;
-        setPrice(slug,fmt(avg),nl()+' moy.','');
-        card&&card.classList.remove('unavail');
-        if(totEl){totEl.textContent=nights+'n · Total '+fmt(total);totEl.style.color='var(--ter)';}
-      }
     });
-
-    dsBtn.textContent='Voir les tarifs →'; dsBtn.disabled=false;
-    const msg=avail+' villa'+(avail!==1?'s':'')+' disponible'+(avail!==1?'s':'')+' · '+fmtDate(ci)+' → '+fmtDate(co);
-    dsFeedback.textContent=msg; dsFeedback.classList.add('show');
+    const dts=fmtDate(ci)+' \u2192 '+fmtDate(co);
+    dsFeedback.dataset.dates=dts;          // enforce() y ajoute le nombre de villas
+    dsFeedback.textContent=dts;
+    dsFeedback.classList.add('show');
+    if(window.LR_ENFORCE) window.LR_ENFORCE();   // mise a jour immediate, sans attendre le tick
 
     // Scroll to villa results — if all upper-estate villas are unavailable, jump to garden level
     setTimeout(()=>{
@@ -1404,9 +1290,9 @@
     document.getElementById('capture-email').value='';
   }
   </script>
-<script src="../cookie-consent.js?v=2026-11-08d" defer></script>
-<script src="../js/lazy-bg.js?v=2026-11-08d" defer></script>
-<script src="../js/swipe.js?v=2026-11-08d" defer></script>
+<script src="../cookie-consent.js?v=2026-11-08e" defer></script>
+<script src="../js/lazy-bg.js?v=2026-11-08e" defer></script>
+<script src="../js/swipe.js?v=2026-11-08e" defer></script>
 <script>
 // ── Ouvre le calendrier si ?book=1 dans l'URL (depuis la barre sticky mobile) ──
 if(new URLSearchParams(window.location.search).get('book') === '1'){
