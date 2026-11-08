@@ -10,7 +10,8 @@
   if (!('IntersectionObserver' in window)) {
     // Fallback: load all immediately
     document.querySelectorAll('.lazy-bg[data-bg]').forEach(el => {
-      el.style.backgroundImage = `url('${el.dataset.bg}')`;
+      const b = (window.innerWidth <= 768 && el.dataset.bgSm) || el.dataset.bg;
+      el.style.backgroundImage = `url('${b}')`;
       el.classList.remove('lazy-bg');
     });
     return;
@@ -20,7 +21,9 @@
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       const el = entry.target;
-      const bg = el.dataset.bg;
+      // Sur petit ecran, la variante 900 px suffit : quatre a six fois plus legere.
+      const petit = window.innerWidth <= 768 && el.dataset.bgSm;
+      const bg = petit || el.dataset.bg;
       if (bg) {
         el.style.backgroundImage = `url('${bg}')`;
         el.removeAttribute('data-bg');
