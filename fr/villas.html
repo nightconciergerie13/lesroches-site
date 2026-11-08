@@ -526,52 +526,6 @@
       min-height: .8rem;
     }
 
-    /* ════════════════════════════════════════════
-       MODAL
-    ════════════════════════════════════════════ */
-    .modal-overlay{position:fixed;inset:0;background:rgba(18,14,10,.82);z-index:900;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(6px)}
-    .modal-overlay.open{opacity:1;pointer-events:all}
-    .modal{background:var(--w);border-radius:4px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;position:relative}
-    .modal-header{background:var(--ink);padding:2rem 2.2rem 1.5rem;position:relative}
-    .modal-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;color:rgba(255,255,255,.4);font-size:1.2rem;cursor:pointer;transition:color .2s;line-height:1}
-    .modal-close:hover{color:var(--w)}
-    .modal-villa-tag{font-size:.46rem;letter-spacing:.35em;text-transform:uppercase;color:var(--ter);margin-bottom:.4rem}
-    .modal-title{font-family:'Gilda Display',serif;font-size:1.6rem;color:var(--w);line-height:1.1;margin-bottom:.3rem}
-    .modal-dates{font-size:.62rem;color:rgba(255,255,255,.4);letter-spacing:.06em}
-    .modal-body{padding:2rem 2.2rem}
-    .modal-section-title{font-size:.48rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ter);margin-bottom:1.2rem;display:flex;align-items:center;gap:.7rem}
-    .modal-section-title::before{content:'';width:14px;height:1px;background:var(--ter)}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem}
-    .form-group{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.8rem}
-    .form-group label{font-size:.44rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mid)}
-    .form-group input{font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:300;color:var(--ink);background:var(--c);border:1px solid var(--c2);border-radius:2px;padding:.75rem .9rem;outline:none;transition:border-color .2s}
-    .form-group input:focus{border-color:var(--sand)}
-    .form-group input::placeholder{color:rgba(155,143,130,.5)}
-    .modal-summary{background:var(--c);border-radius:3px;padding:1.4rem 1.6rem;margin:1.5rem 0;border:1px solid var(--c2)}
-    .summary-row{display:flex;justify-content:space-between;align-items:baseline;padding:.4rem 0;font-size:.68rem;color:var(--mid);border-bottom:1px solid var(--c2)}
-    .summary-row:last-child{border-bottom:none;margin-top:.4rem;padding-top:.8rem}
-    .summary-row.total{font-family:'Gilda Display',serif;font-size:1rem;color:var(--ink)}
-    .summary-row.deposit{color:var(--ter)}
-    .payment-only-note{display:flex;align-items:flex-start;gap:.8rem;background:#fff8f5;border:1px solid rgba(184,115,74,.2);border-radius:3px;padding:1rem 1.2rem;margin-bottom:1.5rem}
-    .payment-only-note svg{flex-shrink:0;margin-top:.1rem}
-    .payment-only-note-text{font-size:.64rem;color:var(--mid);line-height:1.75}
-    .payment-only-note-text strong{color:var(--ink);font-weight:400}
-    .modal-submit{width:100%;padding:1.1rem;background:var(--ink);color:var(--w);border:none;border-radius:2px;font-family:'Outfit',sans-serif;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;cursor:pointer;transition:background .22s;margin-top:.4rem}
-    .modal-submit:hover{background:var(--ter)}
-    .modal-submit:disabled{background:var(--mid);cursor:not-allowed}
-    .modal-legal{font-size:.54rem;color:var(--mid);line-height:1.7;margin-top:1rem;text-align:center}
-    .modal-legal a{color:var(--ter)}
-    .modal-confirm{display:none;padding:2.5rem 2.2rem;text-align:center}
-    .modal-confirm.show{display:block}
-    .confirm-icon{width:60px;height:60px;background:rgba(184,115,74,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.6rem}
-    .confirm-title{font-family:'Gilda Display',serif;font-size:1.8rem;color:var(--ink);margin-bottom:.6rem}
-    .confirm-sub{font-size:.7rem;color:var(--mid);line-height:1.8;margin-bottom:2rem}
-    .confirm-steps{text-align:left;background:var(--c);border-radius:3px;padding:1.4rem 1.6rem;border:1px solid var(--c2);margin-bottom:1.5rem}
-    .confirm-step{display:flex;gap:.9rem;align-items:flex-start;padding:.5rem 0;border-bottom:1px solid var(--c2);font-size:.66rem;color:var(--mid);line-height:1.65}
-    .confirm-step:last-child{border-bottom:none}
-    .confirm-step-n{font-family:'Gilda Display',serif;font-size:1rem;color:var(--ter);flex-shrink:0;line-height:1.3}
-    .confirm-wa{display:inline-flex;align-items:center;gap:.6rem;background:#25D366;color:#fff;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;padding:.8rem 1.8rem;border-radius:1px;margin-top:.5rem;transition:background .2s;text-decoration:none}
-    .confirm-wa:hover{background:#1da851}
 
     /* ════════════════════════════════════════════
        RESPONSIVE
@@ -599,8 +553,6 @@
       .fh-search { grid-template-columns: 1fr 1fr; }
       .ds-field:first-child { padding-left: 4vw; }
       .ds-btn { grid-column: 1 / -1; padding: .9rem; text-align: center; }
-      .form-row { grid-template-columns: 1fr; }
-      .modal { max-height: 95vh; }
     }
 
     /* ════════════════════════════════════════════
@@ -1049,74 +1001,10 @@
     <div class="f-copy">© 2026 Les Roches · Santa Teresa, Costa Rica · Tous droits réservés</div>
   </footer>
 
-  <!-- BOOKING MODAL -->
-  <div class="modal-overlay" id="modal-overlay">
-    <div class="modal">
-      <div class="modal-header">
-        <button class="modal-close" id="modal-close">✕</button>
-        <div class="modal-villa-tag" id="modal-villa-tag">Demande de réservation</div>
-        <div class="modal-title" id="modal-title">-</div>
-        <div class="modal-dates" id="modal-dates">-</div>
-      </div>
-      <div class="modal-body" id="modal-form-screen">
-        <div class="modal-section-title">Vos coordonnées</div>
-        <div class="form-row">
-          <div class="form-group"><label for="f-firstname">Prénom *</label><input type="text" id="f-firstname" placeholder="Sophie" required></div>
-          <div class="form-group"><label for="f-lastname">Nom *</label><input type="text" id="f-lastname" placeholder="Martin" required></div>
-        </div>
-        <div class="form-group"><label for="f-email">Adresse email *</label><input type="email" id="f-email" placeholder="sophie@email.com" required aria-label="Email"></div>
-        <div class="form-group"><label for="f-whatsapp">Numéro WhatsApp *</label><input type="tel" id="f-whatsapp" placeholder="+33 6 12 34 56 78" required></div>
-        <div class="modal-summary">
-          <div class="summary-row"><span>Villa</span><span id="s-villa">-</span></div>
-          <div class="summary-row"><span>Arrivée</span><span id="s-checkin">-</span></div>
-          <div class="summary-row"><span>Départ</span><span id="s-checkout">-</span></div>
-          <div class="summary-row"><span>Voyageurs</span><span id="s-guests">-</span></div>
-          <div class="summary-row"><span>Durée</span><span id="s-nights">-</span></div>
-          <div class="summary-row total"><span>Total du séjour</span><span id="s-total">-</span></div>
-          <div class="summary-row deposit"><span>Réglé aujourd'hui par carte</span><span id="s-deposit">-</span></div>
-        </div>
-        <div class="payment-only-note">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b8734a" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01" stroke-linecap="round"/></svg>
-          <div class="payment-only-note-text"><strong>Paiement intégral par carte.</strong><br>Taxes comprises. Annulation gratuite jusqu'à 60 jours avant l'arrivée.</div>
-        </div>
-        <button class="modal-submit" id="modal-submit">Continuer vers la réservation</button>
-        <div class="modal-legal">En soumettant ce formulaire, vous acceptez nos <a href="booking-conditions.html">conditions de réservation</a>.</div>
-      </div>
-      <div class="modal-confirm" id="modal-confirm">
-        <div class="confirm-icon">✓</div>
-        <div class="confirm-title">Demande bien reçue !</div>
-        <div class="confirm-sub">Nous vous recontactons sur WhatsApp sous quelques heures pour confirmer et vous transmettre les modalités de paiement.<br><br>Villa réservée pour vous pendant <strong>48 heures</strong>, dans l'attente de l'acompte.</div>
-        <div class="confirm-steps">
-          <div class="confirm-step"><div class="confirm-step-n">01</div><div>Votre carte est débitée du montant total, taxes comprises</div></div>
-          <div class="confirm-step"><div class="confirm-step-n">02</div><div>E-mail de confirmation envoyé en quelques minutes</div></div>
-          <div class="confirm-step"><div class="confirm-step-n">03</div><div>Vos dates sont bloquées immédiatement dans notre calendrier</div></div>
-          <div class="confirm-step"><div class="confirm-step-n">04</div><div>Plus rien à régler à l'arrivée. Annulation gratuite jusqu'à 60 jours avant.</div></div>
-        </div>
-        <a href="https://wa.me/33667749024" class="confirm-wa" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Discuter sur WhatsApp
-        </a>
-      </div>
-    </div>
-  </div>
-
   <script src="../js/main.js?v=2026-11-08g"></script>
   <script src="../js/config.js?v=2026-11-08g"></script>
   <script src="../js/datepicker.js?v=2026-11-08g"></script>
   <script>
-  async function sbInsert(table, payload) {
-    const resp = await fetch(SUPABASE_URL + '/rest/v1/' + table, {
-      method: 'POST',
-      headers: {
-        'apikey': SUPABASE_ANON,
-        'Authorization': 'Bearer ' + SUPABASE_ANON,
-        'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
-      },
-      body: JSON.stringify(payload)
-    });
-    if (!resp.ok) throw new Error('HTTP ' + resp.status);
-  }
   async function sbUpsert(table, payload) {
     const resp = await fetch(SUPABASE_URL + '/rest/v1/' + table, {
       method: 'POST',
@@ -1129,12 +1017,6 @@
       body: JSON.stringify(payload)
     });
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
-  }
-
-  /* Les prix sont affiches en dollars, comme la facturation ONVO. */
-  const CURRENCY = 'USD', EUR_RATE = null;
-  function fmt(usd) {
-    return CURRENCY==='EUR'&&EUR_RATE ? '€'+Math.round(usd*EUR_RATE).toLocaleString('fr-FR') : '$'+Math.round(usd).toLocaleString('en-US');
   }
 
   const VILLAS = {
@@ -1234,51 +1116,6 @@
         alert(card.querySelector('.vc-name').textContent+" n'est pas disponible sur ces dates.");
       }
     });
-  });
-
-  // Modal helpers
-  let activeVilla=null;
-  function openModal(slug){
-    activeVilla=slug;
-    const v=VILLAS[slug], nights=searchState.nights;
-    const total=nights>0?v.price*nights:null;
-    const deposit=total?Math.round(total*.5):null;
-    document.getElementById('modal-villa-tag').textContent='Villa · Les Roches Retreat';
-    document.getElementById('modal-title').textContent=v.name;
-    document.getElementById('modal-dates').textContent=nights>0?fmtDate(searchState.checkin)+' → '+fmtDate(searchState.checkout)+' · '+nights+' nights':'No dates selected — we will confirm via WhatsApp';
-    document.getElementById('s-villa').textContent=v.name;
-    document.getElementById('s-checkin').textContent=fmtDate(searchState.checkin);
-    document.getElementById('s-checkout').textContent=fmtDate(searchState.checkout);
-    document.getElementById('s-guests').textContent=searchState.guests+' guest'+(searchState.guests>1?'s':'');
-    document.getElementById('s-nights').textContent=nights>0?nights+' night'+(nights>1?'s':''):'—';
-    document.getElementById('s-total').textContent=total?fmt(total):'To be confirmed';
-    document.getElementById('s-deposit').textContent=deposit?fmt(deposit):'To be confirmed';
-    document.getElementById('modal-form-screen').style.display='block';
-    document.getElementById('modal-confirm').classList.remove('show');
-    document.getElementById('modal-overlay').classList.add('open');
-    document.body.style.overflow='hidden';
-  }
-  document.getElementById('modal-close').addEventListener('click',closeModal);
-  document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target.id==='modal-overlay')closeModal();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-  function closeModal(){document.getElementById('modal-overlay').classList.remove('open');document.body.style.overflow='';}
-
-  document.getElementById('modal-submit').addEventListener('click',async()=>{
-    const fn=document.getElementById('f-firstname').value.trim();
-    const ln=document.getElementById('f-lastname').value.trim();
-    const em=document.getElementById('f-email').value.trim();
-    const wa=document.getElementById('f-whatsapp').value.trim();
-    if(!fn||!ln||!em||!wa){alert('Please fill in all fields.');return;}
-    if(!/^[^@]+@[^@]+\.[^@]+$/.test(em)){alert('Please enter a valid email.');return;}
-    const btn=document.getElementById('modal-submit');
-    btn.disabled=true;btn.textContent='Sending...';
-    const v=VILLAS[activeVilla],nights=searchState.nights;
-    const total=nights>0?v.price*nights:'To be confirmed';
-    const deposit=nights>0?Math.round(v.price*nights*.5):'To be confirmed';
-    const tp={guest_name:fn+' '+ln,guest_email:em,guest_whatsapp:wa,villa_name:v.name,checkin:fmtDate(searchState.checkin),checkout:fmtDate(searchState.checkout),nights:nights>0?nights+' nights':'To be confirmed',guests:searchState.guests,total:typeof total==='number'?'$'+total.toLocaleString():total,deposit:typeof deposit==='number'?'$'+deposit.toLocaleString():deposit,owner_email:OWNER_EMAIL,iban:'',swift:'',bank:'',account_holder:''};
-    try{await sbInsert('reservations',{villa_id:activeVilla,villa_name:v.name,checkin:searchState.checkin||null,checkout:searchState.checkout||null,nights:nights>0?nights:null,guests:searchState.guests,firstname:fn,lastname:ln,email:em,whatsapp:wa,total_usd:typeof total==='number'?total:null,deposit_usd:typeof deposit==='number'?deposit:null,status:'pending'});}catch(e){}
-    document.getElementById('modal-form-screen').style.display='none';
-    document.getElementById('modal-confirm').classList.add('show');
   });
 
   function handleEmailCapture(e){
