@@ -24,13 +24,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/styles.css?v=2026-11-08z">
+<link rel="stylesheet" href="../css/styles.css?v=2026-11-09a">
 <link rel="stylesheet" href="../js/datepicker.css">
-<script src="../js/datepicker.js?v=2026-11-08z"></script>
-<script src="../js/config.js?v=2026-11-08z"></script>
-<script src="../js/track.js?v=2026-11-08z" defer></script>
+<script src="../js/datepicker.js?v=2026-11-09a"></script>
+<script src="../js/config.js?v=2026-11-09a"></script>
+<script src="../js/track.js?v=2026-11-09a" defer></script>
 
-<link rel="stylesheet" href="../css/villa-shared.css?v=2026-11-08z">
+<link rel="stylesheet" href="../css/villa-shared.css?v=2026-11-09a">
 <style>.vp-hero{background-image:url('../images/topaze-hero.webp')}.hero-bg{background-image:url('../images/topaze-hero.webp') !important}.gi1{background-image:url('../images/topaze-pool.webp') !important}.gi2{background-image:url('../images/topaze-salon.webp') !important}.gi3{background-image:url('../images/topaze-cuisine.webp') !important}.gi4{background-image:url('../images/topaze-ext1.webp') !important}.gi5{background-image:url('../images/topaze-ext2.webp') !important}.gi6{background-image:url('../images/topaze-sdb.webp') !important}.gi7{background-image:url('../images/topaze-chambre.webp') !important}.gi8{background-image:url('../images/topaze-detail.webp') !important}.gi9{background-image:url('../images/topaze-sunset.webp') !important}.bk-img-inner{background-image:url('../images/topaze-pool.webp') !important}
 /* Sous 768 px, la variante 900 px : l'ecran fait 375 px, pas 2000. */
 @media (max-width: 768px) { .hero-bg{background-image:url('../images/topaze-hero-sm.webp') !important} .gi1{background-image:url('../images/topaze-pool-sm.webp') !important} .gi2{background-image:url('../images/topaze-salon-sm.webp') !important} .gi3{background-image:url('../images/topaze-cuisine-sm.webp') !important} .gi4{background-image:url('../images/topaze-ext1-sm.webp') !important} .gi5{background-image:url('../images/topaze-ext2-sm.webp') !important} .gi6{background-image:url('../images/topaze-sdb-sm.webp') !important} .gi7{background-image:url('../images/topaze-chambre-sm.webp') !important} .gi8{background-image:url('../images/topaze-detail-sm.webp') !important} .gi9{background-image:url('../images/topaze-sunset-sm.webp') !important} .bk-img-inner{background-image:url('../images/topaze-pool-sm.webp') !important} }
@@ -441,7 +441,7 @@
   </div>
 </a>
 
-<script src="../js/main.js?v=2026-11-08z"></script>
+<script src="../js/main.js?v=2026-11-09a"></script>
 <script>
 /* ── Cursor (extra selectors for villa-specific elements) ── */
 const cur = document.getElementById('cur');
@@ -673,9 +673,9 @@ document.querySelectorAll('.sb-dates-row .sb-field').forEach(function(f) {
 .lbx-thumb.active{opacity:1;outline:1px solid rgba(255,255,255,.55)}
 </style>
 
-<script src="../cookie-consent.js?v=2026-11-08z" defer></script>
-<script src="../js/lazy-bg.js?v=2026-11-08z" defer></script>
-<script src="../js/swipe.js?v=2026-11-08z" defer></script>
+<script src="../cookie-consent.js?v=2026-11-09a" defer></script>
+<script src="../js/lazy-bg.js?v=2026-11-09a" defer></script>
+<script src="../js/swipe.js?v=2026-11-09a" defer></script>
 <script>
 /* ── Reviews carousel (mobile) — auto-scroll gauche→droite ── */
 (function(){
@@ -740,10 +740,10 @@ document.querySelectorAll('.sb-dates-row .sb-field').forEach(function(f) {
 })();
 </script>
 <div class="mob-book-bar"><a href="#reserve">Reservar · Mejor precio garantizado</a></div>
-<script src="../js/promo.js?v=2026-11-08z"></script>
+<script src="../js/promo.js?v=2026-11-09a"></script>
 <script>(function(){var L=(document.documentElement.lang||"en").slice(0,2).toLowerCase();if(L!=="fr"&&L!=="es")L="en";var B="https://beds24.com/booking2.php?propid=326251&referer=iframe&lang="+L;function go(e){if(e){e.preventDefault();e.stopImmediatePropagation();}window.location.href=B;}function bind(){var c=document.getElementById("sb-cta");if(c)c.addEventListener("click",go,true);}if(document.readyState!=="loading")bind();else document.addEventListener("DOMContentLoaded",bind);})();</script>
 <script>(function(){var L=(document.documentElement.lang||"en").slice(0,2).toLowerCase();if(L!=="fr"&&L!=="es")L="en";var BASE="https://beds24.com/booking2.php?propid=326251&referer=iframe&lang="+L;function iso(v){return /^\d{4}-\d{2}-\d{2}$/.test(v)?v:"";}function go(e){if(e){e.preventDefault();e.stopImmediatePropagation();}var ci=iso(((document.getElementById("sb-checkin")||{}).value)||""),co=iso(((document.getElementById("sb-checkout")||{}).value)||""),url=BASE;if(ci&&co){var n=Math.round((new Date(co)-new Date(ci))/86400000);if(n>0)url+="&checkin="+ci+"&numnight="+n;}window.location.href=url;}function pf(){try{var p=new URLSearchParams(location.search),ci=iso(p.get("checkin")||""),co=iso(p.get("checkout")||"");if(ci){var a=document.getElementById("sb-checkin");if(a&&!a.value)a.value=ci;}if(co){var b=document.getElementById("sb-checkout");if(b&&!b.value)b.value=co;}}catch(e){}}function bind(){var c=document.getElementById("sb-cta");if(c){var cl=c.cloneNode(true);if(c.parentNode)c.parentNode.replaceChild(cl,c);cl.addEventListener("click",go,true);}pf();}if(document.readyState!=="loading")bind();else document.addEventListener("DOMContentLoaded",bind);})();</script>
 <script>(function(){var PROPID="326251",TODAY=new Date().toISOString().slice(0,10),availSet=null;function applyAll(){if(!availSet)return;var ci=(document.getElementById("sb-checkin")||{}).value||"",co=(document.getElementById("sb-checkout")||{}).value||"",pickCo=ci&&!co;document.querySelectorAll(".lrp-day[data-date]").forEach(function(c){var d=c.getAttribute("data-date");if(!d)return;var ok=pickCo?(d>ci&&availSet.has(d)):(d>=TODAY&&availSet.has(d));if(ok)c.classList.remove("lrp-disabled");else c.classList.add("lrp-disabled");});}var pend=false;function sched(){if(pend)return;pend=true;setTimeout(function(){pend=false;applyAll();},30);}fetch("/availability.json?cb="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){var v=j.villas&&j.villas[PROPID];if(!v||!v.available)return;availSet=new Set(v.available);applyAll();new MutationObserver(sched).observe(document.body,{childList:true,subtree:true});}).catch(function(){});})();</script>
-  <script src="/js/checkout.js?v=2026-11-08z" defer></script>
+  <script src="/js/checkout.js?v=2026-11-09a" defer></script>
 </body>
 </html>
