@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Les Roches Retreat · Villas de Luxe, Santa Teresa</title>
-<link rel="preload" href="../images/drone-complex-pool-1.webp" as="image" fetchpriority="high">
+<link rel="preload" href="../images/drone-complex-pool-1.webp" as="image" fetchpriority="high" media="(min-width: 769px)">
+<link rel="preload" href="../images/drone-complex-pool-1-sm.webp" as="image" fetchpriority="high" media="(max-width: 768px)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
@@ -443,6 +444,9 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
   .mob-book-btn:active{background:var(--ter2,#a05f38)}
   .mob-book-arrow{font-size:.7rem;opacity:.8}
 }
+
+/* Sous 768 px, la variante 900 px : l'ecran fait 375 px, pas 2400. */
+@media (max-width: 768px) { .hero-bg{background-image:url('../images/drone-complex-pool-1-sm.webp') !important} .vi1{background-image:url('../images/jade-hero-sm.webp') !important} .vi2{background-image:url('../images/topaze-hero-sm.webp') !important} .vi3{background-image:url('../images/onyx-hero-sm.webp') !important} .vi4{background-image:url('../images/agate-hero-sm.webp') !important} .vi5{background-image:url('../images/ambre-hero-sm.webp') !important} .vi6{background-image:url('../images/opale-hero-sm.webp') !important} .night-bg{background-image:url('../images/drone-night-sm.webp') !important} }
 </style>
   <meta name="description" content="Six villas privées avec piscine à débordement au-dessus de Santa Teresa, Costa Rica. Réservation en direct, meilleurs tarifs, sans intermédiaire. À partir de 180 $ la nuit.">
   <meta name="keywords" content="villas de luxe Santa Teresa Costa Rica, villa privée piscine à débordement Costa Rica, Les Roches, location de villa Santa Teresa">
@@ -511,7 +515,7 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
   body.has-cursor *{cursor:auto!important}
 }
 </style>
-<script src="../js/track.js?v=2026-11-08x" defer></script>
+<script src="../js/track.js?v=2026-11-08y" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -744,7 +748,7 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
 <!-- HERO -->
 <div class="hero">
   <div class="hero-bg"></div>
-  <video autoplay muted loop playsinline preload="metadata" poster="../images/hero-poster.webp" class="hero-vid"><source media="(max-width:900px)" src="../les-roches-home-mobile.mp4" type="video/mp4"><source src="../les-roches-home.mp4" type="video/mp4"></video>
+  <video autoplay muted loop playsinline preload="metadata" poster="../images/hero-poster.webp" class="hero-vid"><source media="(max-width:900px)" data-src="../les-roches-home-mobile.mp4" type="video/mp4"><source data-src="../les-roches-home.mp4" type="video/mp4"></video>
   <div class="hero-ov"></div>
   <div class="hero-grain"></div>
   <div class="hero-inner">
@@ -771,8 +775,8 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
   <div class="about-g">
     <div class="aimg">
       <video autoplay muted loop playsinline preload="none" poster="../images/retreat-vue-ocean.webp">
-        <source media="(max-width:900px)" src="../images/video-home-mobile.mp4" type="video/mp4">
-        <source src="../images/video-home.mp4" type="video/mp4">
+        <source media="(max-width:900px)" data-src="../images/video-home-mobile.mp4" type="video/mp4">
+        <source data-src="../images/video-home.mp4" type="video/mp4">
       </video>
       <div class="aimg-badge"><span>Au-dessus de Santa Teresa &nbsp;·&nbsp; Vue Pacifique</span></div>
     </div>
@@ -792,7 +796,7 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
 
 <!-- FULL PHOTO — RÉSERVATION INTÉGRÉE -->
 <div class="fp r" id="fp1">
-  <img loading="lazy" src="../images/drone-sunset-1.webp" alt="Pacific sunset">
+  <img loading="lazy" src="../images/drone-sunset-1.webp" srcset="../images/drone-sunset-1-sm.webp 900w, ../images/drone-sunset-1.webp 2000w" sizes="100vw" alt="Pacific sunset">
   <div class="fp-ov"></div>
   <div class="fp-center">
     <div class="fp-c-eye">Le Pacifique &nbsp;·&nbsp; Chaque soir</div>
@@ -870,8 +874,8 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
           <h2 class="sh">La vie à <em>Santa Teresa</em></h2>
           <div class="st-video-wrap">
             <video class="st-video" autoplay muted loop playsinline preload="none" poster="../images/st-hero.webp">
-              <source media="(max-width:900px)" src="../santa-teresa-lifestyle-mobile.mp4" type="video/mp4">
-              <source src="../santa-teresa-lifestyle.mp4" type="video/mp4">
+              <source media="(max-width:900px)" data-src="../santa-teresa-lifestyle-mobile.mp4" type="video/mp4">
+              <source data-src="../santa-teresa-lifestyle.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -1385,9 +1389,9 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
 })();
 </script>
 
-<script src="../js/config.js?v=2026-11-08x"></script>
+<script src="../js/config.js?v=2026-11-08y"></script>
 <!-- LRPicker — date range picker (no CDN) -->
-<script src="../js/datepicker.js?v=2026-11-08x"></script>
+<script src="../js/datepicker.js?v=2026-11-08y"></script>
 <script>
 (function(){
   const MONTHS_DISP = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -1550,10 +1554,10 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
   el.style.cursor = 'default';
 })();
 </script>
-<script src="../lang.js?v=2026-11-08x" defer></script>
-<script src="../cookie-consent.js?v=2026-11-08x" defer></script>
-<script src="../js/lazy-bg.js?v=2026-11-08x" defer></script>
-<script src="../js/swipe.js?v=2026-11-08x" defer></script>
+<script src="../lang.js?v=2026-11-08y" defer></script>
+<script src="../cookie-consent.js?v=2026-11-08y" defer></script>
+<script src="../js/lazy-bg.js?v=2026-11-08y" defer></script>
+<script src="../js/swipe.js?v=2026-11-08y" defer></script>
 <script>
 // ── Scroll reveal : bulle WA + barre sticky mobile ──────────
 document.addEventListener('DOMContentLoaded', function(){
