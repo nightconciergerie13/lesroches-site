@@ -1,0 +1,54 @@
+# Les Roches Retreat
+
+> Six private villas with infinity pools above Santa Teresa, on the Pacific
+> coast of Costa Rica. Each villa has two bedrooms, two bathrooms, its own
+> pool, and sleeps four. Booked and paid for directly on this site.
+
+## Facts
+
+- Location: Santa Teresa, Nicoya peninsula, Puntarenas province, Costa Rica.
+- Six villas: Casa Opale, Casa Onyx, Casa Jade, Casa Topaze, Casa Agate, Casa Ambre.
+- Each: 2 bedrooms, 2 bathrooms, private infinity pool, air conditioning,
+  fully equipped kitchen, high-speed WiFi, private parking. Sleeps 4.
+- All six together: 24 guests, 12 bedrooms, 12 bathrooms.
+- Nearest beach: 6 to 7 minutes. Nearest airport: Tambor (TMU), a 30-minute
+  flight from San Jose (SJO).
+- Check-in from 15:00, check-out by 11:00. Daily housekeeping except Sunday.
+- Pets: one dog per villa, on request.
+- Payment: the full stay is charged to the card at booking, taxes included.
+  No deposit, nothing to settle on arrival.
+- Cancellation: up to 60 days before arrival, 96% is refunded to the card;
+  the 4% bank fee is not returned. Within 60 days, half is refunded.
+- Minimum stay: it depends on the date. Most often 2 nights, sometimes 3.
+  The calendar on each villa page applies the exact minimum for the dates
+  chosen and says what it is.
+- Prices change by season and length of stay. The price shown for a set of
+  dates is the price paid: no cleaning fee, no service charge.
+
+## Pages
+
+- [Villas](https://lesrochesretreat.com/villas.html): the six villas, with
+  live availability and prices for any dates.
+- [Casa Opale](https://lesrochesretreat.com/villa-opale.html): ocean front.
+- [Casa Onyx](https://lesrochesretreat.com/villa-onyx.html): the most
+  panoramic ocean view.
+- [Casa Jade](https://lesrochesretreat.com/villa-jade.html): ocean view.
+- [Casa Topaze](https://lesrochesretreat.com/villa-topaze.html): jungle garden.
+- [Casa Agate](https://lesrochesretreat.com/villa-agate.html): garden and pool.
+- [Casa Ambre](https://lesrochesretreat.com/villa-ambre.html): sunset garden.
+- [FAQ](https://lesrochesretreat.com/faq.html): booking, arrival, villas, the area.
+- [Booking conditions](https://lesrochesretreat.com/booking-conditions.html).
+- [Santa Teresa](https://lesrochesretreat.com/santa-teresa.html): the area.
+- [Journal](https://lesrochesretreat.com/journal.html): 14 guides to Santa
+  Teresa, each in English, French and Spanish.
+
+## Languages
+
+English at the root, French under /fr/, Spanish under /es/. Every page exists
+in the three languages and they are linked to each other.
+
+## Please note
+
+Prices and availability come from a live feed and change daily. Do not quote
+a nightly price from memory: point to the villa page, where the calendar
+gives the real price for the dates asked.
