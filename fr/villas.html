@@ -406,8 +406,11 @@
     }
 
     /* Unavailable */
-    .vc.unavail { opacity: .4; }
+    .vc.unavail { opacity: .55; }
     .vc.unavail .vc-photo img { filter: grayscale(80%); }
+    /* Villa complete sur ces dates : le prix est masque, le message prend sa place */
+    .vc.unavail .vc-price-left { display: none; }
+    .vc.unavail .vc-total { text-align: left; font-weight: 500; }
 
     /* ════════════════════════════════════════════
        DIVIDER between floors
@@ -1281,9 +1284,9 @@
   dsBtn.addEventListener('click', async ()=>{
     const ci=dsCheckin.value, co=dsCheckout.value;
     const nights=calcNights(ci,co), guests=parseInt(dsVoyageurs.value);
-    if(!ci||!co||nights<1) { alert('Please select valid dates.'); return; }
+    if(!ci||!co||nights<1) { alert('Merci de choisir des dates valides.'); return; }
     searchState={checkin:ci,checkout:co,guests,nights};
-    dsBtn.textContent='Checking…'; dsBtn.disabled=true;
+    dsBtn.textContent='Vérification…'; dsBtn.disabled=true;
 
     const {unavailable,dailyRates}=await checkAvailability(ci,co);
     let avail=0;
@@ -1296,22 +1299,22 @@
       const totEl=document.getElementById('total-'+slug);
 
       if(unavailable.has(slug)){
-        setPrice(slug,fmt(avg),nl()+' avg','');
+        setPrice(slug,'','','');   // prix masque : la villa est complete sur ces dates
         card&&card.classList.add('unavail');
-        if(totEl){totEl.textContent='Not available';totEl.style.color='#c0392b';}
+        if(totEl){totEl.textContent='Non disponible sur ces dates';totEl.style.color='#c0392b';}
       } else if(nights<minN){
-        setPrice(slug,fmt(avg),nl()+' avg','');
+        setPrice(slug,fmt(avg),nl()+' moy.','');
         card&&card.classList.remove('unavail');
-        if(totEl){totEl.textContent='Min '+minN+' nights';totEl.style.color='var(--ter)';}
+        if(totEl){totEl.textContent='Min. '+minN+' nuits';totEl.style.color='var(--ter)';}
       } else {
         avail++;
-        setPrice(slug,fmt(avg),nl()+' avg','');
+        setPrice(slug,fmt(avg),nl()+' moy.','');
         card&&card.classList.remove('unavail');
         if(totEl){totEl.textContent=nights+'n · Total '+fmt(total);totEl.style.color='var(--ter)';}
       }
     });
 
-    dsBtn.textContent='Check rates →'; dsBtn.disabled=false;
+    dsBtn.textContent='Voir les tarifs →'; dsBtn.disabled=false;
     const msg=avail+' villa'+(avail!==1?'s':'')+' disponible'+(avail!==1?'s':'')+' · '+fmtDate(ci)+' → '+fmtDate(co);
     dsFeedback.textContent=msg; dsFeedback.classList.add('show');
 
@@ -1342,7 +1345,7 @@
     card.addEventListener('click',e=>{
       if(card.classList.contains('unavail')){
         e.preventDefault();
-        alert(card.querySelector('.vc-name').textContent+' is not available for these dates.');
+        alert(card.querySelector('.vc-name').textContent+" n'est pas disponible sur ces dates.");
       }
     });
   });

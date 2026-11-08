@@ -406,8 +406,11 @@
     }
 
     /* Unavailable */
-    .vc.unavail { opacity: .4; }
+    .vc.unavail { opacity: .55; }
     .vc.unavail .vc-photo img { filter: grayscale(80%); }
+    /* Villa complete sur ces dates : le prix est masque, le message prend sa place */
+    .vc.unavail .vc-price-left { display: none; }
+    .vc.unavail .vc-total { text-align: left; font-weight: 500; }
 
     /* ════════════════════════════════════════════
        DIVIDER between floors
@@ -1361,9 +1364,9 @@
       villaSearchTotals[slug]={total,totalBeforeDiscount,discountRate,avg,minN,nights};
 
       if(unavailable.has(slug)){
-        setPrice(slug,fmt(avg),nl()+' avg','');
+        setPrice(slug,'','','');   // prix masque : la villa est complete sur ces dates
         card&&card.classList.add('unavail');
-        if(totEl){totEl.textContent='Not available';totEl.style.color='#c0392b';}
+        if(totEl){totEl.textContent='Not available for these dates';totEl.style.color='#c0392b';}
       } else if(nights<minN){
         setPrice(slug,fmt(avg),nl()+' avg','');
         card&&card.classList.remove('unavail');
