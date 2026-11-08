@@ -954,3 +954,7 @@ footer { padding: 3rem 5vw; }
    d'etoiles par avis, on n'a pas la note individuelle de chaque client. */
 .reviews-meta a { color: var(--ter); text-decoration: underline; text-underline-offset: 2px; }
 .rev-card .rev-author { margin-top: 1rem; }
+
+/* Booking tronque lui-meme les longs avis : on le dit, on ne complete pas. */
+.rev-extrait { font-size: .58rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--mid); margin-top: .25rem; }
