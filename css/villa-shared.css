@@ -23,6 +23,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 .hero {
   height: 92vh;
   min-height: 600px;
+  /* Sur mobile, un ecran entier pour une seule image repoussait tout le reste. */
   position: relative;
   overflow: hidden;
   display: flex;
@@ -128,9 +129,10 @@ html, body { overflow-x: hidden; max-width: 100%; }
   position: relative;
   overflow: hidden;
   background: var(--ink);
-  height: 320px;
+  /* Neuf photos par villa : elles meritent mieux qu'un bandeau. */
+  height: 440px;
 }
-@media (max-width: 768px) { .gallery-strip { height: 220px; } }
+@media (max-width: 768px) { .gallery-strip { height: 58vh; min-height: 380px; } }
 
 .gs-track {
   display: flex;
@@ -147,6 +149,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
   overflow: hidden;
 }
 @media (max-width: 768px) { .gs-item { width: 50%; } }
+@media (max-width: 768px) { .hero { height: 76vh; min-height: 500px; } }
 .gs-img {
   width: 100%;
   height: 100%;
@@ -240,7 +243,6 @@ html, body { overflow-x: hidden; max-width: 100%; }
   gap: .8rem;
   margin-bottom: 1.2rem;
 }
-.sec-eye::before { content: ''; width: 18px; height: 1px; background: var(--ter); }
 
 .sec-title {
   font-family: 'Gilda Display', serif;
@@ -943,3 +945,7 @@ footer { padding: 3rem 5vw; }
 
 /* ── Best Price Badge ── */
 .best-price-badge{font-size:.44rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-top:.9rem;display:block}
+
+/* Le sejour minimum est une contrainte de reservation, pas un equipement :
+   sa place est sous les dates, pas entre le menage et les produits d'accueil. */
+.sb-minstay { margin: -.4rem 0 .9rem; font-size: .72rem; color: var(--mid); letter-spacing: .02em; }

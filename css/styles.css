@@ -100,7 +100,6 @@ nav.scrolled{background:rgba(250,247,242,.96);border-bottom:1px solid var(--c2);
   color:var(--ter);margin-bottom:1rem;
   display:flex;align-items:center;gap:.9rem;
 }
-.eye::before{content:'';width:16px;height:1px;background:var(--ter)}
 
 .sh{
   font-family:'Gilda Display',serif;
