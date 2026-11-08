@@ -780,7 +780,9 @@ tr:hover td{background:#faf9f7}
     <div class="card" style="max-width:640px">
       <div class="table-title" style="margin-bottom:.4rem">Politique en vigueur</div>
       <div style="font-size:.8rem;line-height:1.6;color:var(--mid);margin-bottom:1.4rem">
-        Annulation <strong>plus de 60 jours</strong> avant l'arrivée : remboursement <strong>intégral</strong>.<br>
+        Annulation <strong>plus de 60 jours</strong> avant l'arrivée : on rend <strong>96 %</strong>.
+        Les <strong>4 % de frais bancaires</strong> restent acquis — ONVO ne nous rend jamais sa commission,
+        même sur un remboursement.<br>
         Annulation <strong>dans les 60 jours</strong> : <strong>moitié</strong> remboursée, moitié conservée.<br>
         Le remboursement retourne sur la carte d'origine, sous quelques jours ouvrés.
       </div>
@@ -796,12 +798,15 @@ tr:hover td{background:#faf9f7}
 
       <div class="login-field">
         <label>Montant à rendre</label>
-        <div style="display:flex;gap:1.4rem;padding-top:.3rem">
+        <div style="display:flex;gap:1.4rem;padding-top:.3rem;flex-wrap:wrap">
           <label style="display:flex;align-items:center;gap:.45rem;font-size:.82rem;text-transform:none;letter-spacing:0;color:var(--ink);cursor:pointer">
-            <input type="radio" name="rf-part" value="full" checked> Tout (annulation à plus de 60 jours)
+            <input type="radio" name="rf-part" value="fees" checked> 96 % — hors frais bancaires <span style="color:var(--mid)">(annulation à plus de 60 jours)</span>
           </label>
           <label style="display:flex;align-items:center;gap:.45rem;font-size:.82rem;text-transform:none;letter-spacing:0;color:var(--ink);cursor:pointer">
-            <input type="radio" name="rf-part" value="half"> La moitié
+            <input type="radio" name="rf-part" value="half"> La moitié <span style="color:var(--mid)">(dans les 60 jours)</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:.45rem;font-size:.82rem;text-transform:none;letter-spacing:0;color:var(--ink);cursor:pointer">
+            <input type="radio" name="rf-part" value="full"> La totalité <span style="color:var(--mid)">(geste commercial)</span>
           </label>
         </div>
       </div>
@@ -2436,12 +2441,14 @@ async function loadPartnerAvail() {
   async function call(dryRun) {
     var id = (document.getElementById('rf-id').value || '').trim();
     var key = document.getElementById('rf-key').value || '';
-    var part = (document.querySelector('input[name="rf-part"]:checked') || {}).value || 'full';
+    var part = (document.querySelector('input[name="rf-part"]:checked') || {}).value || 'fees';
     if (!id)  return out('Indiquez l\'identifiant du paiement.', 'var(--red)');
     if (!key) return out('Indiquez la cle de remboursement.', 'var(--red)');
 
     if (!dryRun) {
-      var quoi = part === 'half' ? 'LA MOITIE' : 'LA TOTALITE';
+      var quoi = part === 'half' ? 'LA MOITIE'
+               : part === 'fees' ? '96 % (hors frais bancaires)'
+               : 'LA TOTALITE, FRAIS COMPRIS';
       if (!window.confirm('Rembourser ' + quoi + ' de ce paiement ?\n\n' + id + '\n\nCette operation est definitive.')) return;
     }
 
@@ -2459,6 +2466,7 @@ async function loadPartnerAvail() {
         'Paye par le client : <strong>' + money(d.paidCents, d.currency) + '</strong><br>' +
         (d.alreadyRefundedCents ? 'Deja rembourse : ' + money(d.alreadyRefundedCents, d.currency) + '<br>' : '') +
         (d.simulation ? 'Serait rembourse' : 'Rembourse') + ' : <strong>' + money(d.refundedCents, d.currency) + '</strong><br>' +
+        (d.feeKeptCents ? 'Frais bancaires conserves : ' + money(d.feeKeptCents, d.currency) + '<br>' : '') +
         'Resterait acquis : ' + money(d.remainingCents, d.currency);
 
       if (d.simulation) {

@@ -338,7 +338,7 @@
       ["You pay nothing today. Sending the request commits you to nothing, we confirm your dates first.",
        "<strong>Paid in full today by card.</strong> Your dates are confirmed instantly."],
       ["Payment: 50% deposit by bank transfer on confirmation. The balance (50%) is payable on arrival by transfer, card, or cash.",
-       "<strong>Payment:</strong> the full amount is charged by card when you book, taxes included. Free cancellation until 60 days before arrival, refunded in full."],
+       "<strong>Payment:</strong> the full amount is charged by card when you book, taxes included. Cancellation until 60 days before arrival: 96% refunded, the 4% card fee is not."],
       ["Your request will be sent via WhatsApp. You will receive a confirmation by email within 24h, along with the bank details for the transfer.",
        "Your request will be sent via WhatsApp. You receive your confirmation by email straight away."]
     ],
@@ -346,7 +346,7 @@
       ["Vous ne payez rien aujourd'hui. Envoyer la demande ne vous engage \u00e0 rien, on confirme vos dates d'abord.",
        "<strong>R\u00e9gl\u00e9 en totalit\u00e9 aujourd'hui par carte.</strong> Vos dates sont confirm\u00e9es imm\u00e9diatement."],
       ["Paiement : 50 % d'acompte par virement bancaire \u00e0 la confirmation. Le solde (50 %) est r\u00e9gl\u00e9 \u00e0 l'arriv\u00e9e, par virement, carte ou esp\u00e8ces.",
-       "<strong>Paiement :</strong> la totalit\u00e9 du s\u00e9jour est d\u00e9bit\u00e9e par carte au moment de la r\u00e9servation, taxes comprises. Annulation gratuite jusqu'\u00e0 60 jours avant l'arriv\u00e9e, remboursement int\u00e9gral."],
+       "<strong>Paiement :</strong> la totalit\u00e9 du s\u00e9jour est d\u00e9bit\u00e9e par carte au moment de la r\u00e9servation, taxes comprises. Annulation jusqu'\u00e0 60 jours avant l'arriv\u00e9e : 96 % rembours\u00e9s, les 4 % de frais bancaires ne le sont pas."],
       ["Votre demande sera transmise par WhatsApp. Vous recevrez une confirmation par email sous 24h, avec les coordonn\u00e9es bancaires pour le virement.",
        "Votre demande sera transmise par WhatsApp. Vous recevez votre confirmation par email imm\u00e9diatement."]
     ],
@@ -354,7 +354,7 @@
       ["No pagas nada hoy. Enviar la solicitud no te compromete a nada, primero confirmamos tus fechas.",
        "<strong>Pago completo hoy con tarjeta.</strong> Tus fechas se confirman al instante."],
       ["Pago: dep\u00f3sito del 50 % por transferencia bancaria al confirmar. El saldo (50 %) se abona a la llegada por transferencia, tarjeta o efectivo.",
-       "<strong>Pago:</strong> el importe total se cobra con tarjeta al reservar, impuestos incluidos. Cancelaci\u00f3n gratuita hasta 60 d\u00edas antes de la llegada, reembolso \u00edntegro."],
+       "<strong>Pago:</strong> el importe total se cobra con tarjeta al reservar, impuestos incluidos. Cancelaci\u00f3n hasta 60 d\u00edas antes de la llegada: se reembolsa el 96 %, la comisi\u00f3n bancaria del 4 % no."],
       ["Tu solicitud se enviar\u00e1 por WhatsApp. Recibir\u00e1s una confirmaci\u00f3n por correo en 24 h con los datos bancarios para la transferencia.",
        "Tu solicitud se enviar\u00e1 por WhatsApp. Recibes tu confirmaci\u00f3n por correo de inmediato."]
     ]
@@ -571,8 +571,7 @@
       perStay:"per stay", perNight:"per night", perPerson:"per person", perEach:"each", onRequest:"on request",
       totalLine:"Total", depositLine:"To pay today", balanceLine:"On arrival",
       recap:function(q){return q.nights+(q.nights>1?" nights":" night")+" from "+q.checkin+" to "+q.checkout+" · total "+q.m+" (5% direct discount included)";},
-      policyFull:function(q){return "You pay "+q.d+" today by card — the full amount, taxes included. Free cancellation until 60 days before arrival: you are refunded in full. For any cancellation after that, half of the amount is refunded.";},
-      policyPart:function(q){return "You pay a 50% deposit of "+q.d+" today by card. The balance of "+q.b+" is payable on arrival — by card, in cash, or by payment link. The deposit is non-refundable, except in cases of force majeure (a natural disaster making access impossible). For any other cancellation, half of the deposit (25% of the total) becomes a credit valid for 12 months.";},
+      policyFull:function(q){return "You pay "+q.d+" today by card — the full amount, taxes included. Cancel up to 60 days before arrival and 96% is refunded to your card; the 4% card processing fee is not, as our provider never returns it. Cancel later than that and half of the amount is refunded.";},
       done:function(g,id){return "Thank you "+g.firstName+". Your booking is confirmed and a confirmation email is on its way to "+g.email+". Reference "+id+".";},
       err:{
         night_unavailable:"One of the nights has just been booked. Please choose other dates.",
@@ -625,8 +624,7 @@
       perStay:"le séjour", perNight:"la nuit", perPerson:"la personne", perEach:"l’unité", onRequest:"sur demande",
       totalLine:"Total", depositLine:"À payer aujourd'hui", balanceLine:"À l'arrivée",
       recap:function(q){return q.nights+(q.nights>1?" nuits":" nuit")+" du "+q.checkin+" au "+q.checkout+" · total "+q.m+" (remise directe de 5 % incluse)";},
-      policyFull:function(q){return "Vous payez "+q.d+" aujourd'hui par carte — la totalité, taxes comprises. Annulation gratuite jusqu'à 60 jours avant l'arrivée : vous êtes intégralement remboursé. Pour toute annulation passé ce délai, la moitié du montant vous est remboursée.";},
-      policyPart:function(q){return "Vous payez un acompte de 50 %, soit "+q.d+", aujourd'hui par carte. Le solde de "+q.b+" se règle à l'arrivée — par carte, en espèces, ou par lien de paiement. L'acompte n'est pas remboursable, sauf cas de force majeure (catastrophe naturelle rendant l'accès impossible). Pour toute autre annulation, la moitié de l'acompte (25 % du total) devient un avoir valable 12 mois.";},
+      policyFull:function(q){return "Vous payez "+q.d+" aujourd'hui par carte — la totalité, taxes comprises. En cas d'annulation jusqu'à 60 jours avant l'arrivée, 96 % vous sont remboursés sur votre carte ; les 4 % de frais bancaires ne le sont pas, notre prestataire ne nous les rendant jamais. Passé ce délai, la moitié du montant vous est remboursée.";},
       done:function(g,id){return "Merci "+g.firstName+". Votre réservation est confirmée et un e-mail de confirmation part à "+g.email+". Référence "+id+".";},
       err:{
         night_unavailable:"Une des nuits de votre séjour vient d'être réservée. Choisissez d'autres dates.",
@@ -679,8 +677,7 @@
       perStay:"por estancia", perNight:"por noche", perPerson:"por persona", perEach:"por unidad", onRequest:"a consultar",
       totalLine:"Total", depositLine:"A pagar hoy", balanceLine:"A la llegada",
       recap:function(q){return q.nights+(q.nights>1?" noches":" noche")+" del "+q.checkin+" al "+q.checkout+" · total "+q.m+" (5 % de descuento directo incluido)";},
-      policyFull:function(q){return "Paga "+q.d+" hoy con tarjeta — el total, impuestos incluidos. Cancelación gratuita hasta 60 días antes de la llegada: se te reembolsa íntegramente. Para cualquier cancelación posterior, se reembolsa la mitad del importe.";},
-      policyPart:function(q){return "Paga un depósito del 50 %, "+q.d+", hoy con tarjeta. El saldo de "+q.b+" se paga a la llegada — con tarjeta, en efectivo, o mediante enlace de pago. El depósito no es reembolsable, salvo fuerza mayor (desastre natural que impida el acceso). Para cualquier otra cancelación, la mitad del depósito (25 % del total) se convierte en un crédito válido 12 meses.";},
+      policyFull:function(q){return "Paga "+q.d+" hoy con tarjeta — el total, impuestos incluidos. Si cancelas hasta 60 días antes de la llegada, se te reembolsa el 96 % a tu tarjeta; la comisión bancaria del 4 % no se reembolsa, porque nuestro proveedor nunca nos la devuelve. Después de ese plazo, se reembolsa la mitad del importe.";},
       done:function(g,id){return "Gracias "+g.firstName+". Su reserva está confirmada y le enviamos un correo a "+g.email+". Referencia "+id+".";},
       err:{
         night_unavailable:"Una de las noches acaba de ser reservada. Elija otras fechas.",
@@ -880,7 +877,8 @@
                      m:money(q.totalCents), d:money(q.depositCents), b:money(q.balanceCents) };
         paintAside(q);
         paintTotals(q);
-        $("lr-pay-policy").textContent = q.payFullUpfront ? L.policyFull(view) : L.policyPart(view);
+        /* Le site encaisse toujours 100 % : une seule politique a afficher. */
+        $("lr-pay-policy").textContent = L.policyFull(view);
         bloquer(false);
         if (!$("lr-blocked").hidden) goStep(etape);     /* on sortait d'une impasse */
         if (WA_BASE) {
