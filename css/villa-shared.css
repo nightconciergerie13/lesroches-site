@@ -949,3 +949,8 @@ footer { padding: 3rem 5vw; }
 /* Le sejour minimum est une contrainte de reservation, pas un equipement :
    sa place est sous les dates, pas entre le menage et les produits d'accueil. */
 .sb-minstay { margin: -.4rem 0 .9rem; font-size: .72rem; color: var(--mid); letter-spacing: .02em; }
+
+/* Les avis viennent de Booking : on nomme la source et on n'invente pas
+   d'etoiles par avis, on n'a pas la note individuelle de chaque client. */
+.reviews-meta a { color: var(--ter); text-decoration: underline; text-underline-offset: 2px; }
+.rev-card .rev-author { margin-top: 1rem; }
