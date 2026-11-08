@@ -164,9 +164,10 @@
   position: relative;
   overflow: hidden;
   background: var(--ink);
-  height: 320px;
+  /* Neuf photos par villa : elles meritent mieux qu'un bandeau. */
+  height: 440px;
 }
-@media (max-width: 768px) { .gallery-strip { height: 220px; } }
+@media (max-width: 768px) { .gallery-strip { height: 58vh; min-height: 380px; } }
 
 .gs-track {
   display: flex;
@@ -183,6 +184,7 @@
   overflow: hidden;
 }
 @media (max-width: 768px) { .gs-item { width: 50%; } }
+@media (max-width: 768px) { .hero { height: 76vh; min-height: 500px; } }
 .gs-img {
   width: 100%;
   height: 100%;
@@ -402,6 +404,14 @@
   transition: transform .7s cubic-bezier(.25,.46,.45,.94);
 }
 .vp-grid-item:hover .vp-grid-img { transform: scale(1.06); }
+
+/* Le sejour minimum est une contrainte de reservation, pas un equipement. */
+.sb-minstay { margin: -.4rem 0 .9rem; font-size: .72rem; color: var(--mid); letter-spacing: .02em; }
+/* Les avis viennent de Booking : source nommee, et pas d'etoiles inventees. */
+.reviews-meta a { color: var(--ter); text-decoration: underline; text-underline-offset: 2px; }
+.rev-card .rev-author { margin-top: 1rem; }
+.rev-extrait { font-size: .58rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--mid); margin-top: .25rem; }
 
 /* ─── REVIEWS ───────────────────────────────────────── */
 .reviews-wrap { margin: 2.8rem 0; }
