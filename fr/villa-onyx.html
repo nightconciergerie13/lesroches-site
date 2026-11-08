@@ -24,15 +24,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/styles.css?v=2026-11-08k">
+<link rel="stylesheet" href="../css/styles.css?v=2026-11-08l">
 <link rel="stylesheet" href="../js/datepicker.css">
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>emailjs.init({publicKey: 'gmNZITv2YRzhK9VK0'});</script>
-<script src="../js/datepicker.js?v=2026-11-08k"></script>
-<script src="../js/config.js?v=2026-11-08k"></script>
-<script src="../js/track.js?v=2026-11-08k" defer></script>
+<script src="../js/datepicker.js?v=2026-11-08l"></script>
+<script src="../js/config.js?v=2026-11-08l"></script>
+<script src="../js/track.js?v=2026-11-08l" defer></script>
 
-<link rel="stylesheet" href="../css/villa-shared.css?v=2026-11-08k">
+<link rel="stylesheet" href="../css/villa-shared.css?v=2026-11-08l">
 <style>.vp-hero{background-image:url('../images/onyx-hero.webp')}.hero-bg{background-image:url('../images/onyx-hero.webp') !important}.gi1{background-image:url('../images/onyx-pool.webp') !important}.gi2{background-image:url('../images/onyx-salon.webp') !important}.gi3{background-image:url('../images/onyx-cuisine.webp') !important}.gi4{background-image:url('../images/onyx-ext1.webp') !important}.gi5{background-image:url('../images/onyx-ext2.webp') !important}.gi6{background-image:url('../images/onyx-sdb.webp') !important}.gi7{background-image:url('../images/onyx-chambre.webp') !important}.gi8{background-image:url('../images/onyx-detail.webp') !important}.gi9{background-image:url('../images/onyx-sunset.webp') !important}.bk-img-inner{background-image:url('../images/onyx-pool.webp') !important}</style>
 
 <script type="application/ld+json">
@@ -263,7 +261,6 @@
       </div>
     </div>
 
-
   </div><!-- /vp-content -->
 
   <!-- ── RIGHT SIDEBAR ── -->
@@ -372,102 +369,6 @@
 <!-- ══════════════════════════════════════════════════
      BOOKING REQUEST MODAL
 ══════════════════════════════════════════════════ -->
-<div id="bk-modal" class="bk-overlay" role="dialog" aria-label="Demande de réservation">
-  <div class="bk-card">
-    <button class="bk-close" id="bk-close" aria-label="Fermer">&#215;</button>
-
-    <!-- FORM STATE -->
-    <div id="bk-form-wrap">
-      <div class="bk-head">
-        <div class="bk-head-eye">Casa Onyx  Les Roches</div>
-        <h3 class="bk-head-title">Demander cette réservation</h3>
-      </div>
-
-      <!-- Dates + total summary (shown if dates are selected) -->
-      <div class="bk-summary" id="bk-summary">
-        <div>
-          <div class="bk-sum-label">Dates sélectionnées</div>
-          <div class="bk-sum-dates" id="bk-sum-dates">-</div>
-        </div>
-        <div class="bk-sum-right">
-          <div class="bk-sum-label">Total estimé</div>
-          <div class="bk-sum-total" id="bk-sum-total">-</div>
-        </div>
-      </div>
-
-      <form class="bk-form" id="bk-form-el" novalidate>
-
-        <div class="bk-field">
-          <label for="bk-name">Prénom et nom *</label>
-          <input type="text" id="bk-name" placeholder="Sophie Martin" required autocomplete="name">
-        </div>
-
-        <div class="bk-row">
-          <div class="bk-field">
-            <label for="bk-email">Email *</label>
-            <input type="email" id="bk-email" placeholder="sophie@email.com" required autocomplete="email">
-          </div>
-          <div class="bk-field">
-            <label for="bk-phone">Téléphone</label>
-            <input type="tel" id="bk-phone" placeholder="+33 6 12 34 56 78" autocomplete="tel">
-          </div>
-        </div>
-
-        <div class="bk-row">
-          <div class="bk-field">
-            <label for="bk-checkin-display">Arrivée *</label>
-            <input type="text" id="bk-checkin-display" placeholder="Sélectionner une date" readonly>
-          </div>
-          <div class="bk-field">
-            <label for="bk-checkout-display">Départ *</label>
-            <input type="text" id="bk-checkout-display" placeholder="Sélectionner une date" readonly>
-          </div>
-        </div>
-
-        <div class="bk-field">
-          <label for="bk-guests">Nombre de voyageurs *</label>
-          <select id="bk-guests" required>
-            <option value="1">1 voyageur</option>
-            <option value="2" selected>2 voyageurs</option>
-            <option value="3">3 voyageurs</option>
-            <option value="4">4 voyageurs</option>
-          </select>
-        </div>
-
-        <div class="bk-field">
-          <label for="bk-msg">Message (optionnel)</label>
-          <textarea id="bk-msg" placeholder="Questions, besoins particuliers, occasion spéciale..."></textarea>
-        </div>
-
-        <div class="bk-error" id="bk-error"></div>
-
-        <button type="submit" class="bk-submit">
-          Envoyer ma demande de réservation
-        </button>
-
-        <p class="bk-legal">
-          Votre demande sera transmise par WhatsApp. Vous recevrez une confirmation<br>
-          par email sous 24h, avec les coordonnées bancaires pour le virement.
-        </p>
-
-      </form>
-    </div>
-
-    <!-- SUCCESS STATE -->
-    <div class="bk-success" id="bk-success">
-      <div class="bk-ok-icon">✓</div>
-      <h3 class="bk-ok-title">Demande bien reçue !</h3>
-      <p class="bk-ok-text">Merci <strong id="bk-ok-name"></strong>. Un email de confirmation vient de vous être envoyé. Notre équipe reviendra vers vous <strong>via WhatsApp sous 24h</strong> pour confirmer la disponibilité et finaliser votre réservation.</p>
-      <p class="bk-ok-charged" style="font-size:.72rem;color:#5fa873;font-weight:600;margin:.2rem auto 0;max-width:340px">✓ Rien n’a été débité. Vous ne payez qu’une fois vos dates confirmées.</p>
-      <div style="width:40px;height:1px;background:rgba(30,27,24,.1);margin:1.2rem auto"></div>
-      <p style="font-size:.68rem;color:#9a8f82;margin-bottom:.9rem">Une question en attendant ?</p>
-      <a href="https://wa.me/33667749024" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.5rem;background:#25D366;color:#fff;padding:.7rem 1.4rem;border-radius:2px;font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;margin-bottom:1.2rem">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Nous contacter sur WhatsApp
-      </a>
-      <button class="bk-ok-close" id="bk-ok-close">Fermer</button>
-    </div>
-</div>
 
 <!-- ══════════════════════════════════════════════════
      LIGHTBOX
@@ -496,7 +397,7 @@
   </div>
 </a>
 
-<script src="../js/main.js?v=2026-11-08k"></script>
+<script src="../js/main.js?v=2026-11-08l"></script>
 <script>
 /* ── Cursor (extra selectors for villa-specific elements) ── */
 const cur = document.getElementById('cur');
@@ -523,12 +424,12 @@ const LBX_PHOTOS = [
   { src: 'images/onyx-pool.webp',    caption: 'Piscine privée' },
   { src: 'images/onyx-salon.webp',    caption: 'Salon' },
   { src: 'images/onyx-cuisine.webp',    caption: 'Cuisine' },
-  { src: 'images/onyx-ext1.webp',    caption: 'Exterior' },
-  { src: 'images/onyx-ext2.webp',    caption: 'Outdoor' },
+  { src: 'images/onyx-ext1.webp',    caption: 'Extérieur' },
+  { src: 'images/onyx-ext2.webp',    caption: 'Extérieurs' },
   { src: 'images/onyx-sdb.webp',    caption: 'Salle de bain' },
   { src: 'images/onyx-chambre.webp',    caption: 'Chambre' },
-  { src: 'images/onyx-detail.webp',    caption: 'Design details' },
-  { src: 'images/onyx-sunset.webp',    caption: 'Sunset view' }
+  { src: 'images/onyx-detail.webp',    caption: 'Détails de design' },
+  { src: 'images/onyx-sunset.webp',    caption: 'Coucher de soleil' }
 ];
 let lbxIdx = 0;
 
@@ -637,7 +538,6 @@ window.addEventListener('load', function() {
   if (allBtn) allBtn.addEventListener('click', function(e) { e.stopPropagation(); openLightbox(0); });
 });
 
-
 const PRICE_PER_NIGHT = 550;
 const sbCheckin  = document.getElementById('sb-checkin');
 const sbCheckout = document.getElementById('sb-checkout');
@@ -709,150 +609,6 @@ document.querySelectorAll('.sb-dates-row .sb-field').forEach(function(f) {
   f.addEventListener('click', function() { if (fpSidebar) fpSidebar.open(); });
 });
 
-/* ── Sidebar CTA → open booking modal ── */
-document.getElementById('sb-cta').addEventListener('click', openBookingModal);
-
-/* ══════════════════════════════════════════════════
-   BOOKING MODAL
-══════════════════════════════════════════════════ */
-const bkModal     = document.getElementById('bk-modal');
-const bkFormWrap  = document.getElementById('bk-form-wrap');
-const bkSuccess   = document.getElementById('bk-success');
-const bkFormEl    = document.getElementById('bk-form-el');
-const bkErrorEl   = document.getElementById('bk-error');
-const bkSummary   = document.getElementById('bk-summary');
-const bkSumDates  = document.getElementById('bk-sum-dates');
-const bkSumTotal  = document.getElementById('bk-sum-total');
-
-function openBookingModal() {
-  // Pre-fill dates + total from sidebar if selected
-  const ci = sbCheckin  ? sbCheckin.value  : '';
-  const co = sbCheckout ? sbCheckout.value : '';
-  const checkinDisplay  = document.getElementById('bk-checkin-display');
-  const checkoutDisplay = document.getElementById('bk-checkout-display');
-
-  if (ci && co) {
-    const n = calcNights(ci, co);
-    const total = n * PRICE_PER_NIGHT;
-    bkSumDates.textContent = fmtDate(ci) + ' â ' + fmtDate(co) + '  ' + n + ' nuit' + (n > 1 ? 's' : '');
-    bkSumTotal.textContent = '$' + total.toLocaleString('en-US');
-    bkSummary.style.display = 'flex';
-    if (checkinDisplay)  checkinDisplay.value  = fmtDate(ci);
-    if (checkoutDisplay) checkoutDisplay.value = fmtDate(co);
-  } else {
-    bkSummary.style.display = 'none';
-    if (checkinDisplay)  checkinDisplay.value  = '';
-    if (checkoutDisplay) checkoutDisplay.value = '';
-  }
-
-  // Show form, hide success
-  bkFormWrap.style.display = '';
-  bkSuccess.style.display  = 'none';
-  bkFormEl.reset();
-  // Re-fill date fields after reset
-  if (ci && co) {
-    if (checkinDisplay)  checkinDisplay.value  = fmtDate(ci);
-    if (checkoutDisplay) checkoutDisplay.value = fmtDate(co);
-  }
-  bkErrorEl.classList.remove('show');
-
-  bkModal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  // Small delay for transition
-  requestAnimationFrame(() => requestAnimationFrame(() => bkModal.classList.add('visible')));
-}
-
-function closeBookingModal() {
-  bkModal.classList.remove('visible');
-  setTimeout(() => {
-    bkModal.classList.remove('open');
-    document.body.style.overflow = '';
-  }, 300);
-}
-
-document.getElementById('bk-close').addEventListener('click', closeBookingModal);
-document.getElementById('bk-ok-close').addEventListener('click', closeBookingModal);
-bkModal.addEventListener('click', function(e) { if (e.target === bkModal) closeBookingModal(); });
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape' && bkModal.classList.contains('open')) closeBookingModal();
-});
-
-/* Form submission */
-bkFormEl.addEventListener('submit', function(e) {
-  e.preventDefault();
-  bkErrorEl.classList.remove('show');
-
-  const name   = document.getElementById('bk-name').value.trim();
-  const email  = document.getElementById('bk-email').value.trim();
-  const phone  = document.getElementById('bk-phone').value.trim();
-  const guests = document.getElementById('bk-guests').value;
-  const msg    = document.getElementById('bk-msg').value.trim();
-  const ci     = sbCheckin  ? sbCheckin.value  : '';
-  const co     = sbCheckout ? sbCheckout.value : '';
-
-  if (!name)  { showBkError('Veuillez indiquer votre prnom et nom.'); return; }
-  if (!email || !email.includes('@')) { showBkError('Veuillez entrer une adresse email valide.'); return; }
-
-  const submitBtn = bkFormEl.querySelector('.bk-submit');
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Envoi en cours…';
-
-  const templateParams = {
-    from_name:  name,
-    from_email: email,
-    phone:      phone || '—',
-    villa:      'Casa Onyx',
-    checkin:    ci ? fmtDate(ci) : '—',
-    checkout:   co ? fmtDate(co) : '—',
-    guests:     guests,
-    message:    msg || '—'
-  };
-
-  Promise.all([
-    emailjs.send('service_yrlj12a', 'template_t4frhpk', templateParams),
-    emailjs.send('service_yrlj12a', 'template_x200nab', templateParams)
-  ])
-  .then(function() {
-    // Save reservation to Supabase
-    fetch(SUPABASE_URL + '/rest/v1/reservations', {
-      method: 'POST',
-      headers: {
-        'apikey': SUPABASE_ANON,
-        'Authorization': 'Bearer ' + SUPABASE_ANON,
-        'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
-      },
-      body: JSON.stringify({
-        villa: 'Casa Onyx',
-        from_name: name,
-        from_email: email,
-        phone: phone || '',
-        checkin: ci || '',
-        checkout: co || '',
-        guests: guests,
-        message: msg || '',
-        status: 'pending'
-      })
-    }).catch(function(e) { console.warn('Supabase insert failed:', e); });
-    document.getElementById('bk-ok-name').textContent = name.split(' ')[0];
-    bkFormWrap.style.display = 'none';
-    bkSuccess.style.display  = 'flex';
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Envoyer ma demande de rservation';
-  })
-  .catch(function(err) {
-    console.error('EmailJS error:', err);
-    showBkError('Une erreur est survenue. Veuillez ressayer ou nous contacter directement.');
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Envoyer ma demande de rservation';
-  });
-});
-
-function showBkError(msg) {
-  bkErrorEl.textContent = msg;
-  bkErrorEl.classList.add('show');
-  bkErrorEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
 </script>
 
 <!-- LIGHTBOX CSS (keep inline since it's needed for the overlay) -->
@@ -873,9 +629,9 @@ function showBkError(msg) {
 .lbx-thumb.active{opacity:1;outline:1px solid rgba(255,255,255,.55)}
 </style>
 
-<script src="../cookie-consent.js?v=2026-11-08k" defer></script>
-<script src="../js/lazy-bg.js?v=2026-11-08k" defer></script>
-<script src="../js/swipe.js?v=2026-11-08k" defer></script>
+<script src="../cookie-consent.js?v=2026-11-08l" defer></script>
+<script src="../js/lazy-bg.js?v=2026-11-08l" defer></script>
+<script src="../js/swipe.js?v=2026-11-08l" defer></script>
 <script>
 /* ── Reviews carousel (mobile) — auto-scroll gauche→droite ── */
 (function(){
@@ -940,10 +696,10 @@ function showBkError(msg) {
 })();
 </script>
 <div class="mob-book-bar"><a href="#reserve">Réserver, Meilleur Prix Garanti</a></div>
-<script src="../js/promo.js?v=2026-11-08k"></script>
+<script src="../js/promo.js?v=2026-11-08l"></script>
 <script>(function(){var L=(document.documentElement.lang||"en").slice(0,2).toLowerCase();if(L!=="fr"&&L!=="es")L="en";var B="https://beds24.com/booking2.php?propid=326248&referer=iframe&lang="+L;function go(e){if(e){e.preventDefault();e.stopImmediatePropagation();}window.location.href=B;}function bind(){var c=document.getElementById("sb-cta");if(c)c.addEventListener("click",go,true);}if(document.readyState!=="loading")bind();else document.addEventListener("DOMContentLoaded",bind);})();</script>
 <script>(function(){var L=(document.documentElement.lang||"en").slice(0,2).toLowerCase();if(L!=="fr"&&L!=="es")L="en";var BASE="https://beds24.com/booking2.php?propid=326248&referer=iframe&lang="+L;function iso(v){return /^\d{4}-\d{2}-\d{2}$/.test(v)?v:"";}function go(e){if(e){e.preventDefault();e.stopImmediatePropagation();}var ci=iso(((document.getElementById("sb-checkin")||{}).value)||""),co=iso(((document.getElementById("sb-checkout")||{}).value)||""),url=BASE;if(ci&&co){var n=Math.round((new Date(co)-new Date(ci))/86400000);if(n>0)url+="&checkin="+ci+"&numnight="+n;}window.location.href=url;}function pf(){try{var p=new URLSearchParams(location.search),ci=iso(p.get("checkin")||""),co=iso(p.get("checkout")||"");if(ci){var a=document.getElementById("sb-checkin");if(a&&!a.value)a.value=ci;}if(co){var b=document.getElementById("sb-checkout");if(b&&!b.value)b.value=co;}}catch(e){}}function bind(){var c=document.getElementById("sb-cta");if(c){var cl=c.cloneNode(true);if(c.parentNode)c.parentNode.replaceChild(cl,c);cl.addEventListener("click",go,true);}pf();}if(document.readyState!=="loading")bind();else document.addEventListener("DOMContentLoaded",bind);})();</script>
 <script>(function(){var PROPID="326248",TODAY=new Date().toISOString().slice(0,10),availSet=null;function applyAll(){if(!availSet)return;var ci=(document.getElementById("sb-checkin")||{}).value||"",co=(document.getElementById("sb-checkout")||{}).value||"",pickCo=ci&&!co;document.querySelectorAll(".lrp-day[data-date]").forEach(function(c){var d=c.getAttribute("data-date");if(!d)return;var ok=pickCo?(d>ci&&availSet.has(d)):(d>=TODAY&&availSet.has(d));if(ok)c.classList.remove("lrp-disabled");else c.classList.add("lrp-disabled");});}var pend=false;function sched(){if(pend)return;pend=true;setTimeout(function(){pend=false;applyAll();},30);}fetch("/availability.json?cb="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){var v=j.villas&&j.villas[PROPID];if(!v||!v.available)return;availSet=new Set(v.available);applyAll();new MutationObserver(sched).observe(document.body,{childList:true,subtree:true});}).catch(function(){});})();</script>
-  <script src="/js/checkout.js?v=2026-11-08k" defer></script>
+  <script src="/js/checkout.js?v=2026-11-08l" defer></script>
 </body>
 </html>

@@ -19,15 +19,13 @@
 <title>Casa Jade: Private Luxury Villa · Les Roches, Santa Teresa</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Libre+Baskerville:ital@1&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=2026-11-08k">
+<link rel="stylesheet" href="css/styles.css?v=2026-11-08l">
 <link rel="stylesheet" href="js/datepicker.css">
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>emailjs.init("gmNZITv2YRzhK9VK0");</script>
-<script src="js/datepicker.js?v=2026-11-08k"></script>
-<script src="js/config.js?v=2026-11-08k"></script>
-<script src="js/track.js?v=2026-11-08k"></script>
+<script src="js/datepicker.js?v=2026-11-08l"></script>
+<script src="js/config.js?v=2026-11-08l"></script>
+<script src="js/track.js?v=2026-11-08l"></script>
 
-<link rel="stylesheet" href="css/villa-shared.css?v=2026-11-08k">
+<link rel="stylesheet" href="css/villa-shared.css?v=2026-11-08l">
 <style>
 /* Seul ce qui est propre a cette villa reste ici : ses images.
    Tout le reste vit dans css/villa-shared.css, comme en FR et en ES. */
@@ -219,7 +217,6 @@
       </div>
     </div>
 
-
   </div><!-- /vp-content -->
 
   <!-- ── RIGHT SIDEBAR ── -->
@@ -328,102 +325,6 @@
 <!-- ══════════════════════════════════════════════════
      BOOKING REQUEST MODAL
 ══════════════════════════════════════════════════ -->
-<div id="bk-modal" class="bk-overlay" role="dialog" aria-label="Demande de réservation">
-  <div class="bk-card">
-    <button class="bk-close" id="bk-close" aria-label="Fermer">&#215;</button>
-
-    <!-- FORM STATE -->
-    <div id="bk-form-wrap">
-      <div class="bk-head">
-        <div class="bk-head-eye">Casa Jade · Les Roches</div>
-        <h3 class="bk-head-title">Request this booking</h3>
-      </div>
-
-      <!-- Dates + total summary (shown if dates are selected) -->
-      <div class="bk-summary" id="bk-summary">
-        <div>
-          <div class="bk-sum-label">Selected dates</div>
-          <div class="bk-sum-dates" id="bk-sum-dates">-</div>
-        </div>
-        <div class="bk-sum-right">
-          <div class="bk-sum-label">Estimated total</div>
-          <div class="bk-sum-total" id="bk-sum-total">-</div>
-        </div>
-      </div>
-
-      <form class="bk-form" id="bk-form-el" novalidate>
-
-        <div class="bk-field">
-          <label for="bk-name">Full name *</label>
-          <input type="text" id="bk-name" placeholder="Sophie Martin" required autocomplete="name">
-        </div>
-
-        <div class="bk-row">
-          <div class="bk-field">
-            <label for="bk-email">Email *</label>
-            <input type="email" id="bk-email" placeholder="sophie@email.com" required autocomplete="email">
-          </div>
-          <div class="bk-field">
-            <label for="bk-phone">Phone</label>
-            <input type="tel" id="bk-phone" placeholder="+33 6 12 34 56 78" autocomplete="tel">
-          </div>
-        </div>
-
-        <div class="bk-row">
-          <div class="bk-field">
-            <label for="bk-checkin-display">Arrival *</label>
-            <input type="text" id="bk-checkin-display" placeholder="Select a date" readonly>
-          </div>
-          <div class="bk-field">
-            <label for="bk-checkout-display">Departure *</label>
-            <input type="text" id="bk-checkout-display" placeholder="Select a date" readonly>
-          </div>
-        </div>
-
-        <div class="bk-field">
-          <label for="bk-guests">Number of guests *</label>
-          <select id="bk-guests" required>
-            <option value="1">1 guest</option>
-            <option value="2" selected>2 guests</option>
-            <option value="3">3 guests</option>
-            <option value="4">4 guests</option>
-          </select>
-        </div>
-
-        <div class="bk-field">
-          <label for="bk-msg">Message (optional)</label>
-          <textarea id="bk-msg" placeholder="Questions, special requests, a special occasion..."></textarea>
-        </div>
-
-        <div class="bk-error" id="bk-error"></div>
-
-        <button type="submit" class="bk-submit">
-          Send my booking request
-        </button>
-
-        <p class="bk-legal">
-          Your request will be sent via WhatsApp. You will receive a confirmation<br>
-          by email within 24h, along with the bank details for the transfer.
-        </p>
-
-      </form>
-    </div>
-
-    <!-- SUCCESS STATE -->
-    <div class="bk-success" id="bk-success">
-      <div class="bk-ok-icon">✓</div>
-      <h3 class="bk-ok-title">Request received!</h3>
-      <p class="bk-ok-text">Thank you <strong id="bk-ok-name"></strong>. A confirmation email is on its way to you. Our team will get back to you <strong>via WhatsApp within 24h</strong> to confirm availability and finalize your booking.</p>
-      <p class="bk-ok-charged" style="font-size:.72rem;color:#5fa873;font-weight:600;margin:.2rem auto 0;max-width:340px">✓ Nothing has been charged. You only pay once we’ve confirmed your dates.</p>
-      <div style="width:40px;height:1px;background:rgba(30,27,24,.1);margin:1.2rem auto"></div>
-      <p style="font-size:.68rem;color:#9a8f82;margin-bottom:.9rem">A question in the meantime?</p>
-      <a href="https://wa.me/33667749024" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.5rem;background:#25D366;color:#fff;padding:.7rem 1.4rem;border-radius:2px;font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;margin-bottom:1.2rem">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Contact us on WhatsApp
-      </a>
-      <button class="bk-ok-close" id="bk-ok-close">Close</button>
-    </div>
-</div>
 
 <!-- ══════════════════════════════════════════════════
      LIGHTBOX
@@ -452,7 +353,7 @@
   </div>
 </a>
 
-<script src="js/main.js?v=2026-11-08k"></script>
+<script src="js/main.js?v=2026-11-08l"></script>
 <script>
 /* ── Cursor (extra selectors for villa-specific elements) ── */
 const cur = document.getElementById('cur');
@@ -592,7 +493,6 @@ window.addEventListener('load', function() {
   // "View all 9 photos" badge → open lightbox
   if (allBtn) allBtn.addEventListener('click', function(e) { e.stopPropagation(); openLightbox(0); });
 });
-
 
 let defaultPrice = 450; // fallback (updated dynamically from Supabase)
 
@@ -739,7 +639,6 @@ try {
   }
 })();
 
-
 /* ── Pré-remplissage depuis URL params (ex: villas.html → villa page) ── */
 (function preloadDatesFromURL() {
   try {
@@ -759,152 +658,6 @@ document.querySelectorAll('.sb-dates-row .sb-field').forEach(function(f) {
   f.addEventListener('click', function() { if (fpSidebar) fpSidebar.open(); });
 });
 
-/* ── Sidebar CTA → open booking modal ── */
-document.getElementById('sb-cta').addEventListener('click', openBookingModal);
-
-/* ══════════════════════════════════════════════════
-   BOOKING MODAL
-══════════════════════════════════════════════════ */
-const bkModal     = document.getElementById('bk-modal');
-const bkFormWrap  = document.getElementById('bk-form-wrap');
-const bkSuccess   = document.getElementById('bk-success');
-const bkFormEl    = document.getElementById('bk-form-el');
-const bkErrorEl   = document.getElementById('bk-error');
-const bkSummary   = document.getElementById('bk-summary');
-const bkSumDates  = document.getElementById('bk-sum-dates');
-const bkSumTotal  = document.getElementById('bk-sum-total');
-
-function openBookingModal() {
-  // Pre-fill dates + total from sidebar if selected
-  const ci = sbCheckin  ? sbCheckin.value  : '';
-  const co = sbCheckout ? sbCheckout.value : '';
-  const checkinDisplay  = document.getElementById('bk-checkin-display');
-  const checkoutDisplay = document.getElementById('bk-checkout-display');
-
-  if (ci && co) {
-    const n = calcNights(ci, co);
-    bkSumDates.textContent = fmtDate(ci) + ' → ' + fmtDate(co) + ' · ' + n + ' night' + (n > 1 ? 's' : '');
-    bkSumTotal.textContent = '…';
-    bkSummary.style.display = 'flex';
-    fetchTotalForDates(ci, co).then(function(r) {
-      bkSumTotal.textContent = '$' + r.total.toLocaleString('en-US');
-    });
-    if (checkinDisplay)  checkinDisplay.value  = fmtDate(ci);
-    if (checkoutDisplay) checkoutDisplay.value = fmtDate(co);
-  } else {
-    bkSummary.style.display = 'none';
-    if (checkinDisplay)  checkinDisplay.value  = '';
-    if (checkoutDisplay) checkoutDisplay.value = '';
-  }
-
-  // Show form, hide success
-  bkFormWrap.style.display = '';
-  bkSuccess.style.display  = 'none';
-  bkFormEl.reset();
-  // Re-fill date fields after reset
-  if (ci && co) {
-    if (checkinDisplay)  checkinDisplay.value  = fmtDate(ci);
-    if (checkoutDisplay) checkoutDisplay.value = fmtDate(co);
-  }
-  bkErrorEl.classList.remove('show');
-
-  bkModal.classList.add('open');
-  document.documentElement.style.overflow = 'hidden';
-  // Small delay for transition
-  requestAnimationFrame(() => requestAnimationFrame(() => bkModal.classList.add('visible')));
-}
-
-function closeBookingModal() {
-  bkModal.classList.remove('visible');
-  setTimeout(() => {
-    bkModal.classList.remove('open');
-    document.documentElement.style.overflow = '';
-  }, 300);
-}
-
-document.getElementById('bk-close').addEventListener('click', closeBookingModal);
-document.getElementById('bk-ok-close').addEventListener('click', closeBookingModal);
-bkModal.addEventListener('click', function(e) { if (e.target === bkModal) closeBookingModal(); });
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape' && bkModal.classList.contains('open')) closeBookingModal();
-});
-
-/* Form submission */
-bkFormEl.addEventListener('submit', function(e) {
-  e.preventDefault();
-  bkErrorEl.classList.remove('show');
-
-  const name   = document.getElementById('bk-name').value.trim();
-  const email  = document.getElementById('bk-email').value.trim();
-  const phone  = document.getElementById('bk-phone').value.trim();
-  const guests = document.getElementById('bk-guests').value;
-  const msg    = document.getElementById('bk-msg').value.trim();
-  const ci     = sbCheckin  ? sbCheckin.value  : '';
-  const co     = sbCheckout ? sbCheckout.value : '';
-
-  if (!name)  { showBkError('Please enter your first and last name.'); return; }
-  if (!email || !email.includes('@')) { showBkError('Please enter a valid email address.'); return; }
-
-  const submitBtn = bkFormEl.querySelector('.bk-submit');
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Sending…';
-
-  const templateParams = {
-    from_name:  name,
-    from_email: email,
-    phone:      phone || '—',
-    villa:      'Casa Jade',
-    checkin:    ci ? fmtDate(ci) : '—',
-    checkout:   co ? fmtDate(co) : '—',
-    guests:     guests,
-    message:    msg || '—'
-  };
-
-  Promise.all([
-    emailjs.send('service_yrlj12a', 'template_t4frhpk', templateParams),
-    emailjs.send('service_yrlj12a', 'template_x200nab', templateParams)
-  ])
-  .then(function() {
-    // Save reservation to Supabase
-    fetch(SUPABASE_URL + '/rest/v1/reservations', {
-      method: 'POST',
-      headers: {
-        'apikey': SUPABASE_ANON,
-        'Authorization': 'Bearer ' + SUPABASE_ANON,
-        'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
-      },
-      body: JSON.stringify({
-        villa: 'Casa Jade',
-        from_name: name,
-        from_email: email,
-        phone: phone || '',
-        checkin: ci || '',
-        checkout: co || '',
-        guests: guests,
-        message: msg || '',
-        status: 'pending'
-      })
-    }).catch(function(e) { console.warn('Supabase insert failed:', e); });
-    document.getElementById('bk-ok-name').textContent = name.split(' ')[0];
-    bkFormWrap.style.display = 'none';
-    bkSuccess.style.display  = 'flex';
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Send my booking request';
-  })
-  .catch(function(err) {
-    console.error('EmailJS error:', err);
-    showBkError('An error occurred. Please try again or contact us directly.');
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Send my booking request';
-  });
-});
-
-function showBkError(msg) {
-  bkErrorEl.textContent = msg;
-  bkErrorEl.classList.add('show');
-  bkErrorEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
 </script>
 
 <!-- LIGHTBOX CSS (keep inline since it's needed for the overlay) -->
@@ -928,6 +681,6 @@ function showBkError(msg) {
 <script>(function(){var B="https://beds24.com/booking2.php?propid=326257&referer=iframe";function go(e){if(e){e.preventDefault();e.stopImmediatePropagation();}window.location.href=B;}function bind(){var c=document.getElementById("sb-cta");if(c)c.addEventListener("click",go,true);}if(document.readyState!=="loading")bind();else document.addEventListener("DOMContentLoaded",bind);})();</script>
 <script>(function(){var L=(document.documentElement.lang||"en").slice(0,2).toLowerCase();if(L!=="fr"&&L!=="es")L="en";var BASE="https://beds24.com/booking2.php?propid=326257&referer=iframe&lang="+L;function iso(v){return /^\d{4}-\d{2}-\d{2}$/.test(v)?v:"";}function go(e){if(e){e.preventDefault();e.stopImmediatePropagation();}var ci=iso(((document.getElementById("sb-checkin")||{}).value)||""),co=iso(((document.getElementById("sb-checkout")||{}).value)||""),url=BASE;if(ci&&co){var n=Math.round((new Date(co)-new Date(ci))/86400000);if(n>0)url+="&checkin="+ci+"&numnight="+n;}window.location.href=url;}function pf(){try{var p=new URLSearchParams(location.search),ci=iso(p.get("checkin")||""),co=iso(p.get("checkout")||"");if(ci){var a=document.getElementById("sb-checkin");if(a&&!a.value)a.value=ci;}if(co){var b=document.getElementById("sb-checkout");if(b&&!b.value)b.value=co;}}catch(e){}}function bind(){var c=document.getElementById("sb-cta");if(c){var cl=c.cloneNode(true);if(c.parentNode)c.parentNode.replaceChild(cl,c);cl.addEventListener("click",go,true);}pf();}if(document.readyState!=="loading")bind();else document.addEventListener("DOMContentLoaded",bind);})();</script>
 <script>(function(){var PROPID="326257",TODAY=new Date().toISOString().slice(0,10),availSet=null;function applyAll(){if(!availSet)return;var ci=(document.getElementById("sb-checkin")||{}).value||"",co=(document.getElementById("sb-checkout")||{}).value||"",pickCo=ci&&!co;document.querySelectorAll(".lrp-day[data-date]").forEach(function(c){var d=c.getAttribute("data-date");if(!d)return;var ok=pickCo?(d>ci&&availSet.has(d)):(d>=TODAY&&availSet.has(d));if(ok)c.classList.remove("lrp-disabled");else c.classList.add("lrp-disabled");});}var pend=false;function sched(){if(pend)return;pend=true;setTimeout(function(){pend=false;applyAll();},30);}fetch("/availability.json?cb="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){var v=j.villas&&j.villas[PROPID];if(!v||!v.available)return;availSet=new Set(v.available);applyAll();new MutationObserver(sched).observe(document.body,{childList:true,subtree:true});}).catch(function(){});})();</script>
-  <script src="/js/checkout.js?v=2026-11-08k" defer></script>
+  <script src="/js/checkout.js?v=2026-11-08l" defer></script>
 </body>
 </html>
