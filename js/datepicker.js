@@ -25,15 +25,18 @@
     en: { months: ['January','February','March','April','May','June',
                    'July','August','September','October','November','December'],
           days:   ['Mo','Tu','We','Th','Fr','Sa','Su'],
-          clear:  'Clear' },
+          clear:  'Clear',
+          legend: 'Greyed out: not available' },
     fr: { months: ['Janvier','Février','Mars','Avril','Mai','Juin',
                    'Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
           days:   ['Lu','Ma','Me','Je','Ve','Sa','Di'],
-          clear:  'Effacer' },
+          clear:  'Effacer',
+          legend: 'En gris : non disponible' },
     es: { months: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
                    'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
           days:   ['Lu','Ma','Mi','Ju','Vi','Sá','Do'],
-          clear:  'Borrar' }
+          clear:  'Borrar',
+          legend: 'En gris: no disponible' }
   };
 
   var LANG = (function () {
@@ -134,6 +137,7 @@
           '<div class="lrp-month-pane lrp-R' + id + '"></div>' +
         '</div>' +
         '<div class="lrp-footer">' +
+          '<span class="lrp-legend"><i></i>' + I18N[LANG].legend + '</span>' +
           '<span class="lrp-clear">' + CLEAR + '</span>' +
         '</div>';
       document.body.appendChild(cal);
@@ -402,10 +406,17 @@
       if (left + calW > window.innerWidth - 10) left = window.innerWidth - calW - 10;
       if (left < 8) left = 8;
 
-      /* Flip vers le haut si pas assez de place en bas */
-      var calH = 390;
+      /* Bascule vers le haut s'il n'y a pas la place en bas.
+         La hauteur etait supposee a 390px : quand l'ancre est un grand
+         conteneur, r.top - 390 tombait sous zero et le calendrier allait
+         se coller tout en haut de l'ecran, detache du champ clique.
+         On mesure donc la vraie hauteur, et a defaut de place au-dessus
+         on colle en bas du viewport : jamais loin du champ. */
+      var calH = this._cal.offsetHeight || 390;
       if (top + calH > window.innerHeight - 10) {
-        top = Math.max(8, r.top - calH - 8);
+        var auDessus = r.top - calH - 8;
+        top = auDessus >= 8 ? auDessus
+                            : Math.max(8, window.innerHeight - calH - 10);
       }
 
       this._cal.style.top  = top  + 'px';

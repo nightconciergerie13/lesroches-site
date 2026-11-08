@@ -170,3 +170,10 @@
   }
   .lrp-day { height: 40px; line-height: 40px; font-size: .68rem; }
 }
+
+/* Legende du calendrier : dit ce que veut dire une date grisee. Sans elle,
+   le client voit des jours eteints sans savoir si c'est complet, hors
+   saison, ou un minimum de nuits non atteint. */
+.lrp-footer{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.lrp-legend{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;opacity:.7}
+.lrp-legend i{width:11px;height:11px;border-radius:3px;background:currentColor;opacity:.3;display:inline-block;flex:0 0 auto}
