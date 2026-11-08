@@ -5,54 +5,136 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Les Roches Retreat | Luxury Villas in Santa Teresa, Costa Rica</title>
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
       "@type": "LodgingBusiness",
+      "@id": "https://lesrochesretreat.com/#lodging",
       "name": "Les Roches Retreat",
-      "description": "Six private luxury villas with pool in Santa Teresa, Costa Rica. Each villa has its own private infinity pool, ocean views, and surf access. From $180/night. Book direct.",
-      "url": "https://lesrochesretreat.com",
-      "image": "https://lesrochesretreat.com/images/drone-complex-pool-1.webp",
+      "url": "https://lesrochesretreat.com/",
+      "inLanguage": "en",
+      "description": "Les Roches Retreat: 6 private luxury villas with infinity pools in Santa Teresa, Costa Rica. Ocean views, surf access, jungle setting. From $180 a night. Book direct, best rate guaranteed.",
+      "image": [
+        "https://lesrochesretreat.com/images/drone-complex-pool-1.webp",
+        "https://lesrochesretreat.com/images/onyx-hero.webp",
+        "https://lesrochesretreat.com/images/opale-hero.webp"
+      ],
+      "telephone": "+33667749024",
+      "email": "hello@lesrochesretreat.com",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Calle Vista De Olas",
         "addressLocality": "Santa Teresa",
         "addressRegion": "Puntarenas",
         "addressCountry": "CR"
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 9.6441,
-        "longitude": -85.1698
+        "latitude": 9.6449,
+        "longitude": -85.1694
       },
+      "hasMap": "https://maps.google.com/?q=9.6449,-85.1694",
       "priceRange": "$$$",
+      "currenciesAccepted": "USD",
+      "numberOfRooms": 6,
       "checkinTime": "15:00",
       "checkoutTime": "11:00",
-      "numberOfRooms": 6,
       "petsAllowed": true,
-      "email": "hello@lesrochesretreat.com",
       "amenityFeature": [
-        {"@type": "LocationFeatureSpecification", "name": "Private Infinity Pool", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Ocean View", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Surf Access", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Air Conditioning", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Daily Housekeeping", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Concierge Service", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Private Chef Available", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "High-Speed WiFi", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Fully Equipped Kitchen", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Pet Friendly", "value": true}
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Private infinity pool",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Air conditioning",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "High-speed WiFi",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Fully equipped kitchen",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Daily housekeeping",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Private parking",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Concierge service",
+          "value": true
+        }
       ],
-      "sameAs": ["https://www.instagram.com/lesrochesretreat/"],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "reservations",
+        "availableLanguage": [
+          "English",
+          "French",
+          "Spanish"
+        ],
+        "url": "https://wa.me/33667749024"
+      },
       "containsPlace": [
-        {"@type": "Accommodation", "name": "Casa Agate", "url": "https://lesrochesretreat.com/villa-agate.html"},
-        {"@type": "Accommodation", "name": "Casa Ambre", "url": "https://lesrochesretreat.com/villa-ambre.html"},
-        {"@type": "Accommodation", "name": "Casa Jade", "url": "https://lesrochesretreat.com/villa-jade.html"},
-        {"@type": "Accommodation", "name": "Casa Onyx", "url": "https://lesrochesretreat.com/villa-onyx.html"},
-        {"@type": "Accommodation", "name": "Casa Opale", "url": "https://lesrochesretreat.com/villa-opale.html"},
-        {"@type": "Accommodation", "name": "Casa Topaze", "url": "https://lesrochesretreat.com/villa-topaze.html"}
+        {
+          "@type": "VacationRental",
+          "@id": "https://lesrochesretreat.com/villa-opale.html#villa",
+          "name": "Casa Opale",
+          "url": "https://lesrochesretreat.com/villa-opale.html",
+          "image": "https://lesrochesretreat.com/images/opale-hero.webp"
+        },
+        {
+          "@type": "VacationRental",
+          "@id": "https://lesrochesretreat.com/villa-onyx.html#villa",
+          "name": "Casa Onyx",
+          "url": "https://lesrochesretreat.com/villa-onyx.html",
+          "image": "https://lesrochesretreat.com/images/onyx-hero.webp"
+        },
+        {
+          "@type": "VacationRental",
+          "@id": "https://lesrochesretreat.com/villa-jade.html#villa",
+          "name": "Casa Jade",
+          "url": "https://lesrochesretreat.com/villa-jade.html",
+          "image": "https://lesrochesretreat.com/images/jade-hero.webp"
+        },
+        {
+          "@type": "VacationRental",
+          "@id": "https://lesrochesretreat.com/villa-topaze.html#villa",
+          "name": "Casa Topaze",
+          "url": "https://lesrochesretreat.com/villa-topaze.html",
+          "image": "https://lesrochesretreat.com/images/topaze-hero.webp"
+        },
+        {
+          "@type": "VacationRental",
+          "@id": "https://lesrochesretreat.com/villa-agate.html#villa",
+          "name": "Casa Agate",
+          "url": "https://lesrochesretreat.com/villa-agate.html",
+          "image": "https://lesrochesretreat.com/images/agate-hero.webp"
+        },
+        {
+          "@type": "VacationRental",
+          "@id": "https://lesrochesretreat.com/villa-ambre.html#villa",
+          "name": "Casa Ambre",
+          "url": "https://lesrochesretreat.com/villa-ambre.html",
+          "image": "https://lesrochesretreat.com/images/ambre-hero.webp"
+        }
       ]
     }
-    </script>
+  ]
+}
+</script>
 <link rel="preload" href="images/drone-complex-pool-1.webp" as="image" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -618,220 +700,8 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
   body.has-cursor *{cursor:auto!important}
 }
 </style>
-<script src="js/track.js?v=2026-11-08o" defer></script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LodgingBusiness",
-  "name": "Les Roches Retreat",
-  "alternateName": "Les Roches Santa Teresa",
-  "description": "Les Roches Retreat is a collection of 6 private luxury villas with infinity pools, perched above the jungle in Santa Teresa, Costa Rica. Each villa features a private pool, ocean or jungle views, full kitchen, air conditioning, and daily housekeeping. Prices from $180 to $550 per night. Direct booking with best-rate guarantee, 24/7 concierge service, and free airport transfer available. Located 5 minutes from Playa Santa Teresa, one of the world's best surf beaches on the Nicoya Peninsula.",
-  "url": "https://lesrochesretreat.com",
-  "logo": "https://lesrochesretreat.com/images/drone-complex-pool-1.webp",
-  "image": [
-    "https://lesrochesretreat.com/images/drone-complex-pool-1.webp",
-    "https://lesrochesretreat.com/images/jade-hero.webp",
-    "https://lesrochesretreat.com/images/onyx-hero.webp",
-    "https://lesrochesretreat.com/images/opale-hero.webp"
-  ],
-  "telephone": "+33667749024",
-  "email": "hello@lesrochesretreat.com",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "reservations",
-    "availableLanguage": [
-      "English",
-      "French",
-      "Spanish"
-    ],
-    "url": "https://wa.me/33667749024"
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Playa Santa Teresa",
-    "addressLocality": "Santa Teresa",
-    "addressRegion": "Puntarenas",
-    "addressCountry": "CR"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 9.6449,
-    "longitude": -85.1694
-  },
-  "hasMap": "https://maps.google.com/?q=9.6449,-85.1694",
-  "priceRange": "$180 - $550 per night",
-  "currenciesAccepted": "USD",
-  "numberOfRooms": 6,
-  "checkinTime": "15:00",
-  "checkoutTime": "11:00",
-  "petsAllowed": false,
-  "availableLanguage": [
-    "English",
-    "French",
-    "Spanish"
-  ],
-  "amenityFeature": [
-    {
-      "@type": "LocationFeatureSpecification",
-      "name": "Private Infinity Pool",
-      "value": true
-    },
-    {
-      "@type": "LocationFeatureSpecification",
-      "name": "Ocean & Jungle Views",
-      "value": true
-    },
-    {
-      "@type": "LocationFeatureSpecification",
-      "name": "Air Conditioning",
-      "value": true
-    },
-    {
-      "@type": "LocationFeatureSpecification",
-      "name": "Free WiFi",
-      "value": true
-    },
-    {
-      "@type": "LocationFeatureSpecification",
-      "name": "Fully Equipped Kitchen",
-      "value": true
-    },
-    {
-      "@type": "LocationFeatureSpecification",
-      "name": "Daily Housekeeping",
-      "value": true
-    },
-    {
-      "@type": "LocationFeatureSpecification",
-      "name": "24/7 Concierge Service",
-      "value": true
-    },
-    {
-      "@type": "LocationFeatureSpecification",
-      "name": "Private Chef Available",
-      "value": true
-    },
-    {
-      "@type": "LocationFeatureSpecification",
-      "name": "Surf Access (5 min)",
-      "value": true
-    },
-    {
-      "@type": "LocationFeatureSpecification",
-      "name": "Airport Transfer Available",
-      "value": true
-    },
-    {
-      "@type": "LocationFeatureSpecification",
-      "name": "Smart TV",
-      "value": true
-    },
-    {
-      "@type": "LocationFeatureSpecification",
-      "name": "Private Parking",
-      "value": true
-    }
-  ],
-  "containsPlace": [
-    {
-      "@type": "VacationRental",
-      "name": "Casa Jade",
-      "url": "https://lesrochesretreat.com/villa-jade.html",
-      "numberOfBedrooms": 2,
-      "occupancy": {
-        "@type": "QuantitativeValue",
-        "maxValue": 4
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": 450,
-        "priceCurrency": "USD",
-        "unitText": "per night"
-      }
-    },
-    {
-      "@type": "VacationRental",
-      "name": "Casa Topaze",
-      "url": "https://lesrochesretreat.com/villa-topaze.html",
-      "numberOfBedrooms": 2,
-      "occupancy": {
-        "@type": "QuantitativeValue",
-        "maxValue": 2
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": 420,
-        "priceCurrency": "USD",
-        "unitText": "per night"
-      }
-    },
-    {
-      "@type": "VacationRental",
-      "name": "Casa Onyx",
-      "url": "https://lesrochesretreat.com/villa-onyx.html",
-      "numberOfBedrooms": 2,
-      "occupancy": {
-        "@type": "QuantitativeValue",
-        "maxValue": 4
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": 550,
-        "priceCurrency": "USD",
-        "unitText": "per night"
-      }
-    },
-    {
-      "@type": "VacationRental",
-      "name": "Casa Agate",
-      "url": "https://lesrochesretreat.com/villa-agate.html",
-      "numberOfBedrooms": 2,
-      "occupancy": {
-        "@type": "QuantitativeValue",
-        "maxValue": 4
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": 180,
-        "priceCurrency": "USD",
-        "unitText": "per night"
-      }
-    },
-    {
-      "@type": "VacationRental",
-      "name": "Casa Ambre",
-      "url": "https://lesrochesretreat.com/villa-ambre.html",
-      "numberOfBedrooms": 2,
-      "occupancy": {
-        "@type": "QuantitativeValue",
-        "maxValue": 4
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": 420,
-        "priceCurrency": "USD",
-        "unitText": "per night"
-      }
-    },
-    {
-      "@type": "VacationRental",
-      "name": "Casa Opale",
-      "url": "https://lesrochesretreat.com/villa-opale.html",
-      "numberOfBedrooms": 2,
-      "occupancy": {
-        "@type": "QuantitativeValue",
-        "maxValue": 4
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": 480,
-        "priceCurrency": "USD",
-        "unitText": "per night"
-      }
-    }
-  ]
-}
-</script>
+<script src="js/track.js?v=2026-11-08p" defer></script>
+
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -1529,9 +1399,9 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
 })();
 </script>
 
-<script src="js/config.js?v=2026-11-08o"></script>
+<script src="js/config.js?v=2026-11-08p"></script>
 <!-- LRPicker — date range picker (no CDN) -->
-<script src="js/datepicker.js?v=2026-11-08o"></script>
+<script src="js/datepicker.js?v=2026-11-08p"></script>
 <script>
 (function(){
   const MONTHS_DISP = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -1694,10 +1564,10 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
   el.style.cursor = 'default';
 })();
 </script>
-<script src="lang.js?v=2026-11-08o" defer></script>
-<script src="cookie-consent.js?v=2026-11-08o" defer></script>
-<script src="js/lazy-bg.js?v=2026-11-08o" defer></script>
-<script src="js/swipe.js?v=2026-11-08o" defer></script>
+<script src="lang.js?v=2026-11-08p" defer></script>
+<script src="cookie-consent.js?v=2026-11-08p" defer></script>
+<script src="js/lazy-bg.js?v=2026-11-08p" defer></script>
+<script src="js/swipe.js?v=2026-11-08p" defer></script>
 <script>
 // ── Scroll reveal : barre sticky mobile ──────────────────────
 document.addEventListener('DOMContentLoaded', function(){

@@ -511,74 +511,134 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
   body.has-cursor *{cursor:auto!important}
 }
 </style>
-<script src="../js/track.js?v=2026-11-08o" defer></script>
+<script src="../js/track.js?v=2026-11-08p" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LodgingBusiness",
-  "name": "Les Roches Retreat",
-  "description": "Six private luxury villas with infinity pools perched above the jungle in Santa Teresa, Costa Rica. Direct booking, best rates guaranteed.",
-  "url": "https://lesrochesretreat.com",
-  "logo": "https://lesrochesretreat.com/images/drone-complex-pool-1.webp",
-  "image": "https://lesrochesretreat.com/images/drone-complex-pool-1.webp",
-  "contactPoint": {"@type":"ContactPoint","contactType":"reservations","availableLanguage":["English","French"],"url":"https://wa.me/33667749024"},
-  "email": "hello@lesrochesretreat.com",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Santa Teresa",
-    "addressRegion": "Puntarenas",
-    "addressCountry": "CR"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "9.6449",
-    "longitude": "-85.1694"
-  },
-  "priceRange": "$$$",
-  "amenityFeature": [
-    {"@type": "LocationFeatureSpecification", "name": "Infinity Pool", "value": true},
-    {"@type": "LocationFeatureSpecification", "name": "Private Villa", "value": true},
-    {"@type": "LocationFeatureSpecification", "name": "Ocean View", "value": true},
-    {"@type": "LocationFeatureSpecification", "name": "Air Conditioning", "value": true},
-    {"@type": "LocationFeatureSpecification", "name": "Chef privé Available", "value": true},
-    {"@type": "LocationFeatureSpecification", "name": "Surf Access", "value": true}
-  ],
-  "containsPlace": [
+  "@graph": [
     {
       "@type": "LodgingBusiness",
-      "name": "Casa Jade",
-      "url": "https://lesrochesretreat.com/villa-jade.html",
-      "image": "https://lesrochesretreat.com/images/jade-hero.webp"
-    },
-    {
-      "@type": "LodgingBusiness",
-      "name": "Casa Agate",
-      "url": "https://lesrochesretreat.com/villa-agate.html",
-      "image": "https://lesrochesretreat.com/images/agate-hero.webp"
-    },
-    {
-      "@type": "LodgingBusiness",
-      "name": "Casa Opale",
-      "url": "https://lesrochesretreat.com/villa-opale.html",
-      "image": "https://lesrochesretreat.com/images/opale-hero.webp"
-    },
-    {
-      "@type": "LodgingBusiness",
-      "name": "Casa Onyx",
-      "url": "https://lesrochesretreat.com/villa-onyx.html",
-      "image": "https://lesrochesretreat.com/images/onyx-hero.webp"
-    },
-    {
-      "@type": "LodgingBusiness",
-      "name": "Casa Topaze",
-      "url": "https://lesrochesretreat.com/villa-topaze.html",
-      "image": "https://lesrochesretreat.com/images/topaze-hero.webp"
-    },
-    {
-      "@type": "LodgingBusiness",
-      "name": "Casa Ambre",
-      "url": "https://lesrochesretreat.com/villa-ambre.html",
-      "image": "https://lesrochesretreat.com/images/ambre-hero.webp"
+      "@id": "https://lesrochesretreat.com/fr/#lodging",
+      "name": "Les Roches Retreat",
+      "url": "https://lesrochesretreat.com/fr/",
+      "inLanguage": "fr",
+      "description": "Six villas privées avec piscine à débordement au-dessus de Santa Teresa, Costa Rica. Réservation en direct, meilleurs tarifs, sans intermédiaire. À partir de 180 $ la nuit.",
+      "image": [
+        "https://lesrochesretreat.com/images/drone-complex-pool-1.webp",
+        "https://lesrochesretreat.com/images/onyx-hero.webp",
+        "https://lesrochesretreat.com/images/opale-hero.webp"
+      ],
+      "telephone": "+33667749024",
+      "email": "hello@lesrochesretreat.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Santa Teresa",
+        "addressRegion": "Puntarenas",
+        "addressCountry": "CR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 9.6449,
+        "longitude": -85.1694
+      },
+      "hasMap": "https://maps.google.com/?q=9.6449,-85.1694",
+      "priceRange": "$$$",
+      "currenciesAccepted": "USD",
+      "numberOfRooms": 6,
+      "checkinTime": "15:00",
+      "checkoutTime": "11:00",
+      "petsAllowed": true,
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Piscine à débordement privée",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Climatisation",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "WiFi haut débit",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Cuisine entièrement équipée",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Ménage quotidien",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Parking privé",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Service conciergerie",
+          "value": true
+        }
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "reservations",
+        "availableLanguage": [
+          "English",
+          "French",
+          "Spanish"
+        ],
+        "url": "https://wa.me/33667749024"
+      },
+      "containsPlace": [
+        {
+          "@type": "VacationRental",
+          "@id": "https://lesrochesretreat.com/fr/villa-opale.html#villa",
+          "name": "Casa Opale",
+          "url": "https://lesrochesretreat.com/fr/villa-opale.html",
+          "image": "https://lesrochesretreat.com/images/opale-hero.webp"
+        },
+        {
+          "@type": "VacationRental",
+          "@id": "https://lesrochesretreat.com/fr/villa-onyx.html#villa",
+          "name": "Casa Onyx",
+          "url": "https://lesrochesretreat.com/fr/villa-onyx.html",
+          "image": "https://lesrochesretreat.com/images/onyx-hero.webp"
+        },
+        {
+          "@type": "VacationRental",
+          "@id": "https://lesrochesretreat.com/fr/villa-jade.html#villa",
+          "name": "Casa Jade",
+          "url": "https://lesrochesretreat.com/fr/villa-jade.html",
+          "image": "https://lesrochesretreat.com/images/jade-hero.webp"
+        },
+        {
+          "@type": "VacationRental",
+          "@id": "https://lesrochesretreat.com/fr/villa-topaze.html#villa",
+          "name": "Casa Topaze",
+          "url": "https://lesrochesretreat.com/fr/villa-topaze.html",
+          "image": "https://lesrochesretreat.com/images/topaze-hero.webp"
+        },
+        {
+          "@type": "VacationRental",
+          "@id": "https://lesrochesretreat.com/fr/villa-agate.html#villa",
+          "name": "Casa Agate",
+          "url": "https://lesrochesretreat.com/fr/villa-agate.html",
+          "image": "https://lesrochesretreat.com/images/agate-hero.webp"
+        },
+        {
+          "@type": "VacationRental",
+          "@id": "https://lesrochesretreat.com/fr/villa-ambre.html#villa",
+          "name": "Casa Ambre",
+          "url": "https://lesrochesretreat.com/fr/villa-ambre.html",
+          "image": "https://lesrochesretreat.com/images/ambre-hero.webp"
+        }
+      ]
     }
   ]
 }
@@ -1326,9 +1386,9 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
 })();
 </script>
 
-<script src="../js/config.js?v=2026-11-08o"></script>
+<script src="../js/config.js?v=2026-11-08p"></script>
 <!-- LRPicker — date range picker (no CDN) -->
-<script src="../js/datepicker.js?v=2026-11-08o"></script>
+<script src="../js/datepicker.js?v=2026-11-08p"></script>
 <script>
 (function(){
   const MONTHS_DISP = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -1491,10 +1551,10 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
   el.style.cursor = 'default';
 })();
 </script>
-<script src="../lang.js?v=2026-11-08o" defer></script>
-<script src="../cookie-consent.js?v=2026-11-08o" defer></script>
-<script src="../js/lazy-bg.js?v=2026-11-08o" defer></script>
-<script src="../js/swipe.js?v=2026-11-08o" defer></script>
+<script src="../lang.js?v=2026-11-08p" defer></script>
+<script src="../cookie-consent.js?v=2026-11-08p" defer></script>
+<script src="../js/lazy-bg.js?v=2026-11-08p" defer></script>
+<script src="../js/swipe.js?v=2026-11-08p" defer></script>
 <script>
 // ── Scroll reveal : bulle WA + barre sticky mobile ──────────
 document.addEventListener('DOMContentLoaded', function(){
