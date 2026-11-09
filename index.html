@@ -1722,13 +1722,20 @@ document.addEventListener('DOMContentLoaded', function(){
     var cal = fp._cal;   /* l'instance du heros, pas celle du bloc plus bas */
     var bar = document.querySelector('.h-search .h-fields');
     if (!cal || !bar || window.innerWidth <= 640) return;
-    var r = bar.getBoundingClientRect(), h = cal.offsetHeight || 340;
+    var h = cal.offsetHeight;
+    if (!h) return;            /* pas encore affiche : une des relances suivantes le fera */
+    var r = bar.getBoundingClientRect();
     if (r.bottom + 8 + h > window.innerHeight - 10) {
       var haut = r.top - h - 8;
       cal.style.top = (haut >= 8 ? haut : Math.max(8, window.innerHeight - h - 10)) + 'px';
     }
   }
-  function ouvre(){ fp.open(); requestAnimationFrame(function(){ requestAnimationFrame(recale); }); }
+  /* plusieurs relances : selon la machine, le calendrier n'est pas mesurable
+     tout de suite apres l'ouverture, et une seule tentative rate. */
+  function ouvre(){
+    fp.open();
+    [0, 40, 100, 200, 350, 600].forEach(function(d){ setTimeout(recale, d); });
+  }
   fci.addEventListener('click', ouvre);
   fco.addEventListener('click', ouvre);
   window.addEventListener('resize', recale);
