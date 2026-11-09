@@ -782,7 +782,27 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
     <div class="h-bottom">
       <div>
         <h1 class="h-title">Six private Villas in Santa Teresa, where the jungle meets the Pacific.</h1>
-        <a href="#villas" class="hero-cta">Discover Our Villas →</a>
+        <div class="h-search">
+            <div class="fp-fields h-fields">
+              <div class="fp-field" id="h-checkin-f">
+                <label class="fp-field-lbl" for="h-checkin-disp">Check in</label>
+                <div class="bk-date-disp empty" id="h-checkin-disp" role="button" tabindex="0" aria-label="Select arrival date">Arrival date</div>
+              </div>
+              <div class="fp-field" id="h-checkout-f">
+                <label class="fp-field-lbl" for="h-checkout-disp">Check out</label>
+                <div class="bk-date-disp empty" id="h-checkout-disp" role="button" tabindex="0" aria-label="Select departure date">Departure date</div>
+              </div>
+              <div class="fp-field">
+                <label class="fp-field-lbl" for="h-guests">Guests</label>
+                <select class="bk-sel" id="h-guests" aria-label="Number of guests">
+                  <option>1 guest</option><option selected>2 guests</option><option>3 guests</option><option>4 guests</option>
+                </select>
+              </div>
+              <button class="fp-cta h-cta" id="h-submit">Check availability</button>
+            </div>
+            <a href="#villas" class="hero-link">Discover our villas →</a>
+            <input id="h-range-input" aria-label="Dates" tabindex="-1" style="position:absolute;opacity:0;pointer-events:none;width:0;height:0;border:0;padding:0">
+          </div>
       </div>
       <div class="hero-right">
         <div class="h-scroll"><div class="h-sline"></div><span class="h-stxt">Scroll</span></div>
@@ -1291,6 +1311,31 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
 .wa-cta-wrap{padding:.7rem .9rem .85rem;background:var(--c,#f3ede3);border-top:1px solid rgba(30,27,24,.05)}
 .wa-cta{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;background:var(--ter,#b8734a);border:none;border-radius:2px;padding:.65rem 1rem;font-family:'Outfit',sans-serif;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;cursor:pointer;text-decoration:none;transition:background .2s;opacity:.92}
 .wa-cta:hover{background:var(--ter2,#a05f38);opacity:1}
+
+/* ── Recherche dans le heros ── */
+.h-search { margin-top: 1.5rem; animation: fu .9s .55s both; }
+.h-search .h-fields { width: min(760px, 100%); margin-bottom: 0;
+  grid-template-columns: 1fr 1fr .8fr auto;
+  background: rgba(20,18,16,.34); backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px); align-items: stretch; }
+.h-search .fp-field { padding: .8rem 1.3rem; }
+.h-search .bk-date-disp { min-width: 0; font-size: .88rem; }
+.h-search .fp-cta { padding: 0 2rem; white-space: nowrap; font-size: .5rem; }
+.hero-link { display: inline-block; margin-top: 1rem; font-family: 'Outfit', sans-serif;
+  font-size: .5rem; letter-spacing: .26em; text-transform: uppercase;
+  color: rgba(255,255,255,.6); border-bottom: 1px solid rgba(255,255,255,.22);
+  padding-bottom: .3rem; transition: color .22s, border-color .22s; }
+.hero-link:hover { color: #fff; border-color: rgba(255,255,255,.6); }
+@media (max-width: 900px) {
+  /* le bandeau cookies est fixe en bas et recouvrait le bouton :
+     on remonte le contenu du heros au-dessus de lui */
+  .hero-inner { padding-bottom: 9.5rem; }
+  .h-search .h-fields { grid-template-columns: 1fr 1fr; width: 100%; }
+  .h-search .fp-field:nth-child(3) { grid-column: 1 / -1; border-right: none;
+    border-top: 1px solid rgba(255,255,255,.2); }
+  .h-search .fp-cta { grid-column: 1 / -1; width: 100%; padding: 1rem 0; }
+  .h-search .fp-field { padding: .7rem 1.1rem; }
+}
 </style>
 
 <div id="wa-bubble">
@@ -1641,5 +1686,76 @@ document.addEventListener('DOMContentLoaded', function(){
 })();
 </script>
 <script>(function(){var SLUGS=["jade","topaze","onyx","agate","ambre","opale"],TODAY=new Date().toISOString().slice(0,10),union=null;function hd(){var iso=/^\d{4}-\d{2}-\d{2}$/;var vals=[].slice.call(document.querySelectorAll("input")).filter(function(e){return iso.test(e.value);}).map(function(e){return e.value;});var u=[];vals.forEach(function(v){if(u.indexOf(v)<0)u.push(v);});u.sort();return {ci:u[0]||"",co:(u.length>1?u[u.length-1]:"")};}function applyAll(){if(!union)return;var dd=hd(),pickCo=dd.ci&&!dd.co;document.querySelectorAll(".lrp-day[data-date]").forEach(function(c){var d=c.getAttribute("data-date");if(!d)return;var ok=pickCo?(d>dd.ci&&union.has(d)):(d>=TODAY&&union.has(d));if(ok)c.classList.remove("lrp-disabled");else c.classList.add("lrp-disabled");});}var pend=false;function sched(){if(pend)return;pend=true;setTimeout(function(){pend=false;applyAll();},30);}function wd(url){var dd=hd(),path=url.split("#")[0].split("?")[0],hash=url.indexOf("#")>-1?url.slice(url.indexOf("#")):"";if(!dd.ci)return path+hash;return path+"?checkin="+dd.ci+(dd.co?"&checkout="+dd.co:"")+hash;}document.addEventListener("click",function(e){var a=e.target.closest?e.target.closest("a[href*=\"villa-\"]"):null;if(a){var h=a.getAttribute("href");if(h&&/villa-[a-z]+\.html/i.test(h))a.setAttribute("href",wd(h));}},true);function bindSubmit(){var sub=document.getElementById("bk-submit");if(!sub)return;sub.addEventListener("click",function(e){var val=((document.getElementById("bk-villa")||{}).value||"").toLowerCase(),slug=SLUGS.filter(function(s){return val.indexOf(s)>-1;})[0],dd=hd();if(slug&&dd.ci){e.preventDefault();e.stopImmediatePropagation();window.location.href="villa-"+slug+".html?checkin="+dd.ci+(dd.co?"&checkout="+dd.co:"");}},true);}fetch("/availability.json?cb="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){var v=j.villas||{},u=new Set();Object.keys(v).forEach(function(k){(v[k].available||[]).forEach(function(d){u.add(d);});});if(u.size===0)return;union=u;applyAll();new MutationObserver(sched).observe(document.body,{childList:true,subtree:true});}).catch(function(){});if(document.readyState!=="loading")bindSubmit();else document.addEventListener("DOMContentLoaded",bindSubmit);})();</script>
+
+<script>
+/* Recherche du heros : picker independant de celui du bloc « Your sunset awaits ».
+   Memes regles (dates completes grisees), meme destination. */
+(function(){
+  if (typeof LRPicker === 'undefined') return;
+  var MOIS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function fmt(d){ return d.getDate() + ' ' + MOIS[d.getMonth()] + ' ' + d.getFullYear(); }
+  var ci = document.getElementById('h-checkin-disp');
+  var co = document.getElementById('h-checkout-disp');
+  var fci = document.getElementById('h-checkin-f');
+  var fco = document.getElementById('h-checkout-f');
+  if (!ci || !co || !fci || !fco) return;
+  var a = document.createElement('input'), b = document.createElement('input');
+  a.type = b.type = 'text';
+  a.style.cssText = b.style.cssText = 'position:absolute;opacity:0;pointer-events:none;width:0;height:0';
+  document.body.appendChild(a); document.body.appendChild(b);
+  var fp = new LRPicker(a, b, {
+    anchor: document.querySelector('.h-search .h-fields') || fci,
+    triggers: [fci, fco],
+    onChange: function(sel){
+      if (sel[0]) { ci.textContent = fmt(sel[0]); ci.classList.remove('empty'); }
+      if (sel[1]) { co.textContent = fmt(sel[1]); co.classList.remove('empty'); }
+    },
+    onClear: function(){
+      ci.textContent = 'Arrival date'; ci.classList.add('empty');
+      co.textContent = 'Departure date'; co.classList.add('empty');
+    }
+  });
+  /* Le composant mesure le calendrier avant de l'afficher, donc il ne bascule
+     pas vers le haut quand la barre est en bas du heros. On recale nous-memes,
+     sans toucher a datepicker.js qui sert a 25 autres pages. */
+  function recale(){
+    var cal = fp._cal;   /* l'instance du heros, pas celle du bloc plus bas */
+    var bar = document.querySelector('.h-search .h-fields');
+    if (!cal || !bar || window.innerWidth <= 640) return;
+    var r = bar.getBoundingClientRect(), h = cal.offsetHeight || 340;
+    if (r.bottom + 8 + h > window.innerHeight - 10) {
+      var haut = r.top - h - 8;
+      cal.style.top = (haut >= 8 ? haut : Math.max(8, window.innerHeight - h - 10)) + 'px';
+    }
+  }
+  function ouvre(){ fp.open(); requestAnimationFrame(function(){ requestAnimationFrame(recale); }); }
+  fci.addEventListener('click', ouvre);
+  fco.addEventListener('click', ouvre);
+  window.addEventListener('resize', recale);
+  document.getElementById('h-submit').addEventListener('click', function(){
+    if (!a.value || !b.value) { ouvre(); return; }
+    var g = document.getElementById('h-guests').value;
+    var q = new URLSearchParams();
+    q.set('checkin', a.value); q.set('checkout', b.value);
+    q.set('guests', parseInt(g) || 2);
+    window.location.href = 'villas.html?' + q.toString();
+  });
+  /* dates ou les six villas sont prises */
+  (async function(){
+    if (typeof SUPABASE_URL === 'undefined') return;
+    try {
+      var auj = new Date().toISOString().split('T')[0];
+      var r = await fetch(SUPABASE_URL + '/rest/v1/blocked_dates?select=villa_id,date&date=gte.' + auj + '&order=date',
+        { headers: { 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON } });
+      if (!r.ok) return;
+      var rows = await r.json(), VILLAS = ['opale','jade','onyx','topaze','agate','ambre'], par = {};
+      rows.forEach(function(x){ (par[x.date] = par[x.date] || new Set()).add(x.villa_id); });
+      var pleines = Object.keys(par).filter(function(d){
+        return VILLAS.every(function(v){ return par[d].has(v); }); });
+      if (pleines.length) fp.set('disable', pleines);
+    } catch(e) {}
+  })();
+})();
+</script>
 </body>
 </html>
