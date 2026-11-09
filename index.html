@@ -1338,6 +1338,13 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
   .h-search .fp-cta { grid-column: 1 / -1; width: 100%; padding: 1rem 0; }
   .h-search .fp-field { padding: .7rem 1.1rem; }
 }
+
+/* ── Mobile : le bloc du milieu perd son formulaire en double ──
+   (la barre du heros et la bande fixe le rendaient redondant) ── */
+@media (max-width: 900px) {
+  .fp .fp-fields { display: none; }
+  .fp .fp-cta { margin-top: 1.4rem; }
+}
 </style>
 
 <div id="wa-bubble">
@@ -1764,6 +1771,21 @@ document.addEventListener('DOMContentLoaded', function(){
       if (pleines.length) fp.set('disable', pleines);
     } catch(e) {}
   })();
+})();
+</script>
+
+<script>
+/* Mobile : le bouton du bloc « Your sunset awaits » ne demande plus de dates,
+   puisque le formulaire est masque. Il mene simplement aux villas.
+   Le clone sert a detacher l'ecouteur d'origine, qui exigeait des dates. */
+(function(){
+  if (window.innerWidth > 900) return;
+  var champs = document.querySelector('.fp .fp-fields');
+  var bouton = document.getElementById('bk-submit');
+  if (!champs || !bouton) return;
+  var neuf = bouton.cloneNode(true);
+  neuf.addEventListener('click', function(){ window.location.href = 'villas.html?book=1'; });
+  bouton.parentNode.replaceChild(neuf, bouton);
 })();
 </script>
 </body>
