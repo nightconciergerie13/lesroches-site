@@ -822,6 +822,35 @@ document.querySelectorAll('.sb-dates-row .sb-field').forEach(function(f) {
 /* ── La mosaique va d'un bord a l'autre : plus de largeur, pas plus de hauteur ── */
 .jade-gal { padding: 0; gap: 8px; }
 .jade-gal-foot { padding-top: 1.4rem; }
+
+/* ── Grand ecran : rappel de reservation pendant le defilement ──
+   Le panneau est collant, mais seulement dans .vp-main : pendant le heros,
+   la mosaique et la fin de page, plus rien n'invite a reserver. ── */
+.jbar { display: none; }
+@media (min-width: 861px) {
+  .jbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 870;
+    display: flex; align-items: center; gap: 1.6rem;
+    padding: .85rem 5vw;
+    background: rgba(250,247,242,.94);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--c2);
+    opacity: 0; pointer-events: none; transform: translateY(100%);
+    transition: opacity .35s ease, transform .35s cubic-bezier(.25,.8,.25,1); }
+  .jbar.on { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .jbar-left { flex: 1; display: flex; align-items: baseline; gap: .9rem; min-width: 0; }
+  .jbar-name { font-family: 'Gilda Display', serif; font-size: 1rem; color: var(--ink); }
+  .jbar-tag { font-family: 'Outfit', sans-serif; font-size: .55rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--mid); white-space: nowrap; }
+  .jbar-price { font-family: 'Gilda Display', serif; font-size: 1rem; color: var(--ink);
+    white-space: nowrap; }
+  .jbar-btn { flex-shrink: 0; background: var(--ter); color: #fff; border: none;
+    padding: .78rem 2.1rem; cursor: pointer; font-family: 'Outfit', sans-serif;
+    font-size: .5rem; letter-spacing: .26em; text-transform: uppercase;
+    transition: background .2s; }
+  .jbar-btn:hover { background: var(--ter2); }
+  /* la pastille WhatsApp remonte au-dessus de la barre */
+  body.jbar-on .wa-float { bottom: 5.4rem; }
+}
 </style>
 
 <script>(function(){var B="https://beds24.com/booking2.php?propid=326257&referer=iframe";function go(e){if(e){e.preventDefault();e.stopImmediatePropagation();}window.location.href=B;}function bind(){var c=document.getElementById("sb-cta");if(c)c.addEventListener("click",go,true);}if(document.readyState!=="loading")bind();else document.addEventListener("DOMContentLoaded",bind);})();</script>
@@ -857,6 +886,64 @@ document.querySelectorAll('.sb-dates-row .sb-field').forEach(function(f) {
   if (window.MutationObserver) {
     new MutationObserver(maj).observe(source, {childList:true, characterData:true, subtree:true});
   }
+})();
+</script>
+<div class="jbar" id="jbar" role="complementary" aria-label="Reserve Casa Jade">
+  <div class="jbar-left">
+    <span class="jbar-name">Casa Jade</span>
+    <span class="jbar-tag">2 bed &middot; 2 bath &middot; Ocean view</span>
+  </div>
+  <span class="jbar-price" id="jbar-price">&mdash;</span>
+  <button type="button" class="jbar-btn" id="jbar-btn">Reserve</button>
+</div>
+
+<script>
+/* Barre de rappel, grand ecran. Elle se montre quand le panneau de
+   reservation n'est pas a l'ecran, et se tait quand il l'est. */
+(function(){
+  if (window.innerWidth < 861) return;
+  var bar = document.getElementById('jbar');
+  var carte = document.querySelector('.sb-card');
+  var source = document.querySelector('.sb-price-val');
+  var prix = document.getElementById('jbar-price');
+  var heros = document.querySelector('.hero');
+  if (!bar || !carte) return;
+
+  function majPrix(){
+    if (!source || !prix) return;
+    var t = (source.textContent || '').trim();
+    if (t && t !== '-') prix.textContent = 'from ' + t;
+  }
+  majPrix();
+  if (source && window.MutationObserver) {
+    new MutationObserver(majPrix).observe(source, {childList:true, characterData:true, subtree:true});
+  }
+
+  var carteVisible = false, horsHeros = false;
+  function rendre(){
+    var montrer = horsHeros && !carteVisible;
+    bar.classList.toggle('on', montrer);
+    document.body.classList.toggle('jbar-on', montrer);
+  }
+  if (window.IntersectionObserver) {
+    new IntersectionObserver(function(e){
+      carteVisible = e[0].isIntersecting; rendre();
+    }, {threshold: 0.08}).observe(carte);
+  }
+  var seuil = heros ? Math.round(heros.offsetHeight * 0.7) : 400;
+  var attente = false;
+  function surDefilement(){
+    horsHeros = window.scrollY > seuil; rendre(); attente = false;
+  }
+  window.addEventListener('scroll', function(){
+    if (!attente) { requestAnimationFrame(surDefilement); attente = true; }
+  }, {passive:true});
+  surDefilement();
+
+  document.getElementById('jbar-btn').addEventListener('click', function(){
+    var b = document.getElementById('h-reserve-btn');
+    if (b) b.click();
+  });
 })();
 </script>
 </body>
