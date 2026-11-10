@@ -930,7 +930,9 @@ document.querySelectorAll('.sb-dates-row .sb-field').forEach(function(f) {
       carteVisible = e[0].isIntersecting; rendre();
     }, {threshold: 0.08}).observe(carte);
   }
-  var seuil = heros ? Math.round(heros.offsetHeight * 0.7) : 400;
+  /* Ian veut la barre des le haut de page : plus de seuil lie au heros.
+     Elle reste masquee quand le panneau de reservation est a l'ecran. */
+  var seuil = -1;
   var attente = false;
   function surDefilement(){
     horsHeros = window.scrollY > seuil; rendre(); attente = false;
