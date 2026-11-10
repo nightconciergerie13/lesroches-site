@@ -683,20 +683,57 @@
 .noav-opt-main strong { font-weight: 400; }
 .noav-opt-side { font-family: 'Outfit', sans-serif; font-size: .55rem; letter-spacing: .18em;
   text-transform: uppercase; color: var(--mid); white-space: nowrap; }
-/* Une proposition qui part sur WhatsApp n'est pas une recherche : on le montre. */
-.noav-opt-wa { border-left: 2px solid var(--ter); }
-.noav-opt-wa .noav-opt-side { color: var(--ter); }
 .noav-wa { display: inline-block; font-family: 'Outfit', sans-serif; font-size: .5rem;
   letter-spacing: .24em; text-transform: uppercase; color: var(--w);
   background: var(--ter); padding: .75rem 1.8rem; text-decoration: none;
   transition: background .2s; }
 .noav-wa:hover { background: var(--ter2); }
+/* hidden ne gagne pas contre un display explicite : on tranche. */
+.noav-wrap[hidden], .noav-wa[hidden], .noav-split[hidden] { display: none !important; }
 .noav-note { margin-top: .9rem; font-family: 'Outfit', sans-serif; font-size: .55rem;
   color: var(--mid); font-weight: 300; }
+
+/* ── Le sejour en deux maisons : une offre, pas une ligne de liste ── */
+.noav-split { background: var(--w); border: 1px solid var(--c2);
+  border-top: 2px solid var(--ter); padding: 1.4rem 1.6rem 1.5rem; margin-bottom: 1.2rem; }
+.ns-title { font-family: 'Outfit', sans-serif; font-size: .55rem; letter-spacing: .24em;
+  text-transform: uppercase; color: var(--ter); margin-bottom: .7rem; }
+.ns-intro { font-family: 'Gilda Display', serif; font-size: 1.02rem; color: var(--ink);
+  line-height: 1.5; margin-bottom: 1.5rem; max-width: 46ch; }
+/* Rail proportionnel : la largeur de chaque barre suit le nombre de nuits. */
+.ns-rail { display: flex; align-items: stretch; margin-bottom: 1.3rem; }
+.ns-seg { min-width: 0; }
+.ns-bar { height: 3px; border-radius: 2px; }
+.ns-seg:first-child .ns-bar { background: var(--ter); }
+.ns-seg:last-child .ns-bar { background: var(--ink); }
+.ns-villa { font-family: 'Gilda Display', serif; font-size: 1rem; color: var(--ink);
+  margin-top: .7rem; }
+.ns-meta { font-family: 'Outfit', sans-serif; font-size: .62rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--mid); margin-top: .25rem; }
+.ns-join { width: 20px; flex: none; position: relative; }
+.ns-join::before { content: ''; position: absolute; left: -1px; right: -1px; top: 0; height: 3px;
+  border-radius: 2px; background: linear-gradient(90deg, var(--ter), var(--ink)); }
+.ns-join::after { content: ''; position: absolute; left: 50%; top: 1.5px; width: 7px; height: 7px;
+  transform: translate(-50%, -50%); border-radius: 50%; background: var(--w);
+  border: 1px solid var(--mid); }
+.ns-foot { font-family: 'Outfit', sans-serif; font-size: .72rem; font-weight: 300;
+  color: var(--mid); line-height: 1.6; margin-bottom: 1.2rem; max-width: 52ch; }
+.ns-cta { display: inline-block; font-family: 'Outfit', sans-serif; font-size: .5rem;
+  letter-spacing: .24em; text-transform: uppercase; color: var(--w);
+  background: var(--ink); padding: .75rem 1.8rem; text-decoration: none;
+  transition: background .2s; }
+.ns-cta:hover { background: var(--ter); }
+
 @media (max-width: 768px) {
   .noav-wrap { margin: 1.2rem 1.5rem 0; padding: 1.2rem 1.1rem; }
   .noav-opt { flex-direction: column; gap: .25rem; }
   .noav-wa { display: block; text-align: center; }
+  .noav-split { padding: 1.2rem 1.1rem 1.3rem; }
+  /* Le rail se redresse : deux etapes l'une sous l'autre, la continuite reste lisible. */
+  .ns-rail { flex-direction: column; gap: 1.1rem; }
+  .ns-seg { width: 100% !important; flex: none !important; }
+  .ns-join { display: none; }
+  .ns-cta { display: block; text-align: center; }
 }
 </style>
 <script type="application/ld+json">
@@ -852,6 +889,13 @@
     <div class="noav-wrap" id="noav-wrap" hidden>
       <div class="noav-head" id="noav-head"></div>
       <div class="noav-opts" id="noav-opts"></div>
+      <div class="noav-split" id="noav-split" hidden>
+        <div class="ns-title" id="ns-title"></div>
+        <div class="ns-intro" id="ns-intro"></div>
+        <div class="ns-rail" id="ns-rail"></div>
+        <div class="ns-foot" id="ns-foot"></div>
+        <a class="ns-cta" id="ns-cta" target="_blank" rel="noopener"></a>
+      </div>
       <a class="noav-wa" id="noav-wa" href="https://wa.me/33667749024" target="_blank" rel="noopener"></a>
       <div class="noav-note" id="noav-note"></div>
     </div>
@@ -1312,28 +1356,37 @@ if(new URLSearchParams(window.location.search).get('book') === '1'){
   var WA = 'https://wa.me/33667749024';
   var L = (document.documentElement.getAttribute('lang') || 'en').slice(0,2);
   var T = {
-    en: { proche: 'Here is what is close:',
-          nuits: 'nights', deux: '2 houses', puis: 'then',
+    en: { proche: 'Here is what is close:', nuits: 'nights', nuit: 'night',
+          sTitre: 'Your stay, in two houses',
+          sIntro: 'No single house is free for your whole stay \u2014 but two are, back to back. You have a house every night, with no gap.',
+          sFoot: 'We organise the move from one house to the other on the day, so your stay runs straight through.',
+          sCta: 'Ask us about this stay',
+          sWa: 'Hi, could we book this stay across two houses:',
           wa: 'Tell us your dates on WhatsApp',
-          waSplit: 'Could we book this split stay:',
           note: 'Availability updated',
           vide: 'Nothing free on these dates, and nothing within two weeks either \u2014 write to us, we often find a way.' },
-    fr: { proche: 'Voici ce qui est proche\u00a0:',
-          nuits: 'nuits', deux: '2 maisons', puis: 'puis',
+    fr: { proche: 'Voici ce qui est proche\u00a0:', nuits: 'nuits', nuit: 'nuit',
+          sTitre: 'Votre s\u00e9jour, en deux maisons',
+          sIntro: 'Aucune maison n\u2019est libre sur la totalit\u00e9 de vos dates \u2014 mais deux le sont, bout \u00e0 bout. Vous \u00eates log\u00e9 chaque nuit, sans interruption.',
+          sFoot: 'Nous organisons le passage d\u2019une maison \u00e0 l\u2019autre le jour venu, pour que le s\u00e9jour se d\u00e9roule d\u2019une seule traite.',
+          sCta: 'Nous demander ce s\u00e9jour',
+          sWa: 'Bonjour, pourrions-nous r\u00e9server ce s\u00e9jour en deux maisons\u00a0:',
           wa: 'Dites-nous vos dates sur WhatsApp',
-          waSplit: 'Pourrions-nous r\u00e9server ce s\u00e9jour en deux maisons\u00a0:',
           note: 'Disponibilit\u00e9s mises \u00e0 jour le',
           vide: 'Rien de libre sur ces dates, ni dans les quinze jours autour \u2014 \u00e9crivez-nous, on trouve souvent une solution.' },
-    es: { proche: 'Esto s\u00ed est\u00e1 libre:',
-          nuits: 'noches', deux: '2 casas', puis: 'luego',
+    es: { proche: 'Esto s\u00ed est\u00e1 libre:', nuits: 'noches', nuit: 'noche',
+          sTitre: 'Tu estancia, en dos casas',
+          sIntro: 'Ninguna casa est\u00e1 libre toda tu estancia \u2014 pero dos s\u00ed, una tras otra. Tienes casa cada noche, sin interrupci\u00f3n.',
+          sFoot: 'Nosotros organizamos el cambio de una casa a otra el mismo d\u00eda, para que la estancia sea continua.',
+          sCta: 'Preguntarnos por esta estancia',
+          sWa: 'Hola, \u00bfpodr\u00edamos reservar esta estancia en dos casas?:',
           wa: 'Dinos tus fechas por WhatsApp',
-          waSplit: '\u00bfPodr\u00edamos reservar esta estancia en dos casas?:',
           note: 'Disponibilidad actualizada el',
           vide: 'Nada libre en estas fechas, ni en las dos semanas siguientes \u2014 escr\u00edbenos, solemos encontrar algo.' }
   }[L];
   if (!T) return;
-  var NOMS = {'326247':'Opale','326248':'Onyx','326251':'Topaze',
-              '326257':'Jade','326258':'Ambre','326259':'Agate'};
+  var NOMS = {'326247':'Casa Opale','326248':'Casa Onyx','326251':'Casa Topaze',
+              '326257':'Casa Jade','326258':'Casa Ambre','326259':'Casa Agate'};
   var MOIS = { en:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
                fr:['janv','f\u00e9vr','mars','avr','mai','juin','juil','ao\u00fbt','sept','oct','nov','d\u00e9c'],
                es:['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'] }[L];
@@ -1351,27 +1404,17 @@ if(new URLSearchParams(window.location.search).get('book') === '1'){
   if (!(N > 0) || N > 60) return;
   var AUJ = d2j(new Date());
 
-  var bloc = document.getElementById('noav-wrap');
-  var opts = document.getElementById('noav-opts');
-  var wa   = document.getElementById('noav-wa');
-  if (!bloc || !opts || !wa) return;
+  var bloc  = document.getElementById('noav-wrap');
+  var opts  = document.getElementById('noav-opts');
+  var wa    = document.getElementById('noav-wa');
+  var split = document.getElementById('noav-split');
+  if (!bloc || !opts || !wa || !split) return;
 
   function fmt(x){ var d = j2d(x); return d.getDate() + ' ' + MOIS[d.getMonth()]; }
-  function montrer(titre, lignes, note){
-    document.getElementById('noav-head').textContent = titre;
-    opts.innerHTML = '';
-    lignes.forEach(function(x){ opts.appendChild(x); });
-    wa.textContent = T.wa;
-    wa.href = WA + '?text=' + encodeURIComponent(
-      (L === 'fr' ? 'Bonjour, je cherche ' : L === 'es' ? 'Hola, busco ' : 'Hi, I am looking for ')
-      + N + ' ' + T.nuits + ' (' + fmt(ci) + ' \u2192 ' + fmt(co) + ') at Les Roches Retreat.');
-    document.getElementById('noav-note').textContent = note || '';
-    bloc.hidden = false;
-  }
-  function lien(principal, cote, url, dehors){
+  function nuitsMot(n){ return n + ' ' + (n > 1 ? T.nuits : T.nuit); }
+  function lien(principal, cote, url){
     var a = document.createElement('a');
     a.className = 'noav-opt'; a.href = url;
-    if (dehors){ a.target = '_blank'; a.rel = 'noopener'; a.classList.add('noav-opt-wa'); }
     var m = document.createElement('span'); m.className = 'noav-opt-main'; m.innerHTML = principal;
     var c = document.createElement('span'); c.className = 'noav-opt-side'; c.textContent = cote;
     a.appendChild(m); a.appendChild(c); return a;
@@ -1384,6 +1427,16 @@ if(new URLSearchParams(window.location.search).get('book') === '1'){
     if (L === 'fr') return n + ' jour' + (n>1?'s':'') + (dec>0 ? ' plus tard' : ' plus t\u00f4t');
     if (L === 'es') return n + ' d\u00eda' + (n>1?'s':'') + (dec>0 ? ' despu\u00e9s' : ' antes');
     return n + ' day' + (n>1?'s':'') + (dec>0 ? ' later' : ' earlier');
+  }
+  /* Une etape du rail : barre proportionnelle, nom de la maison, dates. */
+  function etape(nom, debut, fin, n){
+    var d = document.createElement('div');
+    d.className = 'ns-seg'; d.style.flex = n + ' 1 0';
+    var b = document.createElement('div'); b.className = 'ns-bar';
+    var v = document.createElement('div'); v.className = 'ns-villa'; v.textContent = nom;
+    var m = document.createElement('div'); m.className = 'ns-meta';
+    m.textContent = fmt(debut) + ' \u2192 ' + fmt(fin) + ' \u00b7 ' + nuitsMot(n);
+    d.appendChild(b); d.appendChild(v); d.appendChild(m); return d;
   }
 
   fetch('/availability.json?cb=' + Date.now(), {cache:'no-store'})
@@ -1409,8 +1462,8 @@ if(new URLSearchParams(window.location.search).get('book') === '1'){
       /* si une villa couvre le sejour, la page fait deja son travail */
       if (qui(ci, N).length) return;
 
-      var lignes = [], vus = {};
       /* 1 · les dates proches, la plus proche d'abord, trois au plus */
+      var lignes = [], vus = {};
       for (var e = 1; e <= 14 && lignes.length < 3; e++){
         [e, -e].forEach(function(dec){
           if (lignes.length >= 3) return;
@@ -1418,42 +1471,65 @@ if(new URLSearchParams(window.location.search).get('book') === '1'){
           if (debut < AUJ || vus[debut] || !qui(debut, N).length) return;
           vus[debut] = 1;
           lignes.push(lien('<strong>' + fmt(debut) + ' \u2192 ' + fmt(plus(debut, N))
-                           + '</strong> \u00b7 ' + N + ' ' + T.nuits,
+                           + '</strong> \u00b7 ' + nuitsMot(N),
                            decalage(dec), recherche(debut, N)));
         });
       }
-      /* 2 · le sejour en deux maisons, segments de deux nuits au moins.
-             Le moteur ne reserve qu'une villa a la fois : un lien de recherche
-             ne couvrirait que le premier segment, donc cette ligne part sur
-             WhatsApp avec le detail exact. */
+
+      /* 2 · le sejour en deux maisons, segments de deux nuits au moins */
+      var deux = null;
       if (N >= 4){
         for (var k = 2; k <= N - 2; k++){
           var A = qui(ci, k), B = qui(plus(ci, k), N - k), a = null, b = null;
           A.some(function(x){ return B.some(function(y){
             if (x !== y){ a = x; b = y; return true; } }); });
-          if (a && b){
-            var detail = NOMS[a] + ' ' + fmt(ci) + ' \u2192 ' + fmt(plus(ci, k))
-                       + ' (' + k + ' ' + T.nuits + ') + ' + NOMS[b] + ' '
-                       + fmt(plus(ci, k)) + ' \u2192 ' + fmt(co) + ' ('
-                       + (N - k) + ' ' + T.nuits + ')';
-            lignes.push(lien('<strong>' + NOMS[a] + '</strong> ' + k + ' ' + T.nuits
-                             + ' \u2014 ' + T.puis + ' <strong>' + NOMS[b] + '</strong> '
-                             + (N - k) + ' ' + T.nuits,
-                             T.deux,
-                             WA + '?text=' + encodeURIComponent(T.waSplit + ' ' + detail + '.'),
-                             true));
-            break;
-          }
+          if (a && b){ deux = {a: a, b: b, k: k}; break; }
         }
       }
+      if (deux){
+        var mid = plus(ci, deux.k);
+        document.getElementById('ns-title').textContent = T.sTitre;
+        document.getElementById('ns-intro').textContent = T.sIntro;
+        document.getElementById('ns-foot').textContent  = T.sFoot;
+        var rail = document.getElementById('ns-rail');
+        rail.innerHTML = '';
+        rail.appendChild(etape(NOMS[deux.a], ci, mid, deux.k));
+        var j = document.createElement('div'); j.className = 'ns-join';
+        j.setAttribute('aria-hidden', 'true'); rail.appendChild(j);
+        rail.appendChild(etape(NOMS[deux.b], mid, co, N - deux.k));
+        var cta = document.getElementById('ns-cta');
+        cta.textContent = T.sCta;
+        /* Le moteur ne reserve qu'une villa a la fois : ce sejour se cale a la
+           main, donc le message part avec les deux maisons et les deux plages. */
+        cta.href = WA + '?text=' + encodeURIComponent(T.sWa + ' '
+                 + NOMS[deux.a] + ' ' + fmt(ci) + ' \u2192 ' + fmt(mid)
+                 + ' (' + nuitsMot(deux.k) + ') + '
+                 + NOMS[deux.b] + ' ' + fmt(mid) + ' \u2192 ' + fmt(co)
+                 + ' (' + nuitsMot(N - deux.k) + ').');
+        split.hidden = false;
+      }
+
+      /* 3 · WhatsApp. Inutile de le redemander si le bloc deux maisons le porte deja. */
+      if (deux){ wa.hidden = true; }
+      else {
+        wa.hidden = false;
+        wa.textContent = T.wa;
+        wa.href = WA + '?text=' + encodeURIComponent(
+          (L === 'fr' ? 'Bonjour, je cherche ' : L === 'es' ? 'Hola, busco ' : 'Hi, I am looking for ')
+          + nuitsMot(N) + ' (' + fmt(ci) + ' \u2192 ' + fmt(co) + ') at Les Roches Retreat.');
+      }
+
       var note = '';
       if (AV.updated){
         var u = new Date(AV.updated);
         if (!isNaN(u)) note = T.note + ' ' + u.toLocaleDateString(L) + ' '
                             + u.toLocaleTimeString(L, {hour:'2-digit', minute:'2-digit'});
       }
-      if (lignes.length) montrer(T.proche, lignes, note);
-      else montrer(T.vide, [], note);
+      document.getElementById('noav-head').textContent =
+        (lignes.length || deux) ? T.proche : T.vide;
+      lignes.forEach(function(x){ opts.appendChild(x); });
+      document.getElementById('noav-note').textContent = note;
+      bloc.hidden = false;
     })
     .catch(function(){
       /* Les donnees n'ont pas pu etre lues : le verdict de la page vient du
