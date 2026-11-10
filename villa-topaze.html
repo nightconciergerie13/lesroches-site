@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="css/styles.css?v=2026-11-09a">
 <link rel="stylesheet" href="js/datepicker.css">
 
-<link rel="stylesheet" href="css/villa-shared.css?v=2026-11-09a">
+<link rel="stylesheet" href="css/villa-shared.css?v=2026-11-10b">
 <style>
 /* Seul ce qui est propre a cette villa reste ici : ses images.
    Tout le reste vit dans css/villa-shared.css, comme en FR et en ES. */
@@ -186,6 +186,7 @@
     <div class="hero-left">
       <a href="villas.html" class="h-back">Back to all villas</a>
       <h1 class="h-title">Casa Topaze</h1>
+            <div class="h-facts">2 bed<span>·</span>2 bath<span>·</span>Jungle Garden<span>·</span><em class="vbar-price-src">&mdash;</em></div>
       <a href="#reserve" class="h-cta" id="h-reserve-btn" style="display:inline-block;margin-top:1.8rem">Reserve this villa</a>
     </div>
   </div>
@@ -194,21 +195,18 @@
 <!-- ══════════════════════════════════════════════════
      GALLERY CAROUSEL
 ══════════════════════════════════════════════════ -->
-<div class="gallery-strip" id="gs-wrap">
-  <div class="gs-track" id="gs-track">
-    <div class="gs-item" data-lbx="0"><div class="gs-img gi1"></div><div class="gs-ov"><span class="gs-ov-txt">Private pool</span></div></div>
-    <div class="gs-item" data-lbx="1"><div class="gs-img gi2"></div><div class="gs-ov"><span class="gs-ov-txt">Living room</span></div></div>
-    <div class="gs-item" data-lbx="2"><div class="gs-img gi3"></div><div class="gs-ov"><span class="gs-ov-txt">Kitchen</span></div></div>
-    <div class="gs-item" data-lbx="3"><div class="gs-img gi4"></div><div class="gs-ov"><span class="gs-ov-txt">Exterior</span></div></div>
-    <div class="gs-item" data-lbx="4"><div class="gs-img gi5"></div><div class="gs-ov"><span class="gs-ov-txt">Garden</span></div></div>
-    <div class="gs-item" data-lbx="5"><div class="gs-img gi6"></div><div class="gs-ov"><span class="gs-ov-txt">Bathroom</span></div></div>
-    <div class="gs-item" data-lbx="6"><div class="gs-img gi7"></div><div class="gs-ov"><span class="gs-ov-txt">Bedroom</span></div></div>
-    <div class="gs-item" data-lbx="7"><div class="gs-img gi8"></div><div class="gs-ov"><span class="gs-ov-txt">Design details</span></div></div>
-    <div class="gs-item" data-lbx="8"><div class="gs-img gi9"></div><div class="gs-ov"><span class="gs-ov-txt">Sunset</span></div></div>
-  </div>
-  <div class="gs-dots" id="gs-dots"></div>
-  <div class="gs-all" id="gs-all">View all 9 photos</div>
-</div>
+    <div class="vgal" id="vgal">
+      <div class="gs-item" data-lbx="0"><div class="gs-img gi1"></div><div class="gs-ov"><span class="gs-ov-txt">Private pool</span></div></div>
+      <div class="gs-item" data-lbx="1"><div class="gs-img gi2"></div><div class="gs-ov"><span class="gs-ov-txt">Living room</span></div></div>
+      <div class="gs-item" data-lbx="2"><div class="gs-img gi3"></div><div class="gs-ov"><span class="gs-ov-txt">Kitchen</span></div></div>
+      <div class="gs-item" data-lbx="3"><div class="gs-img gi4"></div><div class="gs-ov"><span class="gs-ov-txt">Exterior</span></div></div>
+      <div class="gs-item" data-lbx="4"><div class="gs-img gi5"></div><div class="gs-ov"><span class="gs-ov-txt">Garden</span></div></div>
+      <div class="gs-item" data-lbx="5"><div class="gs-img gi6"></div><div class="gs-ov"><span class="gs-ov-txt">Bathroom</span></div></div>
+      <div class="gs-item" data-lbx="6"><div class="gs-img gi7"></div><div class="gs-ov"><span class="gs-ov-txt">Bedroom</span></div></div>
+      <div class="gs-item" data-lbx="7"><div class="gs-img gi8"></div><div class="gs-ov"><span class="gs-ov-txt">Design details</span></div></div>
+      <div class="gs-item" data-lbx="8"><div class="gs-img gi9"></div><div class="gs-ov"><span class="gs-ov-txt">Sunset</span></div></div>
+    </div>
+    <div class="vgal-foot"><button type="button" class="vgal-all" id="gs-all">View all 9 photos</button></div>
 
 <!-- ══════════════════════════════════════════════════
      MAIN: CONTENT + SIDEBAR
@@ -786,5 +784,54 @@ document.querySelectorAll('.sb-dates-row .sb-field').forEach(function(f) {
 <script src="cookie-consent.js?v=2026-11-09a" defer></script>
 <script src="js/lazy-bg.js?v=2026-11-09a" defer></script>
 <script src="js/swipe.js?v=2026-11-09a" defer></script>
+<div class="vbar" role="complementary" aria-label="Reserve Casa Topaze">
+  <div class="vbar-left"><span class="vbar-name">Casa Topaze</span><span class="vbar-tag">2 bed &middot; 2 bath &middot; Jungle Garden</span></div>
+  <span class="vbar-price">&mdash;</span>
+  <button type="button" class="vbar-btn">Reserve</button>
+</div>
+
+<script>
+/* Mosaique : le carrousel s'arrete tout seul (son init commence par
+   `if (!track) return;`) ; on rebranche le bouton de la visionneuse.
+   Barre de rappel : visible tant que le panneau n'est pas a l'ecran. */
+(function(){
+  var b = document.getElementById('gs-all');
+  if (b && typeof openLightbox === 'function') {
+    b.addEventListener('click', function(){ openLightbox(0); });
+  }
+  if (window.innerWidth < 861) return;
+  var bar = document.querySelector('.vbar');
+  var carte = document.querySelector('.sb-card');
+  var source = document.querySelector('.sb-price-val');
+  var prix = document.querySelector('.vbar-price');
+  if (!bar || !carte) return;
+  var heroPrix = document.querySelector('.vbar-price-src');
+  function majPrix(){
+    if (!source) return;
+    var t = (source.textContent || '').trim();
+    if (!t || t === '-') return;
+    if (prix) prix.textContent = 'from ' + t;
+    if (heroPrix) heroPrix.textContent = 'from ' + t.replace(' / night', '');
+  }
+  majPrix();
+  if (source && window.MutationObserver) {
+    new MutationObserver(majPrix).observe(source, {childList:true, characterData:true, subtree:true});
+  }
+  var carteVisible = false;
+  function rendre(){
+    bar.classList.toggle('on', !carteVisible);
+    document.body.classList.toggle('vbar-on', !carteVisible);
+  }
+  if (window.IntersectionObserver) {
+    new IntersectionObserver(function(e){ carteVisible = e[0].isIntersecting; rendre(); },
+      {threshold: 0.08}).observe(carte);
+  }
+  rendre();
+  var btn = document.querySelector('.vbar-btn');
+  if (btn) btn.addEventListener('click', function(){
+    var h = document.getElementById('h-reserve-btn'); if (h) h.click();
+  });
+})();
+</script>
 </body>
 </html>
