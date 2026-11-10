@@ -666,6 +666,38 @@
   <meta name="twitter:image" content="https://lesrochesretreat.com/images/drone-complex-pool-1.webp">
 <style id="lr-no-cursor">#cur{display:none!important}body.has-cursor *{cursor:auto!important}body.has-cursor a,body.has-cursor button,body.has-cursor [role=button],body.has-cursor .nl,body.has-cursor .nav-book,body.has-cursor .villa-card,body.has-cursor .exp-card,body.has-cursor .rv-card,body.has-cursor .bk-btn,body.has-cursor .h-cta,body.has-cursor .hero-cta,body.has-cursor summary,body.has-cursor label,body.has-cursor select{cursor:pointer!important}body.has-cursor input,body.has-cursor textarea{cursor:text!important}
     h2.vc-name { margin-top: 0; }
+
+/* ── Aucune disponibilite : trois portes plutot qu'un mur ── */
+.noav-wrap { margin: 1.6rem 5vw 0; padding: 1.5rem 1.8rem; background: var(--c);
+  border: 1px solid var(--c2); }
+.noav-head { font-family: 'Gilda Display', serif; font-size: 1.15rem; color: var(--ink);
+  margin-bottom: 1.1rem; line-height: 1.4; }
+.noav-opts { display: flex; flex-direction: column; gap: .55rem; }
+.noav-opts:not(:empty) { margin-bottom: 1.2rem; }
+.noav-opt { display: flex; align-items: baseline; gap: .8rem; padding: .8rem 1rem;
+  background: var(--w); border: 1px solid var(--c2); text-decoration: none;
+  transition: border-color .2s, transform .2s; }
+.noav-opt:hover { border-color: var(--ter); transform: translateX(3px); }
+.noav-opt-main { flex: 1; font-family: 'Outfit', sans-serif; font-size: .78rem;
+  color: var(--ink); font-weight: 300; }
+.noav-opt-main strong { font-weight: 400; }
+.noav-opt-side { font-family: 'Outfit', sans-serif; font-size: .55rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--mid); white-space: nowrap; }
+/* Une proposition qui part sur WhatsApp n'est pas une recherche : on le montre. */
+.noav-opt-wa { border-left: 2px solid var(--ter); }
+.noav-opt-wa .noav-opt-side { color: var(--ter); }
+.noav-wa { display: inline-block; font-family: 'Outfit', sans-serif; font-size: .5rem;
+  letter-spacing: .24em; text-transform: uppercase; color: var(--w);
+  background: var(--ter); padding: .75rem 1.8rem; text-decoration: none;
+  transition: background .2s; }
+.noav-wa:hover { background: var(--ter2); }
+.noav-note { margin-top: .9rem; font-family: 'Outfit', sans-serif; font-size: .55rem;
+  color: var(--mid); font-weight: 300; }
+@media (max-width: 768px) {
+  .noav-wrap { margin: 1.2rem 1.5rem 0; padding: 1.2rem 1.1rem; }
+  .noav-opt { flex-direction: column; gap: .25rem; }
+  .noav-wa { display: block; text-align: center; }
+}
 </style>
 <script type="application/ld+json">
 {
@@ -817,6 +849,13 @@
         </div>
         <button class="ds-btn" id="ds-btn">Check rates →</button>
       </div>
+    <div class="noav-wrap" id="noav-wrap" hidden>
+      <div class="noav-head" id="noav-head"></div>
+      <div class="noav-opts" id="noav-opts"></div>
+      <a class="noav-wa" id="noav-wa" href="https://wa.me/33667749024" target="_blank" rel="noopener"></a>
+      <div class="noav-note" id="noav-note"></div>
+    </div>
+
     </div>
 
     <div class="vg">
@@ -1262,5 +1301,165 @@ if(new URLSearchParams(window.location.search).get('book') === '1'){
 }
 </script>
 <div class="mob-book-bar"><a href="#upper-estate">Book Now, Best Rate Guaranteed</a></div>
+
+<script>
+/* ══ Aucune disponibilite : propositions ══
+   Trois sorties, dans cet ordre : les dates proches ou une villa est libre,
+   le sejour en deux maisons, WhatsApp. La regle de disponibilite est recopiee
+   a l'identique de js/config.js — toute divergence proposerait des dates que
+   le moteur refuserait au clic. */
+(function(){
+  var WA = 'https://wa.me/33667749024';
+  var L = (document.documentElement.getAttribute('lang') || 'en').slice(0,2);
+  var T = {
+    en: { proche: 'Here is what is close:',
+          nuits: 'nights', deux: '2 houses', puis: 'then',
+          wa: 'Tell us your dates on WhatsApp',
+          waSplit: 'Could we book this split stay:',
+          note: 'Availability updated',
+          vide: 'Nothing free on these dates, and nothing within two weeks either \u2014 write to us, we often find a way.' },
+    fr: { proche: 'Voici ce qui est proche\u00a0:',
+          nuits: 'nuits', deux: '2 maisons', puis: 'puis',
+          wa: 'Dites-nous vos dates sur WhatsApp',
+          waSplit: 'Pourrions-nous r\u00e9server ce s\u00e9jour en deux maisons\u00a0:',
+          note: 'Disponibilit\u00e9s mises \u00e0 jour le',
+          vide: 'Rien de libre sur ces dates, ni dans les quinze jours autour \u2014 \u00e9crivez-nous, on trouve souvent une solution.' },
+    es: { proche: 'Esto s\u00ed est\u00e1 libre:',
+          nuits: 'noches', deux: '2 casas', puis: 'luego',
+          wa: 'Dinos tus fechas por WhatsApp',
+          waSplit: '\u00bfPodr\u00edamos reservar esta estancia en dos casas?:',
+          note: 'Disponibilidad actualizada el',
+          vide: 'Nada libre en estas fechas, ni en las dos semanas siguientes \u2014 escr\u00edbenos, solemos encontrar algo.' }
+  }[L];
+  if (!T) return;
+  var NOMS = {'326247':'Opale','326248':'Onyx','326251':'Topaze',
+              '326257':'Jade','326258':'Ambre','326259':'Agate'};
+  var MOIS = { en:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+               fr:['janv','f\u00e9vr','mars','avr','mai','juin','juil','ao\u00fbt','sept','oct','nov','d\u00e9c'],
+               es:['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'] }[L];
+
+  var p = new URLSearchParams(location.search);
+  var ci = p.get('checkin'), co = p.get('checkout');
+  var guests = p.get('guests') || '2';
+  if (!ci || !co || !/^\d{4}-\d{2}-\d{2}$/.test(ci) || !/^\d{4}-\d{2}-\d{2}$/.test(co)) return;
+
+  function j2d(x){ return new Date(x + 'T00:00:00'); }
+  function d2j(d){ return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0')
+                        + '-' + String(d.getDate()).padStart(2,'0'); }
+  function plus(x, n){ var d = j2d(x); d.setDate(d.getDate() + n); return d2j(d); }
+  var N = Math.round((j2d(co) - j2d(ci)) / 86400000);
+  if (!(N > 0) || N > 60) return;
+  var AUJ = d2j(new Date());
+
+  var bloc = document.getElementById('noav-wrap');
+  var opts = document.getElementById('noav-opts');
+  var wa   = document.getElementById('noav-wa');
+  if (!bloc || !opts || !wa) return;
+
+  function fmt(x){ var d = j2d(x); return d.getDate() + ' ' + MOIS[d.getMonth()]; }
+  function montrer(titre, lignes, note){
+    document.getElementById('noav-head').textContent = titre;
+    opts.innerHTML = '';
+    lignes.forEach(function(x){ opts.appendChild(x); });
+    wa.textContent = T.wa;
+    wa.href = WA + '?text=' + encodeURIComponent(
+      (L === 'fr' ? 'Bonjour, je cherche ' : L === 'es' ? 'Hola, busco ' : 'Hi, I am looking for ')
+      + N + ' ' + T.nuits + ' (' + fmt(ci) + ' \u2192 ' + fmt(co) + ') at Les Roches Retreat.');
+    document.getElementById('noav-note').textContent = note || '';
+    bloc.hidden = false;
+  }
+  function lien(principal, cote, url, dehors){
+    var a = document.createElement('a');
+    a.className = 'noav-opt'; a.href = url;
+    if (dehors){ a.target = '_blank'; a.rel = 'noopener'; a.classList.add('noav-opt-wa'); }
+    var m = document.createElement('span'); m.className = 'noav-opt-main'; m.innerHTML = principal;
+    var c = document.createElement('span'); c.className = 'noav-opt-side'; c.textContent = cote;
+    a.appendChild(m); a.appendChild(c); return a;
+  }
+  function recherche(debut, n){
+    return 'villas.html?checkin=' + debut + '&checkout=' + plus(debut, n) + '&guests=' + guests;
+  }
+  function decalage(dec){
+    var n = Math.abs(dec);
+    if (L === 'fr') return n + ' jour' + (n>1?'s':'') + (dec>0 ? ' plus tard' : ' plus t\u00f4t');
+    if (L === 'es') return n + ' d\u00eda' + (n>1?'s':'') + (dec>0 ? ' despu\u00e9s' : ' antes');
+    return n + ' day' + (n>1?'s':'') + (dec>0 ? ' later' : ' earlier');
+  }
+
+  fetch('/availability.json?cb=' + Date.now(), {cache:'no-store'})
+    .then(function(r){ if (!r.ok) throw 0; return r.json(); })
+    .then(function(AV){
+      var V = AV && AV.villas;
+      if (!V) throw 0;
+      var SETS = {};
+      /* ── la regle, identique a config.js ── */
+      function libre(id, debut, n){
+        var info = V[id]; if (!info) return false;
+        var set = SETS[id] || (SETS[id] = new Set(info.available || []));
+        var pr = info.prices || {}, ms = info.minStay || {};
+        for (var i = 0; i < n; i++){
+          var d = plus(debut, i);
+          if (!set.has(d) || pr[d] == null) return false;
+        }
+        return n >= (ms[debut] || 1);
+      }
+      function qui(debut, n){
+        var r = []; for (var id in V) if (libre(id, debut, n)) r.push(id); return r;
+      }
+      /* si une villa couvre le sejour, la page fait deja son travail */
+      if (qui(ci, N).length) return;
+
+      var lignes = [], vus = {};
+      /* 1 · les dates proches, la plus proche d'abord, trois au plus */
+      for (var e = 1; e <= 14 && lignes.length < 3; e++){
+        [e, -e].forEach(function(dec){
+          if (lignes.length >= 3) return;
+          var debut = plus(ci, dec);
+          if (debut < AUJ || vus[debut] || !qui(debut, N).length) return;
+          vus[debut] = 1;
+          lignes.push(lien('<strong>' + fmt(debut) + ' \u2192 ' + fmt(plus(debut, N))
+                           + '</strong> \u00b7 ' + N + ' ' + T.nuits,
+                           decalage(dec), recherche(debut, N)));
+        });
+      }
+      /* 2 · le sejour en deux maisons, segments de deux nuits au moins.
+             Le moteur ne reserve qu'une villa a la fois : un lien de recherche
+             ne couvrirait que le premier segment, donc cette ligne part sur
+             WhatsApp avec le detail exact. */
+      if (N >= 4){
+        for (var k = 2; k <= N - 2; k++){
+          var A = qui(ci, k), B = qui(plus(ci, k), N - k), a = null, b = null;
+          A.some(function(x){ return B.some(function(y){
+            if (x !== y){ a = x; b = y; return true; } }); });
+          if (a && b){
+            var detail = NOMS[a] + ' ' + fmt(ci) + ' \u2192 ' + fmt(plus(ci, k))
+                       + ' (' + k + ' ' + T.nuits + ') + ' + NOMS[b] + ' '
+                       + fmt(plus(ci, k)) + ' \u2192 ' + fmt(co) + ' ('
+                       + (N - k) + ' ' + T.nuits + ')';
+            lignes.push(lien('<strong>' + NOMS[a] + '</strong> ' + k + ' ' + T.nuits
+                             + ' \u2014 ' + T.puis + ' <strong>' + NOMS[b] + '</strong> '
+                             + (N - k) + ' ' + T.nuits,
+                             T.deux,
+                             WA + '?text=' + encodeURIComponent(T.waSplit + ' ' + detail + '.'),
+                             true));
+            break;
+          }
+        }
+      }
+      var note = '';
+      if (AV.updated){
+        var u = new Date(AV.updated);
+        if (!isNaN(u)) note = T.note + ' ' + u.toLocaleDateString(L) + ' '
+                            + u.toLocaleTimeString(L, {hour:'2-digit', minute:'2-digit'});
+      }
+      if (lignes.length) montrer(T.proche, lignes, note);
+      else montrer(T.vide, [], note);
+    })
+    .catch(function(){
+      /* Les donnees n'ont pas pu etre lues : le verdict de la page vient du
+         meme fichier, donc on ne dit rien plutot que de la contredire. */
+    });
+})();
+</script>
 </body>
 </html>
