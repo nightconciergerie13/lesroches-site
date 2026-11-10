@@ -1333,6 +1333,12 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
   .fp .fp-fields { display: none; }
   .fp .fp-cta { margin-top: 1.4rem; }
 }
+
+/* ── Mobile : fleches du carrousel centrees ──
+   calees a droite, elles passaient sous la pastille WhatsApp fixe ── */
+@media (max-width: 900px) {
+  .vscroll-nav { justify-content: center; }
+}
 </style>
 
 <div id="wa-bubble">
