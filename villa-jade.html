@@ -186,6 +186,7 @@
     <div class="hero-left">
       <a href="villas.html" class="h-back">Back to all villas</a>
       <h1 class="h-title">Casa Jade</h1>
+            <div class="h-facts">2 bedrooms<span>·</span>2 bathrooms<span>·</span>Ocean view<span>·</span><em id="h-from">&mdash;</em></div>
       <a href="#reserve" class="h-cta" id="h-reserve-btn" style="display:inline-block;margin-top:1.8rem">Reserve this villa</a>
     </div>
   </div>
@@ -803,6 +804,24 @@ document.querySelectorAll('.sb-dates-row .sb-field').forEach(function(f) {
   .jade-gal .gs-ov { opacity: 1; }
   .jade-gal-foot { padding: 1.1rem 1.5rem 0; }
 }
+
+
+
+/* ── Heros : une ligne de reperes sous le nom ──
+   Le premier ecran ne disait que « Casa Jade ». Les chambres, la vue et le
+   prix n'arrivaient qu'un ecran et demi plus bas. ── */
+.h-facts { margin-top: 1.1rem; font-family: 'Outfit', sans-serif; font-size: .62rem;
+  letter-spacing: .22em; text-transform: uppercase; color: rgba(250,247,242,.62);
+  animation: fu .9s .55s both; }
+.h-facts span { margin: 0 .7rem; color: rgba(250,247,242,.3); }
+.h-facts em { font-style: normal; color: rgba(250,247,242,.88); }
+@media (max-width: 768px) {
+  .h-facts { font-size: .55rem; letter-spacing: .16em; margin-top: .9rem; }
+  .h-facts span { margin: 0 .45rem; }
+}
+/* ── La mosaique va d'un bord a l'autre : plus de largeur, pas plus de hauteur ── */
+.jade-gal { padding: 0; gap: 8px; }
+.jade-gal-foot { padding-top: 1.4rem; }
 </style>
 
 <script>(function(){var B="https://beds24.com/booking2.php?propid=326257&referer=iframe";function go(e){if(e){e.preventDefault();e.stopImmediatePropagation();}window.location.href=B;}function bind(){var c=document.getElementById("sb-cta");if(c)c.addEventListener("click",go,true);}if(document.readyState!=="loading")bind();else document.addEventListener("DOMContentLoaded",bind);})();</script>
@@ -820,6 +839,23 @@ document.querySelectorAll('.sb-dates-row .sb-field').forEach(function(f) {
   var b = document.getElementById('gs-all');
   if (b && typeof openLightbox === 'function') {
     b.addEventListener('click', function(){ openLightbox(0); });
+  }
+})();
+</script>
+
+<script>
+/* Le prix du heros suit celui du panneau, qui se remplit depuis Supabase. */
+(function(){
+  var cible = document.getElementById('h-from');
+  var source = document.querySelector('.sb-price-val');
+  if (!cible || !source) return;
+  function maj(){
+    var t = (source.textContent || '').trim();
+    if (t && t !== '-') cible.textContent = 'from ' + t.replace(' / night', '');
+  }
+  maj();
+  if (window.MutationObserver) {
+    new MutationObserver(maj).observe(source, {childList:true, characterData:true, subtree:true});
   }
 })();
 </script>
