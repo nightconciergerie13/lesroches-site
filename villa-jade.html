@@ -194,21 +194,18 @@
 <!-- ══════════════════════════════════════════════════
      GALLERY CAROUSEL
 ══════════════════════════════════════════════════ -->
-<div class="gallery-strip" id="gs-wrap">
-  <div class="gs-track" id="gs-track">
-    <div class="gs-item" data-lbx="0"><div class="gs-img gi1"></div><div class="gs-ov"><span class="gs-ov-txt">Private pool</span></div></div>
-    <div class="gs-item" data-lbx="1"><div class="gs-img gi2"></div><div class="gs-ov"><span class="gs-ov-txt">Living room</span></div></div>
-    <div class="gs-item" data-lbx="2"><div class="gs-img gi3"></div><div class="gs-ov"><span class="gs-ov-txt">Kitchen</span></div></div>
-    <div class="gs-item" data-lbx="3"><div class="gs-img gi4"></div><div class="gs-ov"><span class="gs-ov-txt">Deck</span></div></div>
-    <div class="gs-item" data-lbx="4"><div class="gs-img gi5"></div><div class="gs-ov"><span class="gs-ov-txt">Garden</span></div></div>
-    <div class="gs-item" data-lbx="5"><div class="gs-img gi6"></div><div class="gs-ov"><span class="gs-ov-txt">Bathroom</span></div></div>
-    <div class="gs-item" data-lbx="6"><div class="gs-img gi7"></div><div class="gs-ov"><span class="gs-ov-txt">Bedroom</span></div></div>
-    <div class="gs-item" data-lbx="7"><div class="gs-img gi8"></div><div class="gs-ov"><span class="gs-ov-txt">Interior</span></div></div>
-    <div class="gs-item" data-lbx="8"><div class="gs-img gi9"></div><div class="gs-ov"><span class="gs-ov-txt">Sunset pool</span></div></div>
-  </div>
-  <div class="gs-dots" id="gs-dots"></div>
-  <div class="gs-all" id="gs-all">View all 9 photos</div>
-</div>
+    <div class="jade-gal" id="jade-gal">
+      <div class="gs-item" data-lbx="0"><div class="gs-img gi1"></div><div class="gs-ov"><span class="gs-ov-txt">Infinity pool</span></div></div>
+      <div class="gs-item" data-lbx="1"><div class="gs-img gi2"></div><div class="gs-ov"><span class="gs-ov-txt">Living room</span></div></div>
+      <div class="gs-item" data-lbx="2"><div class="gs-img gi3"></div><div class="gs-ov"><span class="gs-ov-txt">Kitchen</span></div></div>
+      <div class="gs-item" data-lbx="3"><div class="gs-img gi4"></div><div class="gs-ov"><span class="gs-ov-txt">Terrace</span></div></div>
+      <div class="gs-item" data-lbx="4"><div class="gs-img gi5"></div><div class="gs-ov"><span class="gs-ov-txt">From above</span></div></div>
+      <div class="gs-item" data-lbx="5"><div class="gs-img gi6"></div><div class="gs-ov"><span class="gs-ov-txt">Second bedroom</span></div></div>
+      <div class="gs-item" data-lbx="6"><div class="gs-img gi7"></div><div class="gs-ov"><span class="gs-ov-txt">Bedroom</span></div></div>
+      <div class="gs-item" data-lbx="7"><div class="gs-img gi8"></div><div class="gs-ov"><span class="gs-ov-txt">Open plan</span></div></div>
+      <div class="gs-item" data-lbx="8"><div class="gs-img gi9"></div><div class="gs-ov"><span class="gs-ov-txt">Sunset</span></div></div>
+    </div>
+    <div class="jade-gal-foot"><button type="button" class="jade-gal-all" id="gs-all">View all 9 photos</button></div>
 
 <!-- ══════════════════════════════════════════════════
      MAIN: CONTENT + SIDEBAR
@@ -478,15 +475,15 @@ document.getElementById('h-reserve-btn').addEventListener('click', function(e) {
 
 /* ── Lightbox ── */
 const LBX_PHOTOS = [
-  { src: '/images/jade-pool.webp',    caption: 'Private pool' },
+  { src: '/images/jade-pool.webp',    caption: 'Infinity pool' },
   { src: '/images/jade-living.webp',    caption: 'Living room' },
   { src: '/images/jade-kitchen.webp',    caption: 'Kitchen' },
-  { src: '/images/jade-deck.webp',    caption: 'Deck' },
-  { src: '/images/jade-garden.webp',    caption: 'Garden' },
-  { src: '/images/jade-bathroom.webp',    caption: 'Bathroom' },
+  { src: '/images/jade-deck.webp',    caption: 'Terrace' },
+  { src: '/images/jade-garden.webp',    caption: 'From above' },
+  { src: '/images/jade-bathroom.webp',    caption: 'Second bedroom' },
   { src: '/images/jade-bedroom.webp',    caption: 'Bedroom' },
-  { src: '/images/jade-interior-1.webp',    caption: 'Interior' },
-  { src: '/images/jade-sunset-pool.webp',    caption: 'Sunset pool' }
+  { src: '/images/jade-interior-1.webp',    caption: 'Open plan' },
+  { src: '/images/jade-sunset-pool.webp',    caption: 'Sunset' }
 ];
 let lbxIdx = 0;
 
@@ -777,6 +774,35 @@ document.querySelectorAll('.sb-dates-row .sb-field').forEach(function(f) {
 #lbx-thumbs::-webkit-scrollbar{height:3px}#lbx-thumbs::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2)}
 .lbx-thumb{width:52px;height:36px;background-size:cover;background-position:center;opacity:.3;cursor:pointer;transition:opacity .2s;flex-shrink:0;border-radius:1px}
 .lbx-thumb.active{opacity:1;outline:1px solid rgba(255,255,255,.55)}
+
+/* ── Galerie en mosaique (remplace la bande horizontale) ──
+   Les photos sont du 3:2 : on les montre en paysage au lieu de les recadrer
+   dans des fenetres verticales. ── */
+.jade-gal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  padding: 0 5vw; background: var(--w); }
+.jade-gal .gs-item { position: relative; overflow: hidden; cursor: pointer; aspect-ratio: 3 / 2;
+  width: auto !important; flex: initial; height: auto; min-width: 0; }
+.jade-gal .gs-item:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; width: auto !important; }
+.jade-gal .gs-img { width: 100%; height: 100%; background-size: cover; background-position: center;
+  transition: transform .8s cubic-bezier(.25,.8,.25,1); }
+.jade-gal .gs-item:hover .gs-img { transform: scale(1.04); }
+.jade-gal .gs-ov { position: absolute; inset: 0; display: flex; align-items: flex-end;
+  padding: .9rem 1rem; opacity: 0; transition: opacity .3s;
+  background: linear-gradient(to top, rgba(18,14,10,.55) 0%, rgba(18,14,10,0) 55%); }
+.jade-gal .gs-item:hover .gs-ov { opacity: 1; }
+.jade-gal .gs-ov-txt { font-family: 'Outfit', sans-serif; font-size: .5rem; letter-spacing: .26em;
+  text-transform: uppercase; color: rgba(255,255,255,.95); border: none; padding: 0; }
+.jade-gal-foot { padding: 1.3rem 5vw 0; background: var(--w); text-align: center; }
+.jade-gal-all { background: none; border: 1px solid var(--c2); color: var(--ink);
+  font-family: 'Outfit', sans-serif; font-size: .5rem; letter-spacing: .26em; text-transform: uppercase;
+  padding: .8rem 2rem; cursor: pointer; transition: background .2s, border-color .2s; }
+.jade-gal-all:hover { background: var(--c); border-color: var(--sand); }
+@media (max-width: 768px) {
+  .jade-gal { grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 0; }
+  .jade-gal .gs-item:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 3 / 2; }
+  .jade-gal .gs-ov { opacity: 1; }
+  .jade-gal-foot { padding: 1.1rem 1.5rem 0; }
+}
 </style>
 
 <script>(function(){var B="https://beds24.com/booking2.php?propid=326257&referer=iframe";function go(e){if(e){e.preventDefault();e.stopImmediatePropagation();}window.location.href=B;}function bind(){var c=document.getElementById("sb-cta");if(c)c.addEventListener("click",go,true);}if(document.readyState!=="loading")bind();else document.addEventListener("DOMContentLoaded",bind);})();</script>
@@ -786,5 +812,16 @@ document.querySelectorAll('.sb-dates-row .sb-field').forEach(function(f) {
 <script src="cookie-consent.js?v=2026-11-09a" defer></script>
 <script src="js/lazy-bg.js?v=2026-11-09a" defer></script>
 <script src="js/swipe.js?v=2026-11-09a" defer></script>
+
+<script>
+/* Le carrousel ne tourne plus (son init sort sur `if (!track) return;`),
+   donc on rebranche le bouton de la visionneuse. */
+(function(){
+  var b = document.getElementById('gs-all');
+  if (b && typeof openLightbox === 'function') {
+    b.addEventListener('click', function(){ openLightbox(0); });
+  }
+})();
+</script>
 </body>
 </html>
