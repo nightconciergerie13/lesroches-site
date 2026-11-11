@@ -696,14 +696,27 @@
 .ns-cta:hover { background: var(--ter); }
 
 @media (max-width: 768px) {
-  .noav-wrap { margin: 1.2rem 1.5rem 0; padding: 1.2rem 1.1rem; }
+  /* 15 px, comme la barre de recherche juste au-dessus : les deux
+     doivent tomber sur la meme colonne. section.floor fournit deja
+     le reste de la gouttiere. */
+  .noav-wrap { margin: 1.2rem 15px 0; padding: 1.2rem 1.1rem; }
   .noav-opt { flex-direction: column; gap: .25rem; }
   .noav-wa { display: block; text-align: center; }
   .noav-split { padding: 1.2rem 1.1rem 1.3rem; }
-  /* Le rail se redresse : deux etapes l'une sous l'autre, la continuite reste lisible. */
-  .ns-rail { flex-direction: column; gap: 1.1rem; }
-  .ns-seg { width: 100% !important; flex: none !important; }
-  .ns-join { display: none; }
+  /* Sur telephone le rail devient une frise verticale : un trait continu a
+     gauche, les etapes a cote. La barre de chaque etape se redresse et court
+     sur toute sa hauteur, les raccords prolongent le trait. Un seul trait du
+     haut en bas, qui change de couleur a chaque maison. */
+  .ns-rail { flex-direction: column; gap: 0; }
+  .ns-seg { width: 100% !important; flex: none !important;
+    display: grid; grid-template-columns: 3px 1fr; column-gap: 16px; }
+  .ns-bar { grid-column: 1; grid-row: 1 / 3; width: 3px; height: 100%; }
+  .ns-villa { grid-column: 2; grid-row: 1; margin-top: -.2rem; }
+  .ns-meta  { grid-column: 2; grid-row: 2; }
+  .ns-join { display: block; width: 100%; height: 18px; }
+  .ns-join::before { left: 0; right: auto; top: 0; bottom: 0; width: 3px; height: auto;
+    border-radius: 0; background: linear-gradient(180deg, var(--a), var(--b)); }
+  .ns-join::after { left: 1.5px; top: 50%; }
   .ns-cta { display: block; text-align: center; }
 }
 </style>
