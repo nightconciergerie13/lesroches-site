@@ -672,6 +672,7 @@
   border: 1px solid var(--c2); }
 .noav-head { font-family: 'Gilda Display', serif; font-size: 1.15rem; color: var(--ink);
   margin-bottom: 1.1rem; line-height: 1.4; }
+.noav-head:empty { display: none; }
 .noav-opts { display: flex; flex-direction: column; gap: .55rem; }
 .noav-opts:not(:empty) { margin-bottom: 1.2rem; }
 .noav-opt { display: flex; align-items: baseline; gap: .8rem; padding: .8rem 1rem;
@@ -704,15 +705,15 @@
 .ns-rail { display: flex; align-items: stretch; margin-bottom: 1.3rem; }
 .ns-seg { min-width: 0; }
 .ns-bar { height: 3px; border-radius: 2px; }
-.ns-seg:first-child .ns-bar { background: var(--ter); }
-.ns-seg:last-child .ns-bar { background: var(--ink); }
+/* La couleur de chaque barre est posee par le script : elle alterne, pour que
+   deux etapes voisines se distinguent, a deux comme a trois maisons. */
 .ns-villa { font-family: 'Gilda Display', serif; font-size: 1rem; color: var(--ink);
   margin-top: .7rem; }
 .ns-meta { font-family: 'Outfit', sans-serif; font-size: .62rem; letter-spacing: .1em;
   text-transform: uppercase; color: var(--mid); margin-top: .25rem; }
 .ns-join { width: 20px; flex: none; position: relative; }
 .ns-join::before { content: ''; position: absolute; left: -1px; right: -1px; top: 0; height: 3px;
-  border-radius: 2px; background: linear-gradient(90deg, var(--ter), var(--ink)); }
+  border-radius: 2px; background: linear-gradient(90deg, var(--a), var(--b)); }
 .ns-join::after { content: ''; position: absolute; left: 50%; top: 1.5px; width: 7px; height: 7px;
   transform: translate(-50%, -50%); border-radius: 50%; background: var(--w);
   border: 1px solid var(--mid); }
@@ -1349,40 +1350,46 @@ if(new URLSearchParams(window.location.search).get('book') === '1'){
 <script>
 /* ══ Aucune disponibilite : propositions ══
    Trois sorties, dans cet ordre : les dates proches ou une villa est libre,
-   le sejour en deux maisons, WhatsApp. La regle de disponibilite est recopiee
-   a l'identique de js/config.js — toute divergence proposerait des dates que
-   le moteur refuserait au clic. */
+   le sejour en plusieurs maisons, WhatsApp. La regle de disponibilite est
+   recopiee a l'identique de js/config.js : toute divergence proposerait des
+   dates que le moteur refuserait au clic. */
 (function(){
   var WA = 'https://wa.me/33667749024';
   var L = (document.documentElement.getAttribute('lang') || 'en').slice(0,2);
   var T = {
     en: { proche: 'Here is what is close:', nuits: 'nights', nuit: 'night',
-          sTitre: 'Your stay, in two houses',
-          sIntro: 'No single house is free for your whole stay \u2014 but two are, back to back. You have a house every night, with no gap.',
-          sFoot: 'We organise the move from one house to the other on the day, so your stay runs straight through.',
+          mots: {2:'two', 3:'three'},
+          sTitre: 'Your stay, in {n} houses',
+          sIntro: 'No single house is free for your whole stay. But {n} are, back to back: you have a house every night, with no gap.',
+          sFoot1: 'We organise the change of house on the day, so your stay runs straight through.',
+          sFoot2: 'We organise each change of house on the day, so your stay runs straight through.',
           sCta: 'Ask us about this stay',
-          sWa: 'Hi, could we book this stay across two houses:',
+          sWa: 'Hi, could we book this stay across {n} houses:',
           wa: 'Tell us your dates on WhatsApp',
           note: 'Availability updated',
-          vide: 'Nothing free on these dates, and nothing within two weeks either \u2014 write to us, we often find a way.' },
+          vide: 'Nothing free on these dates, and nothing within two weeks either. Write to us, we often find a way.' },
     fr: { proche: 'Voici ce qui est proche\u00a0:', nuits: 'nuits', nuit: 'nuit',
-          sTitre: 'Votre s\u00e9jour, en deux maisons',
-          sIntro: 'Aucune maison n\u2019est libre sur la totalit\u00e9 de vos dates \u2014 mais deux le sont, bout \u00e0 bout. Vous \u00eates log\u00e9 chaque nuit, sans interruption.',
-          sFoot: 'Nous organisons le passage d\u2019une maison \u00e0 l\u2019autre le jour venu, pour que le s\u00e9jour se d\u00e9roule d\u2019une seule traite.',
+          mots: {2:'deux', 3:'trois'},
+          sTitre: 'Votre s\u00e9jour, en {n} maisons',
+          sIntro: 'Aucune maison n\u2019est libre sur la totalit\u00e9 de vos dates. Mais {n} le sont bout \u00e0 bout\u00a0: vous \u00eates log\u00e9 chaque nuit, sans interruption.',
+          sFoot1: 'Nous organisons le changement de maison le jour venu, pour que le s\u00e9jour se d\u00e9roule d\u2019une seule traite.',
+          sFoot2: 'Nous organisons les changements de maison le jour venu, pour que le s\u00e9jour se d\u00e9roule d\u2019une seule traite.',
           sCta: 'Nous demander ce s\u00e9jour',
-          sWa: 'Bonjour, pourrions-nous r\u00e9server ce s\u00e9jour en deux maisons\u00a0:',
+          sWa: 'Bonjour, pourrions-nous r\u00e9server ce s\u00e9jour en {n} maisons\u00a0:',
           wa: 'Dites-nous vos dates sur WhatsApp',
           note: 'Disponibilit\u00e9s mises \u00e0 jour le',
-          vide: 'Rien de libre sur ces dates, ni dans les quinze jours autour \u2014 \u00e9crivez-nous, on trouve souvent une solution.' },
+          vide: 'Rien de libre sur ces dates, ni dans les quinze jours autour. \u00c9crivez-nous, on trouve souvent une solution.' },
     es: { proche: 'Esto s\u00ed est\u00e1 libre:', nuits: 'noches', nuit: 'noche',
-          sTitre: 'Tu estancia, en dos casas',
-          sIntro: 'Ninguna casa est\u00e1 libre toda tu estancia \u2014 pero dos s\u00ed, una tras otra. Tienes casa cada noche, sin interrupci\u00f3n.',
-          sFoot: 'Nosotros organizamos el cambio de una casa a otra el mismo d\u00eda, para que la estancia sea continua.',
+          mots: {2:'dos', 3:'tres'},
+          sTitre: 'Tu estancia, en {n} casas',
+          sIntro: 'Ninguna casa est\u00e1 libre toda tu estancia. Pero {n} s\u00ed, una tras otra: tienes casa cada noche, sin interrupci\u00f3n.',
+          sFoot1: 'Nosotros organizamos el cambio de casa el mismo d\u00eda, para que la estancia sea continua.',
+          sFoot2: 'Nosotros organizamos los cambios de casa el mismo d\u00eda, para que la estancia sea continua.',
           sCta: 'Preguntarnos por esta estancia',
-          sWa: 'Hola, \u00bfpodr\u00edamos reservar esta estancia en dos casas?:',
+          sWa: 'Hola, \u00bfpodr\u00edamos reservar esta estancia en {n} casas?:',
           wa: 'Dinos tus fechas por WhatsApp',
           note: 'Disponibilidad actualizada el',
-          vide: 'Nada libre en estas fechas, ni en las dos semanas siguientes \u2014 escr\u00edbenos, solemos encontrar algo.' }
+          vide: 'Nada libre en estas fechas, ni en las dos semanas siguientes. Escr\u00edbenos, solemos encontrar algo.' }
   }[L];
   if (!T) return;
   var NOMS = {'326247':'Casa Opale','326248':'Casa Onyx','326251':'Casa Topaze',
@@ -1390,6 +1397,7 @@ if(new URLSearchParams(window.location.search).get('book') === '1'){
   var MOIS = { en:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
                fr:['janv','f\u00e9vr','mars','avr','mai','juin','juil','ao\u00fbt','sept','oct','nov','d\u00e9c'],
                es:['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'] }[L];
+  var TONS = ['var(--ter)', 'var(--ink)'];   /* alternance des barres du rail */
 
   var p = new URLSearchParams(location.search);
   var ci = p.get('checkin'), co = p.get('checkout');
@@ -1428,15 +1436,23 @@ if(new URLSearchParams(window.location.search).get('book') === '1'){
     if (L === 'es') return n + ' d\u00eda' + (n>1?'s':'') + (dec>0 ? ' despu\u00e9s' : ' antes');
     return n + ' day' + (n>1?'s':'') + (dec>0 ? ' later' : ' earlier');
   }
-  /* Une etape du rail : barre proportionnelle, nom de la maison, dates. */
-  function etape(nom, debut, fin, n){
+  /* Une etape du rail : barre proportionnelle au nombre de nuits, maison, dates. */
+  function etape(seg, ton){
     var d = document.createElement('div');
-    d.className = 'ns-seg'; d.style.flex = n + ' 1 0';
-    var b = document.createElement('div'); b.className = 'ns-bar';
-    var v = document.createElement('div'); v.className = 'ns-villa'; v.textContent = nom;
+    d.className = 'ns-seg'; d.style.flex = seg.n + ' 1 0';
+    var b = document.createElement('div'); b.className = 'ns-bar'; b.style.background = ton;
+    var v = document.createElement('div'); v.className = 'ns-villa'; v.textContent = NOMS[seg.v];
     var m = document.createElement('div'); m.className = 'ns-meta';
-    m.textContent = fmt(debut) + ' \u2192 ' + fmt(fin) + ' \u00b7 ' + nuitsMot(n);
+    m.textContent = fmt(seg.debut) + ' \u2192 ' + fmt(plus(seg.debut, seg.n))
+                  + ' \u00b7 ' + nuitsMot(seg.n);
     d.appendChild(b); d.appendChild(v); d.appendChild(m); return d;
+  }
+  /* Le raccord : la ligne ne s'interrompt pas, elle change de couleur. */
+  function raccord(avant, apres){
+    var j = document.createElement('div');
+    j.className = 'ns-join'; j.setAttribute('aria-hidden', 'true');
+    j.style.setProperty('--a', avant); j.style.setProperty('--b', apres);
+    return j;
   }
 
   fetch('/availability.json?cb=' + Date.now(), {cache:'no-store'})
@@ -1444,7 +1460,7 @@ if(new URLSearchParams(window.location.search).get('book') === '1'){
     .then(function(AV){
       var V = AV && AV.villas;
       if (!V) throw 0;
-      var SETS = {};
+      var SETS = {}, MEMO = {};
       /* ── la regle, identique a config.js ── */
       function libre(id, debut, n){
         var info = V[id]; if (!info) return false;
@@ -1457,7 +1473,10 @@ if(new URLSearchParams(window.location.search).get('book') === '1'){
         return n >= (ms[debut] || 1);
       }
       function qui(debut, n){
-        var r = []; for (var id in V) if (libre(id, debut, n)) r.push(id); return r;
+        var cle = debut + '|' + n;
+        if (MEMO[cle]) return MEMO[cle];
+        var r = []; for (var id in V) if (libre(id, debut, n)) r.push(id);
+        return (MEMO[cle] = r);
       }
       /* si une villa couvre le sejour, la page fait deja son travail */
       if (qui(ci, N).length) return;
@@ -1476,41 +1495,68 @@ if(new URLSearchParams(window.location.search).get('book') === '1'){
         });
       }
 
-      /* 2 · le sejour en deux maisons, segments de deux nuits au moins */
-      var deux = null;
-      if (N >= 4){
-        for (var k = 2; k <= N - 2; k++){
-          var A = qui(ci, k), B = qui(plus(ci, k), N - k), a = null, b = null;
-          A.some(function(x){ return B.some(function(y){
-            if (x !== y){ a = x; b = y; return true; } }); });
-          if (a && b){ deux = {a: a, b: b, k: k}; break; }
-        }
+      /* 2 · le sejour en plusieurs maisons.
+             Segments de deux nuits au minimum, et deux etapes voisines ne
+             peuvent pas etre la meme maison. On cherche d'abord un decoupage
+             en DEUX (un seul changement), puis en TROIS seulement si besoin. */
+      function decoupe(m){
+        var trouve = null;
+        (function rec(debut, reste, segs){
+          if (trouve) return;
+          if (segs.length === m - 1){
+            if (reste < 2) return;
+            var c = qui(debut, reste);
+            for (var i = 0; i < c.length; i++){
+              if (segs.length && segs[segs.length - 1].v === c[i]) continue;
+              trouve = segs.concat([{v: c[i], debut: debut, n: reste}]);
+              return;
+            }
+            return;
+          }
+          var max = reste - 2 * (m - 1 - segs.length);
+          for (var n = 2; n <= max && !trouve; n++){
+            var c = qui(debut, n);
+            for (var i = 0; i < c.length && !trouve; i++){
+              if (segs.length && segs[segs.length - 1].v === c[i]) continue;
+              segs.push({v: c[i], debut: debut, n: n});
+              rec(plus(debut, n), reste - n, segs);
+              segs.pop();
+            }
+          }
+        })(ci, N, []);
+        return trouve;
       }
-      if (deux){
-        var mid = plus(ci, deux.k);
-        document.getElementById('ns-title').textContent = T.sTitre;
-        document.getElementById('ns-intro').textContent = T.sIntro;
-        document.getElementById('ns-foot').textContent  = T.sFoot;
+      var segs = null;
+      if (N >= 4)  segs = decoupe(2);
+      if (!segs && N >= 6 && N <= 21) segs = decoupe(3);
+
+      if (segs){
+        var nb = T.mots[segs.length] || segs.length;
+        document.getElementById('ns-title').textContent = T.sTitre.replace('{n}', nb);
+        document.getElementById('ns-intro').textContent = T.sIntro.replace('{n}', nb);
+        document.getElementById('ns-foot').textContent  =
+          (segs.length > 2) ? T.sFoot2 : T.sFoot1;
         var rail = document.getElementById('ns-rail');
         rail.innerHTML = '';
-        rail.appendChild(etape(NOMS[deux.a], ci, mid, deux.k));
-        var j = document.createElement('div'); j.className = 'ns-join';
-        j.setAttribute('aria-hidden', 'true'); rail.appendChild(j);
-        rail.appendChild(etape(NOMS[deux.b], mid, co, N - deux.k));
+        segs.forEach(function(seg, i){
+          if (i) rail.appendChild(raccord(TONS[(i-1) % 2], TONS[i % 2]));
+          rail.appendChild(etape(seg, TONS[i % 2]));
+        });
+        var detail = segs.map(function(seg){
+          return NOMS[seg.v] + ' ' + fmt(seg.debut) + ' \u2192 '
+               + fmt(plus(seg.debut, seg.n)) + ' (' + nuitsMot(seg.n) + ')';
+        }).join(' + ');
         var cta = document.getElementById('ns-cta');
         cta.textContent = T.sCta;
         /* Le moteur ne reserve qu'une villa a la fois : ce sejour se cale a la
-           main, donc le message part avec les deux maisons et les deux plages. */
-        cta.href = WA + '?text=' + encodeURIComponent(T.sWa + ' '
-                 + NOMS[deux.a] + ' ' + fmt(ci) + ' \u2192 ' + fmt(mid)
-                 + ' (' + nuitsMot(deux.k) + ') + '
-                 + NOMS[deux.b] + ' ' + fmt(mid) + ' \u2192 ' + fmt(co)
-                 + ' (' + nuitsMot(N - deux.k) + ').');
+           main, donc le message part avec toutes les maisons et toutes les plages. */
+        cta.href = WA + '?text=' + encodeURIComponent(
+                     T.sWa.replace('{n}', nb) + ' ' + detail + '.');
         split.hidden = false;
       }
 
-      /* 3 · WhatsApp. Inutile de le redemander si le bloc deux maisons le porte deja. */
-      if (deux){ wa.hidden = true; }
+      /* 3 · WhatsApp. Inutile de le redemander si le bloc des maisons le porte deja. */
+      if (segs){ wa.hidden = true; }
       else {
         wa.hidden = false;
         wa.textContent = T.wa;
@@ -1526,7 +1572,7 @@ if(new URLSearchParams(window.location.search).get('book') === '1'){
                             + u.toLocaleTimeString(L, {hour:'2-digit', minute:'2-digit'});
       }
       document.getElementById('noav-head').textContent =
-        (lignes.length || deux) ? T.proche : T.vide;
+        lignes.length ? T.proche : (segs ? '' : T.vide);
       lignes.forEach(function(x){ opts.appendChild(x); });
       document.getElementById('noav-note').textContent = note;
       bloc.hidden = false;
