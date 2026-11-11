@@ -406,7 +406,16 @@ document.querySelectorAll('.copy-btn').forEach(btn=>{
   let open=false;
   function setOpen(v){ open=v; card.classList.toggle('open',v); }
   if(!sessionStorage.getItem('wa_shown')){
-    setTimeout(()=>{setOpen(true);sessionStorage.setItem('wa_shown','1')},6000);
+    setTimeout(()=>{
+      setOpen(true);sessionStorage.setItem('wa_shown','1');
+      /* Sous 1024 px la carte couvre un tiers de l'ecran et suit le
+         defilement : elle se referme seule. Un geste du visiteur l'annule. */
+      if(window.innerWidth < 1024){
+        var fermeture=setTimeout(function(){setOpen(false)},8000);
+        var bulle=document.getElementById('wa-bubble')||card;
+        bulle.addEventListener('pointerdown',function(){clearTimeout(fermeture)},{once:true});
+      }
+    },6000);
   }
   toggle.addEventListener('click',()=>setOpen(!open));
   close.addEventListener('click',()=>setOpen(false));
