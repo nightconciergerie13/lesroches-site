@@ -586,7 +586,11 @@ function handleContactooForm(e) {
 
 <style>
 /* ── Bulle contact — discrète et naturelle ── */
-#wa-bubble{position:fixed;bottom:1.6rem;right:1.6rem;z-index:2000;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+#wa-bubble{position:fixed;bottom:1.6rem;right:1.6rem;z-index:2000;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem;pointer-events:none}
+/* Le conteneur est une boite invisible de 272x351 px : sans ceci elle avale
+   les clics sur un tiers de l'ecran. Seuls le bouton et la carte ouverte
+   doivent les recevoir. */
+#wa-toggle,#wa-close,#wa-card.open{pointer-events:auto}
 #wa-toggle{width:52px;height:52px;border-radius:50%;border:none;padding:0;cursor:pointer;background:none;position:relative;box-shadow:0 2px 12px rgba(0,0,0,.22);transition:transform .2s,box-shadow .2s;overflow:visible}
 #wa-toggle:hover{transform:scale(1.04);box-shadow:0 4px 18px rgba(0,0,0,.3)}
 #wa-toggle-photo{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:center 18%;display:block;border:2px solid rgba(250,247,242,.7)}
