@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="../js/datepicker.css">
 <script src="../js/track.js?v=2026-11-09a" defer></script>
 
-<link rel="stylesheet" href="../css/villa-shared.css?v=2026-11-10c">
+<link rel="stylesheet" href="../css/villa-shared.css?v=2026-11-11a">
 <style>.vp-hero{background-image:url('../images/ambre-hero.webp')}.hero-bg{background-image:url('../images/ambre-hero.webp') !important}.gi1{background-image:url('../images/ambre-pool.webp') !important}.gi2{background-image:url('../images/ambre-salon.webp') !important}.gi3{background-image:url('../images/ambre-cuisine.webp') !important}.gi4{background-image:url('../images/ambre-ext1.webp') !important}.gi5{background-image:url('../images/ambre-ext2.webp') !important}.gi6{background-image:url('../images/ambre-sdb.webp') !important}.gi7{background-image:url('../images/ambre-chambre.webp') !important}.gi8{background-image:url('../images/ambre-detail.webp') !important}.gi9{background-image:url('../images/ambre-sunset.webp') !important}.bk-img-inner{background-image:url('../images/ambre-pool.webp') !important}
 /* Sous 768 px, la variante 900 px : l'ecran fait 375 px, pas 2000. */
 @media (max-width: 768px) { .hero-bg{background-image:url('../images/ambre-hero-sm.webp') !important} .gi1{background-image:url('../images/ambre-pool-sm.webp') !important} .gi2{background-image:url('../images/ambre-salon-sm.webp') !important} .gi3{background-image:url('../images/ambre-cuisine-sm.webp') !important} .gi4{background-image:url('../images/ambre-ext1-sm.webp') !important} .gi5{background-image:url('../images/ambre-ext2-sm.webp') !important} .gi6{background-image:url('../images/ambre-sdb-sm.webp') !important} .gi7{background-image:url('../images/ambre-chambre-sm.webp') !important} .gi8{background-image:url('../images/ambre-detail-sm.webp') !important} .gi9{background-image:url('../images/ambre-sunset-sm.webp') !important} .bk-img-inner{background-image:url('../images/ambre-pool-sm.webp') !important} }
@@ -168,7 +168,10 @@
      HERO
 ══════════════════════════════════════════════════ -->
 <div class="hero">
-  <div class="hero-bg"></div>
+  <video class="hero-bg" autoplay muted loop playsinline preload="none" poster="../images/ambre-hero-sm.webp" data-poster="../images/ambre-hero.webp">
+    <source media="(max-width:900px)" src="../villa-ambre-tour-mobile.mp4" type="video/mp4">
+    <source src="../villa-ambre-tour.mp4" type="video/mp4">
+  </video>
   <div class="hero-ov"></div>
   <div class="hero-inner">
     <div class="hero-left">

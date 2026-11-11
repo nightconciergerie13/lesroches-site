@@ -876,3 +876,14 @@ footer { padding: 3rem 5vw; }
   .vbar-btn:hover { background: var(--ter2); }
   body.vbar-on .wa-float { bottom: 5.4rem; }
 }
+
+/* ─── Heros video : le texte doit tenir sur un fond qui change ─── */
+/* hero-video-lisible : le voile du heros ne fonce que le bas de l'image,
+   or le titre est au milieu. Sur une video le fond change en permanence,
+   donc on protege le texte lui-meme au lieu d'assombrir l'image. */
+.hero:has(video.hero-bg) .h-title,
+.hero:has(video.hero-bg) .h-facts,
+.hero:has(video.hero-bg) .h-back {
+  text-shadow: 0 1px 14px rgba(18, 14, 10, .78), 0 1px 3px rgba(18, 14, 10, .55);
+}
+.hero:has(video.hero-bg) .h-back { background: rgba(18, 14, 10, .28); }
