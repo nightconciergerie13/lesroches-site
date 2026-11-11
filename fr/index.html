@@ -1343,6 +1343,18 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
 @media (max-width: 900px) {
   .vscroll-nav { justify-content: center; }
 }
+
+/* ── Plancher de lisibilite sur telephone ──
+   Les capitales espacees du site tiennent a 7-8 px : on les laisse. Seul ce
+   qui porte une information est remonte, a 9 px, et les appels a l'action a
+   10 px. Les ornements (numeros .vcn / .ecnum, bandeau .mq-*, sur-titres
+   .eye / .sl) ne sont pas touches : c'est l'identite de la marque. */
+@media (max-width: 768px) {
+  .mob-book-label, .mob-book-night { font-size: 9px; }
+  .vcdtl, .jnl-cat, .jnl-read { font-size: 9px; }
+  .fpartner-link, .f-legal a { font-size: 9.5px; }
+  .hero-link, .mani-cta, .insta-follow { font-size: 10px; }
+}
 </style>
 
 <div id="wa-bubble">
