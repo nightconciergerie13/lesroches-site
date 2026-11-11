@@ -1011,8 +1011,8 @@ body { background: var(--w, #faf7f2); }
 </div>
 
 <!-- ══ FOOTER ══════════════════════════════════════════ -->
-<footer style="display:block;padding:3.5rem 4rem">
-  <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1.4fr;gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.07)">
+<footer class="st-foot">
+  <div class="st-foot-grid">
     <div>
       <div class="f-logo">Les Roches</div>
       <p class="f-tagline">Six private villas in the heart of Santa Teresa.<br>Where the jungle meets the Pacific.</p>
@@ -1081,6 +1081,25 @@ body { background: var(--w, #faf7f2); }
 .wa-time{font-size:.45rem;color:#9a8f82;text-align:right;margin-top:.3rem}
 .wa-cta-wrap{padding:.7rem .9rem .85rem;background:#f3ede3;border-top:1px solid rgba(30,27,24,.05)}
 .wa-cta{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;background:#b8734a;border:none;border-radius:2px;padding:.65rem 1rem;font-family:'Outfit',sans-serif;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;cursor:pointer;text-decoration:none}
+
+/* ── Pied de page de la fiche Santa Teresa ──
+   Ces declarations etaient en ligne dans le HTML, donc impossibles a
+   surcharger : les quatre colonnes tenaient bon sur telephone et poussaient
+   la page a 492 px de large, menu compris. Memes valeurs, mais surchargeables. */
+.st-foot { display: block; padding: 3.5rem 4rem; }
+.st-foot-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1.4fr; gap: 2.5rem;
+  padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,.07); }
+@media (max-width: 768px) {
+  .st-foot { padding: 2.5rem 1.5rem; }
+  .st-foot-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* Le texte de ce bandeau a un interlettrage large : sa largeur naturelle
+   depasse l ecran. On l autorise a se replier au lieu de pousser la page. */
+@media (max-width: 768px) {
+  .st-edstrip { gap: .75rem; padding: 1.25rem 1.25rem; }
+  .st-edstrip-text { min-width: 0; text-align: center; }
+}
 </style>
 <div id="wa-bubble">
   <div id="wa-card">

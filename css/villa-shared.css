@@ -775,7 +775,7 @@ footer { padding: 3rem 5vw; }
 
 /* ── Scroll-reveal safety fallback ── */
 @media (prefers-reduced-motion: reduce) {
-  .r { opacity: 1 \!important; transform: none \!important; transition: none \!important; }
+  .r { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
 .r.visible { opacity: 1; transform: translateY(0); }
 /* Fallback: if JS fails, show content after 4s */
