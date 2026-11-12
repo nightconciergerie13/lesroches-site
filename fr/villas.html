@@ -1145,6 +1145,59 @@
     </div>
   </section>
 
+  
+  <!-- PREUVE AIRBNB -->
+  <section class="pv">
+    <div class="pv-inner">
+      <h2 class="sh">Ce qu'en disent <em>nos voyageurs</em></h2>
+      <div class="pv-score">
+        <span class="pv-note">4,83</span><span class="pv-sur">sur 5</span>
+      </div>
+      <div class="pv-meta">442 avis vérifiés sur Airbnb, sur les six maisons</div>
+      <div class="pv-meta pv-meta2">Opale, Jade et Ambre sont Coup de cœur voyageurs</div>
+      <div class="pv-cards">
+
+        <blockquote class="pv-card">
+          <p>« Hôte génial, vue incroyable et ambiance incomparable. »</p>
+          <cite>Guillaume · Québec<span>Casa Jade · novembre 2026</span></cite>
+        </blockquote>
+
+        <blockquote class="pv-card">
+          <p>« La Casa Agate est exactement comme sur les photos, et la vue depuis la piscine et la terrasse est absolument incroyable. »</p>
+          <cite>Jose Miguel · San José, Costa Rica<span>Casa Agate · octobre 2026</span></cite>
+        </blockquote>
+
+        <blockquote class="pv-card">
+          <p>« Super endroit. Belles vues. Près de tout à Santa Teresa et extrêmement paisible. »</p>
+          <cite>Federico · San José, Costa Rica<span>Casa Topaze · novembre 2026</span></cite>
+        </blockquote>
+
+      </div>
+      <div class="pv-note-src">Avis publiés sur Airbnb, traduits le cas échéant.</div>
+    </div>
+  </section>
+<style>
+/* Preuve Airbnb. Pas de classe .r ici : cette page n'a pas d'observateur
+   d'apparition, le bloc resterait invisible. */
+.pv{background:var(--c);padding:5rem 1.5rem}
+.pv-inner{max-width:1100px;margin:0 auto;text-align:center}
+.pv-inner .sh{font-family:'Gilda Display',serif;font-size:clamp(1.8rem,3.4vw,2.6rem);color:var(--ink);font-weight:400;margin:0}
+.pv-inner .sh em{font-style:italic;color:var(--ter)}
+.pv-score{display:flex;align-items:baseline;justify-content:center;gap:.5rem;margin-top:1.6rem}
+.pv-note{font-family:'Gilda Display',serif;font-size:clamp(2.6rem,6vw,3.6rem);color:var(--ink);line-height:1}
+.pv-sur{font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:300;letter-spacing:.1em;color:var(--mid)}
+.pv-meta{font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:300;letter-spacing:.06em;color:var(--mid);margin-top:.7rem}
+.pv-meta2{margin-top:.25rem;color:var(--ter)}
+.pv-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem;text-align:left}
+.pv-card{background:var(--w);border:1px solid var(--c2);border-radius:3px;padding:1.6rem 1.5rem;margin:0}
+.pv-card p{font-family:'Libre Baskerville',serif;font-style:italic;font-size:.88rem;line-height:1.8;color:var(--ink);margin:0}
+.pv-card cite{display:block;font-style:normal;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:400;letter-spacing:.04em;color:var(--ink);margin-top:1.2rem}
+.pv-card cite span{display:block;font-size:.6rem;font-weight:300;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);margin-top:.3rem}
+.pv-note-src{font-family:'Outfit',sans-serif;font-size:.62rem;font-weight:300;letter-spacing:.08em;color:var(--mid);opacity:.7;margin-top:1.6rem}
+@media(max-width:900px){.pv{padding:3.5rem 1.2rem}.pv-cards{grid-template-columns:1fr;gap:1rem;margin-top:2.2rem}}
+</style>
+
+
   <!-- BOTTOM -->
   <div class="pg-bottom">
     <div class="pg-bottom-left">
