@@ -1,0 +1,74 @@
+/* ═══════════════════════════════════════════════════════════════
+   a11y.css  |  Les Roches Retreat
+   Le minimum d'accessibilite, sur les 95 pages publiques.
+
+   Pourquoi un fichier a part : 58 pages du site, dont les 42 guides
+   du journal, ne chargent ni styles.css ni villa-shared.css. Elles
+   n'avaient donc ni anneau de focus, ni taille de cible minimale.
+   Tout ce qui vaut pour toutes les pages vit ici.
+
+   Les selecteurs sont prefixes par body pour passer devant les regles
+   que chaque page declare dans son propre <style>, sans !important.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Le clavier doit voir ou il se trouve ──────────────────────
+   :focus-visible ne se declenche pas au clic souris : le rendu
+   a la souris est strictement inchange. */
+:focus-visible {
+  outline: 2px solid var(--ter, #b8734a);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ── Cibles tactiles ───────────────────────────────────────────
+   Au doigt, une cible de 21 px se rate. Les vrais boutons passent
+   a 44 px (recommandation Apple et WCAG AAA), les liens de texte a
+   24 px (WCAG 2.2 niveau AA), ce qui evite d'etirer les colonnes
+   du pied de page. Limite a l'ecran tactile : rien ne bouge sur
+   un ordinateur. */
+@media (max-width: 900px) {
+
+  /* Le menu : c'etait la pire cible du site, 30 x 21. */
+  body .nav-burger {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Fleches de galerie. */
+  body .vnav { min-width: 44px; min-height: 44px; }
+
+  /* Boutons de reservation : ils etaient a 41-42 px, a deux doigts. */
+  body .fp-cta,
+  body .h-cta,
+  body .bk-btn,
+  body .pg-email-btn { min-height: 44px; }
+
+  /* Selecteur de voyageurs : 15 px de haut. */
+  body .bk-sel { min-height: 44px; }
+
+  /* Liens de texte : hauteur portee a 24 px sans changer la typographie. */
+  body .flink,
+  body .hero-link,
+  body .jnl-all,
+  body .exp-cta-top,
+  body .insta-follow,
+  body .mani-cta,
+  body .fpartner-link,
+  body .f-link {
+    display: inline-block;
+    padding-top: .42rem;
+    padding-bottom: .42rem;
+  }
+
+  /* Fermer le panneau WhatsApp : 10 x 13, impossible a viser au doigt. */
+  body .wa-head-close {
+    min-width: 32px;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
