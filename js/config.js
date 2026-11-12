@@ -10,12 +10,11 @@ function LR_NIGHT(){return {fr:"nuit",es:"noche"}[LR_LANG()]||"night";}
 /* Prix d'appel (sans dates) : jamais sous ce plancher. Une nuit orpheline bradee
    pour boucher un trou ne doit pas solder la vitrine. Les vrais tarifs, eux,
    s'affichent tels quels des que le client choisit ses dates : une bonne surprise.
-   Porte de 180 a 240 le 12-11-2026 : 240 est la nuit mediane reelle des six villas
-   (1845 nuits cotees, de 109 a 720). 180 venait d'une nuit de basse saison et
-   alignait les six cartes sur le meme chiffre, au prix d'une auberge.
+   Reste a 180 : arbitrage d'Ian du 12-11-2026. La mediane reelle est a 240
+   (1845 nuits cotees, de 109 a 720), mais le prix d'appel affiche reste 180.
    Ce nombre est la source unique : maj-prix-vitrine.mjs le relit ici pour
    reecrire les prix figes des pages a chaque synchronisation Beds24. */
-var LR_PLANCHER_VITRINE = 240;
+var LR_PLANCHER_VITRINE = 180;
 function LR_VITRINE(usd){return usd < LR_PLANCHER_VITRINE ? LR_PLANCHER_VITRINE : usd;}
 function LR_NA(){return {fr:"Non disponible sur ces dates",es:"No disponible en estas fechas"}[LR_LANG()]||"Not available for these dates";}
 /* Le compteur de villas doit venir de la meme source que les cartes (Beds24),
