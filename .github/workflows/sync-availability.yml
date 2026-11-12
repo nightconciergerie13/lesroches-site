@@ -25,7 +25,11 @@ jobs:
           BEDS24_APIKEY: ${{ secrets.BEDS24_APIKEY }}
           BEDS24_PROPKEYS: ${{ secrets.BEDS24_PROPKEYS }}
         run: node sync-availability.mjs
+      # Non bloquant a dessein : si le calcul du prix echoue, la dispo doit
+      # quand meme etre publiee. Mieux vaut un prix d appel d hier qu un
+      # calendrier d hier.
       - name: Aligner le prix d'appel des pages sur les tarifs Beds24
+        continue-on-error: true
         run: node maj-prix-vitrine.mjs
       - name: Publier (si changement)
         run: |
