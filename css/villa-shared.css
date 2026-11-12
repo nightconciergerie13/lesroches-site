@@ -900,3 +900,7 @@ footer { padding: 3rem 5vw; }
 /* Le clavier doit voir ou il se trouve. :focus-visible ne se declenche pas
    au clic souris, donc l'anneau n'apparait que pour qui navigue au clavier. */
 :focus-visible{outline:2px solid var(--ter,#b8734a);outline-offset:3px;border-radius:2px}
+
+/* Les six villas sont identiques : on le dit une fois, sobrement, plutot que
+   d'inventer a chacune une difference qu'elle n'a pas. */
+.vp-identiques { opacity: .72; }
