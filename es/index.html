@@ -52,7 +52,14 @@ nav.scrolled{background:rgba(250,247,242,.96);border-bottom:1px solid var(--c2);
 .hero-inner{position:relative;z-index:2;padding:0 4rem 4rem;display:flex;flex-direction:column;justify-content:flex-end;gap:0}
 .h-bottom{display:grid;grid-template-columns:1fr auto;align-items:flex-end;gap:2rem}
 .h-kicker{font-size:.5rem;letter-spacing:.5em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1rem;display:flex;align-items:center;gap:.9rem;animation:fu .8s .2s both}
-.h-title{font-family:'Gilda Display',serif;font-style:normal;font-size:clamp(1.8rem,3.2vw,3.2rem);line-height:1.1;color:rgba(250,247,242,.92);letter-spacing:.02em;animation:fu .9s .4s both;max-width:600px}
+.h-title{font-family:'Gilda Display',serif;font-style:normal;font-size:clamp(1.8rem,3.2vw,3.2rem);line-height:1.1;color:rgba(250,247,242,.92);letter-spacing:.02em;max-width:600px}
+/* Le titre s'affiche au premier rendu : c'est le plus gros element de la page,
+   un fondu dessus retarde la mesure de vitesse et laisse un hero vide aux robots
+   qui photographient tot. La barre de dates, elle, garde son apparition. */
+.h-proof{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:300;letter-spacing:.06em;color:rgba(250,247,242,.85);margin-top:1rem;animation:fu .9s .45s both;text-shadow:0 1px 12px rgba(18,14,10,.75),0 1px 3px rgba(18,14,10,.5);text-wrap:balance;max-width:34ch}
+.h-proof b{font-weight:400;color:rgba(250,247,242,.95)}
+@media(max-width:900px){.h-proof{font-size:.7rem;margin-top:.8rem}}
+
 .hero-right{padding-bottom:.2rem;animation:fu .9s .55s both;text-align:right}
 .h-btns{display:flex;flex-direction:column;gap:.6rem;align-items:flex-end}
 .hb{display:inline-block;font-size:.52rem;letter-spacing:.25em;text-transform:uppercase;padding:.65rem 1.5rem;border-radius:1px;transition:all .22s;text-align:center}
@@ -742,6 +749,7 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
       <div>
         
         <h1 class="h-title">Seis villas privadas,<br>donde la selva se encuentra con el mar.</h1>
+        <div class="h-proof">Desde <b><span class="h-proof-price">180 $</span></b> por noche · 4,83 sobre 5 en Airbnb</div>
             <div class="h-search">
             <div class="fp-fields h-fields">
               <div class="fp-field" id="h-checkin-f">

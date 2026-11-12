@@ -99,7 +99,11 @@ for (const fichier of pages(RACINE)) {
   s = s.replace(/(class="mob-book-from">[^<]*<strong>\$?)\d+( ?\$?<\/strong>)/g,
     (tout, a, b) => (remplacements++, a + global + b));
 
-  /* 4. meta description et og:description : le seul nombre colle a un $ */
+  /* 4. hero de l'accueil : "Des $180 la nuit, 4,83 sur 5 sur Airbnb" */
+  s = s.replace(/(class="h-proof-price">\$?)\d+([\s\u00a0]*\$?<\/span>)/g,
+    (tout, a, b) => (remplacements++, a + global + b));
+
+  /* 5. meta description et og:description : le seul nombre colle a un $ */
   s = s.replace(/(<meta (?:name="description"|property="og:description") content=")([^"]*)(")/g,
     (tout, a, texte, c) => {
       const neuf = texte
