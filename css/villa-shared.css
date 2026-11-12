@@ -797,6 +797,15 @@ footer { padding: 3rem 5vw; }
 /* Les avis viennent de Booking : on nomme la source et on n'invente pas
    d'etoiles par avis, on n'a pas la note individuelle de chaque client. */
 .reviews-meta a { color: var(--ter); text-decoration: underline; text-underline-offset: 2px; }
+/* Deux lignes de source : la maison d'abord sur Airbnb, le lieu ensuite sur Booking. */
+.reviews-meta + .reviews-meta { margin-top: .45rem; opacity: .85; }
+/* La note Airbnb est sur 5, pas sur 10 : on l'ecrit, sinon elle est lue
+   comme un 4,83 sur 10 par quelqu'un qui vient de Booking. */
+.reviews-sur { font-family: 'Outfit', sans-serif; font-size: .8rem; font-weight: 300;
+  letter-spacing: .08em; color: var(--mid); }
+.reviews-note { font-family: 'Outfit', sans-serif; font-size: .62rem; font-weight: 300;
+  letter-spacing: .08em; color: var(--mid); opacity: .7; margin-top: 1rem; }
+.reviews-meta strong { color: var(--ink); font-weight: 400; }
 .rev-card .rev-author { margin-top: 1rem; }
 
 /* Booking tronque lui-meme les longs avis : on le dit, on ne complete pas. */
