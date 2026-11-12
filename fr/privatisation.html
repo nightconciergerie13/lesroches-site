@@ -552,6 +552,7 @@ function envoyerDevis(e){
     emailjs.send('service_yrlj12a', 'template_t4frhpk', p),
     emailjs.send('service_yrlj12a', 'template_x200nab', p)
   ]).then(function(){
+    try { if (typeof gtag === 'function') gtag('event', 'generate_lead', { formulaire: 'privatisation' }); } catch (e) {}
     f.innerHTML = '<div style="padding:2.5rem;text-align:center">' +
       '<div style="font-family:\'Gilda Display\',serif;font-size:1.5rem;color:var(--ink);margin-bottom:.8rem">Demande reçue</div>' +
       '<p style="font-family:\'Outfit\',sans-serif;font-weight:300;font-size:.86rem;line-height:1.8;color:#3a3630;margin:0">' +
@@ -775,7 +776,7 @@ document.addEventListener('keydown',function(e){
 });
 </script>
 <script src="../lang.js?v=2026-11-09a" defer></script>
-<script src="../cookie-consent.js?v=2026-11-12c" defer></script>
+<script src="../cookie-consent.js?v=2026-11-12d" defer></script>
 <script src="../js/lazy-bg.js?v=2026-11-09a" defer></script>
 <script src="../js/swipe.js?v=2026-11-09a" defer></script>
 </body>

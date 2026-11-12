@@ -1270,6 +1270,18 @@
         $("lr-steps").hidden = true;
         $("lr-pay-done").hidden = false;
         $("lr-done-txt").textContent = L.done(guest, res.body.bookingId);
+        /* Conversion : un paiement abouti. gtag existe toujours, il est defini par
+           cookie-consent.js ; l evenement n atteint Google que si le visiteur a
+           accepte la mesure, sinon il reste dans la file et se perd. */
+        try {
+          var cents = stay && stay.quote ? stay.quote.totalCents : null;
+          if (typeof gtag === "function") gtag("event", "purchase", {
+            transaction_id: res.body.bookingId,
+            value: cents != null ? cents / 100 : undefined,
+            currency: "USD",
+            items: [{ item_id: villa, item_name: "Les Roches " + (villa || "") }]
+          });
+        } catch (e) {}
       })
       .catch(function () { fail2("booking_write_unconfirmed"); });
   }

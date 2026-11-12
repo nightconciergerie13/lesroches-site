@@ -548,6 +548,7 @@ function handleContactooForm(e) {
     emailjs.send(SERVICE_ID, CLIENT_TPL, templateParams)
   ])
   .then(() => {
+    try { if (typeof gtag === 'function') gtag('event', 'generate_lead', { formulaire: 'contact' }); } catch (e) {}
     const msg = document.createElement('div');
     msg.style.cssText = 'padding:2.5rem;text-align:center';
     msg.innerHTML = `
@@ -678,7 +679,7 @@ document.addEventListener('keydown',function(e){
 });
 </script>
 <script src="../lang.js?v=2026-11-09a" defer></script>
-<script src="../cookie-consent.js?v=2026-11-12c" defer></script>
+<script src="../cookie-consent.js?v=2026-11-12d" defer></script>
 <script src="../js/lazy-bg.js?v=2026-11-09a" defer></script>
 <script src="../js/swipe.js?v=2026-11-09a" defer></script>
 </body>

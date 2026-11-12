@@ -47,6 +47,15 @@
   function gtag() { dataLayer.push(arguments); }
   window.gtag = gtag;
 
+  /* Conversion : un clic vers WhatsApp, d'ou qu'il vienne. L'ecouteur est pose
+     avant toute sortie de fonction, sinon il manquerait aux visiteurs qui ont
+     deja repondu au bandeau. */
+  document.addEventListener('click', function (ev) {
+    var a = ev.target && ev.target.closest ? ev.target.closest('a[href*="wa.me/"]') : null;
+    if (!a) return;
+    try { gtag('event', 'contact_whatsapp', { lien: a.getAttribute('href') || '' }); } catch (e) {}
+  }, true);
+
   var chargeGA = false;
   function chargerAnalytics() {
     if (chargeGA) return;
