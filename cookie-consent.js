@@ -1,47 +1,82 @@
 /* ═══════════════════════════════════════════════════════════════
    cookie-consent.js  |  Les Roches Retreat
-   RGPD / GDPR compliant banner + Google Consent Mode v2
+   RGPD : aucun appel a Google avant le clic du visiteur.
+
+   Regle tenue ici : Google Analytics n est pas present dans les pages.
+   Ce fichier est le SEUL endroit qui peut le charger, et il ne le fait
+   qu une fois le consentement donne. Tant que le visiteur n a pas
+   repondu, ou s il refuse, rien ne part chez Google : pas de script,
+   pas de requete, pas de cookie.
+
+   Le compteur maison (js/track.js) est independant : il ne pose ni
+   cookie ni identifiant, donc il mesure avant consentement.
    ═══════════════════════════════════════════════════════════════ */
 
 (function () {
-  const STORAGE_KEY = 'lr_cookie_consent';
-  const stored = localStorage.getItem(STORAGE_KEY);
+  var CLE = 'lr_cookie_consent';
+  var GA  = 'G-WFWBDDTMF0';
 
-  // --- Google Consent Mode v2 helpers ---
-  function setConsent(granted) {
-    if (typeof gtag !== 'function') return;
-    const state = granted ? 'granted' : 'denied';
-    gtag('consent', 'update', {
-      analytics_storage: state,
-      ad_storage: state,
-      ad_user_data: state,
-      ad_personalization: state
+  function lire() { try { return localStorage.getItem(CLE); } catch (e) { return null; } }
+  function ecrire(v) { try { localStorage.setItem(CLE, v); } catch (e) {} }
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  window.gtag = gtag;
+
+  var charge = false;
+  function chargerAnalytics() {
+    if (charge) return;
+    charge = true;
+    gtag('consent', 'default', {
+      ad_storage: 'denied', ad_user_data: 'denied',
+      ad_personalization: 'denied', analytics_storage: 'denied'
     });
+    gtag('consent', 'update', {
+      ad_storage: 'granted', ad_user_data: 'granted',
+      ad_personalization: 'granted', analytics_storage: 'granted'
+    });
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA;
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', GA, { anonymize_ip: true });
   }
 
-  // Apply stored preference immediately (before banner renders)
-  if (stored === 'accepted') { setConsent(true); return; }
-  if (stored === 'declined') { setConsent(false); return; }
+  var stored = lire();
+  if (stored === 'accepted') { chargerAnalytics(); return; }
+  if (stored === 'declined') { return; }
 
-  // --- Build banner ---
-  const lang = document.documentElement.lang || 'en';
-  const isFR = lang.startsWith('fr');
-  const isES = lang.startsWith('es');
+  /* ── Langue et liens ─────────────────────────────────────────── */
+  var lang = document.documentElement.lang || 'en';
+  var isFR = lang.indexOf('fr') === 0;
+  var isES = lang.indexOf('es') === 0;
 
-  const text = isFR
-    ? 'Nous utilisons des cookies pour analyser le trafic et améliorer votre expérience.'
+  /* La politique de confidentialite vit a cote de la page courante,
+     sauf dans /journal/<lang>/ ou il faut remonter de deux crans. */
+  function lienPolitique() {
+    var m = location.pathname.match(/\/journal\/(en|fr|es)\//);
+    if (!m) return 'privacy-policy.html';
+    return m[1] === 'en' ? '../../privacy-policy.html' : '../../' + m[1] + '/privacy-policy.html';
+  }
+
+  var texte = isFR
+    ? 'Nous mesurons l’audience de ce site. Les cookies de mesure ne sont déposés que si vous les acceptez.'
     : isES
-    ? 'Usamos cookies para analizar el tráfico y mejorar tu experiencia.'
-    : 'We use cookies to analyse traffic and improve your experience.';
+    ? 'Medimos la audiencia de este sitio. Las cookies de medición solo se instalan si las acepta.'
+    : 'We measure this site’s audience. Measurement cookies are only set if you accept them.';
 
-  const acceptLabel = isFR ? 'Accepter' : isES ? 'Aceptar' : 'Accept';
-  const declineLabel = isFR ? 'Refuser' : isES ? 'Rechazar' : 'Decline';
+  var libAccepter = isFR ? 'Accepter' : isES ? 'Aceptar' : 'Accept';
+  var libRefuser  = isFR ? 'Refuser'  : isES ? 'Rechazar' : 'Decline';
+  var libEnSavoir = isFR ? 'En savoir plus' : isES ? 'Saber más' : 'Learn more';
+  var libDialogue = isFR ? 'Consentement cookies' : isES ? 'Consentimiento de cookies' : 'Cookie consent';
 
-  const banner = document.createElement('div');
-  banner.id = 'cookie-banner';
-  banner.setAttribute('role', 'dialog');
-  banner.setAttribute('aria-label', isFR ? 'Consentement cookies' : isES ? 'Consentimiento de cookies' : 'Cookie consent');
-  banner.style.cssText = [
+  /* ── Bandeau ─────────────────────────────────────────────────── */
+  var bandeau = document.createElement('div');
+  bandeau.id = 'cookie-banner';
+  bandeau.setAttribute('role', 'dialog');
+  bandeau.setAttribute('aria-label', libDialogue);
+  bandeau.style.cssText = [
     'position:fixed', 'bottom:0', 'left:0', 'right:0', 'z-index:9999',
     'background:rgba(14,13,11,.96)', 'color:#f5f0e8', 'padding:1.1rem 1.5rem',
     'display:flex', 'align-items:center', 'gap:1rem', 'flex-wrap:wrap',
@@ -49,45 +84,52 @@
     'border-top:1px solid rgba(245,240,232,.12)', 'backdrop-filter:blur(8px)'
   ].join(';');
 
-  const msg = document.createElement('span');
+  var msg = document.createElement('span');
   msg.style.cssText = 'flex:1;min-width:200px;line-height:1.6;opacity:.85';
-  msg.textContent = text;
+  msg.textContent = texte + ' ';
 
-  const btnWrap = document.createElement('div');
-  btnWrap.style.cssText = 'display:flex;gap:.6rem;flex-shrink:0';
+  var enSavoir = document.createElement('a');
+  enSavoir.href = lienPolitique();
+  enSavoir.textContent = libEnSavoir;
+  enSavoir.style.cssText = 'color:inherit;text-decoration:underline;text-underline-offset:3px;white-space:nowrap';
+  msg.appendChild(enSavoir);
 
-  function makeBtn(label, primary) {
-    const b = document.createElement('button');
-    b.textContent = label;
+  var boutons = document.createElement('div');
+  boutons.style.cssText = 'display:flex;gap:.6rem;flex-shrink:0';
+
+  function faireBouton(libelle, principal) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = libelle;
     b.style.cssText = [
       'font-size:.62rem', 'letter-spacing:.18em', 'text-transform:uppercase',
       'padding:.55rem 1.4rem', 'border-radius:1px', 'cursor:pointer',
-      'border:1px solid ' + (primary ? 'transparent' : 'rgba(245,240,232,.3)'),
-      'background:' + (primary ? '#b09060' : 'transparent'),
-      'color:' + (primary ? '#0e0d0b' : '#f5f0e8'),
+      'min-height:44px',
+      'border:1px solid ' + (principal ? 'transparent' : 'rgba(245,240,232,.3)'),
+      'background:' + (principal ? '#b09060' : 'transparent'),
+      'color:' + (principal ? '#0e0d0b' : '#f5f0e8'),
       'font-family:inherit', 'transition:opacity .2s'
     ].join(';');
     return b;
   }
 
-  const acceptBtn = makeBtn(acceptLabel, true);
-  const declineBtn = makeBtn(declineLabel, false);
+  var btnAccepter = faireBouton(libAccepter, true);
+  var btnRefuser  = faireBouton(libRefuser, false);
 
-  acceptBtn.addEventListener('click', function () {
-    localStorage.setItem(STORAGE_KEY, 'accepted');
-    setConsent(true);
-    banner.remove();
+  btnAccepter.addEventListener('click', function () {
+    ecrire('accepted');
+    chargerAnalytics();
+    bandeau.remove();
   });
 
-  declineBtn.addEventListener('click', function () {
-    localStorage.setItem(STORAGE_KEY, 'declined');
-    setConsent(false);
-    banner.remove();
+  btnRefuser.addEventListener('click', function () {
+    ecrire('declined');
+    bandeau.remove();
   });
 
-  btnWrap.appendChild(acceptBtn);
-  btnWrap.appendChild(declineBtn);
-  banner.appendChild(msg);
-  banner.appendChild(btnWrap);
-  document.body.appendChild(banner);
+  boutons.appendChild(btnAccepter);
+  boutons.appendChild(btnRefuser);
+  bandeau.appendChild(msg);
+  bandeau.appendChild(boutons);
+  document.body.appendChild(bandeau);
 })();
