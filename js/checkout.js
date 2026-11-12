@@ -557,16 +557,16 @@
       ack1:'By completing this booking, I agree with the <a href="/booking-conditions.html" target="_blank" rel="noopener">Booking Conditions</a>.',
       ack2:'I agree with the <a href="/privacy-policy.html" target="_blank" rel="noopener">Privacy Terms</a>.',
       next:"Continue", back:"Back",
-      optional:"Optional \u2014 continue if you need nothing here.",
+      optional:"Optional. Continue if you need nothing here.",
       stepOf:function(n){return "Step "+n+" of 4";},
       waBtn:"Message us on WhatsApp",
       policySummary:"Payment & cancellation terms",
       scrollHint:function(n){return "\u2193 Scroll down for the "+n+" services";},
       stayLine:function(n){return "Stay \u00b7 "+n+(n>1?" nights":" night");},
       optsTitle:"A few details", babyCot:"We need a baby cot", pet:"We're bringing a pet (no extra charge)",
-      servicesTitle:"Add a service — charged with your booking",
+      servicesTitle:"Add a service, charged with your booking",
       activitiesTitle:"Interested in an activity?",
-      activitiesNote:"Just tick what appeals to you \u2014 nothing is booked and nothing is charged here. It simply tells us what to prepare: we send you the details and prices on WhatsApp before you arrive, and you pay the provider directly.",
+      activitiesNote:"Just tick what appeals to you: nothing is booked and nothing is charged here. It simply tells us what to prepare: we send you the details and prices on WhatsApp before you arrive, and you pay the provider directly.",
       beds:"2 double beds · up to 4 guests",
       perStay:"per stay", perNight:"per night", perPerson:"per person", perEach:"each", onRequest:"on request",
       totalLine:"Total", depositLine:"To pay today", balanceLine:"On arrival",
@@ -589,7 +589,7 @@
         ack_required:"Please tick both boxes to continue.",
         payment_not_succeeded:"The payment did not go through. Nothing was charged.",
         beds24_rate_limited:"Service is busy. Please try again in a minute.",
-        booking_write_unconfirmed:"Your payment went through, but the automatic confirmation failed. We will email you within the hour — please do not pay again.",
+        booking_write_unconfirmed:"Your payment went through, but the automatic confirmation failed. We will email you within the hour. Please do not pay again.",
         fallback:"Something went wrong. Please try again, or message us on WhatsApp."
       }
     },
@@ -610,16 +610,16 @@
       ack1:'En validant cette r\u00e9servation, j\'accepte les <a href="/fr/booking-conditions.html" target="_blank" rel="noopener">conditions de r\u00e9servation</a>.',
       ack2:'J\'accepte la <a href="/fr/privacy-policy.html" target="_blank" rel="noopener">politique de confidentialit\u00e9</a>.',
       next:"Suivant", back:"Retour",
-      optional:"Facultatif \u2014 passez à la suite si vous n'avez besoin de rien.",
+      optional:"Facultatif. Passez à la suite si vous n'avez besoin de rien.",
       stepOf:function(n){return "\u00c9tape "+n+" sur 4";},
       waBtn:"\u00c9crire sur WhatsApp",
       policySummary:"Paiement et conditions d'annulation",
       scrollHint:function(n){return "\u2193 Faites d\u00e9filer pour voir les "+n+" services";},
       stayLine:function(n){return "S\u00e9jour \u00b7 "+n+(n>1?" nuits":" nuit");},
       optsTitle:"Quelques précisions", babyCot:"Nous avons besoin d'un lit bébé", pet:"Nous venons avec un animal (sans supplément)",
-      servicesTitle:"Ajouter un service — facturé avec votre réservation",
+      servicesTitle:"Ajouter un service, facturé avec votre réservation",
       activitiesTitle:"Intéressé par une activité ?",
-      activitiesNote:"Cochez simplement ce qui vous tente \u2014 rien n'est réservé ni facturé ici. Cela nous dit quoi préparer : nous vous envoyons les détails et les tarifs sur WhatsApp avant votre arrivée, et vous réglez directement le prestataire.",
+      activitiesNote:"Cochez simplement ce qui vous tente\u00a0: rien n'est réservé ni facturé ici. Cela nous dit quoi préparer : nous vous envoyons les détails et les tarifs sur WhatsApp avant votre arrivée, et vous réglez directement le prestataire.",
       beds:"2 lits doubles · jusqu'à 4 voyageurs",
       perStay:"le séjour", perNight:"la nuit", perPerson:"la personne", perEach:"l’unité", onRequest:"sur demande",
       totalLine:"Total", depositLine:"À payer aujourd'hui", balanceLine:"À l'arrivée",
@@ -642,7 +642,7 @@
         ack_required:"Cochez les deux cases pour continuer.",
         payment_not_succeeded:"Le paiement n'a pas abouti. Aucun montant n'a été prélevé.",
         beds24_rate_limited:"Service momentanément occupé. Réessayez dans une minute.",
-        booking_write_unconfirmed:"Votre paiement est bien passé, mais la confirmation automatique a échoué. Nous vous écrivons dans l'heure — ne payez pas une seconde fois.",
+        booking_write_unconfirmed:"Votre paiement est bien passé, mais la confirmation automatique a échoué. Nous vous écrivons dans l'heure. Ne payez pas une seconde fois.",
         fallback:"Une erreur est survenue. Réessayez, ou écrivez-nous sur WhatsApp."
       }
     },
@@ -663,16 +663,16 @@
       ack1:'Al completar esta reserva, acepto las <a href="/es/booking-conditions.html" target="_blank" rel="noopener">condiciones de reserva</a>.',
       ack2:'Acepto la <a href="/es/privacy-policy.html" target="_blank" rel="noopener">pol\u00edtica de privacidad</a>.',
       next:"Siguiente", back:"Atrás",
-      optional:"Opcional \u2014 continúa si no necesitas nada aquí.",
+      optional:"Opcional. Continúa si no necesitas nada aquí.",
       stepOf:function(n){return "Paso "+n+" de 4";},
       waBtn:"Escr\u00edbenos por WhatsApp",
       policySummary:"Pago y condiciones de cancelaci\u00f3n",
       scrollHint:function(n){return "\u2193 Desliza para ver los "+n+" servicios";},
       stayLine:function(n){return "Estancia \u00b7 "+n+(n>1?" noches":" noche");},
       optsTitle:"Algunos detalles", babyCot:"Necesitamos una cuna", pet:"Venimos con una mascota (sin cargo)",
-      servicesTitle:"Añadir un servicio — se cobra con su reserva",
+      servicesTitle:"Añadir un servicio, se cobra con su reserva",
       activitiesTitle:"¿Le interesa alguna actividad?",
-      activitiesNote:"Marque simplemente lo que le atraiga \u2014 aquí no se reserva ni se cobra nada. Nos dice qué preparar: le enviamos los detalles y los precios por WhatsApp antes de su llegada, y usted paga directamente al proveedor.",
+      activitiesNote:"Marque simplemente lo que le atraiga: aquí no se reserva ni se cobra nada. Nos dice qué preparar: le enviamos los detalles y los precios por WhatsApp antes de su llegada, y usted paga directamente al proveedor.",
       beds:"2 camas dobles · hasta 4 huéspedes",
       perStay:"por estancia", perNight:"por noche", perPerson:"por persona", perEach:"por unidad", onRequest:"a consultar",
       totalLine:"Total", depositLine:"A pagar hoy", balanceLine:"A la llegada",
@@ -695,7 +695,7 @@
         ack_required:"Marca las dos casillas para continuar.",
         payment_not_succeeded:"El pago no se completó. No se cobró nada.",
         beds24_rate_limited:"Servicio ocupado. Intente en un minuto.",
-        booking_write_unconfirmed:"Su pago se realizó, pero la confirmación automática falló. Le escribimos dentro de la hora — no pague de nuevo.",
+        booking_write_unconfirmed:"Su pago se realizó, pero la confirmación automática falló. Le escribimos dentro de la hora. No pague de nuevo.",
         fallback:"Ocurrió un error. Intente de nuevo, o escríbanos por WhatsApp."
       }
     }
@@ -883,7 +883,7 @@
         if (!$("lr-blocked").hidden) goStep(etape);     /* on sortait d'une impasse */
         if (WA_BASE) {
           $("lr-wa").href = WA_BASE + "?text=" + encodeURIComponent(
-            q.villa.name + " \u2014 " + q.checkin + " / " + q.checkout + " \u2014 ");
+            q.villa.name + " \u00b7 " + q.checkin + " / " + q.checkout + " \u00b7 ");
         }
       })
       .catch(function () { impasse(null); });

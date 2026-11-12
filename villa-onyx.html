@@ -186,7 +186,7 @@
     <div class="hero-left">
       <a href="villas.html" class="h-back">Back to all villas</a>
       <h1 class="h-title">Casa Onyx</h1>
-            <div class="h-facts">2 bed<span>·</span>2 bath<span>·</span>Panoramic Ocean<span>·</span><em class="vbar-price-src">&mdash;</em></div>
+            <div class="h-facts">2 bed<span>·</span>2 bath<span>·</span>Panoramic Ocean<span>·</span><em class="vbar-price-src"></em></div>
       <a href="#reserve" class="h-cta" id="h-reserve-btn" style="display:inline-block;margin-top:1.8rem">Reserve this villa</a>
     </div>
   </div>
@@ -385,7 +385,7 @@
               <strong>Payment:</strong> The full amount is charged by card when you book, taxes included. Nothing is left to pay on arrival.
             </div>
           <div class="sb-cond-text">
-              <strong>Cancellation:</strong> Cancel up to 60 days before arrival and 96% is refunded to your card — only the 4% card fee stays, because our provider never returns it. After that, half of the amount is refunded.
+              <strong>Cancellation:</strong> Cancel up to 60 days before arrival and 96% is refunded to your card. Only the 4% card fee stays, because our provider never returns it. After that, half of the amount is refunded.
             </div>
         </div>
 
@@ -450,7 +450,7 @@
 </a>
 
 <script src="js/datepicker.js?v=2026-11-09a"></script>
-  <script src="js/config.js?v=2026-11-11a"></script>
+  <script src="js/config.js?v=2026-11-12a"></script>
   <script src="js/track.js?v=2026-11-09a"></script>
   <script src="js/main.js?v=2026-11-09a"></script>
 <script>
@@ -775,18 +775,23 @@ document.querySelectorAll('.sb-dates-row .sb-field').forEach(function(f) {
 #lbx-thumbs::-webkit-scrollbar{height:3px}#lbx-thumbs::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2)}
 .lbx-thumb{width:52px;height:36px;background-size:cover;background-position:center;opacity:.3;cursor:pointer;transition:opacity .2s;flex-shrink:0;border-radius:1px}
 .lbx-thumb.active{opacity:1;outline:1px solid rgba(255,255,255,.55)}
+
+/* Le prix arrive apres le chargement des disponibilites. Tant que le
+   champ du prix est vide, on cache aussi le separateur qui le precede :
+   sinon la ligne finit par un point mediant orphelin. */
+.h-facts span:has(+ .vbar-price-src:empty) { display: none; }
 </style>
 
 <script>(function(){var L=(document.documentElement.lang||"en").slice(0,2).toLowerCase();if(L!=="fr"&&L!=="es")L="en";var B="https://beds24.com/booking2.php?propid=326248&referer=iframe&lang="+L;function go(e){if(e){e.preventDefault();e.stopImmediatePropagation();}window.location.href=B;}function bind(){var c=document.getElementById("sb-cta");if(c)c.addEventListener("click",go,true);}if(document.readyState!=="loading")bind();else document.addEventListener("DOMContentLoaded",bind);})();</script>
 <script>(function(){var L=(document.documentElement.lang||"en").slice(0,2).toLowerCase();if(L!=="fr"&&L!=="es")L="en";var BASE="https://beds24.com/booking2.php?propid=326248&referer=iframe&lang="+L;function iso(v){return /^\d{4}-\d{2}-\d{2}$/.test(v)?v:"";}function go(e){if(e){e.preventDefault();e.stopImmediatePropagation();}var ci=iso(((document.getElementById("sb-checkin")||{}).value)||""),co=iso(((document.getElementById("sb-checkout")||{}).value)||""),url=BASE;if(ci&&co){var n=Math.round((new Date(co)-new Date(ci))/86400000);if(n>0)url+="&checkin="+ci+"&numnight="+n;}window.location.href=url;}function pf(){try{var p=new URLSearchParams(location.search),ci=iso(p.get("checkin")||""),co=iso(p.get("checkout")||"");if(ci){var a=document.getElementById("sb-checkin");if(a&&!a.value)a.value=ci;}if(co){var b=document.getElementById("sb-checkout");if(b&&!b.value)b.value=co;}}catch(e){}}function bind(){var c=document.getElementById("sb-cta");if(c){var cl=c.cloneNode(true);if(c.parentNode)c.parentNode.replaceChild(cl,c);cl.addEventListener("click",go,true);}pf();}if(document.readyState!=="loading")bind();else document.addEventListener("DOMContentLoaded",bind);})();</script>
 <script>(function(){var PROPID="326248",TODAY=new Date().toISOString().slice(0,10),availSet=null;function applyAll(){if(!availSet)return;var ci=(document.getElementById("sb-checkin")||{}).value||"",co=(document.getElementById("sb-checkout")||{}).value||"",pickCo=ci&&!co;document.querySelectorAll(".lrp-day[data-date]").forEach(function(c){var d=c.getAttribute("data-date");if(!d)return;var ok=pickCo?(d>ci&&availSet.has(d)):(d>=TODAY&&availSet.has(d));if(ok)c.classList.remove("lrp-disabled");else c.classList.add("lrp-disabled");});}var pend=false;function sched(){if(pend)return;pend=true;setTimeout(function(){pend=false;applyAll();},30);}fetch("/availability.json?cb="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){var v=j.villas&&j.villas[PROPID];if(!v||!v.available)return;availSet=new Set(v.available);applyAll();new MutationObserver(sched).observe(document.body,{childList:true,subtree:true});}).catch(function(){});})();</script>
-  <script src="/js/checkout.js?v=2026-11-09a" defer></script>
+  <script src="/js/checkout.js?v=2026-11-12a" defer></script>
 <script src="cookie-consent.js?v=2026-11-09a" defer></script>
 <script src="js/lazy-bg.js?v=2026-11-09a" defer></script>
 <script src="js/swipe.js?v=2026-11-09a" defer></script>
 <div class="vbar" role="complementary" aria-label="Reserve Casa Onyx">
   <div class="vbar-left"><span class="vbar-name">Casa Onyx</span><span class="vbar-tag">2 bed &middot; 2 bath &middot; Panoramic Ocean</span></div>
-  <span class="vbar-price">&mdash;</span>
+  <span class="vbar-price"></span>
   <button type="button" class="vbar-btn">Reserve</button>
 </div>
 

@@ -296,6 +296,16 @@
 
     /* Retourne le 1er jour bloqué strictement après startStr, ou null.
        Utilisé pour autoriser le checkout sur la date de fin de dispo. */
+    /* ⚠️ INERTE EN L ETAT — ne pas s y fier pour juger des disponibilites.
+       Cette fonction, et la branche maxCheckout de _renderMonth qui l appelle,
+       travaillent sur this._disabled. Or _disabled n est alimente que par
+       set("disabled", …), et AUCUNE page du site ne l appelle : il est donc
+       toujours vide et cette fonction renvoie toujours null.
+       Les disponibilites reelles sont appliquees APRES le rendu, en reclassant
+       les cases .lrp-day : js/config.js pour les fiches villa, js/cal-dispo.js
+       pour les pages de recherche. C est la que vit la regle qui fait foi.
+       Conserve parce que la logique est juste et que set("disabled") reste une
+       entree possible, mais elle ne decide rien aujourd hui. */
     _firstBlockedAfter: function (startStr) {
       var after = [];
       for (var i = 0; i < this._disabled.length; i++) {

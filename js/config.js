@@ -18,7 +18,7 @@ function LR_NA(){return {fr:"Non disponible sur ces dates",es:"No disponible en 
 function LR_AVAIL(n){var L=LR_LANG();if(!n)return L==="fr"?"Aucune villa disponible sur ces dates":L==="es"?"Ninguna villa disponible en estas fechas":"No villas available for these dates";var p=n>1?"s":"";return L==="fr"?(n+" villa"+p+" disponible"+p):L==="es"?(n+" villa"+p+" disponible"+p):(n+" villa"+p+" available");}
 /* Dit le minimum ET ce qu'il manque : un refus sans issue laisse le client
    deviner s'il doit changer de dates ou de villa. */
-function LR_MIN(n,choisi){var L=LR_LANG();var q=n>1?"s":"";var m=L==="fr"?("Minimum "+n+" nuit"+q):L==="es"?("Mínimo "+n+" noche"+q):("Minimum "+n+" night"+q);var k=(typeof choisi==="number"&&choisi>0)?(n-choisi):0;if(k>0){m+=L==="fr"?(" \u2014 ajoutez "+k+(k>1?" nuits":" nuit")):L==="es"?(" \u2014 añada "+k+(k>1?" noches":" noche")):(" \u2014 add "+k+(k>1?" nights":" night"));}return m;}
+function LR_MIN(n,choisi){var L=LR_LANG();var q=n>1?"s":"";var m=L==="fr"?("Minimum "+n+" nuit"+q):L==="es"?("Mínimo "+n+" noche"+q):("Minimum "+n+" night"+q);var k=(typeof choisi==="number"&&choisi>0)?(n-choisi):0;if(k>0){m+=L==="fr"?("\u00a0: ajoutez "+k+(k>1?" nuits":" nuit")):L==="es"?(": añada "+k+(k>1?" noches":" noche")):(": add "+k+(k>1?" nights":" night"));}return m;}
 /* Le sejour minimum change d'une date a l'autre : 2 nuits sur 66% du
    calendrier, 3 sur 32%, parfois 1, 4 ou 5. On n'ecrit donc aucun chiffre
    d'avance ; la ligne ne parle qu'une fois les dates choisies. */
