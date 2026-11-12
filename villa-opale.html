@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="css/styles.css?v=2026-11-09a">
 <link rel="stylesheet" href="js/datepicker.css">
 
-<link rel="stylesheet" href="css/villa-shared.css?v=2026-11-12c">
+<link rel="stylesheet" href="css/villa-shared.css?v=2026-11-12d">
 <style>
 /* Seul ce qui est propre a cette villa reste ici : ses images.
    Tout le reste vit dans css/villa-shared.css, comme en FR et en ES. */
@@ -133,10 +133,11 @@
 <link rel="alternate" hreflang="x-default" href="https://lesrochesretreat.com/villa-opale.html">
 </head>
 <body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--ter,#b8734a);color:#fff;padding:.5rem 1rem;font-family:sans-serif;font-size:.875rem" onfocus="this.style.left='1rem';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-999px'">Skip to content</a>
 <div id="cur"></div>
 
 <!-- NAV -->
-<nav id="nav">
+<nav id="nav" aria-label="Main navigation">
   <a href="index.html" class="nl-logo" id="logo">Les Roches</a>
   <div class="nav-mid">
     <a href="villas.html" class="nl">Villas</a>
@@ -149,6 +150,7 @@
   <a href="villas.html" class="nav-book" id="nb">Book Now</a>
   <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
+<div id="main-content" tabindex="-1"></div>
 <div class="nav-overlay" id="nav-overlay">
     <button class="nav-close" id="nav-close">✕</button>
   <div class="nav-overlay-inner">

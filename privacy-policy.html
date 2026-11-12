@@ -103,8 +103,9 @@
 <script src="js/track.js?v=2026-11-12a" defer></script>
 </head>
 <body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--ter,#b8734a);color:#fff;padding:.5rem 1rem;font-family:sans-serif;font-size:.875rem" onfocus="this.style.left='1rem';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-999px'">Skip to content</a>
 
-<nav id="nav">
+<nav id="nav" aria-label="Main navigation">
   <a href="index.html" class="nl-logo dark" id="logo">Les Roches</a>
   <div class="nav-mid">
     <a href="villas.html" class="nl dark">Villas</a>
@@ -121,6 +122,7 @@
     <a href="contact.html" class="nav-book dark">Book Now</a>
   </div>
 </nav>
+<div id="main-content" tabindex="-1"></div>
 
 <div class="pp-hero">
   <div class="pp-hero-eye">Legal</div>

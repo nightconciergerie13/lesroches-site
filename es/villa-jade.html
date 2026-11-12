@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="../js/datepicker.css">
 <script src="../js/track.js?v=2026-11-12a" defer></script>
 
-<link rel="stylesheet" href="../css/villa-shared.css?v=2026-11-12c">
+<link rel="stylesheet" href="../css/villa-shared.css?v=2026-11-12d">
 <style>.vp-hero{background-image:url('../images/jade-hero.webp')}.hero-bg{background-image:url('../images/jade-hero.webp') !important}.gi1{background-image:url('../images/jade-pool.webp') !important}.gi2{background-image:url('../images/jade-living.webp') !important}.gi3{background-image:url('../images/jade-kitchen.webp') !important}.gi4{background-image:url('../images/jade-deck.webp') !important}.gi5{background-image:url('../images/jade-garden.webp') !important}.gi6{background-image:url('../images/jade-bathroom.webp') !important}.gi7{background-image:url('../images/jade-bedroom.webp') !important}.gi8{background-image:url('../images/jade-interior-1.webp') !important}.gi9{background-image:url('../images/jade-sunset-pool.webp') !important}.bk-img-inner{background-image:url('../images/jade-pool.webp') !important}
 /* Sous 768 px, la variante 900 px : l'ecran fait 375 px, pas 2000. */
 @media (max-width: 768px) { .hero-bg{background-image:url('../images/jade-hero-sm.webp') !important} .gi1{background-image:url('../images/jade-pool-sm.webp') !important} .gi2{background-image:url('../images/jade-living-sm.webp') !important} .gi3{background-image:url('../images/jade-kitchen-sm.webp') !important} .gi4{background-image:url('../images/jade-deck-sm.webp') !important} .gi5{background-image:url('../images/jade-garden-sm.webp') !important} .gi6{background-image:url('../images/jade-bathroom-sm.webp') !important} .gi7{background-image:url('../images/jade-bedroom-sm.webp') !important} .gi8{background-image:url('../images/jade-interior-1-sm.webp') !important} .gi9{background-image:url('../images/jade-sunset-pool-sm.webp') !important} .bk-img-inner{background-image:url('../images/jade-pool-sm.webp') !important} }
@@ -130,7 +130,7 @@
 <div id="cur"></div>
 
 <!-- NAV -->
-<nav id="nav">
+<nav id="nav" aria-label="Navegación principal">
   <a href="index.html" class="nl-logo" id="logo">Les Roches</a>
   <div class="nav-mid">
     <a href="villas.html" class="nl">Villas</a>
@@ -143,6 +143,7 @@
   <a href="villas.html" class="nav-book" aria-label="Reservar una villa en Les Roches Retreat" id="nb">Reservar</a>
   <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
+<div id="main-content" tabindex="-1"></div>
 <div class="nav-overlay" id="nav-overlay">
   <button class="nav-close" id="nav-close">✕</button>
   <a href="villas.html" class="nl">Villas</a>

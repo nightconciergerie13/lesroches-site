@@ -896,3 +896,7 @@ footer { padding: 3rem 5vw; }
   text-shadow: 0 1px 14px rgba(18, 14, 10, .78), 0 1px 3px rgba(18, 14, 10, .55);
 }
 .hero:has(video.hero-bg) .h-back { background: rgba(18, 14, 10, .28); }
+
+/* Le clavier doit voir ou il se trouve. :focus-visible ne se declenche pas
+   au clic souris, donc l'anneau n'apparait que pour qui navigue au clavier. */
+:focus-visible{outline:2px solid var(--ter,#b8734a);outline-offset:3px;border-radius:2px}
