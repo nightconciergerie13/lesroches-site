@@ -46,8 +46,18 @@
   }
 
   // ── Géolocalisation IP (ipapi.co, 1000 req/jour gratuites) ──
+  // Cet appel transmet l'adresse IP du visiteur à un tiers, il est donc
+  // conditionné au consentement (12-11-2026). Sans accord, la visite est
+  // comptée sans le pays : le reste du compteur ne dépose rien et reste
+  // licite avant consentement.
+
+  function aConsenti() {
+    try { return localStorage.getItem('lr_cookie_consent') === 'accepted'; }
+    catch (e) { return false; }
+  }
 
   async function getGeo() {
+    if (!aConsenti()) return {};
     try {
       const r = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(3000) });
       if (!r.ok) return {};
