@@ -167,7 +167,7 @@
     <div class="hero-left">
       <a href="villas.html" class="h-back">Volver a todas las villas</a>
       <h1 class="h-title">Casa Topaze</h1>
-            <div class="h-facts">2 habitaciones<span>·</span>2 baños<span>·</span>Jardín en la selva<span>·</span><em class="vbar-price-src"></em></div>
+            <div class="h-facts">2 habitaciones<span>·</span>2 baños<span>·</span>Nivel jardín<span>·</span><em class="vbar-price-src"></em></div>
       <a href="#reserve" class="h-cta" id="h-reserve-btn" style="display:inline-block;margin-top:1.8rem">Reservar esta villa</a>
     </div>
   </div>
@@ -225,7 +225,7 @@
         </span>
         <span class="am-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-          Vista frontal al océano
+          Vista al océano
         </span>
         <span class="am-pill">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 7a5 5 0 100 10"/></svg>
@@ -318,7 +318,7 @@
       </div>
       <div class="sb-body">
         <div class="sb-name">Casa Topaze</div>
-        <div class="sb-tag">2 habitaciones &middot; 2 baños &middot; Jardín en la selva</div>
+        <div class="sb-tag">2 habitaciones &middot; 2 baños &middot; Nivel jardín</div>
 
         <div class="sb-sep"></div>
 
@@ -404,6 +404,7 @@
   </div>
 </div>
 
+<div class="other-villas r"><div class="sec-eye">Antes de venir</div><h2 class="sec-title">El diario</h2><div class="ov-grid"><a href="../journal/es/mejor-epoca-visitar-santa-teresa.html" class="ov-card"><div class="ov-img-wrap"><div class="ov-img lazy-bg" data-bg="../images/drone-sunset-2.webp" style="height:100%;background-size:cover;background-position:center;background-color:var(--c2)"></div></div><div class="ov-body"><div class="ov-name">Mejor época</div><div class="ov-detail">Cuándo venir</div></div></a><a href="../journal/es/itinerario-semana-perfecta-santa-teresa.html" class="ov-card"><div class="ov-img-wrap"><div class="ov-img lazy-bg" data-bg="../images/retreat-vue-ocean.webp" data-bg-sm="../images/retreat-vue-ocean-sm.webp" style="height:100%;background-size:cover;background-position:center;background-color:var(--c2)"></div></div><div class="ov-body"><div class="ov-name">La semana perfecta</div><div class="ov-detail">Itinerario</div></div></a><a href="../journal/es/mejores-playas-santa-teresa.html" class="ov-card"><div class="ov-img-wrap"><div class="ov-img lazy-bg" data-bg="../images/drone-beach-panorama.webp" style="height:100%;background-size:cover;background-position:center;background-color:var(--c2)"></div></div><div class="ov-body"><div class="ov-name">Las mejores playas</div><div class="ov-detail">Playas</div></div></a></div></div>
 <!-- FOOTER -->
 <footer>
   <div><div class="f-logo">Les Roches</div><div class="f-tagline">Seis villas privadas en el corazón de<br>Santa Teresa, Costa Rica.</div></div>
@@ -755,7 +756,7 @@ document.querySelectorAll('.sb-dates-row .sb-field').forEach(function(f) {
 <script>(function(){var PROPID="326251",TODAY=new Date().toISOString().slice(0,10),availSet=null;function applyAll(){if(!availSet)return;var ci=(document.getElementById("sb-checkin")||{}).value||"",co=(document.getElementById("sb-checkout")||{}).value||"",pickCo=ci&&!co;document.querySelectorAll(".lrp-day[data-date]").forEach(function(c){var d=c.getAttribute("data-date");if(!d)return;var ok=pickCo?(d>ci&&availSet.has(d)):(d>=TODAY&&availSet.has(d));if(ok)c.classList.remove("lrp-disabled");else c.classList.add("lrp-disabled");});}var pend=false;function sched(){if(pend)return;pend=true;setTimeout(function(){pend=false;applyAll();},30);}fetch("/availability.json?cb="+Date.now(),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){var v=j.villas&&j.villas[PROPID];if(!v||!v.available)return;availSet=new Set(v.available);applyAll();new MutationObserver(sched).observe(document.body,{childList:true,subtree:true});}).catch(function(){});})();</script>
   <script src="/js/checkout.js?v=2026-11-12b" defer></script>
 <div class="vbar" role="complementary">
-  <div class="vbar-left"><span class="vbar-name">Casa Topaze</span><span class="vbar-tag">2 habitaciones &middot; 2 baños &middot; Jardín en la selva</span></div>
+  <div class="vbar-left"><span class="vbar-name">Casa Topaze</span><span class="vbar-tag">2 habitaciones &middot; 2 baños &middot; Nivel jardín</span></div>
   <span class="vbar-price"></span>
   <button type="button" class="vbar-btn">Reservar</button>
 </div>
