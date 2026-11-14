@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="robots" content="noindex, nofollow, noarchive">
   <meta charset="UTF-8">
   <title>Test LRPicker</title>
-  <link rel="stylesheet" href="js/datepicker.css">
+  <link rel="stylesheet" href="../js/datepicker.css">
   <style>
     body { font-family: sans-serif; padding: 2rem; background: #f5f5f5; }
     *{ cursor: none } /* simule le site */
@@ -48,7 +49,7 @@
     document.getElementById('cur').style.top  = e.clientY + 'px';
   });
   </script>
-  <script src="js/datepicker.js"></script>
+  <script src="../js/datepicker.js"></script>
   <script>
   const log = document.getElementById('log');
   function addLog(msg) { log.textContent += '\n' + new Date().toISOString().split('T')[1].split('.')[0] + ' ' + msg; }
