@@ -339,9 +339,12 @@
   text-decoration: none;
   background: var(--ink2);
   cursor: pointer;
-  aspect-ratio: unset !important;
   width: 100%;
 }
+/* Le desktop tient sa hauteur des lignes de grille fixes : on neutralise
+   l'aspect-ratio herite de styles.css. Sous 1025px, au contraire, l'aspect-ratio
+   des media queries est la SEULE source de hauteur des cartes : ne pas l'ecraser. */
+@media(min-width:1025px){ .exp-card { aspect-ratio: unset !important; } }
 .exp-card-photo {
   position: absolute;
   inset: 0;
