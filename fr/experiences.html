@@ -233,10 +233,12 @@
   .exp-grid--eau .exp-card,
   .exp-grid--aventure .exp-card,
   .exp-grid--wellness .exp-card { grid-column:unset!important; aspect-ratio:4/3; }
+  /* grid-column:auto obligatoire : le span 2 herite du palier 1024px creerait
+     une 2e colonne fantome de 0px ou viendraient se loger les cartes suivantes. */
   .exp-grid--eau .exp-card:nth-child(1),
   .exp-grid--aventure .exp-card:nth-child(1),
   .exp-grid--aventure .exp-card:nth-child(8),
-  .exp-grid--wellness .exp-card:nth-child(1) { aspect-ratio:3/2!important; }
+  .exp-grid--wellness .exp-card:nth-child(1) { grid-column:auto!important; aspect-ratio:3/2!important; }
   .exp-grid { padding:0 1.2rem 4rem; }
   .exp-section-head { padding:0 1.2rem; }
   .exp-intro { padding:3.5rem 1.2rem 2rem; flex-direction:column; gap:2rem; }
