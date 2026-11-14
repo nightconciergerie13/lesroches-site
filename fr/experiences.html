@@ -919,7 +919,7 @@
 
   const savedLang = (function(){ try { return localStorage.getItem('lr_lang'); } catch(e){ return null; } })();
   const browserLang = (navigator.language || 'en').slice(0,2).toLowerCase();
-  setLang(savedLang || (['fr','es'].includes(browserLang) ? browserLang : 'en'));
+  const pageLang = (document.documentElement.lang || '').slice(0,2).toLowerCase(); setLang(['en','fr','es'].includes(pageLang) ? pageLang : (savedLang || (['fr','es'].includes(browserLang) ? browserLang : 'en')));
 
   /* ── Admin secret ── */
   const fcopy = document.getElementById('fcopy-secret');
