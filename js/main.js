@@ -29,6 +29,7 @@ const navClose = document.getElementById('nav-close');
 
 if (nav) {
   const nls = document.querySelectorAll('.nl');
+  const lsw = document.querySelectorAll('nav .lang-sw');
   window.addEventListener('scroll', () => {
     const s = scrollY > 60;
     nav.classList.toggle('scrolled', s);
@@ -36,6 +37,7 @@ if (nav) {
     if (nb) nb.classList.toggle('dark', s);
     if (burger) burger.classList.toggle('dark', s);
     nls.forEach(n => n.classList.toggle('dark', s));
+    lsw.forEach(l => l.classList.toggle('dark', s));
     // Bouton retour accueil : visible quand nav transparente, caché quand nav scrollée
     if (homeBtn) homeBtn.classList.toggle('home-btn--hidden', s);
   });

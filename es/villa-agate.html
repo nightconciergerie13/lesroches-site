@@ -143,7 +143,7 @@
     <a href="journal.html" class="nl">Blog</a>
   <a href="privatizacion.html" class="nl">Privatización</a>
   </div>
-  <a href="villas.html" class="nav-book" aria-label="Reservar una villa en Les Roches Retreat" id="nb">Reservar</a>
+  <div class="lang-sw" data-lsw aria-label="Langue"><span data-lang="en">EN</span><span class="lsep">/</span><span data-lang="fr">FR</span><span class="lsep">/</span><span data-lang="es">ES</span></div><a href="villas.html" class="nav-book" aria-label="Reservar una villa en Les Roches Retreat" id="nb">Reservar</a>
   <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 <div id="main-content" tabindex="-1"></div>
@@ -155,7 +155,7 @@
   <a href="santa-teresa.html" class="nl">Santa Teresa</a>
   <a href="faq.html" class="nl">FAQ</a>
   <a href="journal.html" class="nl">Blog</a>
-  <a href="contact.html" class="nl">Reservar</a>
+  <a href="contact.html" class="nl">Reservar</a><div class="lang-sw" data-lsw aria-label="Langue"><span data-lang="en">EN</span><span class="lsep">/</span><span data-lang="fr">FR</span><span class="lsep">/</span><span data-lang="es">ES</span></div>
 </div>
 
 <!-- ══════════════════════════════════════════════════
@@ -447,7 +447,7 @@
 
 <script src="../js/datepicker.js?v=2026-11-09a"></script>
   <script src="../js/config.js?v=2026-11-12c"></script>
-  <script src="../js/main.js?v=2026-11-09a"></script>
+  <script src="../js/main.js?v=2026-11-14a"></script>
 <script>
 /* ── Cursor (extra selectors for villa-specific elements) ── */
 const cur = document.getElementById('cur');
@@ -682,6 +682,17 @@ document.querySelectorAll('.sb-dates-row .sb-field').forEach(function(f) {
    champ du prix est vide, on cache aussi le separateur qui le precede :
    sinon la ligne finit par un point mediant orphelin. */
 .h-facts span:has(+ .vbar-price-src:empty) { display: none; }
+
+.lang-sw{display:flex;gap:.34rem;align-items:center;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--w);transition:color .4s;user-select:none}
+.lang-sw.dark{color:var(--ink)}
+.lang-sw span[data-lang]{cursor:pointer;opacity:.5;transition:opacity .2s}
+.lang-sw span[data-lang]:hover{opacity:1}
+.lang-sw span.on{opacity:1}
+.lang-sw .lsep{opacity:.3}
+@media(max-width:900px){nav .lang-sw{display:none}}
+.nav-overlay .lang-sw{display:flex;justify-content:center;gap:.5rem;margin-top:1.4rem;font-size:.72rem;letter-spacing:.2em;color:var(--w)}
+.nav-overlay .lang-sw span[data-lang]{opacity:.5;padding:.35rem .55rem;min-height:44px;display:flex;align-items:center}
+.nav-overlay .lang-sw span.on{opacity:1}
 </style>
 
 <script src="../cookie-consent.js?v=2026-11-12d" defer></script>
@@ -802,5 +813,17 @@ document.querySelectorAll('.sb-dates-row .sb-field').forEach(function(f) {
   });
 })();
 </script>
+<script>/* Selecteur de langue : lit les hreflang de la page, donc jamais de 404. */
+(function(){var blocs=document.querySelectorAll('.lang-sw[data-lsw]');if(!blocs.length)return;
+var cur=(document.documentElement.lang||'').slice(0,2).toLowerCase();
+blocs.forEach(function(bloc){bloc.querySelectorAll('span[data-lang]').forEach(function(sp){
+var lg=sp.getAttribute('data-lang');
+var a=document.querySelector('link[rel="alternate"][hreflang="'+lg+'"]');
+if(!a){sp.style.display='none';return;}
+if(lg===cur){sp.classList.add('on');sp.setAttribute('aria-current','true');return;}
+sp.setAttribute('role','link');sp.setAttribute('tabindex','0');
+function go(){window.location.href=a.href;}
+sp.addEventListener('click',go);
+sp.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});});});})();</script>
 </body>
 </html>
