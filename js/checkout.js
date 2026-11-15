@@ -51,7 +51,10 @@
   #lr-pay .lr-row{display:flex;gap:14px}
   #lr-pay .lr-row label{flex:1 1 0;min-width:0}
   #lr-pay .lr-tel{display:flex;gap:10px}
-  #lr-pay .lr-tel select{flex:0 0 150px}
+  /* 15-11-2026 : a 150 px le libelle etait coupe pour tous les pays. Le plus long,
+     "United Kingdom +44", demande 151 px de texte, plus la marge interne et la
+     fleche. Le client ne voyait pas l'indicatif qu'il envoyait. */
+  #lr-pay .lr-tel select{flex:0 0 196px}
   #lr-pay .lr-tel input{flex:1 1 auto}
 
   .lr-nav{position:sticky;bottom:0;display:flex;gap:10px;background:#fffdf9;padding:16px 0 24px;margin-top:auto}
@@ -162,7 +165,12 @@
     #lr-aside{flex:0 0 auto;order:-1;padding:22px 20px 20px}
     #lr-main{padding:22px 20px 0}
     #lr-services{grid-template-columns:1fr}
-    #lr-pay .lr-tel select{flex:0 0 124px}
+    /* Sur telephone la ligne ne fait que 350 px : le selecteur et le numero ne
+       peuvent pas tenir cote a cote sans couper l'un des deux. Le selecteur prend
+       donc sa propre ligne, ce qui garde les noms de pays entiers. */
+    #lr-pay .lr-tel{flex-wrap:wrap}
+    #lr-pay .lr-tel select{flex:1 1 100%}
+    #lr-pay .lr-tel input{flex:1 1 100%}
     /* Sur telephone le panneau sert de resume : on garde la maison, les dates
        et les montants, on laisse tomber la phrase de bas de panneau. */
     .lr-aside-note{display:none}
