@@ -235,11 +235,11 @@ footer{
   }
 }
 .f-logo{font-family:'Gilda Display',serif;font-size:1rem;letter-spacing:.16em;text-transform:uppercase;color:var(--w);margin-bottom:1rem}
-.f-tagline{font-size:.58rem;color:rgba(255,255,255,.25);line-height:1.7;max-width:220px}
-.f-col-title{font-size:.46rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ter);margin-bottom:.8rem}
-.f-link{display:block;font-size:.6rem;color:rgba(255,255,255,.3);margin-bottom:.4rem;transition:color .2s}
+.f-tagline{font-size:.72rem;color:rgba(255,255,255,.5);line-height:1.7;max-width:260px}
+.f-col-title{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ter);margin-bottom:.8rem}
+.f-link{display:block;font-size:.75rem;color:rgba(255,255,255,.62);margin-bottom:.5rem;transition:color .2s}
 .f-link:hover{color:rgba(255,255,255,.65)}
-.f-copy{font-size:.46rem;letter-spacing:.15em;color:rgba(255,255,255,.12);text-transform:uppercase;margin-top:1.5rem}
+.f-copy{font-size:.62rem;letter-spacing:.15em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-top:1.5rem}
 @media(min-width:769px){.f-copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.06);padding-top:1.5rem;margin-top:0}}
 
 /* =====================================================
