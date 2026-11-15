@@ -579,7 +579,7 @@
       perStay:"per stay", perNight:"per night", perPerson:"per person", perEach:"each", onRequest:"on request",
       totalLine:"Total", depositLine:"To pay today", balanceLine:"On arrival",
       recap:function(q){return q.nights+(q.nights>1?" nights":" night")+" from "+q.checkin+" to "+q.checkout+" · total "+q.m+" (5% direct discount included)";},
-      policyFull:function(q){return "You pay "+q.d+" today by card, the full amount including taxes. Cancel up to 60 days before arrival: 96% refunded, the 4% card fee is not recoverable. After that: 50% refunded.";},
+      policyFull:function(q){return "You pay "+q.d+" today by card, the full amount including taxes. Cancel up to 60 days before arrival: 96% refunded, the 4% card fee is not recoverable. Between 60 and 30 days: 50% refunded. Less than 30 days: no refund.";},
       done:function(g,id){return "Thank you "+g.firstName+". Your booking is confirmed and a confirmation email is on its way to "+g.email+". Reference "+id+".";},
       err:{
         night_unavailable:"One of the nights has just been booked. Please choose other dates.",
@@ -632,7 +632,7 @@
       perStay:"le séjour", perNight:"la nuit", perPerson:"la personne", perEach:"l’unité", onRequest:"sur demande",
       totalLine:"Total", depositLine:"À payer aujourd'hui", balanceLine:"À l'arrivée",
       recap:function(q){return q.nights+(q.nights>1?" nuits":" nuit")+" du "+q.checkin+" au "+q.checkout+" · total "+q.m+" (remise directe de 5 % incluse)";},
-      policyFull:function(q){return "Vous payez "+q.d+" aujourd'hui par carte, la totalité taxes comprises. Annulation jusqu'à 60 jours avant l'arrivée : 96 % remboursés, les 4 % de frais bancaires non récupérables. Au-delà : 50 % remboursés.";},
+      policyFull:function(q){return "Vous payez "+q.d+" aujourd'hui par carte, la totalité taxes comprises. Annulation jusqu'à 60 jours avant l'arrivée : 96 % remboursés, les 4 % de frais bancaires non récupérables. Entre 60 et 30 jours : 50 % remboursés. À moins de 30 jours : aucun remboursement.";},
       done:function(g,id){return "Merci "+g.firstName+". Votre réservation est confirmée et un e-mail de confirmation part à "+g.email+". Référence "+id+".";},
       err:{
         night_unavailable:"Une des nuits de votre séjour vient d'être réservée. Choisissez d'autres dates.",
@@ -685,7 +685,7 @@
       perStay:"por estancia", perNight:"por noche", perPerson:"por persona", perEach:"por unidad", onRequest:"a consultar",
       totalLine:"Total", depositLine:"A pagar hoy", balanceLine:"A la llegada",
       recap:function(q){return q.nights+(q.nights>1?" noches":" noche")+" del "+q.checkin+" al "+q.checkout+" · total "+q.m+" (5 % de descuento directo incluido)";},
-      policyFull:function(q){return "Pagas "+q.d+" hoy con tarjeta, el total con impuestos incluidos. Cancelación hasta 60 días antes de la llegada: se reembolsa el 96 %, la comisión bancaria del 4 % no es recuperable. Después: 50 % reembolsado.";},
+      policyFull:function(q){return "Pagas "+q.d+" hoy con tarjeta, el total con impuestos incluidos. Cancelación hasta 60 días antes de la llegada: se reembolsa el 96 %, la comisión bancaria del 4 % no es recuperable. Entre 60 y 30 días: 50 % reembolsado. Con menos de 30 días: sin reembolso.";},
       done:function(g,id){return "Gracias "+g.firstName+". Su reserva está confirmada y le enviamos un correo a "+g.email+". Referencia "+id+".";},
       err:{
         night_unavailable:"Una de las noches acaba de ser reservada. Elija otras fechas.",
