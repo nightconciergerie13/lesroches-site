@@ -551,6 +551,14 @@
     }
     @media (max-width: 600px) {
       .fh-search { grid-template-columns: 1fr 1fr; }
+
+  /* Le champ Guests restait seul dans la colonne 1 : la grille passe a
+     2 colonnes sous 600 px, et les 3 champs + le bouton laissaient une
+     cellule vide de 146 x 49 px au milieu du widget. Mesure du 15-11-2026
+     a 390 px. Le champ prend desormais toute la largeur, comme le bouton
+     et comme le widget de l'accueil. */
+  .fh-search .ds-field:nth-child(3) { grid-column: 1 / -1; }
+
       .ds-field:first-child { padding-left: 4vw; }
       .ds-btn { grid-column: 1 / -1; padding: .9rem; text-align: center; }
     }
