@@ -456,6 +456,46 @@
 
   .exp-price-note{max-width:620px;margin:0 auto 2.2rem;padding:0 1.5rem;font-family:'Outfit',sans-serif;font-weight:300;font-size:.62rem;line-height:1.75;text-align:center;color:rgba(26,24,22,.5)}
   @media(max-width:700px){.exp-price-note{font-size:.6rem;margin-bottom:1.6rem}}
+
+  /* ===== Volet de detail d'une experience ===== */
+  .exp-d{display:none}
+  .exp-panel{position:fixed;inset:0;z-index:9000;display:flex;align-items:flex-end;justify-content:center}
+  .exp-panel[hidden]{display:none}
+  .exp-panel-veil{position:absolute;inset:0;background:rgba(10,8,6,.62);backdrop-filter:blur(3px);opacity:0;transition:opacity .28s ease}
+  .exp-panel.on .exp-panel-veil{opacity:1}
+  .exp-panel-box{position:relative;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    background:#faf7f2;border-radius:6px 6px 0 0;transform:translateY(22px);opacity:0;transition:transform .32s cubic-bezier(.22,1,.36,1),opacity .28s ease}
+  .exp-panel.on .exp-panel-box{transform:none;opacity:1}
+  .exp-panel-photo{height:190px;background-size:cover;background-position:center;position:relative}
+  .exp-panel-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,8,6,.55),transparent 55%)}
+  .exp-panel-close{position:absolute;top:.9rem;right:.9rem;z-index:2;width:38px;height:38px;border:0;border-radius:50%;
+    background:rgba(10,8,6,.55);color:#faf7f2;font-size:1rem;line-height:1;cursor:pointer;transition:background .2s}
+  .exp-panel-close:hover{background:rgba(10,8,6,.8)}
+  .exp-panel-in{padding:1.6rem 1.6rem 1.8rem}
+  .exp-panel-cat{font-family:'Outfit',sans-serif;font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(26,24,22,.45);margin-bottom:.5rem}
+  .exp-panel-name{font-family:'Gilda Display',serif;font-size:1.65rem;line-height:1.15;color:#1a1816;margin:0 0 1rem}
+  .exp-d-p{font-family:'Outfit',sans-serif;font-weight:300;font-size:.82rem;line-height:1.85;color:rgba(26,24,22,.72);margin:0 0 1.3rem}
+  .exp-d-facts{margin:0 0 1.6rem;padding:0;display:grid;grid-template-columns:auto 1fr;gap:.55rem 1.2rem;align-items:baseline}
+  .exp-d-facts dt{font-family:'Outfit',sans-serif;font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(26,24,22,.4);white-space:nowrap}
+  .exp-d-facts dd{margin:0;font-family:'Outfit',sans-serif;font-weight:300;font-size:.78rem;line-height:1.5;color:#1a1816}
+  .exp-panel-cta{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;min-height:50px;padding:.9rem 1.2rem;
+    background:#1a1816;color:#faf7f2;text-decoration:none;font-family:'Outfit',sans-serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;transition:background .2s}
+  .exp-panel-cta:hover{background:#000}
+  .exp-panel-cta svg{width:15px;height:15px;flex-shrink:0}
+  .exp-panel-alt{display:block;text-align:center;margin-top:.9rem;font-family:'Outfit',sans-serif;font-weight:300;font-size:.68rem;
+    color:rgba(26,24,22,.5);text-decoration:underline;text-underline-offset:3px}
+  .exp-panel-alt:hover{color:#1a1816}
+  .exp-panel-note{margin-top:1.1rem;font-family:'Outfit',sans-serif;font-weight:300;font-size:.6rem;line-height:1.65;color:rgba(26,24,22,.42);text-align:center}
+  @media(min-width:701px){
+    .exp-panel{align-items:center}
+    .exp-panel-box{border-radius:6px;max-height:88vh}
+    .exp-panel-photo{height:220px}
+    .exp-panel-in{padding:2rem 2.2rem 2.2rem}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .exp-panel-veil,.exp-panel-box{transition:none}
+    .exp-panel-box{transform:none}
+  }
 </style>
 <link rel="canonical" href="https://lesrochesretreat.com/es/experiences.html">
 <script src="../js/track.js?v=2026-11-12a" defer></script>
@@ -556,6 +596,21 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Cours de surf avec Fernando, sur la plage de Playa Hermosa, ouvert à tous les niveaux." data-en="Surf lesson with Fernando on Playa Hermosa, open to all levels." data-es="Clase de surf con Fernando en Playa Hermosa, abierta a todos los niveles.">Clase de surf con Fernando en Playa Hermosa, abierta a todos los niveles.</p>
+          <dl class="exp-d-facts">
+            <dt data-fr="Durée" data-en="Duration" data-es="Duración">Duración</dt>
+            <dd data-fr="1h30" data-en="1h30" data-es="1h30">1h30</dd>
+            <dt data-fr="Lieu" data-en="Where" data-es="Lugar">Lugar</dt>
+            <dd data-fr="Playa Hermosa" data-en="Playa Hermosa" data-es="Playa Hermosa">Playa Hermosa</dd>
+            <dt data-fr="Distance" data-en="Distance" data-es="Distancia">Distancia</dt>
+            <dd data-fr="9 km" data-en="9 km" data-es="9 km">9 km</dd>
+            <dt data-fr="Niveau" data-en="Level" data-es="Nivel">Nivel</dt>
+            <dd data-fr="Tous niveaux" data-en="All levels" data-es="Todos los niveles">Todos los niveles</dd>
+            <dt data-fr="À partir de" data-en="From" data-es="Desde">Desde</dt>
+            <dd data-fr="80 $" data-en="$80" data-es="$80">$80</dd>
+          </dl>
+        </div>
     </a>
 
     <!-- 2 · PÊCHE -->
@@ -570,6 +625,17 @@
         </div>
         <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Bateau privé, à composer à la carte : pêche, snorkeling, observation des baleines, ou cap sur Isla Tortuga." data-en="Private boat, built around what you want: fishing, snorkelling, whale watching, or a run out to Isla Tortuga." data-es="Barco privado, a la carta: pesca, esnórquel, avistamiento de ballenas o rumbo a Isla Tortuga.">Barco privado, a la carta: pesca, esnórquel, avistamiento de ballenas o rumbo a Isla Tortuga.</p>
+          <dl class="exp-d-facts">
+            <dt data-fr="Bateau" data-en="Boat" data-es="Barco">Barco</dt>
+            <dd data-fr="Privé" data-en="Private" data-es="Privado">Privado</dd>
+            <dt data-fr="Au programme" data-en="On the day" data-es="En el programa">En el programa</dt>
+            <dd data-fr="Pêche, snorkeling, baleines, Isla Tortuga" data-en="Fishing, snorkelling, whales, Isla Tortuga" data-es="Pesca, esnórquel, ballenas, Isla Tortuga">Pesca, esnórquel, ballenas, Isla Tortuga</dd>
+            <dt data-fr="À partir de" data-en="From" data-es="Desde">Desde</dt>
+            <dd data-fr="340 $" data-en="$340" data-es="$340">$340</dd>
+          </dl>
+        </div>
     </a>
 
     <!-- 3 · TORTUGA ISLAND -->
@@ -584,6 +650,21 @@
         </div>
         <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Journée à Isla Tortuga, en groupe, snorkeling et déjeuner compris." data-en="A full day at Isla Tortuga, in a group, snorkelling and lunch included." data-es="Día completo en Isla Tortuga, en grupo, con esnórquel y almuerzo incluidos.">Día completo en Isla Tortuga, en grupo, con esnórquel y almuerzo incluidos.</p>
+          <dl class="exp-d-facts">
+            <dt data-fr="Durée" data-en="Duration" data-es="Duración">Duración</dt>
+            <dd data-fr="Une journée" data-en="One day" data-es="Un día">Un día</dd>
+            <dt data-fr="Format" data-en="Format" data-es="Formato">Formato</dt>
+            <dd data-fr="En groupe" data-en="Group tour" data-es="En grupo">En grupo</dd>
+            <dt data-fr="Inclus" data-en="Included" data-es="Incluido">Incluido</dt>
+            <dd data-fr="Snorkeling et déjeuner" data-en="Snorkelling and lunch" data-es="Esnórquel y almuerzo">Esnórquel y almuerzo</dd>
+            <dt data-fr="Distance" data-en="Distance" data-es="Distancia">Distancia</dt>
+            <dd data-fr="~40 km par Montezuma" data-en="~40 km via Montezuma" data-es="~40 km por Montezuma">~40 km por Montezuma</dd>
+            <dt data-fr="À partir de" data-en="From" data-es="Desde">Desde</dt>
+            <dd data-fr="85 $" data-en="$85" data-es="$85">$85</dd>
+          </dl>
+        </div>
     </a>
 
     <!-- 4 · BIOLUMINESCENCE -->
@@ -600,6 +681,19 @@
         </div>
         <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Sortie en paddle de nuit dans la baie de Tambor, là où le plancton s'illumine dans l'eau." data-en="A night paddle in Tambor bay, where the plankton lights up in the water." data-es="Salida en paddle nocturno en la bahía de Tambor, donde el plancton se ilumina en el agua.">Salida en paddle nocturno en la bahía de Tambor, donde el plancton se ilumina en el agua.</p>
+          <dl class="exp-d-facts">
+            <dt data-fr="Moment" data-en="When" data-es="Momento">Momento</dt>
+            <dd data-fr="De nuit" data-en="After dark" data-es="De noche">De noche</dd>
+            <dt data-fr="Lieu" data-en="Where" data-es="Lugar">Lugar</dt>
+            <dd data-fr="Baie de Tambor" data-en="Tambor bay" data-es="Bahía de Tambor">Bahía de Tambor</dd>
+            <dt data-fr="Distance" data-en="Distance" data-es="Distancia">Distancia</dt>
+            <dd data-fr="~50 km" data-en="~50 km" data-es="~50 km">~50 km</dd>
+            <dt data-fr="À partir de" data-en="From" data-es="Desde">Desde</dt>
+            <dd data-fr="75 $" data-en="$75" data-es="$75">$75</dd>
+          </dl>
+        </div>
     </a>
 
     <!-- 5 · PLONGÉE -->
@@ -613,6 +707,9 @@
         </div>
         <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Nous organisons cette expérience à la demande. Dites-nous ce que vous cherchez et nous revenons vers vous avec les options et les tarifs." data-en="We arrange this experience on request. Tell us what you have in mind and we will come back with the options and the rates." data-es="Organizamos esta experiencia a petición. Cuéntanos qué buscas y te respondemos con las opciones y las tarifas.">Organizamos esta experiencia a petición. Cuéntanos qué buscas y te respondemos con las opciones y las tarifas.</p>
+        </div>
     </a>
 
     <!-- 6 · SUP -->
@@ -627,6 +724,19 @@
         </div>
         <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Sortie guidée en paddle ou en kayak, le long de la côte de Mal País et jusqu'aux abords de Cabo Blanco." data-en="A guided paddle or kayak along the Mal Pais coast and out towards Cabo Blanco." data-es="Salida guiada en paddle o kayak por la costa de Mal Pais y hasta Cabo Blanco.">Salida guiada en paddle o kayak por la costa de Mal Pais y hasta Cabo Blanco.</p>
+          <dl class="exp-d-facts">
+            <dt data-fr="Durée" data-en="Duration" data-es="Duración">Duración</dt>
+            <dd data-fr="Demi-journée" data-en="Half-day" data-es="Medio día">Medio día</dd>
+            <dt data-fr="Lieu" data-en="Where" data-es="Lugar">Lugar</dt>
+            <dd data-fr="Mal País et Cabo Blanco" data-en="Mal Pais and Cabo Blanco" data-es="Mal Pais y Cabo Blanco">Mal Pais y Cabo Blanco</dd>
+            <dt data-fr="Distance" data-en="Distance" data-es="Distancia">Distancia</dt>
+            <dd data-fr="5 à 15 km" data-en="5 to 15 km" data-es="5 a 15 km">5 a 15 km</dd>
+            <dt data-fr="À partir de" data-en="From" data-es="Desde">Desde</dt>
+            <dd data-fr="65 $" data-en="$65" data-es="$65">$65</dd>
+          </dl>
+        </div>
     </a>
 
     <!-- 7 · CATAMARAN -->
@@ -642,6 +752,17 @@
         </div>
         <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Bateau privé, avec snorkeling et observation des baleines." data-en="Private boat, with snorkelling and whale watching." data-es="Barco privado, con esnórquel y avistamiento de ballenas.">Barco privado, con esnórquel y avistamiento de ballenas.</p>
+          <dl class="exp-d-facts">
+            <dt data-fr="Bateau" data-en="Boat" data-es="Barco">Barco</dt>
+            <dd data-fr="Privé" data-en="Private" data-es="Privado">Privado</dd>
+            <dt data-fr="Au programme" data-en="On the day" data-es="En el programa">En el programa</dt>
+            <dd data-fr="Snorkeling, baleines, Isla Tortuga" data-en="Snorkelling, whales, Isla Tortuga" data-es="Esnórquel, ballenas, Isla Tortuga">Esnórquel, ballenas, Isla Tortuga</dd>
+            <dt data-fr="À partir de" data-en="From" data-es="Desde">Desde</dt>
+            <dd data-fr="340 $" data-en="$340" data-es="$340">$340</dd>
+          </dl>
+        </div>
     </a>
 
     <!-- 8 · KAYAK -->
@@ -656,6 +777,21 @@
         </div>
         <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Pêche en kayak le long de la côte de Mal País. Une sortie qui se fait en famille." data-en="Kayak fishing along the Mal Pais coast. A trip that works with children." data-es="Pesca en kayak por la costa de Mal Pais. Una salida que funciona en familia.">Pesca en kayak por la costa de Mal Pais. Una salida que funciona en familia.</p>
+          <dl class="exp-d-facts">
+            <dt data-fr="Durée" data-en="Duration" data-es="Duración">Duración</dt>
+            <dd data-fr="Demi-journée" data-en="Half-day" data-es="Medio día">Medio día</dd>
+            <dt data-fr="Lieu" data-en="Where" data-es="Lugar">Lugar</dt>
+            <dd data-fr="Mal País" data-en="Mal Pais" data-es="Mal Pais">Mal Pais</dd>
+            <dt data-fr="Distance" data-en="Distance" data-es="Distancia">Distancia</dt>
+            <dd data-fr="~5 km" data-en="~5 km" data-es="~5 km">~5 km</dd>
+            <dt data-fr="Public" data-en="Good for" data-es="Ideal para">Ideal para</dt>
+            <dd data-fr="En famille" data-en="Families" data-es="En familia">En familia</dd>
+            <dt data-fr="À partir de" data-en="From" data-es="Desde">Desde</dt>
+            <dd data-fr="85 $" data-en="$85" data-es="$85">$85</dd>
+          </dl>
+        </div>
     </a>
 
   </div>
@@ -695,6 +831,15 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Parcours de tyroliennes dans la canopée." data-en="A zipline course through the canopy." data-es="Recorrido de tirolinas por el dosel de la selva.">Recorrido de tirolinas por el dosel de la selva.</p>
+          <dl class="exp-d-facts">
+            <dt data-fr="Distance" data-en="Distance" data-es="Distancia">Distancia</dt>
+            <dd data-fr="~20 km" data-en="~20 km" data-es="~20 km">~20 km</dd>
+            <dt data-fr="À partir de" data-en="From" data-es="Desde">Desde</dt>
+            <dd data-fr="55 $" data-en="$55" data-es="$55">$55</dd>
+          </dl>
+        </div>
     </a>
 
     <!-- 2 · QUAD -->
@@ -709,6 +854,15 @@
         </div>
         <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Sortie guidée en quad, entre jungle et cascades." data-en="A guided ATV ride through jungle and waterfalls." data-es="Salida guiada en quad, entre selva y cascadas.">Salida guiada en quad, entre selva y cascadas.</p>
+          <dl class="exp-d-facts">
+            <dt data-fr="Au programme" data-en="On the day" data-es="En el programa">En el programa</dt>
+            <dd data-fr="Jungle et cascades" data-en="Jungle and waterfalls" data-es="Selva y cascadas">Selva y cascadas</dd>
+            <dt data-fr="À partir de" data-en="From" data-es="Desde">Desde</dt>
+            <dd data-fr="85 $" data-en="$85" data-es="$85">$85</dd>
+          </dl>
+        </div>
     </a>
 
     <!-- 3 · CASCADES -->
@@ -723,6 +877,17 @@
         </div>
         <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Les cascades de Montezuma : marche d'approche, puis baignade. L'accès est libre." data-en="The Montezuma waterfalls: a walk in, then a swim. Entry is free." data-es="Las cascadas de Montezuma: caminata de acceso y baño. La entrada es libre.">Las cascadas de Montezuma: caminata de acceso y baño. La entrada es libre.</p>
+          <dl class="exp-d-facts">
+            <dt data-fr="Au programme" data-en="On the day" data-es="En el programa">En el programa</dt>
+            <dd data-fr="Randonnée et baignade" data-en="Hike and swim" data-es="Caminata y baño">Caminata y baño</dd>
+            <dt data-fr="Distance" data-en="Distance" data-es="Distancia">Distancia</dt>
+            <dd data-fr="17 km" data-en="17 km" data-es="17 km">17 km</dd>
+            <dt data-fr="Tarif" data-en="Price" data-es="Precio">Precio</dt>
+            <dd data-fr="Accès libre" data-en="Free" data-es="Entrada libre">Entrada libre</dd>
+          </dl>
+        </div>
     </a>
 
     <!-- 4 · CHEVAL -->
@@ -737,6 +902,15 @@
         </div>
         <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Balade à cheval sur la plage, au coucher du soleil." data-en="A horseback ride along the beach at sunset." data-es="Paseo a caballo por la playa al atardecer.">Paseo a caballo por la playa al atardecer.</p>
+          <dl class="exp-d-facts">
+            <dt data-fr="Moment" data-en="When" data-es="Momento">Momento</dt>
+            <dd data-fr="Coucher de soleil" data-en="Sunset" data-es="Atardecer">Atardecer</dd>
+            <dt data-fr="À partir de" data-en="From" data-es="Desde">Desde</dt>
+            <dd data-fr="85 $" data-en="$85" data-es="$85">$85</dd>
+          </dl>
+        </div>
     </a>
 
     <!-- 5 · CABO BLANCO -->
@@ -748,10 +922,19 @@
         <div class="exp-card-info">
           <div class="exp-card-cat" data-fr="Nature" data-en="Nature" data-es="Naturaleza">Naturaleza</div>
           <div class="exp-card-name" data-fr="Cabo Blanco" data-en="Cabo Blanco Reserve" data-es="Reserva Cabo Blanco">Reserva Cabo Blanco</div>
-          <div class="exp-card-desc" data-fr="À 12 km · fermé lundi et mardi" data-en="12 km away · closed Mondays and Tuesdays" data-es="A 12 km · cerrado lunes y martes">A 12 km · cerrado lunes y martes</div>
+          <div class="exp-card-desc" data-fr="Randonnée et faune · à 12 km" data-en="Hiking and wildlife · 12 km away" data-es="Senderismo y fauna · a 12 km">Senderismo y fauna · a 12 km</div>
         </div>
         <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="La réserve naturelle de Cabo Blanco, parcourue à pied." data-en="The Cabo Blanco nature reserve, explored on foot." data-es="La reserva natural de Cabo Blanco, recorrida a pie.">La reserva natural de Cabo Blanco, recorrida a pie.</p>
+          <dl class="exp-d-facts">
+            <dt data-fr="Au programme" data-en="On the day" data-es="En el programa">En el programa</dt>
+            <dd data-fr="Randonnée et faune" data-en="Hiking and wildlife" data-es="Senderismo y fauna">Senderismo y fauna</dd>
+            <dt data-fr="Distance" data-en="Distance" data-es="Distancia">Distancia</dt>
+            <dd data-fr="12 km" data-en="12 km" data-es="12 km">12 km</dd>
+          </dl>
+        </div>
     </a>
 
     <!-- 6 · BIRD WATCHING -->
@@ -766,6 +949,17 @@
         </div>
         <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Sortie privée d'observation des oiseaux, tôt le matin, accompagnée d'un guide naturaliste." data-en="A private birdwatching outing, early in the morning, with a naturalist guide." data-es="Salida privada de avistamiento de aves, temprano, con guía naturalista.">Salida privada de avistamiento de aves, temprano, con guía naturalista.</p>
+          <dl class="exp-d-facts">
+            <dt data-fr="Moment" data-en="When" data-es="Momento">Momento</dt>
+            <dd data-fr="Tôt le matin" data-en="Early morning" data-es="Temprano">Temprano</dd>
+            <dt data-fr="Format" data-en="Format" data-es="Formato">Formato</dt>
+            <dd data-fr="Privé, avec guide naturaliste" data-en="Private, naturalist guide" data-es="Privado, con guía naturalista">Privado, con guía naturalista</dd>
+            <dt data-fr="À partir de" data-en="From" data-es="Desde">Desde</dt>
+            <dd data-fr="120 $" data-en="$120" data-es="$120">$120</dd>
+          </dl>
+        </div>
     </a>
 
     <!-- 7 · VTT -->
@@ -779,6 +973,9 @@
         </div>
         <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Nous organisons cette expérience à la demande. Dites-nous ce que vous cherchez et nous revenons vers vous avec les options et les tarifs." data-en="We arrange this experience on request. Tell us what you have in mind and we will come back with the options and the rates." data-es="Organizamos esta experiencia a petición. Cuéntanos qué buscas y te respondemos con las opciones y las tarifas.">Organizamos esta experiencia a petición. Cuéntanos qué buscas y te respondemos con las opciones y las tarifas.</p>
+        </div>
     </a>
 
 
@@ -821,6 +1018,17 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Un massage chez vous, dans la villa. Relaxant ou profond, en duo si vous le souhaitez, avec une option bain sonore." data-en="A massage at your villa. Relaxing or deep tissue, as a couple if you like, with a sound bath option." data-es="Un masaje en tu villa. Relajante o profundo, en pareja si quieres, con opción de baño de sonido.">Un masaje en tu villa. Relajante o profundo, en pareja si quieres, con opción de baño de sonido.</p>
+          <dl class="exp-d-facts">
+            <dt data-fr="Lieu" data-en="Where" data-es="Lugar">Lugar</dt>
+            <dd data-fr="Chez vous, à la villa" data-en="At your villa" data-es="En tu villa">En tu villa</dd>
+            <dt data-fr="Au programme" data-en="On the day" data-es="En el programa">En el programa</dt>
+            <dd data-fr="Relaxant, profond, en duo, bain sonore" data-en="Relaxing, deep tissue, couples, sound bath" data-es="Relajante, profundo, en pareja, baño de sonido">Relajante, profundo, en pareja, baño de sonido</dd>
+            <dt data-fr="À partir de" data-en="From" data-es="Desde">Desde</dt>
+            <dd data-fr="100 $ l'heure" data-en="$100 an hour" data-es="$100 la hora">$100 la hora</dd>
+          </dl>
+        </div>
     </a>
 
     <!-- 2 · PILATES -->
@@ -835,6 +1043,17 @@
         </div>
         <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Deux studios de reformer à moins de 5 km, ou un cours de Pilates sur tapis, directement sur votre terrasse." data-en="Two reformer studios under 5 km away, or a mat Pilates class on your own terrace." data-es="Dos estudios de reformer a menos de 5 km, o una clase de Pilates en colchoneta en tu terraza.">Dos estudios de reformer a menos de 5 km, o una clase de Pilates en colchoneta en tu terraza.</p>
+          <dl class="exp-d-facts">
+            <dt data-fr="Studios" data-en="Studios" data-es="Estudios">Estudios</dt>
+            <dd data-fr="This Way Movement, HAPPILATES" data-en="This Way Movement, HAPPILATES" data-es="This Way Movement, HAPPILATES">This Way Movement, HAPPILATES</dd>
+            <dt data-fr="Distance" data-en="Distance" data-es="Distancia">Distancia</dt>
+            <dd data-fr="4 à 4,5 km, 16 à 18 min de route" data-en="4 to 4.5 km, 16 to 18 min drive" data-es="4 a 4,5 km, 16 a 18 min en coche">4 a 4,5 km, 16 a 18 min en coche</dd>
+            <dt data-fr="Chez vous" data-en="At the villa" data-es="En la villa">En la villa</dt>
+            <dd data-fr="Pilates sur tapis, à partir de 100 $ l'heure" data-en="Mat Pilates, from $100 an hour" data-es="Pilates en colchoneta, desde $100 la hora">Pilates en colchoneta, desde $100 la hora</dd>
+          </dl>
+        </div>
     </a>
 
     <!-- 3 · CHEF -->
@@ -849,6 +1068,9 @@
         </div>
         <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Nous organisons cette expérience à la demande. Dites-nous ce que vous cherchez et nous revenons vers vous avec les options et les tarifs." data-en="We arrange this experience on request. Tell us what you have in mind and we will come back with the options and the rates." data-es="Organizamos esta experiencia a petición. Cuéntanos qué buscas y te respondemos con las opciones y las tarifas.">Organizamos esta experiencia a petición. Cuéntanos qué buscas y te respondemos con las opciones y las tarifas.</p>
+        </div>
     </a>
 
     <!-- 4 · YOGA -->
@@ -863,6 +1085,17 @@
         </div>
         <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Trois studios à moins de 5 km, du Hatha au Vinyasa, dont un en bord de plage. Ou un cours sur votre terrasse." data-en="Three studios under 5 km away, from Hatha to Vinyasa, one of them on the beach. Or a class on your own terrace." data-es="Tres estudios a menos de 5 km, de Hatha a Vinyasa, uno de ellos en la playa. O una clase en tu terraza.">Tres estudios a menos de 5 km, de Hatha a Vinyasa, uno de ellos en la playa. O una clase en tu terraza.</p>
+          <dl class="exp-d-facts">
+            <dt data-fr="Studios" data-en="Studios" data-es="Estudios">Estudios</dt>
+            <dd data-fr="Casa Zen, Pranamar, Horizon" data-en="Casa Zen, Pranamar, Horizon" data-es="Casa Zen, Pranamar, Horizon">Casa Zen, Pranamar, Horizon</dd>
+            <dt data-fr="Distance" data-en="Distance" data-es="Distancia">Distancia</dt>
+            <dd data-fr="2,9 à 4,2 km, 11 à 17 min de route" data-en="2.9 to 4.2 km, 11 to 17 min drive" data-es="2,9 a 4,2 km, 11 a 17 min en coche">2,9 a 4,2 km, 11 a 17 min en coche</dd>
+            <dt data-fr="Chez vous" data-en="At the villa" data-es="En la villa">En la villa</dt>
+            <dd data-fr="Yoga sur terrasse, à partir de 100 $ l'heure" data-en="Terrace yoga, from $100 an hour" data-es="Yoga en terraza, desde $100 la hora">Yoga en terraza, desde $100 la hora</dd>
+          </dl>
+        </div>
     </a>
 
     <!-- 5 · COURS DE CUISINE -->
@@ -876,6 +1109,9 @@
         </div>
         <div class="exp-card-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+        <div class="exp-d" hidden aria-hidden="true">
+          <p class="exp-d-p" data-fr="Nous organisons cette expérience à la demande. Dites-nous ce que vous cherchez et nous revenons vers vous avec les options et les tarifs." data-en="We arrange this experience on request. Tell us what you have in mind and we will come back with the options and the rates." data-es="Organizamos esta experiencia a petición. Cuéntanos qué buscas y te respondemos con las opciones y las tarifas.">Organizamos esta experiencia a petición. Cuéntanos qué buscas y te respondemos con las opciones y las tarifas.</p>
+        </div>
     </a>
 
   </div>
@@ -983,5 +1219,87 @@ sp.setAttribute('role','link');sp.setAttribute('tabindex','0');
 function go(){window.location.href=a.href;}
 sp.addEventListener('click',go);
 sp.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});});});})();</script>
+
+<!-- ââ VOLET DE DETAIL D'UNE EXPERIENCE ââ -->
+<div class="exp-panel" id="exp-panel" hidden>
+  <div class="exp-panel-veil" data-exp-close></div>
+  <div class="exp-panel-box" role="dialog" aria-modal="true" aria-labelledby="exp-panel-name">
+    <button class="exp-panel-close" data-exp-close type="button" aria-label="Cerrar" data-fr="Fermer" data-en="Close" data-es="Cerrar" data-attr="aria-label">&#10005;</button>
+    <div class="exp-panel-photo" id="exp-panel-photo"></div>
+    <div class="exp-panel-in">
+      <div class="exp-panel-cat" id="exp-panel-cat"></div>
+      <h2 class="exp-panel-name" id="exp-panel-name"></h2>
+      <div id="exp-panel-body"></div>
+      <a class="exp-panel-cta" id="exp-panel-wa" href="https://wa.me/33667749024" target="_blank" rel="noopener"
+         data-wa-fr="Bonjour, je suis intéressé(e) par : " data-wa-en="Hello, I'm interested in: " data-wa-es="Hola, me interesa: ">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4-.1-.5l-1-2.2c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.4 1.9.8 2.6.9 3.5.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+        <span data-fr="Demander cette expérience" data-en="Ask about this experience" data-es="Preguntar por esta experiencia">Preguntar por esta experiencia</span>
+      </a>
+      <a class="exp-panel-alt" href="../contact.html" data-fr="Ou passer par le formulaire de réservation" data-en="Or use the booking form" data-es="O usar el formulario de reserva">O usar el formulario de reserva</a>
+      <p class="exp-panel-note" data-fr="Durées, distances et tarifs indicatifs. La conciergerie confirme avant réservation." data-en="Durations, distances and rates are indicative. The concierge confirms before booking." data-es="Duraciones, distancias y tarifas indicativas. La conserjería confirma antes de reservar.">Duraciones, distancias y tarifas indicativas. La conserjería confirma antes de reservar.</p>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var p = document.getElementById('exp-panel');
+  if (!p) return;
+  var lg = location.pathname.indexOf('/fr/') > -1 ? 'fr' : (location.pathname.indexOf('/es/') > -1 ? 'es' : 'en');
+  var boite = p.querySelector('.exp-panel-box'),
+      photo = document.getElementById('exp-panel-photo'),
+      cat   = document.getElementById('exp-panel-cat'),
+      nom   = document.getElementById('exp-panel-name'),
+      corps = document.getElementById('exp-panel-body'),
+      wa    = document.getElementById('exp-panel-wa'),
+      close = p.querySelector('.exp-panel-close'),
+      rendu = null;
+
+  function txt(el){ return el ? (el.getAttribute('data-' + lg) || el.textContent || '').trim() : ''; }
+
+  function ouvrir(carte){
+    var d = carte.querySelector('.exp-d');
+    if (!d) return false;
+    var img = carte.querySelector('.exp-card-photo');
+    photo.style.backgroundImage = img ? getComputedStyle(img).backgroundImage : 'none';
+    cat.textContent = txt(carte.querySelector('.exp-card-cat'));
+    var n = txt(carte.querySelector('.exp-card-name'));
+    nom.textContent = n;
+    corps.innerHTML = '';
+    var c = d.cloneNode(true);
+    c.removeAttribute('hidden'); c.removeAttribute('aria-hidden'); c.className = 'exp-d-open';
+    while (c.firstChild) corps.appendChild(c.firstChild);
+    wa.href = 'https://wa.me/33667749024?text=' + encodeURIComponent((wa.getAttribute('data-wa-' + lg) || '') + n);
+    rendu = carte;
+    p.hidden = false;
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(function(){ p.classList.add('on'); });
+    close.focus();
+    return true;
+  }
+
+  function fermer(){
+    p.classList.remove('on');
+    document.body.style.overflow = '';
+    setTimeout(function(){ p.hidden = true; }, 300);
+    if (rendu) { rendu.focus(); rendu = null; }
+  }
+
+  document.addEventListener('click', function(e){
+    if (e.target.closest && e.target.closest('[data-exp-close]')) { e.preventDefault(); fermer(); return; }
+    var carte = e.target.closest ? e.target.closest('a.exp-card') : null;
+    if (carte && ouvrir(carte)) e.preventDefault();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && !p.hidden) fermer();
+    if (e.key === 'Tab' && !p.hidden) {
+      var f = boite.querySelectorAll('button, a[href]');
+      if (!f.length) return;
+      var a = f[0], z = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); }
+      else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); }
+    }
+  });
+})();
+</script>
 </body>
 </html>
