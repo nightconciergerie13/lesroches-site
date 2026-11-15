@@ -267,13 +267,48 @@ footer{background:var(--ink);padding:4rem 5vw 2rem}
   </div>
 </div>
 
-<footer>
-  <div class="ftop">
-    <div><div class="flogo">Les Roches</div><p class="ftag">Six villas privées au cœur de Santa Teresa.<br>Où la jungle rencontre l'océan.</p></div>
-    <div><div class="fct">Naviguer</div><div class="flinks"><a href="../../fr/villas.html" class="flink">Villas</a><a href="../../fr/experiences.html" class="flink">Expériences</a><a href="../../fr/about.html" class="flink">Notre Récit</a><a href="../../fr/santa-teresa.html" class="flink">Santa Teresa</a><a href="../../fr/journal.html" class="flink">Journal</a><a href="../../fr/contact.html" class="flink">Réserver</a></div></div>
-    <div><div class="fct">Contact</div><span class="flink">hello@lesrochesretreat.com</span><span class="flink" style="margin-top:.5rem;display:block">+33 6 67 74 90 24</span></div>
+<style>
+/* Les pages hotes posent des regles sur la balise footer elle-meme :
+   l'une d'elles met display:grid, ce qui ecrasait ce bloc a 558 px de
+   large. On redeclare donc toute la mise en page, sans dependre de rien. */
+.lrf{display:block;width:auto;max-width:none;margin:0;gap:0;grid-template-columns:none;text-align:left;background:#2e2a26;color:#faf7f2;padding:4rem 0 2rem;font-family:'Outfit',system-ui,-apple-system,sans-serif}
+.lrf *{box-sizing:border-box}
+.lrf-in{display:block;width:100%;max-width:1180px;margin:0 auto;padding:0 2rem;float:none}
+.lrf-top{display:grid;grid-template-columns:1.5fr 1fr 1.2fr 1.1fr;gap:2.5rem}
+.lrf-logo{font-family:'Gilda Display',Georgia,serif;font-size:1rem;letter-spacing:.16em;text-transform:uppercase;color:#faf7f2;margin-bottom:.9rem}
+.lrf-tag{font-size:.72rem;line-height:1.7;color:rgba(255,255,255,.5);max-width:260px;margin:0}
+.lrf-ct{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:#b8734a;margin-bottom:.9rem}
+.lrf-link{display:block;font-size:.75rem;line-height:1.5;color:rgba(255,255,255,.62);margin-bottom:.5rem;text-decoration:none;transition:color .2s}
+.lrf-link:hover{color:#faf7f2}
+.lrf-adr{font-size:.72rem;line-height:1.7;color:rgba(255,255,255,.5);margin:.9rem 0 0}
+.lrf-bot{margin-top:3rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.08)}
+.lrf-copy{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.lrf-legal{display:block;margin-top:.6rem;font-size:10px;line-height:1.6;letter-spacing:.02em;color:rgba(250,247,242,.55)}
+@media(max-width:860px){.lrf-top{grid-template-columns:1fr 1fr;gap:2rem}.lrf-in{padding:0 1.5rem}}
+@media(max-width:560px){.lrf-top{grid-template-columns:1fr}.lrf{padding:3rem 0 1.5rem}}
+</style>
+<footer class="lrf">
+  <div class="lrf-in">
+    <div class="lrf-top">
+      <div>
+        <div class="lrf-logo">Les Roches</div>
+        <p class="lrf-tag">Six villas privées au cœur de Santa Teresa, Costa Rica.</p>
+      </div>
+      <div><div class="lrf-ct">Explorer</div><a class="lrf-link" href="../../fr/villas.html">Villas</a><a class="lrf-link" href="../../fr/experiences.html">Expériences</a><a class="lrf-link" href="../../fr/santa-teresa.html">Santa Teresa</a><a class="lrf-link" href="../../fr/journal.html">Journal</a><a class="lrf-link" href="../../fr/about.html">Notre histoire</a></div>
+      <div><div class="lrf-ct">Réserver</div><a class="lrf-link" href="../../fr/contact.html">Réserver en direct</a><a class="lrf-link" href="../../fr/booking-conditions.html">Conditions de réservation</a><a class="lrf-link" href="../../fr/faq.html">Questions fréquentes</a><a class="lrf-link" href="../../fr/privacy-policy.html">Politique de confidentialité</a></div>
+      <div>
+        <div class="lrf-ct">Contact</div>
+        <a class="lrf-link" href="mailto:hello@lesrochesretreat.com">hello@lesrochesretreat.com</a>
+        <a class="lrf-link" href="https://wa.me/33667749024" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="lrf-link" href="https://www.instagram.com/lesrochessantateresa/" target="_blank" rel="noopener">Instagram</a>
+        <p class="lrf-adr">Calle Vista De Olas, Malpaís<br>Santa Teresa, Costa Rica</p>
+      </div>
+    </div>
+    <div class="lrf-bot">
+      <div class="lrf-copy">&copy; 2026 Les Roches &middot; Santa Teresa, Costa Rica &middot; Tous droits réservés</div>
+      <span class="lrf-legal">NIGHT CONCIERGERIE SRL &middot; Cédula jurídica 3-102-870510 &middot; Siège social : Rohrmoser, Pavas, San José, Costa Rica</span>
+    </div>
   </div>
-  <div class="fbot"><div class="fcopy">© 2026 Les Roches · Tous droits réservés<span class="f-legal" style="display:block;margin-top:.6rem;color:rgba(250,247,242,.55);font-size:10px;line-height:1.6;letter-spacing:.02em">NIGHT CONCIERGERIE SRL · Cédula jurídica 3-102-870510 · Siège social : Rohrmoser, Pavas, San José, Costa Rica</span></div><div class="fsoc"><a class="fsocl" href="https://www.instagram.com/lesrochessantateresa/" target="_blank" rel="noopener">Instagram</a></div></div>
 </footer>
 <script>
 const cur=document.getElementById('cur');

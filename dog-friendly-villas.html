@@ -384,12 +384,49 @@
   .pz-hero{min-height:58vh}
 }
 </style>
-<section id="main-content" class="pz-hero"><div class="pz-hero-in"><div class="pz-eye">Your dog is welcome</div><h1 class="pz-h1">One dog per villa, at no extra charge</h1><p class="pz-p">Les Roches takes one dog per villa, with no supplement and no size or weight limit. Tell us before you book, that is all. It is not a grudging tolerance: we host guests with their dog regularly.</p><div class="pz-chiffres"><div class="pz-ch"><div class="pz-ch-n">1</div><div class="pz-ch-l">dog per villa</div></div><div class="pz-ch"><div class="pz-ch-n">$0</div><div class="pz-ch-l">supplement</div></div><div class="pz-ch"><div class="pz-ch-n">No</div><div class="pz-ch-l">size limit</div></div><div class="pz-ch"><div class="pz-ch-n">6</div><div class="pz-ch-l">private pools</div></div></div></div></section><section class="pz-s"><div class="pz-in"><h2 class="pz-h2">What your dog can do</h2><p>He is allowed <strong>on the terrace and around the pool</strong>. He can <strong>stay alone in the villa</strong> while you go out, on the one condition that matters: that he is calm and quiet, and that you look after him as you would at home.</p><p>Dogs are <strong>allowed on the beach</strong>, and there is a vet nearby.</p></div></section><section class="pz-s"><div class="pz-in"><h2 class="pz-h2">Why a separate house changes everything</h2><p>You share no wall, no corridor, no lift, no outdoor space with other guests. Nobody meets your dog in a lobby. The terrace and the pool are yours alone, which is usually the hard part when travelling with an animal.</p></div></section><section class="pz-s"><div class="pz-in"><h2 class="pz-h2">What to weigh before booking</h2><p><strong>The grounds are not fenced.</strong> That is the point to think about honestly: a dog who does not come back when called cannot be left loose outside.</p><p>The pools have an infinity edge and <strong>no fence</strong>. The land is on a slope, and the garden-level villas are reached by going down one staircase. The beach is <strong>6 to 7 minutes away by car</strong>, 20 to 30 on foot with a hard climb back up.</p></div></section><section class="pz-s"><div class="pz-in" style="text-align:center"><a class="pz-cta" href="villas.html">See the six villas</a><a class="pz-cta" href="contact.html" style="margin-left:.6rem">Tell us about your dog</a></div></section><footer>
-    <div><div class="f-logo">Les Roches</div><div class="f-tagline">Six private villas in the heart of<br>Santa Teresa, Costa Rica.</div></div>
-    <div><div class="f-col-title">Navigate</div><a href="villas.html" class="f-link">Villas</a><a href="experiences.html" class="f-link">Experiences</a><a href="about.html" class="f-link">Our Story</a><a href="booking-conditions.html" class="f-link">Book Now</a></div>
-    <div><div class="f-col-title">Contact</div><span class="f-link">hello@lesrochesretreat.com</span><span class="f-link" style="margin-top:.4rem;display:block">Calle Vista De Olas<br>Santa Teresa · Costa Rica</span></div>
-    <div class="f-copy">© 2026 Les Roches · Santa Teresa, Costa Rica · <a href="privacy-policy.html" style="color:inherit;opacity:.6">Privacy Policy</a><span class="f-legal" style="display:block;margin-top:.6rem;color:rgba(250,247,242,.55);font-size:10px;line-height:1.6;letter-spacing:.02em">NIGHT CONCIERGERIE SRL · Cédula jurídica 3-102-870510 · Registered office: Rohrmoser, Pavas, San José, Costa Rica</span></div>
-  </footer>
+<section id="main-content" class="pz-hero"><div class="pz-hero-in"><div class="pz-eye">Your dog is welcome</div><h1 class="pz-h1">One dog per villa, at no extra charge</h1><p class="pz-p">Les Roches takes one dog per villa, with no supplement and no size or weight limit. Tell us before you book, that is all. It is not a grudging tolerance: we host guests with their dog regularly.</p><div class="pz-chiffres"><div class="pz-ch"><div class="pz-ch-n">1</div><div class="pz-ch-l">dog per villa</div></div><div class="pz-ch"><div class="pz-ch-n">$0</div><div class="pz-ch-l">supplement</div></div><div class="pz-ch"><div class="pz-ch-n">No</div><div class="pz-ch-l">size limit</div></div><div class="pz-ch"><div class="pz-ch-n">6</div><div class="pz-ch-l">private pools</div></div></div></div></section><section class="pz-s"><div class="pz-in"><h2 class="pz-h2">What your dog can do</h2><p>He is allowed <strong>on the terrace and around the pool</strong>. He can <strong>stay alone in the villa</strong> while you go out, on the one condition that matters: that he is calm and quiet, and that you look after him as you would at home.</p><p>Dogs are <strong>allowed on the beach</strong>, and there is a vet nearby.</p></div></section><section class="pz-s"><div class="pz-in"><h2 class="pz-h2">Why a separate house changes everything</h2><p>You share no wall, no corridor, no lift, no outdoor space with other guests. Nobody meets your dog in a lobby. The terrace and the pool are yours alone, which is usually the hard part when travelling with an animal.</p></div></section><section class="pz-s"><div class="pz-in"><h2 class="pz-h2">What to weigh before booking</h2><p><strong>The grounds are not fenced.</strong> That is the point to think about honestly: a dog who does not come back when called cannot be left loose outside.</p><p>The pools have an infinity edge and <strong>no fence</strong>. The land is on a slope, and the garden-level villas are reached by going down one staircase. The beach is <strong>6 to 7 minutes away by car</strong>, 20 to 30 on foot with a hard climb back up.</p></div></section><section class="pz-s"><div class="pz-in" style="text-align:center"><a class="pz-cta" href="villas.html">See the six villas</a><a class="pz-cta" href="contact.html" style="margin-left:.6rem">Tell us about your dog</a></div></section><style>
+/* Les pages hotes posent des regles sur la balise footer elle-meme :
+   l'une d'elles met display:grid, ce qui ecrasait ce bloc a 558 px de
+   large. On redeclare donc toute la mise en page, sans dependre de rien. */
+.lrf{display:block;width:auto;max-width:none;margin:0;gap:0;grid-template-columns:none;text-align:left;background:#2e2a26;color:#faf7f2;padding:4rem 0 2rem;font-family:'Outfit',system-ui,-apple-system,sans-serif}
+.lrf *{box-sizing:border-box}
+.lrf-in{display:block;width:100%;max-width:1180px;margin:0 auto;padding:0 2rem;float:none}
+.lrf-top{display:grid;grid-template-columns:1.5fr 1fr 1.2fr 1.1fr;gap:2.5rem}
+.lrf-logo{font-family:'Gilda Display',Georgia,serif;font-size:1rem;letter-spacing:.16em;text-transform:uppercase;color:#faf7f2;margin-bottom:.9rem}
+.lrf-tag{font-size:.72rem;line-height:1.7;color:rgba(255,255,255,.5);max-width:260px;margin:0}
+.lrf-ct{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:#b8734a;margin-bottom:.9rem}
+.lrf-link{display:block;font-size:.75rem;line-height:1.5;color:rgba(255,255,255,.62);margin-bottom:.5rem;text-decoration:none;transition:color .2s}
+.lrf-link:hover{color:#faf7f2}
+.lrf-adr{font-size:.72rem;line-height:1.7;color:rgba(255,255,255,.5);margin:.9rem 0 0}
+.lrf-bot{margin-top:3rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.08)}
+.lrf-copy{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.lrf-legal{display:block;margin-top:.6rem;font-size:10px;line-height:1.6;letter-spacing:.02em;color:rgba(250,247,242,.55)}
+@media(max-width:860px){.lrf-top{grid-template-columns:1fr 1fr;gap:2rem}.lrf-in{padding:0 1.5rem}}
+@media(max-width:560px){.lrf-top{grid-template-columns:1fr}.lrf{padding:3rem 0 1.5rem}}
+</style>
+<footer class="lrf">
+  <div class="lrf-in">
+    <div class="lrf-top">
+      <div>
+        <div class="lrf-logo">Les Roches</div>
+        <p class="lrf-tag">Six private villas in the heart of Santa Teresa, Costa Rica.</p>
+      </div>
+      <div><div class="lrf-ct">Explore</div><a class="lrf-link" href="villas.html">Villas</a><a class="lrf-link" href="experiences.html">Experiences</a><a class="lrf-link" href="santa-teresa.html">Santa Teresa</a><a class="lrf-link" href="journal.html">Journal</a><a class="lrf-link" href="about.html">Our story</a></div>
+      <div><div class="lrf-ct">Book</div><a class="lrf-link" href="contact.html">Book direct</a><a class="lrf-link" href="booking-conditions.html">Booking conditions</a><a class="lrf-link" href="faq.html">Frequently asked questions</a><a class="lrf-link" href="privacy-policy.html">Privacy policy</a></div>
+      <div>
+        <div class="lrf-ct">Contact</div>
+        <a class="lrf-link" href="mailto:hello@lesrochesretreat.com">hello@lesrochesretreat.com</a>
+        <a class="lrf-link" href="https://wa.me/33667749024" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="lrf-link" href="https://www.instagram.com/lesrochessantateresa/" target="_blank" rel="noopener">Instagram</a>
+        <p class="lrf-adr">Calle Vista De Olas, Malpaís<br>Santa Teresa, Costa Rica</p>
+      </div>
+    </div>
+    <div class="lrf-bot">
+      <div class="lrf-copy">&copy; 2026 Les Roches &middot; Santa Teresa, Costa Rica &middot; All rights reserved</div>
+      <span class="lrf-legal">NIGHT CONCIERGERIE SRL &middot; Cédula jurídica 3-102-870510 &middot; Registered office : Rohrmoser, Pavas, San José, Costa Rica</span>
+    </div>
+  </div>
+</footer>
 
   <script src="js/main.js?v=2026-11-14a"></script>
   <script>
