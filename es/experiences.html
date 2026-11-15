@@ -1261,7 +1261,11 @@ sp.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.pre
     var d = carte.querySelector('.exp-d');
     if (!d) return false;
     var img = carte.querySelector('.exp-card-photo');
-    photo.style.backgroundImage = img ? getComputedStyle(img).backgroundImage : 'none';
+    if (img) {
+      var si = getComputedStyle(img);
+      photo.style.backgroundImage = si.backgroundImage;
+      photo.style.backgroundPosition = si.backgroundPosition;
+    } else { photo.style.backgroundImage = 'none'; }
     cat.textContent = txt(carte.querySelector('.exp-card-cat'));
     var n = txt(carte.querySelector('.exp-card-name'));
     nom.textContent = n;
