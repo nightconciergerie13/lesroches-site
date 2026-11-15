@@ -745,7 +745,8 @@ function handleContactForm(e) {
         close=document.getElementById('wa-close');
   let open=false;
   function setOpen(v){ open=v; card.classList.toggle('open',v); }
-  if(!sessionStorage.getItem('wa_shown')){
+  function programmerWA(){
+    if(!sessionStorage.getItem('wa_shown')){
     setTimeout(()=>{
       setOpen(true);sessionStorage.setItem('wa_shown','1');
       /* Sous 1024 px la carte couvre un tiers de l'ecran et suit le
@@ -757,6 +758,18 @@ function handleContactForm(e) {
       }
     },6000);
   }
+  } /* fin programmerWA */
+
+  /* Le bandeau cookies est fixe en bas de l'ecran, au-dessus de la bulle :
+     tant qu'il est la, le bouton WhatsApp est entierement masque et la carte
+     s'ouvrirait sans ancrage visible, par-dessus une question posee au
+     visiteur. On attend donc sa reponse avant de programmer l'ouverture. */
+  var waRepondu;
+  try { waRepondu = !!localStorage.getItem('lr_cookie_consent'); }
+  catch (e) { waRepondu = true; }
+  if (waRepondu) programmerWA();
+  else document.addEventListener('lr:consent', programmerWA, { once: true });
+
   toggle.addEventListener('click',()=>setOpen(!open));
   close.addEventListener('click',()=>setOpen(false));
 })();
@@ -773,7 +786,7 @@ document.addEventListener('keydown',function(e){
 });
 </script>
 <script src="lang.js?v=2026-11-09a" defer></script>
-<script src="cookie-consent.js?v=2026-11-12d" defer></script>
+<script src="cookie-consent.js?v=2026-11-15a" defer></script>
 <script src="js/lazy-bg.js?v=2026-11-09a" defer></script>
 <script src="js/swipe.js?v=2026-11-09a" defer></script>
 <div class="mob-book-bar"><a href="villas.html">Book Direct, 5% Less</a></div>

@@ -179,6 +179,37 @@
   var boutons = document.createElement('div');
   boutons.style.cssText = 'display:flex;gap:.6rem;flex-shrink:0';
 
+
+  /* ── La bulle WhatsApp passe au-dessus du bandeau ──────────────────
+     Le bandeau est en position fixed, bottom 0, z-index 9999 ; la bulle
+     WhatsApp est a z-index 2000. Mesure du 15-11-2026 : a 1440x900 comme a
+     390x844, le bouton etait entierement recouvert, donc invisible tant que
+     le visiteur n'avait pas repondu.
+
+     On ne touche ni au transform (il sert deja a l'apparition de la bulle,
+     et #wa-bubble.scroll-reveal l'emporterait) ni aux valeurs de la feuille
+     de style : on relit le bottom calcule a chaque fois, apres avoir efface
+     le notre, pour rester juste meme si le visiteur change de largeur. */
+  function bulleWA() { return document.getElementById('wa-bubble'); }
+
+  function majDecalage() {
+    var bulle = bulleWA();
+    if (!bulle) return;
+    bulle.style.bottom = '';
+    var base = parseFloat(getComputedStyle(bulle).bottom) || 0;
+    bulle.style.bottom = (base + (bandeau.offsetHeight || 0)) + 'px';
+  }
+
+  function finBandeau(reponse) {
+    var bulle = bulleWA();
+    if (bulle) bulle.style.bottom = '';
+    window.removeEventListener('resize', majDecalage);
+    bandeau.remove();
+    try {
+      document.dispatchEvent(new CustomEvent('lr:consent', { detail: reponse }));
+    } catch (e) {}
+  }
+
   var btnAccepter = bouton(libAccepter, true);
   var btnRefuser  = bouton(libRefuser, false);
   btnRefuser.style.borderColor = 'rgba(245,240,232,.3)';
@@ -188,13 +219,13 @@
     ecrire('accepted');
     chargerAnalytics();
     cartes(true);
-    bandeau.remove();
+    finBandeau('accepted');
   });
 
   btnRefuser.addEventListener('click', function () {
     ecrire('declined');
     effacerCookiesGA();
-    bandeau.remove();
+    finBandeau('declined');
   });
 
   boutons.appendChild(btnAccepter);
@@ -202,4 +233,6 @@
   bandeau.appendChild(msg);
   bandeau.appendChild(boutons);
   document.body.appendChild(bandeau);
+  majDecalage();
+  window.addEventListener('resize', majDecalage);
 })();

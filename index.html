@@ -901,7 +901,7 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
       <div class="ec-line"></div>
     </a>
     <a href="experiences.html#atv" class="ec">
-      <div class="ecimg lazy-bg" data-bg="images/exp-atv.webp" data-bg-sm="images/exp-atv-sm.webp" style="background-color:var(--c2)"></div>
+      <div class="ecimg lazy-bg" data-bg="images/exp-quad.webp" data-bg-sm="images/exp-quad-sm.webp" style="background-color:var(--c2)"></div>
       <div class="ecov"></div>
       <div class="ecb">
         <div class="ecnum">05</div>
@@ -1339,9 +1339,22 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
   // seulement sur un ecran assez large. En dessous de 1280px la carte
   // recouvrait le champ "Guests" du widget de dates : elle masquait
   // l'outil qu'elle est censee soutenir.
-  if(!sessionStorage.getItem('wa_shown') && window.innerWidth >= 1280){
+  function programmerWA(){
+    if(!sessionStorage.getItem('wa_shown') && window.innerWidth >= 1280){
     setTimeout(()=>{setOpen(true);sessionStorage.setItem('wa_shown','1')},6000);
   }
+  } /* fin programmerWA */
+
+  /* Le bandeau cookies est fixe en bas de l'ecran, au-dessus de la bulle :
+     tant qu'il est la, le bouton WhatsApp est entierement masque et la carte
+     s'ouvrirait sans ancrage visible, par-dessus une question posee au
+     visiteur. On attend donc sa reponse avant de programmer l'ouverture. */
+  var waRepondu;
+  try { waRepondu = !!localStorage.getItem('lr_cookie_consent'); }
+  catch (e) { waRepondu = true; }
+  if (waRepondu) programmerWA();
+  else document.addEventListener('lr:consent', programmerWA, { once: true });
+
   toggle.addEventListener('click',()=>setOpen(!open));
   close.addEventListener('click',()=>setOpen(false));
 })();
@@ -1562,7 +1575,7 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
 })();
 </script>
 <script src="lang.js?v=2026-11-09a" defer></script>
-<script src="cookie-consent.js?v=2026-11-12d" defer></script>
+<script src="cookie-consent.js?v=2026-11-15a" defer></script>
 <script src="js/lazy-bg.js?v=2026-11-09a" defer></script>
 <script src="js/swipe.js?v=2026-11-09a" defer></script>
 <script>
