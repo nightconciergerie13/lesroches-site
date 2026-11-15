@@ -1205,6 +1205,16 @@ setTimeout(()=>document.querySelectorAll('.r').forEach(el=>el.classList.add('on'
   color: rgba(255,255,255,.6); border-bottom: 1px solid rgba(255,255,255,.22);
   padding-bottom: .3rem; transition: color .22s, border-color .22s; }
 .hero-link:hover { color: #fff; border-color: rgba(255,255,255,.6); }
+/* ── Mobile : le heros avait garde le gutter du desktop ──
+   Mesure du 15-11-2026 a 390 px de large : padding de 4 rem de chaque cote,
+   soit 128 px des 390 px de l'ecran, un tiers de la largeur en marge vide.
+   Le widget de dates tombait a 230 px, « Departure date » passait a la ligne
+   et les deux champs ne s'alignaient plus. Gutter ramene a 1,5 rem sous
+   600 px ; au-dessus, les 4 rem restent justes. */
+@media (max-width: 600px) {
+  .hero-inner { padding-left: 1.5rem; padding-right: 1.5rem; }
+}
+
 @media (max-width: 900px) {
   /* le bandeau cookies est fixe en bas et recouvrait le bouton :
      on remonte le contenu du heros au-dessus de lui */
