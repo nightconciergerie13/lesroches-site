@@ -1354,7 +1354,8 @@ sp.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.pre
       corps = document.getElementById('exp-panel-body'),
       wa    = document.getElementById('exp-panel-wa'),
       close = p.querySelector('.exp-panel-close'),
-      rendu = null;
+      rendu = null,
+      tmo = null;
 
   function txt(el){ return el ? (el.getAttribute('data-' + lg) || el.textContent || '').trim() : ''; }
 
@@ -1372,6 +1373,7 @@ sp.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.pre
     while (c.firstChild) corps.appendChild(c.firstChild);
     wa.href = 'https://wa.me/33667749024?text=' + encodeURIComponent((wa.getAttribute('data-wa-' + lg) || '') + n);
     rendu = carte;
+    clearTimeout(tmo);
     p.hidden = false;
     document.body.style.overflow = 'hidden';
     requestAnimationFrame(function(){ p.classList.add('on'); });
@@ -1382,7 +1384,8 @@ sp.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.pre
   function fermer(){
     p.classList.remove('on');
     document.body.style.overflow = '';
-    setTimeout(function(){ p.hidden = true; }, 300);
+    clearTimeout(tmo);
+    tmo = setTimeout(function(){ p.hidden = true; }, 300);
     if (rendu) { rendu.focus(); rendu = null; }
   }
 
