@@ -58,17 +58,17 @@ nav.scrolled{background:rgba(250,247,242,.96);border-bottom:1px solid var(--c2);
 .nav-burger.dark span{background:var(--ink)}
 
 /* Mobile nav overlay */
-.nav-overlay{display:none;position:fixed;inset:0;z-index:300;background:var(--ink2);flex-direction:column;align-items:center;justify-content:flex-start;gap:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:5rem 2rem 4rem}
+.nav-overlay{display:none;position:fixed;inset:0;z-index:400;background:var(--ink2);flex-direction:column;align-items:center;justify-content:flex-start;gap:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:5rem 2rem 4rem}
 .nav-overlay.open{display:flex}
 .nav-overlay .nl{font-size:1.1rem;letter-spacing:.2em;opacity:.6;color:var(--w);cursor:pointer;-webkit-tap-highlight-color:transparent;display:block;padding:.85rem 2rem;text-align:center;min-height:44px;display:flex;align-items:center;justify-content:center}
 .nav-overlay .nl.dark{color:var(--w)}
 .nav-overlay .nl:hover,.nav-overlay .nl:active{opacity:1}
-.nav-close{position:fixed;top:1.2rem;right:1.8rem;font-size:1.5rem;color:rgba(255,255,255,.5);background:none;border:none;cursor:pointer;z-index:301;padding:.5rem;-webkit-tap-highlight-color:transparent}
+.nav-close{position:fixed;top:1.2rem;right:1.8rem;font-size:1.5rem;color:rgba(255,255,255,.5);background:none;border:none;cursor:pointer;z-index:401;padding:.5rem;-webkit-tap-highlight-color:transparent}
 
 @media(max-width:768px){
   .nav-mid{display:none}
   .nav-book{display:none}
-  /* Burger toujours visible : fond verre dÃÂÃÂ©poli permanent */
+  /* Burger toujours visible : fond verre dépoli permanent */
   .nav-burger{
     display:flex;
     background:rgba(10,8,6,.38);

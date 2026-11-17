@@ -12,7 +12,7 @@
   <meta name="robots" content="index,follow">
   <title>Politique de confidentialité · Les Roches</title>
   <link rel="stylesheet" href="../css/fonts.css?v=2026-11-12a">
-  <link rel="stylesheet" href="../css/styles.css?v=2026-11-16a">
+  <link rel="stylesheet" href="../css/styles.css?v=2026-11-17a">
   <script src="../cookie-consent.js?v=2026-11-15a" defer></script>
   <style>
     :root { --ter: #b8734a; --w: #faf7f2; --ink: #1e1b18; --mid: #9a8f82; --c: #f3ede3; }
@@ -31,7 +31,19 @@
     .pp-updated { font-family: 'Outfit', sans-serif; font-size: .6rem; color: var(--mid); letter-spacing: .08em; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e9e0d2; }
     .lang-notice { background: var(--c); border-left: 3px solid var(--ter); padding: .9rem 1.2rem; margin-bottom: 2.5rem; font-family: 'Outfit', sans-serif; font-size: .68rem; font-weight: 300; color: var(--ink); }
     .lang-notice a { color: var(--ter); }
-  </style>
+  
+/* ── Barre de navigation : claire sur le hero sombre, foncée au défilement ──
+   Mesuré le 17-11-2026 : logo et liens étaient en #1e1b18 sur un hero #1e1b18,
+   donc invisibles. On réutilise les états .dark / nav.scrolled de styles.css. */
+nav .lang-sw{display:flex;align-items:center;gap:.3rem;font-size:.5rem;letter-spacing:.22em;color:var(--w);transition:color .4s}
+nav .lang-sw a{color:inherit}
+nav .lang-sw span{opacity:.55}
+nav .lang-sw span.on{opacity:1}
+nav.scrolled .lang-sw{color:var(--ink)}
+
+/* ── Menu mobile ───────────────────────────────────────────────────────── */
+.nav-overlay .lang-sw{display:none}
+</style>
 <script src="../js/track.js?v=2026-11-12a" defer></script>
 <link rel="stylesheet" href="../css/a11y.css?v=2026-11-12a">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://lesrochesretreat.com/fr/"}, {"@type": "ListItem", "position": 2, "name": "Confidentialité"}]}, {"@context": "https://schema.org", "@type": "WebPage", "@id": "https://lesrochesretreat.com/fr/privacy-policy.html", "url": "https://lesrochesretreat.com/fr/privacy-policy.html", "name": "Politique de confidentialité · Les Roches", "description": "Politique de confidentialité de Les Roches Retreat, comment nous collectons, utilisons et protégeons vos données personnelles conformément au RGPD.", "inLanguage": "fr", "dateModified": "2026-11-14", "isPartOf": {"@type": "WebSite", "name": "Les Roches Retreat", "url": "https://lesrochesretreat.com/"}, "publisher": {"@type": "Organization", "name": "Les Roches Retreat", "url": "https://lesrochesretreat.com/"}}]</script>
@@ -40,22 +52,32 @@
 <a href="#main-content" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--ter,#b8734a);color:#fff;padding:.5rem 1rem;font-family:sans-serif;font-size:.875rem" onfocus="this.style.left='1rem';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-999px'">Aller au contenu</a>
 
 <nav id="nav" aria-label="Navigation principale">
-  <a href="../index.html" class="nl-logo dark" id="logo">Les Roches</a>
+  <a href="index.html" class="nl-logo" id="logo">Les Roches</a>
   <div class="nav-mid">
-    <a href="villas.html" class="nl dark">Villas</a>
-    <a href="experiences.html" class="nl dark">Expériences</a>
-    <a href="about.html" class="nl dark">Notre histoire</a>
-    <a href="journal.html" class="nl dark">Journal</a>
+    <a href="villas.html" class="nl">Villas</a>
+    <a href="experiences.html" class="nl">Expériences</a>
+    <a href="about.html" class="nl">Notre histoire</a>
+    <a href="journal.html" class="nl">Journal</a>
   </div>
   <div class="nav-right">
-    <div class="lang-sw dark">
+    <div class="lang-sw">
       <a href="../privacy-policy.html"><span>EN</span></a><span class="lsep">·</span>
       <a href="privacy-policy.html"><span class="on">FR</span></a><span class="lsep">·</span>
       <a href="../es/privacy-policy.html"><span>ES</span></a>
     </div>
-    <a href="contact.html" class="nav-book dark">Réserver</a>
+    <a href="contact.html" class="nav-book">Réserver</a>
   </div>
+  <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
+  <div class="nav-overlay" id="nav-overlay">
+    <button class="nav-close" id="nav-close" aria-label="Fermer le menu">✕</button>
+    <a href="villas.html" class="nl">Villas</a>
+    <a href="experiences.html" class="nl">Expériences</a>
+    <a href="about.html" class="nl">Notre histoire</a>
+    <a href="journal.html" class="nl">Journal</a>
+    <a href="contact.html" class="nl">Réserver</a>
+  </div>
+
 <div id="main-content" tabindex="-1"></div>
 
 <div class="pp-hero">
@@ -214,5 +236,33 @@
   </div>
 </footer>
 
+
+<script>
+/* Barre de navigation et menu mobile. Cette page ne charge pas js/main.js
+   (il impose le curseur personnalisé, qui n'a pas sa place ici) : les deux
+   comportements sont recopiés à l'identique, et seulement eux. */
+(function(){
+  var nav=document.getElementById('nav');
+  var b=document.getElementById('burger'), o=document.getElementById('nav-overlay'), c=document.getElementById('nav-close');
+
+  if(nav){
+    var cibles=nav.querySelectorAll('.nl-logo,.nl,.lang-sw,.nav-book,.nav-burger');
+    var majEtat=function(){
+      var s=window.scrollY>60;
+      nav.classList.toggle('scrolled',s);
+      Array.prototype.forEach.call(cibles,function(e){e.classList.toggle('dark',s);});
+    };
+    window.addEventListener('scroll',majEtat,{passive:true});
+    majEtat();
+  }
+
+  if(!b||!o) return;
+  var fermer=function(){o.classList.remove('open');};
+  b.addEventListener('click',function(){o.classList.add('open');});
+  if(c) c.addEventListener('click',fermer);
+  Array.prototype.forEach.call(o.querySelectorAll('a'),function(a){a.addEventListener('click',fermer);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape') fermer();});
+})();
+</script>
 </body>
 </html>
