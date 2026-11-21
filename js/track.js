@@ -26,22 +26,42 @@
     return new URLSearchParams(window.location.search).get(param) || null;
   }
 
+  /* On classe sur le domaine du referent, jamais sur l'URL entiere.
+     Constate le 21-11-2026 : « lesrochesretreat.com » contient « t.co »
+     (dans « treat.com »), et l'ancien test `ref.includes('t.co')` rangeait
+     donc toute la navigation interne en « twitter ». 96 vues sur 97 sur
+     cinq jours. Toutes les parts de provenance en etaient faussees. */
+  function sansWww(h) { return h.replace(/^www\./, ''); }
+
   function getSource() {
     const utm = getUTM('utm_source');
     if (utm) return utm.toLowerCase();
 
-    const ref = document.referrer.toLowerCase();
+    const ref = document.referrer;
     if (!ref) return 'direct';
-    if (ref.includes('google')) return 'google';
-    if (ref.includes('instagram') || ref.includes('l.instagram')) return 'instagram';
-    if (ref.includes('facebook') || ref.includes('fb.com')) return 'facebook';
-    if (ref.includes('tripadvisor')) return 'tripadvisor';
-    if (ref.includes('airbnb')) return 'airbnb';
-    if (ref.includes('booking.com')) return 'booking';
-    if (ref.includes('pinterest')) return 'pinterest';
-    if (ref.includes('twitter') || ref.includes('t.co')) return 'twitter';
-    if (ref.includes('youtube')) return 'youtube';
-    if (ref.includes('whatsapp')) return 'whatsapp';
+
+    let hote;
+    try { hote = sansWww(new URL(ref).hostname.toLowerCase()); }
+    catch (e) { return 'other'; }
+
+    /* Navigation d'une page du site a une autre : ce n'est pas une source. */
+    if (hote === sansWww(window.location.hostname.toLowerCase())) return 'interne';
+
+    /* `est` n'accepte que le domaine exact ou un sous-domaine. */
+    function est(d) { return hote === d || hote.endsWith('.' + d); }
+    /* `famille` couvre les extensions nationales : google.fr, google.co.cr... */
+    function famille(d) { return hote === d || hote.indexOf(d + '.') === 0 || hote.indexOf('.' + d + '.') !== -1; }
+
+    if (famille('google')) return 'google';
+    if (est('instagram.com')) return 'instagram';
+    if (est('facebook.com') || est('fb.com') || est('fb.me')) return 'facebook';
+    if (famille('tripadvisor')) return 'tripadvisor';
+    if (famille('airbnb')) return 'airbnb';
+    if (est('booking.com')) return 'booking';
+    if (famille('pinterest')) return 'pinterest';
+    if (est('twitter.com') || est('x.com') || est('t.co')) return 'twitter';
+    if (est('youtube.com') || est('youtu.be')) return 'youtube';
+    if (est('whatsapp.com')) return 'whatsapp';
     return 'other';
   }
 
