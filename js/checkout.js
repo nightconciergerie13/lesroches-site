@@ -559,7 +559,8 @@
       s1Sub:"So we can send your confirmation and reach you if anything changes.",
       city:"City", country:"Country",
       blockedTitle:"These dates aren't available",
-      redo:"Choose other dates", close:"Close",
+      blockedTechTitle:"We can't show the price right now",
+      redo:"Choose other dates", close:"Close", retry:"Try again",
       nightsLabel:function(n){return n+(n>1?" nights":" night");},
       discountNote:"All prices in USD. The 5% direct discount is already included.",
       ack1:'By completing this booking, I agree with the <a href="/booking-conditions.html" target="_blank" rel="noopener">Booking Conditions</a>.',
@@ -597,6 +598,8 @@
         ack_required:"Please tick both boxes to continue.",
         payment_not_succeeded:"The payment did not go through. Nothing was charged.",
         beds24_rate_limited:"Service is busy. Please try again in a minute.",
+        beds24_unavailable:"Our booking system is not responding. Try again in a moment, or message us on WhatsApp.",
+        quote_timeout:"Our pricing service is taking too long to answer. Try again, or message us on WhatsApp and we will confirm your dates by hand.",
         booking_write_unconfirmed:"Your payment went through, but the automatic confirmation failed. We will email you within the hour. Please do not pay again.",
         fallback:"Something went wrong. Please try again, or message us on WhatsApp."
       }
@@ -612,7 +615,8 @@
       s1Sub:"Pour vous envoyer la confirmation et vous joindre si quelque chose change.",
       city:"Ville", country:"Pays",
       blockedTitle:"Ces dates ne sont pas disponibles",
-      redo:"Choisir d'autres dates", close:"Fermer",
+      blockedTechTitle:"Nous n'arrivons pas à afficher le prix",
+      redo:"Choisir d'autres dates", close:"Fermer", retry:"Réessayer",
       nightsLabel:function(n){return n+(n>1?" nuits":" nuit");},
       discountNote:"Tous les prix sont en dollars US. La remise directe de 5 % est d\u00e9j\u00e0 comprise.",
       ack1:'En validant cette r\u00e9servation, j\'accepte les <a href="/fr/booking-conditions.html" target="_blank" rel="noopener">conditions de r\u00e9servation</a>.',
@@ -650,6 +654,8 @@
         ack_required:"Cochez les deux cases pour continuer.",
         payment_not_succeeded:"Le paiement n'a pas abouti. Aucun montant n'a été prélevé.",
         beds24_rate_limited:"Service momentanément occupé. Réessayez dans une minute.",
+        beds24_unavailable:"Notre système de réservation ne répond pas. Réessayez dans un instant, ou écrivez-nous sur WhatsApp.",
+        quote_timeout:"Notre service de tarification met trop de temps à répondre. Réessayez, ou écrivez-nous sur WhatsApp : nous confirmerons vos dates à la main.",
         booking_write_unconfirmed:"Votre paiement est bien passé, mais la confirmation automatique a échoué. Nous vous écrivons dans l'heure. Ne payez pas une seconde fois.",
         fallback:"Une erreur est survenue. Réessayez, ou écrivez-nous sur WhatsApp."
       }
@@ -665,7 +671,8 @@
       s1Sub:"Para enviarte la confirmaci\u00f3n y contactarte si algo cambia.",
       city:"Ciudad", country:"Pa\u00eds",
       blockedTitle:"Estas fechas no est\u00e1n disponibles",
-      redo:"Elegir otras fechas", close:"Cerrar",
+      blockedTechTitle:"No podemos mostrar el precio ahora",
+      redo:"Elegir otras fechas", close:"Cerrar", retry:"Reintentar",
       nightsLabel:function(n){return n+(n>1?" noches":" noche");},
       discountNote:"Todos los precios en d\u00f3lares US. El descuento directo del 5 % ya est\u00e1 incluido.",
       ack1:'Al completar esta reserva, acepto las <a href="/es/booking-conditions.html" target="_blank" rel="noopener">condiciones de reserva</a>.',
@@ -703,6 +710,8 @@
         ack_required:"Marca las dos casillas para continuar.",
         payment_not_succeeded:"El pago no se completó. No se cobró nada.",
         beds24_rate_limited:"Servicio ocupado. Intente en un minuto.",
+        beds24_unavailable:"Nuestro sistema de reservas no responde. Reinténtelo en un momento, o escríbanos por WhatsApp.",
+        quote_timeout:"Nuestro servicio de tarifas tarda demasiado en responder. Reinténtelo, o escríbanos por WhatsApp: confirmaremos sus fechas a mano.",
         booking_write_unconfirmed:"Su pago se realizó, pero la confirmación automática falló. Le escribimos dentro de la hora. No pague de nuevo.",
         fallback:"Ocurrió un error. Intente de nuevo, o escríbanos por WhatsApp."
       }
@@ -873,10 +882,22 @@
   var timer = null;
   function refresh() { clearTimeout(timer); timer = setTimeout(load, 250); }
 
+  /* Sans minuteur, un Worker qui ne repond jamais laisse le client devant
+     "Chargement du montant..." indefiniment : l'ecran d'impasse n'arrive que
+     s'il y a une reponse. Panne du 21-11-2026. */
+  var DELAI_DEVIS = 20000;
+
   function load() {
+    var repondu = false;
+    var minuteur = setTimeout(function () {
+      if (!repondu) impasse("quote_timeout");
+    }, DELAI_DEVIS);
+    function fini() { repondu = true; clearTimeout(minuteur); }
+
     post("/quote", { villa: villa, checkin: stay.checkin, checkout: stay.checkout, lang: LANG,
                      options: selectedOptions(), guest: { numAdult: Number($("lr-ad").value) || 2 } })
       .then(function (res) {
+        fini();
         if (!res.body.ok) return impasse(res.body.error);
         var q = res.body.quote || res.body;
         stay.quote = q;
@@ -894,7 +915,7 @@
             q.villa.name + " \u00b7 " + q.checkin + " / " + q.checkout + " \u00b7 ");
         }
       })
-      .catch(function () { impasse(null); });
+      .catch(function () { fini(); impasse(null); });
   }
 
   /**
@@ -902,7 +923,17 @@
    * formulaire qu'il ne peut pas valider. On dit pourquoi, on propose d'autres
    * dates, et le WhatsApp reste a cote.
    */
+  /* Dates vendues : on invite a en choisir d'autres. Panne technique : on
+     invite a reessayer, parce que les dates n'y sont pour rien. */
+  var PANNES = { quote_timeout: 1, beds24_unavailable: 1, beds24_auth_failed: 1,
+                 beds24_not_configured: 1, beds24_rate_limited: 1, internal: 1 };
+  var impasseTechnique = false;
+
   function impasse(code) {
+    impasseTechnique = !code || !!PANNES[code];
+    var titre = document.querySelector('#lr-blocked [data-t="blockedTitle"]');
+    if (titre) titre.textContent = impasseTechnique ? L.blockedTechTitle : L.blockedTitle;
+    $("lr-redo").textContent = impasseTechnique ? L.retry : L.redo;
     ["lr-s1", "lr-s2", "lr-s3", "lr-s4", "lr-pay-done"].forEach(function (id) { $(id).hidden = true; });
     $("lr-steps").hidden = true;
     $("lr-blocked").hidden = false;
@@ -1365,7 +1396,15 @@
       var ouvert = $("lr-aside").classList.toggle("open");
       $("lr-aside-toggle").setAttribute("aria-expanded", ouvert ? "true" : "false");
     });
-    $("lr-redo").addEventListener("click", close_);
+    $("lr-redo").addEventListener("click", function () {
+      if (!impasseTechnique) return close_();
+      goStep(etape);
+      bloquer(true);
+      $("lr-meta").textContent = L.loading;
+      $("lr-aside-err").hidden = true;
+      $("lr-aside-err").textContent = "";
+      load();
+    });
     $("lr-close2").addEventListener("click", close_);
 
     /* A partir d'ici l'intercepteur a de quoi ouvrir la modale. */
