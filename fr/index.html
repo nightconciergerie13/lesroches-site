@@ -577,40 +577,6 @@ footer{background:var(--ink2);padding:3.5rem 4rem}
   <a href="villas.html" class="nl">Réserver</a>
 </div>
 
-
-<!-- URGENCY BAR ─────────────────────────────────────────────── -->
-
-<script>
-(function(){
-  var SUPABASE_URL='https://vrufclzcaswkdgrffdwm.supabase.co';
-  var SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZydWZjbHpjYXN3a2RncmZmZHdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIzMDIwMjUsImV4cCI6MjA1Nzg3ODAyNX0.fubkWMBWAbTiRHIADn0b7UrBVTRaWGv3OWJ9zRVP59g';
-  var today=new Date().toISOString().split('T')[0];
-  var future=new Date(Date.now()+30*24*3600*1000).toISOString().split('T')[0];
-  // Compte les réservations confirmées sur les 30 prochains jours
-  fetch(SUPABASE_URL+'/rest/v1/reservations?select=villa&status=eq.confirmed&checkin=gte.'+today+'&checkin=lte.'+future,{
-    headers:{'apikey':SUPABASE_ANON,'Authorization':'Bearer '+SUPABASE_ANON}
-  }).then(function(r){return r.json()}).then(function(data){
-    var booked=Array.isArray(data)?new Set(data.map(function(r){return r.villa})).size:0;
-    var available=Math.max(0,6-booked);
-    var txt=document.getElementById('urg-txt');
-    if(!txt)return;
-    if(available===0){
-      document.getElementById('urgency-bar').style.display='none';
-    } else {
-      txt.innerHTML='<strong>'+available+' villa'+(available>1?'s':'')+' available</strong> dans les 30 prochains jours — <a href="villas.html">vérifier les disponibilités →</a>';
-    }
-  }).catch(function(){/* fallback: texte statique déjà en place */});
-})();
-</script>
-<style>
-.urgency-bar{background:var(--ter);color:var(--w);text-align:center;padding:.55rem 3rem;font-family:'Outfit',sans-serif;font-size:.58rem;letter-spacing:.08em;position:relative;display:flex;align-items:center;justify-content:center;gap:.8rem}
-.urg-pulse{width:8px;height:8px;border-radius:50%;background:#fff;opacity:.9;animation:urp 1.6s ease-in-out infinite;flex-shrink:0}
-@keyframes urp{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.5);opacity:1}}
-.urg-txt a{color:#fff;text-decoration:underline;font-weight:400}
-.urg-close{position:absolute;right:1rem;background:none;border:none;color:rgba(255,255,255,.6);font-size:.9rem;cursor:pointer;line-height:1;top:50%;transform:translateY(-50%);padding:.2rem}
-.urg-close:hover{color:#fff}
-</style>
-
 <!-- HERO -->
 <div class="hero">
   <div class="hero-bg"></div>
