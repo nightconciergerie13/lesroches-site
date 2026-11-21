@@ -77,7 +77,11 @@
     var ci = (document.getElementById("sb-checkin") || {}).value || "";
     var co = (document.getElementById("sb-checkout") || {}).value || "";
     var txt = "";
-    if (SET && ci && co) {
+    /* Pas d'argument de vente sur un sejour qu'on refuse : quand le sejour est
+       plus court que le minimum, config.js desactive le bouton. On se tait. */
+    var cta = document.getElementById("sb-cta");
+    var refuse = cta && cta.style.pointerEvents === "none";
+    if (SET && ci && co && !refuse) {
       var veille = decale(ci, -1);
       var tot  = veille && SET[veille] === 1;   /* personne ne dort la veille */
       var tard = SET[co] === 1;                 /* personne n'arrive le jour du depart */
