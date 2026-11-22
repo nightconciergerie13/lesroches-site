@@ -489,7 +489,7 @@
 </a>
 
 <script src="../js/datepicker.js?v=2026-11-09a"></script>
-  <script src="../js/config.js?v=2026-11-21b"></script>
+  <script src="../js/config.js?v=2026-11-22a"></script>
   <script src="../js/main.js?v=2026-11-14a"></script>
 <script>
 /* ── Cursor (extra selectors for villa-specific elements) ── */
@@ -631,7 +631,9 @@ window.addEventListener('load', function() {
   if (allBtn) allBtn.addEventListener('click', function(e) { e.stopPropagation(); openLightbox(0); });
 });
 
-const PRICE_PER_NIGHT = 480;
+/* Le prix vient de config.js (availability.json, Beds24).
+   Le tarif fige qui vivait ici ecrivait un total faux avant
+   correction : retire le 22-11-2026. */
 const sbCheckin  = document.getElementById('sb-checkin');
 const sbCheckout = document.getElementById('sb-checkout');
 const sbTotal    = document.getElementById('sb-total');
@@ -641,7 +643,7 @@ const sbNightsVal= document.getElementById('sb-nights-val');
 const sbCta      = document.getElementById('sb-cta');
 
 function calcNights(a, b) { return (!a || !b) ? 0 : Math.round((new Date(b) - new Date(a)) / 86400000); }
-function fmtDate(d) { return d ? new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) : ''; }
+function fmtDate(d) { return d ? new Date(d + 'T00:00:00').toLocaleDateString('es-ES', { day: '2-digit', month: 'short' }) : ''; }
 
 let fpSidebar = null;
 try {
@@ -653,10 +655,9 @@ try {
         const co = toISO(selectedDates[1]);
         const n  = calcNights(ci, co);
         if (n >= 1) {
-          const total = n * PRICE_PER_NIGHT;
           sbNightsLbl.textContent = n + ' noche' + (n > 1 ? 's' : '');
           sbNightsVal.textContent = fmtDate(ci) + ' → ' + fmtDate(co);
-          sbTotalVal.textContent  = '$' + total.toLocaleString('en-US');
+          sbTotalVal.textContent  = '…';
           sbTotal.classList.add('show');
           if (sbCheckin)  sbCheckin.value  = ci;
           if (sbCheckout) sbCheckout.value = co;

@@ -499,7 +499,7 @@
 </a>
 
 <script src="js/datepicker.js?v=2026-11-09a"></script>
-  <script src="js/config.js?v=2026-11-21b"></script>
+  <script src="js/config.js?v=2026-11-22a"></script>
   <script src="js/track.js?v=2026-11-21a"></script>
   <script src="js/main.js?v=2026-11-14a"></script>
 <script>
@@ -642,66 +642,9 @@ window.addEventListener('load', function() {
   if (allBtn) allBtn.addEventListener('click', function(e) { e.stopPropagation(); openLightbox(0); });
 });
 
-let defaultPrice = 420; // fallback (updated dynamically from Supabase)
-
-/* ── Chargement du prix depuis Supabase ── */
-(async function loadVillaPrice() {
-  if (typeof SUPABASE_URL === 'undefined') return;
-  try {
-    // Load base price (for calculations)
-    const url = SUPABASE_URL + '/rest/v1/villas?id=eq.topaze&select=price_per_night';
-    const resp = await fetch(url, {
-      headers: { 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON }
-    });
-    const data = await resp.json();
-    if (data && data[0] && data[0].price_per_night) {
-      defaultPrice = data[0].price_per_night;
-    }
-    // Load minimum price from daily_rates (show cheapest night as "From" price)
-    const today = new Date().toISOString().split('T')[0];
-    const ratesUrl = SUPABASE_URL + '/rest/v1/daily_rates?villa_id=eq.topaze&date=gte.' + today + '&select=price_per_night&order=price_per_night.asc&limit=1';
-    const ratesResp = await fetch(ratesUrl, {
-      headers: { 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON }
-    });
-    const ratesData = await ratesResp.json();
-    const fromPrice = (ratesData && ratesData[0] && ratesData[0].price_per_night)
-      ? ratesData[0].price_per_night
-      : defaultPrice;
-    const el = document.querySelector('.sb-price-val');
-    if (el) { el.innerHTML = '$' + fromPrice + ' <small>/ night</small>'; window._lrFromPrice = fromPrice; }
-  } catch(e) { console.warn('Les Roches: price load failed', e); }
-})();
-
-/* ── Calcul du total depuis daily_rates Supabase ── */
-async function fetchTotalForDates(ci, co) {
-  const n = calcNights(ci, co);
-  if (n < 1) return { total: 0, nights: 0 };
-  if (typeof SUPABASE_URL === 'undefined') return { total: n * defaultPrice, nights: n };
-  try {
-    const url = SUPABASE_URL + '/rest/v1/daily_rates'
-      + '?villa_id=eq.topaze'
-      + '&date=gte.' + ci
-      + '&date=lt.' + co
-      + '&select=date,price_per_night';
-    const resp = await fetch(url, {
-      headers: { 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON }
-    });
-    const rates = await resp.json();
-    const rateMap = {};
-    (rates || []).forEach(function(r) { rateMap[r.date] = r.price_per_night; });
-    let total = 0;
-    const d = new Date(ci + 'T00:00:00');
-    for (let i = 0; i < n; i++) {
-      const ds = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
-      total += (rateMap[ds] !== undefined) ? rateMap[ds] : defaultPrice;
-      d.setDate(d.getDate() + 1);
-    }
-    return { total: total, nights: n };
-  } catch(e) {
-    console.warn('Les Roches: rate fetch failed, using default', e);
-    return { total: n * defaultPrice, nights: n };
-  }
-}
+/* Le prix et son libelle viennent de config.js (availability.json,
+   Beds24). Le moteur Supabase qui vivait ici affichait des tarifs
+   perimes par-dessus : retire le 22-11-2026. */
 const sbCheckin  = document.getElementById('sb-checkin');
 const sbCheckout = document.getElementById('sb-checkout');
 const sbTotal    = document.getElementById('sb-total');
@@ -727,35 +670,16 @@ try {
           sbNightsVal.textContent = fmtDate(ci) + ' → ' + fmtDate(co);
           sbTotalVal.textContent  = '…';
           sbTotal.classList.add('show');
-          const sbPriceLbl = document.querySelector('.sb-price-lbl');
-          const sbPriceValEl = document.querySelector('.sb-price-val');
-          if (sbPriceLbl) sbPriceLbl.textContent = 'Per night';
-          if (sbPriceValEl) sbPriceValEl.innerHTML = '… <small>/ night</small>';
           if (sbCheckin)  sbCheckin.value  = ci;
           if (sbCheckout) sbCheckout.value = co;
-          fetchTotalForDates(ci, co).then(function(r) {
-            sbTotalVal.textContent = '$' + r.total.toLocaleString('en-US');
-            if (r.nights > 0 && sbPriceValEl) {
-              var pn = Math.round(r.total / r.nights);
-              sbPriceValEl.innerHTML = '$' + pn + ' <small>/ night</small>';
-            }
-          });
         }
       } else {
         sbTotal.classList.remove('show');
         if (sbCheckout) sbCheckout.value = '';
-        const sbPriceLbl2 = document.querySelector('.sb-price-lbl');
-        const sbPriceValEl2 = document.querySelector('.sb-price-val');
-        if (sbPriceLbl2) sbPriceLbl2.textContent = 'From';
-        if (sbPriceValEl2) sbPriceValEl2.innerHTML = '$' + (window._lrFromPrice || defaultPrice) + ' <small>/ night</small>';
       }
     },
     onClear: function() {
       sbTotal.classList.remove('show');
-      const sbPriceLbl3 = document.querySelector('.sb-price-lbl');
-      const sbPriceValEl3 = document.querySelector('.sb-price-val');
-      if (sbPriceLbl3) sbPriceLbl3.textContent = 'From';
-      if (sbPriceValEl3) sbPriceValEl3.innerHTML = '$' + (window._lrFromPrice || defaultPrice) + ' <small>/ night</small>';
     }
   });
   if (fpSidebar) console.log('✅ Les Roches [topaze] – Picker prêt');
